@@ -139,6 +139,7 @@ tramp
 # cask packages
 .cask/
 
+/doc
 /obj/
 mysh
 /test/*
