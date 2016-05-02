@@ -144,3 +144,4 @@ mysh
 /test/*
 libmy*.a
 
+.idea/*
