@@ -5,7 +5,7 @@
 ## Login   <drouar_b@epitech.eu>
 ## 
 ## Started on  Mon May  2 14:03:38 2016 Benjamin DROUARD
-## Last update Mon May  2 14:09:03 2016 Benjamin DROUARD
+## Last update Tue May  3 18:07:41 2016 Benjamin DROUARD
 ##
 
 NAME		=	indie
@@ -40,4 +40,4 @@ fclean		:	clean
 			$(RM) $(NAME)
 
 re		:	fclean
-			make
+			@$(MAKE)
