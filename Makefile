@@ -29,7 +29,7 @@ all		:	$(NAME)
 $(NAME)		:	$(OBJS)
 			$(CXX) $(OBJS) $(LIBS) -o $(NAME)
 
-obj/%.o		:	src/%.cpp
+obj/%.o		:	srcs/%.cpp
 			@ [ -d $(@D) ] || echo "mkdir -p $(@D)"; mkdir -p $(@D)
 			$(CXX) -o $@ -c $< $(CXXFLAGS)
 
