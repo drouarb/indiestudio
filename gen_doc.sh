@@ -2,6 +2,7 @@
 
 doxygen
 
+
 if [ "$USER" = "guemasg" ] && ! [ -f "./.lock" ]
 then
 	touch .lock
@@ -17,3 +18,5 @@ then
 #	git push
 #	echo "cd /var/www ; git pull" | ssh root@163.172.148.143
 fi
+
+echo "doc dispo sur http://navispeed.eu"
