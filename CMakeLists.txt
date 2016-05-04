@@ -15,8 +15,8 @@ include_directories(includes)
 FILE(
         GLOB_RECURSE
         INDIE
-        src/*.cpp
-        src/**/*.cpp
+        srcs/*.cpp
+        srcs/**/*.cpp
         includes/*.h*
 )
 
