@@ -14,9 +14,9 @@ CXX		=	g++ ${MYDBG}
 
 RM		=	rm -rf
 
-SRCS		=	src/main.cpp			\
+SRCS		=	srcs/main.cpp			\
 
-OBJS		=	$(SRCS:src/%.cpp=obj/%.o)
+OBJS		=	$(SRCS:srcs/%.cpp=obj/%.o)
 
 INCLUDES	=	-I includes/
 
