@@ -10,7 +10,10 @@
 
 namespace gauntlet {
     class ItemContainer {
+    private:
         std::list <Item> itemList;
+    public:
+        void    remove(Item item);
     };
 };
 

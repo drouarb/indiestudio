@@ -3,3 +3,7 @@
 //
 
 #include "ItemContainer.hh"
+
+void gauntlet::ItemContainer::remove(gauntlet::Item item) {
+    this->itemList.remove(item);
+}

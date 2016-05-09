@@ -27,6 +27,7 @@ namespace gauntlet {
 
         Stats   getStats();
         bool    isConsumable();
+        bool    operator==(Item item);
     };
 };
 

@@ -22,6 +22,11 @@ Stats   gauntlet::Item::getStats() {
     return this->stats;
 }
 
-bool gauntlet::Item::isConsumable() {
+bool    gauntlet::Item::isConsumable() {
     return this->consumable;
+}
+
+bool    gauntlet::Item::operator==(Item item)
+{
+    return this->id == item.id;
 }
