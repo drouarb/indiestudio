@@ -4,7 +4,7 @@
 
 #include "graph/Ogre.hh"
 
-virtual Ogre::~Ogre()
+Ogre::~Ogre()
 { }
 
 Ogre::Ogre()
