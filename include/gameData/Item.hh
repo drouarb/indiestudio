@@ -15,14 +15,18 @@
 namespace gauntlet {
     class Item {
     private:
+        //bool equiped;
+        bool consumable;
         int id;
         int number;
         int price;
-        Stats mystat;
+        Stats stats;
     public:
         Item();
-
         ~Item();
+
+        Stats   getStats();
+        bool    isConsumable();
     };
 };
 

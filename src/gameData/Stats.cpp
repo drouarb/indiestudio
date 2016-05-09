@@ -20,5 +20,13 @@ gauntlet::Stats::Stats()
 
 gauntlet::Stats::~Stats()
 {
+}
 
+void  gauntlet::Stats::operator+=(const Stats stats)
+{
+  this->normalHP += stats.normalHP;
+  this->HP += stats.HP;
+  this->normalSpeed += stats.normalSpeed;
+  this->speed += stats.speed;
+  this->attackModifier += stats.attackModifier;
 }
