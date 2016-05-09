@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Mon May  9 11:24:05 2016 Alexis Trouve
-// Last update Mon May  9 13:13:48 2016 Alexis Trouve
+// Last update Mon May  9 15:02:36 2016 Alexis Trouve
 //
 
 #ifndef ITEM_HH_
@@ -16,6 +16,9 @@
 class	Item
 {
 private:
+  int		id;
+  int		number;
+  int		price;
   Stats		mystat;
 public:
   Item();

@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Mon May  9 11:29:29 2016 Alexis Trouve
-// Last update Mon May  9 13:47:26 2016 Alexis Trouve
+// Last update Mon May  9 14:36:36 2016 Alexis Trouve
 //
 
 #ifndef STATS_HH_
@@ -14,8 +14,11 @@
 class	Stats
 {
 public:
-  double	HP;
-  double	maxHP;
+  long		HP;
+  long		normalHP;
+  double	speed;
+  double	normalSpeed;
+  double	attackModifier;
 public:
   Stats();
   ~Stats();

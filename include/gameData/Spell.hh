@@ -7,7 +7,11 @@
 
 
 class Spell {
-
+private:
+  int		id;
+  int		damage;
+  double	castTime;
+  double	range;
 };
 
 
