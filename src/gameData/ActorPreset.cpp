@@ -3,3 +3,13 @@
 //
 
 #include "ActorPreset.hh"
+
+ActorPreset::ActorPreset()
+{
+
+}
+
+ActorPreset::~ActorPreset()
+{
+
+}

@@ -6,9 +6,14 @@
 #define CPP_INDIE_STUDIO_ACTORPRESET_HH
 
 
-class ActorPreset {
-    Stats stats;
-    SpellContainer spells;
+class ActorPreset
+{
+public:
+  Stats stats;
+  SpellContainer spells;
+public:
+  ActorPreset();
+  ~ActorPreset();
 };
 
 

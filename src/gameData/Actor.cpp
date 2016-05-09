@@ -3,3 +3,13 @@
 //
 
 #include "Actor.hh"
+
+Actor::Actor()
+{
+
+}
+
+Actor::~Actor()
+{
+
+}

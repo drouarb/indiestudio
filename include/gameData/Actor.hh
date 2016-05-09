@@ -10,11 +10,15 @@
 class Actor
 {
 private:
-  std::string		name;
-  int			id;
-  Stats			stats;
-  SpellContainer	spellBook;
-  World			&world;
+  std::pair<double, double>	coord;
+  std::string			name;
+  int				id;
+  Stats				stats;
+  SpellContainer		spellBook;
+  World				&world;
+public:
+  Actor();
+  ~Actor();
 };
 
 
