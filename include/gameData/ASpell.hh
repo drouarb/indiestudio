@@ -6,20 +6,20 @@
 #define CPP_INDIE_STUDIO_SPELL_HH
 
 #include <string>
+#include "World.hh"
 
 namespace gauntlet
 {
-    class Spell
+    class ASpell
     {
     private:
       int id;
       std::string	name;
-      int damage;
       double castTime;
-      double range;
     public:
-      Spell();
-      ~Spell();
+      ASpell(int nid, std::string nname, double ncastTime);
+      ~ASpell();
+      virtual void	 apply(double orientation, World &world) = 0;
     };
 };
 

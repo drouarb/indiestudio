@@ -210,6 +210,30 @@ src/core/IUIObserver.cpp.s:
 	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/IUIObserver.cpp.s
 .PHONY : src/core/IUIObserver.cpp.s
 
+src/gameData/ASpell.o: src/gameData/ASpell.cpp.o
+.PHONY : src/gameData/ASpell.o
+
+# target to build an object file
+src/gameData/ASpell.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/ASpell.cpp.o
+.PHONY : src/gameData/ASpell.cpp.o
+
+src/gameData/ASpell.i: src/gameData/ASpell.cpp.i
+.PHONY : src/gameData/ASpell.i
+
+# target to preprocess a source file
+src/gameData/ASpell.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/ASpell.cpp.i
+.PHONY : src/gameData/ASpell.cpp.i
+
+src/gameData/ASpell.s: src/gameData/ASpell.cpp.s
+.PHONY : src/gameData/ASpell.s
+
+# target to generate assembly for a file
+src/gameData/ASpell.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/ASpell.cpp.s
+.PHONY : src/gameData/ASpell.cpp.s
+
 src/gameData/Actor.o: src/gameData/Actor.cpp.o
 .PHONY : src/gameData/Actor.o
 
@@ -498,30 +522,6 @@ src/gameData/PlayerPreset.cpp.s:
 	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/PlayerPreset.cpp.s
 .PHONY : src/gameData/PlayerPreset.cpp.s
 
-src/gameData/Spell.o: src/gameData/Spell.cpp.o
-.PHONY : src/gameData/Spell.o
-
-# target to build an object file
-src/gameData/Spell.cpp.o:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Spell.cpp.o
-.PHONY : src/gameData/Spell.cpp.o
-
-src/gameData/Spell.i: src/gameData/Spell.cpp.i
-.PHONY : src/gameData/Spell.i
-
-# target to preprocess a source file
-src/gameData/Spell.cpp.i:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Spell.cpp.i
-.PHONY : src/gameData/Spell.cpp.i
-
-src/gameData/Spell.s: src/gameData/Spell.cpp.s
-.PHONY : src/gameData/Spell.s
-
-# target to generate assembly for a file
-src/gameData/Spell.cpp.s:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Spell.cpp.s
-.PHONY : src/gameData/Spell.cpp.s
-
 src/gameData/SpellContainer.o: src/gameData/SpellContainer.cpp.o
 .PHONY : src/gameData/SpellContainer.o
 
@@ -639,6 +639,9 @@ help:
 	@echo "... src/core/IUIObserver.o"
 	@echo "... src/core/IUIObserver.i"
 	@echo "... src/core/IUIObserver.s"
+	@echo "... src/gameData/ASpell.o"
+	@echo "... src/gameData/ASpell.i"
+	@echo "... src/gameData/ASpell.s"
 	@echo "... src/gameData/Actor.o"
 	@echo "... src/gameData/Actor.i"
 	@echo "... src/gameData/Actor.s"
@@ -675,9 +678,6 @@ help:
 	@echo "... src/gameData/PlayerPreset.o"
 	@echo "... src/gameData/PlayerPreset.i"
 	@echo "... src/gameData/PlayerPreset.s"
-	@echo "... src/gameData/Spell.o"
-	@echo "... src/gameData/Spell.i"
-	@echo "... src/gameData/Spell.s"
 	@echo "... src/gameData/SpellContainer.o"
 	@echo "... src/gameData/SpellContainer.i"
 	@echo "... src/gameData/SpellContainer.s"

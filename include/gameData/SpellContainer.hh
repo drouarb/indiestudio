@@ -6,13 +6,13 @@
 #define CPP_INDIE_STUDIO_SPELLCONTAINER_HH
 
 #include <list>
-#include "Spell.hh"
+#include "ASpell.hh"
 
 namespace gauntlet
 {
     class SpellContainer
     {
-      std::list <Spell> spellList;
+      std::list<gauntlet::ASpell*> spellList;
     public:
       SpellContainer();
       ~SpellContainer();
