@@ -234,6 +234,30 @@ src/gameData/Actor.cpp.s:
 	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Actor.cpp.s
 .PHONY : src/gameData/Actor.cpp.s
 
+src/gameData/ContainerObject.o: src/gameData/ContainerObject.cpp.o
+.PHONY : src/gameData/ContainerObject.o
+
+# target to build an object file
+src/gameData/ContainerObject.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/ContainerObject.cpp.o
+.PHONY : src/gameData/ContainerObject.cpp.o
+
+src/gameData/ContainerObject.i: src/gameData/ContainerObject.cpp.i
+.PHONY : src/gameData/ContainerObject.i
+
+# target to preprocess a source file
+src/gameData/ContainerObject.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/ContainerObject.cpp.i
+.PHONY : src/gameData/ContainerObject.cpp.i
+
+src/gameData/ContainerObject.s: src/gameData/ContainerObject.cpp.s
+.PHONY : src/gameData/ContainerObject.s
+
+# target to generate assembly for a file
+src/gameData/ContainerObject.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/ContainerObject.cpp.s
+.PHONY : src/gameData/ContainerObject.cpp.s
+
 src/gameData/Creature.o: src/gameData/Creature.cpp.o
 .PHONY : src/gameData/Creature.o
 
@@ -257,6 +281,54 @@ src/gameData/Creature.s: src/gameData/Creature.cpp.s
 src/gameData/Creature.cpp.s:
 	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Creature.cpp.s
 .PHONY : src/gameData/Creature.cpp.s
+
+src/gameData/GameObject.o: src/gameData/GameObject.cpp.o
+.PHONY : src/gameData/GameObject.o
+
+# target to build an object file
+src/gameData/GameObject.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/GameObject.cpp.o
+.PHONY : src/gameData/GameObject.cpp.o
+
+src/gameData/GameObject.i: src/gameData/GameObject.cpp.i
+.PHONY : src/gameData/GameObject.i
+
+# target to preprocess a source file
+src/gameData/GameObject.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/GameObject.cpp.i
+.PHONY : src/gameData/GameObject.cpp.i
+
+src/gameData/GameObject.s: src/gameData/GameObject.cpp.s
+.PHONY : src/gameData/GameObject.s
+
+# target to generate assembly for a file
+src/gameData/GameObject.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/GameObject.cpp.s
+.PHONY : src/gameData/GameObject.cpp.s
+
+src/gameData/GameObjectPreset.o: src/gameData/GameObjectPreset.cpp.o
+.PHONY : src/gameData/GameObjectPreset.o
+
+# target to build an object file
+src/gameData/GameObjectPreset.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/GameObjectPreset.cpp.o
+.PHONY : src/gameData/GameObjectPreset.cpp.o
+
+src/gameData/GameObjectPreset.i: src/gameData/GameObjectPreset.cpp.i
+.PHONY : src/gameData/GameObjectPreset.i
+
+# target to preprocess a source file
+src/gameData/GameObjectPreset.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/GameObjectPreset.cpp.i
+.PHONY : src/gameData/GameObjectPreset.cpp.i
+
+src/gameData/GameObjectPreset.s: src/gameData/GameObjectPreset.cpp.s
+.PHONY : src/gameData/GameObjectPreset.s
+
+# target to generate assembly for a file
+src/gameData/GameObjectPreset.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/GameObjectPreset.cpp.s
+.PHONY : src/gameData/GameObjectPreset.cpp.s
 
 src/gameData/Item.o: src/gameData/Item.cpp.o
 .PHONY : src/gameData/Item.o
@@ -498,9 +570,18 @@ help:
 	@echo "... src/gameData/Actor.o"
 	@echo "... src/gameData/Actor.i"
 	@echo "... src/gameData/Actor.s"
+	@echo "... src/gameData/ContainerObject.o"
+	@echo "... src/gameData/ContainerObject.i"
+	@echo "... src/gameData/ContainerObject.s"
 	@echo "... src/gameData/Creature.o"
 	@echo "... src/gameData/Creature.i"
 	@echo "... src/gameData/Creature.s"
+	@echo "... src/gameData/GameObject.o"
+	@echo "... src/gameData/GameObject.i"
+	@echo "... src/gameData/GameObject.s"
+	@echo "... src/gameData/GameObjectPreset.o"
+	@echo "... src/gameData/GameObjectPreset.i"
+	@echo "... src/gameData/GameObjectPreset.s"
 	@echo "... src/gameData/Item.o"
 	@echo "... src/gameData/Item.i"
 	@echo "... src/gameData/Item.s"
