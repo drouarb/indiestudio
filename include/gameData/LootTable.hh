@@ -5,10 +5,14 @@
 #ifndef CPP_INDIE_STUDIO_LOOTTABLE_HH
 #define CPP_INDIE_STUDIO_LOOTTABLE_HH
 
-namespace gauntlet {
-    class LootTable {
-
-    };
+namespace gauntlet
+{
+  class LootTable
+  {
+  public:
+    LootTable();
+    ~LootTable();
+  };
 }
 
 

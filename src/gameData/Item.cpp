@@ -5,10 +5,12 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Mon May  9 11:28:38 2016 Alexis Trouve
-// Last update Mon May  9 11:29:07 2016 Alexis Trouve
+// Last update Mon May  9 16:02:21 2016 Alexis Trouve
 //
 
 #include "Item.hh"
+
+using namespace gauntlet;
 
 gauntlet::Item::Item()
 {

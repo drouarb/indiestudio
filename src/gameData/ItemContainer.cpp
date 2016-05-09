@@ -3,3 +3,15 @@
 //
 
 #include "ItemContainer.hh"
+
+using namespace gauntlet;
+
+ItemContainer::ItemContainer()
+{
+
+}
+
+ItemContainer::~ItemContainer()
+{
+
+}

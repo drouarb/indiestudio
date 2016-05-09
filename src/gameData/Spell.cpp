@@ -3,3 +3,15 @@
 //
 
 #include "Spell.hh"
+
+using namespace gauntlet;
+
+Spell::Spell()
+{
+
+}
+
+Spell::~Spell()
+{
+
+}

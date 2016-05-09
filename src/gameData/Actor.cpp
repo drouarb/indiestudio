@@ -3,3 +3,15 @@
 //
 
 #include "Actor.hh"
+
+using namespace gauntlet;
+
+Actor::Actor()
+{
+
+}
+
+Actor::~Actor()
+{
+
+}

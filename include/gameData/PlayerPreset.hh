@@ -7,10 +7,13 @@
 
 #include "ActorPreset.hh"
 
-namespace gauntlet {
-    class PlayerPreset : public ActorPreset {
-
-    };
+namespace gauntlet
+{
+  class PlayerPreset : public ActorPreset
+  {
+    PlayerPreset();
+    ~PlayerPreset();
+  };
 };
 
 

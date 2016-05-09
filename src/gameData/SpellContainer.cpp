@@ -3,3 +3,15 @@
 //
 
 #include "SpellContainer.hh"
+
+using namespace gauntlet;
+
+SpellContainer::SpellContainer()
+{
+
+}
+
+SpellContainer::~SpellContainer()
+{
+
+}

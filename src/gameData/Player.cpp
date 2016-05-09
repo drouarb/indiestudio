@@ -4,17 +4,23 @@
 
 #include "Player.hh"
 
-gauntlet::Player::Player() {
+using namespace gauntlet;
+
+Player::Player()
+{
+
 }
 
-gauntlet::Player::~Player() {
+Player::~Player()
+{
+
 }
 
-void    gauntlet::Player::addScore(long addition) {
+void    Player::addScore(long addition) {
     this->score += addition;
 }
 
-void    gauntlet::Player::use(Item item) {
+void    Player::use(Item item) {
     if (item.isConsumable)
     {
         this->stats += item.getStats();
