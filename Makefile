@@ -5,7 +5,7 @@
 ## Login   <drouar_b@epitech.eu>
 ## 
 ## Started on  Mon May  2 14:03:38 2016 Benjamin DROUARD
-## Last update Tue May  3 18:07:41 2016 Benjamin DROUARD
+## Last update Mon May  9 10:40:47 2016 Alexis Trouve
 ##
 
 NAME		=	indie
@@ -15,6 +15,9 @@ CXX		=	g++ ${MYDBG}
 RM		=	rm -rf
 
 SRCS		=	srcs/main.cpp			\
+			srcs/World.cpp			\
+			srcs/NSocket.cpp		\
+			srcs/SocketException.cpp	\
 
 OBJS		=	$(SRCS:srcs/%.cpp=obj/%.o)
 
