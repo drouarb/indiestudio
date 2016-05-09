@@ -5,15 +5,17 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Mon May  9 14:04:22 2016 Alexis Trouve
-// Last update Mon May  9 14:05:02 2016 Alexis Trouve
+// Last update Mon May  9 16:03:22 2016 Alexis Trouve
 //
 
 #include "GameObjectPreset.hh"
 
-GameObjectPreset::GameObjectPreset()
+using namespace gauntlet;
+
+gauntlet::GameObjectPreset::GameObjectPreset()
 {
 }
 
-GameObjectPreset::~GameObjectPreset()
+gauntlet::GameObjectPreset::~GameObjectPreset()
 {
 }

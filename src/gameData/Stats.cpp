@@ -5,18 +5,20 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Mon May  9 13:46:11 2016 Alexis Trouve
-// Last update Mon May  9 13:47:52 2016 Alexis Trouve
+// Last update Mon May  9 16:04:14 2016 Alexis Trouve
 //
 
 #include "Stats.hh"
 
-Stats::Stats()
+using namespace gauntlet;
+
+gauntlet::Stats::Stats()
 {
   HP = 0;
-  maxHP = 0;
+  normalHP = 0;
 }
 
-Stats::~Stats()
+gauntlet::Stats::~Stats()
 {
 
 }

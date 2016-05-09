@@ -12,14 +12,17 @@
 # define CONTAINEROBJ_HH_
 
 #include "ItemContainer.hh"
+#include "GameObject.hh"
 
-class	ContainerObject : public GameObject
-{
-private:
-  ItemContainer		myItems;
-public:
-  ContainerObject();
-  ~ContainerObject();
+namespace gauntlet {
+    class ContainerObject : public GameObject {
+    private:
+        ItemContainer myItems;
+    public:
+        ContainerObject();
+
+        ~ContainerObject();
+    };
 };
 
 #endif

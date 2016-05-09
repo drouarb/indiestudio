@@ -3,3 +3,15 @@
 //
 
 #include "LootTable.hh"
+
+using namespace gauntlet;
+
+LootTable::LootTable()
+{
+
+}
+
+LootTable::~LootTable()
+{
+
+}

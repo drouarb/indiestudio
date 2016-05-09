@@ -5,10 +5,18 @@
 #ifndef CPP_INDIE_STUDIO_ITEMCONTAINER_HH
 #define CPP_INDIE_STUDIO_ITEMCONTAINER_HH
 
+#include <list>
 #include "Item.hh"
 
-class ItemContainer {
-    std::list<Item> itemList;
+namespace gauntlet
+{
+    class ItemContainer
+    {
+      std::list <Item> itemList;
+    public:
+      ItemContainer();
+      ~ItemContainer();
+    };
 };
 
 

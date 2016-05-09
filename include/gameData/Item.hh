@@ -12,17 +12,18 @@
 # define ITEM_HH_
 
 #include "Stats.hh"
+namespace gauntlet {
+    class Item {
+    private:
+        int id;
+        int number;
+        int price;
+        Stats mystat;
+    public:
+        Item();
 
-class	Item
-{
-private:
-  int		id;
-  int		number;
-  int		price;
-  Stats		mystat;
-public:
-  Item();
-  ~Item();
+        ~Item();
+    };
 };
 
 #endif

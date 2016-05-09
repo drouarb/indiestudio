@@ -11,13 +11,15 @@
 #ifndef GAMEOBJECT_HH_
 # define GAMEOBJECT_HH_
 
-class	GameObject
-{
-private:
-  int		id;
-public:
-  GameObject();
-  ~GameObject();
+namespace gauntlet {
+    class GameObject {
+    private:
+        int id;
+    public:
+        GameObject();
+
+        ~GameObject();
+    };
 };
 
 #endif

@@ -10,12 +10,12 @@
 
 #include "ContainerObject.hh"
 
-ContainerObject::ContainerObject()
+gauntlet::ContainerObject::ContainerObject()
 {
 
 }
 
-ContainerObject::~ContainerObject()
+gauntlet::ContainerObject::~ContainerObject()
 {
 
 }

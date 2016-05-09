@@ -3,3 +3,15 @@
 //
 
 #include "Player.hh"
+
+using namespace gauntlet;
+
+Player::Player()
+{
+
+}
+
+Player::~Player()
+{
+
+}

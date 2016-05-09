@@ -3,3 +3,16 @@
 //
 
 #include "CreaturePreset.hh"
+
+using namespace gauntlet;
+
+CreaturePreset::CreaturePreset()
+{
+
+}
+
+CreaturePreset::~CreaturePreset()
+{
+
+}
+

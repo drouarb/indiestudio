@@ -6,20 +6,25 @@
 #define CPP_INDIE_STUDIO_ACTOR_HH
 
 #include <string>
+#include "Stats.hh"
+#include "SpellContainer.hh"
+#include "World.hh"
 
-class Actor
+namespace gauntlet
 {
-private:
-  std::pair<double, double>	coord;
-  std::string			name;
-  int				id;
-  Stats				stats;
-  SpellContainer		spellBook;
-  World				&world;
-public:
-  Actor();
-  ~Actor();
+  class Actor
+  {
+  private:
+    std::pair<double, double>	coord;
+    std::string			name;
+    int				id;
+    Stats			stats;
+    SpellContainer		spellBook;
+    World			world;
+  public:
+    Actor();
+    ~Actor();
+  };
 };
-
 
 #endif //CPP_INDIE_STUDIO_ACTOR_HH

@@ -11,17 +11,19 @@
 #ifndef STATS_HH_
 # define STATS_HH_
 
-class	Stats
-{
-public:
-  long		HP;
-  long		normalHP;
-  double	speed;
-  double	normalSpeed;
-  double	attackModifier;
-public:
-  Stats();
-  ~Stats();
+namespace gauntlet {
+    class Stats {
+    public:
+        long HP;
+        long normalHP;
+        double speed;
+        double normalSpeed;
+        double attackModifier;
+    public:
+        Stats();
+
+        ~Stats();
+    };
 };
 
 #endif
