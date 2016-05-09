@@ -3,7 +3,10 @@
 //
 
 #include <iostream>
+#include "Core.hh"
 
-int main() {
+int main()
+{
   std::cout << "Hello maggle" << std::endl;
+  gauntlet::core::Core();
 }
