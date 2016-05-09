@@ -5,9 +5,11 @@
 #ifndef CPP_INDIE_STUDIO_PLAYER_HH
 #define CPP_INDIE_STUDIO_PLAYER_HH
 
+#include "Actor.hh"
+#include "ItemContainer.hh"
 
 class Player : public Actor {
-
+    ItemContainer inventory;
 };
 
 

@@ -5,6 +5,7 @@
 #ifndef CPP_INDIE_STUDIO_CREATURE_HH
 #define CPP_INDIE_STUDIO_CREATURE_HH
 
+#include "Actor.hh"
 
 class Creature : public Actor {
 
