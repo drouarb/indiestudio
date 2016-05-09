@@ -18,7 +18,7 @@ void    gauntlet::Player::use(Item item) {
     if (item.isConsumable)
     {
         this->stats += item.getStats();
-        this->inventory.remove(item);g
+        this->inventory.remove(item);
     }
 }
 /*
