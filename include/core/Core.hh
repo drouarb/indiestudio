@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 10:59:47 2016 Esteban Lewis
-// Last update Mon May  9 11:12:06 2016 Esteban Lewis
+// Last update Mon May  9 11:19:30 2016 Esteban Lewis
 //
 
 #ifndef  CORE_HH_
@@ -23,8 +23,8 @@ namespace			gauntlet
       Core();
       ~Core();
 
-      void			keyUp(enum Key);
-      void			keyDown(enum Key);
+      void			keyUp(IUIObserver::Key);
+      void			keyDown(IUIObserver::Key);
 
     private:
       IUIObserver *		observer;

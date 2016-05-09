@@ -114,125 +114,149 @@ cpp_indie_studio/fast:
 	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/build
 .PHONY : cpp_indie_studio/fast
 
-srcs/World.o: srcs/World.cpp.o
-.PHONY : srcs/World.o
+src/World.o: src/World.cpp.o
+.PHONY : src/World.o
 
 # target to build an object file
-srcs/World.cpp.o:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/srcs/World.cpp.o
-.PHONY : srcs/World.cpp.o
+src/World.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/World.cpp.o
+.PHONY : src/World.cpp.o
 
-srcs/World.i: srcs/World.cpp.i
-.PHONY : srcs/World.i
+src/World.i: src/World.cpp.i
+.PHONY : src/World.i
 
 # target to preprocess a source file
-srcs/World.cpp.i:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/srcs/World.cpp.i
-.PHONY : srcs/World.cpp.i
+src/World.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/World.cpp.i
+.PHONY : src/World.cpp.i
 
-srcs/World.s: srcs/World.cpp.s
-.PHONY : srcs/World.s
+src/World.s: src/World.cpp.s
+.PHONY : src/World.s
 
 # target to generate assembly for a file
-srcs/World.cpp.s:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/srcs/World.cpp.s
-.PHONY : srcs/World.cpp.s
+src/World.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/World.cpp.s
+.PHONY : src/World.cpp.s
 
-srcs/core/CoreUIObserver.o: srcs/core/CoreUIObserver.cpp.o
-.PHONY : srcs/core/CoreUIObserver.o
+src/core/Core.o: src/core/Core.cpp.o
+.PHONY : src/core/Core.o
 
 # target to build an object file
-srcs/core/CoreUIObserver.cpp.o:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/srcs/core/CoreUIObserver.cpp.o
-.PHONY : srcs/core/CoreUIObserver.cpp.o
+src/core/Core.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/Core.cpp.o
+.PHONY : src/core/Core.cpp.o
 
-srcs/core/CoreUIObserver.i: srcs/core/CoreUIObserver.cpp.i
-.PHONY : srcs/core/CoreUIObserver.i
+src/core/Core.i: src/core/Core.cpp.i
+.PHONY : src/core/Core.i
 
 # target to preprocess a source file
-srcs/core/CoreUIObserver.cpp.i:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/srcs/core/CoreUIObserver.cpp.i
-.PHONY : srcs/core/CoreUIObserver.cpp.i
+src/core/Core.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/Core.cpp.i
+.PHONY : src/core/Core.cpp.i
 
-srcs/core/CoreUIObserver.s: srcs/core/CoreUIObserver.cpp.s
-.PHONY : srcs/core/CoreUIObserver.s
+src/core/Core.s: src/core/Core.cpp.s
+.PHONY : src/core/Core.s
 
 # target to generate assembly for a file
-srcs/core/CoreUIObserver.cpp.s:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/srcs/core/CoreUIObserver.cpp.s
-.PHONY : srcs/core/CoreUIObserver.cpp.s
+src/core/Core.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/Core.cpp.s
+.PHONY : src/core/Core.cpp.s
 
-srcs/core/IUIObserver.o: srcs/core/IUIObserver.cpp.o
-.PHONY : srcs/core/IUIObserver.o
+src/core/CoreUIObserver.o: src/core/CoreUIObserver.cpp.o
+.PHONY : src/core/CoreUIObserver.o
 
 # target to build an object file
-srcs/core/IUIObserver.cpp.o:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/srcs/core/IUIObserver.cpp.o
-.PHONY : srcs/core/IUIObserver.cpp.o
+src/core/CoreUIObserver.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/CoreUIObserver.cpp.o
+.PHONY : src/core/CoreUIObserver.cpp.o
 
-srcs/core/IUIObserver.i: srcs/core/IUIObserver.cpp.i
-.PHONY : srcs/core/IUIObserver.i
+src/core/CoreUIObserver.i: src/core/CoreUIObserver.cpp.i
+.PHONY : src/core/CoreUIObserver.i
 
 # target to preprocess a source file
-srcs/core/IUIObserver.cpp.i:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/srcs/core/IUIObserver.cpp.i
-.PHONY : srcs/core/IUIObserver.cpp.i
+src/core/CoreUIObserver.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/CoreUIObserver.cpp.i
+.PHONY : src/core/CoreUIObserver.cpp.i
 
-srcs/core/IUIObserver.s: srcs/core/IUIObserver.cpp.s
-.PHONY : srcs/core/IUIObserver.s
+src/core/CoreUIObserver.s: src/core/CoreUIObserver.cpp.s
+.PHONY : src/core/CoreUIObserver.s
 
 # target to generate assembly for a file
-srcs/core/IUIObserver.cpp.s:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/srcs/core/IUIObserver.cpp.s
-.PHONY : srcs/core/IUIObserver.cpp.s
+src/core/CoreUIObserver.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/CoreUIObserver.cpp.s
+.PHONY : src/core/CoreUIObserver.cpp.s
 
-srcs/graph/Ogre.o: srcs/graph/Ogre.cpp.o
-.PHONY : srcs/graph/Ogre.o
+src/core/IUIObserver.o: src/core/IUIObserver.cpp.o
+.PHONY : src/core/IUIObserver.o
 
 # target to build an object file
-srcs/graph/Ogre.cpp.o:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/srcs/graph/Ogre.cpp.o
-.PHONY : srcs/graph/Ogre.cpp.o
+src/core/IUIObserver.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/IUIObserver.cpp.o
+.PHONY : src/core/IUIObserver.cpp.o
 
-srcs/graph/Ogre.i: srcs/graph/Ogre.cpp.i
-.PHONY : srcs/graph/Ogre.i
+src/core/IUIObserver.i: src/core/IUIObserver.cpp.i
+.PHONY : src/core/IUIObserver.i
 
 # target to preprocess a source file
-srcs/graph/Ogre.cpp.i:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/srcs/graph/Ogre.cpp.i
-.PHONY : srcs/graph/Ogre.cpp.i
+src/core/IUIObserver.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/IUIObserver.cpp.i
+.PHONY : src/core/IUIObserver.cpp.i
 
-srcs/graph/Ogre.s: srcs/graph/Ogre.cpp.s
-.PHONY : srcs/graph/Ogre.s
+src/core/IUIObserver.s: src/core/IUIObserver.cpp.s
+.PHONY : src/core/IUIObserver.s
 
 # target to generate assembly for a file
-srcs/graph/Ogre.cpp.s:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/srcs/graph/Ogre.cpp.s
-.PHONY : srcs/graph/Ogre.cpp.s
+src/core/IUIObserver.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/IUIObserver.cpp.s
+.PHONY : src/core/IUIObserver.cpp.s
 
-srcs/main.o: srcs/main.cpp.o
-.PHONY : srcs/main.o
+src/graph/Ogre.o: src/graph/Ogre.cpp.o
+.PHONY : src/graph/Ogre.o
 
 # target to build an object file
-srcs/main.cpp.o:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/srcs/main.cpp.o
-.PHONY : srcs/main.cpp.o
+src/graph/Ogre.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/graph/Ogre.cpp.o
+.PHONY : src/graph/Ogre.cpp.o
 
-srcs/main.i: srcs/main.cpp.i
-.PHONY : srcs/main.i
+src/graph/Ogre.i: src/graph/Ogre.cpp.i
+.PHONY : src/graph/Ogre.i
 
 # target to preprocess a source file
-srcs/main.cpp.i:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/srcs/main.cpp.i
-.PHONY : srcs/main.cpp.i
+src/graph/Ogre.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/graph/Ogre.cpp.i
+.PHONY : src/graph/Ogre.cpp.i
 
-srcs/main.s: srcs/main.cpp.s
-.PHONY : srcs/main.s
+src/graph/Ogre.s: src/graph/Ogre.cpp.s
+.PHONY : src/graph/Ogre.s
 
 # target to generate assembly for a file
-srcs/main.cpp.s:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/srcs/main.cpp.s
-.PHONY : srcs/main.cpp.s
+src/graph/Ogre.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/graph/Ogre.cpp.s
+.PHONY : src/graph/Ogre.cpp.s
+
+src/main.o: src/main.cpp.o
+.PHONY : src/main.o
+
+# target to build an object file
+src/main.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
+
+src/main.i: src/main.cpp.i
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
 
 # Help Target
 help:
@@ -243,21 +267,24 @@ help:
 	@echo "... cpp_indie_studio"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... srcs/World.o"
-	@echo "... srcs/World.i"
-	@echo "... srcs/World.s"
-	@echo "... srcs/core/CoreUIObserver.o"
-	@echo "... srcs/core/CoreUIObserver.i"
-	@echo "... srcs/core/CoreUIObserver.s"
-	@echo "... srcs/core/IUIObserver.o"
-	@echo "... srcs/core/IUIObserver.i"
-	@echo "... srcs/core/IUIObserver.s"
-	@echo "... srcs/graph/Ogre.o"
-	@echo "... srcs/graph/Ogre.i"
-	@echo "... srcs/graph/Ogre.s"
-	@echo "... srcs/main.o"
-	@echo "... srcs/main.i"
-	@echo "... srcs/main.s"
+	@echo "... src/World.o"
+	@echo "... src/World.i"
+	@echo "... src/World.s"
+	@echo "... src/core/Core.o"
+	@echo "... src/core/Core.i"
+	@echo "... src/core/Core.s"
+	@echo "... src/core/CoreUIObserver.o"
+	@echo "... src/core/CoreUIObserver.i"
+	@echo "... src/core/CoreUIObserver.s"
+	@echo "... src/core/IUIObserver.o"
+	@echo "... src/core/IUIObserver.i"
+	@echo "... src/core/IUIObserver.s"
+	@echo "... src/graph/Ogre.o"
+	@echo "... src/graph/Ogre.i"
+	@echo "... src/graph/Ogre.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
 .PHONY : help
 
 

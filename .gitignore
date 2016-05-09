@@ -146,3 +146,5 @@ libmy*.a
 
 .idea/*
 indie
+
+Makefile
