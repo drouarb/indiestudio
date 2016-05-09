@@ -3,3 +3,13 @@
 //
 
 #include "Player.hh"
+
+gauntlet::Player::Player() {
+}
+
+gauntlet::Player::~Player() {
+}
+
+void    gauntlet::Player::addScore(long addition) {
+    this->score += addition;
+}

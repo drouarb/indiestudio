@@ -23,6 +23,11 @@ namespace gauntlet {
         std::string playerName;
         long score;
         ItemContainer inventory;
+    public:
+        Player();
+        ~Player();
+
+        void addScore(long addition);
     };
 }
 
