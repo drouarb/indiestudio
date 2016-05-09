@@ -10,10 +10,10 @@
 
 #include "Item.hh"
 
-Item::Item()
+gauntlet::Item::Item()
 {
 }
 
-Item::~Item()
+gauntlet::Item::~Item()
 {
 }

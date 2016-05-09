@@ -10,12 +10,12 @@
 
 #include "GameObject.hh"
 
-GameObject::GameObject()
+gauntlet::GameObject::GameObject()
 {
 
 }
 
-GameObject::~GameObject()
+gauntlet::GameObject::~GameObject()
 {
 
 }

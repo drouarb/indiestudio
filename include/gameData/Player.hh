@@ -5,12 +5,25 @@
 #ifndef CPP_INDIE_STUDIO_PLAYER_HH
 #define CPP_INDIE_STUDIO_PLAYER_HH
 
+#include <string>
 #include "Actor.hh"
 #include "ItemContainer.hh"
 
-class Player : public Actor {
-    ItemContainer inventory;
-};
+enum	itemSlot
+  {
+    CHEST,
+    HEAD,
+    FEET,
+    EQUIPMENT
+  };
 
+namespace gauntlet {
+    class Player : public Actor {
+    private:
+        std::string playerName;
+        long score;
+        ItemContainer inventory;
+    };
+}
 
 #endif //CPP_INDIE_STUDIO_PLAYER_HH

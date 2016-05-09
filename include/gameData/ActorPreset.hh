@@ -8,10 +8,11 @@
 #include "Stats.hh"
 #include "SpellContainer.hh"
 
-class ActorPreset {
-    Stats stats;
-    SpellContainer spells;
+namespace gauntlet {
+    class ActorPreset {
+        Stats stats;
+        SpellContainer spells;
+    };
 };
-
 
 #endif //CPP_INDIE_STUDIO_ACTORPRESET_HH

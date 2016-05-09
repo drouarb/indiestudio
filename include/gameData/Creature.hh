@@ -7,9 +7,10 @@
 
 #include "Actor.hh"
 
-class Creature : public Actor {
+namespace gauntlet {
+    class Creature : public Actor {
 
+    };
 };
-
 
 #endif //CPP_INDIE_STUDIO_CREATURE_HH

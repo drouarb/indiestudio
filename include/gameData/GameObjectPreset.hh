@@ -11,10 +11,12 @@
 #ifndef GAMEOBJPRESET_HH_
 # define GAMEOBJPRESET_HH_
 
-class	GameObjectPreset
-{
-  GameObjectPreset();
-  ~GameObjectPreset();
+namespace gauntlet {
+    class GameObjectPreset {
+        GameObjectPreset();
+
+        ~GameObjectPreset();
+    };
 };
 
 #endif

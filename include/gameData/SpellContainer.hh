@@ -5,11 +5,14 @@
 #ifndef CPP_INDIE_STUDIO_SPELLCONTAINER_HH
 #define CPP_INDIE_STUDIO_SPELLCONTAINER_HH
 
+#include <list>
 #include "Spell.hh"
 
-class SpellContainer {
-    std::list<Spell> spellList;
-};
+namespace gauntlet {
+    class SpellContainer {
+        std::list <Spell> spellList;
+    };
+}
 
 
 #endif //CPP_INDIE_STUDIO_SPELLCONTAINER_HH

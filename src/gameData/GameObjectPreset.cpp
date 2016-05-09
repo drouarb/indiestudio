@@ -10,10 +10,10 @@
 
 #include "GameObjectPreset.hh"
 
-GameObjectPreset::GameObjectPreset()
+gauntlet::GameObjectPreset::GameObjectPreset()
 {
 }
 
-GameObjectPreset::~GameObjectPreset()
+gauntlet::GameObjectPreset::~GameObjectPreset()
 {
 }

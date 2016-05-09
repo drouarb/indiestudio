@@ -10,13 +10,13 @@
 
 #include "Stats.hh"
 
-Stats::Stats()
+gauntlet::Stats::Stats()
 {
   HP = 0;
-  maxHP = 0;
+  normalHP = 0;
 }
 
-Stats::~Stats()
+gauntlet::Stats::~Stats()
 {
 
 }

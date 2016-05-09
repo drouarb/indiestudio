@@ -5,9 +5,14 @@
 #ifndef CPP_INDIE_STUDIO_SPELL_HH
 #define CPP_INDIE_STUDIO_SPELL_HH
 
-
-class Spell {
-
+namespace gauntlet {
+    class Spell {
+    private:
+        int id;
+        int damage;
+        double castTime;
+        double range;
+    };
 };
 
 
