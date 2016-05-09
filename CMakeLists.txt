@@ -6,14 +6,15 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 set(CMAKE_CXX_FLAGS "-W -Wall -Wextra")
 
 link_libraries(pthread)
-include_directories(includes)
+include_directories(include)
+include_directories(include/core)
 
 FILE(
         GLOB_RECURSE
         INDIE
-        srcs/*.cpp
-        srcs/**/*.cpp
-        includes/*.h*
+        src/*.cpp
+        src/**/*.cpp
+        include/*.h*
 )
 
 add_executable(cpp_indie_studio ${INDIE})
