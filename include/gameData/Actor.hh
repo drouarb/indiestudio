@@ -5,14 +5,17 @@
 #ifndef CPP_INDIE_STUDIO_ACTOR_HH
 #define CPP_INDIE_STUDIO_ACTOR_HH
 
+#include "Stats.hh"
+#include "SpellContainer.hh"
+#include "World.hh"
 
-class Actor {
-private:
-    Stats stats;
-    SpellContainer spellBook;
-    EntityActor &entity;
-    World &world;
+namespace gauntlet {
+    class Actor {
+    private:
+        Stats stats;
+        SpellContainer spellBook;
+        World &world;
+    };
 };
-
 
 #endif //CPP_INDIE_STUDIO_ACTOR_HH

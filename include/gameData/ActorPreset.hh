@@ -5,6 +5,8 @@
 #ifndef CPP_INDIE_STUDIO_ACTORPRESET_HH
 #define CPP_INDIE_STUDIO_ACTORPRESET_HH
 
+#include "Stats.hh"
+#include "SpellContainer.hh"
 
 class ActorPreset {
     Stats stats;
