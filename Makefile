@@ -114,30 +114,6 @@ cpp_indie_studio/fast:
 	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/build
 .PHONY : cpp_indie_studio/fast
 
-src/Item.o: src/Item.cpp.o
-.PHONY : src/Item.o
-
-# target to build an object file
-src/Item.cpp.o:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/Item.cpp.o
-.PHONY : src/Item.cpp.o
-
-src/Item.i: src/Item.cpp.i
-.PHONY : src/Item.i
-
-# target to preprocess a source file
-src/Item.cpp.i:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/Item.cpp.i
-.PHONY : src/Item.cpp.i
-
-src/Item.s: src/Item.cpp.s
-.PHONY : src/Item.s
-
-# target to generate assembly for a file
-src/Item.cpp.s:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/Item.cpp.s
-.PHONY : src/Item.cpp.s
-
 src/World.o: src/World.cpp.o
 .PHONY : src/World.o
 
@@ -282,6 +258,78 @@ src/gameData/Creature.cpp.s:
 	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Creature.cpp.s
 .PHONY : src/gameData/Creature.cpp.s
 
+src/gameData/Item.o: src/gameData/Item.cpp.o
+.PHONY : src/gameData/Item.o
+
+# target to build an object file
+src/gameData/Item.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Item.cpp.o
+.PHONY : src/gameData/Item.cpp.o
+
+src/gameData/Item.i: src/gameData/Item.cpp.i
+.PHONY : src/gameData/Item.i
+
+# target to preprocess a source file
+src/gameData/Item.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Item.cpp.i
+.PHONY : src/gameData/Item.cpp.i
+
+src/gameData/Item.s: src/gameData/Item.cpp.s
+.PHONY : src/gameData/Item.s
+
+# target to generate assembly for a file
+src/gameData/Item.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Item.cpp.s
+.PHONY : src/gameData/Item.cpp.s
+
+src/gameData/ItemContainer.o: src/gameData/ItemContainer.cpp.o
+.PHONY : src/gameData/ItemContainer.o
+
+# target to build an object file
+src/gameData/ItemContainer.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/ItemContainer.cpp.o
+.PHONY : src/gameData/ItemContainer.cpp.o
+
+src/gameData/ItemContainer.i: src/gameData/ItemContainer.cpp.i
+.PHONY : src/gameData/ItemContainer.i
+
+# target to preprocess a source file
+src/gameData/ItemContainer.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/ItemContainer.cpp.i
+.PHONY : src/gameData/ItemContainer.cpp.i
+
+src/gameData/ItemContainer.s: src/gameData/ItemContainer.cpp.s
+.PHONY : src/gameData/ItemContainer.s
+
+# target to generate assembly for a file
+src/gameData/ItemContainer.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/ItemContainer.cpp.s
+.PHONY : src/gameData/ItemContainer.cpp.s
+
+src/gameData/LootTable.o: src/gameData/LootTable.cpp.o
+.PHONY : src/gameData/LootTable.o
+
+# target to build an object file
+src/gameData/LootTable.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/LootTable.cpp.o
+.PHONY : src/gameData/LootTable.cpp.o
+
+src/gameData/LootTable.i: src/gameData/LootTable.cpp.i
+.PHONY : src/gameData/LootTable.i
+
+# target to preprocess a source file
+src/gameData/LootTable.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/LootTable.cpp.i
+.PHONY : src/gameData/LootTable.cpp.i
+
+src/gameData/LootTable.s: src/gameData/LootTable.cpp.s
+.PHONY : src/gameData/LootTable.s
+
+# target to generate assembly for a file
+src/gameData/LootTable.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/LootTable.cpp.s
+.PHONY : src/gameData/LootTable.cpp.s
+
 src/gameData/Player.o: src/gameData/Player.cpp.o
 .PHONY : src/gameData/Player.o
 
@@ -305,6 +353,78 @@ src/gameData/Player.s: src/gameData/Player.cpp.s
 src/gameData/Player.cpp.s:
 	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Player.cpp.s
 .PHONY : src/gameData/Player.cpp.s
+
+src/gameData/Spell.o: src/gameData/Spell.cpp.o
+.PHONY : src/gameData/Spell.o
+
+# target to build an object file
+src/gameData/Spell.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Spell.cpp.o
+.PHONY : src/gameData/Spell.cpp.o
+
+src/gameData/Spell.i: src/gameData/Spell.cpp.i
+.PHONY : src/gameData/Spell.i
+
+# target to preprocess a source file
+src/gameData/Spell.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Spell.cpp.i
+.PHONY : src/gameData/Spell.cpp.i
+
+src/gameData/Spell.s: src/gameData/Spell.cpp.s
+.PHONY : src/gameData/Spell.s
+
+# target to generate assembly for a file
+src/gameData/Spell.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Spell.cpp.s
+.PHONY : src/gameData/Spell.cpp.s
+
+src/gameData/SpellContainer.o: src/gameData/SpellContainer.cpp.o
+.PHONY : src/gameData/SpellContainer.o
+
+# target to build an object file
+src/gameData/SpellContainer.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/SpellContainer.cpp.o
+.PHONY : src/gameData/SpellContainer.cpp.o
+
+src/gameData/SpellContainer.i: src/gameData/SpellContainer.cpp.i
+.PHONY : src/gameData/SpellContainer.i
+
+# target to preprocess a source file
+src/gameData/SpellContainer.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/SpellContainer.cpp.i
+.PHONY : src/gameData/SpellContainer.cpp.i
+
+src/gameData/SpellContainer.s: src/gameData/SpellContainer.cpp.s
+.PHONY : src/gameData/SpellContainer.s
+
+# target to generate assembly for a file
+src/gameData/SpellContainer.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/SpellContainer.cpp.s
+.PHONY : src/gameData/SpellContainer.cpp.s
+
+src/gameData/Stats.o: src/gameData/Stats.cpp.o
+.PHONY : src/gameData/Stats.o
+
+# target to build an object file
+src/gameData/Stats.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Stats.cpp.o
+.PHONY : src/gameData/Stats.cpp.o
+
+src/gameData/Stats.i: src/gameData/Stats.cpp.i
+.PHONY : src/gameData/Stats.i
+
+# target to preprocess a source file
+src/gameData/Stats.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Stats.cpp.i
+.PHONY : src/gameData/Stats.cpp.i
+
+src/gameData/Stats.s: src/gameData/Stats.cpp.s
+.PHONY : src/gameData/Stats.s
+
+# target to generate assembly for a file
+src/gameData/Stats.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Stats.cpp.s
+.PHONY : src/gameData/Stats.cpp.s
 
 src/graph/Ogre.o: src/graph/Ogre.cpp.o
 .PHONY : src/graph/Ogre.o
@@ -363,9 +483,6 @@ help:
 	@echo "... cpp_indie_studio"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... src/Item.o"
-	@echo "... src/Item.i"
-	@echo "... src/Item.s"
 	@echo "... src/World.o"
 	@echo "... src/World.i"
 	@echo "... src/World.s"
@@ -384,9 +501,27 @@ help:
 	@echo "... src/gameData/Creature.o"
 	@echo "... src/gameData/Creature.i"
 	@echo "... src/gameData/Creature.s"
+	@echo "... src/gameData/Item.o"
+	@echo "... src/gameData/Item.i"
+	@echo "... src/gameData/Item.s"
+	@echo "... src/gameData/ItemContainer.o"
+	@echo "... src/gameData/ItemContainer.i"
+	@echo "... src/gameData/ItemContainer.s"
+	@echo "... src/gameData/LootTable.o"
+	@echo "... src/gameData/LootTable.i"
+	@echo "... src/gameData/LootTable.s"
 	@echo "... src/gameData/Player.o"
 	@echo "... src/gameData/Player.i"
 	@echo "... src/gameData/Player.s"
+	@echo "... src/gameData/Spell.o"
+	@echo "... src/gameData/Spell.i"
+	@echo "... src/gameData/Spell.s"
+	@echo "... src/gameData/SpellContainer.o"
+	@echo "... src/gameData/SpellContainer.i"
+	@echo "... src/gameData/SpellContainer.s"
+	@echo "... src/gameData/Stats.o"
+	@echo "... src/gameData/Stats.i"
+	@echo "... src/gameData/Stats.s"
 	@echo "... src/graph/Ogre.o"
 	@echo "... src/graph/Ogre.i"
 	@echo "... src/graph/Ogre.s"
