@@ -21,7 +21,7 @@ void    Player::addScore(long addition) {
 }
 
 void    Player::use(Item item) {
-    if (item.isConsumable)
+    if (item.isConsumable())
     {
         this->stats += item.getStats();
         this->inventory.remove(item);

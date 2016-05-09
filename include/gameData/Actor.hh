@@ -14,7 +14,7 @@ namespace gauntlet
 {
   class Actor
   {
-  private:
+  protected:
     std::pair<double, double>	coord;
     std::string			name;
     int				id;
