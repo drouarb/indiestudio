@@ -3,3 +3,15 @@
 //
 
 #include "PlayerPreset.hh"
+
+using namespace gauntlet;
+
+PlayerPreset::PlayerPreset()
+{
+
+}
+
+PlayerPreset::~PlayerPreset()
+{
+
+}

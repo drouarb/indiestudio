@@ -234,6 +234,30 @@ src/gameData/Actor.cpp.s:
 	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Actor.cpp.s
 .PHONY : src/gameData/Actor.cpp.s
 
+src/gameData/ActorPreset.o: src/gameData/ActorPreset.cpp.o
+.PHONY : src/gameData/ActorPreset.o
+
+# target to build an object file
+src/gameData/ActorPreset.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/ActorPreset.cpp.o
+.PHONY : src/gameData/ActorPreset.cpp.o
+
+src/gameData/ActorPreset.i: src/gameData/ActorPreset.cpp.i
+.PHONY : src/gameData/ActorPreset.i
+
+# target to preprocess a source file
+src/gameData/ActorPreset.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/ActorPreset.cpp.i
+.PHONY : src/gameData/ActorPreset.cpp.i
+
+src/gameData/ActorPreset.s: src/gameData/ActorPreset.cpp.s
+.PHONY : src/gameData/ActorPreset.s
+
+# target to generate assembly for a file
+src/gameData/ActorPreset.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/ActorPreset.cpp.s
+.PHONY : src/gameData/ActorPreset.cpp.s
+
 src/gameData/ContainerObject.o: src/gameData/ContainerObject.cpp.o
 .PHONY : src/gameData/ContainerObject.o
 
@@ -281,6 +305,30 @@ src/gameData/Creature.s: src/gameData/Creature.cpp.s
 src/gameData/Creature.cpp.s:
 	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Creature.cpp.s
 .PHONY : src/gameData/Creature.cpp.s
+
+src/gameData/CreaturePreset.o: src/gameData/CreaturePreset.cpp.o
+.PHONY : src/gameData/CreaturePreset.o
+
+# target to build an object file
+src/gameData/CreaturePreset.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/CreaturePreset.cpp.o
+.PHONY : src/gameData/CreaturePreset.cpp.o
+
+src/gameData/CreaturePreset.i: src/gameData/CreaturePreset.cpp.i
+.PHONY : src/gameData/CreaturePreset.i
+
+# target to preprocess a source file
+src/gameData/CreaturePreset.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/CreaturePreset.cpp.i
+.PHONY : src/gameData/CreaturePreset.cpp.i
+
+src/gameData/CreaturePreset.s: src/gameData/CreaturePreset.cpp.s
+.PHONY : src/gameData/CreaturePreset.s
+
+# target to generate assembly for a file
+src/gameData/CreaturePreset.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/CreaturePreset.cpp.s
+.PHONY : src/gameData/CreaturePreset.cpp.s
 
 src/gameData/GameObject.o: src/gameData/GameObject.cpp.o
 .PHONY : src/gameData/GameObject.o
@@ -426,6 +474,30 @@ src/gameData/Player.cpp.s:
 	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Player.cpp.s
 .PHONY : src/gameData/Player.cpp.s
 
+src/gameData/PlayerPreset.o: src/gameData/PlayerPreset.cpp.o
+.PHONY : src/gameData/PlayerPreset.o
+
+# target to build an object file
+src/gameData/PlayerPreset.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/PlayerPreset.cpp.o
+.PHONY : src/gameData/PlayerPreset.cpp.o
+
+src/gameData/PlayerPreset.i: src/gameData/PlayerPreset.cpp.i
+.PHONY : src/gameData/PlayerPreset.i
+
+# target to preprocess a source file
+src/gameData/PlayerPreset.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/PlayerPreset.cpp.i
+.PHONY : src/gameData/PlayerPreset.cpp.i
+
+src/gameData/PlayerPreset.s: src/gameData/PlayerPreset.cpp.s
+.PHONY : src/gameData/PlayerPreset.s
+
+# target to generate assembly for a file
+src/gameData/PlayerPreset.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/PlayerPreset.cpp.s
+.PHONY : src/gameData/PlayerPreset.cpp.s
+
 src/gameData/Spell.o: src/gameData/Spell.cpp.o
 .PHONY : src/gameData/Spell.o
 
@@ -570,12 +642,18 @@ help:
 	@echo "... src/gameData/Actor.o"
 	@echo "... src/gameData/Actor.i"
 	@echo "... src/gameData/Actor.s"
+	@echo "... src/gameData/ActorPreset.o"
+	@echo "... src/gameData/ActorPreset.i"
+	@echo "... src/gameData/ActorPreset.s"
 	@echo "... src/gameData/ContainerObject.o"
 	@echo "... src/gameData/ContainerObject.i"
 	@echo "... src/gameData/ContainerObject.s"
 	@echo "... src/gameData/Creature.o"
 	@echo "... src/gameData/Creature.i"
 	@echo "... src/gameData/Creature.s"
+	@echo "... src/gameData/CreaturePreset.o"
+	@echo "... src/gameData/CreaturePreset.i"
+	@echo "... src/gameData/CreaturePreset.s"
 	@echo "... src/gameData/GameObject.o"
 	@echo "... src/gameData/GameObject.i"
 	@echo "... src/gameData/GameObject.s"
@@ -594,6 +672,9 @@ help:
 	@echo "... src/gameData/Player.o"
 	@echo "... src/gameData/Player.i"
 	@echo "... src/gameData/Player.s"
+	@echo "... src/gameData/PlayerPreset.o"
+	@echo "... src/gameData/PlayerPreset.i"
+	@echo "... src/gameData/PlayerPreset.s"
 	@echo "... src/gameData/Spell.o"
 	@echo "... src/gameData/Spell.i"
 	@echo "... src/gameData/Spell.s"

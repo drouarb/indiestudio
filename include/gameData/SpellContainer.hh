@@ -8,9 +8,14 @@
 #include <list>
 #include "Spell.hh"
 
-namespace gauntlet {
-    class SpellContainer {
-        std::list <Spell> spellList;
+namespace gauntlet
+{
+    class SpellContainer
+    {
+      std::list <Spell> spellList;
+    public:
+      SpellContainer();
+      ~SpellContainer();
     };
 }
 

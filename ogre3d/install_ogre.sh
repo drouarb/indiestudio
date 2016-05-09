@@ -1,27 +1,20 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-if ! [ -f ogre.tar ]
-then
-	echo "ogre.tar not found"
-fi
+wget 163.172.133.5/all.tar -O all.tar
 
-if ! [ -f ogre ]
-then
-	tar -xvf ogre.tar
-fi
+mkdir ~/.ogre
+mv all.tar ~/.ogre
+cd ~/.ogre
+tar -xvf all.tar
+rm -f all.tar
+tar -xvf includes_OIS.tar
+tar -xvf includes.tar
+tar -xvf lib_OGRE.tar
+tar -xvf lib_OIS.tar
 
-if ! [ -f ois-v1-3 ]
-then
-	tar -xvf ./ois_v1-3.tar.gz
-fi
+chmod +x *.so*
 
-cd ./ogre
-cmake .
-
-make
-
-cd ..
-cd ./ois_v1-3
-chmod +x bootstrap
-./bootstrap
-./configure
+echo "export LD_LIBRARY_PATH=\"/home/${USER}/.ogre/lib/:\$LD_LIBRARY_PATH\"" >> ~/.bashrc
+echo "export LD_LIBRARY_PATH=\"/home/${USER}/.ogre/:\$LD_LIBRARY_PATH\"" >> ~/.bashrc
+echo "export CPP_INCLUDE_PATH=\"/home/${USER}/.ogre/includes/:\$CPP_INCLUDE_PATH\"" >> ~/.bashrc
+echo "export CPP_INCLUDE_PATH=\"/home/${USER}/.ogre/includes/linux:\$CPP_INCLUDE_PATH\"" >> ~/.bashrc

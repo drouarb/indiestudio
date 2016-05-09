@@ -8,11 +8,15 @@
 #include <list>
 #include "Item.hh"
 
-namespace gauntlet {
-    class ItemContainer {
-    private:
-        std::list <Item> itemList;
+namespace gauntlet
+{
+    class ItemContainer
+    {
+      std::list <Item> itemList;
     public:
+      ItemContainer();
+      ~ItemContainer();
+
         void    remove(Item item);
     };
 };

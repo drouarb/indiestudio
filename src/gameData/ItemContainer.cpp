@@ -4,6 +4,18 @@
 
 #include "ItemContainer.hh"
 
-void gauntlet::ItemContainer::remove(gauntlet::Item item) {
+using namespace gauntlet;
+
+ItemContainer::ItemContainer()
+{
+
+}
+
+ItemContainer::~ItemContainer()
+{
+
+}
+
+void ItemContainer::remove(gauntlet::Item item) {
     this->itemList.remove(item);
 }

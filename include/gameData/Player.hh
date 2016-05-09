@@ -17,19 +17,20 @@ enum	itemSlot
     EQUIPMENT
   };
 
-namespace gauntlet {
-    class Player : public Actor {
+namespace gauntlet
+{
+    class Player : public Actor
+    {
     private:
-        std::string playerName;
-        long score;
-        ItemContainer inventory;
+      std::string playerName;
+      long score;
+      ItemContainer inventory;
     public:
-        Player();
-        ~Player();
-
-        void addScore(long addition);
-        // void equip(Item item);
-        void use(Item item);
+      Player();
+      ~Player();
+      void addScore(long addition);
+      // void equip(Item item);
+      void use(Item item);
     };
 }
 

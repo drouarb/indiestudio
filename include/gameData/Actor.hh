@@ -10,15 +10,21 @@
 #include "SpellContainer.hh"
 #include "World.hh"
 
-namespace gauntlet {
-    class Actor {
-    protected:
-        std::string		name;
-        int			id;
-        Stats			stats;
-        SpellContainer	spellBook;
-        World			&world;
-    };
+namespace gauntlet
+{
+  class Actor
+  {
+  private:
+    std::pair<double, double>	coord;
+    std::string			name;
+    int				id;
+    Stats			stats;
+    SpellContainer		spellBook;
+    World			world;
+  public:
+    Actor();
+    ~Actor();
+  };
 };
 
 #endif //CPP_INDIE_STUDIO_ACTOR_HH
