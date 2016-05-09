@@ -17,3 +17,11 @@ gauntlet::Item::Item()
 gauntlet::Item::~Item()
 {
 }
+
+Stats   gauntlet::Item::getStats() {
+    return this->stats;
+}
+
+bool gauntlet::Item::isConsumable() {
+    return this->consumable;
+}

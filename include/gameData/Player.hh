@@ -28,6 +28,8 @@ namespace gauntlet {
         ~Player();
 
         void addScore(long addition);
+        // void equip(Item item);
+        void use(Item item);
     };
 }
 

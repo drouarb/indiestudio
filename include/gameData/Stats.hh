@@ -21,8 +21,9 @@ namespace gauntlet {
         double attackModifier;
     public:
         Stats();
-
         ~Stats();
+
+        void operator+=(const Stats stats);
     };
 };
 

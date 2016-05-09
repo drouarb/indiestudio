@@ -12,7 +12,7 @@
 
 namespace gauntlet {
     class Actor {
-    private:
+    protected:
         std::string		name;
         int			id;
         Stats			stats;
