@@ -7,6 +7,7 @@ set(CMAKE_CXX_FLAGS "-W -Wall -Wextra")
 
 link_libraries(pthread)
 include_directories(include)
+include_directories(include/core)
 
 FILE(
         GLOB_RECURSE
