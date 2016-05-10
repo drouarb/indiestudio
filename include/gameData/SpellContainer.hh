@@ -10,6 +10,9 @@
 
 namespace gauntlet
 {
+  
+  class ASpell;
+  
     class SpellContainer
     {
       std::list<gauntlet::ASpell*> spellList;
