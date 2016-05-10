@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Tue May 10 11:05:51 2016 Alexis Trouve
-// Last update Tue May 10 17:27:06 2016 Alexis Trouve
+// Last update Tue May 10 17:35:57 2016 Alexis Trouve
 //
 
 #ifndef CPP_INDIE_STUDIO_TELEPORTSPELL_HH
@@ -24,7 +24,7 @@ namespace gauntlet
 		    short nnbrProj, double nrange, double nradiusExplode,
 		    int nid, const std::string &nname, double ncastTime);
       ~TeleportSpell();
-      virtual void	 apply(double orientation, World &world,
+      virtual void	 apply(double orientation, world::World &world,
 			       gauntlet::Actor &SpellCaster,
 			       std::pair<double, double> coordPointed);
     };

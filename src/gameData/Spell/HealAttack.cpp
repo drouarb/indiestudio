@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Tue May 10 13:29:21 2016 Alexis Trouve
-// Last update Tue May 10 13:41:03 2016 Alexis Trouve
+// Last update Tue May 10 17:43:13 2016 Alexis Trouve
 //
 
 #include "HealAttack.hh"
@@ -25,7 +25,7 @@ HealAttack::~HealAttack()
 
 }
 
-void	HealAttack::apply(double orientation, World &world,
+void	HealAttack::apply(double orientation, world::World &world,
 			  Actor &SpellCaster, std::pair<double, double> coordPointed)
 {
 

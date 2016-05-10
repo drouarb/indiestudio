@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Tue May 10 11:05:51 2016 Alexis Trouve
-// Last update Tue May 10 16:59:14 2016 Alexis Trouve
+// Last update Tue May 10 17:35:27 2016 Alexis Trouve
 //
 
 #ifndef CPP_INDIE_STUDIO_ASPELL_HH
@@ -28,7 +28,7 @@ namespace gauntlet
   public:
     ASpell(int nid, std::string nname, double ncastTime);
     virtual ~ASpell();
-    virtual void	 apply(double orientation, World &world,
+    virtual void	 apply(double orientation, world::World &world,
 			       gauntlet::Actor &SpellCaster,
 			       std::pair<double, double> coordPointed) = 0;
   };

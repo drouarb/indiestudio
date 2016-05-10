@@ -19,8 +19,8 @@ namespace gauntlet
     std::string			name;
     int				id;
     Stats			stats;
-    //gauntlet::SpellContainer	spellBook;
-    World			world;
+    //SpellContainer		spellBook;
+    world::World		world;
   public:
     Actor();
     ~Actor();

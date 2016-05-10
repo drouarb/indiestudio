@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Tue May 10 13:00:56 2016 Alexis Trouve
-// Last update Tue May 10 13:32:59 2016 Alexis Trouve
+// Last update Tue May 10 17:42:33 2016 Alexis Trouve
 //
 
 #include "MeleeAttack.hh"
@@ -28,7 +28,7 @@ MeleeAttack::~MeleeAttack()
 
 }
 
-void		MeleeAttack::apply(double orientation, World &world,
+void		MeleeAttack::apply(double orientation, world::World &world,
 				   Actor &SpellCaster,
 				   std::pair<double, double> coordPointed)
 {
