@@ -114,30 +114,6 @@ cpp_indie_studio/fast:
 	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/build
 .PHONY : cpp_indie_studio/fast
 
-src/World.o: src/World.cpp.o
-.PHONY : src/World.o
-
-# target to build an object file
-src/World.cpp.o:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/World.cpp.o
-.PHONY : src/World.cpp.o
-
-src/World.i: src/World.cpp.i
-.PHONY : src/World.i
-
-# target to preprocess a source file
-src/World.cpp.i:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/World.cpp.i
-.PHONY : src/World.cpp.i
-
-src/World.s: src/World.cpp.s
-.PHONY : src/World.s
-
-# target to generate assembly for a file
-src/World.cpp.s:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/World.cpp.s
-.PHONY : src/World.cpp.s
-
 src/core/Core.o: src/core/Core.cpp.o
 .PHONY : src/core/Core.o
 
@@ -186,29 +162,149 @@ src/core/CoreUIObserver.cpp.s:
 	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/CoreUIObserver.cpp.s
 .PHONY : src/core/CoreUIObserver.cpp.s
 
-src/core/IUIObserver.o: src/core/IUIObserver.cpp.o
-.PHONY : src/core/IUIObserver.o
+src/core/MainMenu.o: src/core/MainMenu.cpp.o
+.PHONY : src/core/MainMenu.o
 
 # target to build an object file
-src/core/IUIObserver.cpp.o:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/IUIObserver.cpp.o
-.PHONY : src/core/IUIObserver.cpp.o
+src/core/MainMenu.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/MainMenu.cpp.o
+.PHONY : src/core/MainMenu.cpp.o
 
-src/core/IUIObserver.i: src/core/IUIObserver.cpp.i
-.PHONY : src/core/IUIObserver.i
+src/core/MainMenu.i: src/core/MainMenu.cpp.i
+.PHONY : src/core/MainMenu.i
 
 # target to preprocess a source file
-src/core/IUIObserver.cpp.i:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/IUIObserver.cpp.i
-.PHONY : src/core/IUIObserver.cpp.i
+src/core/MainMenu.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/MainMenu.cpp.i
+.PHONY : src/core/MainMenu.cpp.i
 
-src/core/IUIObserver.s: src/core/IUIObserver.cpp.s
-.PHONY : src/core/IUIObserver.s
+src/core/MainMenu.s: src/core/MainMenu.cpp.s
+.PHONY : src/core/MainMenu.s
 
 # target to generate assembly for a file
-src/core/IUIObserver.cpp.s:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/IUIObserver.cpp.s
-.PHONY : src/core/IUIObserver.cpp.s
+src/core/MainMenu.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/MainMenu.cpp.s
+.PHONY : src/core/MainMenu.cpp.s
+
+src/core/Menu.o: src/core/Menu.cpp.o
+.PHONY : src/core/Menu.o
+
+# target to build an object file
+src/core/Menu.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/Menu.cpp.o
+.PHONY : src/core/Menu.cpp.o
+
+src/core/Menu.i: src/core/Menu.cpp.i
+.PHONY : src/core/Menu.i
+
+# target to preprocess a source file
+src/core/Menu.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/Menu.cpp.i
+.PHONY : src/core/Menu.cpp.i
+
+src/core/Menu.s: src/core/Menu.cpp.s
+.PHONY : src/core/Menu.s
+
+# target to generate assembly for a file
+src/core/Menu.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/Menu.cpp.s
+.PHONY : src/core/Menu.cpp.s
+
+src/core/MenuButton.o: src/core/MenuButton.cpp.o
+.PHONY : src/core/MenuButton.o
+
+# target to build an object file
+src/core/MenuButton.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/MenuButton.cpp.o
+.PHONY : src/core/MenuButton.cpp.o
+
+src/core/MenuButton.i: src/core/MenuButton.cpp.i
+.PHONY : src/core/MenuButton.i
+
+# target to preprocess a source file
+src/core/MenuButton.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/MenuButton.cpp.i
+.PHONY : src/core/MenuButton.cpp.i
+
+src/core/MenuButton.s: src/core/MenuButton.cpp.s
+.PHONY : src/core/MenuButton.s
+
+# target to generate assembly for a file
+src/core/MenuButton.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/MenuButton.cpp.s
+.PHONY : src/core/MenuButton.cpp.s
+
+src/core/PlayerController.o: src/core/PlayerController.cpp.o
+.PHONY : src/core/PlayerController.o
+
+# target to build an object file
+src/core/PlayerController.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/PlayerController.cpp.o
+.PHONY : src/core/PlayerController.cpp.o
+
+src/core/PlayerController.i: src/core/PlayerController.cpp.i
+.PHONY : src/core/PlayerController.i
+
+# target to preprocess a source file
+src/core/PlayerController.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/PlayerController.cpp.i
+.PHONY : src/core/PlayerController.cpp.i
+
+src/core/PlayerController.s: src/core/PlayerController.cpp.s
+.PHONY : src/core/PlayerController.s
+
+# target to generate assembly for a file
+src/core/PlayerController.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/PlayerController.cpp.s
+.PHONY : src/core/PlayerController.cpp.s
+
+src/core/SaveloadMenu.o: src/core/SaveloadMenu.cpp.o
+.PHONY : src/core/SaveloadMenu.o
+
+# target to build an object file
+src/core/SaveloadMenu.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/SaveloadMenu.cpp.o
+.PHONY : src/core/SaveloadMenu.cpp.o
+
+src/core/SaveloadMenu.i: src/core/SaveloadMenu.cpp.i
+.PHONY : src/core/SaveloadMenu.i
+
+# target to preprocess a source file
+src/core/SaveloadMenu.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/SaveloadMenu.cpp.i
+.PHONY : src/core/SaveloadMenu.cpp.i
+
+src/core/SaveloadMenu.s: src/core/SaveloadMenu.cpp.s
+.PHONY : src/core/SaveloadMenu.s
+
+# target to generate assembly for a file
+src/core/SaveloadMenu.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/SaveloadMenu.cpp.s
+.PHONY : src/core/SaveloadMenu.cpp.s
+
+src/core/Stopwatch.o: src/core/Stopwatch.cpp.o
+.PHONY : src/core/Stopwatch.o
+
+# target to build an object file
+src/core/Stopwatch.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/Stopwatch.cpp.o
+.PHONY : src/core/Stopwatch.cpp.o
+
+src/core/Stopwatch.i: src/core/Stopwatch.cpp.i
+.PHONY : src/core/Stopwatch.i
+
+# target to preprocess a source file
+src/core/Stopwatch.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/Stopwatch.cpp.i
+.PHONY : src/core/Stopwatch.cpp.i
+
+src/core/Stopwatch.s: src/core/Stopwatch.cpp.s
+.PHONY : src/core/Stopwatch.s
+
+# target to generate assembly for a file
+src/core/Stopwatch.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/Stopwatch.cpp.s
+.PHONY : src/core/Stopwatch.cpp.s
 
 src/graph/Ogre.o: src/graph/Ogre.cpp.o
 .PHONY : src/graph/Ogre.o
@@ -258,6 +354,30 @@ src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/world/World.o: src/world/World.cpp.o
+.PHONY : src/world/World.o
+
+# target to build an object file
+src/world/World.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/world/World.cpp.o
+.PHONY : src/world/World.cpp.o
+
+src/world/World.i: src/world/World.cpp.i
+.PHONY : src/world/World.i
+
+# target to preprocess a source file
+src/world/World.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/world/World.cpp.i
+.PHONY : src/world/World.cpp.i
+
+src/world/World.s: src/world/World.cpp.s
+.PHONY : src/world/World.s
+
+# target to generate assembly for a file
+src/world/World.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/world/World.cpp.s
+.PHONY : src/world/World.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -267,24 +387,39 @@ help:
 	@echo "... cpp_indie_studio"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... src/World.o"
-	@echo "... src/World.i"
-	@echo "... src/World.s"
 	@echo "... src/core/Core.o"
 	@echo "... src/core/Core.i"
 	@echo "... src/core/Core.s"
 	@echo "... src/core/CoreUIObserver.o"
 	@echo "... src/core/CoreUIObserver.i"
 	@echo "... src/core/CoreUIObserver.s"
-	@echo "... src/core/IUIObserver.o"
-	@echo "... src/core/IUIObserver.i"
-	@echo "... src/core/IUIObserver.s"
+	@echo "... src/core/MainMenu.o"
+	@echo "... src/core/MainMenu.i"
+	@echo "... src/core/MainMenu.s"
+	@echo "... src/core/Menu.o"
+	@echo "... src/core/Menu.i"
+	@echo "... src/core/Menu.s"
+	@echo "... src/core/MenuButton.o"
+	@echo "... src/core/MenuButton.i"
+	@echo "... src/core/MenuButton.s"
+	@echo "... src/core/PlayerController.o"
+	@echo "... src/core/PlayerController.i"
+	@echo "... src/core/PlayerController.s"
+	@echo "... src/core/SaveloadMenu.o"
+	@echo "... src/core/SaveloadMenu.i"
+	@echo "... src/core/SaveloadMenu.s"
+	@echo "... src/core/Stopwatch.o"
+	@echo "... src/core/Stopwatch.i"
+	@echo "... src/core/Stopwatch.s"
 	@echo "... src/graph/Ogre.o"
 	@echo "... src/graph/Ogre.i"
 	@echo "... src/graph/Ogre.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/world/World.o"
+	@echo "... src/world/World.i"
+	@echo "... src/world/World.s"
 .PHONY : help
 
 
