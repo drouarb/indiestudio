@@ -306,6 +306,366 @@ src/core/Stopwatch.cpp.s:
 	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/Stopwatch.cpp.s
 .PHONY : src/core/Stopwatch.cpp.s
 
+src/gameData/ASpell.o: src/gameData/ASpell.cpp.o
+.PHONY : src/gameData/ASpell.o
+
+# target to build an object file
+src/gameData/ASpell.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/ASpell.cpp.o
+.PHONY : src/gameData/ASpell.cpp.o
+
+src/gameData/ASpell.i: src/gameData/ASpell.cpp.i
+.PHONY : src/gameData/ASpell.i
+
+# target to preprocess a source file
+src/gameData/ASpell.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/ASpell.cpp.i
+.PHONY : src/gameData/ASpell.cpp.i
+
+src/gameData/ASpell.s: src/gameData/ASpell.cpp.s
+.PHONY : src/gameData/ASpell.s
+
+# target to generate assembly for a file
+src/gameData/ASpell.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/ASpell.cpp.s
+.PHONY : src/gameData/ASpell.cpp.s
+
+src/gameData/Actor.o: src/gameData/Actor.cpp.o
+.PHONY : src/gameData/Actor.o
+
+# target to build an object file
+src/gameData/Actor.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Actor.cpp.o
+.PHONY : src/gameData/Actor.cpp.o
+
+src/gameData/Actor.i: src/gameData/Actor.cpp.i
+.PHONY : src/gameData/Actor.i
+
+# target to preprocess a source file
+src/gameData/Actor.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Actor.cpp.i
+.PHONY : src/gameData/Actor.cpp.i
+
+src/gameData/Actor.s: src/gameData/Actor.cpp.s
+.PHONY : src/gameData/Actor.s
+
+# target to generate assembly for a file
+src/gameData/Actor.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Actor.cpp.s
+.PHONY : src/gameData/Actor.cpp.s
+
+src/gameData/ActorPreset.o: src/gameData/ActorPreset.cpp.o
+.PHONY : src/gameData/ActorPreset.o
+
+# target to build an object file
+src/gameData/ActorPreset.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/ActorPreset.cpp.o
+.PHONY : src/gameData/ActorPreset.cpp.o
+
+src/gameData/ActorPreset.i: src/gameData/ActorPreset.cpp.i
+.PHONY : src/gameData/ActorPreset.i
+
+# target to preprocess a source file
+src/gameData/ActorPreset.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/ActorPreset.cpp.i
+.PHONY : src/gameData/ActorPreset.cpp.i
+
+src/gameData/ActorPreset.s: src/gameData/ActorPreset.cpp.s
+.PHONY : src/gameData/ActorPreset.s
+
+# target to generate assembly for a file
+src/gameData/ActorPreset.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/ActorPreset.cpp.s
+.PHONY : src/gameData/ActorPreset.cpp.s
+
+src/gameData/ContainerObject.o: src/gameData/ContainerObject.cpp.o
+.PHONY : src/gameData/ContainerObject.o
+
+# target to build an object file
+src/gameData/ContainerObject.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/ContainerObject.cpp.o
+.PHONY : src/gameData/ContainerObject.cpp.o
+
+src/gameData/ContainerObject.i: src/gameData/ContainerObject.cpp.i
+.PHONY : src/gameData/ContainerObject.i
+
+# target to preprocess a source file
+src/gameData/ContainerObject.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/ContainerObject.cpp.i
+.PHONY : src/gameData/ContainerObject.cpp.i
+
+src/gameData/ContainerObject.s: src/gameData/ContainerObject.cpp.s
+.PHONY : src/gameData/ContainerObject.s
+
+# target to generate assembly for a file
+src/gameData/ContainerObject.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/ContainerObject.cpp.s
+.PHONY : src/gameData/ContainerObject.cpp.s
+
+src/gameData/Creature.o: src/gameData/Creature.cpp.o
+.PHONY : src/gameData/Creature.o
+
+# target to build an object file
+src/gameData/Creature.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Creature.cpp.o
+.PHONY : src/gameData/Creature.cpp.o
+
+src/gameData/Creature.i: src/gameData/Creature.cpp.i
+.PHONY : src/gameData/Creature.i
+
+# target to preprocess a source file
+src/gameData/Creature.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Creature.cpp.i
+.PHONY : src/gameData/Creature.cpp.i
+
+src/gameData/Creature.s: src/gameData/Creature.cpp.s
+.PHONY : src/gameData/Creature.s
+
+# target to generate assembly for a file
+src/gameData/Creature.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Creature.cpp.s
+.PHONY : src/gameData/Creature.cpp.s
+
+src/gameData/CreaturePreset.o: src/gameData/CreaturePreset.cpp.o
+.PHONY : src/gameData/CreaturePreset.o
+
+# target to build an object file
+src/gameData/CreaturePreset.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/CreaturePreset.cpp.o
+.PHONY : src/gameData/CreaturePreset.cpp.o
+
+src/gameData/CreaturePreset.i: src/gameData/CreaturePreset.cpp.i
+.PHONY : src/gameData/CreaturePreset.i
+
+# target to preprocess a source file
+src/gameData/CreaturePreset.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/CreaturePreset.cpp.i
+.PHONY : src/gameData/CreaturePreset.cpp.i
+
+src/gameData/CreaturePreset.s: src/gameData/CreaturePreset.cpp.s
+.PHONY : src/gameData/CreaturePreset.s
+
+# target to generate assembly for a file
+src/gameData/CreaturePreset.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/CreaturePreset.cpp.s
+.PHONY : src/gameData/CreaturePreset.cpp.s
+
+src/gameData/GameObject.o: src/gameData/GameObject.cpp.o
+.PHONY : src/gameData/GameObject.o
+
+# target to build an object file
+src/gameData/GameObject.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/GameObject.cpp.o
+.PHONY : src/gameData/GameObject.cpp.o
+
+src/gameData/GameObject.i: src/gameData/GameObject.cpp.i
+.PHONY : src/gameData/GameObject.i
+
+# target to preprocess a source file
+src/gameData/GameObject.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/GameObject.cpp.i
+.PHONY : src/gameData/GameObject.cpp.i
+
+src/gameData/GameObject.s: src/gameData/GameObject.cpp.s
+.PHONY : src/gameData/GameObject.s
+
+# target to generate assembly for a file
+src/gameData/GameObject.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/GameObject.cpp.s
+.PHONY : src/gameData/GameObject.cpp.s
+
+src/gameData/GameObjectPreset.o: src/gameData/GameObjectPreset.cpp.o
+.PHONY : src/gameData/GameObjectPreset.o
+
+# target to build an object file
+src/gameData/GameObjectPreset.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/GameObjectPreset.cpp.o
+.PHONY : src/gameData/GameObjectPreset.cpp.o
+
+src/gameData/GameObjectPreset.i: src/gameData/GameObjectPreset.cpp.i
+.PHONY : src/gameData/GameObjectPreset.i
+
+# target to preprocess a source file
+src/gameData/GameObjectPreset.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/GameObjectPreset.cpp.i
+.PHONY : src/gameData/GameObjectPreset.cpp.i
+
+src/gameData/GameObjectPreset.s: src/gameData/GameObjectPreset.cpp.s
+.PHONY : src/gameData/GameObjectPreset.s
+
+# target to generate assembly for a file
+src/gameData/GameObjectPreset.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/GameObjectPreset.cpp.s
+.PHONY : src/gameData/GameObjectPreset.cpp.s
+
+src/gameData/Item.o: src/gameData/Item.cpp.o
+.PHONY : src/gameData/Item.o
+
+# target to build an object file
+src/gameData/Item.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Item.cpp.o
+.PHONY : src/gameData/Item.cpp.o
+
+src/gameData/Item.i: src/gameData/Item.cpp.i
+.PHONY : src/gameData/Item.i
+
+# target to preprocess a source file
+src/gameData/Item.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Item.cpp.i
+.PHONY : src/gameData/Item.cpp.i
+
+src/gameData/Item.s: src/gameData/Item.cpp.s
+.PHONY : src/gameData/Item.s
+
+# target to generate assembly for a file
+src/gameData/Item.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Item.cpp.s
+.PHONY : src/gameData/Item.cpp.s
+
+src/gameData/ItemContainer.o: src/gameData/ItemContainer.cpp.o
+.PHONY : src/gameData/ItemContainer.o
+
+# target to build an object file
+src/gameData/ItemContainer.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/ItemContainer.cpp.o
+.PHONY : src/gameData/ItemContainer.cpp.o
+
+src/gameData/ItemContainer.i: src/gameData/ItemContainer.cpp.i
+.PHONY : src/gameData/ItemContainer.i
+
+# target to preprocess a source file
+src/gameData/ItemContainer.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/ItemContainer.cpp.i
+.PHONY : src/gameData/ItemContainer.cpp.i
+
+src/gameData/ItemContainer.s: src/gameData/ItemContainer.cpp.s
+.PHONY : src/gameData/ItemContainer.s
+
+# target to generate assembly for a file
+src/gameData/ItemContainer.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/ItemContainer.cpp.s
+.PHONY : src/gameData/ItemContainer.cpp.s
+
+src/gameData/LootTable.o: src/gameData/LootTable.cpp.o
+.PHONY : src/gameData/LootTable.o
+
+# target to build an object file
+src/gameData/LootTable.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/LootTable.cpp.o
+.PHONY : src/gameData/LootTable.cpp.o
+
+src/gameData/LootTable.i: src/gameData/LootTable.cpp.i
+.PHONY : src/gameData/LootTable.i
+
+# target to preprocess a source file
+src/gameData/LootTable.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/LootTable.cpp.i
+.PHONY : src/gameData/LootTable.cpp.i
+
+src/gameData/LootTable.s: src/gameData/LootTable.cpp.s
+.PHONY : src/gameData/LootTable.s
+
+# target to generate assembly for a file
+src/gameData/LootTable.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/LootTable.cpp.s
+.PHONY : src/gameData/LootTable.cpp.s
+
+src/gameData/Player.o: src/gameData/Player.cpp.o
+.PHONY : src/gameData/Player.o
+
+# target to build an object file
+src/gameData/Player.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Player.cpp.o
+.PHONY : src/gameData/Player.cpp.o
+
+src/gameData/Player.i: src/gameData/Player.cpp.i
+.PHONY : src/gameData/Player.i
+
+# target to preprocess a source file
+src/gameData/Player.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Player.cpp.i
+.PHONY : src/gameData/Player.cpp.i
+
+src/gameData/Player.s: src/gameData/Player.cpp.s
+.PHONY : src/gameData/Player.s
+
+# target to generate assembly for a file
+src/gameData/Player.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Player.cpp.s
+.PHONY : src/gameData/Player.cpp.s
+
+src/gameData/PlayerPreset.o: src/gameData/PlayerPreset.cpp.o
+.PHONY : src/gameData/PlayerPreset.o
+
+# target to build an object file
+src/gameData/PlayerPreset.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/PlayerPreset.cpp.o
+.PHONY : src/gameData/PlayerPreset.cpp.o
+
+src/gameData/PlayerPreset.i: src/gameData/PlayerPreset.cpp.i
+.PHONY : src/gameData/PlayerPreset.i
+
+# target to preprocess a source file
+src/gameData/PlayerPreset.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/PlayerPreset.cpp.i
+.PHONY : src/gameData/PlayerPreset.cpp.i
+
+src/gameData/PlayerPreset.s: src/gameData/PlayerPreset.cpp.s
+.PHONY : src/gameData/PlayerPreset.s
+
+# target to generate assembly for a file
+src/gameData/PlayerPreset.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/PlayerPreset.cpp.s
+.PHONY : src/gameData/PlayerPreset.cpp.s
+
+src/gameData/SpellContainer.o: src/gameData/SpellContainer.cpp.o
+.PHONY : src/gameData/SpellContainer.o
+
+# target to build an object file
+src/gameData/SpellContainer.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/SpellContainer.cpp.o
+.PHONY : src/gameData/SpellContainer.cpp.o
+
+src/gameData/SpellContainer.i: src/gameData/SpellContainer.cpp.i
+.PHONY : src/gameData/SpellContainer.i
+
+# target to preprocess a source file
+src/gameData/SpellContainer.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/SpellContainer.cpp.i
+.PHONY : src/gameData/SpellContainer.cpp.i
+
+src/gameData/SpellContainer.s: src/gameData/SpellContainer.cpp.s
+.PHONY : src/gameData/SpellContainer.s
+
+# target to generate assembly for a file
+src/gameData/SpellContainer.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/SpellContainer.cpp.s
+.PHONY : src/gameData/SpellContainer.cpp.s
+
+src/gameData/Stats.o: src/gameData/Stats.cpp.o
+.PHONY : src/gameData/Stats.o
+
+# target to build an object file
+src/gameData/Stats.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Stats.cpp.o
+.PHONY : src/gameData/Stats.cpp.o
+
+src/gameData/Stats.i: src/gameData/Stats.cpp.i
+.PHONY : src/gameData/Stats.i
+
+# target to preprocess a source file
+src/gameData/Stats.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Stats.cpp.i
+.PHONY : src/gameData/Stats.cpp.i
+
+src/gameData/Stats.s: src/gameData/Stats.cpp.s
+.PHONY : src/gameData/Stats.s
+
+# target to generate assembly for a file
+src/gameData/Stats.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Stats.cpp.s
+.PHONY : src/gameData/Stats.cpp.s
+
 src/graph/Ogre.o: src/graph/Ogre.cpp.o
 .PHONY : src/graph/Ogre.o
 
@@ -353,6 +713,126 @@ src/main.s: src/main.cpp.s
 src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
+
+src/network/PacketFactory.o: src/network/PacketFactory.cpp.o
+.PHONY : src/network/PacketFactory.o
+
+# target to build an object file
+src/network/PacketFactory.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/network/PacketFactory.cpp.o
+.PHONY : src/network/PacketFactory.cpp.o
+
+src/network/PacketFactory.i: src/network/PacketFactory.cpp.i
+.PHONY : src/network/PacketFactory.i
+
+# target to preprocess a source file
+src/network/PacketFactory.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/network/PacketFactory.cpp.i
+.PHONY : src/network/PacketFactory.cpp.i
+
+src/network/PacketFactory.s: src/network/PacketFactory.cpp.s
+.PHONY : src/network/PacketFactory.s
+
+# target to generate assembly for a file
+src/network/PacketFactory.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/network/PacketFactory.cpp.s
+.PHONY : src/network/PacketFactory.cpp.s
+
+src/network/Socket.o: src/network/Socket.cpp.o
+.PHONY : src/network/Socket.o
+
+# target to build an object file
+src/network/Socket.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/network/Socket.cpp.o
+.PHONY : src/network/Socket.cpp.o
+
+src/network/Socket.i: src/network/Socket.cpp.i
+.PHONY : src/network/Socket.i
+
+# target to preprocess a source file
+src/network/Socket.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/network/Socket.cpp.i
+.PHONY : src/network/Socket.cpp.i
+
+src/network/Socket.s: src/network/Socket.cpp.s
+.PHONY : src/network/Socket.s
+
+# target to generate assembly for a file
+src/network/Socket.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/network/Socket.cpp.s
+.PHONY : src/network/Socket.cpp.s
+
+src/network/listener/PacketListener.o: src/network/listener/PacketListener.cpp.o
+.PHONY : src/network/listener/PacketListener.o
+
+# target to build an object file
+src/network/listener/PacketListener.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/network/listener/PacketListener.cpp.o
+.PHONY : src/network/listener/PacketListener.cpp.o
+
+src/network/listener/PacketListener.i: src/network/listener/PacketListener.cpp.i
+.PHONY : src/network/listener/PacketListener.i
+
+# target to preprocess a source file
+src/network/listener/PacketListener.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/network/listener/PacketListener.cpp.i
+.PHONY : src/network/listener/PacketListener.cpp.i
+
+src/network/listener/PacketListener.s: src/network/listener/PacketListener.cpp.s
+.PHONY : src/network/listener/PacketListener.s
+
+# target to generate assembly for a file
+src/network/listener/PacketListener.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/network/listener/PacketListener.cpp.s
+.PHONY : src/network/listener/PacketListener.cpp.s
+
+src/network/packet/Packet.o: src/network/packet/Packet.cpp.o
+.PHONY : src/network/packet/Packet.o
+
+# target to build an object file
+src/network/packet/Packet.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/network/packet/Packet.cpp.o
+.PHONY : src/network/packet/Packet.cpp.o
+
+src/network/packet/Packet.i: src/network/packet/Packet.cpp.i
+.PHONY : src/network/packet/Packet.i
+
+# target to preprocess a source file
+src/network/packet/Packet.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/network/packet/Packet.cpp.i
+.PHONY : src/network/packet/Packet.cpp.i
+
+src/network/packet/Packet.s: src/network/packet/Packet.cpp.s
+.PHONY : src/network/packet/Packet.s
+
+# target to generate assembly for a file
+src/network/packet/Packet.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/network/packet/Packet.cpp.s
+.PHONY : src/network/packet/Packet.cpp.s
+
+src/network/packet/PacketConnect.o: src/network/packet/PacketConnect.cpp.o
+.PHONY : src/network/packet/PacketConnect.o
+
+# target to build an object file
+src/network/packet/PacketConnect.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/network/packet/PacketConnect.cpp.o
+.PHONY : src/network/packet/PacketConnect.cpp.o
+
+src/network/packet/PacketConnect.i: src/network/packet/PacketConnect.cpp.i
+.PHONY : src/network/packet/PacketConnect.i
+
+# target to preprocess a source file
+src/network/packet/PacketConnect.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/network/packet/PacketConnect.cpp.i
+.PHONY : src/network/packet/PacketConnect.cpp.i
+
+src/network/packet/PacketConnect.s: src/network/packet/PacketConnect.cpp.s
+.PHONY : src/network/packet/PacketConnect.s
+
+# target to generate assembly for a file
+src/network/packet/PacketConnect.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/network/packet/PacketConnect.cpp.s
+.PHONY : src/network/packet/PacketConnect.cpp.s
 
 src/world/World.o: src/world/World.cpp.o
 .PHONY : src/world/World.o
@@ -411,12 +891,72 @@ help:
 	@echo "... src/core/Stopwatch.o"
 	@echo "... src/core/Stopwatch.i"
 	@echo "... src/core/Stopwatch.s"
+	@echo "... src/gameData/ASpell.o"
+	@echo "... src/gameData/ASpell.i"
+	@echo "... src/gameData/ASpell.s"
+	@echo "... src/gameData/Actor.o"
+	@echo "... src/gameData/Actor.i"
+	@echo "... src/gameData/Actor.s"
+	@echo "... src/gameData/ActorPreset.o"
+	@echo "... src/gameData/ActorPreset.i"
+	@echo "... src/gameData/ActorPreset.s"
+	@echo "... src/gameData/ContainerObject.o"
+	@echo "... src/gameData/ContainerObject.i"
+	@echo "... src/gameData/ContainerObject.s"
+	@echo "... src/gameData/Creature.o"
+	@echo "... src/gameData/Creature.i"
+	@echo "... src/gameData/Creature.s"
+	@echo "... src/gameData/CreaturePreset.o"
+	@echo "... src/gameData/CreaturePreset.i"
+	@echo "... src/gameData/CreaturePreset.s"
+	@echo "... src/gameData/GameObject.o"
+	@echo "... src/gameData/GameObject.i"
+	@echo "... src/gameData/GameObject.s"
+	@echo "... src/gameData/GameObjectPreset.o"
+	@echo "... src/gameData/GameObjectPreset.i"
+	@echo "... src/gameData/GameObjectPreset.s"
+	@echo "... src/gameData/Item.o"
+	@echo "... src/gameData/Item.i"
+	@echo "... src/gameData/Item.s"
+	@echo "... src/gameData/ItemContainer.o"
+	@echo "... src/gameData/ItemContainer.i"
+	@echo "... src/gameData/ItemContainer.s"
+	@echo "... src/gameData/LootTable.o"
+	@echo "... src/gameData/LootTable.i"
+	@echo "... src/gameData/LootTable.s"
+	@echo "... src/gameData/Player.o"
+	@echo "... src/gameData/Player.i"
+	@echo "... src/gameData/Player.s"
+	@echo "... src/gameData/PlayerPreset.o"
+	@echo "... src/gameData/PlayerPreset.i"
+	@echo "... src/gameData/PlayerPreset.s"
+	@echo "... src/gameData/SpellContainer.o"
+	@echo "... src/gameData/SpellContainer.i"
+	@echo "... src/gameData/SpellContainer.s"
+	@echo "... src/gameData/Stats.o"
+	@echo "... src/gameData/Stats.i"
+	@echo "... src/gameData/Stats.s"
 	@echo "... src/graph/Ogre.o"
 	@echo "... src/graph/Ogre.i"
 	@echo "... src/graph/Ogre.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/network/PacketFactory.o"
+	@echo "... src/network/PacketFactory.i"
+	@echo "... src/network/PacketFactory.s"
+	@echo "... src/network/Socket.o"
+	@echo "... src/network/Socket.i"
+	@echo "... src/network/Socket.s"
+	@echo "... src/network/listener/PacketListener.o"
+	@echo "... src/network/listener/PacketListener.i"
+	@echo "... src/network/listener/PacketListener.s"
+	@echo "... src/network/packet/Packet.o"
+	@echo "... src/network/packet/Packet.i"
+	@echo "... src/network/packet/Packet.s"
+	@echo "... src/network/packet/PacketConnect.o"
+	@echo "... src/network/packet/PacketConnect.i"
+	@echo "... src/network/packet/PacketConnect.s"
 	@echo "... src/world/World.o"
 	@echo "... src/world/World.i"
 	@echo "... src/world/World.s"

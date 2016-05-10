@@ -1,14 +1,15 @@
 cmake_minimum_required(VERSION 2.8)
 project(cpp_indie_studio)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-
 set(CMAKE_CXX_FLAGS "-W -Wall -Wextra")
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 link_libraries(pthread)
 include_directories(include)
 include_directories(include/core)
 include_directories(include/world)
+include_directories(include/gameData)
 
 FILE(
         GLOB_RECURSE
