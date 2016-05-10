@@ -5,7 +5,8 @@ set(CMAKE_CXX_FLAGS "-W -Wall -Wextra")
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-link_libraries(pthread)
+find_package(Threads)
+
 include_directories(include)
 include_directories(include/core)
 include_directories(include/world)
@@ -23,5 +24,6 @@ FILE(
 
 add_executable(cpp_indie_studio ${INDIE})
 
+target_link_libraries(cpp_indie_studio ${CMAKE_THREAD_LIBS_INIT} )
 target_link_libraries(cpp_indie_studio  ${OGRE_LIBRARY})
 target_link_libraries(cpp_indie_studio  ${PTHREAD_LIBRARY})
