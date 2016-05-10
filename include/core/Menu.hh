@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:23:51 2016 Esteban Lewis
-// Last update Tue May 10 13:34:12 2016 Esteban Lewis
+// Last update Tue May 10 14:33:56 2016 Esteban Lewis
 //
 
 #ifndef  MENU_HH_
@@ -29,7 +29,7 @@ namespace			gauntlet
 
       virtual void		draw() = 0;
       virtual void		undraw() = 0;
-      bool			keyDown(IUIObserver::Key);
+      virtual bool		keyDown(IUIObserver::Key);
       void			setOpen(bool);
       bool			getOpen();
 

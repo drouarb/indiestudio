@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:13:44 2016 Esteban Lewis
-// Last update Tue May 10 13:52:32 2016 Esteban Lewis
+// Last update Tue May 10 16:44:48 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -15,9 +15,6 @@
 gauntlet::core::Core::Core() : keepGoing(true)
 {
   menu = new MainMenu(*this, 100);
-  std::cout << std::endl << "TEST menu play" << std::endl;
-  keyDown(IUIObserver::KEY_ESC);
-  keyDown(IUIObserver::KEY_ENTER);
 
   std::cout << std::endl << "-- TEST menu saveload 1st load" << std::endl;
   keyDown(IUIObserver::KEY_ESC);
@@ -32,6 +29,31 @@ gauntlet::core::Core::Core() : keepGoing(true)
   keyDown(IUIObserver::KEY_UP);
   std::cout << "--TEST load" << std::endl;
   keyDown(IUIObserver::KEY_ENTER);
+
+  std::cout << std::endl << "-- TEST menu conf enter esc" << std::endl;
+  keyDown(IUIObserver::KEY_ESC);
+  keyDown(IUIObserver::KEY_DOWN);
+  keyDown(IUIObserver::KEY_DOWN);
+  std::cout << "-- TEST settings" << std::endl;
+  keyDown(IUIObserver::KEY_ENTER);
+  keyDown(IUIObserver::KEY_DOWN);
+  keyDown(IUIObserver::KEY_DOWN);
+  keyDown(IUIObserver::KEY_DOWN);
+  keyDown(IUIObserver::KEY_DOWN);
+  keyDown(IUIObserver::KEY_DOWN);
+  std::cout << "-- TEST validate" << std::endl;
+  keyDown(IUIObserver::KEY_ENTER);
+  std::cout << "-- TEST escape" << std::endl;
+  keyDown(IUIObserver::KEY_ESC);
+  std::cout << "-- TEST exit" << std::endl;
+  keyDown(IUIObserver::KEY_ENTER);
+  std::cout << "-- TEST exit" << std::endl;
+  keyDown(IUIObserver::KEY_ENTER);
+
+  std::cout << std::endl << "-- TEST menu play" << std::endl;
+  keyDown(IUIObserver::KEY_ENTER);
+  keyDown(IUIObserver::KEY_ESC);
+
   //loop();
 }
 
@@ -43,6 +65,8 @@ gauntlet::core::Core::~Core()
 void
 gauntlet::core::Core::keyUp(IUIObserver::Key key)
 {
+  key = conf.getLinkedKey(key);
+
   if (!menu->getOpen() && key != IUIObserver::KEY_ESC)
     {
       pc.doCmd(key, false);
@@ -52,6 +76,8 @@ gauntlet::core::Core::keyUp(IUIObserver::Key key)
 void
 gauntlet::core::Core::keyDown(IUIObserver::Key key)
 {
+  key = conf.getLinkedKey(key);
+
   if (menu->getOpen())
     {
       menu->keyDown(key);
@@ -78,24 +104,6 @@ gauntlet::core::Core::mouseMove(int x, int y)
 }
 
 void
-gauntlet::core::Core::loop()
-{
-  long ms;
-
-  while (keepGoing)
-    {
-      sw.Set();
-      if (menu->getOpen() == false)
-	{
-	  updateWorld();
-	}
-      ms = sw.EllapsedMs();
-      if (ms < 17)
-	usleep(17 - sw.EllapsedMs()); //TODO: 60 fps okay?
-    }
-}
-
-void
 gauntlet::core::Core::play()
 {
   std::cout << "CORE play" << std::endl;
@@ -117,6 +125,30 @@ void
 gauntlet::core::Core::save(std::string file)
 {
   std::cout << "CORE save " << file << std::endl;
+}
+
+gauntlet::core::Conf &
+gauntlet::core::Core::getConf()
+{
+  return (conf);
+}
+
+void
+gauntlet::core::Core::loop()
+{
+  long ms;
+
+  while (keepGoing)
+    {
+      sw.Set();
+      if (menu->getOpen() == false)
+	{
+	  updateWorld();
+	}
+      ms = sw.EllapsedMs();
+      if (ms < 17)
+	usleep(17 - sw.EllapsedMs()); //TODO: 60 fps okay?
+    }
 }
 
 void

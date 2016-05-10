@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 10:52:22 2016 Esteban Lewis
-// Last update Mon May  9 17:50:42 2016 Esteban Lewis
+// Last update Tue May 10 16:43:49 2016 Esteban Lewis
 //
 
 #ifndef  IUIOBSERVER_HH_
@@ -22,12 +22,13 @@ namespace				gauntlet
 
       enum                              Key
 	{
+	  KEY_NONE,
 	  KEY_UP,
 	  KEY_DOWN,
 	  KEY_LEFT,
 	  KEY_RIGHT,
-	  KEY_ESC,
-          KEY_ENTER
+          KEY_ENTER,
+	  KEY_ESC
 	};
     };
   };

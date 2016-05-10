@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:09:17 2016 Esteban Lewis
-// Last update Tue May 10 13:56:45 2016 Esteban Lewis
+// Last update Tue May 10 14:45:49 2016 Esteban Lewis
 //
 
 #include <dirent.h>
@@ -49,7 +49,8 @@ gauntlet::core::SaveloadMenu::undraw()
 void
 gauntlet::core::SaveloadMenu::doButton(IUIObserver::Key key)
 {
-  (this->*(funs[cursor]))(key);
+  if (key == IUIObserver::KEY_ENTER)
+    (this->*(funs[cursor]))(key);
 }
 
 void
@@ -84,9 +85,7 @@ gauntlet::core::SaveloadMenu::message(std::string const & msg)
 void
 gauntlet::core::SaveloadMenu::doSelect(IUIObserver::Key key)
 {
-  if (key != IUIObserver::KEY_ENTER)
-    return ;
-
+  (void)key;
   if (selected == &(buttons[cursor]))
     selected = NULL;
   else
@@ -97,9 +96,7 @@ gauntlet::core::SaveloadMenu::doSelect(IUIObserver::Key key)
 void
 gauntlet::core::SaveloadMenu::doSave(IUIObserver::Key key)
 {
-  if (key != IUIObserver::KEY_ENTER)
-    return ;
-
+  (void)key;
   setOpen(false);
   if (selected == NULL)
     core.save("");
@@ -110,9 +107,7 @@ gauntlet::core::SaveloadMenu::doSave(IUIObserver::Key key)
 void
 gauntlet::core::SaveloadMenu::doLoad(IUIObserver::Key key)
 {
-  if (key != IUIObserver::KEY_ENTER)
-    return ;
-
+  (void)key;
   if (selected == NULL)
     message("Please select which game to load.");
   else
@@ -125,8 +120,6 @@ gauntlet::core::SaveloadMenu::doLoad(IUIObserver::Key key)
 void
 gauntlet::core::SaveloadMenu::doReturn(IUIObserver::Key key)
 {
-  if (key != IUIObserver::KEY_ENTER)
-    return ;
-
+  (void)key;
   setOpen(false);
 }

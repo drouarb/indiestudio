@@ -114,6 +114,54 @@ cpp_indie_studio/fast:
 	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/build
 .PHONY : cpp_indie_studio/fast
 
+src/core/Conf.o: src/core/Conf.cpp.o
+.PHONY : src/core/Conf.o
+
+# target to build an object file
+src/core/Conf.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/Conf.cpp.o
+.PHONY : src/core/Conf.cpp.o
+
+src/core/Conf.i: src/core/Conf.cpp.i
+.PHONY : src/core/Conf.i
+
+# target to preprocess a source file
+src/core/Conf.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/Conf.cpp.i
+.PHONY : src/core/Conf.cpp.i
+
+src/core/Conf.s: src/core/Conf.cpp.s
+.PHONY : src/core/Conf.s
+
+# target to generate assembly for a file
+src/core/Conf.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/Conf.cpp.s
+.PHONY : src/core/Conf.cpp.s
+
+src/core/ConfMenu.o: src/core/ConfMenu.cpp.o
+.PHONY : src/core/ConfMenu.o
+
+# target to build an object file
+src/core/ConfMenu.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/ConfMenu.cpp.o
+.PHONY : src/core/ConfMenu.cpp.o
+
+src/core/ConfMenu.i: src/core/ConfMenu.cpp.i
+.PHONY : src/core/ConfMenu.i
+
+# target to preprocess a source file
+src/core/ConfMenu.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/ConfMenu.cpp.i
+.PHONY : src/core/ConfMenu.cpp.i
+
+src/core/ConfMenu.s: src/core/ConfMenu.cpp.s
+.PHONY : src/core/ConfMenu.s
+
+# target to generate assembly for a file
+src/core/ConfMenu.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/ConfMenu.cpp.s
+.PHONY : src/core/ConfMenu.cpp.s
+
 src/core/Core.o: src/core/Core.cpp.o
 .PHONY : src/core/Core.o
 
@@ -867,6 +915,12 @@ help:
 	@echo "... cpp_indie_studio"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... src/core/Conf.o"
+	@echo "... src/core/Conf.i"
+	@echo "... src/core/Conf.s"
+	@echo "... src/core/ConfMenu.o"
+	@echo "... src/core/ConfMenu.i"
+	@echo "... src/core/ConfMenu.s"
 	@echo "... src/core/Core.o"
 	@echo "... src/core/Core.i"
 	@echo "... src/core/Core.s"

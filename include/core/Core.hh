@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 10:59:47 2016 Esteban Lewis
-// Last update Tue May 10 11:20:53 2016 Esteban Lewis
+// Last update Tue May 10 15:58:34 2016 Esteban Lewis
 //
 
 #ifndef  CORE_HH_
@@ -16,6 +16,8 @@
 # include "Menu.hh"
 # include "PlayerController.hh"
 # include "Stopwatch.hh"
+# include "Conf.hh"
+# include "ConfMenu.hh"
 
 namespace			gauntlet
 {
@@ -35,6 +37,7 @@ namespace			gauntlet
       void			exit();
       void			load(std::string file);
       void			save(std::string file);
+      Conf &			getConf();
 
     private:
       bool			keepGoing;
@@ -43,6 +46,7 @@ namespace			gauntlet
       Menu *			menu;
       PlayerController		pc;
       Stopwatch			sw;
+      Conf			conf;
 
       void			loop();
       void			updateWorld();

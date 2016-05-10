@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:09:17 2016 Esteban Lewis
-// Last update Tue May 10 13:44:38 2016 Esteban Lewis
+// Last update Tue May 10 15:59:42 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -28,6 +28,7 @@ gauntlet::core::MainMenu::MainMenu(Core & core, int idStart) : Menu(core, idStar
 	      (3, &MainMenu::doExit));
 
   submenus.push_back(new SaveloadMenu(core, idStart + 100, this));
+  submenus.push_back(new ConfMenu(core, idStart + 100));
 }
 
 gauntlet::core::MainMenu::~MainMenu()
@@ -55,33 +56,29 @@ gauntlet::core::MainMenu::doButton(IUIObserver::Key key)
 void
 gauntlet::core::MainMenu::doPlay(IUIObserver::Key key)
 {
-  if (key == IUIObserver::KEY_ENTER)
-    {
-      setOpen(false);
-      core.play();
-    }
+  (void)key;
+  setOpen(false);
+  core.play();
 }
 
 void
 gauntlet::core::MainMenu::doSaveload(IUIObserver::Key key)
 {
-  if (key == IUIObserver::KEY_ENTER)
-    submenus[MENU_SL]->setOpen(true);
+  (void)key;
+  submenus[MENU_SL]->setOpen(true);
 }
 
 void
 gauntlet::core::MainMenu::doSettings(IUIObserver::Key key)
 {
-  if (key == IUIObserver::KEY_ENTER)
-    std::cout << "Settings " << key << std::endl;
+  (void)key;
+  submenus[MENU_CONFIG]->setOpen(true);
 }
 
 void
 gauntlet::core::MainMenu::doExit(IUIObserver::Key key)
 {
-  if (key == IUIObserver::KEY_ENTER)
-    {
-      setOpen(false);
-      core.exit();
-    }
+  (void)key;
+  setOpen(false);
+  core.exit();
 }
