@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:09:17 2016 Esteban Lewis
-// Last update Tue May 10 14:45:49 2016 Esteban Lewis
+// Last update Wed May 11 13:50:33 2016 Esteban Lewis
 //
 
 #include <dirent.h>
@@ -20,11 +20,11 @@ gauntlet::core::SaveloadMenu::SaveloadMenu(Core & core, int idStart, Menu * pare
   buttons.push_back(MenuButton("Save", 0, 50, idStart + 1));
   buttons.push_back(MenuButton("Load", 100, 50, idStart + 2));
 
-  funs.insert(std::pair<int, void (SaveloadMenu::*)(IUIObserver::Key)>
+  funs.insert(std::pair<int, void (SaveloadMenu::*)(Command)>
 	      (0, &SaveloadMenu::doReturn));
-  funs.insert(std::pair<int, void (SaveloadMenu::*)(IUIObserver::Key)>
+  funs.insert(std::pair<int, void (SaveloadMenu::*)(Command)>
 	      (1, &SaveloadMenu::doSave));
-  funs.insert(std::pair<int, void (SaveloadMenu::*)(IUIObserver::Key)>
+  funs.insert(std::pair<int, void (SaveloadMenu::*)(Command)>
 	      (2, &SaveloadMenu::doLoad));
 
   selected = NULL;
@@ -47,9 +47,9 @@ gauntlet::core::SaveloadMenu::undraw()
 }
 
 void
-gauntlet::core::SaveloadMenu::doButton(IUIObserver::Key key)
+gauntlet::core::SaveloadMenu::doButton(Command key)
 {
-  if (key == IUIObserver::KEY_ENTER)
+  if (key == ENTER)
     (this->*(funs[cursor]))(key);
 }
 
@@ -68,7 +68,7 @@ gauntlet::core::SaveloadMenu::getSaves()
       if (ent->d_name[0] != '.')
 	{
 	  buttons.push_back(MenuButton(ent->d_name, 0, id * 30, idStart + id));
-	  funs.insert(std::pair<int, void (SaveloadMenu::*)(IUIObserver::Key)>
+	  funs.insert(std::pair<int, void (SaveloadMenu::*)(Command)>
 		      (id, &SaveloadMenu::doSelect));
 	  id++;
 	}
@@ -83,7 +83,7 @@ gauntlet::core::SaveloadMenu::message(std::string const & msg)
 }
 
 void
-gauntlet::core::SaveloadMenu::doSelect(IUIObserver::Key key)
+gauntlet::core::SaveloadMenu::doSelect(Command key)
 {
   (void)key;
   if (selected == &(buttons[cursor]))
@@ -94,7 +94,7 @@ gauntlet::core::SaveloadMenu::doSelect(IUIObserver::Key key)
 }
 
 void
-gauntlet::core::SaveloadMenu::doSave(IUIObserver::Key key)
+gauntlet::core::SaveloadMenu::doSave(Command key)
 {
   (void)key;
   setOpen(false);
@@ -105,7 +105,7 @@ gauntlet::core::SaveloadMenu::doSave(IUIObserver::Key key)
 }
 
 void
-gauntlet::core::SaveloadMenu::doLoad(IUIObserver::Key key)
+gauntlet::core::SaveloadMenu::doLoad(Command key)
 {
   (void)key;
   if (selected == NULL)
@@ -118,7 +118,7 @@ gauntlet::core::SaveloadMenu::doLoad(IUIObserver::Key key)
 }
 
 void
-gauntlet::core::SaveloadMenu::doReturn(IUIObserver::Key key)
+gauntlet::core::SaveloadMenu::doReturn(Command key)
 {
   (void)key;
   setOpen(false);

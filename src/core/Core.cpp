@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:13:44 2016 Esteban Lewis
-// Last update Tue May 10 16:44:48 2016 Esteban Lewis
+// Last update Wed May 11 14:33:41 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -65,32 +65,33 @@ gauntlet::core::Core::~Core()
 void
 gauntlet::core::Core::keyUp(IUIObserver::Key key)
 {
-  key = conf.getLinkedKey(key);
+  Command cmd = conf.getLinkedKey(key);
 
-  if (!menu->getOpen() && key != IUIObserver::KEY_ESC)
+  if (!menu->getOpen() && cmd != ESC)
     {
-      pc.doCmd(key, false);
+      pc.doCmd(cmd, false);
     }
 }
 
 void
 gauntlet::core::Core::keyDown(IUIObserver::Key key)
 {
-  key = conf.getLinkedKey(key);
+  lastKey = key;
+  Command cmd = conf.getLinkedKey(key);
 
   if (menu->getOpen())
     {
-      menu->keyDown(key);
+      menu->keyDown(cmd);
     }
   else
     {
-      if (key == IUIObserver::KEY_ESC)
+      if (cmd == ESC)
 	{
 	  menu->setOpen(!menu->getOpen());
 	}
       else
 	{
-	  pc.doCmd(key, true);
+	  pc.doCmd(cmd, true);
 	}
     }
 }
@@ -131,6 +132,12 @@ gauntlet::core::Conf &
 gauntlet::core::Core::getConf()
 {
   return (conf);
+}
+
+gauntlet::core::IUIObserver::Key
+gauntlet::core::Core::getLastKey()
+{
+  return (lastKey);
 }
 
 void

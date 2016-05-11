@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 10:59:47 2016 Esteban Lewis
-// Last update Tue May 10 15:58:34 2016 Esteban Lewis
+// Last update Wed May 11 14:29:53 2016 Esteban Lewis
 //
 
 #ifndef  CORE_HH_
@@ -38,6 +38,7 @@ namespace			gauntlet
       void			load(std::string file);
       void			save(std::string file);
       Conf &			getConf();
+      IUIObserver::Key		getLastKey();
 
     private:
       bool			keepGoing;
@@ -47,6 +48,7 @@ namespace			gauntlet
       PlayerController		pc;
       Stopwatch			sw;
       Conf			conf;
+      IUIObserver::Key		lastKey;
 
       void			loop();
       void			updateWorld();

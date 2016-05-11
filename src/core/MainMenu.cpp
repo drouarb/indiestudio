@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:09:17 2016 Esteban Lewis
-// Last update Tue May 10 15:59:42 2016 Esteban Lewis
+// Last update Wed May 11 13:50:06 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -18,13 +18,13 @@ gauntlet::core::MainMenu::MainMenu(Core & core, int idStart) : Menu(core, idStar
   buttons.push_back(MenuButton("Settings", 0, 100, idStart + 2));
   buttons.push_back(MenuButton("Exit", 0, 150, idStart + 3));
   
-  funs.insert(std::pair<int, void (MainMenu::*)(IUIObserver::Key)>
+  funs.insert(std::pair<int, void (MainMenu::*)(Command)>
 	      (0, &MainMenu::doPlay));
-  funs.insert(std::pair<int, void (MainMenu::*)(IUIObserver::Key)>
+  funs.insert(std::pair<int, void (MainMenu::*)(Command)>
 	      (1, &MainMenu::doSaveload));
-  funs.insert(std::pair<int, void (MainMenu::*)(IUIObserver::Key)>
+  funs.insert(std::pair<int, void (MainMenu::*)(Command)>
 	      (2, &MainMenu::doSettings));
-  funs.insert(std::pair<int, void (MainMenu::*)(IUIObserver::Key)>
+  funs.insert(std::pair<int, void (MainMenu::*)(Command)>
 	      (3, &MainMenu::doExit));
 
   submenus.push_back(new SaveloadMenu(core, idStart + 100, this));
@@ -47,14 +47,14 @@ gauntlet::core::MainMenu::undraw()
 }
 
 void
-gauntlet::core::MainMenu::doButton(IUIObserver::Key key)
+gauntlet::core::MainMenu::doButton(Command key)
 {
-  if (key == IUIObserver::KEY_ENTER)
+  if (key == ENTER)
     (this->*(funs[cursor]))(key);
 }
 
 void
-gauntlet::core::MainMenu::doPlay(IUIObserver::Key key)
+gauntlet::core::MainMenu::doPlay(Command key)
 {
   (void)key;
   setOpen(false);
@@ -62,21 +62,21 @@ gauntlet::core::MainMenu::doPlay(IUIObserver::Key key)
 }
 
 void
-gauntlet::core::MainMenu::doSaveload(IUIObserver::Key key)
+gauntlet::core::MainMenu::doSaveload(Command key)
 {
   (void)key;
   submenus[MENU_SL]->setOpen(true);
 }
 
 void
-gauntlet::core::MainMenu::doSettings(IUIObserver::Key key)
+gauntlet::core::MainMenu::doSettings(Command key)
 {
   (void)key;
   submenus[MENU_CONFIG]->setOpen(true);
 }
 
 void
-gauntlet::core::MainMenu::doExit(IUIObserver::Key key)
+gauntlet::core::MainMenu::doExit(Command key)
 {
   (void)key;
   setOpen(false);

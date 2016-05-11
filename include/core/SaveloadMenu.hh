@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:06:35 2016 Esteban Lewis
-// Last update Tue May 10 13:34:44 2016 Esteban Lewis
+// Last update Wed May 11 13:47:25 2016 Esteban Lewis
 //
 
 #ifndef  SAVELOADMENU_HH_
@@ -31,17 +31,17 @@ namespace			gauntlet
       void			undraw();
 
     protected:
-      std::map<int, void (SaveloadMenu::*)(IUIObserver::Key)> funs;
+      std::map<int, void (SaveloadMenu::*)(Command)> funs;
       MenuButton *		selected;
       Menu *			parent;
 
       void			getSaves();
       void			message(std::string const &);
-      void			doButton(IUIObserver::Key);
-      void			doSelect(IUIObserver::Key);
-      void			doSave(IUIObserver::Key);
-      void			doLoad(IUIObserver::Key);
-      void			doReturn(IUIObserver::Key);
+      void			doButton(Command);
+      void			doSelect(Command);
+      void			doSave(Command);
+      void			doLoad(Command);
+      void			doReturn(Command);
     };
   };
 };

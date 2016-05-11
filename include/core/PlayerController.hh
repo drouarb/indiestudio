@@ -5,14 +5,14 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 15:49:54 2016 Esteban Lewis
-// Last update Mon May  9 17:05:46 2016 Esteban Lewis
+// Last update Wed May 11 13:46:18 2016 Esteban Lewis
 //
 
 #ifndef  PLAYERCONTROLLER_HH_
 # define PLAYERCONTROLLER_HH_
 
 # include <map>
-# include "IUIObserver.hh"
+# include "Conf.hh"
 
 namespace				gauntlet
 {
@@ -32,7 +32,7 @@ namespace				gauntlet
 	  ACTIVATE
 	};
 
-      void				doCmd(IUIObserver::Key, bool down);
+      void				doCmd(Command, bool down);
       double				getMovementX();
       double				getMovementY();
       int				getAction();
@@ -44,7 +44,7 @@ namespace				gauntlet
       double				moveX;
       double				moveY;
       int				action;
-      std::map<IUIObserver::Key, void (PlayerController::*)(bool)> ctrls;
+      std::map<Command, void (PlayerController::*)(bool)> ctrls;
       //Player				playerRef;
 
       void				cmdUp(bool);

@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 13:17:57 2016 Esteban Lewis
-// Last update Tue May 10 16:10:23 2016 Esteban Lewis
+// Last update Wed May 11 13:49:43 2016 Esteban Lewis
 //
 
 #include "Menu.hh"
@@ -21,7 +21,7 @@ gauntlet::core::Menu::~Menu()
 }
 
 bool
-gauntlet::core::Menu::keyDown(IUIObserver::Key key)
+gauntlet::core::Menu::keyDown(Command key)
 {
   if (!isOpen)
     return (false);
@@ -33,16 +33,16 @@ gauntlet::core::Menu::keyDown(IUIObserver::Key key)
 	return (true);
       }
 
-  if (key == IUIObserver::KEY_ESC)
+  if (key == ESC)
     {
       setOpen(false);
     }
-  else if (key == IUIObserver::KEY_UP)
+  else if (key == UP)
     {
       if (cursor > 0)
 	moveCursor(cursor - 1);
     }
-  else if (key == IUIObserver::KEY_DOWN)
+  else if (key == DOWN)
     {
       if (cursor < (int)buttons.size() - 1)
 	moveCursor(cursor + 1);

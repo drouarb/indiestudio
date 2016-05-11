@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 15:52:38 2016 Esteban Lewis
-// Last update Mon May  9 17:44:18 2016 Esteban Lewis
+// Last update Wed May 11 13:49:12 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -13,16 +13,16 @@
 
 gauntlet::core::PlayerController::PlayerController()
 {
-  ctrls.insert(std::pair<IUIObserver::Key, void (PlayerController::*)(bool)>
-	       (IUIObserver::KEY_UP, &PlayerController::cmdUp));
-  ctrls.insert(std::pair<IUIObserver::Key, void (PlayerController::*)(bool)>
-	       (IUIObserver::KEY_DOWN, &PlayerController::cmdDown));
-  ctrls.insert(std::pair<IUIObserver::Key, void (PlayerController::*)(bool)>
-	       (IUIObserver::KEY_LEFT, &PlayerController::cmdLeft));
-  ctrls.insert(std::pair<IUIObserver::Key, void (PlayerController::*)(bool)>
-	       (IUIObserver::KEY_RIGHT, &PlayerController::cmdRight));
-  ctrls.insert(std::pair<IUIObserver::Key, void (PlayerController::*)(bool)>
-	       (IUIObserver::KEY_ENTER, &PlayerController::cmdAttack1));
+  ctrls.insert(std::pair<Command, void (PlayerController::*)(bool)>
+	       (UP, &PlayerController::cmdUp));
+  ctrls.insert(std::pair<Command, void (PlayerController::*)(bool)>
+	       (DOWN, &PlayerController::cmdDown));
+  ctrls.insert(std::pair<Command, void (PlayerController::*)(bool)>
+	       (LEFT, &PlayerController::cmdLeft));
+  ctrls.insert(std::pair<Command, void (PlayerController::*)(bool)>
+	       (RIGHT, &PlayerController::cmdRight));
+  ctrls.insert(std::pair<Command, void (PlayerController::*)(bool)>
+	       (ENTER, &PlayerController::cmdAttack1));
 
   moveX = 0;
   moveY = 0;
@@ -39,10 +39,10 @@ gauntlet::core::PlayerController::loop()
 }
 
 void
-gauntlet::core::PlayerController::doCmd(IUIObserver::Key key, bool down)
+gauntlet::core::PlayerController::doCmd(Command key, bool down)
 {
   std::cout << "player cmd " << key << " " << down << std::endl;
-  for (std::map<IUIObserver::Key, void (PlayerController::*)(bool)>::iterator
+  for (std::map<Command, void (PlayerController::*)(bool)>::iterator
 	 it = ctrls.begin(); it != ctrls.end(); ++it)
     {
       if (it->first == key)

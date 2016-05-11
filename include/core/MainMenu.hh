@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:06:35 2016 Esteban Lewis
-// Last update Tue May 10 13:44:12 2016 Esteban Lewis
+// Last update Wed May 11 13:47:04 2016 Esteban Lewis
 //
 
 #ifndef  MAINMENU_HH_
@@ -32,14 +32,14 @@ namespace			gauntlet
       void			undraw();
 
     protected:
-      std::map<int, void (MainMenu::*)(IUIObserver::Key)> funs;
+      std::map<int, void (MainMenu::*)(Command)> funs;
 
-      void			doButton(IUIObserver::Key);
+      void			doButton(Command);
 
-      void			doPlay(IUIObserver::Key);
-      void			doSaveload(IUIObserver::Key);
-      void			doSettings(IUIObserver::Key);
-      void			doExit(IUIObserver::Key);
+      void			doPlay(Command);
+      void			doSaveload(Command);
+      void			doSettings(Command);
+      void			doExit(Command);
     };
   };
 };

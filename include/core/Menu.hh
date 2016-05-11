@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:23:51 2016 Esteban Lewis
-// Last update Tue May 10 14:33:56 2016 Esteban Lewis
+// Last update Wed May 11 13:46:41 2016 Esteban Lewis
 //
 
 #ifndef  MENU_HH_
@@ -13,7 +13,7 @@
 
 # include <vector>
 # include "MenuButton.hh"
-# include "IUIObserver.hh"
+# include "Conf.hh"
 
 namespace			gauntlet
 {
@@ -29,12 +29,12 @@ namespace			gauntlet
 
       virtual void		draw() = 0;
       virtual void		undraw() = 0;
-      virtual bool		keyDown(IUIObserver::Key);
+      virtual bool		keyDown(Command);
       void			setOpen(bool);
       bool			getOpen();
 
     protected:
-      virtual void		doButton(IUIObserver::Key) = 0;
+      virtual void		doButton(Command) = 0;
       void			moveCursor(int newPos);
       void			drawButtons();
       void			undrawButtons();

@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:06:35 2016 Esteban Lewis
-// Last update Tue May 10 15:36:12 2016 Esteban Lewis
+// Last update Wed May 11 14:55:15 2016 Esteban Lewis
 //
 
 #ifndef  CONFMENU_HH_
@@ -26,16 +26,18 @@ namespace			gauntlet
 
       void			draw();
       void			undraw();
-      bool			keyDown(IUIObserver::Key);
+      bool			keyDown(Command);
 
     protected:
-      std::map<int, void (ConfMenu::*)(IUIObserver::Key)> funs;
+      std::map<int, void (ConfMenu::*)(Command)> funs;
+      std::map<IUIObserver::Key, std::string> keyNames;
       bool			waitForKey;
 
-      void			doButton(IUIObserver::Key);
+      std::string const &	getKeyName(IUIObserver::Key);
+      void			doButton(Command);
 
-      void			doReturn(IUIObserver::Key);
-      void			doKeylink(IUIObserver::Key);
+      void			doReturn(Command);
+      void			doKeylink(Command);
     };
   };
 };
