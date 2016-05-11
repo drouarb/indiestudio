@@ -26,7 +26,10 @@ namespace gauntlet
       long score;
       ItemContainer inventory;
     public:
-      Player();
+      Player(bool collide, int nid, double posx,
+	     double posy, double sizex, double sizey, short norient);
+      Player(int nid, double posx, double posy, double sizex,
+	     double sizey, short norient);
       ~Player();
       void addScore(long addition);
       // void equip(Item item);

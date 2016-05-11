@@ -6,9 +6,16 @@
 
 using namespace gauntlet;
 
-Player::Player()
+Player::Player(bool ncollide, int nid, double posx, double posy,
+	       double sizex, double sizey, short norient)
+  : Actor(ncollide, nid, posx, posy, sizex, sizey, norient)
 {
+}
 
+Player::Player(int nid, double posx, double posy,
+	       double sizex, double sizey, short norient)
+  : Actor(nid, posx, posy, sizex, sizey, norient)
+{
 }
 
 Player::~Player()

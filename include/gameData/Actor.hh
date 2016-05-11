@@ -12,17 +12,18 @@
 
 namespace gauntlet
 {
-  class Actor
+  class Actor : public ABody
   {
   protected:
-    std::pair<double, double>	coord;
     std::string			name;
-    int				id;
     Stats			stats;
     //SpellContainer		spellBook;
-    world::World		world;
+    world::World		*world;
   public:
-    Actor();
+    Actor(bool collide, int nid, double posx,
+	  double posy, double sizex, double sizey, short norient);
+    Actor(int nid, double posx, double posy, double sizex,
+	  double sizey, short norient);
     ~Actor();
   };
 };
