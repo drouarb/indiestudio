@@ -6,12 +6,14 @@
 
 using namespace gauntlet;
 
-Creature::Creature()
+Creature::Creature(bool ncollide, int nid, double posx, double posy,
+		   double sizex, double sizey, short norient)
+  : Actor(ncollide, nid, posx, posy, sizex, sizey, norient)
 {
-
 }
 
-Creature::~Creature()
+Creature::Creature(int nid, double posx, double posy,
+		   double sizex, double sizey, short norient)
+  : Actor(nid, posx, posy, sizex, sizey, norient)
 {
-
 }

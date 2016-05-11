@@ -5,24 +5,25 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Mon May  9 13:56:57 2016 Alexis Trouve
-// Last update Mon May  9 14:09:05 2016 Alexis Trouve
+// Last update Tue May 10 20:35:59 2016 Alexis Trouve
 //
 
 #ifndef CONTAINEROBJ_HH_
 # define CONTAINEROBJ_HH_
 
 #include "ItemContainer.hh"
-#include "GameObject.hh"
 
-namespace gauntlet {
-    class ContainerObject : public GameObject {
-    private:
-        ItemContainer myItems;
-    public:
-        ContainerObject();
-
-        ~ContainerObject();
-    };
+namespace gauntlet
+{
+  class ContainerObject
+  {
+  private:
+    ItemContainer items;
+  public:
+    ContainerObject();
+    
+    ~ContainerObject();
+  };
 };
 
 #endif

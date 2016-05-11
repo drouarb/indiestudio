@@ -354,6 +354,30 @@ src/core/Stopwatch.cpp.s:
 	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/core/Stopwatch.cpp.s
 .PHONY : src/core/Stopwatch.cpp.s
 
+src/gameData/ABody.o: src/gameData/ABody.cpp.o
+.PHONY : src/gameData/ABody.o
+
+# target to build an object file
+src/gameData/ABody.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/ABody.cpp.o
+.PHONY : src/gameData/ABody.cpp.o
+
+src/gameData/ABody.i: src/gameData/ABody.cpp.i
+.PHONY : src/gameData/ABody.i
+
+# target to preprocess a source file
+src/gameData/ABody.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/ABody.cpp.i
+.PHONY : src/gameData/ABody.cpp.i
+
+src/gameData/ABody.s: src/gameData/ABody.cpp.s
+.PHONY : src/gameData/ABody.s
+
+# target to generate assembly for a file
+src/gameData/ABody.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/ABody.cpp.s
+.PHONY : src/gameData/ABody.cpp.s
+
 src/gameData/Actor.o: src/gameData/Actor.cpp.o
 .PHONY : src/gameData/Actor.o
 
@@ -1002,6 +1026,30 @@ src/network/packet/PacketConnect.cpp.s:
 	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/network/packet/PacketConnect.cpp.s
 .PHONY : src/network/packet/PacketConnect.cpp.s
 
+src/world/EntityCollideLayer.o: src/world/EntityCollideLayer.cpp.o
+.PHONY : src/world/EntityCollideLayer.o
+
+# target to build an object file
+src/world/EntityCollideLayer.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/world/EntityCollideLayer.cpp.o
+.PHONY : src/world/EntityCollideLayer.cpp.o
+
+src/world/EntityCollideLayer.i: src/world/EntityCollideLayer.cpp.i
+.PHONY : src/world/EntityCollideLayer.i
+
+# target to preprocess a source file
+src/world/EntityCollideLayer.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/world/EntityCollideLayer.cpp.i
+.PHONY : src/world/EntityCollideLayer.cpp.i
+
+src/world/EntityCollideLayer.s: src/world/EntityCollideLayer.cpp.s
+.PHONY : src/world/EntityCollideLayer.s
+
+# target to generate assembly for a file
+src/world/EntityCollideLayer.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/world/EntityCollideLayer.cpp.s
+.PHONY : src/world/EntityCollideLayer.cpp.s
+
 src/world/World.o: src/world/World.cpp.o
 .PHONY : src/world/World.o
 
@@ -1065,6 +1113,9 @@ help:
 	@echo "... src/core/Stopwatch.o"
 	@echo "... src/core/Stopwatch.i"
 	@echo "... src/core/Stopwatch.s"
+	@echo "... src/gameData/ABody.o"
+	@echo "... src/gameData/ABody.i"
+	@echo "... src/gameData/ABody.s"
 	@echo "... src/gameData/Actor.o"
 	@echo "... src/gameData/Actor.i"
 	@echo "... src/gameData/Actor.s"
@@ -1146,6 +1197,9 @@ help:
 	@echo "... src/network/packet/PacketConnect.o"
 	@echo "... src/network/packet/PacketConnect.i"
 	@echo "... src/network/packet/PacketConnect.s"
+	@echo "... src/world/EntityCollideLayer.o"
+	@echo "... src/world/EntityCollideLayer.i"
+	@echo "... src/world/EntityCollideLayer.s"
 	@echo "... src/world/World.o"
 	@echo "... src/world/World.i"
 	@echo "... src/world/World.s"

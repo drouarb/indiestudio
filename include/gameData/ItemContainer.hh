@@ -16,8 +16,8 @@ namespace gauntlet
     public:
       ItemContainer();
       ~ItemContainer();
-
-        void    remove(Item item);
+      
+      void    remove(Item item);
     };
 };
 
