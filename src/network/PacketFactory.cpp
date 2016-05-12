@@ -20,13 +20,6 @@ gauntlet::network::PacketFactory::~PacketFactory() {
     delete (socket);
 }
 
-void gauntlet::network::PacketFactory::send(const Packet &packet) {
-    size_t size;
-
-    size = 0;
-    socket->send(packet.serialize(size), size);
-}
-
 void gauntlet::network::PacketFactory::registerListener(PacketListener *listener) {
     listeners[listener->getPacketId()].insert(listener);
 }
@@ -45,14 +38,20 @@ void gauntlet::network::PacketFactory::unregisterListener(PacketListener *listen
     }
 }
 
+void gauntlet::network::PacketFactory::send(const Packet &packet) {
+    t_rawdata* data = packet.serialize();
+    socket->send(&data->front(), data->size());
+    delete(data);
+}
+
 void gauntlet::network::PacketFactory::recv() {
-    void *data;
+    t_rawdata* data;
     PacketId id;
     Packet *packet;
 
     while (run) {
         data = socket->recv();
-        id = static_cast<PacketId *>(data)[0];
+        id = static_cast<PacketId>(data->at(0));
         packet = NULL;
         try {
             packet = (this->*createMap.at(id))(data);
@@ -66,14 +65,8 @@ void gauntlet::network::PacketFactory::recv() {
     }
 }
 
-gauntlet::network::Packet *gauntlet::network::PacketFactory::createConnectPacket(void *data) {
-    Packet *p = new PacketConnect();
-    p->deserialize(data);
-    return p;
-}
-
 const std::map<gauntlet::network::PacketId, gauntlet::network::PacketFactory::createPacketFunc>
         gauntlet::network::PacketFactory::createMap = {
-        {CONNECT, &PacketFactory::createConnectPacket}
+        { CONNECT, &PacketFactory::createPacket<PacketConnect> }
 };
 

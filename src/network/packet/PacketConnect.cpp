@@ -2,19 +2,39 @@
 // Created by drouar_b on 5/9/16.
 //
 
+#include <stdexcept>
 #include "network/packet/PacketConnect.hh"
 
-gauntlet::network::PacketConnect::PacketConnect(): Packet(gauntlet::network::CONNECT) {
+gauntlet::network::PacketConnect::PacketConnect() :
+        Packet(gauntlet::network::CONNECT),
+        protocolVersion(PROTOCOL_VERSION)
+{ }
 
+gauntlet::network::PacketConnect::PacketConnect(t_rawdata *data) :
+        Packet(gauntlet::network::CONNECT),
+        protocolVersion(PROTOCOL_VERSION) {
+    this->deserialize(data);
 }
 
-void *gauntlet::network::PacketConnect::serialize(size_t &size) const {
-    return nullptr;
+t_rawdata *gauntlet::network::PacketConnect::serialize() const {
+    t_rawdata *data = new t_rawdata;
+    data->resize(sizeof(s_packetConnectData), 0);
+    s_packetConnectData *packetConnectData = reinterpret_cast<s_packetConnectData *>(&data->front());
+    packetConnectData->packetId = this->getPacketId();
+    packetConnectData->protocolVersion = PROTOCOL_VERSION;
+    return data;
 }
 
-void gauntlet::network::PacketConnect::deserialize(void *data) {
-
+void gauntlet::network::PacketConnect::deserialize(t_rawdata *data) {
+    if (data->size() < sizeof(s_packetConnectData))
+        throw std::logic_error("Invalid data");
+    if (data->at(0) != gauntlet::network::CONNECT) {
+        throw std::logic_error("Invalid packet id");
+    }
+    s_packetConnectData *packetConnectData = reinterpret_cast<s_packetConnectData *>(&data->front());
+    this->protocolVersion = packetConnectData->protocolVersion;
 }
 
-
-
+unsigned int gauntlet::network::PacketConnect::getProtocolVersion() const {
+    return protocolVersion;
+}

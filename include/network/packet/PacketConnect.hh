@@ -9,14 +9,26 @@
 
 namespace gauntlet {
     namespace network {
-        class PacketConnect: public Packet {
+        class PacketConnect : public Packet {
+
+            struct s_packetConnectData {
+                unsigned char packetId;
+                unsigned int protocolVersion;
+            };
+
         public:
             PacketConnect();
-            virtual ~PacketConnect() {};
+            PacketConnect(t_rawdata* data);
 
-            virtual void *serialize(size_t &size) const;
-            virtual void deserialize(void *data);
+            virtual ~PacketConnect() { };
 
+            virtual t_rawdata* serialize() const;
+            virtual void deserialize(t_rawdata* data);
+
+            unsigned int getProtocolVersion() const;
+
+        private:
+            unsigned int protocolVersion;
         };
     }
 }

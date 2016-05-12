@@ -6,11 +6,14 @@
 #define CPP_INDIE_STUDIO_PACKET_HPP
 
 #include <stdlib.h>
+#include <vector>
 
 #define PROTOCOL_VERSION    1
 
+typedef std::vector<unsigned char> t_rawdata;
 namespace gauntlet {
     namespace network {
+
         enum PacketId: unsigned char {
             CONNECT               = 0x01,
             DISCONNECT            = 0x02,
@@ -38,8 +41,8 @@ namespace gauntlet {
             virtual ~Packet() {};
             PacketId getPacketId() const;
 
-            virtual void *serialize(size_t &size) const = 0;
-            virtual void deserialize(void *data) = 0;
+            virtual t_rawdata* serialize() const = 0;
+            virtual void deserialize(t_rawdata* data) = 0;
 
         private:
             const PacketId packetId;

@@ -33,11 +33,11 @@ namespace gauntlet {
             Socket(const std::string &address, in_port_t port);
             ~Socket();
             void send(void *data, size_t size);
-            void *recv();
+            std::vector<unsigned char>* recv();
             SocketType getType() const;
 
         private:
-            void *recv(int fd);
+            std::vector<unsigned char>* recv(int fd);
 
         private:
             SocketType type;

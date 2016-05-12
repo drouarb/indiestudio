@@ -51,7 +51,7 @@ void gauntlet::network::Socket::send(void *data, size_t size) {
     writeLock.unlock();
 }
 
-void *gauntlet::network::Socket::recv() {
+std::vector<unsigned char>* gauntlet::network::Socket::recv() {
     fd_set *set;
     s_client cli;
     size_t nfds;
@@ -74,9 +74,8 @@ void *gauntlet::network::Socket::recv() {
                     clients.push_back(cli);
                 } else {
                     if (FD_ISSET(clients[i - 1].sockfd, set + i)) {
-                        void *ret = this->recv(clients[i - 1].sockfd);
                         delete set;
-                        return ret;
+                        return this->recv(clients[i - 1].sockfd);
                     }
                 }
             }
@@ -86,20 +85,16 @@ void *gauntlet::network::Socket::recv() {
     return this->recv(sockfd);
 }
 
-void *gauntlet::network::Socket::recv(int fd) {
-    ssize_t size;
-    char buff[BUFFER_SIZE];
-    void *ret = NULL;
-    size_t retsize = 0;
+std::vector<unsigned char>* gauntlet::network::Socket::recv(int fd) {
+    static std::vector<unsigned char> buffer(BUFFER_SIZE, 0);
+    std::vector<unsigned char> *data = new std::vector<unsigned char>();
 
     readLock.lock();
-    while ((size = ::recv(fd, buff, BUFFER_SIZE, MSG_DONTWAIT)) > 0) {
-        ret = realloc(ret, retsize + size);
-        memcpy(((char *)ret) + retsize, buff, size);
-        retsize += size;
+    while (::recv(fd, &buffer.front(), BUFFER_SIZE, MSG_DONTWAIT) > 0) {
+        data->insert(data->end(), buffer.begin(), buffer.end());
     }
     readLock.unlock();
-    return ret;
+    return data;
 }
 
 
