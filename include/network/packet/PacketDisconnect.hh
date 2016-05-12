@@ -25,6 +25,8 @@ namespace gauntlet {
             virtual t_rawdata* serialize() const;
             virtual void deserialize(t_rawdata* data);
 
+            const std::string & getMessage() const;
+
         private:
             std::string message;
         };
