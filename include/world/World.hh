@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:55:06 2016 Esteban Lewis
-// Last update Wed May 11 11:05:12 2016 Alexis Trouve
+// Last update Thu May 12 16:48:32 2016 Alexis Trouve
 //
 
 #ifndef  WORLD_HH_
@@ -15,6 +15,7 @@
 #include <list>
 #include "ABody.hh"
 #include "EntityCollideLayer.hh"
+#include "PhysicCollideLayer.hh"
 
 namespace			gauntlet
 {
@@ -24,7 +25,6 @@ namespace			gauntlet
     {
     private:
       std::list<gauntlet::ABody*>		bodys;
-      gauntlet::world::EntityCollideLayer	entityColliderLayer;
     public:
       World();
       ~World();

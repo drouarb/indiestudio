@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 11:03:19 2016 Alexis Trouve
-// Last update Wed May 11 11:04:31 2016 Alexis Trouve
+// Last update Thu May 12 16:22:47 2016 Alexis Trouve
 //
 
 #include "EntityCollideLayer.hh"
@@ -13,11 +13,10 @@
 using namespace gauntlet;
 using namespace world;
 
-EntityCollideLayer::EntityCollideLayer()
+EntityCollideLayer::EntityCollideLayer(gauntlet::world::PhysicCollideLayer *physicLayer)
 {
 }
 
 EntityCollideLayer::~EntityCollideLayer()
 {
-
 }

@@ -5,11 +5,11 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Mon May  9 14:06:15 2016 Alexis Trouve
-// Last update Wed May 11 11:27:11 2016 Alexis Trouve
+// Last update Thu May 12 16:36:26 2016 Alexis Trouve
 //
 
-#ifndef AOBJECT_HH_
-# define AOBJECT_HH_
+#ifndef ABODY_HH_
+# define ABODY_HH_
 
 #include <tuple>
 

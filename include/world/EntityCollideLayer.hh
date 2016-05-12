@@ -5,11 +5,15 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Tue May 10 20:28:30 2016 Alexis Trouve
-// Last update Wed May 11 11:02:43 2016 Alexis Trouve
+// Last update Thu May 12 16:26:39 2016 Alexis Trouve
 //
 
 #ifndef ENTITYCOLLIDELAYER_HH_
 # define ENTITYCOLLIDELAYER_HH_
+
+#include <list>
+#include "PhysicCollideLayer.hh"
+#include "ABody.hh"
 
 #define SIZE_CASE 400.0
 
@@ -17,10 +21,21 @@ namespace gauntlet
 {
   namespace world
   {
+    struct		CollidingArea
+    {
+      std::list<ABody*>	Entity;
+      double		posx;
+      double		posy;
+      double		sizex;
+      double		sizey;
+    };
+
     class	EntityCollideLayer
     {
+    private:
+      gauntlet::world::CollidingArea	**Map;
     public:
-      EntityCollideLayer();
+      EntityCollideLayer(gauntlet::world::PhysicCollideLayer *physicLayer);
       ~EntityCollideLayer();
     };
   };

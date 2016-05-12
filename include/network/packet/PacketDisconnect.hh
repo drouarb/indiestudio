@@ -5,6 +5,7 @@
 #ifndef CPP_INDIE_STUDIO_PACKETDISCONNECT_HH
 #define CPP_INDIE_STUDIO_PACKETDISCONNECT_HH
 
+#include <string>
 #include "Packet.hh"
 
 namespace gauntlet {

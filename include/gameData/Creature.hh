@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Mon May  9 15:34:16 2016 Alexis Trouve
-// Last update Wed May 11 12:48:28 2016 Alexis Trouve
+// Last update Thu May 12 17:08:30 2016 Alexis Trouve
 //
 
 #ifndef CPP_INDIE_STUDIO_CREATURE_HH
@@ -17,6 +17,7 @@ namespace gauntlet
 {
   class Creature : public Actor
   {
+  public:
     Creature(bool collide, int nid, double posx,
 	     double posy, double sizex, double sizey, short norient);
     Creature(int nid, double posx, double posy, double sizex,

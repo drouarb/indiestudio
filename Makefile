@@ -42,10 +42,10 @@ EQUALS = =
 CMAKE_EDIT_COMMAND = /usr/bin/ccmake
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/lewis_e/rendu/cpp/cpp_indie_studio
+CMAKE_SOURCE_DIR = /home/trouve_b/Desktop/CPP_project/cpp_indie_studio
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/lewis_e/rendu/cpp/cpp_indie_studio
+CMAKE_BINARY_DIR = /home/trouve_b/Desktop/CPP_project/cpp_indie_studio
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -72,9 +72,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/lewis_e/rendu/cpp/cpp_indie_studio/CMakeFiles /home/lewis_e/rendu/cpp/cpp_indie_studio/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/trouve_b/Desktop/CPP_project/cpp_indie_studio/CMakeFiles /home/trouve_b/Desktop/CPP_project/cpp_indie_studio/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/lewis_e/rendu/cpp/cpp_indie_studio/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/trouve_b/Desktop/CPP_project/cpp_indie_studio/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -402,29 +402,53 @@ src/gameData/Actor.cpp.s:
 	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Actor.cpp.s
 .PHONY : src/gameData/Actor.cpp.s
 
-src/gameData/ActorPreset.o: src/gameData/ActorPreset.cpp.o
-.PHONY : src/gameData/ActorPreset.o
+src/gameData/ActorFactory.o: src/gameData/ActorFactory.cpp.o
+.PHONY : src/gameData/ActorFactory.o
 
 # target to build an object file
-src/gameData/ActorPreset.cpp.o:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/ActorPreset.cpp.o
-.PHONY : src/gameData/ActorPreset.cpp.o
+src/gameData/ActorFactory.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/ActorFactory.cpp.o
+.PHONY : src/gameData/ActorFactory.cpp.o
 
-src/gameData/ActorPreset.i: src/gameData/ActorPreset.cpp.i
-.PHONY : src/gameData/ActorPreset.i
+src/gameData/ActorFactory.i: src/gameData/ActorFactory.cpp.i
+.PHONY : src/gameData/ActorFactory.i
 
 # target to preprocess a source file
-src/gameData/ActorPreset.cpp.i:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/ActorPreset.cpp.i
-.PHONY : src/gameData/ActorPreset.cpp.i
+src/gameData/ActorFactory.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/ActorFactory.cpp.i
+.PHONY : src/gameData/ActorFactory.cpp.i
 
-src/gameData/ActorPreset.s: src/gameData/ActorPreset.cpp.s
-.PHONY : src/gameData/ActorPreset.s
+src/gameData/ActorFactory.s: src/gameData/ActorFactory.cpp.s
+.PHONY : src/gameData/ActorFactory.s
 
 # target to generate assembly for a file
-src/gameData/ActorPreset.cpp.s:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/ActorPreset.cpp.s
-.PHONY : src/gameData/ActorPreset.cpp.s
+src/gameData/ActorFactory.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/ActorFactory.cpp.s
+.PHONY : src/gameData/ActorFactory.cpp.s
+
+src/gameData/BodyFactory.o: src/gameData/BodyFactory.cpp.o
+.PHONY : src/gameData/BodyFactory.o
+
+# target to build an object file
+src/gameData/BodyFactory.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/BodyFactory.cpp.o
+.PHONY : src/gameData/BodyFactory.cpp.o
+
+src/gameData/BodyFactory.i: src/gameData/BodyFactory.cpp.i
+.PHONY : src/gameData/BodyFactory.i
+
+# target to preprocess a source file
+src/gameData/BodyFactory.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/BodyFactory.cpp.i
+.PHONY : src/gameData/BodyFactory.cpp.i
+
+src/gameData/BodyFactory.s: src/gameData/BodyFactory.cpp.s
+.PHONY : src/gameData/BodyFactory.s
+
+# target to generate assembly for a file
+src/gameData/BodyFactory.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/BodyFactory.cpp.s
+.PHONY : src/gameData/BodyFactory.cpp.s
 
 src/gameData/ContainerObject.o: src/gameData/ContainerObject.cpp.o
 .PHONY : src/gameData/ContainerObject.o
@@ -474,29 +498,29 @@ src/gameData/Creature.cpp.s:
 	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Creature.cpp.s
 .PHONY : src/gameData/Creature.cpp.s
 
-src/gameData/CreaturePreset.o: src/gameData/CreaturePreset.cpp.o
-.PHONY : src/gameData/CreaturePreset.o
+src/gameData/CreatureFactory.o: src/gameData/CreatureFactory.cpp.o
+.PHONY : src/gameData/CreatureFactory.o
 
 # target to build an object file
-src/gameData/CreaturePreset.cpp.o:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/CreaturePreset.cpp.o
-.PHONY : src/gameData/CreaturePreset.cpp.o
+src/gameData/CreatureFactory.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/CreatureFactory.cpp.o
+.PHONY : src/gameData/CreatureFactory.cpp.o
 
-src/gameData/CreaturePreset.i: src/gameData/CreaturePreset.cpp.i
-.PHONY : src/gameData/CreaturePreset.i
+src/gameData/CreatureFactory.i: src/gameData/CreatureFactory.cpp.i
+.PHONY : src/gameData/CreatureFactory.i
 
 # target to preprocess a source file
-src/gameData/CreaturePreset.cpp.i:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/CreaturePreset.cpp.i
-.PHONY : src/gameData/CreaturePreset.cpp.i
+src/gameData/CreatureFactory.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/CreatureFactory.cpp.i
+.PHONY : src/gameData/CreatureFactory.cpp.i
 
-src/gameData/CreaturePreset.s: src/gameData/CreaturePreset.cpp.s
-.PHONY : src/gameData/CreaturePreset.s
+src/gameData/CreatureFactory.s: src/gameData/CreatureFactory.cpp.s
+.PHONY : src/gameData/CreatureFactory.s
 
 # target to generate assembly for a file
-src/gameData/CreaturePreset.cpp.s:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/CreaturePreset.cpp.s
-.PHONY : src/gameData/CreaturePreset.cpp.s
+src/gameData/CreatureFactory.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/CreatureFactory.cpp.s
+.PHONY : src/gameData/CreatureFactory.cpp.s
 
 src/gameData/GameObject.o: src/gameData/GameObject.cpp.o
 .PHONY : src/gameData/GameObject.o
@@ -522,29 +546,29 @@ src/gameData/GameObject.cpp.s:
 	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/GameObject.cpp.s
 .PHONY : src/gameData/GameObject.cpp.s
 
-src/gameData/GameObjectPreset.o: src/gameData/GameObjectPreset.cpp.o
-.PHONY : src/gameData/GameObjectPreset.o
+src/gameData/GameObjectFactory.o: src/gameData/GameObjectFactory.cpp.o
+.PHONY : src/gameData/GameObjectFactory.o
 
 # target to build an object file
-src/gameData/GameObjectPreset.cpp.o:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/GameObjectPreset.cpp.o
-.PHONY : src/gameData/GameObjectPreset.cpp.o
+src/gameData/GameObjectFactory.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/GameObjectFactory.cpp.o
+.PHONY : src/gameData/GameObjectFactory.cpp.o
 
-src/gameData/GameObjectPreset.i: src/gameData/GameObjectPreset.cpp.i
-.PHONY : src/gameData/GameObjectPreset.i
+src/gameData/GameObjectFactory.i: src/gameData/GameObjectFactory.cpp.i
+.PHONY : src/gameData/GameObjectFactory.i
 
 # target to preprocess a source file
-src/gameData/GameObjectPreset.cpp.i:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/GameObjectPreset.cpp.i
-.PHONY : src/gameData/GameObjectPreset.cpp.i
+src/gameData/GameObjectFactory.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/GameObjectFactory.cpp.i
+.PHONY : src/gameData/GameObjectFactory.cpp.i
 
-src/gameData/GameObjectPreset.s: src/gameData/GameObjectPreset.cpp.s
-.PHONY : src/gameData/GameObjectPreset.s
+src/gameData/GameObjectFactory.s: src/gameData/GameObjectFactory.cpp.s
+.PHONY : src/gameData/GameObjectFactory.s
 
 # target to generate assembly for a file
-src/gameData/GameObjectPreset.cpp.s:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/GameObjectPreset.cpp.s
-.PHONY : src/gameData/GameObjectPreset.cpp.s
+src/gameData/GameObjectFactory.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/GameObjectFactory.cpp.s
+.PHONY : src/gameData/GameObjectFactory.cpp.s
 
 src/gameData/Item.o: src/gameData/Item.cpp.o
 .PHONY : src/gameData/Item.o
@@ -642,29 +666,29 @@ src/gameData/Player.cpp.s:
 	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/Player.cpp.s
 .PHONY : src/gameData/Player.cpp.s
 
-src/gameData/PlayerPreset.o: src/gameData/PlayerPreset.cpp.o
-.PHONY : src/gameData/PlayerPreset.o
+src/gameData/PlayerFactory.o: src/gameData/PlayerFactory.cpp.o
+.PHONY : src/gameData/PlayerFactory.o
 
 # target to build an object file
-src/gameData/PlayerPreset.cpp.o:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/PlayerPreset.cpp.o
-.PHONY : src/gameData/PlayerPreset.cpp.o
+src/gameData/PlayerFactory.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/PlayerFactory.cpp.o
+.PHONY : src/gameData/PlayerFactory.cpp.o
 
-src/gameData/PlayerPreset.i: src/gameData/PlayerPreset.cpp.i
-.PHONY : src/gameData/PlayerPreset.i
+src/gameData/PlayerFactory.i: src/gameData/PlayerFactory.cpp.i
+.PHONY : src/gameData/PlayerFactory.i
 
 # target to preprocess a source file
-src/gameData/PlayerPreset.cpp.i:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/PlayerPreset.cpp.i
-.PHONY : src/gameData/PlayerPreset.cpp.i
+src/gameData/PlayerFactory.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/PlayerFactory.cpp.i
+.PHONY : src/gameData/PlayerFactory.cpp.i
 
-src/gameData/PlayerPreset.s: src/gameData/PlayerPreset.cpp.s
-.PHONY : src/gameData/PlayerPreset.s
+src/gameData/PlayerFactory.s: src/gameData/PlayerFactory.cpp.s
+.PHONY : src/gameData/PlayerFactory.s
 
 # target to generate assembly for a file
-src/gameData/PlayerPreset.cpp.s:
-	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/PlayerPreset.cpp.s
-.PHONY : src/gameData/PlayerPreset.cpp.s
+src/gameData/PlayerFactory.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/gameData/PlayerFactory.cpp.s
+.PHONY : src/gameData/PlayerFactory.cpp.s
 
 src/gameData/Spell/ASpell.o: src/gameData/Spell/ASpell.cpp.o
 .PHONY : src/gameData/Spell/ASpell.o
@@ -1026,6 +1050,54 @@ src/network/packet/PacketConnect.cpp.s:
 	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/network/packet/PacketConnect.cpp.s
 .PHONY : src/network/packet/PacketConnect.cpp.s
 
+src/network/packet/PacketDisconnect.o: src/network/packet/PacketDisconnect.cpp.o
+.PHONY : src/network/packet/PacketDisconnect.o
+
+# target to build an object file
+src/network/packet/PacketDisconnect.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/network/packet/PacketDisconnect.cpp.o
+.PHONY : src/network/packet/PacketDisconnect.cpp.o
+
+src/network/packet/PacketDisconnect.i: src/network/packet/PacketDisconnect.cpp.i
+.PHONY : src/network/packet/PacketDisconnect.i
+
+# target to preprocess a source file
+src/network/packet/PacketDisconnect.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/network/packet/PacketDisconnect.cpp.i
+.PHONY : src/network/packet/PacketDisconnect.cpp.i
+
+src/network/packet/PacketDisconnect.s: src/network/packet/PacketDisconnect.cpp.s
+.PHONY : src/network/packet/PacketDisconnect.s
+
+# target to generate assembly for a file
+src/network/packet/PacketDisconnect.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/network/packet/PacketDisconnect.cpp.s
+.PHONY : src/network/packet/PacketDisconnect.cpp.s
+
+src/world/Collider.o: src/world/Collider.cpp.o
+.PHONY : src/world/Collider.o
+
+# target to build an object file
+src/world/Collider.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/world/Collider.cpp.o
+.PHONY : src/world/Collider.cpp.o
+
+src/world/Collider.i: src/world/Collider.cpp.i
+.PHONY : src/world/Collider.i
+
+# target to preprocess a source file
+src/world/Collider.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/world/Collider.cpp.i
+.PHONY : src/world/Collider.cpp.i
+
+src/world/Collider.s: src/world/Collider.cpp.s
+.PHONY : src/world/Collider.s
+
+# target to generate assembly for a file
+src/world/Collider.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/world/Collider.cpp.s
+.PHONY : src/world/Collider.cpp.s
+
 src/world/EntityCollideLayer.o: src/world/EntityCollideLayer.cpp.o
 .PHONY : src/world/EntityCollideLayer.o
 
@@ -1049,6 +1121,30 @@ src/world/EntityCollideLayer.s: src/world/EntityCollideLayer.cpp.s
 src/world/EntityCollideLayer.cpp.s:
 	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/world/EntityCollideLayer.cpp.s
 .PHONY : src/world/EntityCollideLayer.cpp.s
+
+src/world/PhysicCollideLayer.o: src/world/PhysicCollideLayer.cpp.o
+.PHONY : src/world/PhysicCollideLayer.o
+
+# target to build an object file
+src/world/PhysicCollideLayer.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/world/PhysicCollideLayer.cpp.o
+.PHONY : src/world/PhysicCollideLayer.cpp.o
+
+src/world/PhysicCollideLayer.i: src/world/PhysicCollideLayer.cpp.i
+.PHONY : src/world/PhysicCollideLayer.i
+
+# target to preprocess a source file
+src/world/PhysicCollideLayer.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/world/PhysicCollideLayer.cpp.i
+.PHONY : src/world/PhysicCollideLayer.cpp.i
+
+src/world/PhysicCollideLayer.s: src/world/PhysicCollideLayer.cpp.s
+.PHONY : src/world/PhysicCollideLayer.s
+
+# target to generate assembly for a file
+src/world/PhysicCollideLayer.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/world/PhysicCollideLayer.cpp.s
+.PHONY : src/world/PhysicCollideLayer.cpp.s
 
 src/world/World.o: src/world/World.cpp.o
 .PHONY : src/world/World.o
@@ -1119,24 +1215,27 @@ help:
 	@echo "... src/gameData/Actor.o"
 	@echo "... src/gameData/Actor.i"
 	@echo "... src/gameData/Actor.s"
-	@echo "... src/gameData/ActorPreset.o"
-	@echo "... src/gameData/ActorPreset.i"
-	@echo "... src/gameData/ActorPreset.s"
+	@echo "... src/gameData/ActorFactory.o"
+	@echo "... src/gameData/ActorFactory.i"
+	@echo "... src/gameData/ActorFactory.s"
+	@echo "... src/gameData/BodyFactory.o"
+	@echo "... src/gameData/BodyFactory.i"
+	@echo "... src/gameData/BodyFactory.s"
 	@echo "... src/gameData/ContainerObject.o"
 	@echo "... src/gameData/ContainerObject.i"
 	@echo "... src/gameData/ContainerObject.s"
 	@echo "... src/gameData/Creature.o"
 	@echo "... src/gameData/Creature.i"
 	@echo "... src/gameData/Creature.s"
-	@echo "... src/gameData/CreaturePreset.o"
-	@echo "... src/gameData/CreaturePreset.i"
-	@echo "... src/gameData/CreaturePreset.s"
+	@echo "... src/gameData/CreatureFactory.o"
+	@echo "... src/gameData/CreatureFactory.i"
+	@echo "... src/gameData/CreatureFactory.s"
 	@echo "... src/gameData/GameObject.o"
 	@echo "... src/gameData/GameObject.i"
 	@echo "... src/gameData/GameObject.s"
-	@echo "... src/gameData/GameObjectPreset.o"
-	@echo "... src/gameData/GameObjectPreset.i"
-	@echo "... src/gameData/GameObjectPreset.s"
+	@echo "... src/gameData/GameObjectFactory.o"
+	@echo "... src/gameData/GameObjectFactory.i"
+	@echo "... src/gameData/GameObjectFactory.s"
 	@echo "... src/gameData/Item.o"
 	@echo "... src/gameData/Item.i"
 	@echo "... src/gameData/Item.s"
@@ -1149,9 +1248,9 @@ help:
 	@echo "... src/gameData/Player.o"
 	@echo "... src/gameData/Player.i"
 	@echo "... src/gameData/Player.s"
-	@echo "... src/gameData/PlayerPreset.o"
-	@echo "... src/gameData/PlayerPreset.i"
-	@echo "... src/gameData/PlayerPreset.s"
+	@echo "... src/gameData/PlayerFactory.o"
+	@echo "... src/gameData/PlayerFactory.i"
+	@echo "... src/gameData/PlayerFactory.s"
 	@echo "... src/gameData/Spell/ASpell.o"
 	@echo "... src/gameData/Spell/ASpell.i"
 	@echo "... src/gameData/Spell/ASpell.s"
@@ -1197,9 +1296,18 @@ help:
 	@echo "... src/network/packet/PacketConnect.o"
 	@echo "... src/network/packet/PacketConnect.i"
 	@echo "... src/network/packet/PacketConnect.s"
+	@echo "... src/network/packet/PacketDisconnect.o"
+	@echo "... src/network/packet/PacketDisconnect.i"
+	@echo "... src/network/packet/PacketDisconnect.s"
+	@echo "... src/world/Collider.o"
+	@echo "... src/world/Collider.i"
+	@echo "... src/world/Collider.s"
 	@echo "... src/world/EntityCollideLayer.o"
 	@echo "... src/world/EntityCollideLayer.i"
 	@echo "... src/world/EntityCollideLayer.s"
+	@echo "... src/world/PhysicCollideLayer.o"
+	@echo "... src/world/PhysicCollideLayer.i"
+	@echo "... src/world/PhysicCollideLayer.s"
 	@echo "... src/world/World.o"
 	@echo "... src/world/World.i"
 	@echo "... src/world/World.s"
