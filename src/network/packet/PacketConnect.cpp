@@ -27,9 +27,9 @@ t_rawdata *gauntlet::network::PacketConnect::serialize() const {
 
 void gauntlet::network::PacketConnect::deserialize(t_rawdata *data) {
     if (data->size() < sizeof(s_packetConnectData))
-        throw std::logic_error("Invalid data");
+        throw std::logic_error("PacketConnect::Invalid data");
     if (data->at(0) != gauntlet::network::CONNECT) {
-        throw std::logic_error("Invalid packet id");
+        throw std::logic_error("PacketConnect::Invalid packet id");
     }
     s_packetConnectData *packetConnectData = reinterpret_cast<s_packetConnectData *>(&data->front());
     this->protocolVersion = packetConnectData->protocolVersion;

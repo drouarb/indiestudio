@@ -3,17 +3,16 @@
 //
 
 #include <network/packet/PacketConnect.hh>
+#include <network/packet/PacketDisconnect.hh>
 #include "network/PacketFactory.hh"
 
 gauntlet::network::PacketFactory::PacketFactory(in_port_t port) :
         run(true),
-        socket(new Socket(port))
-{ }
+        socket(new Socket(port)) { }
 
 gauntlet::network::PacketFactory::PacketFactory(const std::string &address, in_port_t port) :
         run(true),
-        socket(new Socket(address, port))
-{ }
+        socket(new Socket(address, port)) { }
 
 gauntlet::network::PacketFactory::~PacketFactory() {
     run = false;
@@ -39,13 +38,13 @@ void gauntlet::network::PacketFactory::unregisterListener(PacketListener *listen
 }
 
 void gauntlet::network::PacketFactory::send(const Packet &packet) {
-    t_rawdata* data = packet.serialize();
+    t_rawdata *data = packet.serialize();
     socket->send(&data->front(), data->size());
-    delete(data);
+    delete (data);
 }
 
 void gauntlet::network::PacketFactory::recv() {
-    t_rawdata* data;
+    t_rawdata *data;
     PacketId id;
     Packet *packet;
 
@@ -55,18 +54,19 @@ void gauntlet::network::PacketFactory::recv() {
         packet = NULL;
         try {
             packet = (this->*createMap.at(id))(data);
-        } catch (std::exception) {}
+        } catch (std::exception) { }
         if (packet) {
             if (listeners.find(packet->getPacketId()) != listeners.end())
                 for (std::set<PacketListener *>::iterator it = listeners[id].begin(); it != listeners[id].end(); it++)
                     (*it)->notify(packet);
-            delete(packet);
+            delete (packet);
         }
     }
 }
 
 const std::map<gauntlet::network::PacketId, gauntlet::network::PacketFactory::createPacketFunc>
         gauntlet::network::PacketFactory::createMap = {
-        { CONNECT, &PacketFactory::createPacket<PacketConnect> }
+        {CONNECT,    &PacketFactory::createPacket<PacketConnect>},
+        {DISCONNECT, &PacketFactory::createPacket<PacketDisconnect>}
 };
 
