@@ -5,11 +5,13 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Thu May 12 16:15:29 2016 Alexis Trouve
-// Last update Thu May 12 16:17:03 2016 Alexis Trouve
+// Last update Fri May 13 10:40:04 2016 Alexis Trouve
 //
 
 #ifndef PHYSIC_COLLIDE_LAYER_HH_
 #define PHYSIC_COLLIDE_LAYER_HH_
+
+#include <tuple>
 
 namespace gauntlet
 {
@@ -18,9 +20,13 @@ namespace gauntlet
 
     class	PhysicCollideLayer
     {
+    private:
+      double	sizeX;
+      double	sizeY;
     public:
       PhysicCollideLayer();
       ~PhysicCollideLayer();
+      std::pair<double, double>		getSize();
     };
   };
 };
