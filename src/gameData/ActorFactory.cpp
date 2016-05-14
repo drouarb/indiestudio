@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 19:05:59 2016 Alexis Trouve
-// Last update Thu May 12 17:06:22 2016 Alexis Trouve
+// Last update Sat May 14 11:55:22 2016 Alexis Trouve
 //
 
 #include "ActorFactory.hh"
@@ -33,27 +33,27 @@ void		ActorFactory::fillActorTab()
 
 Actor	*ActorFactory::giveBarbare(int id)
 {
-  playerFactory.givePlayer(BARBARE, id);
+  return (playerFactory.givePlayer(BARBARE, id));
 }
 
 Actor	*ActorFactory::giveElf(int id)
 {
-  playerFactory.givePlayer(ELF, id);
+  return (playerFactory.givePlayer(ELF, id));
 }
 
 Actor	*ActorFactory::giveMage(int id)
 {
-  playerFactory.givePlayer(MAGE, id);
+  return (playerFactory.givePlayer(MAGE, id));
 }
 
 Actor	*ActorFactory::giveValkyrie(int id)
 {
-  playerFactory.givePlayer(VALKYRIE, id);
+  return (playerFactory.givePlayer(VALKYRIE, id));
 }
 
 Actor	*ActorFactory::giveMomie(int id)
 {
-  creatureFactory.giveCreature(MOMIE, id);
+  return (creatureFactory.giveCreature(MOMIE, id));
 }
 
 Actor	*ActorFactory::giveActor(BodyEnum type, int id)
