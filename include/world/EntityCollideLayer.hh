@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Tue May 10 20:28:30 2016 Alexis Trouve
-// Last update Fri May 13 22:03:21 2016 Alexis Trouve
+// Last update Sat May 14 13:11:45 2016 Esteban Lewis
 //
 
 #ifndef ENTITYCOLLIDELAYER_HH_
@@ -13,6 +13,7 @@
 
 #include <list>
 #include <vector>
+#include <math.h>
 #include "PhysicCollideLayer.hh"
 #include "ABody.hh"
 
@@ -48,8 +49,10 @@ namespace gauntlet
       void				suprMapId(int id, double posx, double posy);
       void				suprId(int id);
       void				setNewBody(gauntlet::ABody *newBody);
-      std::vector<gauntlet::ABody*>	giveBodyInAreaCircle(double posx, double posy, double rayon);
-      std::vector<gauntlet::ABody*>	giveBodyInAreaCone(double posx, double posy, double size, short angle);
+      double				getDist(double ref_x, double ref_y, const ABody &target) const;
+      int				getAngle(double refx, double refy, int refa, const ABody *target) const;
+      std::list<gauntlet::ABody*>	giveBodyInAreaCircle(double posx, double posy, double rayon);
+      std::list<gauntlet::ABody*>	giveBodyInAreaCone(double posx, double posy, double size, short angle);
     };
   };
 };

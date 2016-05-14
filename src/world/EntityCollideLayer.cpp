@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 11:03:19 2016 Alexis Trouve
-// Last update Fri May 13 22:11:01 2016 Alexis Trouve
+// Last update Sat May 14 13:15:43 2016 Esteban Lewis
 //
 
 #include <err.h>
@@ -118,12 +118,45 @@ void		EntityCollideLayer::setNewBody(gauntlet::ABody *newBody)
       }*/
 }
 
-std::vector<gauntlet::ABody*>	EntityCollideLayer::giveBodyInAreaCircle(double posx, double posy, double rayon)
+double				EntityCollideLayer::getDist(double refx, double refy,
+							    const ABody & target)
 {
-  
+  return (sqrt(pow(target.getPos().first - refx, 2) +
+	       pow(target.getPos().second - refy, 2)));
 }
 
-std::vector<gauntlet::ABody*>	EntityCollideLayer::giveBodyInAreaCone(double posx, double posy, double size, short angle)
+int				EntityColliderLayer::getAngle(double refx, double refy,
+							      int refa, const ABody *target)
+{
+
+}
+
+std::list<gauntlet::ABody*>	EntityCollideLayer::giveBodyInAreaCircle(double posx, double posy, double rayon)
+{
+  std::list<gauntlet::ABody*>	list;
+  int max_x = (int)((posx + rayon) / SIZE_CASE);
+  int max_y = (int)((posy + rayon) / SIZE_CASE);
+
+  int it_x = (int)((posx - rayon) / SIZE_CASE);
+  while (it_x <= max_x)
+    {
+      double it_y = (posy - rayon) / SIZE_CASE;
+      while (it_y <= max_y)
+	{
+	  for (std::vector<ABody*>::const_iterator it = map[it_x][it_y].Entity.begin();
+	       it != map[it_x][it_y].Entity.end(); ++it)
+	    {
+	      if (getDist(posx, posy, **it) < rayon)
+		list.push_back(*it);
+	    }
+	  it_y++;
+	}
+      it_x++;
+    }
+  return (list);
+}
+
+std::list<gauntlet::ABody*>	EntityCollideLayer::giveBodyInAreaCone(double posx, double posy, double size, short angle)
 {
   
 }
