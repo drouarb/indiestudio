@@ -42,10 +42,10 @@ EQUALS = =
 CMAKE_EDIT_COMMAND = /usr/bin/ccmake
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/trouve_b/Desktop/CPP_project/cpp_indie_studio
+CMAKE_SOURCE_DIR = /home/lewis_e/rendu/cpp/cpp_indie_studio
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/trouve_b/Desktop/CPP_project/cpp_indie_studio
+CMAKE_BINARY_DIR = /home/lewis_e/rendu/cpp/cpp_indie_studio
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -72,9 +72,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/trouve_b/Desktop/CPP_project/cpp_indie_studio/CMakeFiles /home/trouve_b/Desktop/CPP_project/cpp_indie_studio/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lewis_e/rendu/cpp/cpp_indie_studio/CMakeFiles /home/lewis_e/rendu/cpp/cpp_indie_studio/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/trouve_b/Desktop/CPP_project/cpp_indie_studio/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lewis_e/rendu/cpp/cpp_indie_studio/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -1122,6 +1122,30 @@ src/world/EntityCollideLayer.cpp.s:
 	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/world/EntityCollideLayer.cpp.s
 .PHONY : src/world/EntityCollideLayer.cpp.s
 
+src/world/Math.o: src/world/Math.cpp.o
+.PHONY : src/world/Math.o
+
+# target to build an object file
+src/world/Math.cpp.o:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/world/Math.cpp.o
+.PHONY : src/world/Math.cpp.o
+
+src/world/Math.i: src/world/Math.cpp.i
+.PHONY : src/world/Math.i
+
+# target to preprocess a source file
+src/world/Math.cpp.i:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/world/Math.cpp.i
+.PHONY : src/world/Math.cpp.i
+
+src/world/Math.s: src/world/Math.cpp.s
+.PHONY : src/world/Math.s
+
+# target to generate assembly for a file
+src/world/Math.cpp.s:
+	$(MAKE) -f CMakeFiles/cpp_indie_studio.dir/build.make CMakeFiles/cpp_indie_studio.dir/src/world/Math.cpp.s
+.PHONY : src/world/Math.cpp.s
+
 src/world/PhysicCollideLayer.o: src/world/PhysicCollideLayer.cpp.o
 .PHONY : src/world/PhysicCollideLayer.o
 
@@ -1305,6 +1329,9 @@ help:
 	@echo "... src/world/EntityCollideLayer.o"
 	@echo "... src/world/EntityCollideLayer.i"
 	@echo "... src/world/EntityCollideLayer.s"
+	@echo "... src/world/Math.o"
+	@echo "... src/world/Math.i"
+	@echo "... src/world/Math.s"
 	@echo "... src/world/PhysicCollideLayer.o"
 	@echo "... src/world/PhysicCollideLayer.i"
 	@echo "... src/world/PhysicCollideLayer.s"

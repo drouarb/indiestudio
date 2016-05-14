@@ -5,14 +5,17 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Mon May  9 15:06:14 2016 Esteban Lewis
+// Last update Sat May 14 14:19:06 2016 Esteban Lewis
 //
 
 #include <iostream>
 #include "World.hh"
+#include "Math.hh"
 
 gauntlet::world::World::World()
-{ }
+{
+  Math::init();
+}
 
 gauntlet::world::World::~World()
 { }

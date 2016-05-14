@@ -5,9 +5,10 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 11:03:19 2016 Alexis Trouve
-// Last update Sat May 14 13:15:43 2016 Esteban Lewis
+// Last update Sat May 14 17:08:10 2016 Esteban Lewis
 //
 
+#include <iostream>
 #include <err.h>
 #include "EntityCollideLayer.hh"
 
@@ -16,7 +17,8 @@ using namespace world;
 
 EntityCollideLayer::EntityCollideLayer(gauntlet::world::PhysicCollideLayer *physicLayer)
 {
-  /*int				i;
+  int				i;
+  std::pair<double, double>	size;
 
   size = physicLayer->getSize();
   i = 0;
@@ -29,7 +31,7 @@ EntityCollideLayer::EntityCollideLayer(gauntlet::world::PhysicCollideLayer *phys
       if ((map[i] = new CollidingArea[static_cast<int>(size.second / SIZE_CASE)]) == NULL)
 	errx(1, "Error : out of memory");
       ++i;
-      }*/
+    }
 }
 
 EntityCollideLayer::~EntityCollideLayer()
@@ -38,7 +40,7 @@ EntityCollideLayer::~EntityCollideLayer()
 
 void		EntityCollideLayer::setCollidingAreaData()
 {
-  /*unsigned int	x;
+  unsigned int	x;
   unsigned int	y;
 
   y = 0;
@@ -54,58 +56,114 @@ void		EntityCollideLayer::setCollidingAreaData()
 	  ++x;
 	}
       ++y;
-      }*/
+    }
 }
 
 bool		EntityCollideLayer::canMovePoint(double posx, double posy)
 {
-  
+  int		x;
+  int		y;
+  std::list<gauntlet::ABody*>::iterator	it1;
+  std::pair<double, double>	pos;
+  std::pair<double, double>	size;
+
+  x = static_cast<int>(posx / SIZE_CASE);
+  y = static_cast<int>(posy / SIZE_CASE);
+  it1 = map[y][x].Entity.begin();
+  while (it1 != map[y][x].Entity.end())
+    {
+      pos = (*it1)->getPos();
+      size = (*it1)->getSize();
+      if (posx >= pos.first && posx <= pos.first + size.first
+	  && posy >= pos.second && posy <= pos.second + size.second)
+	return (false);
+      it1++;
+    }
+  return (true);
 }
 
 bool		EntityCollideLayer::tryMoveId(int id, double posx, double posy)
 {
-  
-}
-
-void		EntityCollideLayer::suprMapId(int id, double posx, double posy)
-{
-  /*int		x;
+  int		x;
   int		y;
-  std::list<gauntlet::ABody*>	it1;
-
-  x = static_cast<int>(posx / SIZE_CASE);
-  y = static_cast<int>(posy / SIZE_CASE);
-  while (it1 != map[y][x].Entity.end())
-    {
-      map[y][x].Entity.erase(it1.begin());
-      it1++;
-      }*/
-}
-
-void		EntityCollideLayer::suprId(int id)
-{
-  /*std::list<gauntlet::ABody*> it1;
+  std::list<gauntlet::ABody*>::iterator	it1;
+  std::pair<double, double>		pos;
+  std::pair<double, double>		size;
 
   it1 = Entity.begin();
   while (it1 != Entity.end())
     {
-      if (*it1.getId() == id)
+      if ((*it1)->getId() == id)
 	{
-	  
+	  pos = (*it1)->getPos();
+	  size = (*it1)->getSize();
+	  x = static_cast<int>(pos.first / SIZE_CASE);
+	  y = static_cast<int>(pos.second / SIZE_CASE);
+	  if ((static_cast<int>(posx / SIZE_CASE) != x
+	       || static_cast<int>(posy / SIZE_CASE) != y)
+	      && canMovePoint(pos.first, pos.second) == true
+	      && canMovePoint(pos.first + size.first, pos.second) == true
+	      && canMovePoint(pos.first, pos.second + size.second) == true
+	      && canMovePoint(pos.first + size.first, pos.second + size.second) == true)
+	    {
+	      map[static_cast<int>(posy / SIZE_CASE)]
+		[static_cast<int>(posy / SIZE_CASE)]
+		.Entity.push_front(*it1);
+	      suprMapId(id, x, y);
+	      return (true);
+	    }
+	  return (false);
 	}
-      it1++;
-      }*/
+    }
+  return (false);
 }
 
-void		EntityCollideLayer::setNewBody(gauntlet::ABody *newBody)
+void		EntityCollideLayer::suprMapId(int id, int x, int y)
 {
-  /*std::pair<double, double>	pos;
+  std::list<gauntlet::ABody*>::iterator	it1;
+
+  it1 = map[y][x].Entity.begin();
+  while (it1 != map[y][x].Entity.end())
+    {
+      if ((*it1)->getId() == id)
+	{
+	  map[y][x].Entity.erase(it1);
+	  break;
+	}
+      it1++;
+    }
+}
+
+void		EntityCollideLayer::suprId(int id)
+{
+  std::list<gauntlet::ABody*>::iterator	it1;
+  int				x;
+  int				y;
+
+  it1 = Entity.begin();
+  while (it1 != Entity.end())
+    {
+      if ((*it1)->getId() == id)
+	{
+	  x = static_cast<int>((*it1)->getPos().first / SIZE_CASE);
+	  y = static_cast<int>((*it1)->getPos().second / SIZE_CASE);
+	  suprMapId(id, x, y);
+	  Entity.erase(it1);
+	  break;
+	}
+      it1++;
+    }
+}
+
+bool		EntityCollideLayer::setNewBody(gauntlet::ABody *newBody)
+{
+  std::pair<double, double>	pos;
   std::pair<double, double>	size;
   int				x;
   int				y;
 
-  pos = getPos();
-  size = getSize();
+  pos = newBody->getPos();
+  size = newBody->getSize();
   x = static_cast<int>(pos.first / SIZE_CASE);
   y = static_cast<int>(pos.second / SIZE_CASE);
   if (canMovePoint(pos.first, pos.second) == true
@@ -115,35 +173,50 @@ void		EntityCollideLayer::setNewBody(gauntlet::ABody *newBody)
     {
       Entity.push_front(newBody);
       map[y][x].Entity.push_front(newBody);
-      }*/
+      return(true);
+    }
+  return (false);
 }
 
 double				EntityCollideLayer::getDist(double refx, double refy,
-							    const ABody & target)
+							    ABody & target)
 {
   return (sqrt(pow(target.getPos().first - refx, 2) +
 	       pow(target.getPos().second - refy, 2)));
 }
 
-int				EntityColliderLayer::getAngle(double refx, double refy,
-							      int refa, const ABody *target)
+int				EntityCollideLayer::getAngle(double refx, double refy,
+							     int refa, ABody & target)
 {
-
+  return (Math::getAngle(-atan2((target.getPos().second - refy),
+				(target.getPos().first - refx))) - refa);
 }
 
 std::list<gauntlet::ABody*>	EntityCollideLayer::giveBodyInAreaCircle(double posx, double posy, double rayon)
 {
-  std::list<gauntlet::ABody*>	list;
+  std::list<ABody*>		list;
+
   int max_x = (int)((posx + rayon) / SIZE_CASE);
   int max_y = (int)((posy + rayon) / SIZE_CASE);
+  int min_x = (int)((posx - rayon) / SIZE_CASE);
+  int min_y = (int)((posy - rayon) / SIZE_CASE);
 
-  int it_x = (int)((posx - rayon) / SIZE_CASE);
+  if (max_x >= sizeX)
+    max_x = sizeX - 1;
+  if (max_y >= sizeY)
+    max_y = sizeY - 1;
+  if (min_x < 0)
+    min_x = 0;
+  if (min_y < 0)
+    min_y = 0;
+
+  int it_x = min_x;
   while (it_x <= max_x)
     {
-      double it_y = (posy - rayon) / SIZE_CASE;
+      int it_y = min_y;
       while (it_y <= max_y)
 	{
-	  for (std::vector<ABody*>::const_iterator it = map[it_x][it_y].Entity.begin();
+	  for (std::list<ABody*>::const_iterator it = map[it_x][it_y].Entity.begin();
 	       it != map[it_x][it_y].Entity.end(); ++it)
 	    {
 	      if (getDist(posx, posy, **it) < rayon)
@@ -156,7 +229,19 @@ std::list<gauntlet::ABody*>	EntityCollideLayer::giveBodyInAreaCircle(double posx
   return (list);
 }
 
-std::list<gauntlet::ABody*>	EntityCollideLayer::giveBodyInAreaCone(double posx, double posy, double size, short angle)
+std::list<gauntlet::ABody*>	EntityCollideLayer::giveBodyInAreaCone(double posx, double posy, short ref_angle, double size, short cone_angle)
 {
-  
+  short halfangle = cone_angle / 2;
+  std::list<ABody*>		list = giveBodyInAreaCircle(posx, posy, size);
+  for (std::list<ABody*>::iterator it = list.begin(); it != list.end(); ++it)
+    {
+      short res = getAngle(posx, posy, ref_angle, **it);
+      std::cout << "target " << (*it)->getId() << " -> " << res << std::endl;
+      if (!Math::isBetween(res, halfangle, -halfangle))
+	{
+	  it = list.erase(it);
+	  --it;
+	}
+    }
+  return (list);
 }

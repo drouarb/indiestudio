@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 16:50:32 2016 Alexis Trouve
-// Last update Thu May 12 17:02:13 2016 Alexis Trouve
+// Last update Sat May 14 11:55:54 2016 Alexis Trouve
 //
 
 #include "BodyFactory.hh"
@@ -80,4 +80,5 @@ ABody	*BodyFactory::giveBody(BodyEnum typeBody)
 	return ((this->*bodyTab[i].givePtr)());
       ++i;
     }
+  return (NULL);
 }

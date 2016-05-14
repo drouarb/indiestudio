@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Thu May 12 16:15:29 2016 Alexis Trouve
-// Last update Fri May 13 10:40:04 2016 Alexis Trouve
+// Last update Sat May 14 15:47:05 2016 Esteban Lewis
 //
 
 #ifndef PHYSIC_COLLIDE_LAYER_HH_
@@ -17,7 +17,6 @@ namespace gauntlet
 {
   namespace world
   {
-
     class	PhysicCollideLayer
     {
     private:
