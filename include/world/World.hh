@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:55:06 2016 Esteban Lewis
-// Last update Thu May 12 16:48:32 2016 Alexis Trouve
+// Last update Sat May 14 15:34:09 2016 Alexis Trouve
 //
 
 #ifndef  WORLD_HH_
@@ -14,8 +14,8 @@
 #include <string>
 #include <list>
 #include "ABody.hh"
-#include "EntityCollideLayer.hh"
-#include "PhysicCollideLayer.hh"
+#include "Collider.hh"
+//#include "BodyFactory.hh"
 
 namespace			gauntlet
 {
@@ -24,6 +24,8 @@ namespace			gauntlet
     class			World
     {
     private:
+      gauntlet::world::Collider			collider;
+      //gauntlet::BodyFactory			Factory;
       std::list<gauntlet::ABody*>		bodys;
     public:
       World();
@@ -31,6 +33,7 @@ namespace			gauntlet
 
       void			update();
       void			loadGame(std::string file);
+      void			tester();
     };
   };
 };

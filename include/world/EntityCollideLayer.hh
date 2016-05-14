@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Tue May 10 20:28:30 2016 Alexis Trouve
-// Last update Sat May 14 11:53:50 2016 Alexis Trouve
+// Last update Sat May 14 14:48:15 2016 Alexis Trouve
 //
 
 #ifndef ENTITYCOLLIDELAYER_HH_
@@ -36,8 +36,8 @@ namespace gauntlet
     private:
       gauntlet::world::CollidingArea	**map;
       std::list<gauntlet::ABody*>	Entity;
-      double				sizeX;
-      double				sizeY;
+      unsigned int			sizeX;
+      unsigned int			sizeY;
     private:
       void				setCollidingAreaData();
       void				suprMapId(int id, int posx, int posy);

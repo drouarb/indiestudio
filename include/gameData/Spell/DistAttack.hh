@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Tue May 10 11:05:51 2016 Alexis Trouve
-// Last update Tue May 10 17:35:43 2016 Alexis Trouve
+// Last update Sat May 14 15:33:20 2016 Alexis Trouve
 //
 
 #ifndef CPP_INDIE_STUDIO_DISTSPELL_HH
@@ -32,7 +32,7 @@ namespace gauntlet
 		 int nid, const std::string &nname, double ncastTime);
       virtual ~DistAttack();
       virtual void	 apply(double orientation, world::World &world,
-			       gauntlet::Actor &SpellCaster,
+			       gauntlet::Actor *SpellCaster,
 			       std::pair<double, double> coordPointed);
     };
 };

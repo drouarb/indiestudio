@@ -3,7 +3,7 @@
 //
 
 #ifndef CPP_INDIE_STUDIO_ACTOR_HH
-#define CPP_INDIE_STUDIO_ACTOR_HH
+# define CPP_INDIE_STUDIO_ACTOR_HH
 
 #include <string>
 #include "Stats.hh"
@@ -12,6 +12,8 @@
 
 namespace gauntlet
 {
+  class SpellContainer;
+
   class Actor : public ABody
   {
   protected:

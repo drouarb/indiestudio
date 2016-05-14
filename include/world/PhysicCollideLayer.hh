@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Thu May 12 16:15:29 2016 Alexis Trouve
-// Last update Fri May 13 10:40:04 2016 Alexis Trouve
+// Last update Sat May 14 12:12:28 2016 Alexis Trouve
 //
 
 #ifndef PHYSIC_COLLIDE_LAYER_HH_
@@ -24,7 +24,7 @@ namespace gauntlet
       double	sizeX;
       double	sizeY;
     public:
-      PhysicCollideLayer();
+      PhysicCollideLayer(double sizeX, double sizeY);
       ~PhysicCollideLayer();
       std::pair<double, double>		getSize();
     };

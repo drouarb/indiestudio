@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 14:44:15 2016 Alexis Trouve
-// Last update Fri May 13 21:56:34 2016 Alexis Trouve
+// Last update Sat May 14 14:49:22 2016 Alexis Trouve
 //
 
 #include "Collider.hh"
@@ -15,7 +15,8 @@ using namespace world;
 
 Collider::Collider()
 {
-
+  physicLayer = new PhysicCollideLayer(2100.0, 2100.0);
+  dynamicLayer = new EntityCollideLayer(physicLayer);
 }
 
 Collider::~Collider()
@@ -25,20 +26,15 @@ Collider::~Collider()
 
 bool	Collider::tryMoveBody(int id, double posx, double posy)
 {
-  return (true);
+  return (dynamicLayer->tryMoveId(id, posx, posy));
 }
 
-void	Collider::setNewBody(ABody *body)
+bool	Collider::setNewBody(ABody *body)
 {
-
-}
-
-void	Collider::setNewBody(std::list<ABody*> body)
-{
-
+  return (dynamicLayer->setNewBody(body));
 }
 
 void	Collider::suprBody(int id)
 {
-
+  dynamicLayer->suprId(id);
 }
