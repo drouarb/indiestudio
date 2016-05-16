@@ -5,16 +5,15 @@
 #include <stdexcept>
 #include "network/packet/PacketSelectPlayer.hh"
 
-gauntlet::network::PacketSelectPlayer::PacketSelectPlayer():
-    Packet(gauntlet::network::PLAYERSELECT),
-    warrior(false),
-    wizard(false),
-    valkyrie(false),
-    elf(false)
-{ }
+gauntlet::network::PacketSelectPlayer::PacketSelectPlayer(bool warrior, bool wizard, bool valkyrie, bool elf) :
+        Packet(gauntlet::network::PLAYERSELECT),
+        warrior(warrior),
+        wizard(wizard),
+        valkyrie(valkyrie),
+        elf(elf) { }
 
-gauntlet::network::PacketSelectPlayer::PacketSelectPlayer(t_rawdata *data):
-    PacketSelectPlayer() {
+gauntlet::network::PacketSelectPlayer::PacketSelectPlayer(t_rawdata *data) :
+        Packet(gauntlet::network::PLAYERSELECT) {
     this->deserialize(data);
 }
 
