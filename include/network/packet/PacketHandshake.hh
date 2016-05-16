@@ -19,8 +19,9 @@ namespace gauntlet {
             } __attribute__((packed));
 
         public:
-            PacketHandshake();
             PacketHandshake(t_rawdata *data);
+            PacketHandshake(bool warrior, bool wizard, bool valkyrie, bool elf, unsigned char maxPlayers,
+                            unsigned char connectedPlayers);
 
             virtual ~PacketHandshake() { };
 

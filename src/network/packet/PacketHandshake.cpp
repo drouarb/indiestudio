@@ -5,18 +5,19 @@
 #include <stdexcept>
 #include "network/packet/PacketHandshake.hh"
 
-gauntlet::network::PacketHandshake::PacketHandshake() :
+gauntlet::network::PacketHandshake::PacketHandshake(bool warrior, bool wizard, bool valkyrie, bool elf,
+                                                    unsigned char maxPlayers, unsigned char connectedPlayers) :
         Packet(gauntlet::network::HANDSHAKE),
-        warrior(false),
-        wizard(false),
-        valkyrie(false),
-        elf(false),
-        maxPlayers(0),
-        connectedPlayers(0)
+        warrior(warrior),
+        wizard(wizard),
+        valkyrie(valkyrie),
+        elf(elf),
+        maxPlayers(maxPlayers),
+        connectedPlayers(connectedPlayers)
 { }
 
 gauntlet::network::PacketHandshake::PacketHandshake(t_rawdata *data) :
-        PacketHandshake() {
+        Packet(gauntlet::network::HANDSHAKE) {
     this->deserialize(data);
 }
 
