@@ -33,9 +33,9 @@ t_rawdata *gauntlet::network::PacketSelectPlayer::serialize() const {
 
 void gauntlet::network::PacketSelectPlayer::deserialize(t_rawdata *data) {
     if (data->size() < sizeof(s_packetSelectPlayerData))
-        throw std::logic_error("PacketDisconnect::Invalid data");
+        throw std::logic_error("PacketSelectPlayer::Invalid data");
     if (data->at(0) != gauntlet::network::HANDSHAKE) {
-        throw std::logic_error("PacketDisconnect::Invalid packet id");
+        throw std::logic_error("PacketSelectPlayer::Invalid packet id");
     }
     s_packetSelectPlayerData *packetHandshakeData = reinterpret_cast<s_packetSelectPlayerData *>(&data->front());
     warrior = static_cast<bool>(packetHandshakeData->selectedCharacters >> 0 & 0x01);
