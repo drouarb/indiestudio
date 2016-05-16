@@ -26,7 +26,7 @@ t_rawdata *gauntlet::network::PacketMap::serialize() const {
 void gauntlet::network::PacketMap::deserialize(t_rawdata *data) {
     if (data->size() < sizeof(s_packetMapData))
         throw std::logic_error("PacketMap::Invalid data");
-    if (data->at(0) != gauntlet::network::HANDSHAKE) {
+    if (data->at(0) != gauntlet::network::MAP) {
         throw std::logic_error("PacketMap::Invalid packet id");
     }
     s_packetMapData *packetMapData = reinterpret_cast<s_packetMapData *>(&data->front());
