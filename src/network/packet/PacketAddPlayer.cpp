@@ -32,7 +32,7 @@ t_rawdata *gauntlet::network::PacketAddPlayer::serialize() const {
 void gauntlet::network::PacketAddPlayer::deserialize(t_rawdata *data) {
     if (data->size() < sizeof(s_PacketAddPlayer))
         throw std::logic_error("PacketAddPlayer::Invalid data");
-    if (data->at(0) != gauntlet::network::DISCONNECT) {
+    if (data->at(0) != gauntlet::network::ADD_PLAYER) {
         throw std::logic_error("PacketAddPlayer::Invalid packet id");
     }
     s_PacketAddPlayer *packetAddPlayer = reinterpret_cast<s_PacketAddPlayer *>(&data->front());
