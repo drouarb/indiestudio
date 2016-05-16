@@ -1,9 +1,8 @@
 cmake_minimum_required(VERSION 2.8)
-project(cpp_indie_studio)
+project(indie)
+enable_testing()
 
-set(CMAKE_CXX_FLAGS "-W -Wall -Wextra")
-
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_CXX_FLAGS "-W -Wall -Wextra -std=c++11")
 
 find_package(Threads)
 
@@ -19,11 +18,13 @@ FILE(
         src/*.cpp
         src/**/*.cpp
         include/*.h*
-	include/**/*.h*
+        include/**/*.h*
 )
 
-add_executable(cpp_indie_studio ${INDIE})
+add_executable(indie ${INDIE})
 
-target_link_libraries(cpp_indie_studio ${CMAKE_THREAD_LIBS_INIT} )
-target_link_libraries(cpp_indie_studio  ${OGRE_LIBRARY})
-target_link_libraries(cpp_indie_studio  ${PTHREAD_LIBRARY})
+target_link_libraries(indie ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(indie ${OGRE_LIBRARY})
+target_link_libraries(indie ${PTHREAD_LIBRARY})
+
+add_subdirectory(tests)
