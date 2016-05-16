@@ -36,11 +36,7 @@ void gauntlet::network::PacketDisconnect::deserialize(t_rawdata *data) {
     s_packetDisconnectData *packetDisconnectData = reinterpret_cast<s_packetDisconnectData *>(&data->front());
     if (data->size() < sizeof(s_packetDisconnectData) + packetDisconnectData->stringsize - 1)
         throw std::logic_error("PacketDisconnect::Invalid data");
-    char *mess = &packetDisconnectData->stringstart;
-    message = "";
-    for (size_t i = 0; i < packetDisconnectData->stringsize; i++) {
-        message += mess[i];
-    }
+    message.assign(&packetDisconnectData->stringstart, packetDisconnectData->stringsize);
 }
 
 const std::string &gauntlet::network::PacketDisconnect::getMessage() const {
