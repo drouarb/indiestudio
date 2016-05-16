@@ -21,7 +21,7 @@ namespace gauntlet {
         public:
             PacketDisconnect();
             PacketDisconnect(t_rawdata *data);
-            ~PacketDisconnect() { }
+            virtual ~PacketDisconnect() { }
 
             virtual t_rawdata* serialize() const;
             virtual void deserialize(t_rawdata* data);
