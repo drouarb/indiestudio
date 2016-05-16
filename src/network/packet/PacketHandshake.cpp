@@ -51,19 +51,19 @@ void gauntlet::network::PacketHandshake::deserialize(t_rawdata *data) {
     elf = static_cast<bool>(packetHandshakeData->avaibleCharacters >> 3 & 0x01);
 }
 
-bool gauntlet::network::PacketHandshake::isWarrior() const {
+bool gauntlet::network::PacketHandshake::getWarrior() const {
     return warrior;
 }
 
-bool gauntlet::network::PacketHandshake::isWizard() const {
+bool gauntlet::network::PacketHandshake::getWizard() const {
     return wizard;
 }
 
-bool gauntlet::network::PacketHandshake::isValkyrie() const {
+bool gauntlet::network::PacketHandshake::getValkyrie() const {
     return valkyrie;
 }
 
-bool gauntlet::network::PacketHandshake::isElf() const {
+bool gauntlet::network::PacketHandshake::getElf() const {
     return elf;
 }
 

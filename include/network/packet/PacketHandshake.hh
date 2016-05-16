@@ -28,10 +28,10 @@ namespace gauntlet {
             virtual t_rawdata *serialize() const;
             virtual void deserialize(t_rawdata *data);
 
-            bool isWarrior() const;
-            bool isWizard() const;
-            bool isValkyrie() const;
-            bool isElf() const;
+            bool getWarrior() const;
+            bool getWizard() const;
+            bool getValkyrie() const;
+            bool getElf() const;
             unsigned char getMaxPlayers() const;
             unsigned char getConnectedPlayers() const;
 
