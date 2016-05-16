@@ -16,7 +16,7 @@ namespace gauntlet {
                 unsigned char packetId;
                 unsigned long stringsize;
                 char stringstart;
-            };
+            } __attribute__((packed));
 
         public:
             PacketDisconnect();

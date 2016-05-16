@@ -16,7 +16,7 @@ namespace gauntlet {
                 unsigned char maxPlayers;
                 unsigned char connectedPlayers;
                 unsigned char avaibleCharacters;
-            };
+            } __attribute__((packed));
 
         public:
             PacketHandshake();

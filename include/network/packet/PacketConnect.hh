@@ -14,7 +14,7 @@ namespace gauntlet {
             struct s_packetConnectData {
                 unsigned char packetId;
                 unsigned int protocolVersion;
-            };
+            } __attribute__((packed));
 
         public:
             PacketConnect();
