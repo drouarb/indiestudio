@@ -18,8 +18,8 @@ namespace gauntlet {
             } __attribute__((packed));
 
         public:
-            PacketMap();
             PacketMap(t_rawdata *data);
+            PacketMap(unsigned int mapId);
             virtual ~PacketMap() { };
 
             virtual t_rawdata *serialize() const;

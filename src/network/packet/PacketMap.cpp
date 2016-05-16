@@ -5,12 +5,12 @@
 #include <stdexcept>
 #include "network/packet/PacketMap.hh"
 
-gauntlet::network::PacketMap::PacketMap() :
+gauntlet::network::PacketMap::PacketMap(unsigned int mapId) :
         Packet(gauntlet::network::MAP),
-        mapId(0) { }
+        mapId(mapId) { }
 
 gauntlet::network::PacketMap::PacketMap(t_rawdata *data) :
-        PacketMap() {
+        Packet(gauntlet::network::MAP) {
     this->deserialize(data);
 }
 
