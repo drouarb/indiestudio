@@ -5,10 +5,11 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:13:44 2016 Esteban Lewis
-// Last update Wed May 11 14:33:41 2016 Esteban Lewis
+// Last update Sat May 14 14:18:23 2016 Esteban Lewis
 //
 
 #include <iostream>
+#include "Math.hh"
 #include "Core.hh"
 #include "MainMenu.hh"
 

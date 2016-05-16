@@ -5,9 +5,10 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 11:03:19 2016 Alexis Trouve
-// Last update Sat May 14 14:56:55 2016 Alexis Trouve
+// Last update Mon May 16 16:23:34 2016 Alexis Trouve
 //
 
+#include <iostream>
 #include <err.h>
 #include "EntityCollideLayer.hh"
 
@@ -177,12 +178,70 @@ bool		EntityCollideLayer::setNewBody(gauntlet::ABody *newBody)
   return (false);
 }
 
-std::vector<gauntlet::ABody*>	EntityCollideLayer::giveBodyInAreaCircle(double posx, double posy, double rayon)
+double				EntityCollideLayer::getDist(double refx, double refy,
+							    ABody & target)
 {
-  
+  return (sqrt(pow(target.getPos().first - refx, 2) +
+	       pow(target.getPos().second - refy, 2)));
 }
 
-std::vector<gauntlet::ABody*>	EntityCollideLayer::giveBodyInAreaCone(double posx, double posy, double size, short angle)
+int				EntityCollideLayer::getAngle(double refx, double refy,
+							     int refa, ABody & target)
 {
-  
+  return (Math::getAngle(-atan2((target.getPos().second - refy),
+				(target.getPos().first - refx))) - refa);
+}
+
+std::list<gauntlet::ABody*>	EntityCollideLayer::giveBodyInAreaCircle(double posx, double posy, double rayon)
+{
+  std::list<ABody*>		list;
+
+  int max_x = (int)((posx + rayon) / SIZE_CASE);
+  int max_y = (int)((posy + rayon) / SIZE_CASE);
+  int min_x = (int)((posx - rayon) / SIZE_CASE);
+  int min_y = (int)((posy - rayon) / SIZE_CASE);
+
+  if (max_x >= sizeX)
+    max_x = sizeX - 1;
+  if (max_y >= sizeY)
+    max_y = sizeY - 1;
+  if (min_x < 0)
+    min_x = 0;
+  if (min_y < 0)
+    min_y = 0;
+
+  int it_x = min_x;
+  while (it_x <= max_x)
+    {
+      int it_y = min_y;
+      while (it_y <= max_y)
+	{
+	  for (std::list<ABody*>::const_iterator it = map[it_x][it_y].Entity.begin();
+	       it != map[it_x][it_y].Entity.end(); ++it)
+	    {
+	      if (getDist(posx, posy, **it) < rayon)
+		list.push_back(*it);
+	    }
+	  it_y++;
+	}
+      it_x++;
+    }
+  return (list);
+}
+
+std::list<gauntlet::ABody*>	EntityCollideLayer::giveBodyInAreaCone(double posx, double posy, short ref_angle, double size, short cone_angle)
+{
+  short halfangle = cone_angle / 2;
+  std::list<ABody*>		list = giveBodyInAreaCircle(posx, posy, size);
+  for (std::list<ABody*>::iterator it = list.begin(); it != list.end(); ++it)
+    {
+      short res = getAngle(posx, posy, ref_angle, **it);
+      std::cout << "target " << (*it)->getId() << " -> " << res << std::endl;
+      if (!Math::isBetween(res, halfangle, -halfangle))
+	{
+	  it = list.erase(it);
+	  --it;
+	}
+    }
+  return (list);
 }

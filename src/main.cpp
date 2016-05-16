@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include "Core.hh"
+#include "World.hh"
 
 int main()
 {

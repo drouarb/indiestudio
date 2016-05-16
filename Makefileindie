@@ -5,7 +5,7 @@
 ## Login   <drouar_b@epitech.eu>
 ## 
 ## Started on  Mon May  2 14:03:38 2016 Benjamin DROUARD
-## Last update Tue May  3 18:07:41 2016 Benjamin DROUARD
+   Last update Sat May 14 13:14:42 2016 Esteban Lewis
 ##
 
 NAME		=	indie
@@ -20,7 +20,7 @@ OBJS		=	$(SRCS:srcs/%.cpp=obj/%.o)
 
 INCLUDES	=	-I includes/
 
-LIBS		=	-lpthread
+LIBS		=	-lpthread -lm
 
 CXXFLAGS	+=	$(INCLUDES) -W -Wall -Wextra
 

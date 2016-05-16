@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Tue May 10 20:28:30 2016 Alexis Trouve
-// Last update Sat May 14 14:48:15 2016 Alexis Trouve
+// Last update Mon May 16 16:23:00 2016 Alexis Trouve
 //
 
 #ifndef ENTITYCOLLIDELAYER_HH_
@@ -13,8 +13,10 @@
 
 #include <list>
 #include <vector>
+#include <math.h>
 #include "PhysicCollideLayer.hh"
 #include "ABody.hh"
+#include "Math.hh"
 
 #define SIZE_CASE 400.0
 
@@ -31,9 +33,11 @@ namespace gauntlet
       double		sizey;
     };
 
+    typedef CollidingArea*		t_ca_line;
+
     class	EntityCollideLayer
     {
-    private:
+      private:
       gauntlet::world::CollidingArea	**map;
       std::list<gauntlet::ABody*>	Entity;
       unsigned int			sizeX;
@@ -48,8 +52,10 @@ namespace gauntlet
       bool				tryMoveId(int id, double posx, double posy);
       void				suprId(int id);
       bool				setNewBody(gauntlet::ABody *newBody);
-      std::vector<gauntlet::ABody*>	giveBodyInAreaCircle(double posx, double posy, double rayon);
-      std::vector<gauntlet::ABody*>	giveBodyInAreaCone(double posx, double posy, double size, short angle);
+      double				getDist(double ref_x, double ref_y, ABody &target);
+      int				getAngle(double refx, double refy, int refa, ABody & target);
+      std::list<gauntlet::ABody*>	giveBodyInAreaCircle(double posx, double posy, double rayon);
+      std::list<gauntlet::ABody*>	giveBodyInAreaCone(double posx, double posy, short ref_angle, double size, short cone_angle);
     };
   };
 };

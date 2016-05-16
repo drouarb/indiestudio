@@ -16,12 +16,12 @@ namespace gauntlet {
                 unsigned char packetId;
                 unsigned long stringsize;
                 char stringstart;
-            };
+            } __attribute__((packed));
 
         public:
             PacketDisconnect();
             PacketDisconnect(t_rawdata *data);
-            ~PacketDisconnect() { }
+            virtual ~PacketDisconnect() { }
 
             virtual t_rawdata* serialize() const;
             virtual void deserialize(t_rawdata* data);
