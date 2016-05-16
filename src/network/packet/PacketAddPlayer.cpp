@@ -22,6 +22,7 @@ t_rawdata *gauntlet::network::PacketAddPlayer::serialize() const {
     t_rawdata *data = new t_rawdata;
     data->resize(sizeof(s_PacketAddPlayer) + playerName.size(), 0);
     s_PacketAddPlayer *packetAddPlayer = reinterpret_cast<s_PacketAddPlayer *>(&data->front());
+    packetAddPlayer->packetId = this->getPacketId();
     packetAddPlayer->assetId = assetId;
     packetAddPlayer->entityId = entityId;
     packetAddPlayer->namelen = playerName.size();
