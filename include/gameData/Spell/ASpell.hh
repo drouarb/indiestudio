@@ -5,15 +5,13 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Tue May 10 11:05:51 2016 Alexis Trouve
-// Last update Sat May 14 15:31:11 2016 Alexis Trouve
+// Last update Mon May 16 16:18:26 2016 Alexis Trouve
 //
 
 #ifndef CPP_INDIE_STUDIO_ASPELL_HH
 # define CPP_INDIE_STUDIO_ASPELL_HH
 
 #include <string>
-#include "World.hh"
-#include "Actor.hh"
 
 namespace gauntlet
 {

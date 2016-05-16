@@ -5,15 +5,15 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 18:36:12 2016 Alexis Trouve
-// Last update Sat May 14 15:01:32 2016 Alexis Trouve
+// Last update Mon May 16 16:14:41 2016 Alexis Trouve
 //
 
 #ifndef ACTORFACT_HH_
 # define ACTORFACT_HH_
 
 #include <vector>
-#include "PlayerFactory.hh"
 #include "CreatureFactory.hh"
+#include "PlayerFactory.hh"
 #include "Actor.hh"
 #include "FactoryData.hh"
 

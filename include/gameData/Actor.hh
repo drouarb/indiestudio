@@ -6,13 +6,18 @@
 # define CPP_INDIE_STUDIO_ACTOR_HH
 
 #include <string>
+#include "ABody.hh"
 #include "Stats.hh"
 #include "SpellContainer.hh"
-#include "World.hh"
 
 namespace gauntlet
 {
   class SpellContainer;
+
+  namespace world
+  {
+    class World;
+  };
 
   class Actor : public ABody
   {

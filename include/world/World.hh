@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:55:06 2016 Esteban Lewis
-// Last update Sat May 14 15:34:09 2016 Alexis Trouve
+// Last update Mon May 16 16:06:07 2016 Alexis Trouve
 //
 
 #ifndef  WORLD_HH_
@@ -15,7 +15,7 @@
 #include <list>
 #include "ABody.hh"
 #include "Collider.hh"
-//#include "BodyFactory.hh"
+#include "BodyFactory.hh"
 
 namespace			gauntlet
 {
