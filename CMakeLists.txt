@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 2.8)
 project(indie)
 enable_testing()
 
+option(INDIE_TESTS "Enable test compilation" OFF)
+
 set(CMAKE_CXX_FLAGS "-W -Wall -Wextra -std=c++11")
 
 find_package(Threads)
@@ -27,4 +29,6 @@ target_link_libraries(indie ${CMAKE_THREAD_LIBS_INIT})
 target_link_libraries(indie ${OGRE_LIBRARY})
 target_link_libraries(indie ${PTHREAD_LIBRARY})
 
-add_subdirectory(tests)
+if (INDIE_TESTS)
+    add_subdirectory(tests)
+endif ()
