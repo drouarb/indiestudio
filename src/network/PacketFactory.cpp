@@ -67,8 +67,9 @@ void gauntlet::network::PacketFactory::recv() {
 
 const std::map<gauntlet::network::PacketId, gauntlet::network::PacketFactory::createPacketFunc>
         gauntlet::network::PacketFactory::createMap = {
-        {CONNECT,    &PacketFactory::createPacket<PacketConnect>},
-        {DISCONNECT, &PacketFactory::createPacket<PacketDisconnect>},
-        {HANDSHAKE,  &PacketFactory::createPacket<PacketHandshake>}
+        {CONNECT,      &PacketFactory::createPacket<PacketConnect>},
+        {DISCONNECT,   &PacketFactory::createPacket<PacketDisconnect>},
+        {HANDSHAKE,    &PacketFactory::createPacket<PacketHandshake>},
+        {PLAYERSELECT, &PacketFactory::createPacket<PacketHandshake>}
 };
 
