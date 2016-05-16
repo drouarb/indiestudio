@@ -16,22 +16,25 @@ namespace gauntlet {
             struct s_PacketAddPlayer {
                 unsigned char packetId;
                 unsigned int assetId;
+                unsigned int entityId;
                 unsigned long namelen;
                 char namestart;
             };
         public:
-            PacketAddPlayer();
             PacketAddPlayer(t_rawdata *data);
+            PacketAddPlayer(unsigned int packetId, unsigned int entityId, const std::string &playerName);
             virtual ~PacketAddPlayer() { };
 
             virtual t_rawdata* serialize() const;
             virtual void deserialize(t_rawdata* data);
 
             unsigned int getAssetId() const;
+            unsigned int getEntityId() const;
             const std::string & getPlayerName() const;
 
         private:
             unsigned int assetId;
+            unsigned int entityId;
             std::string playerName;
         };
     }
