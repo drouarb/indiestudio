@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:09:17 2016 Esteban Lewis
-// Last update Tue May 17 14:15:35 2016 Esteban Lewis
+// Last update Tue May 17 15:13:16 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -14,10 +14,10 @@
 gauntlet::core::MainMenu::MainMenu(Core & core, int idStart, Menu * parent) :
   Menu(core, idStart, parent)
 {
-  buttons.push_back(MenuButton("Play", 0, 0, idStart + 0));
-  buttons.push_back(MenuButton("Save / load", 0, 50, idStart + 1));
-  buttons.push_back(MenuButton("Settings", 0, 100, idStart + 2));
-  buttons.push_back(MenuButton("Exit", 0, 150, idStart + 3));
+  buttons.push_back(MenuButton("Play", PCENTER, idStart + 0));
+  buttons.push_back(MenuButton("Save / load", PCENTER, idStart + 1));
+  buttons.push_back(MenuButton("Settings", PCENTER, idStart + 2));
+  buttons.push_back(MenuButton("Exit", PCENTER, idStart + 3));
   
   funs.insert(std::pair<int, void (MainMenu::*)()>
 	      (buttons[0].getId(), &MainMenu::doPlay));

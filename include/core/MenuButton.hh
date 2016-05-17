@@ -5,13 +5,14 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 13:37:58 2016 Esteban Lewis
-// Last update Tue May 17 13:23:39 2016 Esteban Lewis
+// Last update Tue May 17 15:15:26 2016 Esteban Lewis
 //
 
 #ifndef  MENUBUTTON_HH_
 # define MENUBUTTON_HH_
 
 # include <string>
+# include "Position.hh"
 
 namespace			gauntlet
 {
@@ -20,22 +21,20 @@ namespace			gauntlet
     class			MenuButton
     {
     public:
-      MenuButton(std::string const & str, int x, int y, int id/*, OgreUI &*/);
+      MenuButton(std::string const & str, Position p, int id/*, OgreUI &*/);
       MenuButton(MenuButton const &);
       ~MenuButton();
 
       MenuButton &		operator=(MenuButton const &);
 
-      int			getX();
-      int			getY();
+      Position			getPos();
       std::string const &	getStr();
       void			draw();
       void			undraw();
       int			getId();
 
     private:
-      int			x;
-      int			y;
+      Position			pos;
       std::string		str;
       int			id;
       //OgreUI &		ogre; //TODO

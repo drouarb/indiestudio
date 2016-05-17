@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:13:44 2016 Esteban Lewis
-// Last update Tue May 17 14:30:37 2016 Esteban Lewis
+// Last update Tue May 17 15:28:29 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -13,7 +13,7 @@
 #include "Core.hh"
 #include "MainMenu.hh"
 
-gauntlet::core::Core::Core() : keepGoing(true)
+gauntlet::core::Core::Core() : keepGoing(true), observer(new CoreUIObserver(*this))
 {
   menu = new MainMenu(*this, 100, NULL);
 

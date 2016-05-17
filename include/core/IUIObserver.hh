@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 10:52:22 2016 Esteban Lewis
-// Last update Sat May 14 17:35:13 2016 Esteban Lewis
+// Last update Tue May 17 15:20:08 2016 Esteban Lewis
 //
 
 #ifndef  IUIOBSERVER_HH_
@@ -61,6 +61,11 @@ namespace				gauntlet
           KEY_Y,
           KEY_Z
 	};
+
+      virtual void		keyDown(Key) = 0;
+      virtual void		keyUp(Key) = 0;
+      virtual void		mouseMove(int x, int y) = 0;
+      virtual void		buttonClick(int buttonId) = 0;
     };
   };
 };

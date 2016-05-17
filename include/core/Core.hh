@@ -5,19 +5,20 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 10:59:47 2016 Esteban Lewis
-// Last update Tue May 17 13:42:54 2016 Esteban Lewis
+// Last update Tue May 17 15:29:21 2016 Esteban Lewis
 //
 
 #ifndef  CORE_HH_
 # define CORE_HH_
 
 # include <unistd.h>
-# include "IUIObserver.hh"
+# include "CoreUIObserver.hh"
 # include "Menu.hh"
 # include "PlayerController.hh"
 # include "Stopwatch.hh"
 # include "Conf.hh"
 # include "ConfMenu.hh"
+# include "Position.hh"
 
 namespace			gauntlet
 {
@@ -42,7 +43,7 @@ namespace			gauntlet
 
     private:
       bool			keepGoing;
-      IUIObserver		observer;
+      IUIObserver *		observer;
       //OgreUI			ogre;
       Menu *			menu;
       PlayerController		pc;
