@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:13:44 2016 Esteban Lewis
-// Last update Tue May 17 15:28:29 2016 Esteban Lewis
+// Last update Tue May 17 15:58:28 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -16,32 +16,27 @@
 gauntlet::core::Core::Core() : keepGoing(true), observer(new CoreUIObserver(*this))
 {
   menu = new MainMenu(*this, 100, NULL);
+  menu->setOpen(true);
 
-  std::cout << std::endl << "-- TEST menu saveload 1st load" << std::endl;
-  keyDown(IUIObserver::KEY_ESC);
-  std::cout << "--TEST saveload" << std::endl;
+  std::cout << std::endl << "-- -- TEST menu saveload 1st load" << std::endl;
+  std::cout << "-- TEST saveload" << std::endl;
   buttonClick(101);
-  std::cout << "--TEST select" << std::endl;
+  std::cout << "-- TEST select" << std::endl;
   buttonClick(203);
-  std::cout << "--TEST save" << std::endl;
+  std::cout << "-- TEST save" << std::endl;
   buttonClick(201);
-  keyDown(IUIObserver::KEY_ESC);
 
-  std::cout << std::endl << "-- TEST menu conf enter esc" << std::endl;
-  keyDown(IUIObserver::KEY_ESC);
+  std::cout << std::endl << "-- -- TEST menu conf enter esc" << std::endl;
   std::cout << "-- TEST settings" << std::endl;
   buttonClick(102);
   std::cout << "-- TEST key exit" << std::endl;
   buttonClick(206);
-  std::cout << "-- TEST escape" << std::endl;
-  keyDown(IUIObserver::KEY_ENTER);
-  std::cout << "-- TEST exit" << std::endl;
+  std::cout << "-- TEST enter" << std::endl;
   keyDown(IUIObserver::KEY_ENTER);
   std::cout << "-- TEST exit" << std::endl;
   keyDown(IUIObserver::KEY_ENTER);
 
   std::cout << std::endl << "-- TEST menu play" << std::endl;
-  keyDown(IUIObserver::KEY_ENTER);
   buttonClick(100);
 
   //loop();
