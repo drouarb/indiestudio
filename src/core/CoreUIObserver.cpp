@@ -5,13 +5,38 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 10:56:08 2016 Esteban Lewis
-// Last update Mon May  9 11:03:44 2016 Esteban Lewis
+// Last update Tue May 17 15:30:42 2016 Esteban Lewis
 //
 
 #include "CoreUIObserver.hh"
+#include "Core.hh"
 
-gauntlet::core::CoreUIObserver::CoreUIObserver()
+gauntlet::core::CoreUIObserver::CoreUIObserver(Core & core) : core(core)
 { }
 
 gauntlet::core::CoreUIObserver::~CoreUIObserver()
 { }
+
+void
+gauntlet::core::CoreUIObserver::keyDown(Key key)
+{
+  core.keyDown(key);
+}
+
+void
+gauntlet::core::CoreUIObserver::keyUp(Key key)
+{
+  core.keyUp(key);
+}
+
+void
+gauntlet::core::CoreUIObserver::mouseMove(int x, int y)
+{
+  core.mouseMove(x, y);
+}
+
+void
+gauntlet::core::CoreUIObserver::buttonClick(int buttonId)
+{
+  core.buttonClick(buttonId);
+}

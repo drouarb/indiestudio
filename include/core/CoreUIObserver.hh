@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 10:52:22 2016 Esteban Lewis
-// Last update Mon May  9 11:08:59 2016 Esteban Lewis
+// Last update Tue May 17 15:27:51 2016 Esteban Lewis
 //
 
 #ifndef  COREUIOBSERVER_HH_
@@ -17,11 +17,21 @@ namespace				gauntlet
 {
   namespace				core
   {
+    class				Core;
+
     class				CoreUIObserver : public IUIObserver
     {
     public:
-      CoreUIObserver();
+      CoreUIObserver(Core &);
       ~CoreUIObserver();
+
+      void				keyDown(Key);
+      void				keyUp(Key);
+      void				mouseMove(int x, int y);
+      void				buttonClick(int buttonId);
+
+    private:
+      Core &				core;
     };
   };
 };
