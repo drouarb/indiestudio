@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:09:17 2016 Esteban Lewis
-// Last update Tue May 17 15:13:16 2016 Esteban Lewis
+// Last update Tue May 17 16:11:57 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -45,6 +45,33 @@ void
 gauntlet::core::MainMenu::undraw()
 {
   undrawButtons();
+}
+
+bool
+gauntlet::core::MainMenu::keyDown(Command cmd)
+{
+  if (!isOpen)
+    return (false);
+
+  if (cmd == ESC /* && there is no running game*/)
+    {
+      bool openSubmenu = false;
+
+      for (std::vector<Menu *>::iterator it = submenus.begin(); it != submenus.end(); ++it)
+	if (*it && (*it)->getOpen())
+	  {
+	    openSubmenu = true;
+	    break ;
+	  }
+
+      if (!openSubmenu)
+	{
+	  //no open submenu to redirect the command to, no game to go back to -> do nothing
+	  return (true);
+	}
+    }
+
+  return (Menu::keyDown(cmd));
 }
 
 void
