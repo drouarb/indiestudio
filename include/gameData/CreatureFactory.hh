@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 18:36:12 2016 Alexis Trouve
-// Last update Thu May 12 17:07:29 2016 Alexis Trouve
+// Last update Sat May 14 15:00:35 2016 Alexis Trouve
 //
 
 #ifndef CREATUREFACT_HH_
@@ -18,6 +18,7 @@
 namespace gauntlet
 {
 
+  class Creature;
   class	CreatureFactory;
   
   struct	CreatureStruct

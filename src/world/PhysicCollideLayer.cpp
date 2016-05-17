@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Thu May 12 16:17:25 2016 Alexis Trouve
-// Last update Fri May 13 11:24:47 2016 Alexis Trouve
+// Last update Sat May 14 12:12:55 2016 Alexis Trouve
 //
 
 #include "PhysicCollideLayer.hh"
@@ -13,10 +13,10 @@
 using namespace gauntlet;
 using namespace world;
 
-PhysicCollideLayer::PhysicCollideLayer()
+PhysicCollideLayer::PhysicCollideLayer(double sizex, double sizey)
 {
-  sizeX = 0;
-  sizeY = 0;
+  sizeX = sizex;
+  sizeY = sizey;
 }
 
 PhysicCollideLayer::~PhysicCollideLayer()

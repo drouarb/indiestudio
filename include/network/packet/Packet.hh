@@ -28,9 +28,7 @@ namespace gauntlet {
             DELETE_ENTITY         = 0x0B,
             ADD_PARTICLE          = 0x0C,
             DELETE_PARTICLE       = 0x0D,
-            CREATE_INVENTORY      = 0x0E,
-            UPDATE_INVENTORY      = 0x0F,
-            DELETE_INVENTORY      = 0x10
+            INVENTORY             = 0x0E
         };
 
         class Packet {

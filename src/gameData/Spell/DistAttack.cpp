@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Tue May 10 13:19:44 2016 Alexis Trouve
-// Last update Tue May 10 17:42:45 2016 Alexis Trouve
+// Last update Sat May 14 15:32:31 2016 Alexis Trouve
 //
 
 #include "DistAttack.hh"
@@ -30,7 +30,7 @@ DistAttack::~DistAttack()
 }
 
 void		DistAttack::apply(double orientation, world::World &world,
-				  gauntlet::Actor &SpellCaster,
+				  gauntlet::Actor *SpellCaster,
 				  std::pair<double, double> coordPointed)
 {
   

@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 15:00:30 2016 Alexis Trouve
-// Last update Thu May 12 17:01:34 2016 Alexis Trouve
+// Last update Sat May 14 15:25:42 2016 Alexis Trouve
 //
 
 #ifndef BODYFACTORY_HH_
@@ -19,6 +19,7 @@
 
 namespace gauntlet
 {
+  class		ActorFactory;
   class		BodyFactory;
 
   struct		giveBodyStruct

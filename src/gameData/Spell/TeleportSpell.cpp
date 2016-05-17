@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Tue May 10 13:36:12 2016 Alexis Trouve
-// Last update Tue May 10 17:43:03 2016 Alexis Trouve
+// Last update Sat May 14 15:32:51 2016 Alexis Trouve
 //
 
 #include "TeleportSpell.hh"
@@ -26,7 +26,7 @@ TeleportSpell::~TeleportSpell()
 }
 
 void	TeleportSpell:: apply(double orientation, world::World &world,
-		       gauntlet::Actor &SpellCaster,
+		       gauntlet::Actor *SpellCaster,
 		       std::pair<double, double> coordPointed)
 {
   

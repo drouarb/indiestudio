@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Tue May 10 10:23:22 2016 Alexis Trouve
-// Last update Tue May 10 17:36:34 2016 Alexis Trouve
+// Last update Sat May 14 15:37:17 2016 Alexis Trouve
 //
 
 #ifndef MELEEATTACK_HH_
@@ -28,7 +28,7 @@ namespace gauntlet
 		double nrangeDegat, double ndistDo, int id,
 		const std::string &name, double castTime);
     ~MeleeAttack();
-    void	apply(double norientation, world::World &world, gauntlet::Actor &SpellCaster,
+    void	apply(double norientation, world::World &world, gauntlet::Actor *SpellCaster,
 		      std::pair<double, double> coordPointed);
   };
 };
