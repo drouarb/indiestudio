@@ -7,13 +7,13 @@
 #include "network/packet/PacketDisconnect.hh"
 
 
-gauntlet::network::PacketDisconnect::PacketDisconnect():
+gauntlet::network::PacketDisconnect::PacketDisconnect(const std::string &message):
         Packet(gauntlet::network::DISCONNECT),
-        message("")
+        message(message)
 { }
 
 gauntlet::network::PacketDisconnect::PacketDisconnect(t_rawdata *data):
-        PacketDisconnect() {
+        PacketDisconnect("") {
     this->deserialize(data);
 }
 
@@ -34,8 +34,9 @@ void gauntlet::network::PacketDisconnect::deserialize(t_rawdata *data) {
         throw std::logic_error("PacketDisconnect::Invalid packet id");
     }
     s_packetDisconnectData *packetDisconnectData = reinterpret_cast<s_packetDisconnectData *>(&data->front());
-    if (data->size() < sizeof(s_packetDisconnectData) + packetDisconnectData->stringsize - 1)
+    if (data->size() < sizeof(s_packetDisconnectData) + packetDisconnectData->stringsize) {
         throw std::logic_error("PacketDisconnect::Invalid data");
+    }
     message.assign(&packetDisconnectData->stringstart, packetDisconnectData->stringsize);
 }
 

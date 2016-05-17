@@ -5,29 +5,20 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-<<<<<<< HEAD
-// Last update Mon May 16 16:02:17 2016 Alexis Trouve
-=======
 // Last update Sat May 14 14:19:06 2016 Esteban Lewis
->>>>>>> ef9f57bfe5e5efaad11dbdc5f1411a3140cf1be6
 //
 
 #include <iostream>
 #include "World.hh"
 #include "Math.hh"
 
-<<<<<<< HEAD
 using namespace	gauntlet;
 using namespace world;
 
 World::World()
-{ }
-=======
-gauntlet::world::World::World()
 {
   Math::init();
 }
->>>>>>> ef9f57bfe5e5efaad11dbdc5f1411a3140cf1be6
 
 World::~World()
 { }
