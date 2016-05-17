@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 11:03:19 2016 Alexis Trouve
-// Last update Mon May 16 16:23:34 2016 Alexis Trouve
+// Last update Mon May 16 17:01:49 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -139,7 +139,7 @@ void		EntityCollideLayer::suprId(int id)
   std::list<gauntlet::ABody*>::iterator	it1;
   int				x;
   int				y;
-
+x
   it1 = Entity.begin();
   while (it1 != Entity.end())
     {
