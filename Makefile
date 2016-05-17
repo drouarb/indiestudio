@@ -112,24 +112,24 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named indie
+# Target rules for targets named gauntlet
 
 # Build rule for target.
-indie: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 indie
-.PHONY : indie
+gauntlet: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gauntlet
+.PHONY : gauntlet
 
 # fast build rule for target.
-indie/fast:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/build
-.PHONY : indie/fast
+gauntlet/fast:
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/build
+.PHONY : gauntlet/fast
 
 src/core/Conf.o: src/core/Conf.cpp.o
 .PHONY : src/core/Conf.o
 
 # target to build an object file
 src/core/Conf.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/core/Conf.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/core/Conf.cpp.o
 .PHONY : src/core/Conf.cpp.o
 
 src/core/Conf.i: src/core/Conf.cpp.i
@@ -137,7 +137,7 @@ src/core/Conf.i: src/core/Conf.cpp.i
 
 # target to preprocess a source file
 src/core/Conf.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/core/Conf.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/core/Conf.cpp.i
 .PHONY : src/core/Conf.cpp.i
 
 src/core/Conf.s: src/core/Conf.cpp.s
@@ -145,7 +145,7 @@ src/core/Conf.s: src/core/Conf.cpp.s
 
 # target to generate assembly for a file
 src/core/Conf.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/core/Conf.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/core/Conf.cpp.s
 .PHONY : src/core/Conf.cpp.s
 
 src/core/ConfMenu.o: src/core/ConfMenu.cpp.o
@@ -153,7 +153,7 @@ src/core/ConfMenu.o: src/core/ConfMenu.cpp.o
 
 # target to build an object file
 src/core/ConfMenu.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/core/ConfMenu.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/core/ConfMenu.cpp.o
 .PHONY : src/core/ConfMenu.cpp.o
 
 src/core/ConfMenu.i: src/core/ConfMenu.cpp.i
@@ -161,7 +161,7 @@ src/core/ConfMenu.i: src/core/ConfMenu.cpp.i
 
 # target to preprocess a source file
 src/core/ConfMenu.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/core/ConfMenu.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/core/ConfMenu.cpp.i
 .PHONY : src/core/ConfMenu.cpp.i
 
 src/core/ConfMenu.s: src/core/ConfMenu.cpp.s
@@ -169,7 +169,7 @@ src/core/ConfMenu.s: src/core/ConfMenu.cpp.s
 
 # target to generate assembly for a file
 src/core/ConfMenu.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/core/ConfMenu.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/core/ConfMenu.cpp.s
 .PHONY : src/core/ConfMenu.cpp.s
 
 src/core/Core.o: src/core/Core.cpp.o
@@ -177,7 +177,7 @@ src/core/Core.o: src/core/Core.cpp.o
 
 # target to build an object file
 src/core/Core.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/core/Core.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/core/Core.cpp.o
 .PHONY : src/core/Core.cpp.o
 
 src/core/Core.i: src/core/Core.cpp.i
@@ -185,7 +185,7 @@ src/core/Core.i: src/core/Core.cpp.i
 
 # target to preprocess a source file
 src/core/Core.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/core/Core.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/core/Core.cpp.i
 .PHONY : src/core/Core.cpp.i
 
 src/core/Core.s: src/core/Core.cpp.s
@@ -193,7 +193,7 @@ src/core/Core.s: src/core/Core.cpp.s
 
 # target to generate assembly for a file
 src/core/Core.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/core/Core.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/core/Core.cpp.s
 .PHONY : src/core/Core.cpp.s
 
 src/core/CoreUIObserver.o: src/core/CoreUIObserver.cpp.o
@@ -201,7 +201,7 @@ src/core/CoreUIObserver.o: src/core/CoreUIObserver.cpp.o
 
 # target to build an object file
 src/core/CoreUIObserver.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/core/CoreUIObserver.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/core/CoreUIObserver.cpp.o
 .PHONY : src/core/CoreUIObserver.cpp.o
 
 src/core/CoreUIObserver.i: src/core/CoreUIObserver.cpp.i
@@ -209,7 +209,7 @@ src/core/CoreUIObserver.i: src/core/CoreUIObserver.cpp.i
 
 # target to preprocess a source file
 src/core/CoreUIObserver.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/core/CoreUIObserver.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/core/CoreUIObserver.cpp.i
 .PHONY : src/core/CoreUIObserver.cpp.i
 
 src/core/CoreUIObserver.s: src/core/CoreUIObserver.cpp.s
@@ -217,7 +217,7 @@ src/core/CoreUIObserver.s: src/core/CoreUIObserver.cpp.s
 
 # target to generate assembly for a file
 src/core/CoreUIObserver.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/core/CoreUIObserver.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/core/CoreUIObserver.cpp.s
 .PHONY : src/core/CoreUIObserver.cpp.s
 
 src/core/MainMenu.o: src/core/MainMenu.cpp.o
@@ -225,7 +225,7 @@ src/core/MainMenu.o: src/core/MainMenu.cpp.o
 
 # target to build an object file
 src/core/MainMenu.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/core/MainMenu.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/core/MainMenu.cpp.o
 .PHONY : src/core/MainMenu.cpp.o
 
 src/core/MainMenu.i: src/core/MainMenu.cpp.i
@@ -233,7 +233,7 @@ src/core/MainMenu.i: src/core/MainMenu.cpp.i
 
 # target to preprocess a source file
 src/core/MainMenu.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/core/MainMenu.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/core/MainMenu.cpp.i
 .PHONY : src/core/MainMenu.cpp.i
 
 src/core/MainMenu.s: src/core/MainMenu.cpp.s
@@ -241,7 +241,7 @@ src/core/MainMenu.s: src/core/MainMenu.cpp.s
 
 # target to generate assembly for a file
 src/core/MainMenu.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/core/MainMenu.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/core/MainMenu.cpp.s
 .PHONY : src/core/MainMenu.cpp.s
 
 src/core/Menu.o: src/core/Menu.cpp.o
@@ -249,7 +249,7 @@ src/core/Menu.o: src/core/Menu.cpp.o
 
 # target to build an object file
 src/core/Menu.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/core/Menu.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/core/Menu.cpp.o
 .PHONY : src/core/Menu.cpp.o
 
 src/core/Menu.i: src/core/Menu.cpp.i
@@ -257,7 +257,7 @@ src/core/Menu.i: src/core/Menu.cpp.i
 
 # target to preprocess a source file
 src/core/Menu.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/core/Menu.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/core/Menu.cpp.i
 .PHONY : src/core/Menu.cpp.i
 
 src/core/Menu.s: src/core/Menu.cpp.s
@@ -265,7 +265,7 @@ src/core/Menu.s: src/core/Menu.cpp.s
 
 # target to generate assembly for a file
 src/core/Menu.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/core/Menu.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/core/Menu.cpp.s
 .PHONY : src/core/Menu.cpp.s
 
 src/core/MenuButton.o: src/core/MenuButton.cpp.o
@@ -273,7 +273,7 @@ src/core/MenuButton.o: src/core/MenuButton.cpp.o
 
 # target to build an object file
 src/core/MenuButton.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/core/MenuButton.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/core/MenuButton.cpp.o
 .PHONY : src/core/MenuButton.cpp.o
 
 src/core/MenuButton.i: src/core/MenuButton.cpp.i
@@ -281,7 +281,7 @@ src/core/MenuButton.i: src/core/MenuButton.cpp.i
 
 # target to preprocess a source file
 src/core/MenuButton.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/core/MenuButton.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/core/MenuButton.cpp.i
 .PHONY : src/core/MenuButton.cpp.i
 
 src/core/MenuButton.s: src/core/MenuButton.cpp.s
@@ -289,7 +289,7 @@ src/core/MenuButton.s: src/core/MenuButton.cpp.s
 
 # target to generate assembly for a file
 src/core/MenuButton.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/core/MenuButton.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/core/MenuButton.cpp.s
 .PHONY : src/core/MenuButton.cpp.s
 
 src/core/PlayerController.o: src/core/PlayerController.cpp.o
@@ -297,7 +297,7 @@ src/core/PlayerController.o: src/core/PlayerController.cpp.o
 
 # target to build an object file
 src/core/PlayerController.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/core/PlayerController.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/core/PlayerController.cpp.o
 .PHONY : src/core/PlayerController.cpp.o
 
 src/core/PlayerController.i: src/core/PlayerController.cpp.i
@@ -305,7 +305,7 @@ src/core/PlayerController.i: src/core/PlayerController.cpp.i
 
 # target to preprocess a source file
 src/core/PlayerController.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/core/PlayerController.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/core/PlayerController.cpp.i
 .PHONY : src/core/PlayerController.cpp.i
 
 src/core/PlayerController.s: src/core/PlayerController.cpp.s
@@ -313,7 +313,7 @@ src/core/PlayerController.s: src/core/PlayerController.cpp.s
 
 # target to generate assembly for a file
 src/core/PlayerController.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/core/PlayerController.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/core/PlayerController.cpp.s
 .PHONY : src/core/PlayerController.cpp.s
 
 src/core/SaveloadMenu.o: src/core/SaveloadMenu.cpp.o
@@ -321,7 +321,7 @@ src/core/SaveloadMenu.o: src/core/SaveloadMenu.cpp.o
 
 # target to build an object file
 src/core/SaveloadMenu.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/core/SaveloadMenu.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/core/SaveloadMenu.cpp.o
 .PHONY : src/core/SaveloadMenu.cpp.o
 
 src/core/SaveloadMenu.i: src/core/SaveloadMenu.cpp.i
@@ -329,7 +329,7 @@ src/core/SaveloadMenu.i: src/core/SaveloadMenu.cpp.i
 
 # target to preprocess a source file
 src/core/SaveloadMenu.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/core/SaveloadMenu.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/core/SaveloadMenu.cpp.i
 .PHONY : src/core/SaveloadMenu.cpp.i
 
 src/core/SaveloadMenu.s: src/core/SaveloadMenu.cpp.s
@@ -337,7 +337,7 @@ src/core/SaveloadMenu.s: src/core/SaveloadMenu.cpp.s
 
 # target to generate assembly for a file
 src/core/SaveloadMenu.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/core/SaveloadMenu.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/core/SaveloadMenu.cpp.s
 .PHONY : src/core/SaveloadMenu.cpp.s
 
 src/core/Stopwatch.o: src/core/Stopwatch.cpp.o
@@ -345,7 +345,7 @@ src/core/Stopwatch.o: src/core/Stopwatch.cpp.o
 
 # target to build an object file
 src/core/Stopwatch.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/core/Stopwatch.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/core/Stopwatch.cpp.o
 .PHONY : src/core/Stopwatch.cpp.o
 
 src/core/Stopwatch.i: src/core/Stopwatch.cpp.i
@@ -353,7 +353,7 @@ src/core/Stopwatch.i: src/core/Stopwatch.cpp.i
 
 # target to preprocess a source file
 src/core/Stopwatch.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/core/Stopwatch.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/core/Stopwatch.cpp.i
 .PHONY : src/core/Stopwatch.cpp.i
 
 src/core/Stopwatch.s: src/core/Stopwatch.cpp.s
@@ -361,7 +361,7 @@ src/core/Stopwatch.s: src/core/Stopwatch.cpp.s
 
 # target to generate assembly for a file
 src/core/Stopwatch.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/core/Stopwatch.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/core/Stopwatch.cpp.s
 .PHONY : src/core/Stopwatch.cpp.s
 
 src/gameData/ABody.o: src/gameData/ABody.cpp.o
@@ -369,7 +369,7 @@ src/gameData/ABody.o: src/gameData/ABody.cpp.o
 
 # target to build an object file
 src/gameData/ABody.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/ABody.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/ABody.cpp.o
 .PHONY : src/gameData/ABody.cpp.o
 
 src/gameData/ABody.i: src/gameData/ABody.cpp.i
@@ -377,7 +377,7 @@ src/gameData/ABody.i: src/gameData/ABody.cpp.i
 
 # target to preprocess a source file
 src/gameData/ABody.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/ABody.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/ABody.cpp.i
 .PHONY : src/gameData/ABody.cpp.i
 
 src/gameData/ABody.s: src/gameData/ABody.cpp.s
@@ -385,7 +385,7 @@ src/gameData/ABody.s: src/gameData/ABody.cpp.s
 
 # target to generate assembly for a file
 src/gameData/ABody.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/ABody.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/ABody.cpp.s
 .PHONY : src/gameData/ABody.cpp.s
 
 src/gameData/Actor.o: src/gameData/Actor.cpp.o
@@ -393,7 +393,7 @@ src/gameData/Actor.o: src/gameData/Actor.cpp.o
 
 # target to build an object file
 src/gameData/Actor.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/Actor.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/Actor.cpp.o
 .PHONY : src/gameData/Actor.cpp.o
 
 src/gameData/Actor.i: src/gameData/Actor.cpp.i
@@ -401,7 +401,7 @@ src/gameData/Actor.i: src/gameData/Actor.cpp.i
 
 # target to preprocess a source file
 src/gameData/Actor.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/Actor.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/Actor.cpp.i
 .PHONY : src/gameData/Actor.cpp.i
 
 src/gameData/Actor.s: src/gameData/Actor.cpp.s
@@ -409,7 +409,7 @@ src/gameData/Actor.s: src/gameData/Actor.cpp.s
 
 # target to generate assembly for a file
 src/gameData/Actor.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/Actor.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/Actor.cpp.s
 .PHONY : src/gameData/Actor.cpp.s
 
 src/gameData/ActorFactory.o: src/gameData/ActorFactory.cpp.o
@@ -417,7 +417,7 @@ src/gameData/ActorFactory.o: src/gameData/ActorFactory.cpp.o
 
 # target to build an object file
 src/gameData/ActorFactory.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/ActorFactory.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/ActorFactory.cpp.o
 .PHONY : src/gameData/ActorFactory.cpp.o
 
 src/gameData/ActorFactory.i: src/gameData/ActorFactory.cpp.i
@@ -425,7 +425,7 @@ src/gameData/ActorFactory.i: src/gameData/ActorFactory.cpp.i
 
 # target to preprocess a source file
 src/gameData/ActorFactory.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/ActorFactory.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/ActorFactory.cpp.i
 .PHONY : src/gameData/ActorFactory.cpp.i
 
 src/gameData/ActorFactory.s: src/gameData/ActorFactory.cpp.s
@@ -433,7 +433,7 @@ src/gameData/ActorFactory.s: src/gameData/ActorFactory.cpp.s
 
 # target to generate assembly for a file
 src/gameData/ActorFactory.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/ActorFactory.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/ActorFactory.cpp.s
 .PHONY : src/gameData/ActorFactory.cpp.s
 
 src/gameData/BodyFactory.o: src/gameData/BodyFactory.cpp.o
@@ -441,7 +441,7 @@ src/gameData/BodyFactory.o: src/gameData/BodyFactory.cpp.o
 
 # target to build an object file
 src/gameData/BodyFactory.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/BodyFactory.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/BodyFactory.cpp.o
 .PHONY : src/gameData/BodyFactory.cpp.o
 
 src/gameData/BodyFactory.i: src/gameData/BodyFactory.cpp.i
@@ -449,7 +449,7 @@ src/gameData/BodyFactory.i: src/gameData/BodyFactory.cpp.i
 
 # target to preprocess a source file
 src/gameData/BodyFactory.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/BodyFactory.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/BodyFactory.cpp.i
 .PHONY : src/gameData/BodyFactory.cpp.i
 
 src/gameData/BodyFactory.s: src/gameData/BodyFactory.cpp.s
@@ -457,7 +457,7 @@ src/gameData/BodyFactory.s: src/gameData/BodyFactory.cpp.s
 
 # target to generate assembly for a file
 src/gameData/BodyFactory.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/BodyFactory.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/BodyFactory.cpp.s
 .PHONY : src/gameData/BodyFactory.cpp.s
 
 src/gameData/ContainerObject.o: src/gameData/ContainerObject.cpp.o
@@ -465,7 +465,7 @@ src/gameData/ContainerObject.o: src/gameData/ContainerObject.cpp.o
 
 # target to build an object file
 src/gameData/ContainerObject.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/ContainerObject.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/ContainerObject.cpp.o
 .PHONY : src/gameData/ContainerObject.cpp.o
 
 src/gameData/ContainerObject.i: src/gameData/ContainerObject.cpp.i
@@ -473,7 +473,7 @@ src/gameData/ContainerObject.i: src/gameData/ContainerObject.cpp.i
 
 # target to preprocess a source file
 src/gameData/ContainerObject.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/ContainerObject.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/ContainerObject.cpp.i
 .PHONY : src/gameData/ContainerObject.cpp.i
 
 src/gameData/ContainerObject.s: src/gameData/ContainerObject.cpp.s
@@ -481,7 +481,7 @@ src/gameData/ContainerObject.s: src/gameData/ContainerObject.cpp.s
 
 # target to generate assembly for a file
 src/gameData/ContainerObject.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/ContainerObject.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/ContainerObject.cpp.s
 .PHONY : src/gameData/ContainerObject.cpp.s
 
 src/gameData/Creature.o: src/gameData/Creature.cpp.o
@@ -489,7 +489,7 @@ src/gameData/Creature.o: src/gameData/Creature.cpp.o
 
 # target to build an object file
 src/gameData/Creature.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/Creature.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/Creature.cpp.o
 .PHONY : src/gameData/Creature.cpp.o
 
 src/gameData/Creature.i: src/gameData/Creature.cpp.i
@@ -497,7 +497,7 @@ src/gameData/Creature.i: src/gameData/Creature.cpp.i
 
 # target to preprocess a source file
 src/gameData/Creature.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/Creature.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/Creature.cpp.i
 .PHONY : src/gameData/Creature.cpp.i
 
 src/gameData/Creature.s: src/gameData/Creature.cpp.s
@@ -505,7 +505,7 @@ src/gameData/Creature.s: src/gameData/Creature.cpp.s
 
 # target to generate assembly for a file
 src/gameData/Creature.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/Creature.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/Creature.cpp.s
 .PHONY : src/gameData/Creature.cpp.s
 
 src/gameData/CreatureFactory.o: src/gameData/CreatureFactory.cpp.o
@@ -513,7 +513,7 @@ src/gameData/CreatureFactory.o: src/gameData/CreatureFactory.cpp.o
 
 # target to build an object file
 src/gameData/CreatureFactory.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/CreatureFactory.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/CreatureFactory.cpp.o
 .PHONY : src/gameData/CreatureFactory.cpp.o
 
 src/gameData/CreatureFactory.i: src/gameData/CreatureFactory.cpp.i
@@ -521,7 +521,7 @@ src/gameData/CreatureFactory.i: src/gameData/CreatureFactory.cpp.i
 
 # target to preprocess a source file
 src/gameData/CreatureFactory.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/CreatureFactory.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/CreatureFactory.cpp.i
 .PHONY : src/gameData/CreatureFactory.cpp.i
 
 src/gameData/CreatureFactory.s: src/gameData/CreatureFactory.cpp.s
@@ -529,7 +529,7 @@ src/gameData/CreatureFactory.s: src/gameData/CreatureFactory.cpp.s
 
 # target to generate assembly for a file
 src/gameData/CreatureFactory.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/CreatureFactory.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/CreatureFactory.cpp.s
 .PHONY : src/gameData/CreatureFactory.cpp.s
 
 src/gameData/GameObject.o: src/gameData/GameObject.cpp.o
@@ -537,7 +537,7 @@ src/gameData/GameObject.o: src/gameData/GameObject.cpp.o
 
 # target to build an object file
 src/gameData/GameObject.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/GameObject.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/GameObject.cpp.o
 .PHONY : src/gameData/GameObject.cpp.o
 
 src/gameData/GameObject.i: src/gameData/GameObject.cpp.i
@@ -545,7 +545,7 @@ src/gameData/GameObject.i: src/gameData/GameObject.cpp.i
 
 # target to preprocess a source file
 src/gameData/GameObject.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/GameObject.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/GameObject.cpp.i
 .PHONY : src/gameData/GameObject.cpp.i
 
 src/gameData/GameObject.s: src/gameData/GameObject.cpp.s
@@ -553,7 +553,7 @@ src/gameData/GameObject.s: src/gameData/GameObject.cpp.s
 
 # target to generate assembly for a file
 src/gameData/GameObject.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/GameObject.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/GameObject.cpp.s
 .PHONY : src/gameData/GameObject.cpp.s
 
 src/gameData/GameObjectFactory.o: src/gameData/GameObjectFactory.cpp.o
@@ -561,7 +561,7 @@ src/gameData/GameObjectFactory.o: src/gameData/GameObjectFactory.cpp.o
 
 # target to build an object file
 src/gameData/GameObjectFactory.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/GameObjectFactory.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/GameObjectFactory.cpp.o
 .PHONY : src/gameData/GameObjectFactory.cpp.o
 
 src/gameData/GameObjectFactory.i: src/gameData/GameObjectFactory.cpp.i
@@ -569,7 +569,7 @@ src/gameData/GameObjectFactory.i: src/gameData/GameObjectFactory.cpp.i
 
 # target to preprocess a source file
 src/gameData/GameObjectFactory.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/GameObjectFactory.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/GameObjectFactory.cpp.i
 .PHONY : src/gameData/GameObjectFactory.cpp.i
 
 src/gameData/GameObjectFactory.s: src/gameData/GameObjectFactory.cpp.s
@@ -577,7 +577,7 @@ src/gameData/GameObjectFactory.s: src/gameData/GameObjectFactory.cpp.s
 
 # target to generate assembly for a file
 src/gameData/GameObjectFactory.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/GameObjectFactory.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/GameObjectFactory.cpp.s
 .PHONY : src/gameData/GameObjectFactory.cpp.s
 
 src/gameData/Item.o: src/gameData/Item.cpp.o
@@ -585,7 +585,7 @@ src/gameData/Item.o: src/gameData/Item.cpp.o
 
 # target to build an object file
 src/gameData/Item.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/Item.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/Item.cpp.o
 .PHONY : src/gameData/Item.cpp.o
 
 src/gameData/Item.i: src/gameData/Item.cpp.i
@@ -593,7 +593,7 @@ src/gameData/Item.i: src/gameData/Item.cpp.i
 
 # target to preprocess a source file
 src/gameData/Item.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/Item.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/Item.cpp.i
 .PHONY : src/gameData/Item.cpp.i
 
 src/gameData/Item.s: src/gameData/Item.cpp.s
@@ -601,7 +601,7 @@ src/gameData/Item.s: src/gameData/Item.cpp.s
 
 # target to generate assembly for a file
 src/gameData/Item.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/Item.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/Item.cpp.s
 .PHONY : src/gameData/Item.cpp.s
 
 src/gameData/ItemContainer.o: src/gameData/ItemContainer.cpp.o
@@ -609,7 +609,7 @@ src/gameData/ItemContainer.o: src/gameData/ItemContainer.cpp.o
 
 # target to build an object file
 src/gameData/ItemContainer.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/ItemContainer.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/ItemContainer.cpp.o
 .PHONY : src/gameData/ItemContainer.cpp.o
 
 src/gameData/ItemContainer.i: src/gameData/ItemContainer.cpp.i
@@ -617,7 +617,7 @@ src/gameData/ItemContainer.i: src/gameData/ItemContainer.cpp.i
 
 # target to preprocess a source file
 src/gameData/ItemContainer.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/ItemContainer.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/ItemContainer.cpp.i
 .PHONY : src/gameData/ItemContainer.cpp.i
 
 src/gameData/ItemContainer.s: src/gameData/ItemContainer.cpp.s
@@ -625,7 +625,7 @@ src/gameData/ItemContainer.s: src/gameData/ItemContainer.cpp.s
 
 # target to generate assembly for a file
 src/gameData/ItemContainer.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/ItemContainer.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/ItemContainer.cpp.s
 .PHONY : src/gameData/ItemContainer.cpp.s
 
 src/gameData/LootTable.o: src/gameData/LootTable.cpp.o
@@ -633,7 +633,7 @@ src/gameData/LootTable.o: src/gameData/LootTable.cpp.o
 
 # target to build an object file
 src/gameData/LootTable.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/LootTable.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/LootTable.cpp.o
 .PHONY : src/gameData/LootTable.cpp.o
 
 src/gameData/LootTable.i: src/gameData/LootTable.cpp.i
@@ -641,7 +641,7 @@ src/gameData/LootTable.i: src/gameData/LootTable.cpp.i
 
 # target to preprocess a source file
 src/gameData/LootTable.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/LootTable.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/LootTable.cpp.i
 .PHONY : src/gameData/LootTable.cpp.i
 
 src/gameData/LootTable.s: src/gameData/LootTable.cpp.s
@@ -649,7 +649,7 @@ src/gameData/LootTable.s: src/gameData/LootTable.cpp.s
 
 # target to generate assembly for a file
 src/gameData/LootTable.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/LootTable.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/LootTable.cpp.s
 .PHONY : src/gameData/LootTable.cpp.s
 
 src/gameData/Player.o: src/gameData/Player.cpp.o
@@ -657,7 +657,7 @@ src/gameData/Player.o: src/gameData/Player.cpp.o
 
 # target to build an object file
 src/gameData/Player.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/Player.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/Player.cpp.o
 .PHONY : src/gameData/Player.cpp.o
 
 src/gameData/Player.i: src/gameData/Player.cpp.i
@@ -665,7 +665,7 @@ src/gameData/Player.i: src/gameData/Player.cpp.i
 
 # target to preprocess a source file
 src/gameData/Player.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/Player.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/Player.cpp.i
 .PHONY : src/gameData/Player.cpp.i
 
 src/gameData/Player.s: src/gameData/Player.cpp.s
@@ -673,7 +673,7 @@ src/gameData/Player.s: src/gameData/Player.cpp.s
 
 # target to generate assembly for a file
 src/gameData/Player.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/Player.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/Player.cpp.s
 .PHONY : src/gameData/Player.cpp.s
 
 src/gameData/PlayerFactory.o: src/gameData/PlayerFactory.cpp.o
@@ -681,7 +681,7 @@ src/gameData/PlayerFactory.o: src/gameData/PlayerFactory.cpp.o
 
 # target to build an object file
 src/gameData/PlayerFactory.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/PlayerFactory.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/PlayerFactory.cpp.o
 .PHONY : src/gameData/PlayerFactory.cpp.o
 
 src/gameData/PlayerFactory.i: src/gameData/PlayerFactory.cpp.i
@@ -689,7 +689,7 @@ src/gameData/PlayerFactory.i: src/gameData/PlayerFactory.cpp.i
 
 # target to preprocess a source file
 src/gameData/PlayerFactory.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/PlayerFactory.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/PlayerFactory.cpp.i
 .PHONY : src/gameData/PlayerFactory.cpp.i
 
 src/gameData/PlayerFactory.s: src/gameData/PlayerFactory.cpp.s
@@ -697,7 +697,7 @@ src/gameData/PlayerFactory.s: src/gameData/PlayerFactory.cpp.s
 
 # target to generate assembly for a file
 src/gameData/PlayerFactory.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/PlayerFactory.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/PlayerFactory.cpp.s
 .PHONY : src/gameData/PlayerFactory.cpp.s
 
 src/gameData/Spell/ASpell.o: src/gameData/Spell/ASpell.cpp.o
@@ -705,7 +705,7 @@ src/gameData/Spell/ASpell.o: src/gameData/Spell/ASpell.cpp.o
 
 # target to build an object file
 src/gameData/Spell/ASpell.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/Spell/ASpell.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/Spell/ASpell.cpp.o
 .PHONY : src/gameData/Spell/ASpell.cpp.o
 
 src/gameData/Spell/ASpell.i: src/gameData/Spell/ASpell.cpp.i
@@ -713,7 +713,7 @@ src/gameData/Spell/ASpell.i: src/gameData/Spell/ASpell.cpp.i
 
 # target to preprocess a source file
 src/gameData/Spell/ASpell.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/Spell/ASpell.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/Spell/ASpell.cpp.i
 .PHONY : src/gameData/Spell/ASpell.cpp.i
 
 src/gameData/Spell/ASpell.s: src/gameData/Spell/ASpell.cpp.s
@@ -721,7 +721,7 @@ src/gameData/Spell/ASpell.s: src/gameData/Spell/ASpell.cpp.s
 
 # target to generate assembly for a file
 src/gameData/Spell/ASpell.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/Spell/ASpell.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/Spell/ASpell.cpp.s
 .PHONY : src/gameData/Spell/ASpell.cpp.s
 
 src/gameData/Spell/DistAttack.o: src/gameData/Spell/DistAttack.cpp.o
@@ -729,7 +729,7 @@ src/gameData/Spell/DistAttack.o: src/gameData/Spell/DistAttack.cpp.o
 
 # target to build an object file
 src/gameData/Spell/DistAttack.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/Spell/DistAttack.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/Spell/DistAttack.cpp.o
 .PHONY : src/gameData/Spell/DistAttack.cpp.o
 
 src/gameData/Spell/DistAttack.i: src/gameData/Spell/DistAttack.cpp.i
@@ -737,7 +737,7 @@ src/gameData/Spell/DistAttack.i: src/gameData/Spell/DistAttack.cpp.i
 
 # target to preprocess a source file
 src/gameData/Spell/DistAttack.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/Spell/DistAttack.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/Spell/DistAttack.cpp.i
 .PHONY : src/gameData/Spell/DistAttack.cpp.i
 
 src/gameData/Spell/DistAttack.s: src/gameData/Spell/DistAttack.cpp.s
@@ -745,7 +745,7 @@ src/gameData/Spell/DistAttack.s: src/gameData/Spell/DistAttack.cpp.s
 
 # target to generate assembly for a file
 src/gameData/Spell/DistAttack.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/Spell/DistAttack.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/Spell/DistAttack.cpp.s
 .PHONY : src/gameData/Spell/DistAttack.cpp.s
 
 src/gameData/Spell/HealAttack.o: src/gameData/Spell/HealAttack.cpp.o
@@ -753,7 +753,7 @@ src/gameData/Spell/HealAttack.o: src/gameData/Spell/HealAttack.cpp.o
 
 # target to build an object file
 src/gameData/Spell/HealAttack.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/Spell/HealAttack.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/Spell/HealAttack.cpp.o
 .PHONY : src/gameData/Spell/HealAttack.cpp.o
 
 src/gameData/Spell/HealAttack.i: src/gameData/Spell/HealAttack.cpp.i
@@ -761,7 +761,7 @@ src/gameData/Spell/HealAttack.i: src/gameData/Spell/HealAttack.cpp.i
 
 # target to preprocess a source file
 src/gameData/Spell/HealAttack.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/Spell/HealAttack.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/Spell/HealAttack.cpp.i
 .PHONY : src/gameData/Spell/HealAttack.cpp.i
 
 src/gameData/Spell/HealAttack.s: src/gameData/Spell/HealAttack.cpp.s
@@ -769,7 +769,7 @@ src/gameData/Spell/HealAttack.s: src/gameData/Spell/HealAttack.cpp.s
 
 # target to generate assembly for a file
 src/gameData/Spell/HealAttack.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/Spell/HealAttack.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/Spell/HealAttack.cpp.s
 .PHONY : src/gameData/Spell/HealAttack.cpp.s
 
 src/gameData/Spell/MeleeAttack.o: src/gameData/Spell/MeleeAttack.cpp.o
@@ -777,7 +777,7 @@ src/gameData/Spell/MeleeAttack.o: src/gameData/Spell/MeleeAttack.cpp.o
 
 # target to build an object file
 src/gameData/Spell/MeleeAttack.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/Spell/MeleeAttack.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/Spell/MeleeAttack.cpp.o
 .PHONY : src/gameData/Spell/MeleeAttack.cpp.o
 
 src/gameData/Spell/MeleeAttack.i: src/gameData/Spell/MeleeAttack.cpp.i
@@ -785,7 +785,7 @@ src/gameData/Spell/MeleeAttack.i: src/gameData/Spell/MeleeAttack.cpp.i
 
 # target to preprocess a source file
 src/gameData/Spell/MeleeAttack.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/Spell/MeleeAttack.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/Spell/MeleeAttack.cpp.i
 .PHONY : src/gameData/Spell/MeleeAttack.cpp.i
 
 src/gameData/Spell/MeleeAttack.s: src/gameData/Spell/MeleeAttack.cpp.s
@@ -793,7 +793,7 @@ src/gameData/Spell/MeleeAttack.s: src/gameData/Spell/MeleeAttack.cpp.s
 
 # target to generate assembly for a file
 src/gameData/Spell/MeleeAttack.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/Spell/MeleeAttack.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/Spell/MeleeAttack.cpp.s
 .PHONY : src/gameData/Spell/MeleeAttack.cpp.s
 
 src/gameData/Spell/SpellFactory.o: src/gameData/Spell/SpellFactory.cpp.o
@@ -801,7 +801,7 @@ src/gameData/Spell/SpellFactory.o: src/gameData/Spell/SpellFactory.cpp.o
 
 # target to build an object file
 src/gameData/Spell/SpellFactory.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/Spell/SpellFactory.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/Spell/SpellFactory.cpp.o
 .PHONY : src/gameData/Spell/SpellFactory.cpp.o
 
 src/gameData/Spell/SpellFactory.i: src/gameData/Spell/SpellFactory.cpp.i
@@ -809,7 +809,7 @@ src/gameData/Spell/SpellFactory.i: src/gameData/Spell/SpellFactory.cpp.i
 
 # target to preprocess a source file
 src/gameData/Spell/SpellFactory.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/Spell/SpellFactory.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/Spell/SpellFactory.cpp.i
 .PHONY : src/gameData/Spell/SpellFactory.cpp.i
 
 src/gameData/Spell/SpellFactory.s: src/gameData/Spell/SpellFactory.cpp.s
@@ -817,7 +817,7 @@ src/gameData/Spell/SpellFactory.s: src/gameData/Spell/SpellFactory.cpp.s
 
 # target to generate assembly for a file
 src/gameData/Spell/SpellFactory.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/Spell/SpellFactory.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/Spell/SpellFactory.cpp.s
 .PHONY : src/gameData/Spell/SpellFactory.cpp.s
 
 src/gameData/Spell/TeleportSpell.o: src/gameData/Spell/TeleportSpell.cpp.o
@@ -825,7 +825,7 @@ src/gameData/Spell/TeleportSpell.o: src/gameData/Spell/TeleportSpell.cpp.o
 
 # target to build an object file
 src/gameData/Spell/TeleportSpell.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/Spell/TeleportSpell.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/Spell/TeleportSpell.cpp.o
 .PHONY : src/gameData/Spell/TeleportSpell.cpp.o
 
 src/gameData/Spell/TeleportSpell.i: src/gameData/Spell/TeleportSpell.cpp.i
@@ -833,7 +833,7 @@ src/gameData/Spell/TeleportSpell.i: src/gameData/Spell/TeleportSpell.cpp.i
 
 # target to preprocess a source file
 src/gameData/Spell/TeleportSpell.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/Spell/TeleportSpell.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/Spell/TeleportSpell.cpp.i
 .PHONY : src/gameData/Spell/TeleportSpell.cpp.i
 
 src/gameData/Spell/TeleportSpell.s: src/gameData/Spell/TeleportSpell.cpp.s
@@ -841,7 +841,7 @@ src/gameData/Spell/TeleportSpell.s: src/gameData/Spell/TeleportSpell.cpp.s
 
 # target to generate assembly for a file
 src/gameData/Spell/TeleportSpell.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/Spell/TeleportSpell.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/Spell/TeleportSpell.cpp.s
 .PHONY : src/gameData/Spell/TeleportSpell.cpp.s
 
 src/gameData/SpellContainer.o: src/gameData/SpellContainer.cpp.o
@@ -849,7 +849,7 @@ src/gameData/SpellContainer.o: src/gameData/SpellContainer.cpp.o
 
 # target to build an object file
 src/gameData/SpellContainer.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/SpellContainer.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/SpellContainer.cpp.o
 .PHONY : src/gameData/SpellContainer.cpp.o
 
 src/gameData/SpellContainer.i: src/gameData/SpellContainer.cpp.i
@@ -857,7 +857,7 @@ src/gameData/SpellContainer.i: src/gameData/SpellContainer.cpp.i
 
 # target to preprocess a source file
 src/gameData/SpellContainer.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/SpellContainer.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/SpellContainer.cpp.i
 .PHONY : src/gameData/SpellContainer.cpp.i
 
 src/gameData/SpellContainer.s: src/gameData/SpellContainer.cpp.s
@@ -865,7 +865,7 @@ src/gameData/SpellContainer.s: src/gameData/SpellContainer.cpp.s
 
 # target to generate assembly for a file
 src/gameData/SpellContainer.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/SpellContainer.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/SpellContainer.cpp.s
 .PHONY : src/gameData/SpellContainer.cpp.s
 
 src/gameData/Stats.o: src/gameData/Stats.cpp.o
@@ -873,7 +873,7 @@ src/gameData/Stats.o: src/gameData/Stats.cpp.o
 
 # target to build an object file
 src/gameData/Stats.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/Stats.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/Stats.cpp.o
 .PHONY : src/gameData/Stats.cpp.o
 
 src/gameData/Stats.i: src/gameData/Stats.cpp.i
@@ -881,7 +881,7 @@ src/gameData/Stats.i: src/gameData/Stats.cpp.i
 
 # target to preprocess a source file
 src/gameData/Stats.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/Stats.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/Stats.cpp.i
 .PHONY : src/gameData/Stats.cpp.i
 
 src/gameData/Stats.s: src/gameData/Stats.cpp.s
@@ -889,7 +889,7 @@ src/gameData/Stats.s: src/gameData/Stats.cpp.s
 
 # target to generate assembly for a file
 src/gameData/Stats.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/gameData/Stats.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/Stats.cpp.s
 .PHONY : src/gameData/Stats.cpp.s
 
 src/graph/Ogre.o: src/graph/Ogre.cpp.o
@@ -897,7 +897,7 @@ src/graph/Ogre.o: src/graph/Ogre.cpp.o
 
 # target to build an object file
 src/graph/Ogre.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/graph/Ogre.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/graph/Ogre.cpp.o
 .PHONY : src/graph/Ogre.cpp.o
 
 src/graph/Ogre.i: src/graph/Ogre.cpp.i
@@ -905,7 +905,7 @@ src/graph/Ogre.i: src/graph/Ogre.cpp.i
 
 # target to preprocess a source file
 src/graph/Ogre.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/graph/Ogre.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/graph/Ogre.cpp.i
 .PHONY : src/graph/Ogre.cpp.i
 
 src/graph/Ogre.s: src/graph/Ogre.cpp.s
@@ -913,7 +913,7 @@ src/graph/Ogre.s: src/graph/Ogre.cpp.s
 
 # target to generate assembly for a file
 src/graph/Ogre.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/graph/Ogre.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/graph/Ogre.cpp.s
 .PHONY : src/graph/Ogre.cpp.s
 
 src/main.o: src/main.cpp.o
@@ -921,7 +921,7 @@ src/main.o: src/main.cpp.o
 
 # target to build an object file
 src/main.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/main.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -929,7 +929,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/main.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -937,7 +937,7 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/main.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
 src/network/PacketFactory.o: src/network/PacketFactory.cpp.o
@@ -945,7 +945,7 @@ src/network/PacketFactory.o: src/network/PacketFactory.cpp.o
 
 # target to build an object file
 src/network/PacketFactory.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/network/PacketFactory.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/network/PacketFactory.cpp.o
 .PHONY : src/network/PacketFactory.cpp.o
 
 src/network/PacketFactory.i: src/network/PacketFactory.cpp.i
@@ -953,7 +953,7 @@ src/network/PacketFactory.i: src/network/PacketFactory.cpp.i
 
 # target to preprocess a source file
 src/network/PacketFactory.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/network/PacketFactory.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/network/PacketFactory.cpp.i
 .PHONY : src/network/PacketFactory.cpp.i
 
 src/network/PacketFactory.s: src/network/PacketFactory.cpp.s
@@ -961,7 +961,7 @@ src/network/PacketFactory.s: src/network/PacketFactory.cpp.s
 
 # target to generate assembly for a file
 src/network/PacketFactory.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/network/PacketFactory.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/network/PacketFactory.cpp.s
 .PHONY : src/network/PacketFactory.cpp.s
 
 src/network/Socket.o: src/network/Socket.cpp.o
@@ -969,7 +969,7 @@ src/network/Socket.o: src/network/Socket.cpp.o
 
 # target to build an object file
 src/network/Socket.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/network/Socket.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/network/Socket.cpp.o
 .PHONY : src/network/Socket.cpp.o
 
 src/network/Socket.i: src/network/Socket.cpp.i
@@ -977,7 +977,7 @@ src/network/Socket.i: src/network/Socket.cpp.i
 
 # target to preprocess a source file
 src/network/Socket.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/network/Socket.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/network/Socket.cpp.i
 .PHONY : src/network/Socket.cpp.i
 
 src/network/Socket.s: src/network/Socket.cpp.s
@@ -985,7 +985,7 @@ src/network/Socket.s: src/network/Socket.cpp.s
 
 # target to generate assembly for a file
 src/network/Socket.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/network/Socket.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/network/Socket.cpp.s
 .PHONY : src/network/Socket.cpp.s
 
 src/network/listener/PacketListener.o: src/network/listener/PacketListener.cpp.o
@@ -993,7 +993,7 @@ src/network/listener/PacketListener.o: src/network/listener/PacketListener.cpp.o
 
 # target to build an object file
 src/network/listener/PacketListener.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/network/listener/PacketListener.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/network/listener/PacketListener.cpp.o
 .PHONY : src/network/listener/PacketListener.cpp.o
 
 src/network/listener/PacketListener.i: src/network/listener/PacketListener.cpp.i
@@ -1001,7 +1001,7 @@ src/network/listener/PacketListener.i: src/network/listener/PacketListener.cpp.i
 
 # target to preprocess a source file
 src/network/listener/PacketListener.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/network/listener/PacketListener.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/network/listener/PacketListener.cpp.i
 .PHONY : src/network/listener/PacketListener.cpp.i
 
 src/network/listener/PacketListener.s: src/network/listener/PacketListener.cpp.s
@@ -1009,7 +1009,7 @@ src/network/listener/PacketListener.s: src/network/listener/PacketListener.cpp.s
 
 # target to generate assembly for a file
 src/network/listener/PacketListener.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/network/listener/PacketListener.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/network/listener/PacketListener.cpp.s
 .PHONY : src/network/listener/PacketListener.cpp.s
 
 src/network/packet/Packet.o: src/network/packet/Packet.cpp.o
@@ -1017,7 +1017,7 @@ src/network/packet/Packet.o: src/network/packet/Packet.cpp.o
 
 # target to build an object file
 src/network/packet/Packet.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/network/packet/Packet.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/network/packet/Packet.cpp.o
 .PHONY : src/network/packet/Packet.cpp.o
 
 src/network/packet/Packet.i: src/network/packet/Packet.cpp.i
@@ -1025,7 +1025,7 @@ src/network/packet/Packet.i: src/network/packet/Packet.cpp.i
 
 # target to preprocess a source file
 src/network/packet/Packet.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/network/packet/Packet.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/network/packet/Packet.cpp.i
 .PHONY : src/network/packet/Packet.cpp.i
 
 src/network/packet/Packet.s: src/network/packet/Packet.cpp.s
@@ -1033,7 +1033,7 @@ src/network/packet/Packet.s: src/network/packet/Packet.cpp.s
 
 # target to generate assembly for a file
 src/network/packet/Packet.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/network/packet/Packet.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/network/packet/Packet.cpp.s
 .PHONY : src/network/packet/Packet.cpp.s
 
 src/network/packet/PacketAddPlayer.o: src/network/packet/PacketAddPlayer.cpp.o
@@ -1041,7 +1041,7 @@ src/network/packet/PacketAddPlayer.o: src/network/packet/PacketAddPlayer.cpp.o
 
 # target to build an object file
 src/network/packet/PacketAddPlayer.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/network/packet/PacketAddPlayer.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/network/packet/PacketAddPlayer.cpp.o
 .PHONY : src/network/packet/PacketAddPlayer.cpp.o
 
 src/network/packet/PacketAddPlayer.i: src/network/packet/PacketAddPlayer.cpp.i
@@ -1049,7 +1049,7 @@ src/network/packet/PacketAddPlayer.i: src/network/packet/PacketAddPlayer.cpp.i
 
 # target to preprocess a source file
 src/network/packet/PacketAddPlayer.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/network/packet/PacketAddPlayer.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/network/packet/PacketAddPlayer.cpp.i
 .PHONY : src/network/packet/PacketAddPlayer.cpp.i
 
 src/network/packet/PacketAddPlayer.s: src/network/packet/PacketAddPlayer.cpp.s
@@ -1057,7 +1057,7 @@ src/network/packet/PacketAddPlayer.s: src/network/packet/PacketAddPlayer.cpp.s
 
 # target to generate assembly for a file
 src/network/packet/PacketAddPlayer.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/network/packet/PacketAddPlayer.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/network/packet/PacketAddPlayer.cpp.s
 .PHONY : src/network/packet/PacketAddPlayer.cpp.s
 
 src/network/packet/PacketConnect.o: src/network/packet/PacketConnect.cpp.o
@@ -1065,7 +1065,7 @@ src/network/packet/PacketConnect.o: src/network/packet/PacketConnect.cpp.o
 
 # target to build an object file
 src/network/packet/PacketConnect.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/network/packet/PacketConnect.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/network/packet/PacketConnect.cpp.o
 .PHONY : src/network/packet/PacketConnect.cpp.o
 
 src/network/packet/PacketConnect.i: src/network/packet/PacketConnect.cpp.i
@@ -1073,7 +1073,7 @@ src/network/packet/PacketConnect.i: src/network/packet/PacketConnect.cpp.i
 
 # target to preprocess a source file
 src/network/packet/PacketConnect.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/network/packet/PacketConnect.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/network/packet/PacketConnect.cpp.i
 .PHONY : src/network/packet/PacketConnect.cpp.i
 
 src/network/packet/PacketConnect.s: src/network/packet/PacketConnect.cpp.s
@@ -1081,7 +1081,7 @@ src/network/packet/PacketConnect.s: src/network/packet/PacketConnect.cpp.s
 
 # target to generate assembly for a file
 src/network/packet/PacketConnect.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/network/packet/PacketConnect.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/network/packet/PacketConnect.cpp.s
 .PHONY : src/network/packet/PacketConnect.cpp.s
 
 src/network/packet/PacketDisconnect.o: src/network/packet/PacketDisconnect.cpp.o
@@ -1089,7 +1089,7 @@ src/network/packet/PacketDisconnect.o: src/network/packet/PacketDisconnect.cpp.o
 
 # target to build an object file
 src/network/packet/PacketDisconnect.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/network/packet/PacketDisconnect.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/network/packet/PacketDisconnect.cpp.o
 .PHONY : src/network/packet/PacketDisconnect.cpp.o
 
 src/network/packet/PacketDisconnect.i: src/network/packet/PacketDisconnect.cpp.i
@@ -1097,7 +1097,7 @@ src/network/packet/PacketDisconnect.i: src/network/packet/PacketDisconnect.cpp.i
 
 # target to preprocess a source file
 src/network/packet/PacketDisconnect.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/network/packet/PacketDisconnect.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/network/packet/PacketDisconnect.cpp.i
 .PHONY : src/network/packet/PacketDisconnect.cpp.i
 
 src/network/packet/PacketDisconnect.s: src/network/packet/PacketDisconnect.cpp.s
@@ -1105,7 +1105,7 @@ src/network/packet/PacketDisconnect.s: src/network/packet/PacketDisconnect.cpp.s
 
 # target to generate assembly for a file
 src/network/packet/PacketDisconnect.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/network/packet/PacketDisconnect.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/network/packet/PacketDisconnect.cpp.s
 .PHONY : src/network/packet/PacketDisconnect.cpp.s
 
 src/network/packet/PacketHandshake.o: src/network/packet/PacketHandshake.cpp.o
@@ -1113,7 +1113,7 @@ src/network/packet/PacketHandshake.o: src/network/packet/PacketHandshake.cpp.o
 
 # target to build an object file
 src/network/packet/PacketHandshake.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/network/packet/PacketHandshake.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/network/packet/PacketHandshake.cpp.o
 .PHONY : src/network/packet/PacketHandshake.cpp.o
 
 src/network/packet/PacketHandshake.i: src/network/packet/PacketHandshake.cpp.i
@@ -1121,7 +1121,7 @@ src/network/packet/PacketHandshake.i: src/network/packet/PacketHandshake.cpp.i
 
 # target to preprocess a source file
 src/network/packet/PacketHandshake.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/network/packet/PacketHandshake.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/network/packet/PacketHandshake.cpp.i
 .PHONY : src/network/packet/PacketHandshake.cpp.i
 
 src/network/packet/PacketHandshake.s: src/network/packet/PacketHandshake.cpp.s
@@ -1129,7 +1129,7 @@ src/network/packet/PacketHandshake.s: src/network/packet/PacketHandshake.cpp.s
 
 # target to generate assembly for a file
 src/network/packet/PacketHandshake.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/network/packet/PacketHandshake.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/network/packet/PacketHandshake.cpp.s
 .PHONY : src/network/packet/PacketHandshake.cpp.s
 
 src/network/packet/PacketMap.o: src/network/packet/PacketMap.cpp.o
@@ -1137,7 +1137,7 @@ src/network/packet/PacketMap.o: src/network/packet/PacketMap.cpp.o
 
 # target to build an object file
 src/network/packet/PacketMap.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/network/packet/PacketMap.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/network/packet/PacketMap.cpp.o
 .PHONY : src/network/packet/PacketMap.cpp.o
 
 src/network/packet/PacketMap.i: src/network/packet/PacketMap.cpp.i
@@ -1145,7 +1145,7 @@ src/network/packet/PacketMap.i: src/network/packet/PacketMap.cpp.i
 
 # target to preprocess a source file
 src/network/packet/PacketMap.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/network/packet/PacketMap.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/network/packet/PacketMap.cpp.i
 .PHONY : src/network/packet/PacketMap.cpp.i
 
 src/network/packet/PacketMap.s: src/network/packet/PacketMap.cpp.s
@@ -1153,7 +1153,7 @@ src/network/packet/PacketMap.s: src/network/packet/PacketMap.cpp.s
 
 # target to generate assembly for a file
 src/network/packet/PacketMap.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/network/packet/PacketMap.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/network/packet/PacketMap.cpp.s
 .PHONY : src/network/packet/PacketMap.cpp.s
 
 src/network/packet/PacketSelectPlayer.o: src/network/packet/PacketSelectPlayer.cpp.o
@@ -1161,7 +1161,7 @@ src/network/packet/PacketSelectPlayer.o: src/network/packet/PacketSelectPlayer.c
 
 # target to build an object file
 src/network/packet/PacketSelectPlayer.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/network/packet/PacketSelectPlayer.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/network/packet/PacketSelectPlayer.cpp.o
 .PHONY : src/network/packet/PacketSelectPlayer.cpp.o
 
 src/network/packet/PacketSelectPlayer.i: src/network/packet/PacketSelectPlayer.cpp.i
@@ -1169,7 +1169,7 @@ src/network/packet/PacketSelectPlayer.i: src/network/packet/PacketSelectPlayer.c
 
 # target to preprocess a source file
 src/network/packet/PacketSelectPlayer.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/network/packet/PacketSelectPlayer.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/network/packet/PacketSelectPlayer.cpp.i
 .PHONY : src/network/packet/PacketSelectPlayer.cpp.i
 
 src/network/packet/PacketSelectPlayer.s: src/network/packet/PacketSelectPlayer.cpp.s
@@ -1177,7 +1177,7 @@ src/network/packet/PacketSelectPlayer.s: src/network/packet/PacketSelectPlayer.c
 
 # target to generate assembly for a file
 src/network/packet/PacketSelectPlayer.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/network/packet/PacketSelectPlayer.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/network/packet/PacketSelectPlayer.cpp.s
 .PHONY : src/network/packet/PacketSelectPlayer.cpp.s
 
 src/world/Collider.o: src/world/Collider.cpp.o
@@ -1185,7 +1185,7 @@ src/world/Collider.o: src/world/Collider.cpp.o
 
 # target to build an object file
 src/world/Collider.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/world/Collider.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/world/Collider.cpp.o
 .PHONY : src/world/Collider.cpp.o
 
 src/world/Collider.i: src/world/Collider.cpp.i
@@ -1193,7 +1193,7 @@ src/world/Collider.i: src/world/Collider.cpp.i
 
 # target to preprocess a source file
 src/world/Collider.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/world/Collider.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/world/Collider.cpp.i
 .PHONY : src/world/Collider.cpp.i
 
 src/world/Collider.s: src/world/Collider.cpp.s
@@ -1201,7 +1201,7 @@ src/world/Collider.s: src/world/Collider.cpp.s
 
 # target to generate assembly for a file
 src/world/Collider.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/world/Collider.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/world/Collider.cpp.s
 .PHONY : src/world/Collider.cpp.s
 
 src/world/EntityCollideLayer.o: src/world/EntityCollideLayer.cpp.o
@@ -1209,7 +1209,7 @@ src/world/EntityCollideLayer.o: src/world/EntityCollideLayer.cpp.o
 
 # target to build an object file
 src/world/EntityCollideLayer.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/world/EntityCollideLayer.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/world/EntityCollideLayer.cpp.o
 .PHONY : src/world/EntityCollideLayer.cpp.o
 
 src/world/EntityCollideLayer.i: src/world/EntityCollideLayer.cpp.i
@@ -1217,7 +1217,7 @@ src/world/EntityCollideLayer.i: src/world/EntityCollideLayer.cpp.i
 
 # target to preprocess a source file
 src/world/EntityCollideLayer.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/world/EntityCollideLayer.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/world/EntityCollideLayer.cpp.i
 .PHONY : src/world/EntityCollideLayer.cpp.i
 
 src/world/EntityCollideLayer.s: src/world/EntityCollideLayer.cpp.s
@@ -1225,7 +1225,7 @@ src/world/EntityCollideLayer.s: src/world/EntityCollideLayer.cpp.s
 
 # target to generate assembly for a file
 src/world/EntityCollideLayer.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/world/EntityCollideLayer.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/world/EntityCollideLayer.cpp.s
 .PHONY : src/world/EntityCollideLayer.cpp.s
 
 src/world/Math.o: src/world/Math.cpp.o
@@ -1233,7 +1233,7 @@ src/world/Math.o: src/world/Math.cpp.o
 
 # target to build an object file
 src/world/Math.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/world/Math.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/world/Math.cpp.o
 .PHONY : src/world/Math.cpp.o
 
 src/world/Math.i: src/world/Math.cpp.i
@@ -1241,7 +1241,7 @@ src/world/Math.i: src/world/Math.cpp.i
 
 # target to preprocess a source file
 src/world/Math.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/world/Math.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/world/Math.cpp.i
 .PHONY : src/world/Math.cpp.i
 
 src/world/Math.s: src/world/Math.cpp.s
@@ -1249,7 +1249,7 @@ src/world/Math.s: src/world/Math.cpp.s
 
 # target to generate assembly for a file
 src/world/Math.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/world/Math.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/world/Math.cpp.s
 .PHONY : src/world/Math.cpp.s
 
 src/world/PhysicCollideLayer.o: src/world/PhysicCollideLayer.cpp.o
@@ -1257,7 +1257,7 @@ src/world/PhysicCollideLayer.o: src/world/PhysicCollideLayer.cpp.o
 
 # target to build an object file
 src/world/PhysicCollideLayer.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/world/PhysicCollideLayer.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/world/PhysicCollideLayer.cpp.o
 .PHONY : src/world/PhysicCollideLayer.cpp.o
 
 src/world/PhysicCollideLayer.i: src/world/PhysicCollideLayer.cpp.i
@@ -1265,7 +1265,7 @@ src/world/PhysicCollideLayer.i: src/world/PhysicCollideLayer.cpp.i
 
 # target to preprocess a source file
 src/world/PhysicCollideLayer.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/world/PhysicCollideLayer.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/world/PhysicCollideLayer.cpp.i
 .PHONY : src/world/PhysicCollideLayer.cpp.i
 
 src/world/PhysicCollideLayer.s: src/world/PhysicCollideLayer.cpp.s
@@ -1273,7 +1273,7 @@ src/world/PhysicCollideLayer.s: src/world/PhysicCollideLayer.cpp.s
 
 # target to generate assembly for a file
 src/world/PhysicCollideLayer.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/world/PhysicCollideLayer.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/world/PhysicCollideLayer.cpp.s
 .PHONY : src/world/PhysicCollideLayer.cpp.s
 
 src/world/World.o: src/world/World.cpp.o
@@ -1281,7 +1281,7 @@ src/world/World.o: src/world/World.cpp.o
 
 # target to build an object file
 src/world/World.cpp.o:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/world/World.cpp.o
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/world/World.cpp.o
 .PHONY : src/world/World.cpp.o
 
 src/world/World.i: src/world/World.cpp.i
@@ -1289,7 +1289,7 @@ src/world/World.i: src/world/World.cpp.i
 
 # target to preprocess a source file
 src/world/World.cpp.i:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/world/World.cpp.i
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/world/World.cpp.i
 .PHONY : src/world/World.cpp.i
 
 src/world/World.s: src/world/World.cpp.s
@@ -1297,7 +1297,7 @@ src/world/World.s: src/world/World.cpp.s
 
 # target to generate assembly for a file
 src/world/World.cpp.s:
-	$(MAKE) -f CMakeFiles/indie.dir/build.make CMakeFiles/indie.dir/src/world/World.cpp.s
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/world/World.cpp.s
 .PHONY : src/world/World.cpp.s
 
 # Help Target
@@ -1307,7 +1307,7 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
-	@echo "... indie"
+	@echo "... gauntlet"
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... src/core/Conf.o"
