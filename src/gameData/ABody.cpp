@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Mon May  9 14:07:25 2016 Alexis Trouve
-// Last update Tue May 10 21:03:55 2016 Alexis Trouve
+// Last update Sat May 14 15:37:51 2016 Alexis Trouve
 //
 
 #include "ABody.hh"
@@ -76,4 +76,9 @@ int				ABody::getId() const
 bool				ABody::getCollide() const
 {
   return (collideActive);
+}
+
+void				ABody::setCollide(bool ncollide)
+{
+  collideActive = ncollide;
 }

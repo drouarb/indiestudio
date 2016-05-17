@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 11:03:19 2016 Alexis Trouve
-// Last update Sat May 14 17:08:10 2016 Esteban Lewis
+// Last update Mon May 16 16:23:34 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -51,8 +51,8 @@ void		EntityCollideLayer::setCollidingAreaData()
 	{
 	  map[y][x].posx = x * SIZE_CASE;
 	  map[y][x].posy = y * SIZE_CASE;
-	  map[y][x].sizex = (x + 1) * SIZE_CASE - 0.01;
-	  map[y][x].sizex = (y + 1) * SIZE_CASE - 0.01;
+	  map[y][x].sizex = SIZE_CASE;
+	  map[y][x].sizex = SIZE_CASE;
 	  ++x;
 	}
       ++y;

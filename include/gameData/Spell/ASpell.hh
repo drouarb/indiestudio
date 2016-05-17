@@ -5,18 +5,21 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Tue May 10 11:05:51 2016 Alexis Trouve
-// Last update Tue May 10 17:35:27 2016 Alexis Trouve
+// Last update Mon May 16 16:18:26 2016 Alexis Trouve
 //
 
 #ifndef CPP_INDIE_STUDIO_ASPELL_HH
 # define CPP_INDIE_STUDIO_ASPELL_HH
 
 #include <string>
-#include "World.hh"
-#include "Actor.hh"
 
 namespace gauntlet
 {
+  namespace world
+  {
+    class World;
+  };
+
   class Actor;
   
   class ASpell
@@ -29,7 +32,7 @@ namespace gauntlet
     ASpell(int nid, std::string nname, double ncastTime);
     virtual ~ASpell();
     virtual void	 apply(double orientation, world::World &world,
-			       gauntlet::Actor &SpellCaster,
+			       gauntlet::Actor *SpellCaster,
 			       std::pair<double, double> coordPointed) = 0;
   };
 };

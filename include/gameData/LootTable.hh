@@ -3,7 +3,9 @@
 //
 
 #ifndef CPP_INDIE_STUDIO_LOOTTABLE_HH
-#define CPP_INDIE_STUDIO_LOOTTABLE_HH
+# define CPP_INDIE_STUDIO_LOOTTABLE_HH
+
+#include "Item.hh"
 
 namespace gauntlet
 {

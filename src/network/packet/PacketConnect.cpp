@@ -11,8 +11,7 @@ gauntlet::network::PacketConnect::PacketConnect() :
 { }
 
 gauntlet::network::PacketConnect::PacketConnect(t_rawdata *data) :
-        Packet(gauntlet::network::CONNECT),
-        protocolVersion(PROTOCOL_VERSION) {
+        PacketConnect() {
     this->deserialize(data);
 }
 

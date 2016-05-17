@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 18:36:12 2016 Alexis Trouve
-// Last update Thu May 12 16:52:42 2016 Alexis Trouve
+// Last update Sat May 14 15:01:12 2016 Alexis Trouve
 //
 
 #ifndef GAMEOBJFACT_HH_
@@ -18,6 +18,7 @@
 namespace gauntlet
 {
 
+  class GameObject;
   class	GameObjectFactory;
   
   struct	GameObjectStruct

@@ -3,7 +3,7 @@
 //
 
 #ifndef CPP_INDIE_STUDIO_SPELLCONTAINER_HH
-#define CPP_INDIE_STUDIO_SPELLCONTAINER_HH
+# define CPP_INDIE_STUDIO_SPELLCONTAINER_HH
 
 #include <list>
 #include "ASpell.hh"

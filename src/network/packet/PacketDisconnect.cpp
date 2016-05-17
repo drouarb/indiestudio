@@ -7,14 +7,13 @@
 #include "network/packet/PacketDisconnect.hh"
 
 
-gauntlet::network::PacketDisconnect::PacketDisconnect():
+gauntlet::network::PacketDisconnect::PacketDisconnect(const std::string &message):
         Packet(gauntlet::network::DISCONNECT),
-        message("")
+        message(message)
 { }
 
 gauntlet::network::PacketDisconnect::PacketDisconnect(t_rawdata *data):
-        Packet(gauntlet::network::DISCONNECT),
-        message("") {
+        PacketDisconnect("") {
     this->deserialize(data);
 }
 
@@ -31,17 +30,14 @@ t_rawdata *gauntlet::network::PacketDisconnect::serialize() const {
 void gauntlet::network::PacketDisconnect::deserialize(t_rawdata *data) {
     if (data->size() < sizeof(s_packetDisconnectData))
         throw std::logic_error("PacketDisconnect::Invalid data");
-    if (data->at(0) != gauntlet::network::CONNECT) {
+    if (data->at(0) != gauntlet::network::DISCONNECT) {
         throw std::logic_error("PacketDisconnect::Invalid packet id");
     }
     s_packetDisconnectData *packetDisconnectData = reinterpret_cast<s_packetDisconnectData *>(&data->front());
-    if (data->size() < sizeof(s_packetDisconnectData) + packetDisconnectData->stringsize - 1)
+    if (data->size() < sizeof(s_packetDisconnectData) + packetDisconnectData->stringsize) {
         throw std::logic_error("PacketDisconnect::Invalid data");
-    char *mess = &packetDisconnectData->stringstart;
-    message = "";
-    for (size_t i = 0; i < packetDisconnectData->stringsize; i++) {
-        message += mess[i];
     }
+    message.assign(&packetDisconnectData->stringstart, packetDisconnectData->stringsize);
 }
 
 const std::string &gauntlet::network::PacketDisconnect::getMessage() const {

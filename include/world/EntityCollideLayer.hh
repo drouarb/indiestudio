@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Tue May 10 20:28:30 2016 Alexis Trouve
-// Last update Sat May 14 17:18:08 2016 Esteban Lewis
+// Last update Mon May 16 16:23:00 2016 Alexis Trouve
 //
 
 #ifndef ENTITYCOLLIDELAYER_HH_
@@ -40,8 +40,8 @@ namespace gauntlet
       private:
       gauntlet::world::CollidingArea	**map;
       std::list<gauntlet::ABody*>	Entity;
-      double				sizeX;
-      double				sizeY;
+      unsigned int			sizeX;
+      unsigned int			sizeY;
     private:
       void				setCollidingAreaData();
       void				suprMapId(int id, int posx, int posy);
@@ -51,11 +51,11 @@ namespace gauntlet
       bool				canMovePoint(double posx, double posy);
       bool				tryMoveId(int id, double posx, double posy);
       void				suprId(int id);
+      bool				setNewBody(gauntlet::ABody *newBody);
       double				getDist(double ref_x, double ref_y, ABody &target);
       int				getAngle(double refx, double refy, int refa, ABody & target);
       std::list<gauntlet::ABody*>	giveBodyInAreaCircle(double posx, double posy, double rayon);
       std::list<gauntlet::ABody*>	giveBodyInAreaCone(double posx, double posy, short ref_angle, double size, short cone_angle);
-      bool				setNewBody(gauntlet::ABody *newBody);
     };
   };
 };

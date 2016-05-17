@@ -3,7 +3,7 @@
 //
 
 #ifndef CPP_INDIE_STUDIO_PLAYER_HH
-#define CPP_INDIE_STUDIO_PLAYER_HH
+# define CPP_INDIE_STUDIO_PLAYER_HH
 
 #include <string>
 #include "Actor.hh"
@@ -19,6 +19,9 @@ enum	itemSlot
 
 namespace gauntlet
 {
+
+  class Actor;
+
     class Player : public Actor
     {
     private:
