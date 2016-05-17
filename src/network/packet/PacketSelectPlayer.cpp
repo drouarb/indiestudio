@@ -6,14 +6,14 @@
 #include "network/packet/PacketSelectPlayer.hh"
 
 gauntlet::network::PacketSelectPlayer::PacketSelectPlayer(bool warrior, bool wizard, bool valkyrie, bool elf) :
-        Packet(gauntlet::network::PLAYERSELECT),
+        Packet(gauntlet::network::PLAYER_SELECT),
         warrior(warrior),
         wizard(wizard),
         valkyrie(valkyrie),
         elf(elf) { }
 
 gauntlet::network::PacketSelectPlayer::PacketSelectPlayer(t_rawdata *data) :
-        Packet(gauntlet::network::PLAYERSELECT) {
+        Packet(gauntlet::network::PLAYER_SELECT) {
     this->deserialize(data);
 }
 
@@ -33,7 +33,7 @@ t_rawdata *gauntlet::network::PacketSelectPlayer::serialize() const {
 void gauntlet::network::PacketSelectPlayer::deserialize(t_rawdata *data) {
     if (data->size() < sizeof(s_packetSelectPlayerData))
         throw std::logic_error("PacketSelectPlayer::Invalid data");
-    if (data->at(0) != gauntlet::network::PLAYERSELECT) {
+    if (data->at(0) != gauntlet::network::PLAYER_SELECT) {
         throw std::logic_error("PacketSelectPlayer::Invalid packet id");
     }
     s_packetSelectPlayerData *packetHandshakeData = reinterpret_cast<s_packetSelectPlayerData *>(&data->front());
