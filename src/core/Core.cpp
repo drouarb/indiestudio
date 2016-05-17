@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:13:44 2016 Esteban Lewis
-// Last update Sat May 14 14:18:23 2016 Esteban Lewis
+// Last update Tue May 17 14:30:37 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -15,37 +15,26 @@
 
 gauntlet::core::Core::Core() : keepGoing(true)
 {
-  menu = new MainMenu(*this, 100);
+  menu = new MainMenu(*this, 100, NULL);
 
   std::cout << std::endl << "-- TEST menu saveload 1st load" << std::endl;
   keyDown(IUIObserver::KEY_ESC);
-  keyDown(IUIObserver::KEY_DOWN);
   std::cout << "--TEST saveload" << std::endl;
-  keyDown(IUIObserver::KEY_ENTER);
-  keyDown(IUIObserver::KEY_DOWN);
-  keyDown(IUIObserver::KEY_DOWN);
-  keyDown(IUIObserver::KEY_DOWN);
+  buttonClick(101);
   std::cout << "--TEST select" << std::endl;
-  keyDown(IUIObserver::KEY_ENTER);
-  keyDown(IUIObserver::KEY_UP);
-  std::cout << "--TEST load" << std::endl;
-  keyDown(IUIObserver::KEY_ENTER);
+  buttonClick(203);
+  std::cout << "--TEST save" << std::endl;
+  buttonClick(201);
+  keyDown(IUIObserver::KEY_ESC);
 
   std::cout << std::endl << "-- TEST menu conf enter esc" << std::endl;
   keyDown(IUIObserver::KEY_ESC);
-  keyDown(IUIObserver::KEY_DOWN);
-  keyDown(IUIObserver::KEY_DOWN);
   std::cout << "-- TEST settings" << std::endl;
-  keyDown(IUIObserver::KEY_ENTER);
-  keyDown(IUIObserver::KEY_DOWN);
-  keyDown(IUIObserver::KEY_DOWN);
-  keyDown(IUIObserver::KEY_DOWN);
-  keyDown(IUIObserver::KEY_DOWN);
-  keyDown(IUIObserver::KEY_DOWN);
-  std::cout << "-- TEST validate" << std::endl;
-  keyDown(IUIObserver::KEY_ENTER);
+  buttonClick(102);
+  std::cout << "-- TEST key exit" << std::endl;
+  buttonClick(206);
   std::cout << "-- TEST escape" << std::endl;
-  keyDown(IUIObserver::KEY_ESC);
+  keyDown(IUIObserver::KEY_ENTER);
   std::cout << "-- TEST exit" << std::endl;
   keyDown(IUIObserver::KEY_ENTER);
   std::cout << "-- TEST exit" << std::endl;
@@ -53,7 +42,7 @@ gauntlet::core::Core::Core() : keepGoing(true)
 
   std::cout << std::endl << "-- TEST menu play" << std::endl;
   keyDown(IUIObserver::KEY_ENTER);
-  keyDown(IUIObserver::KEY_ESC);
+  buttonClick(100);
 
   //loop();
 }
@@ -77,7 +66,6 @@ gauntlet::core::Core::keyUp(IUIObserver::Key key)
 void
 gauntlet::core::Core::keyDown(IUIObserver::Key key)
 {
-  lastKey = key;
   Command cmd = conf.getLinkedKey(key);
 
   if (menu->getOpen())
@@ -98,6 +86,15 @@ gauntlet::core::Core::keyDown(IUIObserver::Key key)
 }
 
 void
+gauntlet::core::Core::buttonClick(int buttonId)
+{
+  if (menu->getOpen())
+    {
+      menu->buttonClick(buttonId);
+    }
+}
+
+void
 gauntlet::core::Core::mouseMove(int x, int y)
 {
   (void)x;
@@ -109,6 +106,13 @@ void
 gauntlet::core::Core::play()
 {
   std::cout << "CORE play" << std::endl;
+  //if no server
+  //	if player
+  //		destroy player
+  //	create server
+  //if no player
+  //	open lobby and create player
+  //close menu and display
 }
 
 void
@@ -133,12 +137,6 @@ gauntlet::core::Conf &
 gauntlet::core::Core::getConf()
 {
   return (conf);
-}
-
-gauntlet::core::IUIObserver::Key
-gauntlet::core::Core::getLastKey()
-{
-  return (lastKey);
 }
 
 void

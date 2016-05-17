@@ -5,19 +5,19 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:09:17 2016 Esteban Lewis
-// Last update Wed May 11 15:04:01 2016 Esteban Lewis
+// Last update Tue May 17 14:18:10 2016 Esteban Lewis
 //
 
 #include "ConfMenu.hh"
 #include "Core.hh"
 
-gauntlet::core::ConfMenu::ConfMenu(Core & core, int idStart) : Menu(core, idStart)
+gauntlet::core::ConfMenu::ConfMenu(Core & core, int idStart, Menu * parent) :
+  Menu(core, idStart, parent)
 {
-  waitForKey = false;
+  cmdToSet = NONE;
 
   buttons.push_back(MenuButton("Return", 0, 0, idStart));
 
-  //make sure corresponding cursor value is equal to original corresponding key
   buttons.push_back(MenuButton("Go forward", 0, 30, idStart + 1));
   buttons.push_back(MenuButton("Go backward", 0, 60, idStart + 2));
   buttons.push_back(MenuButton("Go left", 0, 90, idStart + 3));
@@ -25,20 +25,20 @@ gauntlet::core::ConfMenu::ConfMenu(Core & core, int idStart) : Menu(core, idStar
   buttons.push_back(MenuButton("Validate", 0, 150, idStart + 5));
   buttons.push_back(MenuButton("Exit", 0, 180, idStart + 6));
   
-  funs.insert(std::pair<int, void (ConfMenu::*)(Command)>
-	      (0, &ConfMenu::doReturn));
-  funs.insert(std::pair<int, void (ConfMenu::*)(Command)>
-	      (1, &ConfMenu::doKeylink));
-  funs.insert(std::pair<int, void (ConfMenu::*)(Command)>
-	      (2, &ConfMenu::doKeylink));
-  funs.insert(std::pair<int, void (ConfMenu::*)(Command)>
-	      (3, &ConfMenu::doKeylink));
-  funs.insert(std::pair<int, void (ConfMenu::*)(Command)>
-	      (4, &ConfMenu::doKeylink));
-  funs.insert(std::pair<int, void (ConfMenu::*)(Command)>
-	      (5, &ConfMenu::doKeylink));
-  funs.insert(std::pair<int, void (ConfMenu::*)(Command)>
-	      (6, &ConfMenu::doKeylink));
+  funs.insert(std::pair<int, void (ConfMenu::*)(int)>
+	      (buttons[0].getId(), &ConfMenu::doReturn));
+  funs.insert(std::pair<int, void (ConfMenu::*)(int)>
+	      (buttons[1].getId(), &ConfMenu::doKeylink));
+  funs.insert(std::pair<int, void (ConfMenu::*)(int)>
+	      (buttons[2].getId(), &ConfMenu::doKeylink));
+  funs.insert(std::pair<int, void (ConfMenu::*)(int)>
+	      (buttons[3].getId(), &ConfMenu::doKeylink));
+  funs.insert(std::pair<int, void (ConfMenu::*)(int)>
+	      (buttons[4].getId(), &ConfMenu::doKeylink));
+  funs.insert(std::pair<int, void (ConfMenu::*)(int)>
+	      (buttons[5].getId(), &ConfMenu::doKeylink));
+  funs.insert(std::pair<int, void (ConfMenu::*)(int)>
+	      (buttons[6].getId(), &ConfMenu::doKeylink));
 
 
   // KEY NAMES
@@ -142,10 +142,10 @@ gauntlet::core::ConfMenu::keyDown(Command key)
   if (!isOpen)
     return (false);
 
-  if (waitForKey)
+  if (cmdToSet != NONE)
     {
-      core.getConf().setKey((Command)cursor, core.getLastKey());
-      waitForKey = false;
+      core.getConf().setKey(cmdToSet, core.getConf().getLinkedCommand(key));
+      cmdToSet = NONE;
       return (true);
     }
   else
@@ -166,24 +166,34 @@ gauntlet::core::ConfMenu::getKeyName(IUIObserver::Key key)
   return (keyNames.begin()->second);
 }
 
-void
-gauntlet::core::ConfMenu::doButton(Command key)
+gauntlet::core::IUIObserver::Key
+gauntlet::core::ConfMenu::getNameKey(std::string const & name)
 {
-  if (key == ENTER)
-    (this->*(funs[cursor]))(key);
+  for (std::map<IUIObserver::Key, std::string>::iterator it = keyNames.begin();
+       it != keyNames.end(); ++it)
+    {
+      if (it->second == name)
+	return (it->first);
+    }
+  return (keyNames.begin()->first);
 }
 
 void
-gauntlet::core::ConfMenu::doReturn(Command key)
+gauntlet::core::ConfMenu::doButton(int btnId)
 {
-  (void)key;
+  (this->*(funs[btnId]))(btnId);
+}
+
+void
+gauntlet::core::ConfMenu::doReturn(int btnId)
+{
+  (void)btnId;
   setOpen(false);
 }
 
 void
-gauntlet::core::ConfMenu::doKeylink(Command key)
+gauntlet::core::ConfMenu::doKeylink(int btnId)
 {
-  (void)key;
-  waitForKey = true;
+  cmdToSet = (Command)(btnId - idStart);
   //TODO: visuals
 }

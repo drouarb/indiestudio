@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 13:37:58 2016 Esteban Lewis
-// Last update Tue May 10 10:55:18 2016 Esteban Lewis
+// Last update Tue May 17 13:23:39 2016 Esteban Lewis
 //
 
 #ifndef  MENUBUTTON_HH_
@@ -31,6 +31,7 @@ namespace			gauntlet
       std::string const &	getStr();
       void			draw();
       void			undraw();
+      int			getId();
 
     private:
       int			x;

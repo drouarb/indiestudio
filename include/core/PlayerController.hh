@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 15:49:54 2016 Esteban Lewis
-// Last update Wed May 11 13:46:18 2016 Esteban Lewis
+// Last update Mon May 16 14:16:03 2016 Esteban Lewis
 //
 
 #ifndef  PLAYERCONTROLLER_HH_
@@ -45,7 +45,7 @@ namespace				gauntlet
       double				moveY;
       int				action;
       std::map<Command, void (PlayerController::*)(bool)> ctrls;
-      //Player				playerRef;
+      void *				playerRef;
 
       void				cmdUp(bool);
       void				cmdDown(bool);

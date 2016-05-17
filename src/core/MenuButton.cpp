@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 13:47:34 2016 Esteban Lewis
-// Last update Tue May 10 10:55:39 2016 Esteban Lewis
+// Last update Tue May 17 13:23:58 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -64,4 +64,10 @@ gauntlet::core::MenuButton::undraw(/*OgreUI &*/)
 {
   //OgreUI.removeText(id);
   std::cout << "BTNRMV " << id << " " << str << std::endl;
+}
+
+int
+gauntlet::core::MenuButton::getId()
+{
+  return (id);
 }
