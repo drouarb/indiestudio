@@ -5,18 +5,19 @@
 #include <stdexcept>
 #include "network/packet/PacketHandshake.hh"
 
-gauntlet::network::PacketHandshake::PacketHandshake() :
+gauntlet::network::PacketHandshake::PacketHandshake(bool warrior, bool wizard, bool valkyrie, bool elf,
+                                                    unsigned char maxPlayers, unsigned char connectedPlayers) :
         Packet(gauntlet::network::HANDSHAKE),
-        warrior(false),
-        wizard(false),
-        valkyrie(false),
-        elf(false),
-        maxPlayers(0),
-        connectedPlayers(0)
+        warrior(warrior),
+        wizard(wizard),
+        valkyrie(valkyrie),
+        elf(elf),
+        maxPlayers(maxPlayers),
+        connectedPlayers(connectedPlayers)
 { }
 
 gauntlet::network::PacketHandshake::PacketHandshake(t_rawdata *data) :
-        PacketHandshake() {
+        Packet(gauntlet::network::HANDSHAKE) {
     this->deserialize(data);
 }
 
@@ -37,9 +38,9 @@ t_rawdata *gauntlet::network::PacketHandshake::serialize() const {
 
 void gauntlet::network::PacketHandshake::deserialize(t_rawdata *data) {
     if (data->size() < sizeof(s_packetHandshakeData))
-        throw std::logic_error("PacketDisconnect::Invalid data");
+        throw std::logic_error("PacketHandshake::Invalid data");
     if (data->at(0) != gauntlet::network::HANDSHAKE) {
-        throw std::logic_error("PacketDisconnect::Invalid packet id");
+        throw std::logic_error("PacketHandshake::Invalid packet id");
     }
     s_packetHandshakeData *packetHandshakeData = reinterpret_cast<s_packetHandshakeData *>(&data->front());
     connectedPlayers = packetHandshakeData->connectedPlayers;
@@ -50,19 +51,19 @@ void gauntlet::network::PacketHandshake::deserialize(t_rawdata *data) {
     elf = static_cast<bool>(packetHandshakeData->avaibleCharacters >> 3 & 0x01);
 }
 
-bool gauntlet::network::PacketHandshake::isWarrior() const {
+bool gauntlet::network::PacketHandshake::getWarrior() const {
     return warrior;
 }
 
-bool gauntlet::network::PacketHandshake::isWizard() const {
+bool gauntlet::network::PacketHandshake::getWizard() const {
     return wizard;
 }
 
-bool gauntlet::network::PacketHandshake::isValkyrie() const {
+bool gauntlet::network::PacketHandshake::getValkyrie() const {
     return valkyrie;
 }
 
-bool gauntlet::network::PacketHandshake::isElf() const {
+bool gauntlet::network::PacketHandshake::getElf() const {
     return elf;
 }
 

@@ -5,16 +5,15 @@
 #include <stdexcept>
 #include "network/packet/PacketSelectPlayer.hh"
 
-gauntlet::network::PacketSelectPlayer::PacketSelectPlayer():
-    Packet(gauntlet::network::PLAYERSELECT),
-    warrior(false),
-    wizard(false),
-    valkyrie(false),
-    elf(false)
-{ }
+gauntlet::network::PacketSelectPlayer::PacketSelectPlayer(bool warrior, bool wizard, bool valkyrie, bool elf) :
+        Packet(gauntlet::network::PLAYERSELECT),
+        warrior(warrior),
+        wizard(wizard),
+        valkyrie(valkyrie),
+        elf(elf) { }
 
-gauntlet::network::PacketSelectPlayer::PacketSelectPlayer(t_rawdata *data):
-    PacketSelectPlayer() {
+gauntlet::network::PacketSelectPlayer::PacketSelectPlayer(t_rawdata *data) :
+        Packet(gauntlet::network::PLAYERSELECT) {
     this->deserialize(data);
 }
 
@@ -33,9 +32,9 @@ t_rawdata *gauntlet::network::PacketSelectPlayer::serialize() const {
 
 void gauntlet::network::PacketSelectPlayer::deserialize(t_rawdata *data) {
     if (data->size() < sizeof(s_packetSelectPlayerData))
-        throw std::logic_error("PacketDisconnect::Invalid data");
-    if (data->at(0) != gauntlet::network::HANDSHAKE) {
-        throw std::logic_error("PacketDisconnect::Invalid packet id");
+        throw std::logic_error("PacketSelectPlayer::Invalid data");
+    if (data->at(0) != gauntlet::network::PLAYERSELECT) {
+        throw std::logic_error("PacketSelectPlayer::Invalid packet id");
     }
     s_packetSelectPlayerData *packetHandshakeData = reinterpret_cast<s_packetSelectPlayerData *>(&data->front());
     warrior = static_cast<bool>(packetHandshakeData->selectedCharacters >> 0 & 0x01);
@@ -44,19 +43,19 @@ void gauntlet::network::PacketSelectPlayer::deserialize(t_rawdata *data) {
     elf = static_cast<bool>(packetHandshakeData->selectedCharacters >> 3 & 0x01);
 }
 
-bool gauntlet::network::PacketSelectPlayer::isWarrior() const {
+bool gauntlet::network::PacketSelectPlayer::getWarrior() const {
     return warrior;
 }
 
-bool gauntlet::network::PacketSelectPlayer::isWizard() const {
+bool gauntlet::network::PacketSelectPlayer::getWizard() const {
     return wizard;
 }
 
-bool gauntlet::network::PacketSelectPlayer::isValkyrie() const {
+bool gauntlet::network::PacketSelectPlayer::getValkyrie() const {
     return valkyrie;
 }
 
-bool gauntlet::network::PacketSelectPlayer::isElf() const {
+bool gauntlet::network::PacketSelectPlayer::getElf() const {
     return elf;
 }
 
