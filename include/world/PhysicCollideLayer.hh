@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Thu May 12 16:15:29 2016 Alexis Trouve
-// Last update Mon May 16 16:22:25 2016 Alexis Trouve
+// Last update Wed May 18 17:05:31 2016 Alexis Trouve
 //
 
 #pragma once
@@ -27,10 +27,15 @@ namespace gauntlet {
 
             std::pair<double, double> getSize();
 
-            void setWall(int x, int y);
+	  void setWall(unsigned int x, unsigned int y);
+	  void unsetWall(unsigned int x, unsigned int y);
 
-            bool isWall(int x, int y);
+	  bool isWall(unsigned int x, unsigned int y);
 
+	  void	setWallWithSize(double xpos, double ypos, double xsize, double ysize);
+	  void	unsetWallWithSize(double xpos, double ypos, double xsize, double ysize);
+	  
+	  bool	checkCoordSize(double xpos, double ypos, double xsize, double ysize);
 
         };
     };

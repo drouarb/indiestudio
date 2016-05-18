@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 11:03:19 2016 Alexis Trouve
-// Last update Wed May 18 16:52:03 2016 Alexis Trouve
+// Last update Wed May 18 16:52:17 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -136,7 +136,7 @@ void		EntityCollideLayer::applyVectorToId(int id, short orient, double speed)
     return ;
   vectY = (Math::sin(orient) * speed);
   vectX = (Math::cos(orient) * speed);
-  if (tryMoveId(id, (*it1).getPos().first + vectX, (*it1)->getPos().second + vectY) == false)
+  if (tryMoveId(id, (*it1)->getPos().first + vectX, (*it1)->getPos().second + vectY) == false)
     if (tryMoveId(id, (*it1)->getPos().first + vectX, (*it1)->getPos().second) == false)
       tryMoveId(id, (*it1)->getPos().first, (*it1)->getPos().second + vectY);
 }
