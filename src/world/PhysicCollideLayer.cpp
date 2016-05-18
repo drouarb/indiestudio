@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Thu May 12 16:17:25 2016 Alexis Trouve
-// Last update Sat May 14 12:12:55 2016 Alexis Trouve
+// Last update Wed May 18 17:19:07 2016 Alexis Trouve
 //
 
 #include "PhysicCollideLayer.hh"
@@ -28,11 +28,29 @@ std::pair<double, double>    PhysicCollideLayer::getSize() {
     return (std::make_pair(this->sizeX, this->sizeY));
 }
 
-void PhysicCollideLayer::setWall(int x, int y) {
-    int i = (x * y) / BIT_IN_BYTE;
+void PhysicCollideLayer::setWall(unsigned int x, unsigned int y) {
+    unsigned int i = (x * y) / BIT_IN_BYTE;
     this->_data[i] ^= (-x ^ this->_data[i]) & (1 << ((x * y) % BIT_IN_BYTE));
 }
 
-bool PhysicCollideLayer::isWall(int x, int y) {
+void PhysicCollideLayer::unsetWall(unsigned int x, unsigned int y) {
+}
+
+bool PhysicCollideLayer::isWall(unsigned int x, unsigned int y) {
     return ((this->_data[x * y / BIT_IN_BYTE] >> ((x * y) % BIT_IN_BYTE)) & 1) == 1;
+}
+
+void	PhysicCollideLayer::setWallWithSize(double xpos, double ypos, double xsize, double ysize)
+{
+
+}
+
+void	PhysicCollideLayer::unsetWallWithSize(double xpos, double ypos, double xsize, double ysize)
+{
+
+}
+
+bool	PhysicCollideLayer::checkCoordSize(double xpos, double ypos, double xsize, double ysize)
+{
+
 }
