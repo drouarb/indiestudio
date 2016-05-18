@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Sat May 14 13:48:47 2016 Esteban Lewis
-// Last update Wed May 18 13:44:30 2016 Esteban Lewis
+// Last update Wed May 18 15:21:18 2016 Esteban Lewis
 //
 
 #include <math.h>
@@ -19,8 +19,8 @@ gauntlet::world::Math::init()
 {
   for (int a = 0; a <= 628; ++a)
     {
-      cos_tab[a] = cos((double)a / 100);
-      sin_tab[a] = sin((double)a / 100);
+      cos_tab[a] = ::cos((double)a / 100);
+      sin_tab[a] = ::sin((double)a / 100);
     }
 }
 
@@ -39,7 +39,7 @@ gauntlet::world::Math::cos(short angle)
 double
 gauntlet::world::Math::sin(short angle)
 {
-  return (sin_tab[simplify(angle)]);
+  return (sin_tab[simplify(angle + A_FLAT)]);
 }
 
 short

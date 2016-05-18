@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 11:03:19 2016 Alexis Trouve
-// Last update Wed May 18 16:34:29 2016 Alexis Trouve
+// Last update Wed May 18 16:52:03 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -134,11 +134,11 @@ void		EntityCollideLayer::applyVectorToId(int id, short orient, double speed)
     }
   if (it1 == Entity.end() && (*it1)->getId() != id)
     return ;
-  vectY = (Math.sin(orient) * speed);
-  vectX = (Math.cos(orient) * speed);
-  if (tryMoveId(id, (*it1).getPos().first + vectX, (*it1).getPos().second + vectY) == false)
-    if (tryMoveId(id, (*it1).getPos().first + vectX, (*it1).getPos().second) == false)
-      tryMoveId(id, (*it1).getPos().first, (*it1).getPos().second + vectY);
+  vectY = (Math::sin(orient) * speed);
+  vectX = (Math::cos(orient) * speed);
+  if (tryMoveId(id, (*it1).getPos().first + vectX, (*it1)->getPos().second + vectY) == false)
+    if (tryMoveId(id, (*it1)->getPos().first + vectX, (*it1)->getPos().second) == false)
+      tryMoveId(id, (*it1)->getPos().first, (*it1)->getPos().second + vectY);
 }
 
 void		EntityCollideLayer::suprMapId(int id, int x, int y)
@@ -224,9 +224,9 @@ std::list<gauntlet::ABody*>	EntityCollideLayer::giveBodyInAreaCircle(double posx
   long min_x = (int)((posx - rayon) / SIZE_CASE);
   long min_y = (int)((posy - rayon) / SIZE_CASE);
 
-  if (max_x >= sizeX)
+  if (max_x >= (int)sizeX)
     max_x = sizeX - 1;
-  if (max_y >= sizeY)
+  if (max_y >= (int)sizeY)
     max_y = sizeY - 1;
   if (min_x < 0)
     min_x = 0;
@@ -281,4 +281,11 @@ ABody			*EntityCollideLayer::getBodyId(int id)
       it1++;
     }
   return (NULL);
+}
+
+std::pair<double, double>	EntityCollideLayer::pointInFront(ABody & body, double dist)
+{
+  return (std::pair<double, double>
+	  (body.getPos().first + dist * Math::cos(body.getOrientation()),
+	   body.getPos().second + dist * Math::sin(body.getOrientation())));
 }
