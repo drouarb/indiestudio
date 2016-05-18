@@ -5,19 +5,20 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 10:59:47 2016 Esteban Lewis
-// Last update Wed May 11 14:29:53 2016 Esteban Lewis
+// Last update Tue May 17 15:29:21 2016 Esteban Lewis
 //
 
 #ifndef  CORE_HH_
 # define CORE_HH_
 
 # include <unistd.h>
-# include "IUIObserver.hh"
+# include "CoreUIObserver.hh"
 # include "Menu.hh"
 # include "PlayerController.hh"
 # include "Stopwatch.hh"
 # include "Conf.hh"
 # include "ConfMenu.hh"
+# include "Position.hh"
 
 namespace			gauntlet
 {
@@ -31,6 +32,7 @@ namespace			gauntlet
 
       void			keyUp(IUIObserver::Key);
       void			keyDown(IUIObserver::Key);
+      void			buttonClick(int buttonId);
       void			mouseMove(int x, int y);
 
       void			play();
@@ -38,11 +40,10 @@ namespace			gauntlet
       void			load(std::string file);
       void			save(std::string file);
       Conf &			getConf();
-      IUIObserver::Key		getLastKey();
 
     private:
       bool			keepGoing;
-      IUIObserver		observer;
+      IUIObserver *		observer;
       //OgreUI			ogre;
       Menu *			menu;
       PlayerController		pc;

@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Tue May 10 14:50:56 2016 Esteban Lewis
-// Last update Wed May 11 14:21:58 2016 Esteban Lewis
+// Last update Tue May 17 13:52:02 2016 Esteban Lewis
 //
 
 #ifndef  CONF_HH_
@@ -39,6 +39,7 @@ namespace			gauntlet
       void			setKey(Command to_change,
 				       IUIObserver::Key replace_by);
       Command			getLinkedKey(IUIObserver::Key);
+      IUIObserver::Key		getLinkedCommand(Command);
 
     private:
       std::map<Command, IUIObserver::Key> map;

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
-project(indie)
+project(gauntlet)
 enable_testing()
 
 option(INDIE_TESTS "Enable test compilation" OFF)
@@ -23,11 +23,11 @@ FILE(
         include/**/*.h*
 )
 
-add_executable(indie ${INDIE})
+add_executable(gauntlet ${INDIE})
 
-target_link_libraries(indie ${CMAKE_THREAD_LIBS_INIT})
-target_link_libraries(indie ${OGRE_LIBRARY})
-target_link_libraries(indie ${PTHREAD_LIBRARY})
+target_link_libraries(gauntlet ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(gauntlet ${OGRE_LIBRARY})
+target_link_libraries(gauntlet ${PTHREAD_LIBRARY})
 
 if (INDIE_TESTS)
     add_subdirectory(tests)
