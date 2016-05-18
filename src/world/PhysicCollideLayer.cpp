@@ -16,7 +16,8 @@ using namespace world;
 PhysicCollideLayer::PhysicCollideLayer(double sizex, double sizey) {
     this->sizeX = sizex;
     this->sizeY = sizey;
-    this->_data = new char[sizex * sizey / BIT_IN_BYTE];
+    int d = sizex * sizey / BIT_IN_BYTE;
+    this->_data = new char[d];
 }
 
 PhysicCollideLayer::~PhysicCollideLayer() {
