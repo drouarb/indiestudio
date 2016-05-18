@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:55:06 2016 Esteban Lewis
-// Last update Mon May 16 16:06:07 2016 Alexis Trouve
+// Last update Wed May 18 13:32:43 2016 Alexis Trouve
 //
 
 #ifndef  WORLD_HH_
@@ -25,7 +25,7 @@ namespace			gauntlet
     {
     private:
       gauntlet::world::Collider			collider;
-      //gauntlet::BodyFactory			Factory;
+      gauntlet::BodyFactory			Factory;
       std::list<gauntlet::ABody*>		bodys;
     public:
       World();

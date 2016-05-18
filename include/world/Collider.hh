@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 14:41:17 2016 Alexis Trouve
-// Last update Mon May 16 17:31:39 2016 Alexis Trouve
+// Last update Wed May 18 11:25:27 2016 Alexis Trouve
 //
 
 #ifndef COLLIDER_HH_
@@ -33,7 +33,7 @@ namespace gauntlet
       bool				setNewBody(ABody *body);
       void				suprBody(int id);
       std::list<gauntlet::ABody*>	giveBodyInAreaCircle(double posx, double posy, double rayon);
-      std::list<gauntlet::Abody*>	giveBodyInAreaCone(double posx, double posy, short ref_angle, double size, short cone_angle);
+      std::list<gauntlet::ABody*>	giveBodyInAreaCone(double posx, double posy, short ref_angle, double size, short cone_angle);
     };
   };
 };

@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Sat May 14 14:19:06 2016 Esteban Lewis
+// Last update Wed May 18 13:35:34 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -35,10 +35,10 @@ void	World::loadGame(std::string file)
 
 void	World::tester()
 {
-  /*ABody	*newBody;
+  ABody	*newBody;
 
   std::cerr << "giveBody null work" << std::endl;
-  if (Factory.giveBody(538928) == NULL)
+  if (Factory.giveBody(static_cast<BodyEnum>(538928)) == NULL)
     std::cerr << "ok" << std::endl;
   std::cerr << "giverealBody" << std::endl;
   newBody = Factory.giveBody(BARBARE);
@@ -47,22 +47,22 @@ void	World::tester()
   if (collider.setNewBody(newBody) == false)
     std::cerr << "ok return" << std::endl;
   std::cerr << "ok" << std::endl;
-  std::cerr << "new guy 80 80"
+  std::cerr << "new guy 80 80" << std::endl;
   newBody = Factory.giveBody(BARBARE);
   newBody->changePos(80, 80);
   std::cerr << "x80:" << newBody->getPos().first << " y80:"
-	    << newBody->getPos().second << <<" id:" << newBody->getId() << " ok" << std::endl;
+	    << newBody->getPos().second << " id:" << newBody->getId() << " ok" << std::endl;
   std::cerr << "in collider with no one at 80, 80" << std::endl;
   if (collider.setNewBody(newBody) == true)
     std::cerr << "ok return" << std::endl;
   std::cerr << "ok" << std::endl;
-  std::cerr << "new guy 80 80"
+  std::cerr << "new guy 80 80" << std::endl;
   newBody = Factory.giveBody(BARBARE);
   newBody->changePos(80, 80);
   std::cerr << "x80:" << newBody->getPos().first << " y80:"
-	    << newBody->getPos().second << <<" id:" << newBody->getId() << " ok" << std::endl;
+	    << newBody->getPos().second <<" id:" << newBody->getId() << " ok" << std::endl;
   std::cerr << "in collider with no one at 80, 80" << std::endl;
   if (collider.setNewBody(newBody) == false)
     std::cerr << "ok return" << std::endl;
-    std::cerr << "ok" << std::endl;*/
+  std::cerr << "ok" << std::endl;
 }
