@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Mon May  9 14:07:25 2016 Alexis Trouve
-// Last update Sat May 14 15:37:51 2016 Alexis Trouve
+// Last update Wed May 18 14:13:59 2016 Esteban Lewis
 //
 
 #include "ABody.hh"
@@ -53,12 +53,12 @@ void				ABody::changeOrientation(short norient)
   orientation = norient;
 }
 
-std::pair<double, double>	ABody::getPos() const
+std::pair<double, double> const &	ABody::getPos() const
 {
   return (coord);
 }
 
-std::pair<double, double>	ABody::getSize() const
+std::pair<double, double> const &	ABody::getSize() const
 {
   return (size);
 }

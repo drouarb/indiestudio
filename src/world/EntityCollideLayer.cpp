@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 11:03:19 2016 Alexis Trouve
-// Last update Mon May 16 16:23:34 2016 Alexis Trouve
+// Last update Wed May 18 15:30:34 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -17,7 +17,7 @@ using namespace world;
 
 EntityCollideLayer::EntityCollideLayer(gauntlet::world::PhysicCollideLayer *physicLayer)
 {
-  int				i;
+  unsigned int			i;
   std::pair<double, double>	size;
 
   size = physicLayer->getSize();
@@ -26,7 +26,7 @@ EntityCollideLayer::EntityCollideLayer(gauntlet::world::PhysicCollideLayer *phys
     errx(1, "Error : out of memory");
   sizeX = static_cast<int>(size.first / SIZE_CASE);
   sizeY = static_cast<int>(size.second / SIZE_CASE);
-  while (i < size.first)
+  while (i < sizeX)
     {
       if ((map[i] = new CollidingArea[static_cast<int>(size.second / SIZE_CASE)]) == NULL)
 	errx(1, "Error : out of memory");
@@ -201,9 +201,9 @@ std::list<gauntlet::ABody*>	EntityCollideLayer::giveBodyInAreaCircle(double posx
   int min_x = (int)((posx - rayon) / SIZE_CASE);
   int min_y = (int)((posy - rayon) / SIZE_CASE);
 
-  if (max_x >= sizeX)
+  if (max_x >= (int)sizeX)
     max_x = sizeX - 1;
-  if (max_y >= sizeY)
+  if (max_y >= (int)sizeY)
     max_y = sizeY - 1;
   if (min_x < 0)
     min_x = 0;
@@ -244,4 +244,11 @@ std::list<gauntlet::ABody*>	EntityCollideLayer::giveBodyInAreaCone(double posx, 
 	}
     }
   return (list);
+}
+
+std::pair<double, double>	EntityCollideLayer::pointInFront(ABody & body, double dist)
+{
+  return (std::pair<double, double>
+	  (body.getPos().first + dist * Math::cos(body.getOrientation()),
+	   body.getPos().second + dist * Math::sin(body.getOrientation())));
 }
