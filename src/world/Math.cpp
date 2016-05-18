@@ -5,14 +5,14 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Sat May 14 13:48:47 2016 Esteban Lewis
-// Last update Sat May 14 16:49:59 2016 Esteban Lewis
+// Last update Wed May 18 13:44:30 2016 Esteban Lewis
 //
 
 #include <math.h>
 #include "Math.hh"
 
-static double cos_tab[628];
-static double sin_tab[628];
+static double cos_tab[629];
+static double sin_tab[629];
 
 void
 gauntlet::world::Math::init()
