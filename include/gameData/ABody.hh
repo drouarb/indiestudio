@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Mon May  9 14:06:15 2016 Alexis Trouve
-// Last update Mon May 16 17:08:31 2016 Alexis Trouve
+// Last update Wed May 18 16:45:08 2016 Alexis Trouve
 //
 
 #ifndef ABODY_HH_
@@ -37,8 +37,8 @@ namespace gauntlet
     virtual void			changeOrientation(short norient);
     virtual void			setCollide(bool ncollide);
 
-    virtual std::pair<double, double>	getPos() const;
-    virtual std::pair<double, double>	getSize() const;
+    virtual std::pair<double, double> const &	getPos() const;
+    virtual std::pair<double, double> const &	getSize() const;
     virtual short			getOrientation() const;
     virtual int				getId() const;
     virtual bool			getCollide() const;

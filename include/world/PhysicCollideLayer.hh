@@ -8,26 +8,30 @@
 // Last update Mon May 16 16:22:25 2016 Alexis Trouve
 //
 
-#ifndef PHYSIC_COLLIDE_LAYER_HH_
-#define PHYSIC_COLLIDE_LAYER_HH_
+#pragma once
 
 #include <tuple>
 
-namespace gauntlet
-{
-  namespace world
-  {
-    class	PhysicCollideLayer
-    {
-    private:
-      double	sizeX;
-      double	sizeY;
-    public:
-      PhysicCollideLayer(double sizeX, double sizeY);
-      ~PhysicCollideLayer();
-      std::pair<double, double>		getSize();
-    };
-  };
-};
+static const int BIT_IN_BYTE = 8;
+namespace gauntlet {
+    namespace world {
+        class PhysicCollideLayer {
+        private:
+            double sizeX;
+            double sizeY;
+            char *_data;
+        public:
+            PhysicCollideLayer(double sizeX, double sizeY);
 
-#endif
+            ~PhysicCollideLayer();
+
+            std::pair<double, double> getSize();
+
+            void setWall(int x, int y);
+
+            bool isWall(int x, int y);
+
+
+        };
+    };
+};
