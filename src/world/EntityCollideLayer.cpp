@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 11:03:19 2016 Alexis Trouve
-// Last update Mon May 16 17:01:49 2016 Alexis Trouve
+// Last update Wed May 18 13:30:35 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -139,7 +139,7 @@ void		EntityCollideLayer::suprId(int id)
   std::list<gauntlet::ABody*>::iterator	it1;
   int				x;
   int				y;
-x
+
   it1 = Entity.begin();
   while (it1 != Entity.end())
     {
@@ -178,15 +178,15 @@ bool		EntityCollideLayer::setNewBody(gauntlet::ABody *newBody)
   return (false);
 }
 
-double				EntityCollideLayer::getDist(double refx, double refy,
-							    ABody & target)
+double		EntityCollideLayer::getDist(double refx, double refy,
+					    const ABody &target)
 {
   return (sqrt(pow(target.getPos().first - refx, 2) +
 	       pow(target.getPos().second - refy, 2)));
 }
 
-int				EntityCollideLayer::getAngle(double refx, double refy,
-							     int refa, ABody & target)
+int		EntityCollideLayer::getAngle(double refx, double refy,
+					     int refa, const ABody & target)
 {
   return (Math::getAngle(-atan2((target.getPos().second - refy),
 				(target.getPos().first - refx))) - refa);
@@ -196,10 +196,10 @@ std::list<gauntlet::ABody*>	EntityCollideLayer::giveBodyInAreaCircle(double posx
 {
   std::list<ABody*>		list;
 
-  int max_x = (int)((posx + rayon) / SIZE_CASE);
-  int max_y = (int)((posy + rayon) / SIZE_CASE);
-  int min_x = (int)((posx - rayon) / SIZE_CASE);
-  int min_y = (int)((posy - rayon) / SIZE_CASE);
+  long max_x = (int)((posx + rayon) / SIZE_CASE);
+  long max_y = (int)((posy + rayon) / SIZE_CASE);
+  long min_x = (int)((posx - rayon) / SIZE_CASE);
+  long min_y = (int)((posy - rayon) / SIZE_CASE);
 
   if (max_x >= sizeX)
     max_x = sizeX - 1;

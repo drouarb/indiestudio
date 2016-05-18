@@ -42,10 +42,10 @@ EQUALS = =
 CMAKE_EDIT_COMMAND = /usr/bin/ccmake
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/lewis_e/rendu/cpp/cpp_indie_studio
+CMAKE_SOURCE_DIR = /home/trouve_b/Desktop/CPP_project/cpp_indie_studio
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/lewis_e/rendu/cpp/cpp_indie_studio
+CMAKE_BINARY_DIR = /home/trouve_b/Desktop/CPP_project/cpp_indie_studio
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -82,9 +82,9 @@ test/fast: test
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/lewis_e/rendu/cpp/cpp_indie_studio/CMakeFiles /home/lewis_e/rendu/cpp/cpp_indie_studio/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/trouve_b/Desktop/CPP_project/cpp_indie_studio/CMakeFiles /home/trouve_b/Desktop/CPP_project/cpp_indie_studio/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/lewis_e/rendu/cpp/cpp_indie_studio/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/trouve_b/Desktop/CPP_project/cpp_indie_studio/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -123,6 +123,84 @@ gauntlet: cmake_check_build_system
 gauntlet/fast:
 	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/build
 .PHONY : gauntlet/fast
+
+#=============================================================================
+# Target rules for targets named PacketAddPlayerTest
+
+# Build rule for target.
+PacketAddPlayerTest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 PacketAddPlayerTest
+.PHONY : PacketAddPlayerTest
+
+# fast build rule for target.
+PacketAddPlayerTest/fast:
+	$(MAKE) -f tests/CMakeFiles/PacketAddPlayerTest.dir/build.make tests/CMakeFiles/PacketAddPlayerTest.dir/build
+.PHONY : PacketAddPlayerTest/fast
+
+#=============================================================================
+# Target rules for targets named PacketConnectTest
+
+# Build rule for target.
+PacketConnectTest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 PacketConnectTest
+.PHONY : PacketConnectTest
+
+# fast build rule for target.
+PacketConnectTest/fast:
+	$(MAKE) -f tests/CMakeFiles/PacketConnectTest.dir/build.make tests/CMakeFiles/PacketConnectTest.dir/build
+.PHONY : PacketConnectTest/fast
+
+#=============================================================================
+# Target rules for targets named PacketDisconnectTest
+
+# Build rule for target.
+PacketDisconnectTest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 PacketDisconnectTest
+.PHONY : PacketDisconnectTest
+
+# fast build rule for target.
+PacketDisconnectTest/fast:
+	$(MAKE) -f tests/CMakeFiles/PacketDisconnectTest.dir/build.make tests/CMakeFiles/PacketDisconnectTest.dir/build
+.PHONY : PacketDisconnectTest/fast
+
+#=============================================================================
+# Target rules for targets named PacketHandshakeTest
+
+# Build rule for target.
+PacketHandshakeTest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 PacketHandshakeTest
+.PHONY : PacketHandshakeTest
+
+# fast build rule for target.
+PacketHandshakeTest/fast:
+	$(MAKE) -f tests/CMakeFiles/PacketHandshakeTest.dir/build.make tests/CMakeFiles/PacketHandshakeTest.dir/build
+.PHONY : PacketHandshakeTest/fast
+
+#=============================================================================
+# Target rules for targets named PacketMapTest
+
+# Build rule for target.
+PacketMapTest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 PacketMapTest
+.PHONY : PacketMapTest
+
+# fast build rule for target.
+PacketMapTest/fast:
+	$(MAKE) -f tests/CMakeFiles/PacketMapTest.dir/build.make tests/CMakeFiles/PacketMapTest.dir/build
+.PHONY : PacketMapTest/fast
+
+#=============================================================================
+# Target rules for targets named PacketSelectPlayerTest
+
+# Build rule for target.
+PacketSelectPlayerTest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 PacketSelectPlayerTest
+.PHONY : PacketSelectPlayerTest
+
+# fast build rule for target.
+PacketSelectPlayerTest/fast:
+	$(MAKE) -f tests/CMakeFiles/PacketSelectPlayerTest.dir/build.make tests/CMakeFiles/PacketSelectPlayerTest.dir/build
+.PHONY : PacketSelectPlayerTest/fast
 
 src/core/Conf.o: src/core/Conf.cpp.o
 .PHONY : src/core/Conf.o
@@ -1310,6 +1388,12 @@ help:
 	@echo "... gauntlet"
 	@echo "... rebuild_cache"
 	@echo "... test"
+	@echo "... PacketAddPlayerTest"
+	@echo "... PacketConnectTest"
+	@echo "... PacketDisconnectTest"
+	@echo "... PacketHandshakeTest"
+	@echo "... PacketMapTest"
+	@echo "... PacketSelectPlayerTest"
 	@echo "... src/core/Conf.o"
 	@echo "... src/core/Conf.i"
 	@echo "... src/core/Conf.s"
