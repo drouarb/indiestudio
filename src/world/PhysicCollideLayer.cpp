@@ -13,18 +13,25 @@
 using namespace gauntlet;
 using namespace world;
 
-PhysicCollideLayer::PhysicCollideLayer(double sizex, double sizey)
-{
-  sizeX = sizex;
-  sizeY = sizey;
+PhysicCollideLayer::PhysicCollideLayer(double sizex, double sizey) {
+    this->sizeX = sizex;
+    this->sizeY = sizey;
+    this->_data = new char[sizex * sizey / BIT_IN_BYTE];
 }
 
-PhysicCollideLayer::~PhysicCollideLayer()
-{
+PhysicCollideLayer::~PhysicCollideLayer() {
 
 }
 
-std::pair<double, double>	PhysicCollideLayer::getSize()
-{
-  return (std::make_pair(sizeX, sizeY));
+std::pair<double, double>    PhysicCollideLayer::getSize() {
+    return (std::make_pair(this->sizeX, this->sizeY));
+}
+
+void PhysicCollideLayer::setWall(int x, int y) {
+    int i = (x * y) / BIT_IN_BYTE;
+    this->_data[i] ^= (-x ^ this->_data[i]) & (1 << ((x * y) % BIT_IN_BYTE));
+}
+
+bool PhysicCollideLayer::isWall(int x, int y) {
+    return ((this->_data[x * y / BIT_IN_BYTE] >> ((x * y) % BIT_IN_BYTE)) & 1) == 1;
 }
