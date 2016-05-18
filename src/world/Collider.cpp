@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 14:44:15 2016 Alexis Trouve
-// Last update Sat May 14 14:49:22 2016 Alexis Trouve
+// Last update Wed May 18 11:45:41 2016 Alexis Trouve
 //
 
 #include "Collider.hh"
@@ -37,4 +37,14 @@ bool	Collider::setNewBody(ABody *body)
 void	Collider::suprBody(int id)
 {
   dynamicLayer->suprId(id);
+}
+
+std::list<gauntlet::ABody*>	Collider::giveBodyInAreaCircle(double posx, double posy, double rayon)
+{
+  return (dynamicLayer->giveBodyInAreaCircle(posx, posy, rayon));
+}
+
+std::list<gauntlet::ABody*>	Collider::giveBodyInAreaCone(double posx, double posy, short ref_angle, double size, short cone_angle)
+{
+  return (dynamicLayer->giveBodyInAreaCone(posx, posy, ref_angle, size, cone_angle));
 }
