@@ -5,9 +5,10 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 19:05:59 2016 Alexis Trouve
-// Last update Thu May 12 17:10:59 2016 Alexis Trouve
+// Last update Wed May 18 14:19:14 2016 Alexis Trouve
 //
 
+#include <iostream>
 #include "PlayerFactory.hh"
 
 using namespace gauntlet;
