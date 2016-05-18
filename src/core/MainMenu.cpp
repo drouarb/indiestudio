@@ -5,30 +5,31 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:09:17 2016 Esteban Lewis
-// Last update Wed May 11 13:50:06 2016 Esteban Lewis
+// Last update Tue May 17 16:11:57 2016 Esteban Lewis
 //
 
 #include <iostream>
 #include "MainMenu.hh"
 
-gauntlet::core::MainMenu::MainMenu(Core & core, int idStart) : Menu(core, idStart)
+gauntlet::core::MainMenu::MainMenu(Core & core, int idStart, Menu * parent) :
+  Menu(core, idStart, parent)
 {
-  buttons.push_back(MenuButton("Play", 0, 0, idStart + 0));
-  buttons.push_back(MenuButton("Save / load", 0, 50, idStart + 1));
-  buttons.push_back(MenuButton("Settings", 0, 100, idStart + 2));
-  buttons.push_back(MenuButton("Exit", 0, 150, idStart + 3));
+  buttons.push_back(MenuButton("Play", PCENTER, idStart + 0));
+  buttons.push_back(MenuButton("Save / load", PCENTER, idStart + 1));
+  buttons.push_back(MenuButton("Settings", PCENTER, idStart + 2));
+  buttons.push_back(MenuButton("Exit", PCENTER, idStart + 3));
   
-  funs.insert(std::pair<int, void (MainMenu::*)(Command)>
-	      (0, &MainMenu::doPlay));
-  funs.insert(std::pair<int, void (MainMenu::*)(Command)>
-	      (1, &MainMenu::doSaveload));
-  funs.insert(std::pair<int, void (MainMenu::*)(Command)>
-	      (2, &MainMenu::doSettings));
-  funs.insert(std::pair<int, void (MainMenu::*)(Command)>
-	      (3, &MainMenu::doExit));
+  funs.insert(std::pair<int, void (MainMenu::*)()>
+	      (buttons[0].getId(), &MainMenu::doPlay));
+  funs.insert(std::pair<int, void (MainMenu::*)()>
+	      (buttons[1].getId(), &MainMenu::doSaveload));
+  funs.insert(std::pair<int, void (MainMenu::*)()>
+	      (buttons[2].getId(), &MainMenu::doSettings));
+  funs.insert(std::pair<int, void (MainMenu::*)()>
+	      (buttons[3].getId(), &MainMenu::doExit));
 
   submenus.push_back(new SaveloadMenu(core, idStart + 100, this));
-  submenus.push_back(new ConfMenu(core, idStart + 100));
+  submenus.push_back(new ConfMenu(core, idStart + 100, this));
 }
 
 gauntlet::core::MainMenu::~MainMenu()
@@ -46,39 +47,61 @@ gauntlet::core::MainMenu::undraw()
   undrawButtons();
 }
 
-void
-gauntlet::core::MainMenu::doButton(Command key)
+bool
+gauntlet::core::MainMenu::keyDown(Command cmd)
 {
-  if (key == ENTER)
-    (this->*(funs[cursor]))(key);
+  if (!isOpen)
+    return (false);
+
+  if (cmd == ESC /* && there is no running game*/)
+    {
+      bool openSubmenu = false;
+
+      for (std::vector<Menu *>::iterator it = submenus.begin(); it != submenus.end(); ++it)
+	if (*it && (*it)->getOpen())
+	  {
+	    openSubmenu = true;
+	    break ;
+	  }
+
+      if (!openSubmenu)
+	{
+	  //no open submenu to redirect the command to, no game to go back to -> do nothing
+	  return (true);
+	}
+    }
+
+  return (Menu::keyDown(cmd));
 }
 
 void
-gauntlet::core::MainMenu::doPlay(Command key)
+gauntlet::core::MainMenu::doButton(int btnId)
 {
-  (void)key;
+  (this->*(funs[btnId]))();
+}
+
+void
+gauntlet::core::MainMenu::doPlay()
+{
   setOpen(false);
   core.play();
 }
 
 void
-gauntlet::core::MainMenu::doSaveload(Command key)
+gauntlet::core::MainMenu::doSaveload()
 {
-  (void)key;
   submenus[MENU_SL]->setOpen(true);
 }
 
 void
-gauntlet::core::MainMenu::doSettings(Command key)
+gauntlet::core::MainMenu::doSettings()
 {
-  (void)key;
   submenus[MENU_CONFIG]->setOpen(true);
 }
 
 void
-gauntlet::core::MainMenu::doExit(Command key)
+gauntlet::core::MainMenu::doExit()
 {
-  (void)key;
   setOpen(false);
   core.exit();
 }

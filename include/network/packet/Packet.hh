@@ -18,7 +18,7 @@ namespace gauntlet {
             CONNECT               = 0x01,
             DISCONNECT            = 0x02,
             HANDSHAKE             = 0x03,
-            PLAYERSELECT          = 0x04,
+            PLAYER_SELECT         = 0x04,
             MAP                   = 0x05,
             ADD_PLAYER            = 0x06,
             ADD_CREATURE          = 0x07,

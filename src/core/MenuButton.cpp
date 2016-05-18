@@ -5,20 +5,22 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 13:47:34 2016 Esteban Lewis
-// Last update Tue May 10 10:55:39 2016 Esteban Lewis
+// Last update Tue May 17 15:15:58 2016 Esteban Lewis
 //
 
 #include <iostream>
 #include "MenuButton.hh"
 
-gauntlet::core::MenuButton::MenuButton(std::string const & str, int x, int y,
+gauntlet::core::MenuButton::MenuButton(std::string const & str, Position p,
 				       int id/*, OgreUI & ogre*/) :
-  x(x), y(y), str(str), id(id)//, ogre(ogre)
+  pos(p), str(str), id(id)//, ogre(ogre)
 { }
 
 gauntlet::core::MenuButton::MenuButton(gauntlet::core::MenuButton const & other) :
-  x(other.x), y(other.y), str(other.str), id(other.id)//, ogre(other.ogre)
-{ }
+  pos(other.pos), str(other.str), id(other.id)//, ogre(other.ogre)
+{
+  //remove from 
+}
 
 gauntlet::core::MenuButton::~MenuButton()
 { }
@@ -26,24 +28,17 @@ gauntlet::core::MenuButton::~MenuButton()
 gauntlet::core::MenuButton &
 gauntlet::core::MenuButton::operator=(MenuButton const & other)
 {
-  x = other.x;
-  y = other.y;
+  pos = other.pos;
   str = other.str;
   id = other.id;
   //ogre = other.ogre;
   return (*this);
 }
 
-int
-gauntlet::core::MenuButton::getX()
+gauntlet::core::Position
+gauntlet::core::MenuButton::getPos()
 {
-  return (x);
-}
-
-int
-gauntlet::core::MenuButton::getY()
-{
-  return (y);
+  return (pos);
 }
 
 std::string const &
@@ -53,15 +48,21 @@ gauntlet::core::MenuButton::getStr()
 }
 
 void
-gauntlet::core::MenuButton::draw(/*OgreUI &*/)
+gauntlet::core::MenuButton::draw()
 {
-  //OgreUI.addText(x, y, id);
+  //ogre.addButton(pos, id, text, 0);
   std::cout << "BTNADD " << id << " " << str << std::endl;
 }
 
 void
-gauntlet::core::MenuButton::undraw(/*OgreUI &*/)
+gauntlet::core::MenuButton::undraw()
 {
-  //OgreUI.removeText(id);
+  //ogre.removeButton(id);
   std::cout << "BTNRMV " << id << " " << str << std::endl;
+}
+
+int
+gauntlet::core::MenuButton::getId()
+{
+  return (id);
 }

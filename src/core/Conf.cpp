@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Tue May 10 14:57:42 2016 Esteban Lewis
-// Last update Wed May 11 14:34:25 2016 Esteban Lewis
+// Last update Tue May 17 13:59:12 2016 Esteban Lewis
 //
 
 #include "Conf.hh"
@@ -59,4 +59,18 @@ gauntlet::core::Conf::getLinkedKey(IUIObserver::Key key)
 	}
     }
   return (NONE);
+}
+
+
+gauntlet::core::IUIObserver::Key
+gauntlet::core::Conf::getLinkedCommand(gauntlet::core::Command cmd)
+{
+  for (std::map<Command, IUIObserver::Key>::iterator it = map.begin(); it != map.end(); ++it)
+    {
+      if (it->first == cmd)
+	{
+	  return (it->second);
+	}
+    }
+  return (IUIObserver::KEY_NONE);
 }

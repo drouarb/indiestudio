@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:23:51 2016 Esteban Lewis
-// Last update Wed May 11 13:46:41 2016 Esteban Lewis
+// Last update Tue May 17 14:12:21 2016 Esteban Lewis
 //
 
 #ifndef  MENU_HH_
@@ -24,27 +24,27 @@ namespace			gauntlet
     class			Menu
     {
     public:
-      Menu(Core &, int id_start);
+      Menu(Core &, int id_start, Menu * parent);
       virtual ~Menu();
 
       virtual void		draw() = 0;
       virtual void		undraw() = 0;
       virtual bool		keyDown(Command);
+      virtual bool		buttonClick(int buttonId);
       void			setOpen(bool);
       bool			getOpen();
 
     protected:
-      virtual void		doButton(Command) = 0;
-      void			moveCursor(int newPos);
+      virtual void		doButton(int id) = 0;
       void			drawButtons();
       void			undrawButtons();
 
       int			idStart;
       Core &			core;
       bool			isOpen;
-      int			cursor;
       std::vector<MenuButton>	buttons;
       std::vector<Menu *>	submenus;
+      Menu *			parent;
     };
   };
 };
