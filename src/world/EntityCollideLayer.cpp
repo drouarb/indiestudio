@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 11:03:19 2016 Alexis Trouve
-// Last update Wed May 18 13:30:35 2016 Alexis Trouve
+// Last update Wed May 18 16:34:29 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -17,18 +17,18 @@ using namespace world;
 
 EntityCollideLayer::EntityCollideLayer(gauntlet::world::PhysicCollideLayer *physicLayer)
 {
-  int				i;
+  unsigned int			i;
   std::pair<double, double>	size;
 
   size = physicLayer->getSize();
   i = 0;
-  if ((map = new CollidingArea*[static_cast<int>(size.first / SIZE_CASE)]) == NULL)
+  if ((map = new CollidingArea*[static_cast<int>(size.second / SIZE_CASE)]) == NULL)
     errx(1, "Error : out of memory");
   sizeX = static_cast<int>(size.first / SIZE_CASE);
   sizeY = static_cast<int>(size.second / SIZE_CASE);
-  while (i < size.first)
+  while (i < sizeY)
     {
-      if ((map[i] = new CollidingArea[static_cast<int>(size.second / SIZE_CASE)]) == NULL)
+      if ((map[i] = new CollidingArea[static_cast<int>(size.first / SIZE_CASE)]) == NULL)
 	errx(1, "Error : out of memory");
       ++i;
     }
@@ -114,8 +114,31 @@ bool		EntityCollideLayer::tryMoveId(int id, double posx, double posy)
 	    }
 	  return (false);
 	}
+      it1++;
     }
   return (false);
+}
+
+void		EntityCollideLayer::applyVectorToId(int id, short orient, double speed)
+{
+  std::list<gauntlet::ABody*>::iterator	it1;
+  double				vectX;
+  double				vectY;
+
+  it1 = Entity.begin();
+  while (it1 != Entity.end())
+    {
+      if ((*it1)->getId() == id)
+	break;
+      it1++;
+    }
+  if (it1 == Entity.end() && (*it1)->getId() != id)
+    return ;
+  vectY = (Math.sin(orient) * speed);
+  vectX = (Math.cos(orient) * speed);
+  if (tryMoveId(id, (*it1).getPos().first + vectX, (*it1).getPos().second + vectY) == false)
+    if (tryMoveId(id, (*it1).getPos().first + vectX, (*it1).getPos().second) == false)
+      tryMoveId(id, (*it1).getPos().first, (*it1).getPos().second + vectY);
 }
 
 void		EntityCollideLayer::suprMapId(int id, int x, int y)
@@ -244,4 +267,18 @@ std::list<gauntlet::ABody*>	EntityCollideLayer::giveBodyInAreaCone(double posx, 
 	}
     }
   return (list);
+}
+
+ABody			*EntityCollideLayer::getBodyId(int id)
+{
+  std::list<gauntlet::ABody*>::iterator	it1;
+
+  it1 = Entity.begin();
+  while (it1 != Entity.end())
+    {
+      if ((*it1)->getId() == id)
+	return (*it1);
+      it1++;
+    }
+  return (NULL);
 }
