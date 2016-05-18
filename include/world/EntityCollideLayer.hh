@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Tue May 10 20:28:30 2016 Alexis Trouve
-// Last update Wed May 18 16:29:58 2016 Alexis Trouve
+// Last update Wed May 18 16:46:31 2016 Alexis Trouve
 //
 
 #ifndef ENTITYCOLLIDELAYER_HH_
@@ -51,14 +51,15 @@ namespace gauntlet
 
       bool				canMovePoint(double posx, double posy);
       bool				tryMoveId(int id, double posx, double posy);
+      void				applyVectorToId(int id, short orient, double speed);
       void				suprId(int id);
       bool				setNewBody(gauntlet::ABody *newBody);
       double				getDist(double ref_x, double ref_y, const ABody &target);
       int				getAngle(double refx, double refy, int refa, const ABody &target);
       std::list<gauntlet::ABody*>	giveBodyInAreaCircle(double posx, double posy, double rayon);
       std::list<gauntlet::ABody*>	giveBodyInAreaCone(double posx, double posy, short ref_angle, double size, short cone_angle);
-
       gauntlet::ABody			*getBodyId(int id);
+      std::pair<double, double>		pointInFront(ABody & body, double dist);
     };
   };
 };
