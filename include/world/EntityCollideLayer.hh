@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Tue May 10 20:28:30 2016 Alexis Trouve
-// Last update Mon May 16 17:26:54 2016 Alexis Trouve
+// Last update Wed May 18 16:29:58 2016 Alexis Trouve
 //
 
 #ifndef ENTITYCOLLIDELAYER_HH_
@@ -48,6 +48,7 @@ namespace gauntlet
     public:
       EntityCollideLayer(gauntlet::world::PhysicCollideLayer *physicLayer);
       ~EntityCollideLayer();
+
       bool				canMovePoint(double posx, double posy);
       bool				tryMoveId(int id, double posx, double posy);
       void				suprId(int id);
@@ -56,6 +57,8 @@ namespace gauntlet
       int				getAngle(double refx, double refy, int refa, const ABody &target);
       std::list<gauntlet::ABody*>	giveBodyInAreaCircle(double posx, double posy, double rayon);
       std::list<gauntlet::ABody*>	giveBodyInAreaCone(double posx, double posy, short ref_angle, double size, short cone_angle);
+
+      gauntlet::ABody			*getBodyId(int id);
     };
   };
 };

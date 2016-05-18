@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Wed May 18 13:35:34 2016 Alexis Trouve
+// Last update Wed May 18 14:13:16 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -17,7 +17,9 @@ using namespace world;
 
 World::World()
 {
+  std::cerr << "first" << std::endl;
   Math::init();
+  std::cerr << "end" << std::endl;
 }
 
 World::~World()
@@ -41,7 +43,8 @@ void	World::tester()
   if (Factory.giveBody(static_cast<BodyEnum>(538928)) == NULL)
     std::cerr << "ok" << std::endl;
   std::cerr << "giverealBody" << std::endl;
-  newBody = Factory.giveBody(BARBARE);
+  if ((newBody = Factory.giveBody(BARBARE)) == NULL)
+    std::cerr << "error return" << std::endl;
   std::cerr << newBody->getId() << " ok" << std::endl;
   std::cerr << "new guy in collider without real coord" << std::endl;
   if (collider.setNewBody(newBody) == false)

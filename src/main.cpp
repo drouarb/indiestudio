@@ -8,9 +8,9 @@
 
 int main()
 {
-  gauntlet::core::Core();
+  //gauntlet::core::Core();
   gauntlet::world::World	newWorld;
 
-  //newWorld.tester();
+  newWorld.tester();
   return (0);
 }

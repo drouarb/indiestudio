@@ -5,15 +5,16 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Mon May  9 14:07:25 2016 Alexis Trouve
-// Last update Sat May 14 15:37:51 2016 Alexis Trouve
+// Last update Wed May 18 14:19:43 2016 Alexis Trouve
 //
 
+#include <iostream>
 #include "ABody.hh"
 
 using namespace gauntlet;
 
 ABody::ABody(bool collide, int nid, double posx,
-				 double posy, double sizex, double sizey, short norient)
+	     double posy, double sizex, double sizey, short norient)
 {
   collideActive = collide;
   id = nid;
