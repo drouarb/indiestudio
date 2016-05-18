@@ -9,29 +9,29 @@
 //
 
 #pragma once
+
 #include <tuple>
 
 static const int BIT_IN_BYTE = 8;
-namespace gauntlet
-{
-  namespace world
-  {
-    class	PhysicCollideLayer
-    {
-    private:
-      double	sizeX;
-      double	sizeY;
-      char      *_data;
-    public:
-      PhysicCollideLayer(double sizeX, double sizeY);
-      ~PhysicCollideLayer();
-      std::pair<double, double>		getSize();
+namespace gauntlet {
+    namespace world {
+        class PhysicCollideLayer {
+        private:
+            double sizeX;
+            double sizeY;
+            char *_data;
+        public:
+            PhysicCollideLayer(double sizeX, double sizeY);
 
-        void setWall(int x, int y);
+            ~PhysicCollideLayer();
 
-        bool isWall(int x, int y);
+            std::pair<double, double> getSize();
+
+            void setWall(int x, int y);
+
+            bool isWall(int x, int y);
 
 
+        };
     };
-  };
 };
