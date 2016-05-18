@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:09:17 2016 Esteban Lewis
-// Last update Wed May 11 13:50:33 2016 Esteban Lewis
+// Last update Tue May 17 15:14:12 2016 Esteban Lewis
 //
 
 #include <dirent.h>
@@ -14,18 +14,18 @@
 #include "SaveloadMenu.hh"
 
 gauntlet::core::SaveloadMenu::SaveloadMenu(Core & core, int idStart, Menu * parent) :
-  Menu(core, idStart), parent(parent)
+  Menu(core, idStart, parent)
 {
-  buttons.push_back(MenuButton("Return", 0, 0, idStart));
-  buttons.push_back(MenuButton("Save", 0, 50, idStart + 1));
-  buttons.push_back(MenuButton("Load", 100, 50, idStart + 2));
+  buttons.push_back(MenuButton("Return", PCENTER, idStart));
+  buttons.push_back(MenuButton("Save", PCENTER, idStart + 1));
+  buttons.push_back(MenuButton("Load", PCENTER, idStart + 2));
 
-  funs.insert(std::pair<int, void (SaveloadMenu::*)(Command)>
-	      (0, &SaveloadMenu::doReturn));
-  funs.insert(std::pair<int, void (SaveloadMenu::*)(Command)>
-	      (1, &SaveloadMenu::doSave));
-  funs.insert(std::pair<int, void (SaveloadMenu::*)(Command)>
-	      (2, &SaveloadMenu::doLoad));
+  funs.insert(std::pair<int, void (SaveloadMenu::*)(int)>
+	      (buttons[0].getId(), &SaveloadMenu::doReturn));
+  funs.insert(std::pair<int, void (SaveloadMenu::*)(int)>
+	      (buttons[1].getId(), &SaveloadMenu::doSave));
+  funs.insert(std::pair<int, void (SaveloadMenu::*)(int)>
+	      (buttons[2].getId(), &SaveloadMenu::doLoad));
 
   selected = NULL;
   getSaves();
@@ -47,10 +47,9 @@ gauntlet::core::SaveloadMenu::undraw()
 }
 
 void
-gauntlet::core::SaveloadMenu::doButton(Command key)
+gauntlet::core::SaveloadMenu::doButton(int btnId)
 {
-  if (key == ENTER)
-    (this->*(funs[cursor]))(key);
+  (this->*(funs[btnId]))(btnId);
 }
 
 void
@@ -67,9 +66,9 @@ gauntlet::core::SaveloadMenu::getSaves()
       //TODO: space problem
       if (ent->d_name[0] != '.')
 	{
-	  buttons.push_back(MenuButton(ent->d_name, 0, id * 30, idStart + id));
-	  funs.insert(std::pair<int, void (SaveloadMenu::*)(Command)>
-		      (id, &SaveloadMenu::doSelect));
+	  buttons.push_back(MenuButton(ent->d_name, PCENTER, idStart + id));
+	  funs.insert(std::pair<int, void (SaveloadMenu::*)(int)>
+		      (buttons[(int)buttons.size() - 1].getId(), &SaveloadMenu::doSelect));
 	  id++;
 	}
     }
@@ -83,20 +82,28 @@ gauntlet::core::SaveloadMenu::message(std::string const & msg)
 }
 
 void
-gauntlet::core::SaveloadMenu::doSelect(Command key)
+gauntlet::core::SaveloadMenu::doSelect(int btnId)
 {
-  (void)key;
-  if (selected == &(buttons[cursor]))
-    selected = NULL;
-  else
-    selected = &(buttons[cursor]);
-  //TODO: visuals on selected button
+  for (std::vector<MenuButton>::iterator it = buttons.begin();
+       it != buttons.end(); ++it)
+    {
+      if (it->getId() == btnId)
+	{
+	  if (selected == &(*it))
+	    selected = NULL;
+	  else
+	    selected = &(*it);
+	  //TODO: info on selected
+	  return ;
+	}
+    }
+  selected = NULL;
 }
 
 void
-gauntlet::core::SaveloadMenu::doSave(Command key)
+gauntlet::core::SaveloadMenu::doSave(int btnId)
 {
-  (void)key;
+  (void)btnId;
   setOpen(false);
   if (selected == NULL)
     core.save("");
@@ -105,21 +112,22 @@ gauntlet::core::SaveloadMenu::doSave(Command key)
 }
 
 void
-gauntlet::core::SaveloadMenu::doLoad(Command key)
+gauntlet::core::SaveloadMenu::doLoad(int btnId)
 {
-  (void)key;
+  (void)btnId;
   if (selected == NULL)
     message("Please select which game to load.");
   else
     {
-      parent->setOpen(false);
+      setOpen(false);
+      //TODO: play?
       core.load(selected->getStr());
     }
 }
 
 void
-gauntlet::core::SaveloadMenu::doReturn(Command key)
+gauntlet::core::SaveloadMenu::doReturn(int btnId)
 {
-  (void)key;
+  (void)btnId;
   setOpen(false);
 }

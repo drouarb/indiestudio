@@ -5,11 +5,11 @@
 // Login   <celeri_y@epitech.net>
 // 
 // Started on  Tue May 17 13:53:16 2016 Célérien Yohann
-// Last update Tue May 17 13:59:55 2016 Célérien Yohann
+// Last update Tue May 17 15:05:31 2016 Esteban Lewis
 //
 
-#ifndef POSITION_H_H
-#define POSITION_H_H
+#ifndef  BTNPOSITION_HH_
+# define BTNPOSITION_HH_
 
 namespace	gauntlet
 {

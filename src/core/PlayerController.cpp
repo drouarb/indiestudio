@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 15:52:38 2016 Esteban Lewis
-// Last update Wed May 11 13:49:12 2016 Esteban Lewis
+// Last update Mon May 16 14:16:25 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -27,6 +27,7 @@ gauntlet::core::PlayerController::PlayerController()
   moveX = 0;
   moveY = 0;
   action = NONE;
+  playerRef = NULL;
 }
 
 gauntlet::core::PlayerController::~PlayerController()

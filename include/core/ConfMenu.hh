@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:06:35 2016 Esteban Lewis
-// Last update Wed May 11 14:55:15 2016 Esteban Lewis
+// Last update Tue May 17 14:17:54 2016 Esteban Lewis
 //
 
 #ifndef  CONFMENU_HH_
@@ -21,7 +21,7 @@ namespace			gauntlet
     class			ConfMenu : public Menu
     {
     public:
-      ConfMenu(Core &, int idStart);
+      ConfMenu(Core &, int idStart, Menu * parent);
       ~ConfMenu();
 
       void			draw();
@@ -29,15 +29,16 @@ namespace			gauntlet
       bool			keyDown(Command);
 
     protected:
-      std::map<int, void (ConfMenu::*)(Command)> funs;
+      std::map<int, void (ConfMenu::*)(int)> funs;
       std::map<IUIObserver::Key, std::string> keyNames;
-      bool			waitForKey;
+      Command			cmdToSet;
 
       std::string const &	getKeyName(IUIObserver::Key);
-      void			doButton(Command);
+      IUIObserver::Key		getNameKey(std::string const &);
+      void			doButton(int);
 
-      void			doReturn(Command);
-      void			doKeylink(Command);
+      void			doReturn(int);
+      void			doKeylink(int);
     };
   };
 };

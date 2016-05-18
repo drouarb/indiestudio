@@ -4,10 +4,9 @@
 
 #include <iostream>
 #include "Core.hh"
-#include "World.hh"
 
 int main()
 {
-  std::cout << "Hello maggle" << std::endl;
   gauntlet::core::Core();
+  return (0);
 }
