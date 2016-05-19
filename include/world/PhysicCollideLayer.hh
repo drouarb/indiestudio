@@ -12,31 +12,37 @@
 
 #include <tuple>
 
-static const int BIT_IN_BYTE = 8;
 namespace gauntlet {
     namespace world {
         class PhysicCollideLayer {
         private:
-            double sizeX;
-            double sizeY;
+            static const int BIT_IN_BYTE = 8;
+            const double sizeX;
+            const double sizeY;
             char *_data;
         public:
             PhysicCollideLayer(double sizeX, double sizeY);
 
             ~PhysicCollideLayer();
 
-            std::pair<double, double> getSize();
+            std::pair<double, double> getSize()const;
 
-	  void setWall(unsigned int x, unsigned int y);
-	  void unsetWall(unsigned int x, unsigned int y);
+            void setWall(double x, double y);
 
-	  bool isWall(unsigned int x, unsigned int y);
+            void unsetWall(double x, double y);
 
-	  void	setWallWithSize(double xpos, double ypos, double xsize, double ysize);
-	  void	unsetWallWithSize(double xpos, double ypos, double xsize, double ysize);
-	  
-	  bool	checkCoordSize(double xpos, double ypos, double xsize, double ysize);
+            bool isWall(unsigned int x, unsigned int y);
 
+            void setWall(double xpos, double ypos, double xsize, double ysize);
+
+            void unsetWall(double xpos, double ypos, double xsize, double ysize);
+
+            bool checkCoordSize(double xpos, double ypos, double xsize, double ysize);
+
+
+            const char *getData() const;
         };
     };
 };
+
+std::ostream &operator<<(std::ostream &stream, const gauntlet::world::PhysicCollideLayer &p);
