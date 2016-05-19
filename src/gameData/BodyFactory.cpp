@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 16:50:32 2016 Alexis Trouve
-// Last update Wed May 18 14:20:50 2016 Alexis Trouve
+// Last update Thu May 19 16:10:08 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -14,8 +14,14 @@
 using namespace gauntlet;
 
 BodyFactory::BodyFactory()
+{}
+
+BodyFactory::BodyFactory(world::World *nworld)
 {
-  fillBodyTab();
+  world = nworld;
+  fillCreatureTab();
+  fillGameObjectTab();
+  fillPlayerTab();
 }
 
 BodyFactory::~BodyFactory()
@@ -30,55 +36,136 @@ int			BodyFactory::giveNextId()
   return (nextId);
 }
 
-void			BodyFactory::fillBodyTab()
+void			BodyFactory::fillPlayerTab()
 {
-  bodyTab.push_back({BARBARE, &BodyFactory::giveBarbare});
-  bodyTab.push_back({ELF, &BodyFactory::giveElf});
-  bodyTab.push_back({MAGE, &BodyFactory::giveMage});
-  bodyTab.push_back({VALKYRIE, &BodyFactory::giveValkyrie});
-  bodyTab.push_back({BROKINGWALLVERTICAL, &BodyFactory::giveBrokingWallVertical});
-  bodyTab.push_back({MOMIE, &BodyFactory::giveMomie});
+  setBarbare();
+  setElf();
+  setMage();
+  setValkyrie();
 }
 
-ABody	*BodyFactory::giveBarbare()
+void			BodyFactory::fillCreatureTab()
 {
-  return (actorFactory.giveActor(BodyEnum::BARBARE, giveNextId()));
+  setDraugr();
 }
 
-ABody	*BodyFactory::giveElf()
+void			BodyFactory::fillGameObjectTab()
 {
-  return (actorFactory.giveActor(BodyEnum::ELF, giveNextId()));
+  setPorteLight();
 }
 
-ABody	*BodyFactory::giveMage()
+void			BodyFactory::setBarbare()
 {
-  return (actorFactory.giveActor(BodyEnum::MAGE, giveNextId()));
+  Player		*player;
+
+  player = new Player(-1, world);
+  player->setName("Barbare");
+  player->stats.HP = 1000;
+  player->stats.normalHP = 1000;
+  player->stats.speed = 1.0;
+  player->stats.normalSpeed = 1.0;
+  player->stats.attackModifier = 1.0;
+  player->setCollide(true);
+  player->changePos(std::make_pair(-1, -1));
+  player->changeSize(std::make_pair(10.0, 10.0));
+  player->changeOrientation(0);
+  bodyTab.push_back(player);
 }
 
-ABody	*BodyFactory::giveValkyrie()
+void			BodyFactory::setElf()
 {
-  return (actorFactory.giveActor(BodyEnum::VALKYRIE, giveNextId()));
+  Player		*player;
+
+  player = new Player(-1, world);
+  player->setName("Elf");
+  player->stats.HP = 1000;
+  player->stats.normalHP = 1000;
+  player->stats.speed = 1.0;
+  player->stats.normalSpeed = 1.0;
+  player->stats.attackModifier = 1.0;
+  player->setCollide(true);
+  player->changePos(std::make_pair(-1, -1));
+  player->changeSize(std::make_pair(10.0, 10.0));
+  player->changeOrientation(0);
+  bodyTab.push_back(player);
 }
 
-ABody	*BodyFactory::giveBrokingWallVertical()
+void			BodyFactory::setMage()
 {
-  return (gameObjectFactory.giveGameObject(BodyEnum::BROKINGWALLVERTICAL, giveNextId()));
+  Player		*player;
+
+  player = new Player(-1, world);
+  player->setName("Mage");
+  player->stats.HP = 1000;
+  player->stats.normalHP = 1000;
+  player->stats.speed = 1.0;
+  player->stats.normalSpeed = 1.0;
+  player->stats.attackModifier = 1.0;
+  player->setCollide(true);
+  player->changePos(std::make_pair(-1, -1));
+  player->changeSize(std::make_pair(10.0, 10.0));
+  player->changeOrientation(0);
+  bodyTab.push_back(player);
 }
 
-ABody	*BodyFactory::giveMomie()
+void			BodyFactory::setValkyrie()
 {
-  return (actorFactory.giveActor(BodyEnum::MOMIE, giveNextId()));
+  Player		*player;
+
+  player = new Player(-1, world);
+  player->setName("Valkyrie");
+  player->stats.HP = 1000;
+  player->stats.normalHP = 1000;
+  player->stats.speed = 1.0;
+  player->stats.normalSpeed = 1.0;
+  player->stats.attackModifier = 1.0;
+  player->setCollide(true);
+  player->changePos(std::make_pair(-1, -1));
+  player->changeSize(std::make_pair(10.0, 10.0));
+  player->changeOrientation(0);
+  bodyTab.push_back(player);
 }
 
-ABody	*BodyFactory::giveBody(BodyEnum typeBody)
+void			BodyFactory::setDraugr()
 {
-  unsigned int		i;
+  Creature		*crea;
+
+  crea = new Creature(-1, world);
+  crea->setName("Draugr");
+  crea->stats.HP = 1000;
+  crea->stats.normalHP = 1000;
+  crea->stats.speed = 1.0;
+  crea->stats.normalSpeed = 1.0;
+  crea->stats.attackModifier = 1.0;
+  crea->setCollide(true);
+  crea->changePos(std::make_pair(-1, -1));
+  crea->changeSize(std::make_pair(10.0, 10.0));
+  crea->changeOrientation(0);
+  bodyTab.push_back(crea);
+}
+
+void			BodyFactory::setPorteLight()
+{
+  GameObject		*obj;
+
+  obj = new GameObject(-1, world);
+  obj->setName("PorteLight");
+  obj->setCollide(true);
+  obj->changePos(std::make_pair(-1, -1));
+  obj->changeSize(std::make_pair(20.0, 20.0));
+  obj->changeOrientation(0);
+  bodyTab.push_back(obj);
+}
+
+ABody	*BodyFactory::giveBody(const std::string& name)
+{
+  unsigned int	i;
 
   i = 0;
   while (i < bodyTab.size())
     {
-      if (bodyTab[i].bodyType == typeBody)
-	return ((this->*bodyTab[i].givePtr)());
+      if (name == bodyTab[i]->getName())
+	return (bodyTab[i]->clone(giveNextId()));
       ++i;
     }
   return (NULL);

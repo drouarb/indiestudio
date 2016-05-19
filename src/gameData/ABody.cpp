@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Mon May  9 14:07:25 2016 Alexis Trouve
-// Last update Wed May 18 16:41:55 2016 Alexis Trouve
+// Last update Thu May 19 16:19:40 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -13,24 +13,16 @@
 
 using namespace gauntlet;
 
-ABody::ABody(bool collide, int nid, double posx,
-	     double posy, double sizex, double sizey, short norient)
+ABody::ABody(int nid)
 {
-  collideActive = collide;
   id = nid;
-  coord = std::make_pair(posx, posy);
-  size = std::make_pair(sizex, sizey);
-  orientation = norient;
-}
-
-ABody::ABody(int nid, double posx, double posy,
-				 double sizex, double sizey, short norient)
-{
   collideActive = true;
-  id = nid;
-  coord = std::make_pair(posx, posy);
-  size = std::make_pair(sizex, sizey);
-  orientation = norient;
+  coord.first = 0;
+  coord.second = 0;
+  size.first = 0;
+  size.second = 0;
+  orientation = 0;
+  name = "default";
 }
 
 ABody::~ABody()
@@ -38,15 +30,14 @@ ABody::~ABody()
 
 }
 
-bool				ABody::isCollide(std::pair<double, double> chackpos,
-						      std::pair<double, double> checkSize)
+void				ABody::changePos(const std::pair<double, double>& ncoord)
 {
-  return (false);
+  coord = ncoord;
 }
 
-void				ABody::changePos(double nposx, double nposy)
+void				ABody::changeSize(const std::pair<double, double>& nsize)
 {
-  coord = std::make_pair(nposx, nposy);
+  size = nsize;
 }
 
 void				ABody::changeOrientation(short norient)
@@ -82,4 +73,14 @@ bool				ABody::getCollide() const
 void				ABody::setCollide(bool ncollide)
 {
   collideActive = ncollide;
+}
+
+const std::string&		ABody::getName() const
+{
+  return (name);
+}
+
+void				ABody::setName(const std::string& nname)
+{
+  name = nname;
 }

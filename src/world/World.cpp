@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Wed May 18 14:13:16 2016 Alexis Trouve
+// Last update Thu May 19 16:24:59 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -17,9 +17,8 @@ using namespace world;
 
 World::World()
 {
-  std::cerr << "first" << std::endl;
+  Factory = new BodyFactory(this);
   Math::init();
-  std::cerr << "end" << std::endl;
 }
 
 World::~World()
@@ -37,7 +36,7 @@ void	World::loadGame(std::string file)
 
 void	World::tester()
 {
-  ABody	*newBody;
+  /*ABody	*newBody;
 
   std::cerr << "giveBody null work" << std::endl;
   if (Factory.giveBody(static_cast<BodyEnum>(538928)) == NULL)
@@ -67,5 +66,10 @@ void	World::tester()
   std::cerr << "in collider with no one at 80, 80" << std::endl;
   if (collider.setNewBody(newBody) == false)
     std::cerr << "ok return" << std::endl;
-  std::cerr << "ok" << std::endl;
+    std::cerr << "ok" << std::endl;*/
+}
+
+Collider&	World::getCollider()
+{
+  return (collider);
 }

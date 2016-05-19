@@ -24,19 +24,22 @@ namespace gauntlet
 
     class Player : public Actor
     {
-    private:
+    protected:
+
       std::string playerName;
       long score;
       ItemContainer inventory;
     public:
-      Player(bool collide, int nid, double posx,
-	     double posy, double sizex, double sizey, short norient);
-      Player(int nid, double posx, double posy, double sizex,
-	     double sizey, short norient);
+      Player(int nid, world::World *newWorld);
       ~Player();
-      void addScore(long addition);
+
+      void			addScore(long addition);
+      void			setPlayerName(const std::string& nplayerName);
+      const std::string&	getPlayerName() const;
+      long			getScore() const;
       // void equip(Item item);
-      void use(Item item);
+      void			use(Item item);
+      virtual ABody		*clone(int id) const;
     };
 }
 
