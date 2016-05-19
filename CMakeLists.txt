@@ -52,14 +52,14 @@ if (${OGRE_STATIC})
         message("  - Done")
     endif ()
 
-
+    set(BOOST_ROOT )
     set(OGRE_PREFIX_GUESSES ${CMAKE_BINARY_DIR})
     find_package(OGRE)
     message("${OGRE_FOUND}")
 
     target_link_libraries(gauntlet ${OGRE_LIBRARIES})
     target_link_libraries(gauntlet ${OGRE_Overlay_LIBRARIES})
-    target_link_libraries(gauntlet dl zzip freeimage Xrandr Xt X11 OIS Xaw)
+    target_link_libraries(gauntlet dl zzip freeimage Xrandr Xt X11 OIS Xaw boost_system boost_thread)
 
     include_directories(${CMAKE_BINARY_DIR}/include/OGRE)
     include_directories(${CMAKE_BINARY_DIR}/include/OGRE/Overlay)
