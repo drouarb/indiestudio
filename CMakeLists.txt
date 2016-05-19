@@ -64,6 +64,7 @@ if (${OGRE_STATIC})
     include_directories(${CMAKE_BINARY_DIR}/include/OGRE)
     include_directories(${CMAKE_BINARY_DIR}/include/OGRE/Overlay)
     include_directories(${CMAKE_BINARY_DIR}/include/OIS)
+    include_directories(${CMAKE_BINARY_DIR}/include/)
     message("-> OK")
 
 else ()
