@@ -4,21 +4,46 @@
 
 #include <iostream>
 #include "Actor.hh"
+#include "World.hh"
 
 using namespace gauntlet;
 
-Actor::Actor(bool ncollide, int nid, double posx, double posy,
-	     double sizex, double sizey, short norient)
-  : ABody(ncollide, nid, posx, posy, sizex, sizey, norient)
+Actor::Actor(int nid, world::World *nworld)
+  : ABody(nid)
 {
-}
-
-Actor::Actor(int nid, double posx, double posy,
-	     double sizex, double sizey, short norient)
-  : ABody(nid, posx, posy, sizex, sizey, norient)
-{
+  world = nworld;
 }
 
 Actor::~Actor()
 {
+}
+
+void		Actor::move()
+{
+  world->getCollider().applyVectorToId(id, orientation, stats.speed);
+}
+
+ABody		*Actor::clone(int id) const
+{
+  Actor		*actor;
+  unsigned int	i;
+
+  actor = new Actor(id, world);
+  actor->setName(name);
+  actor->stats.HP = stats.HP;
+  actor->stats.normalHP = stats.normalHP;
+  actor->stats.speed = stats.speed;
+  actor->stats.normalSpeed = stats.normalSpeed;
+  actor->stats.attackModifier = stats.attackModifier;
+  i = 0;
+  while (i < spellBook.spellList.size())
+    {
+      actor->spellBook.spellList.push_back(spellBook.spellList[i]);
+      ++i;
+    }
+  actor->setCollide(collideActive);
+  actor->changePos(coord);
+  actor->changeSize(size);
+  actor->changeOrientation(orientation);
+  return (actor);
 }

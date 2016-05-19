@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 14:44:15 2016 Alexis Trouve
-// Last update Wed May 18 11:45:41 2016 Alexis Trouve
+// Last update Thu May 19 10:15:29 2016 Alexis Trouve
 //
 
 #include "Collider.hh"
@@ -26,11 +26,41 @@ Collider::~Collider()
 
 bool	Collider::tryMoveBody(int id, double posx, double posy)
 {
+  ABody	*body;
+
+  if ((body = dynamicLayer->getBodyId(id)) == NULL)
+    return (false);
+  if (physicLayer->checkCoordSize(body->getPos().first, body->getPos().second,
+				  body->getSize().first, body->getSize().second) == false)
+    return (false);
   return (dynamicLayer->tryMoveId(id, posx, posy));
+}
+
+bool				Collider::applyVectorToId(int id, short orient, double speed)
+{
+  ABody				*body;
+  std::pair<double, double>	sizeB;
+  std::pair<double, double>	posB;
+  double			vectX;
+  double			vectY;
+
+  if ((body = dynamicLayer->getBodyId(id)) == NULL)
+    return (false);
+  vectY = (Math::sin(orient) * speed);
+  vectX = (Math::cos(orient) * speed);
+  sizeB = body->getSize();
+  posB = body->getPos();
+  if (physicLayer->checkCoordSize(posB.first + vectX, posB.second, sizeB.first, sizeB.second) == false ||
+      dynamicLayer->tryMoveId(id, posB.first + vectX, posB.second) == false)
+    if (physicLayer->checkCoordSize(posB.first, posB.second + vectY, sizeB.first, sizeB.second) != false)
+      dynamicLayer->tryMoveId(id, posB.first, posB.second + vectY);
 }
 
 bool	Collider::setNewBody(ABody *body)
 {
+  if (physicLayer->checkCoordSize(body->getPos().first, body->getPos().second,
+				  body->getSize().first, body->getSize().second) == false)
+    return (false);
   return (dynamicLayer->setNewBody(body));
 }
 

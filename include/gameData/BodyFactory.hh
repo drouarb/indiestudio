@@ -5,49 +5,42 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 15:00:30 2016 Alexis Trouve
-// Last update Sat May 14 15:25:42 2016 Alexis Trouve
+// Last update Thu May 19 16:06:13 2016 Alexis Trouve
 //
 
 #ifndef BODYFACTORY_HH_
 # define BODYFACTORY_HH_
 
 #include <vector>
-#include "ActorFactory.hh"
-#include "GameObjectFactory.hh"
-#include "FactoryData.hh"
 #include "ABody.hh"
+#include "Actor.hh"
+#include "Player.hh"
+#include "Creature.hh"
+#include "GameObject.hh"
 
 namespace gauntlet
 {
-  class		ActorFactory;
-  class		BodyFactory;
-
-  struct		giveBodyStruct
-  {
-    BodyEnum		bodyType;
-    gauntlet::ABody	*(gauntlet::BodyFactory::*givePtr)();
-  };
-
   class			BodyFactory
   {
   private:
-    std::vector<giveBodyStruct>	bodyTab;
-    gauntlet::ActorFactory	actorFactory;
-    gauntlet::GameObjectFactory	gameObjectFactory;
+    std::vector<ABody*>		bodyTab;
+    world::World		*world;
   private:
     int			giveNextId();
-    void		fillBodyTab();
-
-    gauntlet::ABody	*giveBarbare();
-    gauntlet::ABody	*giveValkyrie();
-    gauntlet::ABody	*giveMage();
-    gauntlet::ABody	*giveElf();
-    gauntlet::ABody	*giveBrokingWallVertical();
-    gauntlet::ABody	*giveMomie();
-  public:
+    void		fillPlayerTab();
+    void		setBarbare();
+    void		setElf();
+    void		setMage();
+    void		setValkyrie();
+    void		fillCreatureTab();
+    void		setDraugr();
+    void		fillGameObjectTab();
+    void		setPorteLight();
     BodyFactory();
+  public:
+    BodyFactory(world::World *world);
     ~BodyFactory();
-    gauntlet::ABody	*giveBody(gauntlet::BodyEnum typeBody);
+    ABody		*giveBody(const std::string& wanted);
   };
 };
 

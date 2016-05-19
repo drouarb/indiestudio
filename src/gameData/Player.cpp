@@ -7,16 +7,11 @@
 
 using namespace gauntlet;
 
-Player::Player(bool ncollide, int nid, double posx, double posy,
-	       double sizex, double sizey, short norient)
-  : Actor(ncollide, nid, posx, posy, sizex, sizey, norient)
+Player::Player(int nid, world::World *nworld)
+  : Actor(nid, nworld)
 {
-}
-
-Player::Player(int nid, double posx, double posy,
-	       double sizex, double sizey, short norient)
-  : Actor(nid, posx, posy, sizex, sizey, norient)
-{
+  playerName = "default";
+  score = 0;
 }
 
 Player::~Player()
@@ -35,6 +30,47 @@ void    Player::use(Item item) {
         this->inventory.remove(item);
     }
 }
+
+void	Player::setPlayerName(const std::string& nplayerName)
+{
+  playerName = nplayerName;
+}
+
+const std::string&	Player::getPlayerName() const
+{
+  return (playerName);
+}
+
+long			Player::getScore() const
+{
+  return (score);
+}
+
+ABody			*Player::clone(int id) const
+{
+  Player		*player;
+  unsigned int	i;
+
+  player = new Player(id, world);
+  player->setName(name);
+  player->stats.HP = stats.HP;
+  player->stats.normalHP = stats.normalHP;
+  player->stats.speed = stats.speed;
+  player->stats.normalSpeed = stats.normalSpeed;
+  player->stats.attackModifier = stats.attackModifier;
+  i = 0;
+  while (i < spellBook.spellList.size())
+    {
+      player->spellBook.spellList.push_back(spellBook.spellList[i]);
+      ++i;
+    }
+  player->setCollide(collideActive);
+  player->changePos(coord);
+  player->changeSize(size);
+  player->changeOrientation(orientation);
+  return (player);
+}
+
 /*
 void    gauntlet::Player::equip(Item item) {
     if (item.notEquiped)

@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 14:41:17 2016 Alexis Trouve
-// Last update Wed May 18 11:25:27 2016 Alexis Trouve
+// Last update Wed May 18 17:36:46 2016 Alexis Trouve
 //
 
 #ifndef COLLIDER_HH_
@@ -30,6 +30,7 @@ namespace gauntlet
       Collider();
       ~Collider();
       bool				tryMoveBody(int id, double pox, double posy);
+      bool				applyVectorToId(int id, short orient, double speed);
       bool				setNewBody(ABody *body);
       void				suprBody(int id);
       std::list<gauntlet::ABody*>	giveBodyInAreaCircle(double posx, double posy, double rayon);
