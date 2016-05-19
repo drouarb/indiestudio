@@ -3,6 +3,10 @@
 #include <string>
 #include "OgreUI.h"
 
+#ifdef OGRE_STATIC
+#include "RenderSystems/GL/OgreGLPlugin.h"
+#endif
+
 using namespace gauntlet;
 using namespace core;
 
@@ -143,6 +147,9 @@ void OgreUI::go(void)
 bool OgreUI::setup(void)
 {
     mRoot = new Ogre::Root(mPluginsCfg);
+#ifdef OGRE_STATIC
+    mRoot->installPlugin(new Ogre::GLPlugin());
+#endif
     setupResources();
     bool carryOn = configure();
     if (!carryOn) return false;
