@@ -9,7 +9,6 @@
 //
 
 #include <iostream>
-#include "Math.hh"
 #include "Core.hh"
 #include "MainMenu.hh"
 
@@ -21,9 +20,8 @@ gauntlet::core::Core::Core() : keepGoing(true), observer(new CoreUIObserver(*thi
   ogre.setIObserver(observer);
   std::mutex m;
   m.lock();
-  ogreThread = new std::thread(&OgreUI::go, ogre, m);
+  ogreThread = new std::thread(&OgreUI::go, ogre, std::ref(m));
   m.lock();
-
   ogre.addButton(PLEFT, 145, "Hello", 0);
 
   loop();

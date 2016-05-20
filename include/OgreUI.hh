@@ -18,6 +18,7 @@
 #include <SdkTrays.h>
 #include <SdkCameraMan.h>
 #include <core/Position.hh>
+#include <mutex>
 #include "IUIObserver.hh"
 
 class  OgreUI : public Ogre::FrameListener, public Ogre::WindowEventListener, public OIS::KeyListener, public OIS::MouseListener, OgreBites::SdkTrayListener
@@ -43,7 +44,7 @@ private:
 	OIS::Mouse*    mMouse;
 	OIS::Keyboard* mKeyboard;
 public:
-	void go(void);
+	void go(std::mutex & mut);
     bool setup();
     void initMap();
     bool configure(void);

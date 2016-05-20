@@ -139,12 +139,15 @@ void OgreUI::loadResources(void)
     Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
 
-void OgreUI::go(void)
+void OgreUI::go(std::mutex & mut)
 {
     mResourcesCfg = "resources.cfg";
     mPluginsCfg = "plugins.cfg";
     if (!setup())
+    {
         return;
+    }
+    mut.unlock();
     mRoot->startRendering();
     destroyScene();
 }
@@ -345,7 +348,7 @@ void OgreUI::addButton(Position pos, int id, std::string text, int texture_id) {
 
     std::stringstream ss;
         ss << id;
-   OgreBites::Button *c = mTrayMgr->createButton(posmap[pos], ss.str(), text);
+  OgreBites::Button *c = mTrayMgr->createButton(posmap[pos], ss.str(), text);
     
 }
 
@@ -464,12 +467,14 @@ void OgreUI::hideItem(int id) {
 }
 
 void OgreUI::createScene(void) {
-
 }
 
 void OgreUI::quit() {
     this->mShutDown = true;
 }
+
+
+
 
 
 
