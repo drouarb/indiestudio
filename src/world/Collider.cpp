@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 14:44:15 2016 Alexis Trouve
-// Last update Thu May 19 10:15:29 2016 Alexis Trouve
+// Last update Fri May 20 14:24:40 2016 Alexis Trouve
 //
 
 #include "Collider.hh"
@@ -54,6 +54,7 @@ bool				Collider::applyVectorToId(int id, short orient, double speed)
       dynamicLayer->tryMoveId(id, posB.first + vectX, posB.second) == false)
     if (physicLayer->checkCoordSize(posB.first, posB.second + vectY, sizeB.first, sizeB.second) != false)
       dynamicLayer->tryMoveId(id, posB.first, posB.second + vectY);
+  return (true);
 }
 
 bool	Collider::setNewBody(ABody *body)

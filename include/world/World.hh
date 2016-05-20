@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:55:06 2016 Esteban Lewis
-// Last update Thu May 19 16:24:15 2016 Alexis Trouve
+// Last update Fri May 20 14:17:48 2016 Alexis Trouve
 //
 
 #ifndef  WORLD_HH_

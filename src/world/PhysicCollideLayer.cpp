@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Thu May 12 16:17:25 2016 Alexis Trouve
-// Last update Fri May 20 13:43:41 2016 Alexis Trouve
+// Last update Fri May 20 14:21:37 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -119,7 +119,7 @@ bool    PhysicCollideLayer::checkCoordSize(double xpos, double ypos, double xsiz
 			      ? ypos - ysize - 1 : ypos - ysize);
   maxX = static_cast<unsigned int>(((xpos - xsize) - static_cast<unsigned int>(xpos - xsize) > 0.0)
 			      ? xpos - xsize - 1 : xpos - xsize);
-  maxX = static_cast<unsigned int>(((ypos - ysize) - static_cast<unsigned int>(ypos - ysize) > 0.0)
+  maxY = static_cast<unsigned int>(((ypos - ysize) - static_cast<unsigned int>(ypos - ysize) > 0.0)
 			      ? ypos - ysize - 1 : ypos - ysize);
   y = minY;
   if (maxX >= sizeX || maxY >= sizeY || minX >= sizeX || minY >= sizeX)
@@ -140,6 +140,7 @@ bool    PhysicCollideLayer::checkCoordSize(double xpos, double ypos, double xsiz
 	}
       ++y;
     }
+  return (true);
 }
 
 const unsigned char *PhysicCollideLayer::getLayer() const
