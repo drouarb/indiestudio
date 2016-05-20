@@ -5,16 +5,17 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 16:50:32 2016 Alexis Trouve
-// Last update Sat May 14 11:55:54 2016 Alexis Trouve
+// Last update Wed May 18 14:20:50 2016 Alexis Trouve
 //
 
+#include <iostream>
 #include "BodyFactory.hh"
 
 using namespace gauntlet;
 
 BodyFactory::BodyFactory()
 {
-
+  fillBodyTab();
 }
 
 BodyFactory::~BodyFactory()

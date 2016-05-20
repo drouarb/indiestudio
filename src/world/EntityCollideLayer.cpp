@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 11:03:19 2016 Alexis Trouve
-// Last update Fri May 20 10:41:22 2016 Esteban Lewis
+// Last update Fri May 20 10:43:49 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -22,13 +22,13 @@ EntityCollideLayer::EntityCollideLayer(gauntlet::world::PhysicCollideLayer *phys
 
   size = physicLayer->getSize();
   i = 0;
-  if ((map = new CollidingArea*[static_cast<int>(size.first / SIZE_CASE)]) == NULL)
+  if ((map = new CollidingArea*[static_cast<int>(size.second / SIZE_CASE)]) == NULL)
     errx(1, "Error : out of memory");
   sizeX = static_cast<int>(size.first / SIZE_CASE);
   sizeY = static_cast<int>(size.second / SIZE_CASE);
-  while (i < sizeX)
+  while (i < sizeY)
     {
-      if ((map[i] = new CollidingArea[static_cast<int>(size.second / SIZE_CASE)]) == NULL)
+      if ((map[i] = new CollidingArea[static_cast<int>(size.first / SIZE_CASE)]) == NULL)
 	errx(1, "Error : out of memory");
       ++i;
     }
@@ -114,8 +114,31 @@ bool		EntityCollideLayer::tryMoveId(int id, double posx, double posy)
 	    }
 	  return (false);
 	}
+      it1++;
     }
   return (false);
+}
+
+void		EntityCollideLayer::applyVectorToId(int id, short orient, double speed)
+{
+  std::list<gauntlet::ABody*>::iterator	it1;
+  double				vectX;
+  double				vectY;
+
+  it1 = Entity.begin();
+  while (it1 != Entity.end())
+    {
+      if ((*it1)->getId() == id)
+	break;
+      it1++;
+    }
+  if (it1 == Entity.end() && (*it1)->getId() != id)
+    return ;
+  vectY = (Math::sin(orient) * speed);
+  vectX = (Math::cos(orient) * speed);
+  if (tryMoveId(id, (*it1)->getPos().first + vectX, (*it1)->getPos().second + vectY) == false)
+    if (tryMoveId(id, (*it1)->getPos().first + vectX, (*it1)->getPos().second) == false)
+      tryMoveId(id, (*it1)->getPos().first, (*it1)->getPos().second + vectY);
 }
 
 void		EntityCollideLayer::suprMapId(int id, int x, int y)
@@ -178,8 +201,8 @@ bool		EntityCollideLayer::setNewBody(gauntlet::ABody *newBody)
   return (false);
 }
 
-double				EntityCollideLayer::getDist(double refx, double refy,
-							    ABody & target)
+double		EntityCollideLayer::getDist(double refx, double refy,
+					    const ABody &target)
 {
   double dist = sqrt(pow(target.getPos().first - refx, 2) +
 		     pow(target.getPos().second - refy, 2));
@@ -215,8 +238,8 @@ double				EntityCollideLayer::getDist(double refx, double refy,
   return (dist - dist * proportion);
 }
 
-int				EntityCollideLayer::getAngle(double refx, double refy,
-							     int refa, ABody & target)
+int		EntityCollideLayer::getAngle(double refx, double refy,
+					     int refa, const ABody & target)
 {
   return (Math::getAngle(-atan2((target.getPos().second - refy),
 				(target.getPos().first - refx))) - refa);
@@ -267,10 +290,10 @@ std::list<gauntlet::ABody*>	EntityCollideLayer::giveBodyInAreaCircle(double posx
 {
   std::list<ABody*>		list;
 
-  int max_x = (int)((posx + rayon) / SIZE_CASE);
-  int max_y = (int)((posy + rayon) / SIZE_CASE);
-  int min_x = (int)((posx - rayon) / SIZE_CASE);
-  int min_y = (int)((posy - rayon) / SIZE_CASE);
+  long max_x = (int)((posx + rayon) / SIZE_CASE);
+  long max_y = (int)((posy + rayon) / SIZE_CASE);
+  long min_x = (int)((posx - rayon) / SIZE_CASE);
+  long min_y = (int)((posy - rayon) / SIZE_CASE);
 
   if (max_x >= (int)sizeX)
     max_x = sizeX - 1;
@@ -327,6 +350,20 @@ std::list<gauntlet::ABody*>	EntityCollideLayer::giveBodyInAreaCone(double posx, 
 	}
     }
   return (list);
+}
+
+ABody			*EntityCollideLayer::getBodyId(int id)
+{
+  std::list<gauntlet::ABody*>::iterator	it1;
+
+  it1 = Entity.begin();
+  while (it1 != Entity.end())
+    {
+      if ((*it1)->getId() == id)
+	return (*it1);
+      it1++;
+    }
+  return (NULL);
 }
 
 std::pair<double, double>	EntityCollideLayer::pointInFront(ABody & body, double dist)
