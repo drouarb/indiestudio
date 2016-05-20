@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Tue May 10 20:28:30 2016 Alexis Trouve
-// Last update Fri May 20 14:19:02 2016 Alexis Trouve
+// Last update Fri May 20 14:43:22 2016 Alexis Trouve
 //
 
 #ifndef ENTITYCOLLIDELAYER_HH_
@@ -37,8 +37,7 @@ namespace gauntlet
 
     class	EntityCollideLayer
     {
-      //private:
-    public:
+    private:
       gauntlet::world::CollidingArea	**map;
       std::list<gauntlet::ABody*>	Entity;
       unsigned int			sizeX;
