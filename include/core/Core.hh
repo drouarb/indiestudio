@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 10:59:47 2016 Esteban Lewis
-// Last update Fri May 20 22:56:19 2016 Esteban Lewis
+// Last update Fri May 20 23:24:10 2016 Esteban Lewis
 //
 
 #ifndef  CORE_HH_
@@ -44,6 +44,7 @@ namespace			gauntlet
       void			load(std::string file);
       void			save(std::string file);
       Conf &			getConf();
+      OgreUI &			getGui();
 
     private:
       bool			keepGoing;

@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:09:17 2016 Esteban Lewis
-// Last update Tue May 17 15:16:57 2016 Esteban Lewis
+// Last update Fri May 20 23:24:53 2016 Esteban Lewis
 //
 
 #include "ConfMenu.hh"
@@ -16,14 +16,14 @@ gauntlet::core::ConfMenu::ConfMenu(Core & core, int idStart, Menu * parent) :
 {
   cmdToSet = NONE;
 
-  buttons.push_back(MenuButton("- Return -", PCENTER, idStart));
+  buttons.push_back(MenuButton("- Return -", PCENTER, idStart, core.getGui()));
 
-  buttons.push_back(MenuButton("Go forward", PCENTER, idStart + 1));
-  buttons.push_back(MenuButton("Go backward", PCENTER, idStart + 2));
-  buttons.push_back(MenuButton("Go left", PCENTER, idStart + 3));
-  buttons.push_back(MenuButton("Go right", PCENTER, idStart + 4));
-  buttons.push_back(MenuButton("Validate", PCENTER, idStart + 5));
-  buttons.push_back(MenuButton("Exit", PCENTER, idStart + 6));
+  buttons.push_back(MenuButton("Go forward", PCENTER, idStart + 1, core.getGui()));
+  buttons.push_back(MenuButton("Go backward", PCENTER, idStart + 2, core.getGui()));
+  buttons.push_back(MenuButton("Go left", PCENTER, idStart + 3, core.getGui()));
+  buttons.push_back(MenuButton("Go right", PCENTER, idStart + 4, core.getGui()));
+  buttons.push_back(MenuButton("Validate", PCENTER, idStart + 5, core.getGui()));
+  buttons.push_back(MenuButton("Exit", PCENTER, idStart + 6, core.getGui()));
   
   funs.insert(std::pair<int, void (ConfMenu::*)(int)>
 	      (buttons[0].getId(), &ConfMenu::doReturn));

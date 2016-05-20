@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:09:17 2016 Esteban Lewis
-// Last update Tue May 17 15:14:12 2016 Esteban Lewis
+// Last update Fri May 20 23:26:55 2016 Esteban Lewis
 //
 
 #include <dirent.h>
@@ -16,9 +16,9 @@
 gauntlet::core::SaveloadMenu::SaveloadMenu(Core & core, int idStart, Menu * parent) :
   Menu(core, idStart, parent)
 {
-  buttons.push_back(MenuButton("Return", PCENTER, idStart));
-  buttons.push_back(MenuButton("Save", PCENTER, idStart + 1));
-  buttons.push_back(MenuButton("Load", PCENTER, idStart + 2));
+  buttons.push_back(MenuButton("Return", PCENTER, idStart, core.getGui()));
+  buttons.push_back(MenuButton("Save", PCENTER, idStart + 1, core.getGui()));
+  buttons.push_back(MenuButton("Load", PCENTER, idStart + 2, core.getGui()));
 
   funs.insert(std::pair<int, void (SaveloadMenu::*)(int)>
 	      (buttons[0].getId(), &SaveloadMenu::doReturn));
@@ -66,7 +66,7 @@ gauntlet::core::SaveloadMenu::getSaves()
       //TODO: space problem
       if (ent->d_name[0] != '.')
 	{
-	  buttons.push_back(MenuButton(ent->d_name, PCENTER, idStart + id));
+	  buttons.push_back(MenuButton(ent->d_name, PCENTER, idStart + id, core.getGui()));
 	  funs.insert(std::pair<int, void (SaveloadMenu::*)(int)>
 		      (buttons[(int)buttons.size() - 1].getId(), &SaveloadMenu::doSelect));
 	  id++;

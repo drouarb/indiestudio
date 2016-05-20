@@ -5,19 +5,19 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 13:47:34 2016 Esteban Lewis
-// Last update Tue May 17 15:15:58 2016 Esteban Lewis
+// Last update Fri May 20 23:29:14 2016 Esteban Lewis
 //
 
 #include <iostream>
 #include "MenuButton.hh"
 
 gauntlet::core::MenuButton::MenuButton(std::string const & str, Position p,
-				       int id/*, OgreUI & ogre*/) :
-  pos(p), str(str), id(id)//, ogre(ogre)
+				       int id, OgreUI & ogre) :
+  pos(p), str(str), id(id), ogre(ogre)
 { }
 
 gauntlet::core::MenuButton::MenuButton(gauntlet::core::MenuButton const & other) :
-  pos(other.pos), str(other.str), id(other.id)//, ogre(other.ogre)
+  pos(other.pos), str(other.str), id(other.id), ogre(other.ogre)
 {
   //remove from 
 }
@@ -31,7 +31,6 @@ gauntlet::core::MenuButton::operator=(MenuButton const & other)
   pos = other.pos;
   str = other.str;
   id = other.id;
-  //ogre = other.ogre;
   return (*this);
 }
 
@@ -50,15 +49,13 @@ gauntlet::core::MenuButton::getStr()
 void
 gauntlet::core::MenuButton::draw()
 {
-  //ogre.addButton(pos, id, text, 0);
-  std::cout << "BTNADD " << id << " " << str << std::endl;
+  ogre.addButton(pos, id, str, 0);
 }
 
 void
 gauntlet::core::MenuButton::undraw()
 {
-  //ogre.removeButton(id);
-  std::cout << "BTNRMV " << id << " " << str << std::endl;
+  ogre.remove(id);
 }
 
 int

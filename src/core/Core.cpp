@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:13:44 2016 Esteban Lewis
-// Last update Fri May 20 23:17:28 2016 Esteban Lewis
+// Last update Fri May 20 23:32:24 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -15,7 +15,6 @@
 gauntlet::core::Core::Core() : keepGoing(true), observer(new CoreUIObserver(*this))
 {
   menu = new MainMenu(*this, 100, NULL);
-  menu->setOpen(true);
 
   ogre.setIObserver(observer);
   ogreMutex.lock();
@@ -99,7 +98,8 @@ gauntlet::core::Core::play()
 void
 gauntlet::core::Core::exit()
 {
-  std::cout << "CORE exit" << std::endl;
+  ogre.quit();
+  keepGoing = false;
 }
 
 void
@@ -118,6 +118,12 @@ gauntlet::core::Conf &
 gauntlet::core::Core::getConf()
 {
   return (conf);
+}
+
+OgreUI &
+gauntlet::core::Core::getGui()
+{
+  return (ogre);
 }
 
 void
