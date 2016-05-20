@@ -15,8 +15,10 @@ set(OGRE_URL "${OGRE_REPOSITORY}/ogre-${CMAKE_SYSTEM_NAME}-${CMAKE_SYSTEM_PROCES
 FILE(
         GLOB_RECURSE
         INDIE
-        OgreUI.cpp
-        TutorialApplication.cpp
+        src/*.cpp
+        src/**/*.cpp
+        include/*.h*
+        include/**/*.h*
 )
 
 find_package(Threads)

@@ -1,7 +1,7 @@
 #include <OIS/OIS.h>
 #include <iostream>
 #include <string>
-#include "OgreUI.h"
+#include "OgreUI.hh"
 
 #ifdef OGRE_STATIC
 #include "RenderSystems/GL/OgreGLPlugin.h"
@@ -339,14 +339,3 @@ void OgreUI::loadSound(std::string &path) {
 void OgreUI::playSound(int id) {
 
 }
-
-
-
-
-
-
-
-
-
-
-
