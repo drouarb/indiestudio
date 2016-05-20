@@ -1,11 +1,7 @@
 #include <OIS/OIS.h>
 #include <iostream>
-#include <string>
+#include <stdlib.h>
 #include "OgreUI.hh"
-
-#ifdef OGRE_STATIC
-#include "RenderSystems/GL/OgreGLPlugin.h"
-#endif
 
 using namespace gauntlet;
 using namespace core;
@@ -68,6 +64,7 @@ void OgreUI::createCamera(void)
 
 void OgreUI::createFrameListener(void)
 {
+
     Ogre::LogManager::getSingletonPtr()->logMessage("*** Initializing OIS ***");
     OIS::ParamList pl;
     size_t windowHnd = 0;
@@ -147,9 +144,6 @@ void OgreUI::go(void)
 bool OgreUI::setup(void)
 {
     mRoot = new Ogre::Root(mPluginsCfg);
-#ifdef OGRE_STATIC
-    mRoot->installPlugin(new Ogre::GLPlugin());
-#endif
     setupResources();
     bool carryOn = configure();
     if (!carryOn) return false;
@@ -157,10 +151,11 @@ bool OgreUI::setup(void)
     createCamera();
     createViewports();
     Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
-    createResourceListener();
+     createResourceListener();
     loadResources();
     initMap();
     createFrameListener();
+    windowResized(mWindow);
     createScene();
     return true;
 };
@@ -174,9 +169,16 @@ bool OgreUI::frameRenderingQueued(const Ogre::FrameEvent& evt)
         return false;
     mKeyboard->capture();
     mMouse->capture();
-
+    mTrayMgr->refreshCursor();
     mTrayMgr->frameRenderingQueued(evt);
 
+
+    try {
+        Ogre::Entity *pEntity = this->mSceneMgr->getEntity("robot.mesh");
+        std::cout << pEntity << std::endl;
+    } catch (...){
+
+    }
     if (!mTrayMgr->isDialogVisible())
     {
         mCameraMan->frameRenderingQueued(evt);
@@ -186,10 +188,9 @@ bool OgreUI::frameRenderingQueued(const Ogre::FrameEvent& evt)
 }
 
 bool OgreUI::keyPressed( const OIS::KeyEvent &arg )
-{ if (arg.key == OIS::KC_ESCAPE)
-    {
+{
+        if (arg.key == OIS::KC_ESCAPE)
         mShutDown = true;
-    }
     mCameraMan->injectKeyDown(arg);
     if (obs != NULL)
         if (keymap.count(arg.key) > 0)
@@ -208,7 +209,7 @@ bool OgreUI::keyReleased( const OIS::KeyEvent &arg )
 
 bool OgreUI::mouseMoved(const OIS::MouseEvent &arg )
 {
-    if (mTrayMgr->injectMouseMove(arg)) return true;
+  mTrayMgr->injectMouseMove(arg);
     mCameraMan->injectMouseMove(arg);
     if (obs != NULL)
         obs->mouseMove(arg.state.X.rel, arg.state.Y.rel);
@@ -217,8 +218,7 @@ bool OgreUI::mouseMoved(const OIS::MouseEvent &arg )
 
 bool OgreUI::mousePressed( const OIS::MouseEvent &arg, OIS::MouseButtonID id )
 {
-    if (mTrayMgr->injectMouseDown(arg, id)) return true;
-    mCameraMan->injectMouseDown(arg, id);
+   mTrayMgr->injectMouseDown(arg, id);
     if (obs != NULL)
     if (mousemap.count(id) > 0)
         obs->keyDown(mousemap[id]);
@@ -227,8 +227,7 @@ bool OgreUI::mousePressed( const OIS::MouseEvent &arg, OIS::MouseButtonID id )
 
 bool OgreUI::mouseReleased( const OIS::MouseEvent &arg, OIS::MouseButtonID id )
 {
-    if (mTrayMgr->injectMouseUp(arg, id)) return true;
-    mCameraMan->injectMouseUp(arg, id);
+   mTrayMgr->injectMouseUp(arg, id);
     if (obs != NULL)
     if (mousemap.count(id) > 0)
         obs->keyUp(mousemap[id]);
@@ -262,8 +261,13 @@ void OgreUI::windowClosed(Ogre::RenderWindow* rw)
 }
 
 void OgreUI::buttonHit(OgreBites::Button *button) {
+
     if (obs != NULL)
-        obs->buttonClick(std::atoi(button->getName().c_str()));
+    {
+        struct t_hitItem but;
+        but.type = MenuItemType::BUTTON;
+       obs->itemClick(std::atoi(button->getName().c_str()), but);
+    }
 }
 
 void OgreUI::initMap() {
@@ -325,8 +329,10 @@ void OgreUI::addButton(Position pos, int id, std::string text, int texture_id) {
 
     std::stringstream ss;
         ss << id;
-    OgreBites::Button *c  = mTrayMgr->createButton(posmap[pos], ss.str(), text);
+   OgreBites::Button *c = mTrayMgr->createButton(posmap[pos], ss.str(), text);
+    
 }
+
 
 void OgreUI::setIObserver(gauntlet::core::IUIObserver *Obs) {
     this->obs = Obs;
@@ -339,3 +345,120 @@ void OgreUI::loadSound(std::string &path) {
 void OgreUI::playSound(int id) {
 
 }
+
+void OgreUI::checkBoxToggled(OgreBites::CheckBox *checkBox) {
+if (obs != NULL)
+{
+    struct t_hitItem Box;
+    Box.type = MenuItemType::CHECBOX;
+    if (checkBox->isChecked())
+        Box.state = MenuCheckBoxState::CHECKED;
+    else
+        Box.state = MenuCheckBoxState::NOCHECKED;
+    obs->itemClick(std::atoi(checkBox->getName().c_str()),Box );
+}
+}
+
+void OgreUI::addCheckbox(gauntlet::core::Position pos, int id, std::string text, int texture_id) {
+
+    std::stringstream ss;
+    ss << id;
+    mTrayMgr->createCheckBox(posmap[pos], ss.str(), text);
+}
+
+void OgreUI::addProgressBar(gauntlet::core::Position pos, int id, std::string text, int texture_id, int value) {
+    std::stringstream ss;
+    ss << id;
+    OgreBites::ProgressBar *p = mTrayMgr->createProgressBar(posmap[pos], ss.str(),text, 300, 10);
+    p->setProgress(value);
+  }
+
+void OgreUI::addSelectMenu(gauntlet::core::Position pos, int id, std::string name, std::vector<std::string> item,
+                           int texture_id) {
+    std::stringstream ss;
+    ss << id;
+    OgreBites::SelectMenu *m = mTrayMgr->createLongSelectMenu(posmap[pos], ss.str(), name, 200, item.size());
+    std::vector<std::string>::iterator it = item.begin();
+    while (it != item.end())
+    {
+        m->addItem(*it);
+        it++;
+    }
+}
+
+void OgreUI::itemSelected(OgreBites::SelectMenu *menu) {
+    if (obs != NULL)
+    {
+        struct t_hitItem m;
+        m.type = MenuItemType::SELECTMENU;
+        m.data = menu->getSelectedItem();
+        obs->itemClick(std::atoi(menu->getName().c_str()), m);
+    }
+}
+
+void OgreUI::addSlideBar(gauntlet::core::Position pos, int id, std::string text, int max, int texture_id) {
+    std::stringstream ss;
+    ss << id;
+    mTrayMgr->createLongSlider(posmap[pos], ss.str(),text, 100, 100, 0, max, 100);
+}
+
+void OgreUI::sliderMoved(OgreBites::Slider *slider) {
+    if (obs != NULL)
+    {
+        struct t_hitItem m;
+        m.type = MenuItemType::SLIDE;
+        m.value = slider->getValue();
+        obs->itemClick(std::atoi(slider->getName().c_str()), m);
+    }
+}
+
+void OgreUI::updateItemValue(int itemid, struct t_hitItem item) {
+    std::stringstream ss;
+    ss << itemid;
+    switch (item.type) {
+        case MenuItemType::SLIDE: {
+            OgreBites::Slider *s = static_cast<OgreBites::Slider *>(mTrayMgr->getWidget(ss.str()));
+            s->setValue(item.value, true);
+        }
+            break;
+            case MenuItemType::PROGRESSBAR: {
+                OgreBites::ProgressBar *p = static_cast<OgreBites::ProgressBar *>(mTrayMgr->getWidget(ss.str()));
+                p->setProgress(item.value);
+            }
+            break;
+            case MenuItemType::TEXTBOX: {
+            OgreBites::TextBox *t = static_cast<OgreBites::TextBox *>(mTrayMgr->getWidget(ss.str()));
+            t->setCaption(item.data);
+        }
+            break;
+    }
+}
+
+void OgreUI::addTextbox(gauntlet::core::Position pos, int id, std::string text, int texture_id) {
+    std::stringstream ss;
+    ss << id;
+    mTrayMgr->createTextBox(posmap[pos], ss.str(), text, 100, 20);
+}
+
+void OgreUI::hideItem(int id) {
+    std::stringstream ss;
+    ss << id;
+  OgreBites::Widget *w =   mTrayMgr->getWidget(ss.str());
+    w->hide();
+}
+
+void OgreUI::createScene(void) {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+

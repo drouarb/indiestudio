@@ -35,8 +35,6 @@ gauntlet::core::CoreUIObserver::mouseMove(int x, int y)
   core.mouseMove(x, y);
 }
 
-void
-gauntlet::core::CoreUIObserver::buttonClick(int buttonId)
-{
-  core.buttonClick(buttonId);
+void gauntlet::core::CoreUIObserver::itemClick(int buttonId, struct t_hitItem item) {
+
 }
