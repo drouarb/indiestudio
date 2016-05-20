@@ -202,6 +202,19 @@ PacketSelectPlayerTest/fast:
 	$(MAKE) -f tests/CMakeFiles/PacketSelectPlayerTest.dir/build.make tests/CMakeFiles/PacketSelectPlayerTest.dir/build
 .PHONY : PacketSelectPlayerTest/fast
 
+#=============================================================================
+# Target rules for targets named PhysicCollideLayer
+
+# Build rule for target.
+PhysicCollideLayer: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 PhysicCollideLayer
+.PHONY : PhysicCollideLayer
+
+# fast build rule for target.
+PhysicCollideLayer/fast:
+	$(MAKE) -f tests/CMakeFiles/PhysicCollideLayer.dir/build.make tests/CMakeFiles/PhysicCollideLayer.dir/build
+.PHONY : PhysicCollideLayer/fast
+
 src/core/Conf.o: src/core/Conf.cpp.o
 .PHONY : src/core/Conf.o
 
@@ -1298,6 +1311,7 @@ help:
 	@echo "... PacketHandshakeTest"
 	@echo "... PacketMapTest"
 	@echo "... PacketSelectPlayerTest"
+	@echo "... PhysicCollideLayer"
 	@echo "... src/core/Conf.o"
 	@echo "... src/core/Conf.i"
 	@echo "... src/core/Conf.s"

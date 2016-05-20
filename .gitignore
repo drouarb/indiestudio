@@ -156,3 +156,4 @@ build
 tests/work
 Testing
 CTestTestfile.cmake
+exe
