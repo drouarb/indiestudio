@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 11:03:19 2016 Alexis Trouve
-// Last update Fri May 20 10:43:49 2016 Esteban Lewis
+// Last update Fri May 20 14:42:15 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -119,26 +119,29 @@ bool		EntityCollideLayer::tryMoveId(int id, double posx, double posy)
   return (false);
 }
 
-void		EntityCollideLayer::applyVectorToId(int id, short orient, double speed)
+void		EntityCollideLayer::forceMoveId(int id, double posx, double posy)
 {
+  int		x;
+  int		y;
   std::list<gauntlet::ABody*>::iterator	it1;
-  double				vectX;
-  double				vectY;
+  std::pair<double, double>		pos;
+  std::pair<double, double>		size;
 
   it1 = Entity.begin();
   while (it1 != Entity.end())
     {
       if ((*it1)->getId() == id)
-	break;
+	{
+	  pos = (*it1)->getPos();
+	  size = (*it1)->getSize();
+	  x = static_cast<int>(pos.first / SIZE_CASE);
+	  y = static_cast<int>(pos.second / SIZE_CASE);
+	  map[static_cast<int>(posy / SIZE_CASE)][static_cast<int>(posy / SIZE_CASE)]
+	    .Entity.push_front(*it1);
+	  suprMapId(id, x, y);
+	}
       it1++;
     }
-  if (it1 == Entity.end() && (*it1)->getId() != id)
-    return ;
-  vectY = (Math::sin(orient) * speed);
-  vectX = (Math::cos(orient) * speed);
-  if (tryMoveId(id, (*it1)->getPos().first + vectX, (*it1)->getPos().second + vectY) == false)
-    if (tryMoveId(id, (*it1)->getPos().first + vectX, (*it1)->getPos().second) == false)
-      tryMoveId(id, (*it1)->getPos().first, (*it1)->getPos().second + vectY);
 }
 
 void		EntityCollideLayer::suprMapId(int id, int x, int y)
@@ -199,6 +202,21 @@ bool		EntityCollideLayer::setNewBody(gauntlet::ABody *newBody)
       return(true);
     }
   return (false);
+}
+
+void		EntityCollideLayer::forceSetBody(gauntlet::ABody *newBody)
+{
+  std::pair<double, double>	pos;
+  std::pair<double, double>	size;
+  int				x;
+  int				y;
+
+  pos = newBody->getPos();
+  size = newBody->getSize();
+  x = static_cast<int>(pos.first / SIZE_CASE);
+  y = static_cast<int>(pos.second / SIZE_CASE);
+  Entity.push_front(newBody);
+  map[y][x].Entity.push_front(newBody);
 }
 
 double		EntityCollideLayer::getDist(double refx, double refy,
