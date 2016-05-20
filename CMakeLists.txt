@@ -67,6 +67,7 @@ if (${OGRE_STATIC})
     include_directories(${CMAKE_BINARY_DIR}/include/OIS)
     include_directories(${CMAKE_BINARY_DIR}/include/)
     add_definitions(-DOGRE_STATIC)
+    add_definitions(-D_GLIBCXX_USE_CXX11_ABI=0)
     message("-> OK")
 
 else ()
