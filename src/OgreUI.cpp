@@ -451,6 +451,13 @@ void OgreUI::createScene(void) {
 
 }
 
+void OgreUI::quit() {
+    this->mShutDown = true;
+}
+
+
+
+
 
 
 

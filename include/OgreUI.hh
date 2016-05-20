@@ -81,6 +81,7 @@ public:
     void loadSound(std::string & path);
      void hideItem(int id);
     void playSound(int id);
+	void quit();
 };
 
 #endif
