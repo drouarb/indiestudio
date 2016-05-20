@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Tue May 10 20:28:30 2016 Alexis Trouve
-// Last update Wed May 18 15:05:40 2016 Esteban Lewis
+// Last update Thu May 19 17:54:21 2016 Esteban Lewis
 //
 
 #ifndef ENTITYCOLLIDELAYER_HH_
@@ -37,7 +37,8 @@ namespace gauntlet
 
     class	EntityCollideLayer
     {
-    private:
+      //private:
+    public:
       gauntlet::world::CollidingArea	**map;
       std::list<gauntlet::ABody*>	Entity;
       unsigned int			sizeX;
@@ -45,6 +46,10 @@ namespace gauntlet
     private:
       void				setCollidingAreaData();
       void				suprMapId(int id, int posx, int posy);
+    private:
+      bool				bodyLineIntersection(double refx, double refy,
+							     short angle, double bodySizeX,
+							     double bodySizeY, ABody & body);
     public:
       EntityCollideLayer(gauntlet::world::PhysicCollideLayer *physicLayer);
       ~EntityCollideLayer();
