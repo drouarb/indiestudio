@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Fri May 20 15:27:14 2016 Alexis Trouve
+// Last update Fri May 20 15:38:36 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -33,8 +33,6 @@ void	World::loadGame(std::string file)
 {
   std::cout << "WORLD load " << file << std::endl;
 }
-
-void	World::
 
 void	World::tester()
 {
