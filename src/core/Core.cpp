@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:13:44 2016 Esteban Lewis
-// Last update Tue May 17 15:58:28 2016 Esteban Lewis
+// Last update Fri May 20 16:55:09 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -18,33 +18,20 @@ gauntlet::core::Core::Core() : keepGoing(true), observer(new CoreUIObserver(*thi
   menu = new MainMenu(*this, 100, NULL);
   menu->setOpen(true);
 
-  std::cout << std::endl << "-- -- TEST menu saveload 1st load" << std::endl;
-  std::cout << "-- TEST saveload" << std::endl;
-  buttonClick(101);
-  std::cout << "-- TEST select" << std::endl;
-  buttonClick(203);
-  std::cout << "-- TEST save" << std::endl;
-  buttonClick(201);
+  ogre.setIObserver(observer);
+  ogreThread = new std::thread(&OgreUI::go, ogre);
 
-  std::cout << std::endl << "-- -- TEST menu conf enter esc" << std::endl;
-  std::cout << "-- TEST settings" << std::endl;
-  buttonClick(102);
-  std::cout << "-- TEST key exit" << std::endl;
-  buttonClick(206);
-  std::cout << "-- TEST enter" << std::endl;
-  keyDown(IUIObserver::KEY_ENTER);
-  std::cout << "-- TEST exit" << std::endl;
-  keyDown(IUIObserver::KEY_ENTER);
+  ogre.addButton(PLEFT, 145, "Hello", 0);
 
-  std::cout << std::endl << "-- TEST menu play" << std::endl;
-  buttonClick(100);
-
-  //loop();
+  loop();
 }
 
 gauntlet::core::Core::~Core()
 {
   delete menu;
+  ogre.quit();
+  ogreThread->join();
+  delete ogreThread;
 }
 
 void
@@ -81,8 +68,9 @@ gauntlet::core::Core::keyDown(IUIObserver::Key key)
 }
 
 void
-gauntlet::core::Core::buttonClick(int buttonId)
+gauntlet::core::Core::buttonClick(int buttonId, struct t_hitItem & item)
 {
+  (void)item;
   if (menu->getOpen())
     {
       menu->buttonClick(buttonId);

@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 10:52:22 2016 Esteban Lewis
-// Last update Tue May 17 15:20:08 2016 Esteban Lewis
+// Last update Fri May 20 16:29:23 2016 Esteban Lewis
 //
 
 #ifndef  IUIOBSERVER_HH_
@@ -66,7 +66,7 @@ namespace gauntlet {
 
             virtual void mouseMove(int x, int y) = 0;
 
-            virtual void itemClick(int buttonId, struct t_hitItem data) = 0;
+            virtual void itemClick(int buttonId, struct t_hitItem & data) = 0;
         };
     };
 };

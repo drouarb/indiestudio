@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 10:52:22 2016 Esteban Lewis
-// Last update Tue May 17 15:27:51 2016 Esteban Lewis
+// Last update Fri May 20 16:29:51 2016 Esteban Lewis
 //
 
 #ifndef  COREUIOBSERVER_HH_
@@ -29,7 +29,7 @@ namespace gauntlet {
 
             void mouseMove(int x, int y);
 
-            void itemClick(int buttonId, struct t_hitItem item);
+            void itemClick(int buttonId, struct t_hitItem & item);
 
         private:
             Core &core;
