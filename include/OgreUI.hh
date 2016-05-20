@@ -51,6 +51,8 @@ public:
     void createCamera(void);
     void createFrameListener(void);
     void createScene(void);
+	OgreUI(void);
+	~OgreUI(void);
     void destroyScene(void);
     void createViewports(void);
     void setupResources(void);
