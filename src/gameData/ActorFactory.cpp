@@ -5,9 +5,10 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 19:05:59 2016 Alexis Trouve
-// Last update Sat May 14 11:55:22 2016 Alexis Trouve
+// Last update Wed May 18 14:19:19 2016 Alexis Trouve
 //
 
+#include <iostream>
 #include "ActorFactory.hh"
 
 using namespace gauntlet;

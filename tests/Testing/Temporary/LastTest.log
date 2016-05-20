@@ -1,0 +1,121 @@
+Start testing: May 19 14:47 CEST
+----------------------------------------------------------
+1/7 Testing: PacketConnectTest
+1/7 Test: PacketConnectTest
+Command: "/home/greg/rendu/cpp_indie_studio/tests/PacketConnectTest"
+Directory: /home/greg/rendu/cpp_indie_studio/tests
+"PacketConnectTest" start time: May 19 14:47 CEST
+Output:
+----------------------------------------------------------
+Testing PacketConnect
+->Serialisation/Deserialitation
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"PacketConnectTest" end time: May 19 14:47 CEST
+"PacketConnectTest" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/7 Testing: PacketDisconnectTest
+2/7 Test: PacketDisconnectTest
+Command: "/home/greg/rendu/cpp_indie_studio/tests/PacketDisconnectTest"
+Directory: /home/greg/rendu/cpp_indie_studio/tests
+"PacketDisconnectTest" start time: May 19 14:47 CEST
+Output:
+----------------------------------------------------------
+Testing PacketDisconnect
+->Serialisation/Deserialitation
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"PacketDisconnectTest" end time: May 19 14:47 CEST
+"PacketDisconnectTest" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/7 Testing: PacketHandshakeTest
+3/7 Test: PacketHandshakeTest
+Command: "/home/greg/rendu/cpp_indie_studio/tests/PacketHandshakeTest"
+Directory: /home/greg/rendu/cpp_indie_studio/tests
+"PacketHandshakeTest" start time: May 19 14:47 CEST
+Output:
+----------------------------------------------------------
+Testing PacketHandshake
+->Serialisation/Deserialitation
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"PacketHandshakeTest" end time: May 19 14:47 CEST
+"PacketHandshakeTest" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/7 Testing: PacketSelectPlayerTest
+4/7 Test: PacketSelectPlayerTest
+Command: "/home/greg/rendu/cpp_indie_studio/tests/PacketSelectPlayerTest"
+Directory: /home/greg/rendu/cpp_indie_studio/tests
+"PacketSelectPlayerTest" start time: May 19 14:47 CEST
+Output:
+----------------------------------------------------------
+Testing PacketSelectPlayer
+->Serialisation/Deserialitation
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"PacketSelectPlayerTest" end time: May 19 14:47 CEST
+"PacketSelectPlayerTest" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/7 Testing: PacketMapTest
+5/7 Test: PacketMapTest
+Command: "/home/greg/rendu/cpp_indie_studio/tests/PacketMapTest"
+Directory: /home/greg/rendu/cpp_indie_studio/tests
+"PacketMapTest" start time: May 19 14:47 CEST
+Output:
+----------------------------------------------------------
+Testing PacketMap
+->Serialisation/Deserialitation
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"PacketMapTest" end time: May 19 14:47 CEST
+"PacketMapTest" time elapsed: 00:00:00
+----------------------------------------------------------
+
+6/7 Testing: PacketAddPlayerTest
+6/7 Test: PacketAddPlayerTest
+Command: "/home/greg/rendu/cpp_indie_studio/tests/PacketAddPlayerTest"
+Directory: /home/greg/rendu/cpp_indie_studio/tests
+"PacketAddPlayerTest" start time: May 19 14:47 CEST
+Output:
+----------------------------------------------------------
+Testing PacketMap
+->Serialisation/Deserialitation
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"PacketAddPlayerTest" end time: May 19 14:47 CEST
+"PacketAddPlayerTest" time elapsed: 00:00:00
+----------------------------------------------------------
+
+Unable to find executable: PhysicCollideLayer
+7/7 Testing: PhysicCollideLayer
+7/7 Test: PhysicCollideLayer
+Command: ""
+Directory: /home/greg/rendu/cpp_indie_studio/tests
+"PhysicCollideLayer" start time: 
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"PhysicCollideLayer" end time: May 19 14:47 CEST
+"PhysicCollideLayer" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: May 19 14:47 CEST

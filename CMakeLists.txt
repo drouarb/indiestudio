@@ -4,7 +4,7 @@ enable_testing()
 
 option(INDIE_TESTS "Enable test compilation" OFF)
 
-set(CMAKE_CXX_FLAGS "-W -Wall -Wextra -std=c++11")
+set(CMAKE_CXX_FLAGS "-W -Wall -Wextra -std=c++11 -g")
 
 find_package(Threads)
 
