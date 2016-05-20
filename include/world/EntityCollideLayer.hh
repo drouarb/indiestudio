@@ -27,8 +27,7 @@ namespace gauntlet
 
     class	EntityCollideLayer
     {
-      //private:
-    public:
+    private:
       gauntlet::world::CollidingArea	**map;
       std::list<gauntlet::ABody*>	Entity;
       unsigned int			sizeX;

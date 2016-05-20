@@ -1,13 +1,3 @@
-//
-// Math.cpp for indie in /home/lewis_e/rendu/cpp/cpp_indie_studio
-// 
-// Made by Esteban Lewis
-// Login   <lewis_e@epitech.net>
-// 
-// Started on  Sat May 14 13:48:47 2016 Esteban Lewis
-// Last update Fri May 20 15:43:37 2016 Esteban Lewis
-//
-
 #include <math.h>
 #include "Math.hh"
 
