@@ -44,7 +44,7 @@ private:
 	OIS::Mouse*    mMouse;
 	OIS::Keyboard* mKeyboard;
 public:
-	void go(std::mutex & mut);
+  void go(std::mutex *);
     bool setup();
     void initMap();
     bool configure(void);

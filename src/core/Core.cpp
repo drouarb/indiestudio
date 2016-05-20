@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:13:44 2016 Esteban Lewis
-// Last update Fri May 20 17:08:24 2016 Esteban Lewis
+// Last update Fri May 20 23:17:28 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -18,21 +18,17 @@ gauntlet::core::Core::Core() : keepGoing(true), observer(new CoreUIObserver(*thi
   menu->setOpen(true);
 
   ogre.setIObserver(observer);
-  std::mutex m;
-  m.lock();
-  ogreThread = new std::thread(&OgreUI::go, ogre, std::ref(m));
-  m.lock();
-  ogre.addButton(PLEFT, 145, "Hello", 0);
-
-  loop();
+  ogreMutex.lock();
+  loopThread = new Thread<void (Core::*)(void *), Core>(&Core::loop, this, NULL);
+  ogre.go(&ogreMutex);
 }
 
 gauntlet::core::Core::~Core()
 {
   delete menu;
   ogre.quit();
-  ogreThread->join();
-  delete ogreThread;
+  loopThread->Join();
+  delete loopThread;
 }
 
 void
@@ -125,10 +121,11 @@ gauntlet::core::Core::getConf()
 }
 
 void
-gauntlet::core::Core::loop()
+gauntlet::core::Core::loop(void * __attribute__ ((unused)) v)
 {
   long ms;
 
+  ogreMutex.lock();
   while (keepGoing)
     {
       sw.Set();

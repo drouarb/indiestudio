@@ -139,7 +139,7 @@ void OgreUI::loadResources(void)
     Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
 
-void OgreUI::go(std::mutex & mut)
+void OgreUI::go(std::mutex * mutex)
 {
     mResourcesCfg = "resources.cfg";
     mPluginsCfg = "plugins.cfg";
@@ -147,7 +147,7 @@ void OgreUI::go(std::mutex & mut)
     {
         return;
     }
-    mut.unlock();
+    mutex->unlock();
     mRoot->startRendering();
     destroyScene();
 }
@@ -208,8 +208,6 @@ bool OgreUI::frameRenderingQueued(const Ogre::FrameEvent& evt)
 
 bool OgreUI::keyPressed( const OIS::KeyEvent &arg )
 {
-        if (arg.key == OIS::KC_ESCAPE)
-        mShutDown = true;
     mCameraMan->injectKeyDown(arg);
     if (obs != NULL)
         if (keymap.count(arg.key) > 0)
@@ -347,8 +345,8 @@ void OgreUI::remove(int id) {
 void OgreUI::addButton(Position pos, int id, std::string text, int texture_id) {
 
     std::stringstream ss;
-        ss << id;
-  OgreBites::Button *c = mTrayMgr->createButton(posmap[pos], ss.str(), text);
+    ss << id;
+    OgreBites::Button *c = mTrayMgr->createButton(posmap[pos], ss.str(), text);
     
 }
 

@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 10:59:47 2016 Esteban Lewis
-// Last update Fri May 20 17:04:03 2016 Esteban Lewis
+// Last update Fri May 20 22:56:19 2016 Esteban Lewis
 //
 
 #ifndef  CORE_HH_
@@ -22,6 +22,7 @@
 # include "ConfMenu.hh"
 # include "Position.hh"
 # include "OgreUI.hh"
+# include "Thread.hpp"
 
 namespace			gauntlet
 {
@@ -48,14 +49,15 @@ namespace			gauntlet
       bool			keepGoing;
       IUIObserver *		observer;
       OgreUI			ogre;
-      std::thread *		ogreThread;
+      std::mutex		ogreMutex;
+      Thread<void (Core::*)(void *), Core> * loopThread;
       Menu *			menu;
       PlayerController		pc;
       Stopwatch			sw;
       Conf			conf;
       IUIObserver::Key		lastKey;
 
-      void			loop();
+      void			loop(void *);
       void			updateWorld();
     };
   };
