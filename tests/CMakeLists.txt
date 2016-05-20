@@ -43,3 +43,11 @@ add_executable(PacketAddPlayerTest
         ../src/network/packet/Packet.cpp
         ../src/network/packet/PacketAddPlayer.cpp)
 add_test(PacketAddPlayerTest PacketAddPlayerTest)
+
+#Test PhysicCollideLayer
+add_executable(PhysicCollideLayer
+            ../src/world/PhysicCollideLayer.cpp
+            ./PhysicTest/PhysicCollierLayerTest.cpp
+        )
+add_test(PhysicCollideLayer PhysicCollideLayer)
+
