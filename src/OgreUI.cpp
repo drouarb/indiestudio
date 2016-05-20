@@ -2,6 +2,14 @@
 #include <iostream>
 #include <stdlib.h>
 #include "OgreUI.hh"
+#ifdef OGRE_STATIC
+ #include <OgreGLPlugin.h>
+ #include <OgreParticleFXPlugin.h>
+ #include <OgreBspSceneManagerPlugin.h>
+ #include <OgrePCZPlugin.h>
+ #include <OgreOctreePlugin.h>
+ #include <OgreOctreeZonePlugin.h>
+#endif
 
 using namespace gauntlet;
 using namespace core;
@@ -49,8 +57,8 @@ bool OgreUI::configure(void)
 void OgreUI::chooseSceneManager(void)
 {
     mSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC);
-	mOverlaySystem = new Ogre::OverlaySystem();
-	mSceneMgr->addRenderQueueListener(mOverlaySystem);
+    mOverlaySystem = new Ogre::OverlaySystem();
+    mSceneMgr->addRenderQueueListener(mOverlaySystem);
 }
 
 void OgreUI::createCamera(void)
@@ -78,9 +86,9 @@ void OgreUI::createFrameListener(void)
     mMouse->setEventCallback(this);
     mKeyboard->setEventCallback(this);
     Ogre::WindowEventUtilities::addWindowEventListener(mWindow, this);
-	OgreBites::InputContext inputContext;
-	inputContext.mMouse = mMouse;
-	inputContext.mKeyboard = mKeyboard;
+    OgreBites::InputContext inputContext;
+    inputContext.mMouse = mMouse;
+    inputContext.mKeyboard = mKeyboard;
     mTrayMgr = new OgreBites::SdkTrayManager("InterfaceName", mWindow, inputContext, this);
     mRoot->addFrameListener(this);
     mTrayMgr->setListener(this);
@@ -144,6 +152,14 @@ void OgreUI::go(void)
 bool OgreUI::setup(void)
 {
     mRoot = new Ogre::Root(mPluginsCfg);
+#ifdef OGRE_STATIC
+    mRoot->installPlugin(new Ogre::GLPlugin());
+    mRoot->installPlugin(new Ogre::ParticleFXPlugin());
+    mRoot->installPlugin(new Ogre::BspSceneManagerPlugin());
+    mRoot->installPlugin(new Ogre::PCZPlugin());
+    mRoot->installPlugin(new Ogre::OctreeZonePlugin());
+    mRoot->installPlugin(new Ogre::OctreePlugin());
+#endif
     setupResources();
     bool carryOn = configure();
     if (!carryOn) return false;
