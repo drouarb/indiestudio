@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 11:03:19 2016 Alexis Trouve
-// Last update Thu May 19 14:07:21 2016 Alexis Trouve
+// Last update Fri May 20 14:21:02 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -119,7 +119,6 @@ bool		EntityCollideLayer::tryMoveId(int id, double posx, double posy)
   return (false);
 }
 
-
 void		EntityCollideLayer::forceMoveId(int id, double posx, double posy)
 {
   int		x;
@@ -223,8 +222,38 @@ void		EntityCollideLayer::forceSetBody(gauntlet::ABody *newBody)
 double		EntityCollideLayer::getDist(double refx, double refy,
 					    const ABody &target)
 {
-  return (sqrt(pow(target.getPos().first - refx, 2) +
-	       pow(target.getPos().second - refy, 2)));
+  double dist = sqrt(pow(target.getPos().first - refx, 2) +
+		     pow(target.getPos().second - refy, 2));
+  if (target.getSize().first == 0 || target.getSize().second == 0)
+    return (dist);
+
+  short angle = Math::getAngle(-atan2((target.getPos().second - refy),
+				       (target.getPos().first - refx)) + M_PI);
+  short a1 =
+    Math::getAngle(atan2(target.getSize().second / 2, target.getSize().first / 2));
+  short a2 = 
+    Math::getAngle(atan2(target.getSize().second / 2, -target.getSize().first / 2));
+  short a3 = 
+    Math::getAngle(atan2(-target.getSize().second / 2, -target.getSize().first / 2));
+  short a4 = 
+    Math::getAngle(atan2(-target.getSize().second / 2, target.getSize().first / 2));
+
+  double proportion;
+  if (Math::isBetween(angle, a2, a1) || Math::isBetween(angle, a4, a3))
+    {
+      //top or bottom side
+      proportion = target.getSize().second / 2 / (target.getPos().second - refy);
+    }
+  else
+    {
+      //left or right side
+      proportion = target.getSize().first / 2 / (target.getPos().first - refx);
+    }
+  if (proportion < 0)
+    proportion = -proportion;
+  if (proportion > 1)
+    return (dist);
+  return (dist - dist * proportion);
 }
 
 int		EntityCollideLayer::getAngle(double refx, double refy,
@@ -232,6 +261,47 @@ int		EntityCollideLayer::getAngle(double refx, double refy,
 {
   return (Math::getAngle(-atan2((target.getPos().second - refy),
 				(target.getPos().first - refx))) - refa);
+}
+
+bool				EntityCollideLayer::bodyLineIntersection(double refX,
+									 double refY,
+									 short angle,
+									 double bodySizeX,
+									 double bodySizeY,
+									 ABody & body)
+{
+  double			a1, b1; //reference half-line equation
+  double			a2, b2; //body line equation
+  a1 = Math::sin(angle) / Math::cos(angle);
+  b1 = refY - a1 * refX;
+  a2 = -bodySizeY / bodySizeX;
+  b2 = body.getPos().second - a2 * body.getPos().first;
+
+  if (a1 - a2 == 0)
+    {
+      //parallel lines
+      return (false);
+    }
+
+  //intersection point
+  double x = (b2 - b1) / (a1 - a2);
+  double y = a2 * x + b2;
+
+  if (!(x >= body.getPos().first - body.getSize().first / 2 &&
+	x <= body.getPos().first + body.getSize().first / 2 &&
+	y >= body.getPos().second - body.getSize().second / 2 &&
+	y <= body.getPos().second + body.getSize().second / 2))
+    {
+      //point not in body hitbox
+      return (false);
+    }
+  if (!((Math::isBetween(angle, Math::A_RIGHT, Math::A_RIGHT_NEG) && x >= refX) ||
+	(Math::isBetween(angle, Math::A_RIGHT_NEG, Math::A_RIGHT) && x <= refX)))
+    {
+      //point not on cone side of line
+      return (false);
+    }
+  return (true);
 }
 
 std::list<gauntlet::ABody*>	EntityCollideLayer::giveBodyInAreaCircle(double posx, double posy, double rayon)
@@ -278,8 +348,20 @@ std::list<gauntlet::ABody*>	EntityCollideLayer::giveBodyInAreaCone(double posx, 
   for (std::list<ABody*>::iterator it = list.begin(); it != list.end(); ++it)
     {
       short res = getAngle(posx, posy, ref_angle, **it);
-      std::cout << "target " << (*it)->getId() << " -> " << res << std::endl;
-      if (!Math::isBetween(res, halfangle, -halfangle))
+      
+      if (!(Math::isBetween(res, halfangle, -halfangle) ||
+	    (bodyLineIntersection(posx, posy, ref_angle + halfangle,
+				  (*it)->getSize().first / 2,
+				  (*it)->getSize().second / 2, **it) ||
+	     bodyLineIntersection(posx, posy, ref_angle + halfangle,
+				  -(*it)->getSize().first / 2,
+				  (*it)->getSize().second / 2, **it) ||
+	     bodyLineIntersection(posx, posy, ref_angle - halfangle,
+				  (*it)->getSize().first / 2,
+				  (*it)->getSize().second / 2, **it) ||
+	     bodyLineIntersection(posx, posy, ref_angle - halfangle,
+				  -(*it)->getSize().first / 2,
+				  (*it)->getSize().second / 2, **it))))
 	{
 	  it = list.erase(it);
 	  --it;
