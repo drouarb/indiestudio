@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:13:44 2016 Esteban Lewis
-// Last update Fri May 20 16:55:09 2016 Esteban Lewis
+// Last update Fri May 20 17:08:24 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -19,7 +19,10 @@ gauntlet::core::Core::Core() : keepGoing(true), observer(new CoreUIObserver(*thi
   menu->setOpen(true);
 
   ogre.setIObserver(observer);
-  ogreThread = new std::thread(&OgreUI::go, ogre);
+  std::mutex m;
+  m.lock();
+  ogreThread = new std::thread(&OgreUI::go, ogre, m);
+  m.lock();
 
   ogre.addButton(PLEFT, 145, "Hello", 0);
 
@@ -71,6 +74,7 @@ void
 gauntlet::core::Core::buttonClick(int buttonId, struct t_hitItem & item)
 {
   (void)item;
+  std::cout << "CORE button clicked " << buttonId << std::endl;
   if (menu->getOpen())
     {
       menu->buttonClick(buttonId);

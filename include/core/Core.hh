@@ -5,13 +5,14 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 10:59:47 2016 Esteban Lewis
-// Last update Fri May 20 16:41:16 2016 Esteban Lewis
+// Last update Fri May 20 17:04:03 2016 Esteban Lewis
 //
 
 #ifndef  CORE_HH_
 # define CORE_HH_
 
 # include <thread>
+# include <mutex>
 # include <unistd.h>
 # include "CoreUIObserver.hh"
 # include "Menu.hh"
