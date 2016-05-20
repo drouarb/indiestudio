@@ -5,25 +5,32 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Thu May 12 17:13:51 2016 Alexis Trouve
-// Last update Thu May 12 17:14:29 2016 Alexis Trouve
+// Last update Thu May 19 16:19:15 2016 Alexis Trouve
 //
 
 #include "GameObject.hh"
 
 using namespace gauntlet;
 
-GameObject::GameObject(bool ncollide, int nid, double posx, double posy,
-             double sizex, double sizey, short norient)
-  : ABody(ncollide, nid, posx, posy, sizex, sizey, norient)
+GameObject::GameObject(int nid, world::World *nworld)
+  : ABody(nid)
 {
-}
-
-GameObject::GameObject(int nid, double posx, double posy,
-             double sizex, double sizey, short norient)
-  : ABody(nid, posx, posy, sizex, sizey, norient)
-{
+  world = nworld;
 }
 
 GameObject::~GameObject()
 {
+}
+
+ABody		*GameObject::clone(int id) const
+{
+  GameObject	*obj;
+
+  obj = new GameObject(id, world);
+  obj->setName(name);
+  obj->setCollide(collideActive);
+  obj->changePos(coord);
+  obj->changeSize(size);
+  obj->changeOrientation(orientation);
+  return (obj);
 }

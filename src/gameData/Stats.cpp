@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Mon May  9 13:46:11 2016 Alexis Trouve
-// Last update Mon May  9 16:04:14 2016 Alexis Trouve
+// Last update Thu May 19 11:52:13 2016 Alexis Trouve
 //
 
 #include "Stats.hh"
@@ -16,6 +16,9 @@ gauntlet::Stats::Stats()
 {
   HP = 0;
   normalHP = 0;
+  speed = 0.0;
+  normalSpeed = 0.0;
+  attackModifier = 1.0;
 }
 
 gauntlet::Stats::~Stats()

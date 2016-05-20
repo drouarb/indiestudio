@@ -5,7 +5,7 @@
 #ifndef CPP_INDIE_STUDIO_SPELLCONTAINER_HH
 # define CPP_INDIE_STUDIO_SPELLCONTAINER_HH
 
-#include <list>
+#include <vector>
 #include "ASpell.hh"
 
 namespace gauntlet
@@ -15,10 +15,10 @@ namespace gauntlet
   
     class SpellContainer
     {
-      std::list<gauntlet::ASpell*> spellList;
     public:
       SpellContainer();
       ~SpellContainer();
+      std::vector<gauntlet::ASpell*> spellList;
     };
 }
 
