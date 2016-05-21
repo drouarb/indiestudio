@@ -231,7 +231,7 @@ bool OgreUI::mouseMoved(const OIS::MouseEvent &arg)
   mTrayMgr->injectMouseMove(arg);
   mCameraMan->injectMouseMove(arg);
   if (obs != NULL)
-    obs->mouseMove(arg.state.X.rel, arg.state.Y.rel);
+    obs->mouseMove(arg.state.width, arg.state.height);
   return true;
 }
 
@@ -517,6 +517,7 @@ void OgreUI::hideItem(int id)
 
 void OgreUI::createScene(void)
 {
+  mTrayMgr->showBackdrop("Ogre/Background");
 }
 
 void OgreUI::quit()
