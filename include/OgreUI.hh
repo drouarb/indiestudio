@@ -143,6 +143,8 @@ class OgreUI
   void showItem(int id);
 
   void playAnimation(int animationId, int entityId, bool loop);
+  void  showBackground();
+  void  hideBackground();
 
   void stopAnimation(int animationId, int entityId);
    std::pair<int, int> getSizeWindow();

@@ -516,7 +516,7 @@ void OgreUI::hideItem(int id)
 
 void OgreUI::createScene(void)
 {
-  mTrayMgr->showBackdrop("Ogre/Background");
+  showBackground();
 }
 
 void OgreUI::quit()
@@ -561,6 +561,20 @@ std::pair<int, int> OgreUI::getSizeWindow()
 {
   return (std::pair<int, int >(mWindow->getWidth(), mWindow->getHeight()));
 }
+
+void OgreUI::showBackground()
+{
+  mTrayMgr->showBackdrop("Ogre/Background");
+}
+
+void OgreUI::hideBackground()
+{
+  mTrayMgr->hideBackdrop();
+}
+
+
+
+
 
 
 
