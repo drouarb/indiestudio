@@ -28,8 +28,22 @@ gauntlet::core::TextBox::keyDown(Command cmd)
       text.append(1, c);
       buttons[0].setStr(text);
     }
+  else if (key >= IUIObserver::KEY_0 && key <= IUIObserver::KEY_9)
+    {
+      char c = key - IUIObserver::KEY_0 + '0';
+      text.append(1, c);
+      buttons[0].setStr(text);
+    }
+  else if (key == IUIObserver::KEY_PERIOD)
+    text += ".";
   struct t_hitItem item;
   item.data = text;
   buttons[0].update(item);
   return (Menu::keyDown(cmd));
+}
+
+std::string const &
+gauntlet::core::TextBox::getText() const
+{
+  return (text);
 }

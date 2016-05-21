@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:09:17 2016 Esteban Lewis
-// Last update Sat May 21 17:47:46 2016 Esteban Lewis
+// Last update Sat May 21 23:29:39 2016 Esteban Lewis
 //
 
 #include "ConfMenu.hh"
@@ -40,6 +40,8 @@ gauntlet::core::ConfMenu::ConfMenu(Core & core, int idStart, Menu * parent) :
 	      (buttons[5].getId(), &ConfMenu::doKeylink));
   funs.insert(std::pair<int, void (ConfMenu::*)(int)>
 	      (buttons[6].getId(), &ConfMenu::doKeylink));
+  funs.insert(std::pair<int, void (ConfMenu::*)(int)>
+	      (buttons[7].getId(), &ConfMenu::doKeylink));
 
 
   // KEY NAMES

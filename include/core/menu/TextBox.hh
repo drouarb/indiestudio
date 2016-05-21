@@ -15,6 +15,8 @@ namespace			gauntlet
 
       virtual bool		keyDown(Command);
 
+      std::string const &	getText() const;
+
     protected:
       std::string		text;
     };

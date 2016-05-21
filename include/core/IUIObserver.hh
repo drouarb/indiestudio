@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 10:52:22 2016 Esteban Lewis
-// Last update Fri May 20 16:29:23 2016 Esteban Lewis
+// Last update Sat May 21 22:39:32 2016 Esteban Lewis
 //
 
 #ifndef  IUIOBSERVER_HH_
@@ -57,7 +57,18 @@ namespace gauntlet {
                 KEY_W,
                 KEY_X,
                 KEY_Y,
-                KEY_Z
+                KEY_Z,
+		KEY_0,
+		KEY_1,
+		KEY_2,
+		KEY_3,
+		KEY_4,
+		KEY_5,
+		KEY_6,
+		KEY_7,
+		KEY_8,
+		KEY_9,
+		KEY_PERIOD
             };
 
             virtual void keyDown(Key) = 0;
