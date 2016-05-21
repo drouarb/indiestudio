@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:13:44 2016 Esteban Lewis
-// Last update Fri May 20 23:32:24 2016 Esteban Lewis
+// Last update Sat May 21 13:22:53 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -17,9 +17,11 @@ gauntlet::core::Core::Core() : keepGoing(true), observer(new CoreUIObserver(*thi
   menu = new MainMenu(*this, 100, NULL);
 
   ogre.setIObserver(observer);
-  ogreMutex.lock();
+  if (!ogre.init())
+    return ;
+  menu->setOpen(true);
   loopThread = new Thread<void (Core::*)(void *), Core>(&Core::loop, this, NULL);
-  ogre.go(&ogreMutex);
+  ogre.go();
 }
 
 gauntlet::core::Core::~Core()
@@ -67,10 +69,9 @@ void
 gauntlet::core::Core::buttonClick(int buttonId, struct t_hitItem & item)
 {
   (void)item;
-  std::cout << "CORE button clicked " << buttonId << std::endl;
   if (menu->getOpen())
     {
-      menu->buttonClick(buttonId);
+      menu->buttonClick(buttonId, item);
     }
 }
 
@@ -131,7 +132,6 @@ gauntlet::core::Core::loop(void * __attribute__ ((unused)) v)
 {
   long ms;
 
-  ogreMutex.lock();
   while (keepGoing)
     {
       sw.Set();
@@ -148,7 +148,6 @@ gauntlet::core::Core::loop(void * __attribute__ ((unused)) v)
 void
 gauntlet::core::Core::updateWorld()
 {
-  std::cout << "CORE update world" << std::endl;
   //...
   pc.loop();
 }

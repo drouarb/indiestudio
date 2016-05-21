@@ -139,15 +139,15 @@ void OgreUI::loadResources(void)
     Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
 
-void OgreUI::go(std::mutex * mutex)
+bool OgreUI::init()
 {
     mResourcesCfg = "resources.cfg";
     mPluginsCfg = "plugins.cfg";
-    if (!setup())
-    {
-        return;
-    }
-    mutex->unlock();
+    return (setup());
+}
+
+void OgreUI::go()
+{
     mRoot->startRendering();
     destroyScene();
 }
@@ -367,7 +367,7 @@ void OgreUI::checkBoxToggled(OgreBites::CheckBox *checkBox) {
 if (obs != NULL)
 {
     struct t_hitItem Box;
-    Box.type = MenuItemType::CHECBOX;
+    Box.type = MenuItemType::CHECKBOX;
     if (checkBox->isChecked())
         Box.state = MenuCheckBoxState::CHECKED;
     else
@@ -390,7 +390,7 @@ void OgreUI::addProgressBar(gauntlet::core::Position pos, int id, std::string te
     p->setProgress(value);
   }
 
-void OgreUI::addSelectMenu(gauntlet::core::Position pos, int id, std::string name, std::vector<std::string> item,
+void OgreUI::addSelectMenu(gauntlet::core::Position pos, int id, std::string name, std::vector<std::string> & item,
                            int texture_id) {
     std::stringstream ss;
     ss << id;
@@ -455,6 +455,12 @@ void OgreUI::addTextbox(gauntlet::core::Position pos, int id, std::string text, 
     std::stringstream ss;
     ss << id;
     mTrayMgr->createTextBox(posmap[pos], ss.str(), text, 100, 20);
+}
+
+void OgreUI::addLabel(gauntlet::core::Position pos, int id, std::string text, int texture_id) {
+    std::stringstream ss;
+    ss << id;
+    mTrayMgr->createLabel(posmap[pos], ss.str(), text);
 }
 
 void OgreUI::hideItem(int id) {

@@ -44,7 +44,8 @@ private:
 	OIS::Mouse*    mMouse;
 	OIS::Keyboard* mKeyboard;
 public:
-  void go(std::mutex *);
+  bool init();
+  void go();
     bool setup();
     void initMap();
     bool configure(void);
@@ -75,7 +76,8 @@ public:
 	void addSlideBar(gauntlet::core::Position  pos, int id, std::string text, int max_value, int texture_id);
     void addCheckbox(gauntlet::core::Position  pos, int id, std::string text, int texture_id);
     void addTextbox(gauntlet::core::Position  pos, int id, std::string text, int texture_id);
-    void addSelectMenu(gauntlet::core::Position pos, int id, std::string name, std::vector<std::string>,
+    void addLabel(gauntlet::core::Position  pos, int id, std::string text, int texture_id);
+    void addSelectMenu(gauntlet::core::Position pos, int id, std::string name, std::vector<std::string> &,
                                int texture_id);
     void addProgressBar(gauntlet::core::Position pos, int id, std::string text, int texture_id, int value);
     void remove(int ID);

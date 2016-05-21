@@ -18,7 +18,7 @@ namespace				gauntlet
             LABEL,
             SLIDE,
             PROGRESSBAR,
-            CHECBOX,
+            CHECKBOX,
             TEXTBOX,
             DIALOGBOX,
         };

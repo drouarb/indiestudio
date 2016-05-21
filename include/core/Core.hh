@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 10:59:47 2016 Esteban Lewis
-// Last update Fri May 20 23:24:10 2016 Esteban Lewis
+// Last update Sat May 21 13:20:30 2016 Esteban Lewis
 //
 
 #ifndef  CORE_HH_
@@ -50,7 +50,6 @@ namespace			gauntlet
       bool			keepGoing;
       IUIObserver *		observer;
       OgreUI			ogre;
-      std::mutex		ogreMutex;
       Thread<void (Core::*)(void *), Core> * loopThread;
       Menu *			menu;
       PlayerController		pc;

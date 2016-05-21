@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:06:35 2016 Esteban Lewis
-// Last update Tue May 17 15:50:31 2016 Esteban Lewis
+// Last update Sat May 21 11:42:17 2016 Esteban Lewis
 //
 
 #ifndef  MAINMENU_HH_
@@ -35,7 +35,7 @@ namespace			gauntlet
     protected:
       std::map<int, void (MainMenu::*)()> funs;
 
-      void			doButton(int);
+      void			doButton(int, struct t_hitItem &);
 
       void			doPlay();
       void			doSaveload();
