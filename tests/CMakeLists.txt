@@ -2,6 +2,14 @@ enable_testing()
 
 include_directories(../include)
 
+#Test Socket
+add_executable(SocketTest
+        packet/SocketTest.cpp
+        ../src/network/Socket.cpp
+)
+target_link_libraries(SocketTest pthread)
+add_test(SocketTest SocketTest)
+
 #Test PacketConnect
 add_executable(PacketConnectTest
         packet/PacketConnectTest.cpp

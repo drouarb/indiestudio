@@ -42,7 +42,7 @@ void gauntlet::network::PacketFactory::unregisterListener(PacketListener *listen
 
 void gauntlet::network::PacketFactory::send(const Packet &packet) {
     t_rawdata *data = packet.serialize();
-    socket->send(&data->front(), data->size());
+    socket->send(data);
     delete (data);
 }
 
