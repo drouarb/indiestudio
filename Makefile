@@ -70,16 +70,6 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-.PHONY : test/fast
-
 # The main all target
 all: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/lewis_e/rendu/cpp/cpp_indie_studio/CMakeFiles /home/lewis_e/rendu/cpp/cpp_indie_studio/CMakeFiles/progress.marks
@@ -123,6 +113,30 @@ gauntlet: cmake_check_build_system
 gauntlet/fast:
 	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/build
 .PHONY : gauntlet/fast
+
+src/OgreUI.o: src/OgreUI.cpp.o
+.PHONY : src/OgreUI.o
+
+# target to build an object file
+src/OgreUI.cpp.o:
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/OgreUI.cpp.o
+.PHONY : src/OgreUI.cpp.o
+
+src/OgreUI.i: src/OgreUI.cpp.i
+.PHONY : src/OgreUI.i
+
+# target to preprocess a source file
+src/OgreUI.cpp.i:
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/OgreUI.cpp.i
+.PHONY : src/OgreUI.cpp.i
+
+src/OgreUI.s: src/OgreUI.cpp.s
+.PHONY : src/OgreUI.s
+
+# target to generate assembly for a file
+src/OgreUI.cpp.s:
+	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/OgreUI.cpp.s
+.PHONY : src/OgreUI.cpp.s
 
 src/core/Conf.o: src/core/Conf.cpp.o
 .PHONY : src/core/Conf.o
@@ -412,30 +426,6 @@ src/gameData/Actor.cpp.s:
 	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/Actor.cpp.s
 .PHONY : src/gameData/Actor.cpp.s
 
-src/gameData/ActorFactory.o: src/gameData/ActorFactory.cpp.o
-.PHONY : src/gameData/ActorFactory.o
-
-# target to build an object file
-src/gameData/ActorFactory.cpp.o:
-	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/ActorFactory.cpp.o
-.PHONY : src/gameData/ActorFactory.cpp.o
-
-src/gameData/ActorFactory.i: src/gameData/ActorFactory.cpp.i
-.PHONY : src/gameData/ActorFactory.i
-
-# target to preprocess a source file
-src/gameData/ActorFactory.cpp.i:
-	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/ActorFactory.cpp.i
-.PHONY : src/gameData/ActorFactory.cpp.i
-
-src/gameData/ActorFactory.s: src/gameData/ActorFactory.cpp.s
-.PHONY : src/gameData/ActorFactory.s
-
-# target to generate assembly for a file
-src/gameData/ActorFactory.cpp.s:
-	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/ActorFactory.cpp.s
-.PHONY : src/gameData/ActorFactory.cpp.s
-
 src/gameData/BodyFactory.o: src/gameData/BodyFactory.cpp.o
 .PHONY : src/gameData/BodyFactory.o
 
@@ -508,30 +498,6 @@ src/gameData/Creature.cpp.s:
 	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/Creature.cpp.s
 .PHONY : src/gameData/Creature.cpp.s
 
-src/gameData/CreatureFactory.o: src/gameData/CreatureFactory.cpp.o
-.PHONY : src/gameData/CreatureFactory.o
-
-# target to build an object file
-src/gameData/CreatureFactory.cpp.o:
-	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/CreatureFactory.cpp.o
-.PHONY : src/gameData/CreatureFactory.cpp.o
-
-src/gameData/CreatureFactory.i: src/gameData/CreatureFactory.cpp.i
-.PHONY : src/gameData/CreatureFactory.i
-
-# target to preprocess a source file
-src/gameData/CreatureFactory.cpp.i:
-	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/CreatureFactory.cpp.i
-.PHONY : src/gameData/CreatureFactory.cpp.i
-
-src/gameData/CreatureFactory.s: src/gameData/CreatureFactory.cpp.s
-.PHONY : src/gameData/CreatureFactory.s
-
-# target to generate assembly for a file
-src/gameData/CreatureFactory.cpp.s:
-	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/CreatureFactory.cpp.s
-.PHONY : src/gameData/CreatureFactory.cpp.s
-
 src/gameData/GameObject.o: src/gameData/GameObject.cpp.o
 .PHONY : src/gameData/GameObject.o
 
@@ -555,30 +521,6 @@ src/gameData/GameObject.s: src/gameData/GameObject.cpp.s
 src/gameData/GameObject.cpp.s:
 	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/GameObject.cpp.s
 .PHONY : src/gameData/GameObject.cpp.s
-
-src/gameData/GameObjectFactory.o: src/gameData/GameObjectFactory.cpp.o
-.PHONY : src/gameData/GameObjectFactory.o
-
-# target to build an object file
-src/gameData/GameObjectFactory.cpp.o:
-	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/GameObjectFactory.cpp.o
-.PHONY : src/gameData/GameObjectFactory.cpp.o
-
-src/gameData/GameObjectFactory.i: src/gameData/GameObjectFactory.cpp.i
-.PHONY : src/gameData/GameObjectFactory.i
-
-# target to preprocess a source file
-src/gameData/GameObjectFactory.cpp.i:
-	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/GameObjectFactory.cpp.i
-.PHONY : src/gameData/GameObjectFactory.cpp.i
-
-src/gameData/GameObjectFactory.s: src/gameData/GameObjectFactory.cpp.s
-.PHONY : src/gameData/GameObjectFactory.s
-
-# target to generate assembly for a file
-src/gameData/GameObjectFactory.cpp.s:
-	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/GameObjectFactory.cpp.s
-.PHONY : src/gameData/GameObjectFactory.cpp.s
 
 src/gameData/Item.o: src/gameData/Item.cpp.o
 .PHONY : src/gameData/Item.o
@@ -675,30 +617,6 @@ src/gameData/Player.s: src/gameData/Player.cpp.s
 src/gameData/Player.cpp.s:
 	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/Player.cpp.s
 .PHONY : src/gameData/Player.cpp.s
-
-src/gameData/PlayerFactory.o: src/gameData/PlayerFactory.cpp.o
-.PHONY : src/gameData/PlayerFactory.o
-
-# target to build an object file
-src/gameData/PlayerFactory.cpp.o:
-	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/PlayerFactory.cpp.o
-.PHONY : src/gameData/PlayerFactory.cpp.o
-
-src/gameData/PlayerFactory.i: src/gameData/PlayerFactory.cpp.i
-.PHONY : src/gameData/PlayerFactory.i
-
-# target to preprocess a source file
-src/gameData/PlayerFactory.cpp.i:
-	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/PlayerFactory.cpp.i
-.PHONY : src/gameData/PlayerFactory.cpp.i
-
-src/gameData/PlayerFactory.s: src/gameData/PlayerFactory.cpp.s
-.PHONY : src/gameData/PlayerFactory.s
-
-# target to generate assembly for a file
-src/gameData/PlayerFactory.cpp.s:
-	$(MAKE) -f CMakeFiles/gauntlet.dir/build.make CMakeFiles/gauntlet.dir/src/gameData/PlayerFactory.cpp.s
-.PHONY : src/gameData/PlayerFactory.cpp.s
 
 src/gameData/Spell/ASpell.o: src/gameData/Spell/ASpell.cpp.o
 .PHONY : src/gameData/Spell/ASpell.o
@@ -1309,7 +1227,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... gauntlet"
 	@echo "... rebuild_cache"
-	@echo "... test"
+	@echo "... src/OgreUI.o"
+	@echo "... src/OgreUI.i"
+	@echo "... src/OgreUI.s"
 	@echo "... src/core/Conf.o"
 	@echo "... src/core/Conf.i"
 	@echo "... src/core/Conf.s"
@@ -1346,9 +1266,6 @@ help:
 	@echo "... src/gameData/Actor.o"
 	@echo "... src/gameData/Actor.i"
 	@echo "... src/gameData/Actor.s"
-	@echo "... src/gameData/ActorFactory.o"
-	@echo "... src/gameData/ActorFactory.i"
-	@echo "... src/gameData/ActorFactory.s"
 	@echo "... src/gameData/BodyFactory.o"
 	@echo "... src/gameData/BodyFactory.i"
 	@echo "... src/gameData/BodyFactory.s"
@@ -1358,15 +1275,9 @@ help:
 	@echo "... src/gameData/Creature.o"
 	@echo "... src/gameData/Creature.i"
 	@echo "... src/gameData/Creature.s"
-	@echo "... src/gameData/CreatureFactory.o"
-	@echo "... src/gameData/CreatureFactory.i"
-	@echo "... src/gameData/CreatureFactory.s"
 	@echo "... src/gameData/GameObject.o"
 	@echo "... src/gameData/GameObject.i"
 	@echo "... src/gameData/GameObject.s"
-	@echo "... src/gameData/GameObjectFactory.o"
-	@echo "... src/gameData/GameObjectFactory.i"
-	@echo "... src/gameData/GameObjectFactory.s"
 	@echo "... src/gameData/Item.o"
 	@echo "... src/gameData/Item.i"
 	@echo "... src/gameData/Item.s"
@@ -1379,9 +1290,6 @@ help:
 	@echo "... src/gameData/Player.o"
 	@echo "... src/gameData/Player.i"
 	@echo "... src/gameData/Player.s"
-	@echo "... src/gameData/PlayerFactory.o"
-	@echo "... src/gameData/PlayerFactory.i"
-	@echo "... src/gameData/PlayerFactory.s"
 	@echo "... src/gameData/Spell/ASpell.o"
 	@echo "... src/gameData/Spell/ASpell.i"
 	@echo "... src/gameData/Spell/ASpell.s"

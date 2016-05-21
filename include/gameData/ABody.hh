@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Mon May  9 14:06:15 2016 Alexis Trouve
-// Last update Wed May 18 16:45:08 2016 Alexis Trouve
+// Last update Fri May 20 14:19:26 2016 Alexis Trouve
 //
 
 #ifndef ABODY_HH_
@@ -17,24 +17,21 @@ namespace gauntlet
 {
   class ABody
   {
-  private:
+  protected:
     bool			collideActive;
     int				id;
     std::pair<double, double>	coord;
     std::pair<double, double>	size;
     short			orientation;
+    std::string			name;
   public:
-    ABody(bool collide, int nid, double posx,
-	  double posy, double sizex, double sizey, short norient);
-    ABody(int nid, double posx, double posy, double sizex,
-	  double sizey, short norient);
+    ABody(int nid);
     virtual ~ABody();
 
-    virtual bool			isCollide(std::pair<double, double> checkpos,
-						  std::pair<double, double> checksize);
-
-    virtual void			changePos(double nposx, double nposy);
+    virtual void			changePos(const std::pair<double, double>& ncoord);
+    virtual void			changeSize(const std::pair<double, double>& nsize);
     virtual void			changeOrientation(short norient);
+    virtual void			setName(const std::string& name);
     virtual void			setCollide(bool ncollide);
 
     virtual std::pair<double, double> const &	getPos() const;
@@ -42,7 +39,10 @@ namespace gauntlet
     virtual short			getOrientation() const;
     virtual int				getId() const;
     virtual bool			getCollide() const;
+    virtual const std::string&		getName() const;
+    virtual ABody			*clone(int id) const = 0;
   };
+
 };
 
 #endif

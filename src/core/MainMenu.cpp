@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:09:17 2016 Esteban Lewis
-// Last update Tue May 17 16:11:57 2016 Esteban Lewis
+// Last update Sat May 21 11:43:11 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -14,10 +14,10 @@
 gauntlet::core::MainMenu::MainMenu(Core & core, int idStart, Menu * parent) :
   Menu(core, idStart, parent)
 {
-  buttons.push_back(MenuButton("Play", PCENTER, idStart + 0));
-  buttons.push_back(MenuButton("Save / load", PCENTER, idStart + 1));
-  buttons.push_back(MenuButton("Settings", PCENTER, idStart + 2));
-  buttons.push_back(MenuButton("Exit", PCENTER, idStart + 3));
+  buttons.push_back(Control(BUTTON, "Play", NULL, PCENTER, idStart + 0, core.getGui()));
+  buttons.push_back(Control(BUTTON, "Save / load", NULL, PCENTER, idStart + 1, core.getGui()));
+  buttons.push_back(Control(BUTTON, "Settings", NULL, PCENTER, idStart + 2, core.getGui()));
+  buttons.push_back(Control(BUTTON, "Exit", NULL, PCENTER, idStart + 3, core.getGui()));
   
   funs.insert(std::pair<int, void (MainMenu::*)()>
 	      (buttons[0].getId(), &MainMenu::doPlay));
@@ -75,8 +75,9 @@ gauntlet::core::MainMenu::keyDown(Command cmd)
 }
 
 void
-gauntlet::core::MainMenu::doButton(int btnId)
+gauntlet::core::MainMenu::doButton(int btnId, struct t_hitItem & item)
 {
+  (void)item;
   (this->*(funs[btnId]))();
 }
 

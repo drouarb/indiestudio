@@ -22,16 +22,15 @@ namespace gauntlet
   class Actor : public ABody
   {
   protected:
-    std::string			name;
-    Stats			stats;
-    //SpellContainer		spellBook;
     world::World		*world;
   public:
-    Actor(bool collide, int nid, double posx,
-	  double posy, double sizex, double sizey, short norient);
-    Actor(int nid, double posx, double posy, double sizex,
-	  double sizey, short norient);
+    Stats			stats;
+    SpellContainer		spellBook;
+  public:
+    Actor(int nid, gauntlet::world::World *newWorld);
     ~Actor();
+    virtual void			move();
+    virtual ABody			*clone(int id) const;
   };
 };
 

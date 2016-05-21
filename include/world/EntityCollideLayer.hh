@@ -1,13 +1,3 @@
-//
-// EntityCollideLayer.hh for indie in /home/trouve_b/Desktop/CPP_project/cpp_indie_studio
-// 
-// Made by Alexis Trouve
-// Login   <trouve_b@epitech.net>
-// 
-// Started on  Tue May 10 20:28:30 2016 Alexis Trouve
-// Last update Fri May 20 10:44:02 2016 Esteban Lewis
-//
-
 #ifndef ENTITYCOLLIDELAYER_HH_
 # define ENTITYCOLLIDELAYER_HH_
 
@@ -37,8 +27,7 @@ namespace gauntlet
 
     class	EntityCollideLayer
     {
-      //private:
-    public:
+    private:
       gauntlet::world::CollidingArea	**map;
       std::list<gauntlet::ABody*>	Entity;
       unsigned int			sizeX;
@@ -55,10 +44,12 @@ namespace gauntlet
       ~EntityCollideLayer();
 
       bool				canMovePoint(double posx, double posy);
+      void				forceMoveId(int id, double posx, double posy);
       bool				tryMoveId(int id, double posx, double posy);
       void				applyVectorToId(int id, short orient, double speed);
       void				suprId(int id);
       bool				setNewBody(gauntlet::ABody *newBody);
+      void				forceSetBody(gauntlet::ABody *newBody);
       double				getDist(double ref_x, double ref_y, const ABody &target);
       int				getAngle(double refx, double refy, int refa, const ABody &target);
       std::list<gauntlet::ABody*>	giveBodyInAreaCircle(double posx, double posy, double rayon);

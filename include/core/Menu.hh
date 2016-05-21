@@ -5,14 +5,14 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:23:51 2016 Esteban Lewis
-// Last update Tue May 17 14:12:21 2016 Esteban Lewis
+// Last update Sat May 21 11:41:16 2016 Esteban Lewis
 //
 
 #ifndef  MENU_HH_
 # define MENU_HH_
 
 # include <vector>
-# include "MenuButton.hh"
+# include "Control.hh"
 # include "Conf.hh"
 
 namespace			gauntlet
@@ -30,19 +30,19 @@ namespace			gauntlet
       virtual void		draw() = 0;
       virtual void		undraw() = 0;
       virtual bool		keyDown(Command);
-      virtual bool		buttonClick(int buttonId);
+      virtual bool		buttonClick(int buttonId, struct t_hitItem &);
       void			setOpen(bool);
       bool			getOpen();
 
     protected:
-      virtual void		doButton(int id) = 0;
+      virtual void		doButton(int id, struct t_hitItem &) = 0;
       void			drawButtons();
       void			undrawButtons();
 
       int			idStart;
       Core &			core;
       bool			isOpen;
-      std::vector<MenuButton>	buttons;
+      std::vector<Control>	buttons;
       std::vector<Menu *>	submenus;
       Menu *			parent;
     };

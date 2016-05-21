@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Mon May  9 14:06:15 2016 Alexis Trouve
-// Last update Sat May 14 15:00:56 2016 Alexis Trouve
+// Last update Thu May 19 16:15:03 2016 Alexis Trouve
 //
 
 #ifndef GAMEOBJECT_HH_
@@ -17,14 +17,19 @@
 namespace gauntlet
 {
 
+  namespace	world
+  {
+    class World;
+  }
+
   class GameObject : public ContainerObject, public ABody
     {
+    protected:
+      world::World	*world;
     public:
-      GameObject(bool collide, int nid, double posx,
-		 double posy, double sizex, double sizey, short norient);
-      GameObject(int nid, double posx, double posy, double sizex,
-		 double sizey, short norient);
+      GameObject(int nid, world::World *nworld);
       ~GameObject();
+      virtual ABody		*clone(int id) const;
     };
 };
 

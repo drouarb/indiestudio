@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Thu May 12 16:15:29 2016 Alexis Trouve
-// Last update Wed May 18 17:05:31 2016 Alexis Trouve
+// Last update Fri May 20 14:18:49 2016 Alexis Trouve
 //
 
 #pragma once
@@ -16,20 +16,19 @@ namespace gauntlet {
     namespace world {
         class PhysicCollideLayer {
         private:
-            static const int BIT_IN_BYTE = 8;
-            const double sizeX;
-            const double sizeY;
-            char *_data;
+	  unsigned int		sizeX;
+	  unsigned int		sizeY;
+	  unsigned char		*layer;
         public:
-            PhysicCollideLayer(double sizeX, double sizeY);
+            PhysicCollideLayer(unsigned int sizeX, unsigned int sizeY);
 
             ~PhysicCollideLayer();
 
             std::pair<double, double> getSize()const;
 
-            void setWall(double x, double y);
+            void setWall(unsigned int x, unsigned int y);
 
-            void unsetWall(double x, double y);
+            void unsetWall(unsigned int x, unsigned int y);
 
             bool isWall(unsigned int x, unsigned int y);
 
@@ -39,8 +38,7 @@ namespace gauntlet {
 
             bool checkCoordSize(double xpos, double ypos, double xsize, double ysize);
 
-
-            const char *getData() const;
+            const unsigned char *getLayer() const;
         };
     };
 };

@@ -5,46 +5,31 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:13:44 2016 Esteban Lewis
-// Last update Tue May 17 15:58:28 2016 Esteban Lewis
+// Last update Sat May 21 13:22:53 2016 Esteban Lewis
 //
 
 #include <iostream>
-#include "Math.hh"
 #include "Core.hh"
 #include "MainMenu.hh"
 
 gauntlet::core::Core::Core() : keepGoing(true), observer(new CoreUIObserver(*this))
 {
   menu = new MainMenu(*this, 100, NULL);
+
+  ogre.setIObserver(observer);
+  if (!ogre.init())
+    return ;
   menu->setOpen(true);
-
-  std::cout << std::endl << "-- -- TEST menu saveload 1st load" << std::endl;
-  std::cout << "-- TEST saveload" << std::endl;
-  buttonClick(101);
-  std::cout << "-- TEST select" << std::endl;
-  buttonClick(203);
-  std::cout << "-- TEST save" << std::endl;
-  buttonClick(201);
-
-  std::cout << std::endl << "-- -- TEST menu conf enter esc" << std::endl;
-  std::cout << "-- TEST settings" << std::endl;
-  buttonClick(102);
-  std::cout << "-- TEST key exit" << std::endl;
-  buttonClick(206);
-  std::cout << "-- TEST enter" << std::endl;
-  keyDown(IUIObserver::KEY_ENTER);
-  std::cout << "-- TEST exit" << std::endl;
-  keyDown(IUIObserver::KEY_ENTER);
-
-  std::cout << std::endl << "-- TEST menu play" << std::endl;
-  buttonClick(100);
-
-  //loop();
+  loopThread = new Thread<void (Core::*)(void *), Core>(&Core::loop, this, NULL);
+  ogre.go();
 }
 
 gauntlet::core::Core::~Core()
 {
   delete menu;
+  ogre.quit();
+  loopThread->Join();
+  delete loopThread;
 }
 
 void
@@ -81,11 +66,12 @@ gauntlet::core::Core::keyDown(IUIObserver::Key key)
 }
 
 void
-gauntlet::core::Core::buttonClick(int buttonId)
+gauntlet::core::Core::buttonClick(int buttonId, struct t_hitItem & item)
 {
+  (void)item;
   if (menu->getOpen())
     {
-      menu->buttonClick(buttonId);
+      menu->buttonClick(buttonId, item);
     }
 }
 
@@ -113,7 +99,8 @@ gauntlet::core::Core::play()
 void
 gauntlet::core::Core::exit()
 {
-  std::cout << "CORE exit" << std::endl;
+  ogre.quit();
+  keepGoing = false;
 }
 
 void
@@ -134,8 +121,14 @@ gauntlet::core::Core::getConf()
   return (conf);
 }
 
+OgreUI &
+gauntlet::core::Core::getGui()
+{
+  return (ogre);
+}
+
 void
-gauntlet::core::Core::loop()
+gauntlet::core::Core::loop(void * __attribute__ ((unused)) v)
 {
   long ms;
 
@@ -155,7 +148,6 @@ gauntlet::core::Core::loop()
 void
 gauntlet::core::Core::updateWorld()
 {
-  std::cout << "CORE update world" << std::endl;
   //...
   pc.loop();
 }
