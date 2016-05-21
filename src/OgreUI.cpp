@@ -3,12 +3,13 @@
 #include "OgreUI.hh"
 
 #ifdef OGRE_STATIC
-  #include <OgreGLPlugin.h>
-  #include <OgreParticleFXPlugin.h>
-  #include <OgreBspSceneManagerPlugin.h>
-  #include <OgrePCZPlugin.h>
-  #include <OgreOctreePlugin.h>
-  #include <OgreOctreeZonePlugin.h>
+ #include <OgreGLPlugin.h>
+ #include <OgreParticleFXPlugin.h>
+ #include <OgreBspSceneManagerPlugin.h>
+ #include <OgrePCZPlugin.h>
+ #include <OgreOctreePlugin.h>
+ #include <OgreOctreeZonePlugin.h>
+ #include <OgreOggSoundPlugin.h>
 #endif
 
 using namespace gauntlet;
@@ -159,12 +160,13 @@ bool OgreUI::setup(void)
 {
   mRoot = new Ogre::Root(mPluginsCfg);
 #ifdef OGRE_STATIC
-  mRoot->installPlugin(new Ogre::GLPlugin());
-  mRoot->installPlugin(new Ogre::ParticleFXPlugin());
-  mRoot->installPlugin(new Ogre::BspSceneManagerPlugin());
-  mRoot->installPlugin(new Ogre::PCZPlugin());
-  mRoot->installPlugin(new Ogre::OctreeZonePlugin());
-  mRoot->installPlugin(new Ogre::OctreePlugin());
+    mRoot->installPlugin(new Ogre::GLPlugin());
+    mRoot->installPlugin(new Ogre::ParticleFXPlugin());
+    mRoot->installPlugin(new Ogre::BspSceneManagerPlugin());
+    mRoot->installPlugin(new Ogre::PCZPlugin());
+    mRoot->installPlugin(new Ogre::OctreeZonePlugin());
+    mRoot->installPlugin(new Ogre::OctreePlugin());
+    mRoot->installPlugin(new OgreOggSound::OgreOggSoundPlugin());
 #endif
   setupResources();
   bool carryOn = configure();

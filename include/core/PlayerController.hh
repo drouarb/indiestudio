@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 15:49:54 2016 Esteban Lewis
-// Last update Sat May 21 17:37:31 2016 Esteban Lewis
+// Last update Sat May 21 19:57:53 2016 Esteban Lewis
 //
 
 #ifndef  PLAYERCONTROLLER_HH_
@@ -35,11 +35,10 @@ namespace				gauntlet
 
       std::string const &		getName() const;
       void				doCmd(Command, bool down);
-      double				getMovementX();
-      double				getMovementY();
+      std::pair<double, double>		getMovement();
       int				getAction();
+      void				setAngle(short);
 
-      void				reset();
       void				loop();
 
     private:

@@ -5,19 +5,22 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:13:44 2016 Esteban Lewis
-// Last update Sat May 21 19:18:53 2016 Esteban Lewis
+// Last update Sat May 21 20:06:15 2016 Esteban Lewis
 //
 
+#include <math.h>
 #include <iostream>
 #include "Core.hh"
 #include "MainMenu.hh"
 #include "IUIObserver.hh"
+#include "Math.hh"
 
 gauntlet::core::Core::Core() : keepGoing(true), observer(new CoreUIObserver(*this))
 {
   menu = new MainMenu(*this, MENU_ID_START, NULL);
   ogreThread = NULL;
   pc = NULL;
+  world::Math::init();
 
   ogre.setIObserver(observer);
   if (!ogre.init())
@@ -85,9 +88,12 @@ gauntlet::core::Core::buttonClick(int buttonId, struct t_hitItem & item)
 void
 gauntlet::core::Core::mouseMove(int x, int y)
 {
-  (void)x;
-  (void)y;
-  //TODO: update player rotation
+  if (pc)
+    {
+      x -= ogre.getSizeWindow().first / 2;
+      y -= ogre.getSizeWindow().second / 2;
+      pc->setAngle(world::Math::getAngle(-atan2(y, x)));
+    }
 }
 
 void
