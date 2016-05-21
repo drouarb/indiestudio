@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:13:44 2016 Esteban Lewis
-// Last update Sat May 21 13:22:53 2016 Esteban Lewis
+// Last update Sat May 21 18:01:54 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -14,22 +14,26 @@
 
 gauntlet::core::Core::Core() : keepGoing(true), observer(new CoreUIObserver(*this))
 {
-  menu = new MainMenu(*this, 100, NULL);
+  menu = new MainMenu(*this, MENU_ID_START, NULL);
+  ogreThread = NULL;
+  pc = NULL;
 
   ogre.setIObserver(observer);
   if (!ogre.init())
     return ;
   menu->setOpen(true);
-  loopThread = new Thread<void (Core::*)(void *), Core>(&Core::loop, this, NULL);
-  ogre.go();
+  ogreThread = new std::thread(&OgreUI::go, std::ref(ogre));
+  loop();
 }
 
 gauntlet::core::Core::~Core()
 {
+  if (ogreThread)
+    {
+      ogreThread->join();
+      delete ogreThread;
+    }
   delete menu;
-  ogre.quit();
-  loopThread->Join();
-  delete loopThread;
 }
 
 void
@@ -39,7 +43,8 @@ gauntlet::core::Core::keyUp(IUIObserver::Key key)
 
   if (!menu->getOpen() && cmd != ESC)
     {
-      pc.doCmd(cmd, false);
+      if (pc)
+	pc->doCmd(cmd, false);
     }
 }
 
@@ -60,7 +65,8 @@ gauntlet::core::Core::keyDown(IUIObserver::Key key)
 	}
       else
 	{
-	  pc.doCmd(cmd, true);
+	  if (pc)
+	    pc->doCmd(cmd, true);
 	}
     }
 }
@@ -68,7 +74,6 @@ gauntlet::core::Core::keyDown(IUIObserver::Key key)
 void
 gauntlet::core::Core::buttonClick(int buttonId, struct t_hitItem & item)
 {
-  (void)item;
   if (menu->getOpen())
     {
       menu->buttonClick(buttonId, item);
@@ -87,13 +92,6 @@ void
 gauntlet::core::Core::play()
 {
   std::cout << "CORE play" << std::endl;
-  //if no server
-  //	if player
-  //		destroy player
-  //	create server
-  //if no player
-  //	open lobby and create player
-  //close menu and display
 }
 
 void
@@ -115,20 +113,14 @@ gauntlet::core::Core::save(std::string file)
   std::cout << "CORE save " << file << std::endl;
 }
 
-gauntlet::core::Conf &
-gauntlet::core::Core::getConf()
+bool
+gauntlet::core::Core::gameIsRunning()
 {
-  return (conf);
-}
-
-OgreUI &
-gauntlet::core::Core::getGui()
-{
-  return (ogre);
+  return (false);
 }
 
 void
-gauntlet::core::Core::loop(void * __attribute__ ((unused)) v)
+gauntlet::core::Core::loop()
 {
   long ms;
 
@@ -149,5 +141,6 @@ void
 gauntlet::core::Core::updateWorld()
 {
   //...
-  pc.loop();
+  if (pc)
+    pc->loop();
 }

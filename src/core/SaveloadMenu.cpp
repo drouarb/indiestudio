@@ -5,19 +5,20 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:09:17 2016 Esteban Lewis
-// Last update Sat May 21 11:50:00 2016 Esteban Lewis
+// Last update Sat May 21 17:42:39 2016 Esteban Lewis
 //
 
 #include <dirent.h>
 #include <sys/types.h>
 #include <iostream>
 #include "SaveloadMenu.hh"
+#include "MessageBox.hh"
 
 gauntlet::core::SaveloadMenu::SaveloadMenu(Core & core, int idStart, Menu * parent) :
   Menu(core, idStart, parent)
 {
-  buttons.push_back(Control(BUTTON, "\t\tReturn\t\t", NULL, PCENTER, idStart, core.getGui()));
-  buttons.push_back(Control(LABEL, "Saved games", NULL, PCENTER, idStart + 1, core.getGui()));
+  buttons.push_back(Control(BUTTON, "\t\tReturn\t\t", NULL, PCENTER, idStart, core.ogre));
+  buttons.push_back(Control(LABEL, "Saved games", NULL, PCENTER, idStart + 1, core.ogre));
 
   funs.insert(std::pair<int, void (SaveloadMenu::*)(struct t_hitItem &)>
 	      (buttons[0].getId(), &SaveloadMenu::doReturn));
@@ -28,12 +29,14 @@ gauntlet::core::SaveloadMenu::SaveloadMenu(Core & core, int idStart, Menu * pare
   funs.insert(std::pair<int, void (SaveloadMenu::*)(struct t_hitItem &)>
 	      (idStart + buttons.size(), &SaveloadMenu::doSave));
   buttons.push_back(Control(BUTTON, "Save", NULL, PCENTER, idStart + buttons.size(),
-			    core.getGui()));
+			    core.ogre));
 
   funs.insert(std::pair<int, void (SaveloadMenu::*)(struct t_hitItem &)>
 	      (idStart + buttons.size(), &SaveloadMenu::doLoad));
   buttons.push_back(Control(BUTTON, "Load", NULL, PCENTER, idStart + buttons.size(),
-			    core.getGui()));
+			    core.ogre));
+
+  submenus.push_back(new MessageBox(core, idStart + MENU_ID_LAYER, this, ""));
 }
 
 gauntlet::core::SaveloadMenu::~SaveloadMenu()
@@ -76,13 +79,14 @@ gauntlet::core::SaveloadMenu::getSaves()
   closedir(dir);
 
   buttons.push_back(Control(SELECTMENU, "", &saves, PCENTER,
-			    idStart + buttons.size(), core.getGui()));
+			    idStart + buttons.size(), core.ogre));
 }
 
 void
 gauntlet::core::SaveloadMenu::message(std::string const & msg)
 {
-  std::cout << "Saveload msg " << msg << std::endl;
+  static_cast<MessageBox *>(submenus[0])->setMsg(msg);
+  submenus[0]->setOpen(true);
 }
 
 void

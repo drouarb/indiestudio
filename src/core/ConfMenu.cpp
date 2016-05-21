@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:09:17 2016 Esteban Lewis
-// Last update Sat May 21 11:47:14 2016 Esteban Lewis
+// Last update Sat May 21 17:47:46 2016 Esteban Lewis
 //
 
 #include "ConfMenu.hh"
@@ -16,15 +16,15 @@ gauntlet::core::ConfMenu::ConfMenu(Core & core, int idStart, Menu * parent) :
 {
   cmdToSet = NONE;
 
-  buttons.push_back(Control(BUTTON, "- Return -", NULL, PCENTER, idStart, core.getGui()));
-  buttons.push_back(Control(LABEL, "Controls:", NULL, PCENTER, idStart + 1, core.getGui()));
+  buttons.push_back(Control(BUTTON, "- Return -", NULL, PCENTER, idStart, core.ogre));
+  buttons.push_back(Control(LABEL, "Controls:", NULL, PCENTER, idStart + 1, core.ogre));
 
-  buttons.push_back(Control(BUTTON, "Go forward", NULL, PCENTER, idStart + 2, core.getGui()));
-  buttons.push_back(Control(BUTTON, "Go backward", NULL, PCENTER, idStart + 3, core.getGui()));
-  buttons.push_back(Control(BUTTON, "Go left", NULL, PCENTER, idStart + 4, core.getGui()));
-  buttons.push_back(Control(BUTTON, "Go right", NULL, PCENTER, idStart + 5, core.getGui()));
-  buttons.push_back(Control(BUTTON, "Validate", NULL, PCENTER, idStart + 6, core.getGui()));
-  buttons.push_back(Control(BUTTON, "Exit", NULL, PCENTER, idStart + 7, core.getGui()));
+  buttons.push_back(Control(BUTTON, "Go forward", NULL, PCENTER, idStart + 2, core.ogre));
+  buttons.push_back(Control(BUTTON, "Go backward", NULL, PCENTER, idStart + 3, core.ogre));
+  buttons.push_back(Control(BUTTON, "Go left", NULL, PCENTER, idStart + 4, core.ogre));
+  buttons.push_back(Control(BUTTON, "Go right", NULL, PCENTER, idStart + 5, core.ogre));
+  buttons.push_back(Control(BUTTON, "Validate", NULL, PCENTER, idStart + 6, core.ogre));
+  buttons.push_back(Control(BUTTON, "Exit", NULL, PCENTER, idStart + 7, core.ogre));
   
   funs.insert(std::pair<int, void (ConfMenu::*)(int)>
 	      (buttons[0].getId(), &ConfMenu::doReturn));
@@ -145,7 +145,7 @@ gauntlet::core::ConfMenu::keyDown(Command key)
 
   if (cmdToSet != NONE)
     {
-      core.getConf().setKey(cmdToSet, core.getConf().getLinkedCommand(key));
+      core.conf.setKey(cmdToSet, core.conf.getLinkedCommand(key));
       cmdToSet = NONE;
       return (true);
     }

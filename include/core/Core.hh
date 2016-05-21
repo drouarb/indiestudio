@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 10:59:47 2016 Esteban Lewis
-// Last update Sat May 21 13:20:30 2016 Esteban Lewis
+// Last update Sat May 21 17:39:24 2016 Esteban Lewis
 //
 
 #ifndef  CORE_HH_
@@ -43,21 +43,21 @@ namespace			gauntlet
       void			exit();
       void			load(std::string file);
       void			save(std::string file);
-      Conf &			getConf();
-      OgreUI &			getGui();
+      bool			gameIsRunning();
+
+      OgreUI			ogre;
+      Conf			conf;
+      PlayerController *	pc;
 
     private:
       bool			keepGoing;
       IUIObserver *		observer;
-      OgreUI			ogre;
-      Thread<void (Core::*)(void *), Core> * loopThread;
+      std::thread *		ogreThread;
       Menu *			menu;
-      PlayerController		pc;
       Stopwatch			sw;
-      Conf			conf;
       IUIObserver::Key		lastKey;
 
-      void			loop(void *);
+      void			loop();
       void			updateWorld();
     };
   };

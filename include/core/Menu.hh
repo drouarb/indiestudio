@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:23:51 2016 Esteban Lewis
-// Last update Sat May 21 11:41:16 2016 Esteban Lewis
+// Last update Sat May 21 13:41:22 2016 Esteban Lewis
 //
 
 #ifndef  MENU_HH_
@@ -14,6 +14,9 @@
 # include <vector>
 # include "Control.hh"
 # include "Conf.hh"
+
+# define MENU_ID_LAYER 100
+# define MENU_ID_START 100
 
 namespace			gauntlet
 {
