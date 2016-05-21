@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:09:17 2016 Esteban Lewis
-// Last update Sat May 21 17:42:58 2016 Esteban Lewis
+// Last update Sat May 21 20:28:00 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -66,7 +66,7 @@ gauntlet::core::MainMenu::keyDown(Command cmd)
   if (!isOpen)
     return (false);
 
-  if (cmd == ESC /* && there is no running game*/)
+  if (cmd == ESC && !core.gameIsRunning())
     {
       bool openSubmenu = false;
 
