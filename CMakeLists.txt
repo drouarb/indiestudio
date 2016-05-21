@@ -45,7 +45,7 @@ if (${OGRE_STATIC})
     if (EXISTS ${OGRE_FILE})
         file(SHA1 ${OGRE_FILE} OGRE_FILE_SUM)
     else ()
-        set(OGRE_FILE_SUM "")
+        set(OGRE_FILE_SUM "N/A")
     endif ()
 
     if (NOT EXISTS ${OGRE_FILE} OR NOT ${OGRE_SUM} STREQUAL ${OGRE_FILE_SUM})
