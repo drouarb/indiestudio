@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 15:52:38 2016 Esteban Lewis
-// Last update Sat May 21 17:43:27 2016 Esteban Lewis
+// Last update Sat May 21 20:10:15 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -41,6 +41,24 @@ std::string const &
 gauntlet::core::PlayerController::getName() const
 {
   return (name);
+}
+
+std::pair<double, double>
+gauntlet::core::PlayerController::getMovement()
+{
+  return (std::pair<double, double>(moveX, moveY));
+}
+
+int
+gauntlet::core::PlayerController::getAction()
+{
+  return (action);
+}
+
+void
+gauntlet::core::PlayerController::setAngle(short angle)
+{
+  (void)angle;
 }
 
 void
