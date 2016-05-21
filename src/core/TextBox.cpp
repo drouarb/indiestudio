@@ -2,10 +2,11 @@
 #include "IUIObserver.hh"
 #include "Core.hh"
 
-gauntlet::core::TextBox::TextBox(Core & core, int idStart, Menu * parent) :
+gauntlet::core::TextBox::TextBox(Core & core, int idStart, Menu * parent,
+				 std::string const & title) :
   Menu(core, idStart, parent)
 {
-  buttons.push_back(Control(TEXTBOX, "\t\t\t\t\t", NULL, PCENTER, idStart, core.ogre));
+  buttons.push_back(Control(TEXTBOX, title, NULL, PCENTER, idStart, core.ogre));
 }
 
 gauntlet::core::TextBox::~TextBox()

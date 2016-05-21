@@ -4,7 +4,7 @@
 #include "PlayerController.hh"
 
 gauntlet::core::CharMenu::CharMenu(Core & core, int idStart, Menu * parent) :
-  TextBox(core, idStart, parent)
+  TextBox(core, idStart, parent, "Name")
 {
   charType = world::BARBARIAN;
   charTypes.push_back("Barbarian");
