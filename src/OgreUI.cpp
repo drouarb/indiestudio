@@ -300,6 +300,7 @@ void OgreUI::initMap()
   keymap[OIS::KC_TAB] = IUIObserver::KEY_TAB;
   keymap[OIS::KC_SPACE] = IUIObserver::KEY_SPACE;
   keymap[OIS::KC_BACK] = IUIObserver::KEY_BACK;
+
   keymap[OIS::KC_A] = IUIObserver::KEY_A;
   keymap[OIS::KC_B] = IUIObserver::KEY_B;
   keymap[OIS::KC_C] = IUIObserver::KEY_C;
@@ -453,30 +454,40 @@ void OgreUI::sliderMoved(OgreBites::Slider *slider)
     }
 }
 
-void OgreUI::updateItemValue(int itemid, struct t_hitItem item) {
-    std::stringstream ss;
-    ss << itemid;
-    switch (item.type) {
-        case MenuItemType::SLIDE: {
-            OgreBites::Slider *s = static_cast<OgreBites::Slider *>(mTrayMgr->getWidget(ss.str()));
-            s->setValue(item.value, true);
-        }
-            break;
-            case MenuItemType::PROGRESSBAR: {
-                OgreBites::ProgressBar *p = static_cast<OgreBites::ProgressBar *>(mTrayMgr->getWidget(ss.str()));
-                p->setProgress(item.value);
-            }
-            break;
-            case MenuItemType::TEXTBOX: {
-            OgreBites::TextBox *t = static_cast<OgreBites::TextBox *>(mTrayMgr->getWidget(ss.str()));
-            t->setCaption(item.data);
-        }
-            break;
-        case MenuItemType::LABEL: {
-            OgreBites::Label *label = static_cast<OgreBites::Label *>(mTrayMgr->getWidget(ss.str()));
-            label->setCaption(item.data);
-        }
-            break;
+void OgreUI::updateItemValue(int itemid, struct t_hitItem item)
+{
+  std::stringstream ss;
+  ss << itemid;
+  switch (item.type)
+    {
+      case MenuItemType::SLIDE:
+	{
+	  OgreBites::Slider *s = static_cast<OgreBites::Slider *>(mTrayMgr->getWidget(
+		  ss.str()));
+	  s->setValue(item.value, true);
+	}
+      break;
+      case MenuItemType::PROGRESSBAR:
+	{
+	  OgreBites::ProgressBar *p = static_cast<OgreBites::ProgressBar *>(mTrayMgr->getWidget(
+		  ss.str()));
+	  p->setProgress(item.value);
+	}
+      break;
+      case MenuItemType::TEXTBOX:
+	{
+	  OgreBites::TextBox *t = static_cast<OgreBites::TextBox *>(mTrayMgr->getWidget(
+		  ss.str()));
+	  t->setCaption(item.data);
+	}
+      break;
+      case MenuItemType::LABEL:
+	{
+	  OgreBites::Label *label = static_cast<OgreBites::Label *>(mTrayMgr->getWidget(
+		  ss.str()));
+	  label->setCaption(item.data);
+	}
+      break;
     }
 }
 
@@ -513,20 +524,12 @@ void OgreUI::quit()
   this->mShutDown = true;
 }
 
-void OgreUI::showItem(int id) {
-    std::stringstream ss;
-    ss << id;
-    OgreBites::Widget *w =   mTrayMgr->getWidget(ss.str());
-    w->show();
-}
-
-
-
-
-  pState->setLoop(loop);
-  pState->setEnabled(true);
-  this->animationsArray[pEntity->getName() +
-			pState->getAnimationName()] = pState;
+void OgreUI::showItem(int id)
+{
+  std::stringstream ss;
+  ss << id;
+  OgreBites::Widget *w = mTrayMgr->getWidget(ss.str());
+  w->show();
 }
 
 void OgreUI::stopAnimation(int animationId, int entityId)
@@ -542,3 +545,15 @@ void OgreUI::stopAnimation(int animationId, int entityId)
   animation->setEnabled(false);
   animation = NULL;
 }
+
+void OgreUI::playAnimation(int animationId, int entityId, bool loop)
+{
+  Ogre::Entity *pEntity = this->mSceneMgr->getEntity("" + entityId);
+  Ogre::AnimationState *pState = pEntity->getAnimationState("");
+
+  pState->setLoop(loop);
+  pState->setEnabled(true);
+  this->animationsArray[pEntity->getName() +
+			pState->getAnimationName()] = pState;
+}
+
