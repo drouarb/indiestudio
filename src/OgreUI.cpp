@@ -445,7 +445,7 @@ void OgreUI::updateItemValue(int itemid, struct t_hitItem item) {
             break;
             case MenuItemType::TEXTBOX: {
             OgreBites::TextBox *t = static_cast<OgreBites::TextBox *>(mTrayMgr->getWidget(ss.str()));
-            t->setCaption(item.data);
+            t->setText(item.data);
         }
             break;
         case MenuItemType::LABEL: {
@@ -459,7 +459,7 @@ void OgreUI::updateItemValue(int itemid, struct t_hitItem item) {
 void OgreUI::addTextbox(gauntlet::core::Position pos, int id, std::string text, int texture_id) {
     std::stringstream ss;
     ss << id;
-    mTrayMgr->createTextBox(posmap[pos], ss.str(), text, 100, 20);
+  mTrayMgr->createTextBox(posmap[pos], ss.str(), text, 300, 150);
 }
 
 void OgreUI::addLabel(gauntlet::core::Position pos, int id, std::string text, int texture_id) {
@@ -476,8 +476,6 @@ void OgreUI::hideItem(int id) {
 }
 
 void OgreUI::createScene(void) {
-
-
 }
 
 void OgreUI::quit() {
