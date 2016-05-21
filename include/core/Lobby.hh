@@ -18,7 +18,6 @@ namespace			gauntlet
 
     protected:
       std::map<int, void (Lobby::*)(struct t_hitItem &)> funs;
-      std::string		ip;
       int			connectLbl;
 
       void			doButton(int, struct t_hitItem &);

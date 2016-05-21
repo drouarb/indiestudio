@@ -5,12 +5,13 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:13:44 2016 Esteban Lewis
-// Last update Sat May 21 18:01:54 2016 Esteban Lewis
+// Last update Sat May 21 19:18:53 2016 Esteban Lewis
 //
 
 #include <iostream>
 #include "Core.hh"
 #include "MainMenu.hh"
+#include "IUIObserver.hh"
 
 gauntlet::core::Core::Core() : keepGoing(true), observer(new CoreUIObserver(*this))
 {
@@ -51,6 +52,7 @@ gauntlet::core::Core::keyUp(IUIObserver::Key key)
 void
 gauntlet::core::Core::keyDown(IUIObserver::Key key)
 {
+  lastKey = key;
   Command cmd = conf.getLinkedKey(key);
 
   if (menu->getOpen())
@@ -117,6 +119,12 @@ bool
 gauntlet::core::Core::gameIsRunning()
 {
   return (false);
+}
+
+gauntlet::core::IUIObserver::Key
+gauntlet::core::Core::getLastKey() const
+{
+  return (lastKey);
 }
 
 void

@@ -1,6 +1,8 @@
 #include "Lobby.hh"
 #include "MessageBox.hh"
 #include "Core.hh"
+#include "CharMenu.hh"
+#include "ConnectMenu.hh"
 
 gauntlet::core::Lobby::Lobby(Core & core, int idStart, Menu * parent) :
   Menu(core, idStart, parent)
@@ -25,6 +27,8 @@ gauntlet::core::Lobby::Lobby(Core & core, int idStart, Menu * parent) :
   	      (buttons[buttons.size() - 1].getId(), &Lobby::doPlay));
 
   submenus.push_back(new MessageBox(core, idStart + MENU_ID_LAYER, this, ""));
+  submenus.push_back(new CharMenu(core, idStart + MENU_ID_LAYER, this));
+  submenus.push_back(new ConnectMenu(core, idStart + MENU_ID_LAYER, this));
 }
 
 gauntlet::core::Lobby::~Lobby()
@@ -56,15 +60,13 @@ gauntlet::core::Lobby::doButton(int btnId, struct t_hitItem & item)
 void
 gauntlet::core::Lobby::doServer(struct t_hitItem & item)
 {
-  static_cast<MessageBox *>(submenus[0])->setMsg("Not implemented.");
-  submenus[0]->setOpen(true);
+  submenus[2]->setOpen(true);
 }
 
 void
 gauntlet::core::Lobby::doCharacter(struct t_hitItem & item)
 {
-  static_cast<MessageBox *>(submenus[0])->setMsg("Not implemented.");
-  submenus[0]->setOpen(true);
+  submenus[1]->setOpen(true);
 }
 
 void

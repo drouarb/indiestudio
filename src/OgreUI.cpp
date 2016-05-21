@@ -478,7 +478,7 @@ void OgreUI::updateItemValue(int itemid, struct t_hitItem item)
 	{
 	  OgreBites::TextBox *t = static_cast<OgreBites::TextBox *>(mTrayMgr->getWidget(
 		  ss.str()));
-	  t->setCaption(item.data);
+	  t->setText(item.data);
 	}
       break;
       case MenuItemType::LABEL:
@@ -496,7 +496,7 @@ void OgreUI::addTextbox(gauntlet::core::Position pos, int id, std::string text,
 {
   std::stringstream ss;
   ss << id;
-  mTrayMgr->createTextBox(posmap[pos], ss.str(), text, 100, 20);
+  mTrayMgr->createTextBox(posmap[pos], ss.str(), text, 300, 100);
 }
 
 void OgreUI::addLabel(gauntlet::core::Position pos, int id, std::string text,
