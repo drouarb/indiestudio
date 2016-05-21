@@ -21,73 +21,132 @@
 #include <mutex>
 #include "IUIObserver.hh"
 
-class  OgreUI : public Ogre::FrameListener, public Ogre::WindowEventListener, public OIS::KeyListener, public OIS::MouseListener, OgreBites::SdkTrayListener
+class OgreUI
+	: public Ogre::FrameListener,
+	  public Ogre::WindowEventListener,
+	  public OIS::KeyListener,
+	  public OIS::MouseListener,
+	  OgreBites::SdkTrayListener
 {
-private:
-    std::map<OIS::KeyCode , gauntlet::core::IUIObserver::Key> keymap;
-    std::map<OIS::MouseButtonID , gauntlet::core::IUIObserver::Key> mousemap;
-	std::map<gauntlet::core::Position, OgreBites::TrayLocation> posmap;
-    gauntlet::core::IUIObserver *obs;
-	Ogre::Root *mRoot;
-	Ogre::Camera* mCamera;
-	Ogre::SceneManager* mSceneMgr;
-	Ogre::RenderWindow* mWindow;
-	Ogre::String mResourcesCfg;
-	Ogre::String mPluginsCfg;
-	Ogre::OverlaySystem *mOverlaySystem;
-	OgreBites::SdkTrayManager* mTrayMgr;
-	OgreBites::SdkCameraMan* mCameraMan;
-	OgreBites::ParamsPanel* mDetailsPanel;
-	bool mCursorWasVisible;
-	bool mShutDown;
-	OIS::InputManager* mInputManager;
-	OIS::Mouse*    mMouse;
-	OIS::Keyboard* mKeyboard;
-public:
+ private:
+  std::map<OIS::KeyCode, gauntlet::core::IUIObserver::Key> keymap;
+  std::map<OIS::MouseButtonID, gauntlet::core::IUIObserver::Key> mousemap;
+  std::map<gauntlet::core::Position, OgreBites::TrayLocation> posmap;
+  std::map<std::string, Ogre::AnimationState *> animationsArray;
+  gauntlet::core::IUIObserver *obs;
+  Ogre::Root *mRoot;
+  Ogre::Camera *mCamera;
+  Ogre::SceneManager *mSceneMgr;
+  Ogre::RenderWindow *mWindow;
+  Ogre::String mResourcesCfg;
+  Ogre::String mPluginsCfg;
+  Ogre::OverlaySystem *mOverlaySystem;
+  OgreBites::SdkTrayManager *mTrayMgr;
+  OgreBites::SdkCameraMan *mCameraMan;
+  OgreBites::ParamsPanel *mDetailsPanel;
+  bool mCursorWasVisible;
+  bool mShutDown;
+  OIS::InputManager *mInputManager;
+  OIS::Mouse *mMouse;
+  OIS::Keyboard *mKeyboard;
+ public:
   bool init();
+
   void go();
-    bool setup();
-    void initMap();
-    bool configure(void);
-    void chooseSceneManager(void);
-    void createCamera(void);
-    void createFrameListener(void);
-    void createScene(void);
-	OgreUI(void);
-	~OgreUI(void);
-    void destroyScene(void);
-    void createViewports(void);
-    void setupResources(void);
-    void createResourceListener(void);
-    void loadResources(void);
-    void buttonHit(OgreBites::Button* button);
-    void itemSelected(OgreBites::SelectMenu* menu);
-    void checkBoxToggled(OgreBites::CheckBox *checkBox);
-    void updateItemValue(int itemid, struct gauntlet::core::t_hitItem item);
-    bool frameRenderingQueued(const Ogre::FrameEvent& evt);
-    bool keyPressed( const OIS::KeyEvent &arg );
-    bool keyReleased( const OIS::KeyEvent &arg );
-     bool mouseMoved( const OIS::MouseEvent &arg );
-    bool mousePressed( const OIS::MouseEvent &arg, OIS::MouseButtonID id );
-    bool mouseReleased( const OIS::MouseEvent &arg, OIS::MouseButtonID id );
-    void windowResized(Ogre::RenderWindow* rw);
-    void windowClosed(Ogre::RenderWindow* rw);
-	void addButton(gauntlet::core::Position  pos, int id, std::string text, int texture_id);
-	void addSlideBar(gauntlet::core::Position  pos, int id, std::string text, int max_value, int texture_id);
-    void addCheckbox(gauntlet::core::Position  pos, int id, std::string text, int texture_id);
-    void addTextbox(gauntlet::core::Position  pos, int id, std::string text, int texture_id);
-    void addLabel(gauntlet::core::Position  pos, int id, std::string text, int texture_id);
-    void addSelectMenu(gauntlet::core::Position pos, int id, std::string name, std::vector<std::string> &,
-                               int texture_id);
-    void addProgressBar(gauntlet::core::Position pos, int id, std::string text, int texture_id, int value);
-    void remove(int ID);
-    void sliderMoved(OgreBites::Slider* slider);
-    void setIObserver(gauntlet::core::IUIObserver * Obs);
-    void loadSound(std::string & path);
-     void hideItem(int id);
-	void showItem(int id);
-    void playSound(int id);
-	void quit();
+
+  bool setup();
+
+  void initMap();
+
+  bool configure(void);
+
+  void chooseSceneManager(void);
+
+  void createCamera(void);
+
+  void createFrameListener(void);
+
+  void createScene(void);
+
+  OgreUI(void);
+
+  ~OgreUI(void);
+
+  void destroyScene(void);
+
+  void createViewports(void);
+
+  void setupResources(void);
+
+  void createResourceListener(void);
+
+  void loadResources(void);
+
+  void buttonHit(OgreBites::Button *button);
+
+  void itemSelected(OgreBites::SelectMenu *menu);
+
+  void checkBoxToggled(OgreBites::CheckBox *checkBox);
+
+  void updateItemValue(int itemid, struct gauntlet::core::t_hitItem item);
+
+  bool frameRenderingQueued(const Ogre::FrameEvent &evt);
+
+  bool keyPressed(const OIS::KeyEvent &arg);
+
+  bool keyReleased(const OIS::KeyEvent &arg);
+
+  bool mouseMoved(const OIS::MouseEvent &arg);
+
+  bool mousePressed(const OIS::MouseEvent &arg, OIS::MouseButtonID id);
+
+  bool mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButtonID id);
+
+  void windowResized(Ogre::RenderWindow *rw);
+
+  void windowClosed(Ogre::RenderWindow *rw);
+
+  void addButton(gauntlet::core::Position pos, int id, std::string text,
+		 int texture_id);
+
+  void addSlideBar(gauntlet::core::Position pos, int id, std::string text,
+		   int max_value, int texture_id);
+
+  void addCheckbox(gauntlet::core::Position pos, int id, std::string text,
+		   int texture_id);
+
+  void addTextbox(gauntlet::core::Position pos, int id, std::string text,
+		  int texture_id);
+
+  void addLabel(gauntlet::core::Position pos, int id, std::string text,
+		int texture_id);
+
+  void addSelectMenu(gauntlet::core::Position pos, int id, std::string name,
+		     std::vector<std::string> &,
+		     int texture_id);
+
+  void addProgressBar(gauntlet::core::Position pos, int id, std::string text,
+		      int texture_id, int value);
+
+  void remove(int ID);
+
+  void sliderMoved(OgreBites::Slider *slider);
+
+  void setIObserver(gauntlet::core::IUIObserver *Obs);
+
+  void loadSound(std::string &path);
+
+  void hideItem(int id);
+
+  void playSound(int id);
+
+  void showItem(int id);
+
+  void playAnimation(int animationId, int entityId, bool loop);
+
+  void stopAnimation(int animationId, int entityId);
+
+  void quit();
 };
 
 #endif
