@@ -1,6 +1,5 @@
 #include <OIS/OIS.h>
 #include <iostream>
-#include <stdlib.h>
 #include "OgreUI.hh"
 
 #ifdef OGRE_STATIC
