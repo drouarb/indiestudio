@@ -205,7 +205,9 @@ bool OgreUI::keyPressed(const OIS::KeyEvent &arg)
   mCameraMan->injectKeyDown(arg);
   if (obs != NULL)
     if (keymap.count(arg.key) > 0)
-      obs->keyDown(keymap[arg.key]);
+      {
+	obs->keyDown(keymap[arg.key]);
+      }
   return true;
 }
 
@@ -332,7 +334,19 @@ void OgreUI::initMap()
   keymap[OIS::KC_8] = IUIObserver::KEY_8;
   keymap[OIS::KC_9] = IUIObserver::KEY_9;
 
+  keymap[OIS::KC_NUMPAD0] = IUIObserver::KEY_0;
+  keymap[OIS::KC_NUMPAD1] = IUIObserver::KEY_1;
+  keymap[OIS::KC_NUMPAD2] = IUIObserver::KEY_2;
+  keymap[OIS::KC_NUMPAD3] = IUIObserver::KEY_3;
+  keymap[OIS::KC_NUMPAD4] = IUIObserver::KEY_4;
+  keymap[OIS::KC_NUMPAD5] = IUIObserver::KEY_5;
+  keymap[OIS::KC_NUMPAD6] = IUIObserver::KEY_6;
+  keymap[OIS::KC_NUMPAD7] = IUIObserver::KEY_7;
+  keymap[OIS::KC_NUMPAD8] = IUIObserver::KEY_8;
+  keymap[OIS::KC_NUMPAD9] = IUIObserver::KEY_9;
+
   keymap[OIS::KC_PERIOD] = IUIObserver::KEY_PERIOD;
+  keymap[OIS::KC_SEMICOLON] = IUIObserver::KEY_PERIOD;
   posmap[PCENTER] = OgreBites::TL_CENTER;
   posmap[PTOPRIGHT] = OgreBites::TL_TOPRIGHT;
   posmap[PTOPLEFT] = OgreBites::TL_TOPLEFT;
