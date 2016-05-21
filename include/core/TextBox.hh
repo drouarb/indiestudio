@@ -10,7 +10,7 @@ namespace			gauntlet
     class			TextBox : public Menu
     {
     public:
-      TextBox(Core &, int idStart, Menu * parent);
+      TextBox(Core &, int idStart, Menu * parent, std::string const & title);
       virtual ~TextBox();
 
       virtual bool		keyDown(Command);

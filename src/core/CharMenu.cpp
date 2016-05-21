@@ -4,7 +4,7 @@
 #include "PlayerController.hh"
 
 gauntlet::core::CharMenu::CharMenu(Core & core, int idStart, Menu * parent) :
-  TextBox(core, idStart, parent)
+  TextBox(core, idStart, parent, "Name")
 {
   charType = world::BARBARIAN;
   charTypes.push_back("Barbarian");
@@ -63,16 +63,16 @@ void
 gauntlet::core::CharMenu::doOk(struct t_hitItem & item)
 {
   (void)item;
-  if (charType == world::NOCHAR)
+  if (text.length() == 0)
     {
-      static_cast<MessageBox *>(submenus[0])->setMsg("Please select a class.");
+      static_cast<MessageBox *>(submenus[0])->setMsg("Please enter a name.");
       submenus[0]->setOpen(true);
     }
   else
     {
       if (core.pc)
 	delete (core.pc);
-      core.pc = new PlayerController("", charType);
+      core.pc = new PlayerController(text, charType);
       setOpen(false);
     }
 }
