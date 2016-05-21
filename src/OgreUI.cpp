@@ -448,6 +448,11 @@ void OgreUI::updateItemValue(int itemid, struct t_hitItem item) {
             t->setCaption(item.data);
         }
             break;
+        case MenuItemType::LABEL: {
+            OgreBites::Label *label = static_cast<OgreBites::Label *>(mTrayMgr->getWidget(ss.str()));
+            label->setCaption(item.data);
+        }
+            break;
     }
 }
 
@@ -471,11 +476,22 @@ void OgreUI::hideItem(int id) {
 }
 
 void OgreUI::createScene(void) {
+
+
 }
 
 void OgreUI::quit() {
     this->mShutDown = true;
 }
+
+void OgreUI::showItem(int id) {
+    std::stringstream ss;
+    ss << id;
+    OgreBites::Widget *w =   mTrayMgr->getWidget(ss.str());
+    w->show();
+}
+
+
 
 
 

@@ -85,6 +85,7 @@ public:
     void setIObserver(gauntlet::core::IUIObserver * Obs);
     void loadSound(std::string & path);
      void hideItem(int id);
+	void showItem(int id);
     void playSound(int id);
 	void quit();
 };
