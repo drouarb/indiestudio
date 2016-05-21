@@ -2,16 +2,6 @@
 #include <iostream>
 #include "OgreUI.hh"
 
-#ifdef OGRE_STATIC
- #include <OgreGLPlugin.h>
- #include <OgreParticleFXPlugin.h>
- #include <OgreBspSceneManagerPlugin.h>
- #include <OgrePCZPlugin.h>
- #include <OgreOctreePlugin.h>
- #include <OgreOctreeZonePlugin.h>
- #include <OgreOggSoundPlugin.h>
-#endif
-
 using namespace gauntlet;
 using namespace core;
 
@@ -178,6 +168,7 @@ bool OgreUI::setup(void)
   createResourceListener();
   loadResources();
   initMap();
+  initSound();
   createFrameListener();
   windowResized(mWindow);
   createScene();
@@ -364,14 +355,18 @@ void OgreUI::setIObserver(gauntlet::core::IUIObserver *Obs)
   this->obs = Obs;
 }
 
-void OgreUI::loadSound(std::string &path)
+void OgreUI::loadSound(int id, std::string &path)
 {
-
+  std::stringstream ss;
+  ss << id;
+  mSoundManager->createSound(ss.str(), path.c_str(), true, false, false);
 }
 
 void OgreUI::playSound(int id)
 {
-
+  std::stringstream ss;
+  ss << id;
+  mSoundManager->getSound(ss.str())->play();
 }
 
 void OgreUI::checkBoxToggled(OgreBites::CheckBox *checkBox)
@@ -428,10 +423,13 @@ void OgreUI::itemSelected(OgreBites::SelectMenu *menu)
 {
   if (obs != NULL)
     {
-      struct t_hitItem m;
-      m.type = MenuItemType::SELECTMENU;
-      m.data = menu->getSelectedItem();
-      obs->itemClick(std::atoi(menu->getName().c_str()), m);
+      if (!menu->isExpanded())
+	{
+	  struct t_hitItem m;
+	  m.type = MenuItemType::SELECTMENU;
+	  m.data = menu->getSelectedItem();
+	  obs->itemClick(std::atoi(menu->getName().c_str()), m);
+	}
     }
 }
 
@@ -573,6 +571,14 @@ void OgreUI::hideBackground()
 {
   mTrayMgr->hideBackdrop();
 }
+
+void OgreUI::initSound()
+{
+  this->mSoundManager =  OgreOggSound::OgreOggSoundManager::getSingletonPtr();
+  mSoundManager->init();
+}
+
+
 
 
 
