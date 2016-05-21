@@ -26,7 +26,7 @@ getenv_path(OGRE_SOURCE)
 getenv_path(OGRE_DEPENDENCIES_DIR)
 
 # construct search paths
-set(OIS_PREFIX_PATH ${OIS_HOME} ${ENV_OIS_HOME} 
+set(OIS_PREFIX_PATH ${OIS_HOME} ${ENV_OIS_HOME} ${CMAKE_BINARY_DIR}
   ${OGRE_DEPENDENCIES_DIR} ${ENV_OGRE_DEPENDENCIES_DIR}
   ${OGRE_SOURCE}/iOSDependencies ${ENV_OGRE_SOURCE}/iOSDependencies
   ${OGRE_SOURCE}/Dependencies ${ENV_OGRE_SOURCE}/Dependencies
