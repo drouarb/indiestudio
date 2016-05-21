@@ -331,8 +331,8 @@ void OgreUI::initMap()
   keymap[OIS::KC_7] = IUIObserver::KEY_7;
   keymap[OIS::KC_8] = IUIObserver::KEY_8;
   keymap[OIS::KC_9] = IUIObserver::KEY_9;
-  keymap[OIS::KC_PERIOD] = IUIObserver::KEY_PERIOD;
 
+  keymap[OIS::KC_PERIOD] = IUIObserver::KEY_PERIOD;
   posmap[PCENTER] = OgreBites::TL_CENTER;
   posmap[PTOPRIGHT] = OgreBites::TL_TOPRIGHT;
   posmap[PTOPLEFT] = OgreBites::TL_TOPLEFT;
@@ -500,6 +500,16 @@ void OgreUI::updateItemValue(int itemid, struct t_hitItem item)
 	  label->setCaption(item.data);
 	}
       break;
+      case MenuItemType::CHECKBOX:
+	{
+	  OgreBites::CheckBox *c = static_cast<OgreBites::CheckBox *>(mTrayMgr->getWidget(
+		  ss.str()));
+		if (item.state == CHECKED)
+		  c->setChecked(true, true);
+		else
+		  c->setChecked(false, true);
+	}
+      break;
     }
 }
 
@@ -590,6 +600,15 @@ void OgreUI::initSound()
   this->mSoundManager =  OgreOggSound::OgreOggSoundManager::getSingletonPtr();
   mSoundManager->init();
 }
+
+void OgreUI::stopSound(int id)
+{
+  std::stringstream ss;
+  ss << id;
+  mSoundManager->getSound(ss.str())->stop();
+}
+
+
 
 
 

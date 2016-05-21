@@ -152,7 +152,7 @@ class OgreUI
   void hideItem(int id);
 
   void playSound(int id);
-
+  void stopSound(int id);
   void showItem(int id);
 
   void playAnimation(int animationId, int entityId, bool loop);
