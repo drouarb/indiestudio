@@ -230,7 +230,7 @@ bool OgreUI::mouseMoved(const OIS::MouseEvent &arg)
   mTrayMgr->injectMouseMove(arg);
   mCameraMan->injectMouseMove(arg);
   if (obs != NULL)
-    obs->mouseMove(arg.state.width, arg.state.height);
+    obs->mouseMove(arg.state.X.abs, arg.state.Y.abs);
   return true;
 }
 
