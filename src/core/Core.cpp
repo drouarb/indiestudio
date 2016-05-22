@@ -61,6 +61,9 @@ gauntlet::core::Core::keyDown(IUIObserver::Key key)
   lastKey = key;
   Command cmd = conf.getLinkedKey(key);
 
+  this->ogre.hideBackground();
+  this->ogre.triggerEffect(42, EffectType::ATOMIC, std::pair<double, double>(0, 0));
+
   if (menu->getOpen())
     {
       menu->keyDown(cmd);
@@ -127,7 +130,7 @@ gauntlet::core::Core::save(std::string file)
 bool
 gauntlet::core::Core::gameIsRunning()
 {
-  return (false);
+  return (true);
 }
 
 gauntlet::core::IUIObserver::Key

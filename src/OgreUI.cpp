@@ -668,10 +668,26 @@ void OgreUI::setQuality(int percent)
   this->quality = percent;
 }
 
-int OgreUI::triggerEffect(int id, gauntlet::EffectType type, std::pair<double, double> coord)
+int OgreUI::triggerEffect(int id, gauntlet::EffectType type,
+			  std::pair<double, double> coord)
 {
-  gauntlet::Effect *effect = new gauntlet::Effect(this, type, id + "", coord, this->quality);
+  std::stringstream ss;
 
-
+  ss << "effect" << id;
+  Effect *&mapped_type = this->effectMap[id];
+  if (mapped_type != NULL)
+    {
+      delete (mapped_type);
+    }
+  gauntlet::Effect *effect = new gauntlet::Effect(this, type, ss.str(), coord,
+						  this->quality);
+  mapped_type = effect;
   return 0;
+}
+
+void OgreUI::stopEffect(int id)
+{
+  Ogre::ParticleSystem *pSystem = this->effectMap[id]->getParticleSystem();
+
+  pSystem->setEmitting(false);
 }

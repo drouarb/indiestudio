@@ -8,6 +8,7 @@
 
 class StackTrace
 {
+ public:
   static void displayStackTrace();
 };
 
