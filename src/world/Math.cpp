@@ -32,6 +32,12 @@ gauntlet::world::Math::sin(short angle)
   return (sin_tab[simplify(angle + A_FLAT)]);
 }
 
+float
+gauntlet::world::Math::toRad(short angle)
+{
+  return ((float)angle / 100);
+}
+
 short
 gauntlet::world::Math::simplify(short angle)
 {
@@ -52,4 +58,12 @@ gauntlet::world::Math::isBetween(short ref, short sup, short inf)
   if (ref < inf)
     ref += 628;
   return (ref >= inf && ref <= sup);
+}
+
+double		gauntlet::world::Math::distBetween(std::pair<double, double> pos1, std::pair<double, double> pos2)
+{
+  double	dist;
+
+  dist = sqrt(pow(pos1.first - pos2.first, 2) + pow(pos1.second - pos2.second, 2));
+  return (dist);
 }

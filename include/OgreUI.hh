@@ -1,15 +1,14 @@
-#ifndef Ogreui_h
-#define Ogreui_h
+#pragma once
 
 
 #ifdef OGRE_STATIC
 #include <OgreGLPlugin.h>
- #include <OgreParticleFXPlugin.h>
- #include <OgreBspSceneManagerPlugin.h>
- #include <OgrePCZPlugin.h>
- #include <OgreOctreePlugin.h>
- #include <OgreOctreeZonePlugin.h>
- #include <OgreOggSoundPlugin.h>
+  #include <OgreParticleFXPlugin.h>
+  #include <OgreBspSceneManagerPlugin.h>
+  #include <OgrePCZPlugin.h>
+  #include <OgreOctreePlugin.h>
+  #include <OgreOctreeZonePlugin.h>
+  #include <OgreOggSoundPlugin.h>
 #endif
 
 #include <OgreCamera.h>
@@ -30,7 +29,14 @@
 #include <SdkCameraMan.h>
 #include <core/Position.hh>
 #include <mutex>
+#include <graph/Effect.hh>
 #include "IUIObserver.hh"
+
+namespace gauntlet
+{
+  enum EffectType : int;
+  class Effect;
+}
 
 class OgreUI
 	: public Ogre::FrameListener,
@@ -44,8 +50,10 @@ class OgreUI
   std::map<OIS::MouseButtonID, gauntlet::core::IUIObserver::Key> mousemap;
   std::map<gauntlet::core::Position, OgreBites::TrayLocation> posmap;
   std::map<std::string, Ogre::AnimationState *> animationsArray;
+  std::map<int, gauntlet::Effect *> effectMap;
   gauntlet::core::IUIObserver *obs;
- OgreOggSound::OgreOggSoundManager  *mSoundManager;
+  OgreOggSound::OgreOggSoundManager *mSoundManager;
+
 
   Ogre::Root *mRoot;
   Ogre::Camera *mCamera;
@@ -53,6 +61,9 @@ class OgreUI
   Ogre::RenderWindow *mWindow;
   Ogre::String mResourcesCfg;
   Ogre::String mPluginsCfg;
+ private:
+  Ogre::SceneNode *rootNode;
+  Ogre::SceneNode *worldNode;
   Ogre::OverlaySystem *mOverlaySystem;
   OgreBites::SdkTrayManager *mTrayMgr;
   OgreBites::SdkCameraMan *mCameraMan;
@@ -62,6 +73,8 @@ class OgreUI
   OIS::InputManager *mInputManager;
   OIS::Mouse *mMouse;
   OIS::Keyboard *mKeyboard;
+  int quality = 100;
+
  public:
   bool init();
 
@@ -69,8 +82,14 @@ class OgreUI
 
   bool setup();
 
+
+  void addWorldEntity(int entityId, std::string &name);
+  void addRootEntity(int entityId, std::string &name);
+
   void initMap();
+
   void initSound();
+
   bool configure(void);
 
   void chooseSceneManager(void);
@@ -152,16 +171,27 @@ class OgreUI
   void hideItem(int id);
 
   void playSound(int id);
+
   void stopSound(int id);
+
   void showItem(int id);
 
   void playAnimation(int animationId, int entityId, bool loop);
-  void  showBackground();
-  void  hideBackground();
+
+  void showBackground();
+
+  void hideBackground();
 
   void stopAnimation(int animationId, int entityId);
-   std::pair<int, int> getSizeWindow();
-  void quit();
-};
 
-#endif
+  std::pair<int, int> getSizeWindow();
+
+  void setQuality(int percent = 100);
+
+  void quit();
+
+  Ogre::SceneManager *getSceneManager();
+
+  int triggerEffect(int id, gauntlet::EffectType ef, std::pair<double, double> pair);
+
+};
