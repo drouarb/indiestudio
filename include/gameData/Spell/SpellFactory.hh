@@ -12,19 +12,18 @@
 # define SPELLFACTORY_HH_
 
 #include <vector>
-#include "ASpell.hh"
 #include "World.hh"
 #include "DistAttack.hh"
 #include "HealAttack.hh"
 #include "MeleeAttack.hh"
 #include "SpellFactory.hh"
 #include "TeleportSpell.hh"
+#include "Spell.hh"
 #include <map>
-#include <gameData/Spell/Spell.hh>
 
 namespace gauntlet
 {
-  class SpellFactory;
+  class SpellFactory; //àvirer?
   class	SpellFactory
   {
   public:

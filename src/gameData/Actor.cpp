@@ -5,7 +5,6 @@
 #include <iostream>
 #include "Actor.hh"
 #include "World.hh"
-#include "SpellContainer.hh"
 
 using namespace gauntlet;
 
@@ -51,5 +50,11 @@ ABody		*Actor::clone(int id) const
 
 void		Actor::setMove()
 {
-  ismoving = (ismoving == true) ? false : true;
+  ismoving = !ismoving;
 }
+
+void Actor::addSpell(int spellEnum) {
+  spellBook.addSpell(spellEnum);
+}
+
+

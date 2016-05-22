@@ -24,13 +24,15 @@ namespace gauntlet
   public:
     Stats			    stats;
     SpellContainer		spellBook;
-    bool			ismoving = false;
+
+    bool			    ismoving = false;
   public:
     Actor(int nid, gauntlet::world::World *newWorld);
     ~Actor();
     virtual void			move();
     virtual void			setMove();
     virtual ABody			*clone(int id) const;
+    void                    addSpell(int spellEnum);
   };
 };
 

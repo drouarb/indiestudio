@@ -9,7 +9,6 @@
 //
 
 #include "SpellFactory.hh"
-#include "Spell.hh"
 
 using namespace gauntlet;
 

@@ -1,0 +1,18 @@
+material Rock1_blend#0
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 0.8 0.8 0.8 1
+			specular 1 1 1 1
+
+			texture_unit
+			{
+				texture Rock-Texture-Surface.jpg
+			}
+		}
+	}
+}
+

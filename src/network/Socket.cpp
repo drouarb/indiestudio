@@ -58,6 +58,20 @@ void gauntlet::network::Socket::send(std::vector<unsigned char> *data) {
     lock.unlock();
 }
 
+void gauntlet::network::Socket::send(std::vector<unsigned char> *data, int fd) {
+    lock.lock();
+    if (type == SERVER) {
+        for (s_client client : clients) {
+            if (client.sockfd == fd)
+                ::send(client.sockfd, &data->front(), data->size(), 0);
+        }
+    } else {
+        if (fd == sockfd)
+            ::send(sockfd, &data->front(), data->size(), 0);
+    }
+    lock.unlock();
+}
+
 s_socketData gauntlet::network::Socket::recv() {
     fd_set set;
     s_client cli;

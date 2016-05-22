@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:13:44 2016 Esteban Lewis
-// Last update Mon May 23 00:28:01 2016 Esteban Lewis
+// Last update Mon May 23 00:32:41 2016 Esteban Lewis
 //
 
 #include <math.h>
@@ -20,6 +20,7 @@
 #include "ListenerDisconnect.hh"
 #include "ListenerHandshake.hh"
 #include "ListenerSelectPlayer.hh"
+#include "ConnectMenu.hh"
 
 gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this))
 {
@@ -120,7 +121,8 @@ void
 gauntlet::core::Core::exit()
 {
   ogre.quit();
-  
+  if (packetf)
+    ConnectMenu::disconnect(false, *this);
 }
 
 void
