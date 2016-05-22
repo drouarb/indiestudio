@@ -6,7 +6,7 @@
 #include <network/packet/PacketDisconnect.hh>
 #include <network/packet/PacketHandshake.hh>
 #include <network/packet/PacketSelectPlayer.hh>
-#include <network/packet/PacketAddPlayer.hh>
+#include <network/packet/PacketAddEntity.hh>
 #include "network/PacketFactory.hh"
 
 gauntlet::network::PacketFactory::PacketFactory(in_port_t port) :
@@ -73,6 +73,6 @@ const std::map<gauntlet::network::PacketId, gauntlet::network::PacketFactory::cr
         {DISCONNECT,    &PacketFactory::createPacket<PacketDisconnect>},
         {HANDSHAKE,     &PacketFactory::createPacket<PacketHandshake>},
         {PLAYER_SELECT, &PacketFactory::createPacket<PacketSelectPlayer>},
-        {ADD_PLAYER,    &PacketFactory::createPacket<PacketAddPlayer>}
+        {ADD_ENTITY,    &PacketFactory::createPacket<PacketAddEntity>}
 };
 

@@ -45,12 +45,12 @@ add_executable(PacketMapTest
         ../src/network/packet/PacketMap.cpp)
 add_test(PacketMapTest PacketMapTest)
 
-#Test AddPlayer
-add_executable(PacketAddPlayerTest
-        packet/PacketAddPlayerTest.cpp
+#Test AddEntity
+add_executable(PacketAddEntityTest
+        packet/PacketAddEntityTest.cpp
         ../src/network/packet/Packet.cpp
-        ../src/network/packet/PacketAddPlayer.cpp)
-add_test(PacketAddPlayerTest PacketAddPlayerTest)
+        ../src/network/packet/PacketAddEntity.cpp)
+add_test(PacketAddEntityTest PacketAddEntityTest)
 
 #Test PhysicCollideLayer
 add_executable(PhysicCollideLayer
