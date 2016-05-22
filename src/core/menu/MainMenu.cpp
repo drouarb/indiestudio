@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:09:17 2016 Esteban Lewis
-// Last update Sat May 21 20:28:00 2016 Esteban Lewis
+// Last update Mon May 23 00:14:57 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -15,6 +15,19 @@
 gauntlet::core::MainMenu::MainMenu(Core & core, int idStart, Menu * parent) :
   Menu(core, idStart, parent)
 {
+  submenus.push_back(new SaveloadMenu(core, idStart + MENU_ID_LAYER, this));
+  submenus.push_back(new ConfMenu(core, idStart + MENU_ID_LAYER, this));
+  submenus.push_back(new Lobby(core, idStart + MENU_ID_LAYER, this));
+}
+
+gauntlet::core::MainMenu::~MainMenu()
+{ }
+
+void
+gauntlet::core::MainMenu::draw()
+{
+  buttons = std::vector<Control>();
+
   if (core.gameIsRunning())
     {
       buttons.push_back(Control(BUTTON, "Continue", NULL, PCENTER, idStart + buttons.size(), core.ogre));
@@ -26,7 +39,7 @@ gauntlet::core::MainMenu::MainMenu(Core & core, int idStart, Menu * parent) :
   funs.insert(std::pair<int, void (MainMenu::*)()>
 	      (buttons[buttons.size() - 1].getId(), &MainMenu::doPlay));
 
-  buttons.push_back(Control(BUTTON, "Save / load", NULL, PCENTER, idStart + buttons.size(), core.ogre));
+  buttons.push_back(Control(BUTTON, "Load map", NULL, PCENTER, idStart + buttons.size(), core.ogre));
   funs.insert(std::pair<int, void (MainMenu::*)()>
 	      (buttons[buttons.size() - 1].getId(), &MainMenu::doSaveload));
 
@@ -39,18 +52,6 @@ gauntlet::core::MainMenu::MainMenu(Core & core, int idStart, Menu * parent) :
 	      (buttons[buttons.size() - 1].getId(), &MainMenu::doExit));
   
 
-
-  submenus.push_back(new SaveloadMenu(core, idStart + MENU_ID_LAYER, this));
-  submenus.push_back(new ConfMenu(core, idStart + MENU_ID_LAYER, this));
-  submenus.push_back(new Lobby(core, idStart + MENU_ID_LAYER, this));
-}
-
-gauntlet::core::MainMenu::~MainMenu()
-{ }
-
-void
-gauntlet::core::MainMenu::draw()
-{
   drawButtons();
 }
 

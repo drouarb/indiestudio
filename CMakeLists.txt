@@ -29,13 +29,16 @@ add_executable(gauntlet ${INDIE} src/gameData/Spell/Spell.cpp include/gameData/S
 
 include_directories(include)
 include_directories(include/core)
+include_directories(include/core/menu)
+include_directories(include/core/listeners)
 include_directories(include/world)
 include_directories(include/gameData)
 include_directories(include/gameData/Spell)
 include_directories(include/helpers)
 include_directories(include/helpers/JSON)
-include_directories(include/core/menu)
 include_directories(include/network)
+include_directories(include/network/listener)
+include_directories(include/network/packet)
 
 if (${OGRE_STATIC})
 

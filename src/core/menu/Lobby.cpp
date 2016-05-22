@@ -79,7 +79,14 @@ gauntlet::core::Lobby::doServer(struct t_hitItem & item)
 void
 gauntlet::core::Lobby::doCharacter(struct t_hitItem & item)
 {
-  submenus[1]->setOpen(true);
+  if (core.packetf == NULL)
+    {
+      static_cast<MessageBox *>(submenus[0])->setMsg
+	("You must first connect to a server.");
+      submenus[0]->setOpen(true);
+    }
+  else
+    submenus[1]->setOpen(true);
 }
 
 void
@@ -88,12 +95,12 @@ gauntlet::core::Lobby::doPlay(struct t_hitItem & item)
   (void)item;
   if (core.pc == NULL)
     {
-      static_cast<MessageBox *>(submenus[0])->setMsg("You must firt create your character.");
+      static_cast<MessageBox *>(submenus[0])->setMsg
+	("You must first create your character.");
       submenus[0]->setOpen(true);
     }
   else
     {
-      parent->setOpen(false);
       core.play();
     }
 }

@@ -5,22 +5,28 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:13:44 2016 Esteban Lewis
-// Last update Sun May 22 20:50:22 2016 Esteban Lewis
+// Last update Mon May 23 00:28:01 2016 Esteban Lewis
 //
 
 #include <math.h>
 #include <iostream>
+#include <stdlib.h>
 #include "Core.hh"
 #include "MainMenu.hh"
 #include "IUIObserver.hh"
 #include "Math.hh"
+#include "ListenerAddEntity.hh"
+#include "ListenerConnect.hh"
+#include "ListenerDisconnect.hh"
+#include "ListenerHandshake.hh"
+#include "ListenerSelectPlayer.hh"
 
-gauntlet::core::Core::Core() : keepGoing(true),
-			       observer(new CoreUIObserver(*this))
+gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this))
 {
   menu = new MainMenu(*this, MENU_ID_START, NULL);
-  ogreThread = NULL;
+  listenThread = NULL;
   pc = NULL;
+  playing = false;
   serverAddr.first = "";
   serverAddr.second = 0;
   packetf = NULL;
@@ -30,19 +36,13 @@ gauntlet::core::Core::Core() : keepGoing(true),
   if (!ogre.init())
     return;
   menu->setOpen(true);
-  ogreThread = new std::thread(&OgreUI::go, std::ref(ogre));
-  loop();
+  listenThread = new std::thread(&Core::listen, std::ref(*this));
+  ogre.go();
+  _exit(0);
 }
 
 gauntlet::core::Core::~Core()
-{
-  if (ogreThread)
-    {
-      ogreThread->join();
-      delete ogreThread;
-    }
-  delete menu;
-}
+{ }
 
 void
 gauntlet::core::Core::keyUp(IUIObserver::Key key)
@@ -103,20 +103,59 @@ gauntlet::core::Core::mouseMove(int x, int y)
 void
 gauntlet::core::Core::play()
 {
-  std::cout << "CORE play" << std::endl;
+  if (menu->getOpen())
+    menu->setOpen(false);
+  playing = true;
+}
+
+void
+gauntlet::core::Core::stop()
+{
+  if (menu->getOpen() == false)
+    menu->setOpen(true);
+  playing = false;
 }
 
 void
 gauntlet::core::Core::exit()
 {
   ogre.quit();
-  keepGoing = false;
+  
+}
+
+void
+gauntlet::core::Core::createServer()
+{
+  //TODO: create server and give map
+  std::cout << std::endl << "create server " << map << std::endl << std::endl;
+  usleep(100000);
+}
+
+void
+gauntlet::core::Core::initPacketf()
+{
+  if (packetf)
+    {
+      if (listeners.size() == 0)
+	{
+	  listeners.push_back(new ListenerAddEntity(*this));
+	  listeners.push_back(new ListenerConnect(*this));
+	  listeners.push_back(new ListenerDisconnect(*this));
+	  listeners.push_back(new ListenerHandshake(*this));
+	  listeners.push_back(new ListenerSelectPlayer(*this));
+	}
+      for (std::list<network::PacketListener*>::iterator it = listeners.begin();
+	   it != listeners.end(); ++it)
+	{
+	  packetf->registerListener(*it);
+	}
+    }
 }
 
 void
 gauntlet::core::Core::load(std::string file)
 {
-  std::cout << "CORE load " << file << std::endl;
+  map = file;
 }
 
 void
@@ -128,7 +167,7 @@ gauntlet::core::Core::save(std::string file)
 bool
 gauntlet::core::Core::gameIsRunning()
 {
-  return (false);
+  return (playing);
 }
 
 gauntlet::core::IUIObserver::Key
@@ -138,27 +177,13 @@ gauntlet::core::Core::getLastKey() const
 }
 
 void
-gauntlet::core::Core::loop()
+gauntlet::core::Core::listen()
 {
-  long ms;
-
-  while (keepGoing)
+  while (1)
     {
-      sw.Set();
-      if (menu->getOpen() == false)
-	{
-	  updateWorld();
-	}
-      ms = sw.EllapsedMs();
-      if (ms < 17)
-	usleep(17 - sw.EllapsedMs()); //TODO: 60 fps okay?
+      if (packetf)
+	packetf->recv();
+      else
+	usleep(100000);
     }
-}
-
-void
-gauntlet::core::Core::updateWorld()
-{
-  //...
-  if (pc)
-    pc->loop();
 }

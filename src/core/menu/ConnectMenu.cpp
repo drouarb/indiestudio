@@ -4,11 +4,15 @@
 #include "Core.hh"
 #include "IpMenu.hh"
 #include "PacketFactory.hh"
+#include "SaveloadMenu.hh"
+#include "PacketConnect.hh"
+#include "PacketDisconnect.hh"
 
 gauntlet::core::ConnectMenu::ConnectMenu(Core & core, int idStart, Menu * parent) :
   TextBox(core, idStart, parent, "Server port")
 {
   init = false;
+  portstr = "";
 
   buttons.push_back(Control(CHECKBOX, "Local server", &serverTypes, PCENTER,
 			    idStart + buttons.size(), core.ogre));
@@ -33,6 +37,7 @@ gauntlet::core::ConnectMenu::ConnectMenu(Core & core, int idStart, Menu * parent
 
   submenus.push_back(new MessageBox(core, idStart + MENU_ID_LAYER, this, ""));
   submenus.push_back(new IpMenu(core, idStart + MENU_ID_LAYER, this));
+  submenus.push_back(new SaveloadMenu(core, idStart + MENU_ID_LAYER, this));
 }
 
 gauntlet::core::ConnectMenu::~ConnectMenu()
@@ -42,6 +47,16 @@ void
 gauntlet::core::ConnectMenu::draw()
 {
   drawButtons();
+
+  if (portstr != "")
+    {
+      text = portstr;
+      portstr = "";
+      struct t_hitItem item;
+      item.data = text;
+      item.type = TEXTBOX;
+      buttons[0].update(item);
+    }
 
   init = true;
   struct t_hitItem item;
@@ -121,14 +136,13 @@ gauntlet::core::ConnectMenu::doConnect(struct t_hitItem & item)
       submenus[0]->setOpen(true);
       return ;
     }
-  int port = atoi(text.c_str());
+  int port = stoi(text);
   if (port <= 0)
     {
       static_cast<MessageBox *>(submenus[0])->setMsg("Invalid port.");
       submenus[0]->setOpen(true);
       return ;
     }
-
   if (ip == "")
     {
       static_cast<MessageBox *>(submenus[0])->setMsg
@@ -137,10 +151,28 @@ gauntlet::core::ConnectMenu::doConnect(struct t_hitItem & item)
       return ;
     }
 
+  if (ip == "127.0.0.1")
+    {
+      if (core.map == "")
+	{
+	  portstr = text;
+	  submenus[2]->setOpen(true);
+	  return ;
+	}
+      else
+	{
+	  core.createServer();
+	}
+    }
+
   try
     {
+      if (core.packetf)
+	disconnect(true, core);
       core.packetf = new network::PacketFactory(ip, port);
       core.serverAddr = std::pair<std::string, int>(ip, port);
+      core.initPacketf();
+      sendConnect();
       setOpen(false);
     }
   catch (std::runtime_error e)
@@ -155,4 +187,49 @@ void
 gauntlet::core::ConnectMenu::doCancel(struct t_hitItem & item)
 {
   setOpen(false);
+}
+
+void
+gauntlet::core::ConnectMenu::sendConnect()
+{
+  network::PacketConnect pc;
+
+  core.packetf->send((network::Packet&)pc);
+  shakehand(true, false);
+  usleep(100000);
+  bool connected = shakehand(false, false);
+  if (connected == true)
+    {
+      static_cast<MessageBox *>(submenus[0])->setMsg("Connection succeeded.");
+      submenus[0]->setOpen(true);
+    }
+  else
+    {
+      static_cast<MessageBox *>(submenus[0])->setMsg("No response from server.");
+      submenus[0]->setOpen(true);
+      disconnect(true, core);
+    }
+}
+
+void
+gauntlet::core::ConnectMenu::disconnect(bool send, Core & core)
+{
+  network::PacketDisconnect pd("");
+
+  if (send)
+    core.packetf->send((network::Packet&)pd);
+  core.packetf->stop();
+  //TODO: delete straight away?
+  core.packetf = NULL;
+  core.stop();
+}
+
+bool
+gauntlet::core::ConnectMenu::shakehand(bool set, bool val)
+{
+  static bool connected = false;
+
+  if (set)
+    connected = val;
+  return (connected);
 }
