@@ -13,10 +13,13 @@
 
 #include "Math.hh"
 #include <tuple>
-#include "World.hh"
 
 namespace gauntlet
 {
+    namespace world {
+    class World;
+    };
+
   class ABody
   {
   protected:

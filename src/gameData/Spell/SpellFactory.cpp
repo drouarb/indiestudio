@@ -22,6 +22,12 @@ SpellFactory::~SpellFactory()
 
 }
 
+const std::map<SpellFactory::SpellEnum, SpellFactory::getSpell> gauntlet::SpellFactory::spellMap =
+{
+  {SpellFactory::VALKYRIA_ATTACK, &gauntlet::SpellFactory::getValkyriaAttack},
+  {SpellFactory::VALKYRIA_DASH, &gauntlet::SpellFactory::getValkyriaDash}
+};
+
 int		SpellFactory::giveNextId()
 {
   static	int i = -1;
@@ -30,9 +36,9 @@ int		SpellFactory::giveNextId()
   return (i);
 }
 
-ASpell		*SpellFactory::giveSpell(SpellEnum type)
+Spell		*SpellFactory::giveSpell(SpellEnum type)
 {
-  return (spellMap[type]());
+  return ((this->*spellMap.at(type))());
 }
 
 gauntlet::Spell *SpellFactory::getValkyriaAttack() {

@@ -6,17 +6,19 @@
 #define GAUNTLET_SPELL_HH
 
 #include <map>
+#include <list>
 #include "ASpell.hh"
 #include "ABody.hh"
+#include "Actor.hh"
+#include "Collider.hh"
 
 namespace gauntlet {
-
-    typedef std::list<ABody *> (world::Collider::*patternFun)(double, double, double);
-
     class Spell {
     public:
         Spell();
         ~Spell();
+
+        typedef std::list<ABody *> (world::Collider::*patternFun)(double, double, short, double, short);
         enum 		Area
         {
             RECTANGLE,
@@ -25,11 +27,7 @@ namespace gauntlet {
             TRIANGLE,
             ARC
         };
-
-        static std::map<Area, patternFun> patternType = {
-                {CIRCLE, &world::Collider::giveBodyInAreaCircle},
-                {CONE, &world::Collider::giveBodyInAreaCircle}
-        };
+        const static std::map<Area, patternFun> patternTypes;
 
     protected:
         Actor                       *caster;

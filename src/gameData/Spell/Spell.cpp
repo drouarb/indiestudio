@@ -3,6 +3,7 @@
 //
 
 #include "Spell.hh"
+#include "World.hh"
 
 gauntlet::Spell::Spell() {
 
@@ -11,6 +12,11 @@ gauntlet::Spell::Spell() {
 gauntlet::Spell::~Spell() {
 
 }
+
+const std::map<gauntlet::Spell::Area , gauntlet::Spell::patternFun> gauntlet::Spell::patternTypes = {
+        {CIRCLE, &world::Collider::giveBodyInAreaCircle},
+        {CONE, &world::Collider::giveBodyInAreaCone}
+};
 
 void gauntlet::Spell::ApplyDamage(std::list<gauntlet::ABody*> targets, Actor *caster)
 {
@@ -36,8 +42,7 @@ void gauntlet::Spell::prepare()
 
 void gauntlet::Spell::cast(Actor *caster) {
     std::list<gauntlet::ABody*> targets;
-    // effet ending sur target
-    targets = Spell::patternType[pattern](targetedArea.first, targetedArea.second, radius);
+    targets = (caster->getWorld()->getCollider().*patternTypes.at(pattern))(targetedArea.first, targetedArea.second, 0, radius, 0); //remplacer les 0 par des variables setées à 0 dans le constructy kthxbye
     ApplyDamage(targets, caster);
 }
 
@@ -73,9 +78,6 @@ void gauntlet::Spell::setBasicStats(int id, const std::string &name, double rang
     this->pattern = pattern;
     this->damage = damage;
 }
-
-
-
 
 
 

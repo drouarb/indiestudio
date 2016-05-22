@@ -20,7 +20,7 @@
 #include "SpellFactory.hh"
 #include "TeleportSpell.hh"
 #include <map>
-#include <src/gameData/Spell/Spell.hh>
+#include <gameData/Spell/Spell.hh>
 
 namespace gauntlet
 {
@@ -28,28 +28,23 @@ namespace gauntlet
   class	SpellFactory
   {
   public:
-      typedef   gauntlet::Spell (gauntlet::SpellFactory::*getSpell)();
+      SpellFactory();
+      ~SpellFactory();
+      typedef   gauntlet::Spell* (gauntlet::SpellFactory::*getSpell)();
       enum		SpellEnum
       {
           VALKYRIA_ATTACK,
           VALKYRIA_DASH
       };
-      static std::map<SpellEnum , getSpell > spellMap =
-      {
-              {VALKYRIA_ATTACK, &SpellFactory::getValkyriaAttack},
-              {VALKYRIA_DASH, &SpellFactory::getValkyriaDash}
-      };
+      const static std::map<SpellEnum , getSpell> spellMap;
 
   private:
     int			        giveNextId();
-    Spell*              getValkyriaAttack();
-    Spell*              getValkyriaDash();
 
   public:
-    SpellFactory();
-    ~SpellFactory();
-
-      ASpell *giveSpell(SpellEnum type);
+      Spell * giveSpell(SpellEnum type);
+      Spell*              getValkyriaAttack();
+      Spell*              getValkyriaDash();
   };
 };
 

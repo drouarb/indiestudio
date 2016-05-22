@@ -70,8 +70,10 @@ void	Collider::suprBody(int id)
   dynamicLayer->suprId(id);
 }
 
-std::list<gauntlet::ABody*>	Collider::giveBodyInAreaCircle(double posx, double posy, double radius)
+std::list<gauntlet::ABody*>	Collider::giveBodyInAreaCircle(double posx, double posy, short unused, double radius, short unused2)
 {
+  (void)unused;
+  (void)unused2;
   return (dynamicLayer->giveBodyInAreaCircle(posx, posy, radius));
 }
 
