@@ -5,9 +5,10 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 14:44:15 2016 Alexis Trouve
-// Last update Sun May 22 19:08:19 2016 Esteban Lewis
+// Last update Sun May 22 19:36:23 2016 Esteban Lewis
 //
 
+#include <stdexcept>
 #include "Collider.hh"
 
 using namespace gauntlet;
@@ -15,6 +16,8 @@ using namespace world;
 
 Collider::Collider(unsigned int xsize, unsigned int ysize)
 {
+  if (xsize < SIZE_CASE || ysize < SIZE_CASE)
+    throw std::runtime_error("Map size too small");
   physicLayer = new PhysicCollideLayer(static_cast<double>(xsize), static_cast<double>(ysize));
   dynamicLayer = new EntityCollideLayer(physicLayer);
 }

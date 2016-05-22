@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:55:06 2016 Esteban Lewis
-// Last update Sun May 22 18:55:57 2016 Alexis Trouve
+// Last update Sun May 22 19:15:06 2016 Esteban Lewis
 //
 
 #ifndef WORLD_HH_
@@ -31,6 +31,7 @@ namespace			gauntlet
       std::list<ABody*>		bodys;
       double			sizeX;
       double			sizeY;
+      std::pair<double, double>	spawnPoint;
       //network::PacketFactory	packetFactory;
     public:
       World();
