@@ -3,12 +3,12 @@
 
 #ifdef OGRE_STATIC
 #include <OgreGLPlugin.h>
- #include <OgreParticleFXPlugin.h>
- #include <OgreBspSceneManagerPlugin.h>
- #include <OgrePCZPlugin.h>
- #include <OgreOctreePlugin.h>
- #include <OgreOctreeZonePlugin.h>
- #include <OgreOggSoundPlugin.h>
+  #include <OgreParticleFXPlugin.h>
+  #include <OgreBspSceneManagerPlugin.h>
+  #include <OgrePCZPlugin.h>
+  #include <OgreOctreePlugin.h>
+  #include <OgreOctreeZonePlugin.h>
+  #include <OgreOggSoundPlugin.h>
 #endif
 
 #include <OgreCamera.h>
@@ -50,7 +50,7 @@ class OgreUI
   std::map<gauntlet::core::Position, OgreBites::TrayLocation> posmap;
   std::map<std::string, Ogre::AnimationState *> animationsArray;
   gauntlet::core::IUIObserver *obs;
- OgreOggSound::OgreOggSoundManager  *mSoundManager;
+  OgreOggSound::OgreOggSoundManager *mSoundManager;
 
   Ogre::Root *mRoot;
   Ogre::Camera *mCamera;
@@ -58,6 +58,10 @@ class OgreUI
   Ogre::RenderWindow *mWindow;
   Ogre::String mResourcesCfg;
   Ogre::String mPluginsCfg;
+ private:
+  Ogre::SceneNode *rootNode;
+  Ogre::SceneNode* cam_node;
+  Ogre::SceneNode* pitch_node;
   Ogre::OverlaySystem *mOverlaySystem;
   OgreBites::SdkTrayManager *mTrayMgr;
   OgreBites::SdkCameraMan *mCameraMan;
@@ -76,8 +80,12 @@ class OgreUI
 
   bool setup();
 
+  void setRootnode(Ogre::SceneNode *rootNode);
+
   void initMap();
+
   void initSound();
+
   bool configure(void);
 
   void chooseSceneManager(void);
@@ -159,14 +167,21 @@ class OgreUI
   void hideItem(int id);
 
   void playSound(int id);
+
   void stopSound(int id);
+
   void showItem(int id);
 
   void playAnimation(int animationId, int entityId, bool loop);
-  void  showBackground();
-  void  hideBackground();
+
+  void showBackground();
+
+  void hideBackground();
 
   void stopAnimation(int animationId, int entityId);
+
+  std::pair<int, int> getSizeWindow();
+
 
   void setQuality(int percent = 100);
 

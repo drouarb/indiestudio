@@ -37,7 +37,7 @@ bool OgreUI::configure(void)
 {
   if (mRoot->showConfigDialog())
     {
-      mWindow = mRoot->initialise(true, "Guantlet");
+      mWindow = mRoot->initialise(true, "Gauntlet");
       return true;
     }
   else
@@ -56,7 +56,6 @@ void OgreUI::createCamera(void)
 {
   mCamera = mSceneMgr->createCamera("PlayerCam");
   mCamera->setPosition(Ogre::Vector3(0, 0, 80));
-  mCamera->lookAt(Ogre::Vector3(0, 0, -300));
   mCamera->setNearClipDistance(5);
   mCameraMan = new OgreBites::SdkCameraMan(mCamera);
 }
@@ -194,7 +193,6 @@ bool OgreUI::frameRenderingQueued(const Ogre::FrameEvent &evt)
   mMouse->capture();
   mTrayMgr->refreshCursor();
   mTrayMgr->frameRenderingQueued(evt);
-
   for (auto animation : this->animationsArray)
     {
       Ogre::AnimationState *t2 = animation.second;
@@ -210,8 +208,7 @@ bool OgreUI::frameRenderingQueued(const Ogre::FrameEvent &evt)
 
 bool OgreUI::keyPressed(const OIS::KeyEvent &arg)
 {
-  mCameraMan->injectKeyDown(arg);
-  if (obs != NULL)
+   if (obs != NULL)
     if (keymap.count(arg.key) > 0)
       {
 	obs->keyDown(keymap[arg.key]);
@@ -221,7 +218,6 @@ bool OgreUI::keyPressed(const OIS::KeyEvent &arg)
 
 bool OgreUI::keyReleased(const OIS::KeyEvent &arg)
 {
-  mCameraMan->injectKeyUp(arg);
   if (obs != NULL)
     if (keymap.count(arg.key) > 0)
       obs->keyUp(keymap[arg.key]);
@@ -231,8 +227,7 @@ bool OgreUI::keyReleased(const OIS::KeyEvent &arg)
 bool OgreUI::mouseMoved(const OIS::MouseEvent &arg)
 {
   mTrayMgr->injectMouseMove(arg);
-  mCameraMan->injectMouseMove(arg);
-  if (obs != NULL)
+   if (obs != NULL)
     obs->mouseMove(arg.state.X.abs, arg.state.Y.abs);
   return true;
 }
@@ -283,7 +278,6 @@ void OgreUI::windowClosed(Ogre::RenderWindow *rw)
 
 void OgreUI::buttonHit(OgreBites::Button *button)
 {
-
   if (obs != NULL)
     {
       struct t_hitItem but;
@@ -490,6 +484,7 @@ void OgreUI::updateItemValue(int itemid, struct t_hitItem item)
   std::stringstream ss;
   ss << itemid;
   switch (item.type)
+
     {
       case MenuItemType::SLIDE:
 	{
@@ -632,6 +627,13 @@ Ogre::SceneManager *OgreUI::getSceneManager()
   return this->mSceneMgr;
 }
 
+void OgreUI::setRootnode(Ogre::SceneNode *rootNode)
+{
+  this->rootNode = rootNode;
+  rootNode->attachObject(mCamera);
+  mCamera->pitch(Ogre::Degree(-89));
+  mCamera->yaw(Ogre::Degree(20));
+}
 void OgreUI::setQuality(int percent)
 {
   this->quality = percent;
