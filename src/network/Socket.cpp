@@ -6,6 +6,7 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <string.h>
+#include <fcntl.h>
 #include "network/Socket.hh"
 
 gauntlet::network::Socket::Socket(in_port_t port) {
@@ -19,6 +20,8 @@ gauntlet::network::Socket::Socket(in_port_t port) {
         throw std::runtime_error("Can't bind port");
     if (listen(sockfd, 0) == -1)
         throw std::runtime_error("Listen error");
+    int flags = fcntl(sockfd, F_GETFL, 0);
+    fcntl(sockfd, F_SETFL, flags | O_NONBLOCK);
     type = SERVER;
     disconnectionListener = NULL;
 }
@@ -84,7 +87,7 @@ s_socketData gauntlet::network::Socket::recv() {
                         return buff;
                     }
                     if (i == sockfd) {
-                        if ((cli.sockfd = accept(sockfd, (struct sockaddr *) &cli.sock, &cli.len)) != -1) {
+                        while ((cli.sockfd = accept(sockfd, (struct sockaddr *) &cli.sock, &cli.len)) != -1) {
                             clients.push_back(cli);
                         }
                     } else {

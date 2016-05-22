@@ -25,6 +25,7 @@ int main() {
     std::vector<s_socketData> cbuffs;
     std::thread *t = new std::thread(&socket_server, ss, &cbuffs);
     gauntlet::network::Socket *sc1 = new gauntlet::network::Socket("127.0.0.1", 54917);
+    sleep(1);
     gauntlet::network::Socket *sc2 = new gauntlet::network::Socket("127.0.0.1", 54917);
     sleep(1);
     std::cout << "  -> OK" << std::endl;
@@ -52,8 +53,8 @@ int main() {
     cli2buff.data->push_back('2');
     sc1->send(cli1buff.data);
     sc2->send(cli2buff.data);
+    sleep(1);
     std::cout << "  -> OK" << std::endl;
-    while (cbuffs.size() < 2);
     assert(cbuffs[0].data->back() == '1' || cbuffs[0].data->back() == '2');
     assert(cbuffs[1].data->back() == '1' || cbuffs[1].data->back() == '2');
 
