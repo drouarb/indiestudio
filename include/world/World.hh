@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 //
 // World.hh for indie in /home/lewis_e/rendu/cpp/cpp_indie_studio
 // 
@@ -6,11 +5,9 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:55:06 2016 Esteban Lewis
-// Last update Sun May 22 18:47:27 2016 Alexis Trouve
+// Last update Sun May 22 18:55:57 2016 Alexis Trouve
 //
 
-=======
->>>>>>> 9c06607ce015d0b5ebeb7007860e2ea9846041af
 #ifndef WORLD_HH_
 # define WORLD_HH_
 
