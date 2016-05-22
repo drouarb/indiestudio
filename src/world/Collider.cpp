@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 14:44:15 2016 Alexis Trouve
-// Last update Sun May 22 18:49:46 2016 Alexis Trouve
+// Last update Sun May 22 19:08:19 2016 Esteban Lewis
 //
 
 #include "Collider.hh"
