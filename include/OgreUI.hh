@@ -86,7 +86,7 @@ class OgreUI
   void addWorldEntity(int entityId, std::string &name, int x, int y,
 			short degres, int texture_id);
   void addRootEntity(int entityId, std::string &name, int x, int y,
-		       int degres);
+		       short degres, int texture_id);
 
   void initMap();
 
@@ -101,7 +101,7 @@ class OgreUI
   void createFrameListener(void);
 
   void createScene(void);
-
+  void removeEntity(int id);
   OgreUI(void);
 
   ~OgreUI(void);
@@ -162,7 +162,7 @@ class OgreUI
   void addProgressBar(gauntlet::core::Position pos, int id, std::string text,
 		      int texture_id, int value);
 
-  void remove(int ID);
+  void removeItem(int ID);
 
   void sliderMoved(OgreBites::Slider *slider);
 

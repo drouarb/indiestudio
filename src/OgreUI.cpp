@@ -1,6 +1,7 @@
 #include <OIS/OIS.h>
 #include <iostream>
 #include "OgreUI.hh"
+#include "Math.hh"
 
 using namespace gauntlet;
 using namespace core;
@@ -209,7 +210,7 @@ bool OgreUI::frameRenderingQueued(const Ogre::FrameEvent &evt)
 
 bool OgreUI::keyPressed(const OIS::KeyEvent &arg)
 {
-  mCameraMan->injectKeyDown(arg);
+//  mCameraMan->injectKeyDown(arg);
   if (obs != NULL)
     if (keymap.count(arg.key) > 0)
       {
@@ -220,6 +221,8 @@ bool OgreUI::keyPressed(const OIS::KeyEvent &arg)
 
 bool OgreUI::keyReleased(const OIS::KeyEvent &arg)
 {
+  //mCameraMan->injectKeyUp(arg);
+
   if (obs != NULL)
     if (keymap.count(arg.key) > 0)
       obs->keyUp(keymap[arg.key]);
@@ -228,6 +231,7 @@ bool OgreUI::keyReleased(const OIS::KeyEvent &arg)
 
 bool OgreUI::mouseMoved(const OIS::MouseEvent &arg)
 {
+//  mCameraMan->injectMouseMove(arg);
   mTrayMgr->injectMouseMove(arg);
   if (obs != NULL)
     obs->mouseMove(arg.state.X.abs, arg.state.Y.abs);
@@ -365,7 +369,7 @@ void OgreUI::initMap()
   mousemap[OIS::MB_Right] = IUIObserver::KEY_MOUSE2;
 }
 
-void OgreUI::remove(int id)
+void OgreUI::removeItem(int id)
 {
   std::stringstream ss;
   ss << id;
@@ -555,10 +559,7 @@ void OgreUI::hideItem(int id)
 
 void OgreUI::createScene(void)
 {
-//  showBackground();
-  std::string k = "ogrehead.mesh";
-  addRootEntity(90, k, 0, 0, 0);
-  addWorldEntity(91, k, 0, 0, 0, 0);
+  showBackground();
 }
 
 void OgreUI::quit()
@@ -633,7 +634,7 @@ Ogre::SceneManager *OgreUI::getSceneManager()
 }
 
 void OgreUI::addRootEntity(int entityId, std::string &name, int x, int y,
-			   int degres)
+			   short degres, int texture_id)
 {
   std::stringstream ss;
   ss << entityId;
@@ -641,6 +642,8 @@ void OgreUI::addRootEntity(int entityId, std::string &name, int x, int y,
   Ogre::Entity *e = mSceneMgr->createEntity(ss.str(), name);
   Ogre::SceneNode *s = worldNode->createChildSceneNode("PLayerNode");
   this->rootNode = s;
+  s->setPosition(x, y, 0);
+  s->yaw(Ogre::Radian(world::Math::toRad(degres)));
   rootNode->attachObject(e);
   rootNode->attachObject(mCamera);
   mCamera->pitch(Ogre::Degree(-89));
@@ -656,7 +659,7 @@ void OgreUI::addWorldEntity(int entityId, std::string &name, int x, int y,
   Ogre::Entity *e = mSceneMgr->createEntity(ss.str(), name);
   Ogre::SceneNode *s = worldNode->createChildSceneNode(ss.str());
   s->setPosition(x, y, 0);
-  s->setOrientation(degres, x, y , 0);
+  s->yaw(Ogre::Radian(world::Math::toRad(degres)));
   s->attachObject(e);
 }
 
@@ -673,3 +676,13 @@ int OgreUI::triggerEffect(int id, gauntlet::EffectType type, std::pair<double, d
 
   return 0;
 }
+
+void OgreUI::removeEntity(int id)
+{
+  std::stringstream ss;
+  ss << id;
+  mSceneMgr->destroyEntity(ss.str());
+  mSceneMgr->destroySceneNode(ss.str());
+}
+
+
