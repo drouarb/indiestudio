@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Fri May 20 15:38:36 2016 Alexis Trouve
+// Last update Fri May 20 18:30:49 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -19,6 +19,8 @@ World::World()
 {
   Factory = new BodyFactory(this);
   Math::init();
+  sizeX = 0;
+  sizeY = 0;
 }
 
 World::~World()
@@ -32,6 +34,44 @@ void	World::update()
 void	World::loadGame(std::string file)
 {
   std::cout << "WORLD load " << file << std::endl;
+}
+
+void	World::initNetwork()
+{
+  
+}
+
+void	World::applyMoveActor()
+{
+  std::list<ABody*>::iterator	it1;
+  ABody				*body;
+  Actor				*actor;
+
+  it1 = bodys.begin();
+  while (it1 != bodys.end())
+    {
+      if ((actor = dynamic_cast<Actor*>((*it1))) != NULL)
+	actor->move();
+      it1++;
+    }
+}
+
+void	World::gameLoop()
+{
+  while (42 == 42)
+    {
+      applyMoveActor();
+    }
+}
+
+void	World::addNewBody(double xpos, double ypos, const std::string& name)
+{
+  ABody	*body;
+
+  body = Factory->giveBody(name);
+  body->setPos(make_pair(xpos, ypos));
+  bodys.push_back(body);
+  collider.setNewBodyNoCheckEntity(body);
 }
 
 void	World::tester()

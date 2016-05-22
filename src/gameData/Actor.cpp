@@ -47,3 +47,8 @@ ABody		*Actor::clone(int id) const
   actor->changeOrientation(orientation);
   return (actor);
 }
+
+void		Actor::setMove()
+{
+  ismoving = (ismoving == true) ? false : true;
+}
