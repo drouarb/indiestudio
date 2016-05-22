@@ -15,7 +15,8 @@
 #include "IUIObserver.hh"
 #include "Math.hh"
 
-gauntlet::core::Core::Core() : keepGoing(true), observer(new CoreUIObserver(*this))
+gauntlet::core::Core::Core() : keepGoing(true),
+			       observer(new CoreUIObserver(*this))
 {
   menu = new MainMenu(*this, MENU_ID_START, NULL);
   ogreThread = NULL;
@@ -27,7 +28,7 @@ gauntlet::core::Core::Core() : keepGoing(true), observer(new CoreUIObserver(*thi
 
   ogre.setIObserver(observer);
   if (!ogre.init())
-    return ;
+    return;
   menu->setOpen(true);
   ogreThread = new std::thread(&OgreUI::go, std::ref(ogre));
   loop();
@@ -62,8 +63,16 @@ gauntlet::core::Core::keyDown(IUIObserver::Key key)
   Command cmd = conf.getLinkedKey(key);
 
   this->ogre.hideBackground();
-  this->ogre.triggerEffect(42, EffectType::ATOMIC, std::pair<double, double>(0, 0));
+  try
+    {
+      this->ogre.addWorldEntity(32, "ogrehead.mesh", 0, 0, 0, 0);
+      this->ogre.triggerEffect(42, EffectType::EXPLOSION,
+			       std::pair<double, double>(0, 0));
+    }
+  catch (...)
+    {
 
+    }
   if (menu->getOpen())
     {
       menu->keyDown(cmd);
@@ -83,7 +92,7 @@ gauntlet::core::Core::keyDown(IUIObserver::Key key)
 }
 
 void
-gauntlet::core::Core::buttonClick(int buttonId, struct t_hitItem & item)
+gauntlet::core::Core::buttonClick(int buttonId, struct t_hitItem &item)
 {
   if (menu->getOpen())
     {
