@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Sun May 22 16:08:00 2016 Alexis Trouve
+// Last update Sun May 22 18:53:11 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -57,10 +57,39 @@ void	World::applyMoveActor()
     }
 }
 
-void	World::gameLoop()
+void		World::applyIA()
+{
+  std::list<ABody*>::iterator	it1;
+  unsigned int	i;
+  unsigned int	j;
+  std::vector<Player*>	players;
+  Player		*nplay;
+
+  it1 = bodys.begin();
+  while (it1 != bodys.end())
+    {
+      if ((nplay = dynamic_cast<Player*>(*it1)) != NULL)
+	players.push_back(nplay);
+      it1++;
+    }
+  j = 0;
+  while (j < players.size())
+    {
+      i = 0;
+      while (i < IAs.size())
+	{
+	  IAs[i]->launchIA(players[j]->getPos());
+	  ++i;
+	}
+      ++j;
+    }
+}
+
+void		World::gameLoop()
 {
   while (42 == 42)
     {
+      applyIA();
       applyMoveActor();
     }
 }
@@ -73,14 +102,14 @@ void	World::addNewBody(double xpos, double ypos, const std::string& name, short 
   body->changePos(std::make_pair(xpos, ypos));
   body->changeOrientation(orientation);
   bodys.push_back(body);
-  collider.setNewBodyNoCheckEntity(body);
+  collider->setNewBodyNoCheckEntity(body);
 }
 
 void		World::notifyDeath(ABody *body)
 {
   unsigned int	i;
 
-  collider.suprBody(body->getId());
+  collider->suprBody(body->getId());
   i = 0;
   while (i < IAs.size())
     {
@@ -91,5 +120,5 @@ void		World::notifyDeath(ABody *body)
 
 Collider&	World::getCollider()
 {
-  return (collider);
+  return (*collider);
 }
