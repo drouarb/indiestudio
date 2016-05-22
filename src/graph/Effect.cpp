@@ -4,7 +4,7 @@
 
 #include "graph/Effect.hh"
 
-gauntlet::Effect::Effect(OgreUI *ogreUI, gauntlet::EffectType type, int percent)
+gauntlet::Effect::Effect(OgreUI *ogreUI, gauntlet::EffectType type, std::string const &name, std::pair<double, double> coord, int percent)
 {
   try
     {
@@ -14,15 +14,19 @@ gauntlet::Effect::Effect(OgreUI *ogreUI, gauntlet::EffectType type, int percent)
     {
       throw std::logic_error("Unrecognized type");
     }
-  this->_particleSystem = ogreUI->getSceneManager()->createParticleSystem("");
+  this->_particleSystem = ogreUI->getSceneManager()->createParticleSystem(name, *this->name);
+  if (this->_particleSystem == NULL)
+    {
+      throw std::runtime_error("Template " + name + " not found");
+    }
 }
 
-Ogre::ParticleSystem *gauntlet::Effect::getParticleSystem()
+Ogre::ParticleSystem *gauntlet::Effect::getParticleSystem() const
 {
   return this->_particleSystem;
 }
 
-std::string const & gauntlet::Effect::getName()
+std::string const & gauntlet::Effect::getName() const
 {
   return *this->name;
 }
@@ -30,13 +34,13 @@ std::string const & gauntlet::Effect::getName()
 
 gauntlet::Effect::~Effect()
 {
-  OGRE_DELETE this->_particleSystem;
+
 }
 
 
 std::ostream &::gauntlet::operator<<(std::ostream &ostream, const gauntlet::Effect &spell)
 {
-
+  ostream << "Particle System based on " << spell.getName() << " template";
   return ostream;
 }
 

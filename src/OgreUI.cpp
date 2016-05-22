@@ -348,6 +348,18 @@ void OgreUI::initMap()
   keymap[OIS::KC_NUMPAD8] = IUIObserver::KEY_8;
   keymap[OIS::KC_NUMPAD9] = IUIObserver::KEY_9;
 
+
+  keymap[OIS::KC_0] = IUIObserver::KEY_0;
+  keymap[OIS::KC_1] = IUIObserver::KEY_1;
+  keymap[OIS::KC_2] = IUIObserver::KEY_2;
+  keymap[OIS::KC_3] = IUIObserver::KEY_3;
+  keymap[OIS::KC_4] = IUIObserver::KEY_4;
+  keymap[OIS::KC_5] = IUIObserver::KEY_5;
+  keymap[OIS::KC_6] = IUIObserver::KEY_6;
+  keymap[OIS::KC_7] = IUIObserver::KEY_7;
+  keymap[OIS::KC_8] = IUIObserver::KEY_8;
+  keymap[OIS::KC_9] = IUIObserver::KEY_9;
+
   keymap[OIS::KC_PERIOD] = IUIObserver::KEY_PERIOD;
   keymap[OIS::KC_SEMICOLON] = IUIObserver::KEY_PERIOD;
   posmap[PCENTER] = OgreBites::TL_CENTER;
@@ -656,14 +668,10 @@ void OgreUI::setQuality(int percent)
   this->quality = percent;
 }
 
-int OgreUI::triggerEffect(gauntlet::EffectType, std::pair<double, double>)
+int OgreUI::triggerEffect(int id, gauntlet::EffectType type, std::pair<double, double> coord)
 {
+  gauntlet::Effect *effect = new gauntlet::Effect(this, type, id + "", coord, this->quality);
+
+
   return 0;
 }
-
-
-
-
-
-
-

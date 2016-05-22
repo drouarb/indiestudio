@@ -69,10 +69,10 @@ namespace gauntlet
     Ogre::ParticleSystem *_particleSystem;
 
    public:
-    Effect(OgreUI *ogreUI, EffectType type, int percent = 100);
+    Effect(OgreUI *ogreUI, EffectType type, const std::string &name, std::pair<double, double> coord,int percent);
     ~Effect();
-    Ogre::ParticleSystem *getParticleSystem();
-    std::string const &getName();
+    Ogre::ParticleSystem *getParticleSystem() const;
+    std::string const &getName() const;
   };
 
   std::ostream &operator<<(std::ostream &, const Effect &);

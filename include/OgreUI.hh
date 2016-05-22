@@ -49,8 +49,10 @@ class OgreUI
   std::map<OIS::MouseButtonID, gauntlet::core::IUIObserver::Key> mousemap;
   std::map<gauntlet::core::Position, OgreBites::TrayLocation> posmap;
   std::map<std::string, Ogre::AnimationState *> animationsArray;
+  std::map<int, gauntlet::Effect *> effectMap;
   gauntlet::core::IUIObserver *obs;
   OgreOggSound::OgreOggSoundManager *mSoundManager;
+
 
   Ogre::Root *mRoot;
   Ogre::Camera *mCamera;
@@ -183,14 +185,12 @@ class OgreUI
 
   std::pair<int, int> getSizeWindow();
 
-
   void setQuality(int percent = 100);
 
-   std::pair<int, int> getSizeWindow();
   void quit();
 
   Ogre::SceneManager *getSceneManager();
 
-  int triggerEffect(gauntlet::EffectType ef, std::pair<double, double> pair);
+  int triggerEffect(int id, gauntlet::EffectType ef, std::pair<double, double> pair);
 
 };
