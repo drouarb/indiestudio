@@ -17,7 +17,7 @@ namespace gauntlet
       SpellContainer();
       ~SpellContainer();
       std::vector<gauntlet::Spell*> spellList;
-     // void  addSpell(SpellFactory::SpellEnum spellEnum, Actor *caster);
+      void  addSpell(int SpellEnum);
     };
 };
 
