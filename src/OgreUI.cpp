@@ -395,7 +395,7 @@ void OgreUI::loadSound(int id, std::string &path)
 {
   std::stringstream ss;
   ss << id;
-  mSoundManager->createSound(ss.str(), path.c_str(), true, false, false);
+      mSoundManager->createSound(ss.str(), path.c_str(), true, false, false);
 }
 
 void OgreUI::playSound(int id)
@@ -633,14 +633,21 @@ Ogre::SceneManager *OgreUI::getSceneManager()
   return this->mSceneMgr;
 }
 
-void OgreUI::addRootEntity(int entityId, std::string &name, int x, int y,
+bool OgreUI::addRootEntity(int entityId, const std::string &name, int x, int y,
 			   short degres, int texture_id)
 {
   std::stringstream ss;
   ss << entityId;
-
-  Ogre::Entity *e = mSceneMgr->createEntity(ss.str(), name);
-  Ogre::SceneNode *s = worldNode->createChildSceneNode("PLayerNode");
+  Ogre::Entity *e;
+  try
+    {
+      e = mSceneMgr->createEntity(ss.str(), name);
+    }
+  catch (Ogre::Exception & e)
+    {
+      return false;
+    }
+   Ogre::SceneNode *s = worldNode->createChildSceneNode("PLayerNode");
   this->rootNode = s;
   s->setPosition(x, y, 0);
   s->yaw(Ogre::Radian(world::Math::toRad(degres)));
@@ -648,19 +655,28 @@ void OgreUI::addRootEntity(int entityId, std::string &name, int x, int y,
   rootNode->attachObject(mCamera);
   mCamera->pitch(Ogre::Degree(-89));
   mCamera->yaw(Ogre::Degree(20));
+  return (true);
 }
 
-void OgreUI::addWorldEntity(int entityId, std::string &name, int x, int y,
+bool OgreUI::addWorldEntity(int entityId, const std::string &name, int x, int y,
 			    short degres, int texture_id)
 {
   std::stringstream ss;
   ss << entityId;
-
-  Ogre::Entity *e = mSceneMgr->createEntity(ss.str(), name);
+  Ogre::Entity *e;
+  try
+    {
+     e = mSceneMgr->createEntity(ss.str(), name);
+    }
+  catch (Ogre::Exception & e)
+    {
+      return false;
+    }
   Ogre::SceneNode *s = worldNode->createChildSceneNode(ss.str());
   s->setPosition(x, y, 0);
   s->yaw(Ogre::Radian(world::Math::toRad(degres)));
   s->attachObject(e);
+  return (true);
 }
 
 
@@ -684,5 +700,4 @@ void OgreUI::removeEntity(int id)
   mSceneMgr->destroyEntity(ss.str());
   mSceneMgr->destroySceneNode(ss.str());
 }
-
 
