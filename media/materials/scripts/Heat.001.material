@@ -10,7 +10,7 @@ material Particles/Heat.001
 
 			texture_unit
 			{
-				texture Resources/Textures/Heat.001.png
+				texture Heat.001.png
 			}
 		}
 	}

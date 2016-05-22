@@ -10,7 +10,7 @@ material Particles/BrightStar.001
 
 			texture_unit
 			{
-				texture Resources/Textures/BrightStar.001.png
+				texture BrightStar.001.png
 			}
 		}
 	}

@@ -10,7 +10,7 @@ material Particles/Flare.000
 
 			texture_unit
 			{
-				texture Resources/Textures/Flare.000.png
+				texture Flare.000.png
 			}
 		}
 	}

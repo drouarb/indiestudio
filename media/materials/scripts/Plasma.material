@@ -18,21 +18,21 @@ material Plasma
 			}
 			texture_unit
 			{
-				texture Resources/Textures/Plasma01.jpg
+				texture Plasma01.jpg
 				tex_address_mode wrap
 				tex_coord_set 0
 				scale 1.000000 1.000000
 			}
 			texture_unit
 			{
-				texture Resources/Textures/Plasma02.jpg
+				texture Plasma02.jpg
 				tex_address_mode wrap
 				tex_coord_set 1
 				scale 1.000000 1.000000
 			}
 			texture_unit
 			{
-				texture Resources/Textures/Plasma03.png
+				texture Plasma03.png
 				tex_address_mode wrap
 				tex_coord_set 2
 				scale 1.000000 1.000000

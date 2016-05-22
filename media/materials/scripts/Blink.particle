@@ -35,7 +35,7 @@ particle_system Blink
 
 	affector ColourImage
 	{
-		image ./Resources/Textures/Blind.png
+		image ./Blind.png
 	}
 
 	affector Scaler

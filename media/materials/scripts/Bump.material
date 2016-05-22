@@ -24,7 +24,7 @@ material Bump
 			
 			texture_unit
 			{
-				texture Resources/Textures/BasketBall.png
+				texture BasketBall.png
 				tex_address_mode wrap
 				tex_coord_set 0
 				scale 1.000000 1.000000
@@ -32,7 +32,7 @@ material Bump
 			
 			texture_unit
 			{
-				texture Resources/Textures/BasketBall.nor.png
+				texture BasketBall.nor.png
 				tex_address_mode wrap
 				tex_coord_set 1
 				scale 1.000000 1.000000

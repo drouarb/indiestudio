@@ -10,7 +10,7 @@ material Particles/Hidden.001
 
 			texture_unit
 			{
-				texture Resources/Textures/Hidden.001.png
+				texture Hidden.001.png
 			}
 		}
 	}

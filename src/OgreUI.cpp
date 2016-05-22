@@ -210,7 +210,7 @@ bool OgreUI::frameRenderingQueued(const Ogre::FrameEvent &evt)
 
 bool OgreUI::keyPressed(const OIS::KeyEvent &arg)
 {
-  mCameraMan->injectKeyDown(arg);
+//  mCameraMan->injectKeyDown(arg);
   if (obs != NULL)
     if (keymap.count(arg.key) > 0)
       {
@@ -221,7 +221,7 @@ bool OgreUI::keyPressed(const OIS::KeyEvent &arg)
 
 bool OgreUI::keyReleased(const OIS::KeyEvent &arg)
 {
-  mCameraMan->injectKeyUp(arg);
+//  mCameraMan->injectKeyUp(arg);
   if (obs != NULL)
     if (keymap.count(arg.key) > 0)
       obs->keyUp(keymap[arg.key]);
@@ -230,7 +230,7 @@ bool OgreUI::keyReleased(const OIS::KeyEvent &arg)
 
 bool OgreUI::mouseMoved(const OIS::MouseEvent &arg)
 {
-  mCameraMan->injectMouseMove(arg);
+//  mCameraMan->injectMouseMove(arg);
   mTrayMgr->injectMouseMove(arg);
   if (obs != NULL)
     obs->mouseMove(arg.state.X.abs, arg.state.Y.abs);

@@ -13,7 +13,7 @@ material KouraiCross
 			
 			texture_unit
 			{
-				texture Resources/Textures/KouraiCross.jpg
+				texture KouraiCross.jpg
 				scale 1.0 1.0
 				tex_coord_set 0
 				tex_address_mode wrap

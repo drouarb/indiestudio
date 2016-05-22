@@ -3,7 +3,7 @@ particle_system Atomic
 	material Particles/Fireball.001
 	particle_width 100.0
 	particle_height 100.0
-	quota 2000
+	quota 200
 	cull_each false
 	sorted false
 	local_space false

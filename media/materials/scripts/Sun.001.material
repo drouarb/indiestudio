@@ -10,7 +10,7 @@ material Particles/Sun.001
 
 			texture_unit
 			{
-				texture Resources/Textures/Sun.001.png
+				texture Sun.001.png
 			}
 		}
 	}

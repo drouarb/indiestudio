@@ -10,7 +10,7 @@ material Particles/Special.001
 
 			texture_unit
 			{
-				texture Resources/Textures/Special.001.png
+				texture Special.001.png
 			}
 		}
 	}

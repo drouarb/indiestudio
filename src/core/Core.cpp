@@ -63,16 +63,6 @@ gauntlet::core::Core::keyDown(IUIObserver::Key key)
   Command cmd = conf.getLinkedKey(key);
 
   this->ogre.hideBackground();
-  try
-    {
-      this->ogre.addWorldEntity(32, "ogrehead.mesh", 0, 0, 0, 0);
-      this->ogre.triggerEffect(42, EffectType::EXPLOSION,
-			       std::pair<double, double>(0, 0));
-    }
-  catch (...)
-    {
-
-    }
   if (menu->getOpen())
     {
       menu->keyDown(cmd);

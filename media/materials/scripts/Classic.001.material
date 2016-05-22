@@ -10,7 +10,7 @@ material Particles/Classic.001
 
 			texture_unit
 			{
-				texture Resources/Textures/Classic.001.png
+				texture Classic.001.png
 			}
 		}
 	}
