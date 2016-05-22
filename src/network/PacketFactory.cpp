@@ -7,19 +7,33 @@
 #include <network/packet/PacketHandshake.hh>
 #include <network/packet/PacketSelectPlayer.hh>
 #include <network/packet/PacketAddEntity.hh>
+#include <network/listener/PacketConnectListener.hh>
+#include <network/listener/PacketDisconnectListener.hh>
+#include <network/listener/PacketHandshakeListener.hh>
+#include <network/listener/PacketAddEntityListener.hh>
+#include <network/listener/PacketSelectPlayerListener.hh>
+#include <iostream>
 #include "network/PacketFactory.hh"
+#include "network/PacketFactorySocketDisconnectionListener.hh"
 
 gauntlet::network::PacketFactory::PacketFactory(in_port_t port) :
         run(true),
-        socket(new Socket(port)) { }
+        socket(new Socket(port)) {
+    disconnectionListener = new PacketFactorySocketDisconnectionListener(this);
+    socket->setDisconnectionListener(disconnectionListener);
+}
 
 gauntlet::network::PacketFactory::PacketFactory(const std::string &address, in_port_t port) :
         run(true),
-        socket(new Socket(address, port)) { }
+        socket(new Socket(address, port)) {
+    disconnectionListener = new PacketFactorySocketDisconnectionListener(this);
+    socket->setDisconnectionListener(disconnectionListener);
+}
 
 gauntlet::network::PacketFactory::~PacketFactory() {
     run = false;
     delete (socket);
+    delete(disconnectionListener);
 }
 
 void gauntlet::network::PacketFactory::registerListener(PacketListener *listener) {
@@ -47,24 +61,46 @@ void gauntlet::network::PacketFactory::send(const Packet &packet) {
 }
 
 void gauntlet::network::PacketFactory::recv() {
-    t_rawdata *data;
+    s_socketData data;
     PacketId id;
     Packet *packet;
 
+    runlock.lock();
     while (run) {
         data = socket->recv();
-        id = static_cast<PacketId>(data->at(0));
-        packet = NULL;
-        try {
-            packet = (this->*createMap.at(id))(data);
-        } catch (std::exception) { }
-        if (packet) {
-            if (listeners.find(packet->getPacketId()) != listeners.end())
-                for (std::set<PacketListener *>::iterator it = listeners[id].begin(); it != listeners[id].end(); it++)
-                    (*it)->notify(packet);
-            delete (packet);
+        if (data.data->size() > 0) {
+            id = static_cast<PacketId>(data.data->at(0));
+            packet = NULL;
+            try {
+                packet = (this->*createMap.at(id))(data);
+            } catch (std::exception) { }
+            if (packet) {
+                this->notifyPacket(packet);
+            }
         }
     }
+    runlock.unlock();
+}
+
+void gauntlet::network::PacketFactory::stop() {
+    run = false;
+    socket->unlock();
+    runlock.lock();
+    runlock.unlock();
+}
+
+void gauntlet::network::PacketFactory::notifyPacket(gauntlet::network::Packet *packet) {
+    if (listeners.find(packet->getPacketId()) != listeners.end()) {
+        for (std::set<PacketListener *>::iterator it = listeners[packet->getPacketId()].begin();
+             it != listeners[packet->getPacketId()].end(); it++) {
+            (*it)->notify(packet);
+        }
+    }
+}
+
+void gauntlet::network::PacketFactory::disconnectionHandler(int fd) {
+    PacketDisconnect *packet = new PacketDisconnect("Connection closed", fd);
+    this->notifyPacket(packet);
 }
 
 const std::map<gauntlet::network::PacketId, gauntlet::network::PacketFactory::createPacketFunc>
@@ -75,4 +111,6 @@ const std::map<gauntlet::network::PacketId, gauntlet::network::PacketFactory::cr
         {PLAYER_SELECT, &PacketFactory::createPacket<PacketSelectPlayer>},
         {ADD_ENTITY,    &PacketFactory::createPacket<PacketAddEntity>}
 };
+
+
 

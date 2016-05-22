@@ -16,7 +16,8 @@
 namespace gauntlet {
     namespace network {
         class PacketFactory {
-            typedef Packet* (PacketFactory::* createPacketFunc)(t_rawdata* data);
+            typedef Packet* (PacketFactory::* createPacketFunc)(s_socketData data);
+            typedef void (PacketListener::* notifyPacketFunc)(const Packet *packet);
         public:
             PacketFactory(in_port_t port);
             PacketFactory(const std::string& address, in_port_t port);
@@ -24,20 +25,28 @@ namespace gauntlet {
 
             void send(const Packet &packet);
             void recv();
+            void stop();
 
             void registerListener(PacketListener *listener);
             void unregisterListener(PacketListener *listener);
 
+            void disconnectionHandler(int fd);
+
         private:
-            template<typename T>  Packet *createPacket(t_rawdata* data) {
+            template<typename T>  Packet *createPacket(s_socketData data) {
                 return new T(data);
             }
+
+            void notifyPacket(Packet *packet);
 
         private:
             bool run;
             Socket *socket;
+            std::mutex runlock;
             std::map<PacketId, std::set<PacketListener *>> listeners;
+            ISocketDisconnectionListener *disconnectionListener;
 
+            static const std::map<PacketId, notifyPacketFunc> notifyMap;
             static const std::map<PacketId, createPacketFunc> createMap;
         };
     }

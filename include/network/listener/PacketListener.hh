@@ -15,8 +15,7 @@ namespace gauntlet {
 
         public:
             PacketId getPacketId() const;
-
-            virtual void notify(Packet *) = 0;
+            virtual void notify(const Packet *packet) = 0;
 
         private:
             PacketId packetId;

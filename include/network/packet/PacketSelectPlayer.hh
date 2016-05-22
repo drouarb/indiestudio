@@ -18,7 +18,7 @@ namespace gauntlet {
             } __attribute__((packed));
 
         public:
-            PacketSelectPlayer(t_rawdata *data);
+            PacketSelectPlayer(const s_socketData &data);
             PacketSelectPlayer(bool warrior, bool wizard, bool valkyrie, bool elf);
             virtual ~PacketSelectPlayer() { }
 

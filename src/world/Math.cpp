@@ -7,11 +7,15 @@ static double sin_tab[629];
 void
 gauntlet::world::Math::init()
 {
-  for (int a = 0; a <= 628; ++a)
-    {
-      cos_tab[a] = ::cos((double)a / 100);
-      sin_tab[a] = ::sin((double)a / 100);
-    }
+  static bool initialized = false;
+
+  if (!initialized)
+    for (int a = 0; a <= 628; ++a)
+      {
+	cos_tab[a] = ::cos((double)a / 100);
+	sin_tab[a] = ::sin((double)a / 100);
+	initialized = true;
+      }
 }
 
 short
@@ -36,6 +40,12 @@ float
 gauntlet::world::Math::toRad(short angle)
 {
   return ((float)angle / 100);
+}
+
+short
+gauntlet::world::Math::getAngleFromDegrees(int degrees)
+{
+  return (getAngle((double)degrees / 180 * M_PI));
 }
 
 short

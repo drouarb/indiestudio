@@ -35,6 +35,7 @@
 namespace gauntlet
 {
   enum EffectType : int;
+
   class Effect;
 }
 
@@ -83,10 +84,10 @@ class OgreUI
   bool setup();
 
 
-  void addWorldEntity(int entityId, std::string &name, int x, int y,
-			short degres, int texture_id);
-  void addRootEntity(int entityId, std::string &name, int x, int y,
-		       short degres, int texture_id);
+  bool addWorldEntity(int entityId, const std::string &name, int x, int y,
+		      short degres, int texture_id);
+  bool addRootEntity(int entityId, const std::string &name, int x, int y,
+		     short degres, int texture_id);
 
   void initMap();
 
@@ -194,6 +195,8 @@ class OgreUI
 
   Ogre::SceneManager *getSceneManager();
 
-  int triggerEffect(int id, gauntlet::EffectType ef, std::pair<double, double> pair);
+  int triggerEffect(int id, gauntlet::EffectType ef,
+		    std::pair<double, double> pair);
 
+  void stopEffect(int id);
 };

@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 14:44:15 2016 Alexis Trouve
-// Last update Fri May 20 18:28:37 2016 Alexis Trouve
+// Last update Sun May 22 19:08:19 2016 Esteban Lewis
 //
 
 #include "Collider.hh"
@@ -13,9 +13,9 @@
 using namespace gauntlet;
 using namespace world;
 
-Collider::Collider()
+Collider::Collider(unsigned int xsize, unsigned int ysize)
 {
-  physicLayer = new PhysicCollideLayer(2100.0, 2100.0);
+  physicLayer = new PhysicCollideLayer(static_cast<double>(xsize), static_cast<double>(ysize));
   dynamicLayer = new EntityCollideLayer(physicLayer);
 }
 

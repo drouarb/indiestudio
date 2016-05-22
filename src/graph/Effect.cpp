@@ -14,11 +14,15 @@ gauntlet::Effect::Effect(OgreUI *ogreUI, gauntlet::EffectType type, std::string 
     {
       throw std::logic_error("Unrecognized type");
     }
+  std::cout << "\t--------------------\tName: " << name << "*this->name" << *this->name << std::endl;
   this->_particleSystem = ogreUI->getSceneManager()->createParticleSystem(name, *this->name);
   if (this->_particleSystem == NULL)
     {
       throw std::runtime_error("Template " + name + " not found");
     }
+  Ogre::SceneNode* particleNode = ogreUI->getSceneManager()->getRootSceneNode()->createChildSceneNode(name + "scene");
+  this->_particleSystem->getEmitter(0)->setPosition(Ogre::Vector3(static_cast<int>(coord.first), static_cast<int>(coord.second), 0));
+  particleNode->attachObject(this->_particleSystem);
 }
 
 Ogre::ParticleSystem *gauntlet::Effect::getParticleSystem() const

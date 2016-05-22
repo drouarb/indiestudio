@@ -6,13 +6,13 @@
 #include "network/packet/PacketConnect.hh"
 
 gauntlet::network::PacketConnect::PacketConnect() :
-        Packet(gauntlet::network::CONNECT),
+        Packet(gauntlet::network::CONNECT, -1),
         protocolVersion(PROTOCOL_VERSION)
 { }
 
-gauntlet::network::PacketConnect::PacketConnect(t_rawdata *data) :
-        PacketConnect() {
-    this->deserialize(data);
+gauntlet::network::PacketConnect::PacketConnect(const s_socketData &data) :
+        Packet(gauntlet::network::CONNECT, data.fd) {
+    this->deserialize(data.data);
 }
 
 t_rawdata *gauntlet::network::PacketConnect::serialize() const {

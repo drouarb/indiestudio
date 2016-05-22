@@ -7,13 +7,14 @@
 #include <assert.h>
 
 int main() {
+    s_socketData data;
     std::cout << "Testing PacketSelectPlayer" << std::endl;
 
     std::cout << "->Serialisation/Deserialitation" << std::endl;
     srand(time(NULL));
     gauntlet::network::PacketSelectPlayer packetSelectPlayer(rand() % 2, rand() % 2, rand() % 2, rand() % 2);
 
-    t_rawdata *data = packetSelectPlayer.serialize();
+    data.data = packetSelectPlayer.serialize();
 
     gauntlet::network::PacketSelectPlayer packetSelectPlayer1(data);
     assert(packetSelectPlayer.getPacketId() == packetSelectPlayer1.getPacketId());

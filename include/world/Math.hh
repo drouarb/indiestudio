@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Sat May 14 13:43:42 2016 Esteban Lewis
-// Last update Sun May 22 17:07:10 2016 Esteban Lewis
+// Last update Sun May 22 18:30:26 2016 Esteban Lewis
 //
 
 #ifndef  GAUNTLET_MATH_HH_
@@ -27,6 +27,7 @@ namespace			gauntlet
       static bool		isBetween(short ref, short angle_sup, short angle_inf);
       static double		distBetween(std::pair<double, double> pos1, std::pair<double, double> pos2);
       static float		toRad(short angle);
+      static short		getAngleFromDegrees(int degrees);
 
       //no need to simplify before calling other methods
       static short		simplify(short angle); 

@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon Apr 18 16:40:28 2016 Esteban Lewis
-// Last update Sun May 22 15:57:46 2016 Esteban Lewis
+// Last update Sun May 22 17:58:58 2016 Esteban Lewis
 //
 
 #ifndef  JSONOBJ_HPP_
@@ -36,7 +36,7 @@ namespace				JSON
     void				Clear();
     bool				Newline() const;
     IJson *				Clone() const;
-      
+
   private:
     std::map<std::string, IJson *>	objs;
     std::string				serialized;

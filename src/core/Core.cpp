@@ -15,7 +15,8 @@
 #include "IUIObserver.hh"
 #include "Math.hh"
 
-gauntlet::core::Core::Core() : keepGoing(true), observer(new CoreUIObserver(*this))
+gauntlet::core::Core::Core() : keepGoing(true),
+			       observer(new CoreUIObserver(*this))
 {
   menu = new MainMenu(*this, MENU_ID_START, NULL);
   ogreThread = NULL;
@@ -27,7 +28,7 @@ gauntlet::core::Core::Core() : keepGoing(true), observer(new CoreUIObserver(*thi
 
   ogre.setIObserver(observer);
   if (!ogre.init())
-    return ;
+    return;
   menu->setOpen(true);
   ogreThread = new std::thread(&OgreUI::go, std::ref(ogre));
   loop();
@@ -61,6 +62,7 @@ gauntlet::core::Core::keyDown(IUIObserver::Key key)
   lastKey = key;
   Command cmd = conf.getLinkedKey(key);
 
+  this->ogre.hideBackground();
   if (menu->getOpen())
     {
       menu->keyDown(cmd);
@@ -80,7 +82,7 @@ gauntlet::core::Core::keyDown(IUIObserver::Key key)
 }
 
 void
-gauntlet::core::Core::buttonClick(int buttonId, struct t_hitItem & item)
+gauntlet::core::Core::buttonClick(int buttonId, struct t_hitItem &item)
 {
   if (menu->getOpen())
     {
@@ -127,7 +129,7 @@ gauntlet::core::Core::save(std::string file)
 bool
 gauntlet::core::Core::gameIsRunning()
 {
-  return (false);
+  return (true);
 }
 
 gauntlet::core::IUIObserver::Key
