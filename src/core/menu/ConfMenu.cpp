@@ -5,17 +5,16 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:09:17 2016 Esteban Lewis
-// Last update Sat May 21 23:29:39 2016 Esteban Lewis
+// Last update Sun May 22 14:13:57 2016 Esteban Lewis
 //
 
 #include "ConfMenu.hh"
 #include "Core.hh"
+#include "KeyMenu.hh"
 
 gauntlet::core::ConfMenu::ConfMenu(Core & core, int idStart, Menu * parent) :
   Menu(core, idStart, parent)
 {
-  cmdToSet = NONE;
-
   buttons.push_back(Control(BUTTON, "- Return -", NULL, PCENTER, idStart, core.ogre));
   buttons.push_back(Control(LABEL, "Controls:", NULL, PCENTER, idStart + 1, core.ogre));
 
@@ -24,7 +23,7 @@ gauntlet::core::ConfMenu::ConfMenu(Core & core, int idStart, Menu * parent) :
   buttons.push_back(Control(BUTTON, "Go left", NULL, PCENTER, idStart + 4, core.ogre));
   buttons.push_back(Control(BUTTON, "Go right", NULL, PCENTER, idStart + 5, core.ogre));
   buttons.push_back(Control(BUTTON, "Validate", NULL, PCENTER, idStart + 6, core.ogre));
-  buttons.push_back(Control(BUTTON, "Exit", NULL, PCENTER, idStart + 7, core.ogre));
+  buttons.push_back(Control(BUTTON, "Menu", NULL, PCENTER, idStart + 7, core.ogre));
   
   funs.insert(std::pair<int, void (ConfMenu::*)(int)>
 	      (buttons[0].getId(), &ConfMenu::doReturn));
@@ -122,6 +121,8 @@ gauntlet::core::ConfMenu::ConfMenu(Core & core, int idStart, Menu * parent) :
 		  (IUIObserver::KEY_Y, "Y"));
   keyNames.insert(std::pair<IUIObserver::Key, std::string>
 		  (IUIObserver::KEY_Z, "Z"));
+
+  submenus.push_back(new KeyMenu(core, idStart + MENU_ID_LAYER, this));
 }
 
 gauntlet::core::ConfMenu::~ConfMenu()
@@ -137,24 +138,6 @@ void
 gauntlet::core::ConfMenu::undraw()
 {
   undrawButtons();
-}
-
-bool
-gauntlet::core::ConfMenu::keyDown(Command key)
-{
-  if (!isOpen)
-    return (false);
-
-  if (cmdToSet != NONE)
-    {
-      core.conf.setKey(cmdToSet, core.conf.getLinkedCommand(key));
-      cmdToSet = NONE;
-      return (true);
-    }
-  else
-    {
-      return (Menu::keyDown(key));
-    }
 }
 
 std::string const &
@@ -198,6 +181,6 @@ gauntlet::core::ConfMenu::doReturn(int btnId)
 void
 gauntlet::core::ConfMenu::doKeylink(int btnId)
 {
-  cmdToSet = (Command)(btnId - idStart);
-  //TODO: visuals
+  static_cast<KeyMenu*>(submenus[0])->setCmd((Command)(btnId - idStart - 1));
+  submenus[0]->setOpen(true);
 }

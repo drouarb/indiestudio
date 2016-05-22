@@ -22,6 +22,11 @@ gauntlet::core::CharMenu::CharMenu(Core & core, int idStart, Menu * parent) :
   funs.insert(std::pair<int, void (CharMenu::*)(struct t_hitItem &)>
               (buttons[buttons.size() - 1].getId(), &CharMenu::doOk));
 
+  buttons.push_back(Control(BUTTON, "Cancel", NULL, PCENTER,
+                            idStart + buttons.size(), core.ogre));
+  funs.insert(std::pair<int, void (CharMenu::*)(struct t_hitItem &)>
+              (buttons[buttons.size() - 1].getId(), &CharMenu::doCancel));
+
   submenus.push_back(new MessageBox(core, idStart + MENU_ID_LAYER, this, ""));
 }
 
@@ -75,4 +80,11 @@ gauntlet::core::CharMenu::doOk(struct t_hitItem & item)
       core.pc = new PlayerController(text, charType);
       setOpen(false);
     }
+}
+
+void
+gauntlet::core::CharMenu::doCancel(struct t_hitItem & item)
+{
+  (void)item;
+  setOpen(false);
 }

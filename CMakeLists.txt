@@ -34,6 +34,7 @@ include_directories(include/gameData)
 include_directories(include/gameData/Spell)
 include_directories(include/helpers)
 include_directories(include/core/menu)
+include_directories(include/network)
 
 if (${OGRE_STATIC})
 

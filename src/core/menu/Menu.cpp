@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 13:17:57 2016 Esteban Lewis
-// Last update Sat May 21 14:24:56 2016 Esteban Lewis
+// Last update Sun May 22 10:42:32 2016 Esteban Lewis
 //
 
 #include "Menu.hh"
@@ -83,6 +83,17 @@ bool
 gauntlet::core::Menu::getOpen()
 {
   return (isOpen);
+}
+
+bool
+gauntlet::core::Menu::openSubMenu()
+{
+  for (std::vector<Menu *>::iterator it = submenus.begin(); it != submenus.end(); ++it)
+    {
+      if (*it && (*it)->getOpen())
+	return (true);
+    }
+  return (false);
 }
 
 void

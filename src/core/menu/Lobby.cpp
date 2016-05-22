@@ -1,3 +1,4 @@
+#include <sstream>
 #include "Lobby.hh"
 #include "MessageBox.hh"
 #include "Core.hh"
@@ -26,6 +27,11 @@ gauntlet::core::Lobby::Lobby(Core & core, int idStart, Menu * parent) :
   funs.insert(std::pair<int, void (Lobby::*)(struct t_hitItem &)>
   	      (buttons[buttons.size() - 1].getId(), &Lobby::doPlay));
 
+  buttons.push_back(Control(BUTTON, "Cancel", NULL, PCENTER,
+  			    idStart + buttons.size(), core.ogre));
+  funs.insert(std::pair<int, void (Lobby::*)(struct t_hitItem &)>
+  	      (buttons[buttons.size() - 1].getId(), &Lobby::doCancel));
+
   submenus.push_back(new MessageBox(core, idStart + MENU_ID_LAYER, this, ""));
   submenus.push_back(new CharMenu(core, idStart + MENU_ID_LAYER, this));
   submenus.push_back(new ConnectMenu(core, idStart + MENU_ID_LAYER, this));
@@ -37,7 +43,14 @@ gauntlet::core::Lobby::~Lobby()
 void
 gauntlet::core::Lobby::draw()
 {
-  buttons[0].setStr("No server.");
+  if (core.packetf == NULL)
+    buttons[0].setStr("No server.");
+  else
+    {
+      std::stringstream ss;
+      ss << core.serverAddr.second;
+      buttons[0].setStr("Connected to  " + core.serverAddr.first + ":" + ss.str());
+    }
   if (core.pc == NULL)
     buttons[2].setStr("No character.");
   else
@@ -83,4 +96,11 @@ gauntlet::core::Lobby::doPlay(struct t_hitItem & item)
       parent->setOpen(false);
       core.play();
     }
+}
+
+void
+gauntlet::core::Lobby::doCancel(struct t_hitItem & item)
+{
+  (void)item;
+  setOpen(false);
 }
