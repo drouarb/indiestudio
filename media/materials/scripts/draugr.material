@@ -1,0 +1,44 @@
+material Material.000001
+{
+    technique
+    {
+        pass
+        {
+            diffuse 1.000000 1.000000 1.000000
+        }
+    }
+}
+
+material Material.000005
+{
+    technique
+    {
+        pass
+        {
+            diffuse 1.000000 1.000000 1.000000
+        }
+    }
+}
+
+material Material.000009
+{
+    technique
+    {
+        pass
+        {
+            diffuse 1.000000 1.000000 1.000000
+        }
+    }
+}
+
+material Material.000d97
+{
+    technique
+    {
+        pass
+        {
+            diffuse 1.000000 1.000000 1.000000
+        }
+    }
+}
+
