@@ -1,6 +1,6 @@
 #include <OIS/OIS.h>
 #include <iostream>
-#include "OgreUI.hh"
+#include "graph/OgreUI.hh"
 #include "Math.hh"
 
 using namespace gauntlet;
@@ -716,3 +716,14 @@ void OgreUI::stopEffect(int id)
 
   pSystem->setEmitting(false);
 }
+
+void OgreUI::moveEntity(int id, int x, int y, short degres)
+{
+  std::stringstream ss;
+  ss << id;
+
+  Ogre::SceneNode *s = mSceneMgr->getSceneNode(ss.str());
+  s->setPosition(x, y, 0);
+  s->yaw(Ogre::Radian(world::Math::toRad(degres)));
+}
+

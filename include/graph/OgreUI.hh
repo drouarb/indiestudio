@@ -197,6 +197,7 @@ class OgreUI
 
   int triggerEffect(int id, gauntlet::EffectType ef,
 		    std::pair<double, double> pair);
+  void moveEntity(int id, int x, int y, short degres);
 
   void stopEffect(int id);
 };
