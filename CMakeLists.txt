@@ -25,7 +25,7 @@ find_package(Threads)
 
 link_directories(${CMAKE_BINARY_DIR}/lib)
 
-add_executable(gauntlet ${INDIE})
+add_executable(gauntlet ${INDIE} src/gameData/Spell/Spell.cpp include/gameData/Spell/Spell.hh src/gameData/Spell/Spell.cpp include/gameData/Spell/Spell.hh)
 
 include_directories(include)
 include_directories(include/core)

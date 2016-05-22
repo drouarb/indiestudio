@@ -373,10 +373,3 @@ ABody			*EntityCollideLayer::getBodyId(int id)
     }
   return (NULL);
 }
-
-std::pair<double, double>	EntityCollideLayer::pointInFront(ABody & body, double dist)
-{
-  return (std::pair<double, double>
-	  (body.getPos().first + dist * Math::cos(body.getOrientation()),
-	   body.getPos().second + dist * Math::sin(body.getOrientation())));
-}
