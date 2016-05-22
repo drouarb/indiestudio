@@ -168,7 +168,7 @@ gauntlet::core::ConnectMenu::doConnect(struct t_hitItem & item)
   try
     {
       if (core.packetf)
-	disconnect(true, core);
+	core.disconnect(true);
       core.packetf = new network::PacketFactory(ip, port);
       core.serverAddr = std::pair<std::string, int>(ip, port);
       core.initPacketf();
@@ -207,21 +207,8 @@ gauntlet::core::ConnectMenu::sendConnect()
     {
       static_cast<MessageBox *>(submenus[0])->setMsg("No response from server.");
       submenus[0]->setOpen(true);
-      disconnect(true, core);
+      core.disconnect(true);
     }
-}
-
-void
-gauntlet::core::ConnectMenu::disconnect(bool send, Core & core)
-{
-  network::PacketDisconnect pd("");
-
-  if (send)
-    core.packetf->send((network::Packet&)pd);
-  core.packetf->stop();
-  //TODO: delete straight away?
-  core.packetf = NULL;
-  core.stop();
 }
 
 bool

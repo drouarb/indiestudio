@@ -19,7 +19,6 @@ namespace			gauntlet
 
       std::string		ip;
 
-      static void		disconnect(bool send, Core &);
       static bool		shakehand(bool set, bool val);
 
     protected:
