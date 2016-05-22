@@ -1,5 +1,4 @@
-#ifndef Ogreui_h
-#define Ogreui_h
+#pragma once
 
 
 #ifdef OGRE_STATIC
@@ -30,7 +29,14 @@
 #include <SdkCameraMan.h>
 #include <core/Position.hh>
 #include <mutex>
+#include <graph/Effect.hh>
 #include "IUIObserver.hh"
+
+namespace gauntlet
+{
+  enum EffectType : int;
+  class Effect;
+}
 
 class OgreUI
 	: public Ogre::FrameListener,
@@ -44,8 +50,10 @@ class OgreUI
   std::map<OIS::MouseButtonID, gauntlet::core::IUIObserver::Key> mousemap;
   std::map<gauntlet::core::Position, OgreBites::TrayLocation> posmap;
   std::map<std::string, Ogre::AnimationState *> animationsArray;
+  std::map<int, gauntlet::Effect *> effectMap;
   gauntlet::core::IUIObserver *obs;
   OgreOggSound::OgreOggSoundManager *mSoundManager;
+
 
   Ogre::Root *mRoot;
   Ogre::Camera *mCamera;
@@ -65,6 +73,8 @@ class OgreUI
   OIS::InputManager *mInputManager;
   OIS::Mouse *mMouse;
   OIS::Keyboard *mKeyboard;
+  int quality = 100;
+
  public:
   bool init();
 
@@ -178,7 +188,12 @@ class OgreUI
 
   std::pair<int, int> getSizeWindow();
 
-  void quit();
-};
+  void setQuality(int percent = 100);
 
-#endif
+  void quit();
+
+  Ogre::SceneManager *getSceneManager();
+
+  int triggerEffect(int id, gauntlet::EffectType ef, std::pair<double, double> pair);
+
+};

@@ -351,6 +351,7 @@ void OgreUI::initMap()
 
   keymap[OIS::KC_PERIOD] = IUIObserver::KEY_PERIOD;
   keymap[OIS::KC_SEMICOLON] = IUIObserver::KEY_PERIOD;
+
   posmap[PCENTER] = OgreBites::TL_CENTER;
   posmap[PTOPRIGHT] = OgreBites::TL_TOPRIGHT;
   posmap[PTOPLEFT] = OgreBites::TL_TOPLEFT;
@@ -626,6 +627,10 @@ void OgreUI::stopSound(int id)
   mSoundManager->getSound(ss.str())->stop();
 }
 
+Ogre::SceneManager *OgreUI::getSceneManager()
+{
+  return this->mSceneMgr;
+}
 
 void OgreUI::addRootEntity(int entityId, std::string &name, int x, int y,
 			   int degres)
@@ -655,3 +660,16 @@ void OgreUI::addWorldEntity(int entityId, std::string &name, int x, int y,
   s->attachObject(e);
 }
 
+
+void OgreUI::setQuality(int percent)
+{
+  this->quality = percent;
+}
+
+int OgreUI::triggerEffect(int id, gauntlet::EffectType type, std::pair<double, double> coord)
+{
+  gauntlet::Effect *effect = new gauntlet::Effect(this, type, id + "", coord, this->quality);
+
+
+  return 0;
+}

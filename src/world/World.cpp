@@ -1,16 +1,7 @@
-//
-// World.cpp for indie in /home/lewis_e/rendu/cpp/cpp_indie_studio
-// 
-// Made by Esteban Lewis
-// Login   <lewis_e@epitech.net>
-// 
-// Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Sun May 22 16:08:00 2016 Alexis Trouve
-//
-
 #include <iostream>
 #include "World.hh"
 #include "Math.hh"
+#include "IJson.hpp"
 
 using namespace	gauntlet;
 using namespace world;
@@ -32,9 +23,9 @@ void	World::update()
   std::cout << "WORLD update" << std::endl;
 }
 
-void	World::loadGame(std::string file)
+void	World::loadGame(std::string const & file)
 {
-  std::cout << "WORLD load " << file << std::endl;
+  
 }
 
 void	World::initNetwork()

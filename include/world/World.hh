@@ -1,13 +1,3 @@
-//
-// World.hh for indie in /home/lewis_e/rendu/cpp/cpp_indie_studio
-// 
-// Made by Esteban Lewis
-// Login   <lewis_e@epitech.net>
-// 
-// Started on  Mon May  9 14:55:06 2016 Esteban Lewis
-// Last update Sun May 22 16:04:33 2016 Alexis Trouve
-//
-
 #ifndef WORLD_HH_
 # define WORLD_HH_
 
@@ -37,7 +27,7 @@ namespace			gauntlet
       ~World();
 
       void			update();
-      void			loadGame(std::string file);
+      void			loadGame(std::string const & file);
       void			initNetwork();
       void			gameLoop();
       void			tester();
