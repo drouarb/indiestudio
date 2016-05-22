@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 10:56:08 2016 Esteban Lewis
-// Last update Tue May 17 15:30:42 2016 Esteban Lewis
+// Last update Fri May 20 16:29:16 2016 Esteban Lewis
 //
 
 #include "CoreUIObserver.hh"
@@ -35,8 +35,7 @@ gauntlet::core::CoreUIObserver::mouseMove(int x, int y)
   core.mouseMove(x, y);
 }
 
-void
-gauntlet::core::CoreUIObserver::buttonClick(int buttonId)
+void gauntlet::core::CoreUIObserver::itemClick(int buttonId, struct t_hitItem & item)
 {
-  core.buttonClick(buttonId);
+  core.buttonClick(buttonId, item);
 }

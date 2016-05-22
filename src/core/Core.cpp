@@ -5,45 +5,38 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:13:44 2016 Esteban Lewis
-// Last update Tue May 17 15:58:28 2016 Esteban Lewis
+// Last update Sat May 21 23:16:20 2016 Esteban Lewis
 //
 
+#include <math.h>
 #include <iostream>
-#include "Math.hh"
 #include "Core.hh"
 #include "MainMenu.hh"
+#include "IUIObserver.hh"
+#include "Math.hh"
 
 gauntlet::core::Core::Core() : keepGoing(true), observer(new CoreUIObserver(*this))
 {
-  menu = new MainMenu(*this, 100, NULL);
+  menu = new MainMenu(*this, MENU_ID_START, NULL);
+  ogreThread = NULL;
+  pc = NULL;
+  world::Math::init();
+
+  ogre.setIObserver(observer);
+  if (!ogre.init())
+    return ;
   menu->setOpen(true);
-
-  std::cout << std::endl << "-- -- TEST menu saveload 1st load" << std::endl;
-  std::cout << "-- TEST saveload" << std::endl;
-  buttonClick(101);
-  std::cout << "-- TEST select" << std::endl;
-  buttonClick(203);
-  std::cout << "-- TEST save" << std::endl;
-  buttonClick(201);
-
-  std::cout << std::endl << "-- -- TEST menu conf enter esc" << std::endl;
-  std::cout << "-- TEST settings" << std::endl;
-  buttonClick(102);
-  std::cout << "-- TEST key exit" << std::endl;
-  buttonClick(206);
-  std::cout << "-- TEST enter" << std::endl;
-  keyDown(IUIObserver::KEY_ENTER);
-  std::cout << "-- TEST exit" << std::endl;
-  keyDown(IUIObserver::KEY_ENTER);
-
-  std::cout << std::endl << "-- TEST menu play" << std::endl;
-  buttonClick(100);
-
-  //loop();
+  ogreThread = new std::thread(&OgreUI::go, std::ref(ogre));
+  loop();
 }
 
 gauntlet::core::Core::~Core()
 {
+  if (ogreThread)
+    {
+      ogreThread->join();
+      delete ogreThread;
+    }
   delete menu;
 }
 
@@ -54,13 +47,15 @@ gauntlet::core::Core::keyUp(IUIObserver::Key key)
 
   if (!menu->getOpen() && cmd != ESC)
     {
-      pc.doCmd(cmd, false);
+      if (pc)
+	pc->doCmd(cmd, false);
     }
 }
 
 void
 gauntlet::core::Core::keyDown(IUIObserver::Key key)
 {
+  lastKey = key;
   Command cmd = conf.getLinkedKey(key);
 
   if (menu->getOpen())
@@ -75,45 +70,43 @@ gauntlet::core::Core::keyDown(IUIObserver::Key key)
 	}
       else
 	{
-	  pc.doCmd(cmd, true);
+	  if (pc)
+	    pc->doCmd(cmd, true);
 	}
     }
 }
 
 void
-gauntlet::core::Core::buttonClick(int buttonId)
+gauntlet::core::Core::buttonClick(int buttonId, struct t_hitItem & item)
 {
   if (menu->getOpen())
     {
-      menu->buttonClick(buttonId);
+      menu->buttonClick(buttonId, item);
     }
 }
 
 void
 gauntlet::core::Core::mouseMove(int x, int y)
 {
-  (void)x;
-  (void)y;
-  //TODO: update player rotation
+  if (pc)
+    {
+      x -= ogre.getSizeWindow().first / 2;
+      y -= ogre.getSizeWindow().second / 2;
+      pc->setAngle(world::Math::getAngle(-atan2(y, x)));
+    }
 }
 
 void
 gauntlet::core::Core::play()
 {
   std::cout << "CORE play" << std::endl;
-  //if no server
-  //	if player
-  //		destroy player
-  //	create server
-  //if no player
-  //	open lobby and create player
-  //close menu and display
 }
 
 void
 gauntlet::core::Core::exit()
 {
-  std::cout << "CORE exit" << std::endl;
+  ogre.quit();
+  keepGoing = false;
 }
 
 void
@@ -128,10 +121,16 @@ gauntlet::core::Core::save(std::string file)
   std::cout << "CORE save " << file << std::endl;
 }
 
-gauntlet::core::Conf &
-gauntlet::core::Core::getConf()
+bool
+gauntlet::core::Core::gameIsRunning()
 {
-  return (conf);
+  return (false);
+}
+
+gauntlet::core::IUIObserver::Key
+gauntlet::core::Core::getLastKey() const
+{
+  return (lastKey);
 }
 
 void
@@ -155,7 +154,7 @@ gauntlet::core::Core::loop()
 void
 gauntlet::core::Core::updateWorld()
 {
-  std::cout << "CORE update world" << std::endl;
   //...
-  pc.loop();
+  if (pc)
+    pc->loop();
 }

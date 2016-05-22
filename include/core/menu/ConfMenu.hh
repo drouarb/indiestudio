@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:06:35 2016 Esteban Lewis
-// Last update Tue May 17 14:17:54 2016 Esteban Lewis
+// Last update Sat May 21 11:41:30 2016 Esteban Lewis
 //
 
 #ifndef  CONFMENU_HH_
@@ -35,7 +35,7 @@ namespace			gauntlet
 
       std::string const &	getKeyName(IUIObserver::Key);
       IUIObserver::Key		getNameKey(std::string const &);
-      void			doButton(int);
+      void			doButton(int, struct t_hitItem &);
 
       void			doReturn(int);
       void			doKeylink(int);

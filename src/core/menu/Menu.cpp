@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 13:17:57 2016 Esteban Lewis
-// Last update Tue May 17 16:07:24 2016 Esteban Lewis
+// Last update Sat May 21 14:24:56 2016 Esteban Lewis
 //
 
 #include "Menu.hh"
@@ -41,7 +41,7 @@ gauntlet::core::Menu::keyDown(Command key)
 }
 
 bool
-gauntlet::core::Menu::buttonClick(int buttonId)
+gauntlet::core::Menu::buttonClick(int buttonId, struct t_hitItem & item)
 {
   if (!isOpen)
     return (false);
@@ -49,10 +49,10 @@ gauntlet::core::Menu::buttonClick(int buttonId)
   for (std::vector<Menu *>::iterator it = submenus.begin(); it != submenus.end(); ++it)
     if (*it && (*it)->getOpen())
       {
-	(*it)->buttonClick(buttonId);
+	(*it)->buttonClick(buttonId, item);
 	return (true);
       }
-  doButton(buttonId);
+  doButton(buttonId, item);
   return (true);
 }
 
@@ -88,7 +88,7 @@ gauntlet::core::Menu::getOpen()
 void
 gauntlet::core::Menu::drawButtons()
 {
-  for (std::vector<MenuButton>::iterator it = buttons.begin(); it != buttons.end(); ++it)
+  for (std::vector<Control>::iterator it = buttons.begin(); it != buttons.end(); ++it)
     {
       it->draw();
     }
@@ -97,7 +97,7 @@ gauntlet::core::Menu::drawButtons()
 void
 gauntlet::core::Menu::undrawButtons()
 {
-  for (std::vector<MenuButton>::iterator it = buttons.begin(); it != buttons.end(); ++it)
+  for (std::vector<Control>::iterator it = buttons.begin(); it != buttons.end(); ++it)
     {
       it->undraw();
     }

@@ -35,6 +35,23 @@ material Ogre/Skin
 	}
 }
 
+material Ogre/Background
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.8 0.3
+
+			texture_unit
+			{
+				texture StartBackGround.jpg
+				tex_address_mode mirror
+			}
+		}
+	}
+}
+
 material Ogre/Tusks
 {
 	technique

@@ -5,10 +5,10 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:55:06 2016 Esteban Lewis
-// Last update Fri May 20 18:30:35 2016 Alexis Trouve
+// Last update Sun May 22 10:45:52 2016 Alexis Trouve
 //
 
-#ifndef  WORLD_HH_
+#ifndef WORLD_HH_
 # define WORLD_HH_
 
 #include <string>

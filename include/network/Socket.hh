@@ -32,20 +32,19 @@ namespace gauntlet {
             Socket(in_port_t port);
             Socket(const std::string &address, in_port_t port);
             ~Socket();
-            void send(void *data, size_t size);
+            void send(std::vector<unsigned char>* data);
             std::vector<unsigned char>* recv();
             SocketType getType() const;
 
         private:
-            std::vector<unsigned char>* recv(int fd);
+            std::vector<unsigned char>* recv(int fd, int loop);
 
         private:
             SocketType type;
             struct sockaddr_in sock;
             int sockfd;
             std::vector<s_client> clients;
-            std::mutex writeLock;
-            std::mutex readLock;
+            std::mutex lock;
         };
     }
 }

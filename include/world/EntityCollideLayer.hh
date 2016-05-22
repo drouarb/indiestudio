@@ -1,13 +1,3 @@
-//
-// EntityCollideLayer.hh for indie in /home/trouve_b/Desktop/CPP_project/cpp_indie_studio
-// 
-// Made by Alexis Trouve
-// Login   <trouve_b@epitech.net>
-// 
-// Started on  Tue May 10 20:28:30 2016 Alexis Trouve
-// Last update Fri May 20 14:43:22 2016 Alexis Trouve
-//
-
 #ifndef ENTITYCOLLIDELAYER_HH_
 # define ENTITYCOLLIDELAYER_HH_
 

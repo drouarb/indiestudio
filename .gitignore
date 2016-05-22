@@ -148,6 +148,7 @@ libmy*.a
 indie
 
 Makefile*
+Makefile
 work
 ois-v1-3
 ogre3d/ogre

@@ -21,6 +21,4 @@ int main() {
 //    assert(physicCollideLayer.checkCoordSize(5, 5, 2, 2) == true);
 
 //    physicCollideLayer.setWall(8, 8, 3, 3);
-
-    std::cout << physicCollideLayer << std::endl;
 }

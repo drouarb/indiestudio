@@ -5,12 +5,14 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 10:59:47 2016 Esteban Lewis
-// Last update Tue May 17 15:29:21 2016 Esteban Lewis
+// Last update Sat May 21 23:16:15 2016 Esteban Lewis
 //
 
 #ifndef  CORE_HH_
 # define CORE_HH_
 
+# include <thread>
+# include <mutex>
 # include <unistd.h>
 # include "CoreUIObserver.hh"
 # include "Menu.hh"
@@ -19,6 +21,8 @@
 # include "Conf.hh"
 # include "ConfMenu.hh"
 # include "Position.hh"
+# include "OgreUI.hh"
+# include "Thread.hpp"
 
 namespace			gauntlet
 {
@@ -32,23 +36,26 @@ namespace			gauntlet
 
       void			keyUp(IUIObserver::Key);
       void			keyDown(IUIObserver::Key);
-      void			buttonClick(int buttonId);
+      void			buttonClick(int buttonId, struct t_hitItem & item);
       void			mouseMove(int x, int y);
 
       void			play();
       void			exit();
       void			load(std::string file);
       void			save(std::string file);
-      Conf &			getConf();
+      bool			gameIsRunning();
+      IUIObserver::Key		getLastKey() const;
+
+      OgreUI			ogre;
+      Conf			conf;
+      PlayerController *	pc;
 
     private:
       bool			keepGoing;
       IUIObserver *		observer;
-      //OgreUI			ogre;
+      std::thread *		ogreThread;
       Menu *			menu;
-      PlayerController		pc;
       Stopwatch			sw;
-      Conf			conf;
       IUIObserver::Key		lastKey;
 
       void			loop();

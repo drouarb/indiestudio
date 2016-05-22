@@ -4,14 +4,9 @@
 
 #include <iostream>
 #include "Core.hh"
-#include "World.hh"
-#include "Math.hh"
 
 int main()
 {
   gauntlet::core::Core();
-  gauntlet::world::World	newWorld;
-
-  newWorld.tester();
   return (0);
 }
