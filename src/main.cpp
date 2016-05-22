@@ -8,8 +8,6 @@
 
 int main()
 {
-  //gauntlet::core::Core();
-  gauntlet::world::World world;
-  world.loadGame("map/map.json");
+  gauntlet::core::Core();
   return (0);
 }
