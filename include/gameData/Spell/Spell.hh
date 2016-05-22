@@ -42,14 +42,8 @@ namespace gauntlet {
         void                        cast(Actor *caster);
         void                        ApplyDamage(std::list<ABody *> targets, Actor *caster);
         void                        prepare();
-
-        void setId(int id);
-        void setName(const std::string &name);
-        void setRange(double range);
-        void setRadius(double radius);
-        void setPattern(Area area);
-        void setDamage(long damage);
-        void setBasicStats(int id, const std::string &name, double range, double radius, long damage, Area pattern);
+        void                        setBasicStats(int id, const std::string &name, double range, double radius, long damage, Area pattern);
+        void                        setCaster(Actor *caster);
     };
 };
 

@@ -38,7 +38,7 @@ int		SpellFactory::giveNextId()
 
 Spell		*SpellFactory::giveSpell(SpellEnum type)
 {
-  return ((this->*spellMap.at(type))());
+  return ((spellMap.at(type))());
 }
 
 gauntlet::Spell *SpellFactory::getValkyriaAttack() {

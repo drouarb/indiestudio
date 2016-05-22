@@ -30,7 +30,7 @@ namespace gauntlet
   public:
       SpellFactory();
       ~SpellFactory();
-      typedef   gauntlet::Spell* (gauntlet::SpellFactory::*getSpell)();
+      typedef   gauntlet::Spell* (*getSpell)();
       enum		SpellEnum
       {
           VALKYRIA_ATTACK,
@@ -39,12 +39,12 @@ namespace gauntlet
       const static std::map<SpellEnum , getSpell> spellMap;
 
   private:
-    int			        giveNextId();
+    static int			        giveNextId();
 
   public:
-      Spell * giveSpell(SpellEnum type);
-      Spell*              getValkyriaAttack();
-      Spell*              getValkyriaDash();
+      static Spell*              giveSpell(SpellEnum type);
+      static Spell*              getValkyriaAttack();
+      static Spell*              getValkyriaDash();
   };
 };
 

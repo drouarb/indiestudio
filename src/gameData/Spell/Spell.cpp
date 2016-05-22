@@ -40,34 +40,16 @@ void gauntlet::Spell::prepare()
     targetedArea = caster->pointInFront(range);
 }
 
-void gauntlet::Spell::cast(Actor *caster) {
+void gauntlet::Spell::cast(Actor *caster)
+{
     std::list<gauntlet::ABody*> targets;
     targets = (caster->getWorld()->getCollider().*patternTypes.at(pattern))(targetedArea.first, targetedArea.second, 0, radius, 0); //remplacer les 0 par des variables setées à 0 dans le constructy kthxbye
     ApplyDamage(targets, caster);
 }
 
-void gauntlet::Spell::setId(int id) {
-    this->id = id;
-}
-
-void gauntlet::Spell::setName(const std::string &name) {
-    this->name = name;
-}
-
-void gauntlet::Spell::setRange(double range) {
-    this->range = range;
-}
-
-void gauntlet::Spell::setRadius(double radius) {
-    this->radius = radius;
-}
-
-void gauntlet::Spell::setDamage(long damage) {
-    this->damage = damage;
-}
-
-void gauntlet::Spell::setPattern(Area pattern) {
-    this->pattern = pattern;
+void gauntlet::Spell::setCaster(Actor* caster)
+{
+    this->caster = caster;
 }
 
 void gauntlet::Spell::setBasicStats(int id, const std::string &name, double range, double radius, long damage, Area pattern) {
