@@ -5,6 +5,7 @@
 #include <iostream>
 #include "Actor.hh"
 #include "World.hh"
+#include "SpellContainer.hh"
 
 using namespace gauntlet;
 

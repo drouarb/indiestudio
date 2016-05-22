@@ -902,7 +902,7 @@ IMAGE_PATH             =
 INPUT_FILTER           = 
 
 # The FILTER_PATTERNS tag can be used to specify filters on a per file pattern
-# basis. Doxygen will compare the file name with each pattern and apply the
+# basis. Doxygen will compare the file name with each pattern and cast the
 # filter if there is a match. The filters are a list of the form: pattern=filter
 # (like *.cpp=my_cpp_filter). See INPUT_FILTER for further information on how
 # filters are used. If the FILTER_PATTERNS tag is empty or if none of the
@@ -2346,7 +2346,7 @@ DOT_MULTI_TARGETS      = NO
 
 GENERATE_LEGEND        = YES
 
-# If the DOT_CLEANUP tag is set to YES doxygen will remove the intermediate dot
+# If the DOT_CLEANUP tag is set to YES doxygen will removeItem the intermediate dot
 # files that are used to generate the various graphs.
 # The default value is: YES.
 # This tag requires that the tag HAVE_DOT is set to YES.

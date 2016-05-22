@@ -25,8 +25,8 @@ HealAttack::~HealAttack()
 
 }
 
-void	HealAttack::apply(double orientation, world::World &world,
-			  Actor *SpellCaster, std::pair<double, double> coordPointed)
+void	HealAttack::cast(double orientation, world::World &world,
+                         Actor *SpellCaster, std::pair<double, double> coordPointed)
 {
 
 }

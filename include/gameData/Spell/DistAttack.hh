@@ -31,9 +31,9 @@ namespace gauntlet
 		 short nnbrProj, double nrange, double nradiusExplode,
 		 int nid, const std::string &nname, double ncastTime);
       virtual ~DistAttack();
-      virtual void	 apply(double orientation, world::World &world,
-			       gauntlet::Actor *SpellCaster,
-			       std::pair<double, double> coordPointed);
+      virtual void	 cast(double orientation, world::World &world,
+							gauntlet::Actor *SpellCaster,
+							std::pair<double, double> coordPointed);
     };
 };
 

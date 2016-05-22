@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //
 // World.hh for indie in /home/lewis_e/rendu/cpp/cpp_indie_studio
 // 
@@ -8,6 +9,8 @@
 // Last update Sun May 22 18:47:27 2016 Alexis Trouve
 //
 
+=======
+>>>>>>> 9c06607ce015d0b5ebeb7007860e2ea9846041af
 #ifndef WORLD_HH_
 # define WORLD_HH_
 
@@ -37,7 +40,7 @@ namespace			gauntlet
       ~World();
 
       void			update();
-      void			loadGame(std::string file);
+      void			loadGame(std::string const & file);
       void			initNetwork();
       void			gameLoop();
       void			tester();

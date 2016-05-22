@@ -32,6 +32,12 @@ gauntlet::world::Math::sin(short angle)
   return (sin_tab[simplify(angle + A_FLAT)]);
 }
 
+float
+gauntlet::world::Math::toRad(short angle)
+{
+  return ((float)angle / 100);
+}
+
 short
 gauntlet::world::Math::simplify(short angle)
 {

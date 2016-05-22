@@ -54,7 +54,7 @@ endmacro(create_search_paths)
 macro(clear_if_changed TESTVAR)
   # test against internal check variable
   # HACK: Apparently, adding a variable to the cache cleans up the list
-  # a bit. We need to also remove any empty strings from the list, but
+  # a bit. We need to also removeItem any empty strings from the list, but
   # at the same time ensure that we are actually dealing with a list.
   list(APPEND ${TESTVAR} "")
   list(REMOVE_ITEM ${TESTVAR} "")

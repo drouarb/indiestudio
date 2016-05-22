@@ -5,12 +5,13 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Sun May 22 18:53:11 2016 Alexis Trouve
+// Last update Sun May 22 18:54:55 2016 Alexis Trouve
 //
 
 #include <iostream>
 #include "World.hh"
 #include "Math.hh"
+#include "IJson.hpp"
 
 using namespace	gauntlet;
 using namespace world;
@@ -32,9 +33,9 @@ void	World::update()
   std::cout << "WORLD update" << std::endl;
 }
 
-void	World::loadGame(std::string file)
+void	World::loadGame(std::string const & file)
 {
-  std::cout << "WORLD load " << file << std::endl;
+  
 }
 
 void	World::initNetwork()

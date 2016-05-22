@@ -34,7 +34,8 @@ namespace gauntlet
       bool				setNewBody(ABody *body);
       bool				setNewBodyNoCheckEntity(ABody *body);
       void				suprBody(int id);
-      std::list<gauntlet::ABody*>	giveBodyInAreaCircle(double posx, double posy, double rayon);
+
+        std::list<ABody *> giveBodyInAreaCircle(double posx, double posy, short unused, double radius, short unused2);
       std::list<gauntlet::ABody*>	giveBodyInAreaCone(double posx, double posy, short ref_angle, double size, short cone_angle);
     };
   };

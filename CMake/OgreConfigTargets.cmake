@@ -211,7 +211,7 @@ function(ogre_config_lib LIBNAME EXPORT)
     set_target_properties(${LIBNAME} PROPERTIES OUTPUT_NAME ${LIBNAME}Static)
   else (OGRE_STATIC)
 	if (MINGW)
-	  # remove lib prefix from DLL outputs
+	  # removeItem lib prefix from DLL outputs
 	  set_target_properties(${LIBNAME} PROPERTIES PREFIX "")
 	endif ()
   endif (OGRE_STATIC)

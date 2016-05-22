@@ -1,6 +1,7 @@
 #include <OIS/OIS.h>
 #include <iostream>
 #include "OgreUI.hh"
+#include "Math.hh"
 
 using namespace gauntlet;
 using namespace core;
@@ -209,6 +210,7 @@ bool OgreUI::frameRenderingQueued(const Ogre::FrameEvent &evt)
 
 bool OgreUI::keyPressed(const OIS::KeyEvent &arg)
 {
+//  mCameraMan->injectKeyDown(arg);
   if (obs != NULL)
     if (keymap.count(arg.key) > 0)
       {
@@ -219,6 +221,8 @@ bool OgreUI::keyPressed(const OIS::KeyEvent &arg)
 
 bool OgreUI::keyReleased(const OIS::KeyEvent &arg)
 {
+  //mCameraMan->injectKeyUp(arg);
+
   if (obs != NULL)
     if (keymap.count(arg.key) > 0)
       obs->keyUp(keymap[arg.key]);
@@ -227,6 +231,7 @@ bool OgreUI::keyReleased(const OIS::KeyEvent &arg)
 
 bool OgreUI::mouseMoved(const OIS::MouseEvent &arg)
 {
+//  mCameraMan->injectMouseMove(arg);
   mTrayMgr->injectMouseMove(arg);
   if (obs != NULL)
     obs->mouseMove(arg.state.X.abs, arg.state.Y.abs);
@@ -348,20 +353,9 @@ void OgreUI::initMap()
   keymap[OIS::KC_NUMPAD8] = IUIObserver::KEY_8;
   keymap[OIS::KC_NUMPAD9] = IUIObserver::KEY_9;
 
-
-  keymap[OIS::KC_0] = IUIObserver::KEY_0;
-  keymap[OIS::KC_1] = IUIObserver::KEY_1;
-  keymap[OIS::KC_2] = IUIObserver::KEY_2;
-  keymap[OIS::KC_3] = IUIObserver::KEY_3;
-  keymap[OIS::KC_4] = IUIObserver::KEY_4;
-  keymap[OIS::KC_5] = IUIObserver::KEY_5;
-  keymap[OIS::KC_6] = IUIObserver::KEY_6;
-  keymap[OIS::KC_7] = IUIObserver::KEY_7;
-  keymap[OIS::KC_8] = IUIObserver::KEY_8;
-  keymap[OIS::KC_9] = IUIObserver::KEY_9;
-
   keymap[OIS::KC_PERIOD] = IUIObserver::KEY_PERIOD;
   keymap[OIS::KC_SEMICOLON] = IUIObserver::KEY_PERIOD;
+
   posmap[PCENTER] = OgreBites::TL_CENTER;
   posmap[PTOPRIGHT] = OgreBites::TL_TOPRIGHT;
   posmap[PTOPLEFT] = OgreBites::TL_TOPLEFT;
@@ -375,7 +369,7 @@ void OgreUI::initMap()
   mousemap[OIS::MB_Right] = IUIObserver::KEY_MOUSE2;
 }
 
-void OgreUI::remove(int id)
+void OgreUI::removeItem(int id)
 {
   std::stringstream ss;
   ss << id;
@@ -401,7 +395,7 @@ void OgreUI::loadSound(int id, std::string &path)
 {
   std::stringstream ss;
   ss << id;
-  mSoundManager->createSound(ss.str(), path.c_str(), true, false, false);
+      mSoundManager->createSound(ss.str(), path.c_str(), true, false, false);
 }
 
 void OgreUI::playSound(int id)
@@ -639,27 +633,50 @@ Ogre::SceneManager *OgreUI::getSceneManager()
   return this->mSceneMgr;
 }
 
-void OgreUI::addRootEntity(int entityId, std::string &name)
+bool OgreUI::addRootEntity(int entityId, const std::string &name, int x, int y,
+			   short degres, int texture_id)
 {
   std::stringstream ss;
   ss << entityId;
-
-  Ogre::Entity *e = mSceneMgr->createEntity(ss.str(), name);
-  Ogre::SceneNode *s = worldNode->createChildSceneNode("PLayerNode");
+  Ogre::Entity *e;
+  try
+    {
+      e = mSceneMgr->createEntity(ss.str(), name);
+    }
+  catch (Ogre::Exception & e)
+    {
+      return false;
+    }
+   Ogre::SceneNode *s = worldNode->createChildSceneNode("PLayerNode");
   this->rootNode = s;
+  s->setPosition(x, y, 0);
+  s->yaw(Ogre::Radian(world::Math::toRad(degres)));
   rootNode->attachObject(e);
   rootNode->attachObject(mCamera);
   mCamera->pitch(Ogre::Degree(-89));
   mCamera->yaw(Ogre::Degree(20));
+  return (true);
 }
 
-void OgreUI::addWorldEntity(int entityId, std::string &name)
+bool OgreUI::addWorldEntity(int entityId, const std::string &name, int x, int y,
+			    short degres, int texture_id)
 {
   std::stringstream ss;
   ss << entityId;
-
-  Ogre::Entity *e = mSceneMgr->createEntity(ss.str(), name);
-  worldNode->attachObject(e);
+  Ogre::Entity *e;
+  try
+    {
+     e = mSceneMgr->createEntity(ss.str(), name);
+    }
+  catch (Ogre::Exception & e)
+    {
+      return false;
+    }
+  Ogre::SceneNode *s = worldNode->createChildSceneNode(ss.str());
+  s->setPosition(x, y, 0);
+  s->yaw(Ogre::Radian(world::Math::toRad(degres)));
+  s->attachObject(e);
+  return (true);
 }
 
 
@@ -675,3 +692,12 @@ int OgreUI::triggerEffect(int id, gauntlet::EffectType type, std::pair<double, d
 
   return 0;
 }
+
+void OgreUI::removeEntity(int id)
+{
+  std::stringstream ss;
+  ss << id;
+  mSceneMgr->destroyEntity(ss.str());
+  mSceneMgr->destroySceneNode(ss.str());
+}
+

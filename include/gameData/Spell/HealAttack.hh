@@ -20,16 +20,16 @@ namespace gauntlet
   class HealAttack : public ASpell
     {
     protected:
-      long		heal;
+      long			heal;
       double		range;
       double		radiusExplode;
     public:
       HealAttack(long heal, double nrange, double nradiusExplode,
 		 int nid, const std::string &nname, double ncastTime);
       ~HealAttack();
-      virtual void	 apply(double orientation, world::World &world,
-			       gauntlet::Actor *SpellCaster,
-			       std::pair<double, double> coordPointed);
+      virtual void	 cast(double orientation, world::World &world,
+							gauntlet::Actor *SpellCaster,
+							std::pair<double, double> coordPointed);
     };
 };
 
