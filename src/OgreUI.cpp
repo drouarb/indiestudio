@@ -352,9 +352,9 @@ void OgreUI::initMap()
   keymap[OIS::KC_NUMPAD7] = IUIObserver::KEY_7;
   keymap[OIS::KC_NUMPAD8] = IUIObserver::KEY_8;
   keymap[OIS::KC_NUMPAD9] = IUIObserver::KEY_9;
-
   keymap[OIS::KC_PERIOD] = IUIObserver::KEY_PERIOD;
   keymap[OIS::KC_SEMICOLON] = IUIObserver::KEY_PERIOD;
+
   posmap[PCENTER] = OgreBites::TL_CENTER;
   posmap[PTOPRIGHT] = OgreBites::TL_TOPRIGHT;
   posmap[PTOPLEFT] = OgreBites::TL_TOPLEFT;
@@ -626,14 +626,3 @@ void OgreUI::stopSound(int id)
   ss << id;
   mSoundManager->getSound(ss.str())->stop();
 }
-
-
-
-
-
-
-
-
-
-
-

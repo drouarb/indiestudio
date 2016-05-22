@@ -22,7 +22,7 @@ namespace			gauntlet
       ~World();
 
       void			update();
-      void			loadGame(std::string file);
+      void			loadGame(std::string const & file);
       void			tester();
       Collider&			getCollider();
     };
