@@ -7,13 +7,14 @@
 #include <assert.h>
 
 int main() {
+    s_socketData data;
     std::cout << "Testing PacketMap" << std::endl;
 
     std::cout << "->Serialisation/Deserialitation" << std::endl;
     srand(time(NULL));
     gauntlet::network::PacketMap packetMap(rand());
 
-    t_rawdata *data = packetMap.serialize();
+    data.data = packetMap.serialize();
 
     gauntlet::network::PacketMap packetMap1(data);
 

@@ -21,7 +21,7 @@
 # include "Conf.hh"
 # include "ConfMenu.hh"
 # include "Position.hh"
-# include "OgreUI.hh"
+# include "graph/OgreUI.hh"
 # include "Thread.hpp"
 # include "PacketFactory.hh"
 

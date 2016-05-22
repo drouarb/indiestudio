@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:13:44 2016 Esteban Lewis
-// Last update Sun May 22 13:24:51 2016 Esteban Lewis
+// Last update Sun May 22 20:50:22 2016 Esteban Lewis
 //
 
 #include <math.h>
@@ -15,7 +15,8 @@
 #include "IUIObserver.hh"
 #include "Math.hh"
 
-gauntlet::core::Core::Core() : keepGoing(true), observer(new CoreUIObserver(*this))
+gauntlet::core::Core::Core() : keepGoing(true),
+			       observer(new CoreUIObserver(*this))
 {
   menu = new MainMenu(*this, MENU_ID_START, NULL);
   ogreThread = NULL;
@@ -27,7 +28,7 @@ gauntlet::core::Core::Core() : keepGoing(true), observer(new CoreUIObserver(*thi
 
   ogre.setIObserver(observer);
   if (!ogre.init())
-    return ;
+    return;
   menu->setOpen(true);
   ogreThread = new std::thread(&OgreUI::go, std::ref(ogre));
   loop();
@@ -80,7 +81,7 @@ gauntlet::core::Core::keyDown(IUIObserver::Key key)
 }
 
 void
-gauntlet::core::Core::buttonClick(int buttonId, struct t_hitItem & item)
+gauntlet::core::Core::buttonClick(int buttonId, struct t_hitItem &item)
 {
   if (menu->getOpen())
     {

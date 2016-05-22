@@ -18,7 +18,7 @@ namespace gauntlet {
 
         public:
             PacketConnect();
-            PacketConnect(t_rawdata* data);
+            PacketConnect(const s_socketData &data);
 
             virtual ~PacketConnect() { };
 

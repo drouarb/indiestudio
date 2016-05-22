@@ -7,7 +7,7 @@
 
 gauntlet::network::PacketHandshake::PacketHandshake(bool warrior, bool wizard, bool valkyrie, bool elf,
                                                     unsigned char maxPlayers, unsigned char connectedPlayers) :
-        Packet(gauntlet::network::HANDSHAKE),
+        Packet(gauntlet::network::HANDSHAKE, -1),
         warrior(warrior),
         wizard(wizard),
         valkyrie(valkyrie),
@@ -16,9 +16,9 @@ gauntlet::network::PacketHandshake::PacketHandshake(bool warrior, bool wizard, b
         connectedPlayers(connectedPlayers)
 { }
 
-gauntlet::network::PacketHandshake::PacketHandshake(t_rawdata *data) :
-        Packet(gauntlet::network::HANDSHAKE) {
-    this->deserialize(data);
+gauntlet::network::PacketHandshake::PacketHandshake(const s_socketData &data) :
+        Packet(gauntlet::network::HANDSHAKE, data.fd) {
+    this->deserialize(data.data);
 }
 
 t_rawdata *gauntlet::network::PacketHandshake::serialize() const {

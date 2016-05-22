@@ -6,7 +6,7 @@
 
 #include <map>
 #include <OgreParticleSystem.h>
-#include <OgreUI.hh>
+#include <graph/OgreUI.hh>
 
 class OgreUI;
 

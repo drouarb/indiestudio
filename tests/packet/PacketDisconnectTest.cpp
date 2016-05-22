@@ -7,12 +7,13 @@
 #include "network/packet/PacketDisconnect.hh"
 
 int main() {
+    s_socketData data;
     std::cout << "Testing PacketDisconnect" << std::endl;
 
     std::cout << "->Serialisation/Deserialitation" << std::endl;
     gauntlet::network::PacketDisconnect packetDisconnect("testString");
 
-    t_rawdata *data = packetDisconnect.serialize();
+    data.data = packetDisconnect.serialize();
 
     gauntlet::network::PacketDisconnect packetDisconnect1(data);
     assert(packetDisconnect.getPacketId() == packetDisconnect1.getPacketId());

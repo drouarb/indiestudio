@@ -1,6 +1,6 @@
 #include <OIS/OIS.h>
 #include <iostream>
-#include "OgreUI.hh"
+#include "graph/OgreUI.hh"
 #include "Math.hh"
 
 using namespace gauntlet;
@@ -685,11 +685,20 @@ void OgreUI::setQuality(int percent)
   this->quality = percent;
 }
 
-int OgreUI::triggerEffect(int id, gauntlet::EffectType type, std::pair<double, double> coord)
+int OgreUI::triggerEffect(int id, gauntlet::EffectType type,
+			  std::pair<double, double> coord)
 {
-  gauntlet::Effect *effect = new gauntlet::Effect(this, type, id + "", coord, this->quality);
+  std::stringstream ss;
 
-
+  ss << "effect" << id;
+  Effect *&mapped_type = this->effectMap[id];
+  if (mapped_type != NULL)
+    {
+//      delete (mapped_type);
+    }
+  gauntlet::Effect *effect = new gauntlet::Effect(this, type, ss.str(), coord,
+						  this->quality);
+  mapped_type = effect;
   return 0;
 }
 
@@ -699,5 +708,22 @@ void OgreUI::removeEntity(int id)
   ss << id;
   mSceneMgr->destroyEntity(ss.str());
   mSceneMgr->destroySceneNode(ss.str());
+}
+
+void OgreUI::stopEffect(int id)
+{
+  Ogre::ParticleSystem *pSystem = this->effectMap[id]->getParticleSystem();
+
+  pSystem->setEmitting(false);
+}
+
+void OgreUI::moveEntity(int id, int x, int y, short degres)
+{
+  std::stringstream ss;
+  ss << id;
+
+  Ogre::SceneNode *s = mSceneMgr->getSceneNode(ss.str());
+  s->setPosition(x, y, 0);
+  s->yaw(Ogre::Radian(world::Math::toRad(degres)));
 }
 

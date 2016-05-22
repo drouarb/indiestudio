@@ -7,12 +7,13 @@
 #include "network/packet/PacketConnect.hh"
 
 int main() {
+    s_socketData data;
     std::cout << "Testing PacketConnect" << std::endl;
 
     std::cout << "->Serialisation/Deserialitation" << std::endl;
     gauntlet::network::PacketConnect packetConnect;
 
-    t_rawdata *data = packetConnect.serialize();
+    data.data = packetConnect.serialize();
 
     gauntlet::network::PacketConnect packetConnect1(data);
     assert(packetConnect.getPacketId() == packetConnect1.getPacketId());

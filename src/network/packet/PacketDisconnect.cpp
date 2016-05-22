@@ -7,14 +7,14 @@
 #include "network/packet/PacketDisconnect.hh"
 
 
-gauntlet::network::PacketDisconnect::PacketDisconnect(const std::string &message):
-        Packet(gauntlet::network::DISCONNECT),
+gauntlet::network::PacketDisconnect::PacketDisconnect(const std::string &message, int fd):
+        Packet(gauntlet::network::DISCONNECT, fd),
         message(message)
 { }
 
-gauntlet::network::PacketDisconnect::PacketDisconnect(t_rawdata *data):
-        PacketDisconnect("") {
-    this->deserialize(data);
+gauntlet::network::PacketDisconnect::PacketDisconnect(const s_socketData &data):
+        Packet(gauntlet::network::DISCONNECT, data.fd) {
+    this->deserialize(data.data);
 }
 
 t_rawdata *gauntlet::network::PacketDisconnect::serialize() const {

@@ -14,7 +14,7 @@
 # include <map>
 # include <string>
 # include "Position.hh"
-# include "OgreUI.hh"
+# include "graph/OgreUI.hh"
 
 namespace			gauntlet
 {
