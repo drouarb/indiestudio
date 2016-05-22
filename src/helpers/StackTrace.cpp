@@ -13,6 +13,6 @@ void StackTrace::displayStackTrace()
   int size;
 
   size = backtrace(array, 128);
-  backtrace_symbols_fd(array, 128, 2);
+  backtrace_symbols_fd(array, size, 2);
 }
 
