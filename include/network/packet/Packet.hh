@@ -26,8 +26,13 @@ namespace gauntlet {
             UPDATE_ENTITY         = 0x08,
             DELETE_ENTITY         = 0x09,
             ADD_PARTICLE          = 0x0A,
-            DELETE_PARTICLE       = 0x0B,
-            INVENTORY             = 0x0C
+            MOVE_PARTICLE         = 0x0B,
+            DELETE_PARTICLE       = 0x0C,
+            PLAY_SOUND            = 0x0D,
+            STOP_SOUND            = 0x0E,
+            INVENTORY             = 0x0F,
+            UPDATE_HUD            = 0x10,
+            PACKET_CONTROL        = 0x11
         };
 
         class Packet {
