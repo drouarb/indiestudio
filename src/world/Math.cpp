@@ -53,3 +53,11 @@ gauntlet::world::Math::isBetween(short ref, short sup, short inf)
     ref += 628;
   return (ref >= inf && ref <= sup);
 }
+
+double		gauntlet::world::Math::distBetween(std::pair<double, double> pos1, std::pair<double, double> pos2)
+{
+  double	dist;
+
+  dist = sqrt(pow(pos1.first - pos2.first, 2) + pow(pos1.second - pos2.second, 2));
+  return (dist);
+}

@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Fri May 20 15:38:36 2016 Alexis Trouve
+// Last update Sun May 22 16:08:00 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -17,8 +17,11 @@ using namespace world;
 
 World::World()
 {
-  Factory = new BodyFactory(this);
+  IAs.push_back(new BasicIA(this));
+  Factory = new BodyFactory(this, IAs);
   Math::init();
+  sizeX = 0;
+  sizeY = 0;
 }
 
 World::~World()
@@ -34,39 +37,56 @@ void	World::loadGame(std::string file)
   std::cout << "WORLD load " << file << std::endl;
 }
 
-void	World::tester()
+void	World::initNetwork()
 {
-  /*ABody	*newBody;
+  
+}
 
-  std::cerr << "giveBody null work" << std::endl;
-  if (Factory.giveBody(static_cast<BodyEnum>(538928)) == NULL)
-    std::cerr << "ok" << std::endl;
-  std::cerr << "giverealBody" << std::endl;
-  if ((newBody = Factory.giveBody(BARBARE)) == NULL)
-    std::cerr << "error return" << std::endl;
-  std::cerr << newBody->getId() << " ok" << std::endl;
-  std::cerr << "new guy in collider without real coord" << std::endl;
-  if (collider.setNewBody(newBody) == false)
-    std::cerr << "ok return" << std::endl;
-  std::cerr << "ok" << std::endl;
-  std::cerr << "new guy 80 80" << std::endl;
-  newBody = Factory.giveBody(BARBARE);
-  newBody->changePos(80, 80);
-  std::cerr << "x80:" << newBody->getPos().first << " y80:"
-	    << newBody->getPos().second << " id:" << newBody->getId() << " ok" << std::endl;
-  std::cerr << "in collider with no one at 80, 80" << std::endl;
-  if (collider.setNewBody(newBody) == true)
-    std::cerr << "ok return" << std::endl;
-  std::cerr << "ok" << std::endl;
-  std::cerr << "new guy 80 80" << std::endl;
-  newBody = Factory.giveBody(BARBARE);
-  newBody->changePos(80, 80);
-  std::cerr << "x80:" << newBody->getPos().first << " y80:"
-	    << newBody->getPos().second <<" id:" << newBody->getId() << " ok" << std::endl;
-  std::cerr << "in collider with no one at 80, 80" << std::endl;
-  if (collider.setNewBody(newBody) == false)
-    std::cerr << "ok return" << std::endl;
-    std::cerr << "ok" << std::endl;*/
+void	World::applyMoveActor()
+{
+  std::list<ABody*>::iterator	it1;
+  ABody				*body;
+  Actor				*actor;
+
+  it1 = bodys.begin();
+  while (it1 != bodys.end())
+    {
+      if ((actor = dynamic_cast<Actor*>((*it1))) != NULL)
+	actor->move();
+      it1++;
+    }
+}
+
+void	World::gameLoop()
+{
+  while (42 == 42)
+    {
+      applyMoveActor();
+    }
+}
+
+void	World::addNewBody(double xpos, double ypos, const std::string& name, short orientation)
+{
+  ABody	*body;
+
+  body = Factory->giveBody(name);
+  body->changePos(std::make_pair(xpos, ypos));
+  body->changeOrientation(orientation);
+  bodys.push_back(body);
+  collider.setNewBodyNoCheckEntity(body);
+}
+
+void		World::notifyDeath(ABody *body)
+{
+  unsigned int	i;
+
+  collider.suprBody(body->getId());
+  i = 0;
+  while (i < IAs.size())
+    {
+      IAs[i]->suprActor(body->getId());
+      ++i;
+    }
 }
 
 Collider&	World::getCollider()
