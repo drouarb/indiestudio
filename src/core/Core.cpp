@@ -143,6 +143,7 @@ gauntlet::core::Core::loop()
 {
   long ms;
 
+  this->ogre.addWorldEntity(1, "mapTest.mesh", 10, -10, 0, 0);
   while (keepGoing)
     {
       sw.Set();

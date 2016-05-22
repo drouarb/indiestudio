@@ -1,5 +1,6 @@
 #include <OIS/OIS.h>
 #include <iostream>
+#include <stdlib.h>
 #include "OgreUI.hh"
 #include "Math.hh"
 
@@ -210,7 +211,7 @@ bool OgreUI::frameRenderingQueued(const Ogre::FrameEvent &evt)
 
 bool OgreUI::keyPressed(const OIS::KeyEvent &arg)
 {
-//  mCameraMan->injectKeyDown(arg);
+  mCameraMan->injectKeyDown(arg);
   if (obs != NULL)
     if (keymap.count(arg.key) > 0)
       {
@@ -221,7 +222,7 @@ bool OgreUI::keyPressed(const OIS::KeyEvent &arg)
 
 bool OgreUI::keyReleased(const OIS::KeyEvent &arg)
 {
-  //mCameraMan->injectKeyUp(arg);
+  mCameraMan->injectKeyUp(arg);
 
   if (obs != NULL)
     if (keymap.count(arg.key) > 0)
@@ -231,7 +232,7 @@ bool OgreUI::keyReleased(const OIS::KeyEvent &arg)
 
 bool OgreUI::mouseMoved(const OIS::MouseEvent &arg)
 {
-//  mCameraMan->injectMouseMove(arg);
+  mCameraMan->injectMouseMove(arg);
   mTrayMgr->injectMouseMove(arg);
   if (obs != NULL)
     obs->mouseMove(arg.state.X.abs, arg.state.Y.abs);
@@ -560,6 +561,17 @@ void OgreUI::hideItem(int id)
 void OgreUI::createScene(void)
 {
   showBackground();
+  //TODO clean
+  Ogre::Light *pLight = this->mSceneMgr->createLight();
+  pLight->setType(Ogre::Light::LT_SPOTLIGHT);
+  pLight->setDiffuseColour(Ogre::ColourValue::White);
+  pLight->setPosition(0, 500, 0);
+  pLight->setSpotlightRange(Ogre::Radian(0.0), Ogre::Radian(180.0));
+  pLight->setPowerScale(400000.0);
+  this->mSceneMgr->setAmbientLight(Ogre::ColourValue(.25,.25,.25));
+  this->mTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT);
+  this->addWorldEntity(23, "draugr", 0, 0, 90, 0);
+  //END TODO
 }
 
 void OgreUI::quit()
