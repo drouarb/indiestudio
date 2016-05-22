@@ -209,6 +209,7 @@ bool OgreUI::frameRenderingQueued(const Ogre::FrameEvent &evt)
 
 bool OgreUI::keyPressed(const OIS::KeyEvent &arg)
 {
+  mCameraMan->injectKeyDown(arg);
   if (obs != NULL)
     if (keymap.count(arg.key) > 0)
       {
@@ -553,7 +554,10 @@ void OgreUI::hideItem(int id)
 
 void OgreUI::createScene(void)
 {
-  showBackground();
+//  showBackground();
+  std::string k = "ogrehead.mesh";
+  addRootEntity(90, k, 0, 0, 0);
+  addWorldEntity(91, k, 0, 0, 0, 0);
 }
 
 void OgreUI::quit()
@@ -623,7 +627,8 @@ void OgreUI::stopSound(int id)
 }
 
 
-void OgreUI::addRootEntity(int entityId, std::string &name)
+void OgreUI::addRootEntity(int entityId, std::string &name, int x, int y,
+			   int degres)
 {
   std::stringstream ss;
   ss << entityId;
@@ -637,12 +642,16 @@ void OgreUI::addRootEntity(int entityId, std::string &name)
   mCamera->yaw(Ogre::Degree(20));
 }
 
-void OgreUI::addWorldEntity(int entityId, std::string &name)
+void OgreUI::addWorldEntity(int entityId, std::string &name, int x, int y,
+			    short degres, int texture_id)
 {
   std::stringstream ss;
   ss << entityId;
 
   Ogre::Entity *e = mSceneMgr->createEntity(ss.str(), name);
-  worldNode->attachObject(e);
+  Ogre::SceneNode *s = worldNode->createChildSceneNode(ss.str());
+  s->setPosition(x, y, 0);
+  s->setOrientation(degres, x, y , 0);
+  s->attachObject(e);
 }
 
