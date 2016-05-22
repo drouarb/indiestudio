@@ -6,21 +6,18 @@
 # define CPP_INDIE_STUDIO_SPELLCONTAINER_HH
 
 #include <vector>
-#include <gameData/Spell/SpellFactory.hh>
-#include "ASpell.hh"
 
 namespace gauntlet
 {
-  
-  class ASpell;
-  
+  class Spell;
+
     class SpellContainer
     {
     public:
       SpellContainer();
       ~SpellContainer();
       std::vector<gauntlet::Spell*> spellList;
-      void  addSpell(SpellFactory::SpellEnum spellEnum, Actor *caster);
+     // void  addSpell(SpellFactory::SpellEnum spellEnum, Actor *caster);
     };
 };
 
