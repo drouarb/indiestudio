@@ -1,16 +1,6 @@
 #include <OIS/OIS.h>
 #include <iostream>
-#include <stdlib.h>
 #include "OgreUI.hh"
-
-#ifdef OGRE_STATIC
-  #include <OgreGLPlugin.h>
-  #include <OgreParticleFXPlugin.h>
-  #include <OgreBspSceneManagerPlugin.h>
-  #include <OgrePCZPlugin.h>
-  #include <OgreOctreePlugin.h>
-  #include <OgreOctreeZonePlugin.h>
-#endif
 
 using namespace gauntlet;
 using namespace core;
@@ -100,6 +90,14 @@ void OgreUI::createFrameListener(void)
 
 void OgreUI::destroyScene(void)
 {
+  if (mSceneMgr)
+    {
+      this->mSceneMgr->destroyAllAnimations();
+      this->mSceneMgr->destroyAllEntities();
+      this->mSceneMgr->destroyAllCameras();
+      this->mSceneMgr->destroyAllLights();
+      this->mSceneMgr->destroyAllParticleSystems();
+    }
 }
 
 void OgreUI::createViewports(void)
@@ -166,6 +164,7 @@ bool OgreUI::setup(void)
   mRoot->installPlugin(new Ogre::PCZPlugin());
   mRoot->installPlugin(new Ogre::OctreeZonePlugin());
   mRoot->installPlugin(new Ogre::OctreePlugin());
+  mRoot->installPlugin(new OgreOggSound::OgreOggSoundPlugin());
 #endif
   setupResources();
   bool carryOn = configure();
@@ -177,6 +176,7 @@ bool OgreUI::setup(void)
   createResourceListener();
   loadResources();
   initMap();
+  initSound();
   createFrameListener();
   windowResized(mWindow);
   createScene();
@@ -213,7 +213,9 @@ bool OgreUI::keyPressed(const OIS::KeyEvent &arg)
   mCameraMan->injectKeyDown(arg);
   if (obs != NULL)
     if (keymap.count(arg.key) > 0)
-      obs->keyDown(keymap[arg.key]);
+      {
+	obs->keyDown(keymap[arg.key]);
+      }
   return true;
 }
 
@@ -231,7 +233,7 @@ bool OgreUI::mouseMoved(const OIS::MouseEvent &arg)
   mTrayMgr->injectMouseMove(arg);
   mCameraMan->injectMouseMove(arg);
   if (obs != NULL)
-    obs->mouseMove(arg.state.X.rel, arg.state.Y.rel);
+    obs->mouseMove(arg.state.X.abs, arg.state.Y.abs);
   return true;
 }
 
@@ -328,6 +330,31 @@ void OgreUI::initMap()
   keymap[OIS::KC_X] = IUIObserver::KEY_X;
   keymap[OIS::KC_Y] = IUIObserver::KEY_Y;
   keymap[OIS::KC_Z] = IUIObserver::KEY_Z;
+
+  keymap[OIS::KC_0] = IUIObserver::KEY_0;
+  keymap[OIS::KC_1] = IUIObserver::KEY_1;
+  keymap[OIS::KC_2] = IUIObserver::KEY_2;
+  keymap[OIS::KC_3] = IUIObserver::KEY_3;
+  keymap[OIS::KC_4] = IUIObserver::KEY_4;
+  keymap[OIS::KC_5] = IUIObserver::KEY_5;
+  keymap[OIS::KC_6] = IUIObserver::KEY_6;
+  keymap[OIS::KC_7] = IUIObserver::KEY_7;
+  keymap[OIS::KC_8] = IUIObserver::KEY_8;
+  keymap[OIS::KC_9] = IUIObserver::KEY_9;
+
+  keymap[OIS::KC_NUMPAD0] = IUIObserver::KEY_0;
+  keymap[OIS::KC_NUMPAD1] = IUIObserver::KEY_1;
+  keymap[OIS::KC_NUMPAD2] = IUIObserver::KEY_2;
+  keymap[OIS::KC_NUMPAD3] = IUIObserver::KEY_3;
+  keymap[OIS::KC_NUMPAD4] = IUIObserver::KEY_4;
+  keymap[OIS::KC_NUMPAD5] = IUIObserver::KEY_5;
+  keymap[OIS::KC_NUMPAD6] = IUIObserver::KEY_6;
+  keymap[OIS::KC_NUMPAD7] = IUIObserver::KEY_7;
+  keymap[OIS::KC_NUMPAD8] = IUIObserver::KEY_8;
+  keymap[OIS::KC_NUMPAD9] = IUIObserver::KEY_9;
+
+  keymap[OIS::KC_PERIOD] = IUIObserver::KEY_PERIOD;
+  keymap[OIS::KC_SEMICOLON] = IUIObserver::KEY_PERIOD;
   posmap[PCENTER] = OgreBites::TL_CENTER;
   posmap[PTOPRIGHT] = OgreBites::TL_TOPRIGHT;
   posmap[PTOPLEFT] = OgreBites::TL_TOPLEFT;
@@ -363,14 +390,18 @@ void OgreUI::setIObserver(gauntlet::core::IUIObserver *Obs)
   this->obs = Obs;
 }
 
-void OgreUI::loadSound(std::string &path)
+void OgreUI::loadSound(int id, std::string &path)
 {
-
+  std::stringstream ss;
+  ss << id;
+  mSoundManager->createSound(ss.str(), path.c_str(), true, false, false);
 }
 
 void OgreUI::playSound(int id)
 {
-
+  std::stringstream ss;
+  ss << id;
+  mSoundManager->getSound(ss.str())->play();
 }
 
 void OgreUI::checkBoxToggled(OgreBites::CheckBox *checkBox)
@@ -478,7 +509,7 @@ void OgreUI::updateItemValue(int itemid, struct t_hitItem item)
 	{
 	  OgreBites::TextBox *t = static_cast<OgreBites::TextBox *>(mTrayMgr->getWidget(
 		  ss.str()));
-	  t->setCaption(item.data);
+	  t->setText(item.data);
 	}
       break;
       case MenuItemType::LABEL:
@@ -486,6 +517,16 @@ void OgreUI::updateItemValue(int itemid, struct t_hitItem item)
 	  OgreBites::Label *label = static_cast<OgreBites::Label *>(mTrayMgr->getWidget(
 		  ss.str()));
 	  label->setCaption(item.data);
+	}
+      break;
+      case MenuItemType::CHECKBOX:
+	{
+	  OgreBites::CheckBox *c = static_cast<OgreBites::CheckBox *>(mTrayMgr->getWidget(
+		  ss.str()));
+	  if (item.state == CHECKED)
+	    c->setChecked(true, true);
+	  else
+	    c->setChecked(false, true);
 	}
       break;
     }
@@ -496,7 +537,7 @@ void OgreUI::addTextbox(gauntlet::core::Position pos, int id, std::string text,
 {
   std::stringstream ss;
   ss << id;
-  mTrayMgr->createTextBox(posmap[pos], ss.str(), text, 100, 20);
+  mTrayMgr->createTextBox(posmap[pos], ss.str(), text, 300, 80);
 }
 
 void OgreUI::addLabel(gauntlet::core::Position pos, int id, std::string text,
@@ -504,7 +545,7 @@ void OgreUI::addLabel(gauntlet::core::Position pos, int id, std::string text,
 {
   std::stringstream ss;
   ss << id;
-  mTrayMgr->createLabel(posmap[pos], ss.str(), text);
+  mTrayMgr->createLabel(posmap[pos], ss.str(), text, text.size() * 12);
 }
 
 void OgreUI::hideItem(int id)
@@ -517,6 +558,7 @@ void OgreUI::hideItem(int id)
 
 void OgreUI::createScene(void)
 {
+  showBackground();
 }
 
 void OgreUI::quit()
@@ -556,4 +598,42 @@ void OgreUI::playAnimation(int animationId, int entityId, bool loop)
   this->animationsArray[pEntity->getName() +
 			pState->getAnimationName()] = pState;
 }
+
+std::pair<int, int> OgreUI::getSizeWindow()
+{
+  return (std::pair<int, int>(mWindow->getWidth(), mWindow->getHeight()));
+}
+
+void OgreUI::showBackground()
+{
+  mTrayMgr->showBackdrop("Ogre/Background");
+}
+
+void OgreUI::hideBackground()
+{
+  mTrayMgr->hideBackdrop();
+}
+
+void OgreUI::initSound()
+{
+  this->mSoundManager = OgreOggSound::OgreOggSoundManager::getSingletonPtr();
+  mSoundManager->init();
+}
+
+void OgreUI::stopSound(int id)
+{
+  std::stringstream ss;
+  ss << id;
+  mSoundManager->getSound(ss.str())->stop();
+}
+
+
+
+
+
+
+
+
+
+
 

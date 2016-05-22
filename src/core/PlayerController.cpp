@@ -5,14 +5,18 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 15:52:38 2016 Esteban Lewis
-// Last update Mon May 16 14:16:25 2016 Esteban Lewis
+// Last update Sat May 21 20:10:15 2016 Esteban Lewis
 //
 
 #include <iostream>
 #include "PlayerController.hh"
 
-gauntlet::core::PlayerController::PlayerController()
+gauntlet::core::PlayerController::PlayerController(std::string const & name,
+						   world::PlayerChar c)
 {
+  this->name = name;
+  chartype = c;
+
   ctrls.insert(std::pair<Command, void (PlayerController::*)(bool)>
 	       (UP, &PlayerController::cmdUp));
   ctrls.insert(std::pair<Command, void (PlayerController::*)(bool)>
@@ -32,6 +36,30 @@ gauntlet::core::PlayerController::PlayerController()
 
 gauntlet::core::PlayerController::~PlayerController()
 { }
+
+std::string const &
+gauntlet::core::PlayerController::getName() const
+{
+  return (name);
+}
+
+std::pair<double, double>
+gauntlet::core::PlayerController::getMovement()
+{
+  return (std::pair<double, double>(moveX, moveY));
+}
+
+int
+gauntlet::core::PlayerController::getAction()
+{
+  return (action);
+}
+
+void
+gauntlet::core::PlayerController::setAngle(short angle)
+{
+  (void)angle;
+}
 
 void
 gauntlet::core::PlayerController::loop()

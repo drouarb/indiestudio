@@ -1,6 +1,17 @@
 #ifndef Ogreui_h
 #define Ogreui_h
 
+
+#ifdef OGRE_STATIC
+#include <OgreGLPlugin.h>
+ #include <OgreParticleFXPlugin.h>
+ #include <OgreBspSceneManagerPlugin.h>
+ #include <OgrePCZPlugin.h>
+ #include <OgreOctreePlugin.h>
+ #include <OgreOctreeZonePlugin.h>
+ #include <OgreOggSoundPlugin.h>
+#endif
+
 #include <OgreCamera.h>
 #include <OgreEntity.h>
 #include <OgreLogManager.h>
@@ -34,6 +45,8 @@ class OgreUI
   std::map<gauntlet::core::Position, OgreBites::TrayLocation> posmap;
   std::map<std::string, Ogre::AnimationState *> animationsArray;
   gauntlet::core::IUIObserver *obs;
+ OgreOggSound::OgreOggSoundManager  *mSoundManager;
+
   Ogre::Root *mRoot;
   Ogre::Camera *mCamera;
   Ogre::SceneManager *mSceneMgr;
@@ -57,7 +70,7 @@ class OgreUI
   bool setup();
 
   void initMap();
-
+  void initSound();
   bool configure(void);
 
   void chooseSceneManager(void);
@@ -134,18 +147,20 @@ class OgreUI
 
   void setIObserver(gauntlet::core::IUIObserver *Obs);
 
-  void loadSound(std::string &path);
+  void loadSound(int id, std::string &path);
 
   void hideItem(int id);
 
   void playSound(int id);
-
+  void stopSound(int id);
   void showItem(int id);
 
   void playAnimation(int animationId, int entityId, bool loop);
+  void  showBackground();
+  void  hideBackground();
 
   void stopAnimation(int animationId, int entityId);
-
+   std::pair<int, int> getSizeWindow();
   void quit();
 };
 
