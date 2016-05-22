@@ -20,15 +20,14 @@ namespace gauntlet {
             HANDSHAKE             = 0x03,
             PLAYER_SELECT         = 0x04,
             MAP                   = 0x05,
-            ADD_PLAYER            = 0x06,
-            ADD_CREATURE          = 0x07,
-            ADD_GAMEOBJECT        = 0x08,
-            MOVE_ENTITY           = 0x09,
-            UPDATE_ENTITY         = 0x0A,
-            DELETE_ENTITY         = 0x0B,
-            ADD_PARTICLE          = 0x0C,
-            DELETE_PARTICLE       = 0x0D,
-            INVENTORY             = 0x0E
+            ADD_ENTITY            = 0x06,
+            ADD_GAMEOBJECT        = 0x07,
+            MOVE_ENTITY           = 0x08,
+            UPDATE_ENTITY         = 0x09,
+            DELETE_ENTITY         = 0x0A,
+            ADD_PARTICLE          = 0x0B,
+            DELETE_PARTICLE       = 0x0C,
+            INVENTORY             = 0x0D
         };
 
         class Packet {

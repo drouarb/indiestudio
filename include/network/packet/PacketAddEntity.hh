@@ -11,9 +11,9 @@
 
 namespace gauntlet {
     namespace network {
-        class PacketAddPlayer : public Packet {
+        class PacketAddEntity : public Packet {
 
-            struct s_PacketAddPlayer {
+            struct s_PacketAddEntity {
                 unsigned char packetId;
                 unsigned int assetId;
                 unsigned int entityId;
@@ -21,9 +21,9 @@ namespace gauntlet {
                 char namestart;
             };
         public:
-            PacketAddPlayer(t_rawdata *data);
-            PacketAddPlayer(unsigned int packetId, unsigned int entityId, const std::string &playerName);
-            virtual ~PacketAddPlayer() { };
+            PacketAddEntity(t_rawdata *data);
+            PacketAddEntity(unsigned int packetId, unsigned int entityId, const std::string &playerName);
+            virtual ~PacketAddEntity() { };
 
             virtual t_rawdata* serialize() const;
             virtual void deserialize(t_rawdata* data);

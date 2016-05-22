@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 13:47:34 2016 Esteban Lewis
-// Last update Sat May 21 11:35:17 2016 Esteban Lewis
+// Last update Sat May 21 22:46:08 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -79,6 +79,12 @@ gauntlet::core::Control::getStr() const
   return (str);
 }
 
+void
+gauntlet::core::Control::setStr(const std::string & newstr)
+{
+  str = newstr;
+}
+
 const void *
 gauntlet::core::Control::getParam() const
 {
@@ -109,6 +115,16 @@ gauntlet::core::Control::undraw()
       ogre.remove(id);
       displayed = false;
     }
+}
+
+void
+gauntlet::core::Control::update(struct t_hitItem & item)
+{
+  if (displayed)
+   {
+     item.type = type;
+     ogre.updateItemValue(id, item);
+   }
 }
 
 int
