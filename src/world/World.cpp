@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Sun May 22 18:54:55 2016 Alexis Trouve
+// Last update Sun May 22 18:57:42 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -20,6 +20,7 @@ World::World()
 {
   IAs.push_back(new BasicIA(this));
   Factory = new BodyFactory(this, IAs);
+  collider = NULL;
   Math::init();
   sizeX = 0;
   sizeY = 0;
