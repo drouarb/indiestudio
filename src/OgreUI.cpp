@@ -50,6 +50,7 @@ void OgreUI::chooseSceneManager(void)
   mSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC);
   mOverlaySystem = new Ogre::OverlaySystem();
   mSceneMgr->addRenderQueueListener(mOverlaySystem);
+  worldNode = mSceneMgr->getRootSceneNode()->createChildSceneNode("World");
 }
 
 void OgreUI::createCamera(void)
@@ -208,7 +209,7 @@ bool OgreUI::frameRenderingQueued(const Ogre::FrameEvent &evt)
 
 bool OgreUI::keyPressed(const OIS::KeyEvent &arg)
 {
-   if (obs != NULL)
+  if (obs != NULL)
     if (keymap.count(arg.key) > 0)
       {
 	obs->keyDown(keymap[arg.key]);
@@ -227,7 +228,7 @@ bool OgreUI::keyReleased(const OIS::KeyEvent &arg)
 bool OgreUI::mouseMoved(const OIS::MouseEvent &arg)
 {
   mTrayMgr->injectMouseMove(arg);
-   if (obs != NULL)
+  if (obs != NULL)
     obs->mouseMove(arg.state.X.abs, arg.state.Y.abs);
   return true;
 }
@@ -484,7 +485,6 @@ void OgreUI::updateItemValue(int itemid, struct t_hitItem item)
   std::stringstream ss;
   ss << itemid;
   switch (item.type)
-
     {
       case MenuItemType::SLIDE:
 	{
@@ -627,13 +627,30 @@ Ogre::SceneManager *OgreUI::getSceneManager()
   return this->mSceneMgr;
 }
 
-void OgreUI::setRootnode(Ogre::SceneNode *rootNode)
+void OgreUI::addRootEntity(int entityId, std::string &name)
 {
-  this->rootNode = rootNode;
+  std::stringstream ss;
+  ss << entityId;
+
+  Ogre::Entity *e = mSceneMgr->createEntity(ss.str(), name);
+  Ogre::SceneNode *s = worldNode->createChildSceneNode("PLayerNode");
+  this->rootNode = s;
+  rootNode->attachObject(e);
   rootNode->attachObject(mCamera);
   mCamera->pitch(Ogre::Degree(-89));
   mCamera->yaw(Ogre::Degree(20));
 }
+
+void OgreUI::addWorldEntity(int entityId, std::string &name)
+{
+  std::stringstream ss;
+  ss << entityId;
+
+  Ogre::Entity *e = mSceneMgr->createEntity(ss.str(), name);
+  worldNode->attachObject(e);
+}
+
+
 void OgreUI::setQuality(int percent)
 {
   this->quality = percent;

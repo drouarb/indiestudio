@@ -60,8 +60,7 @@ class OgreUI
   Ogre::String mPluginsCfg;
  private:
   Ogre::SceneNode *rootNode;
-  Ogre::SceneNode* cam_node;
-  Ogre::SceneNode* pitch_node;
+  Ogre::SceneNode *worldNode;
   Ogre::OverlaySystem *mOverlaySystem;
   OgreBites::SdkTrayManager *mTrayMgr;
   OgreBites::SdkCameraMan *mCameraMan;
@@ -80,7 +79,9 @@ class OgreUI
 
   bool setup();
 
-  void setRootnode(Ogre::SceneNode *rootNode);
+
+  void addWorldEntity(int entityId, std::string &name);
+  void addRootEntity(int entityId, std::string &name);
 
   void initMap();
 
