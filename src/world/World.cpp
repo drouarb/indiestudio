@@ -1,3 +1,13 @@
+//
+// World.cpp for indie in /home/lewis_e/rendu/cpp/cpp_indie_studio
+// 
+// Made by Esteban Lewis
+// Login   <lewis_e@epitech.net>
+// 
+// Started on  Mon May  9 14:58:51 2016 Esteban Lewis
+// Last update Sun May 22 18:57:42 2016 Alexis Trouve
+//
+
 #include <iostream>
 #include "World.hh"
 #include "Math.hh"
@@ -10,6 +20,7 @@ World::World()
 {
   IAs.push_back(new BasicIA(this));
   Factory = new BodyFactory(this, IAs);
+  collider = NULL;
   Math::init();
   sizeX = 0;
   sizeY = 0;
@@ -25,7 +36,7 @@ void	World::update()
 
 void	World::loadGame(std::string const & file)
 {
-  
+
 }
 
 void	World::initNetwork()
@@ -48,10 +59,39 @@ void	World::applyMoveActor()
     }
 }
 
-void	World::gameLoop()
+void		World::applyIA()
+{
+  std::list<ABody*>::iterator	it1;
+  unsigned int	i;
+  unsigned int	j;
+  std::vector<Player*>	players;
+  Player		*nplay;
+
+  it1 = bodys.begin();
+  while (it1 != bodys.end())
+    {
+      if ((nplay = dynamic_cast<Player*>(*it1)) != NULL)
+	players.push_back(nplay);
+      it1++;
+    }
+  j = 0;
+  while (j < players.size())
+    {
+      i = 0;
+      while (i < IAs.size())
+	{
+	  IAs[i]->launchIA(players[j]->getPos());
+	  ++i;
+	}
+      ++j;
+    }
+}
+
+void		World::gameLoop()
 {
   while (42 == 42)
     {
+      applyIA();
       applyMoveActor();
     }
 }
@@ -64,14 +104,14 @@ void	World::addNewBody(double xpos, double ypos, const std::string& name, short 
   body->changePos(std::make_pair(xpos, ypos));
   body->changeOrientation(orientation);
   bodys.push_back(body);
-  collider.setNewBodyNoCheckEntity(body);
+  collider->setNewBodyNoCheckEntity(body);
 }
 
 void		World::notifyDeath(ABody *body)
 {
   unsigned int	i;
 
-  collider.suprBody(body->getId());
+  collider->suprBody(body->getId());
   i = 0;
   while (i < IAs.size())
     {
@@ -82,5 +122,5 @@ void		World::notifyDeath(ABody *body)
 
 Collider&	World::getCollider()
 {
-  return (collider);
+  return (*collider);
 }

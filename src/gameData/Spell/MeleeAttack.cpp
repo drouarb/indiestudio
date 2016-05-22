@@ -28,9 +28,9 @@ MeleeAttack::~MeleeAttack()
 
 }
 
-void		MeleeAttack::apply(double orientation, world::World &world,
-				   Actor *SpellCaster,
-				   std::pair<double, double> coordPointed)
+void		MeleeAttack::cast(double orientation, world::World &world,
+                              Actor *SpellCaster,
+                              std::pair<double, double> coordPointed)
 {
 
 }

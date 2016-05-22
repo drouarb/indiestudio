@@ -23,13 +23,15 @@ namespace gauntlet
     short	angle;
     double	rangeDegat;
     double	distDo;
+
+
   public:
     MeleeAttack(bool nbump, long ndamage, short nangle,
 		double nrangeDegat, double ndistDo, int id,
 		const std::string &name, double castTime);
     ~MeleeAttack();
-    void	apply(double norientation, world::World &world, gauntlet::Actor *SpellCaster,
-		      std::pair<double, double> coordPointed);
+    void	cast(double norientation, world::World &world, gauntlet::Actor *SpellCaster,
+				 std::pair<double, double> coordPointed);
   };
 };
 

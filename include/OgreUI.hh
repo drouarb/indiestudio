@@ -84,10 +84,10 @@ class OgreUI
   bool setup();
 
 
-  void addWorldEntity(int entityId, const std::string &name, int x, int y,
+  bool addWorldEntity(int entityId, const std::string &name, int x, int y,
 		      short degres, int texture_id);
-  void addRootEntity(int entityId, std::string &name, int x, int y,
-		       short degres, int texture_id);
+  bool addRootEntity(int entityId, const std::string &name, int x, int y,
+		     short degres, int texture_id);
 
   void initMap();
 

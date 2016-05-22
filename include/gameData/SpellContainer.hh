@@ -20,7 +20,7 @@ namespace gauntlet
       ~SpellContainer();
       std::vector<gauntlet::ASpell*> spellList;
     };
-}
+};
 
 
 #endif //CPP_INDIE_STUDIO_SPELLCONTAINER_HH

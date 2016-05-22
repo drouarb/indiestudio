@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 14:44:15 2016 Alexis Trouve
-// Last update Fri May 20 18:28:37 2016 Alexis Trouve
+// Last update Sun May 22 18:49:46 2016 Alexis Trouve
 //
 
 #include "Collider.hh"
@@ -13,9 +13,9 @@
 using namespace gauntlet;
 using namespace world;
 
-Collider::Collider()
+Collider::Collider(unsigned int xsize, unsigned int ysize)
 {
-  physicLayer = new PhysicCollideLayer(2100.0, 2100.0);
+  physicLayer = new PhysicCollideLayer(static_cast<double>(xsize), static_cast<double>(ysize));
   dynamicLayer = new EntityCollideLayer(physicLayer);
 }
 
@@ -79,9 +79,11 @@ void	Collider::suprBody(int id)
   dynamicLayer->suprId(id);
 }
 
-std::list<gauntlet::ABody*>	Collider::giveBodyInAreaCircle(double posx, double posy, double rayon)
+std::list<gauntlet::ABody*>	Collider::giveBodyInAreaCircle(double posx, double posy, short unused, double radius, short unused2)
 {
-  return (dynamicLayer->giveBodyInAreaCircle(posx, posy, rayon));
+  (void)unused;
+  (void)unused2;
+  return (dynamicLayer->giveBodyInAreaCircle(posx, posy, radius));
 }
 
 std::list<gauntlet::ABody*>	Collider::giveBodyInAreaCone(double posx, double posy, short ref_angle, double size, short cone_angle)

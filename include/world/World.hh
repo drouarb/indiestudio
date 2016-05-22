@@ -15,7 +15,7 @@ namespace			gauntlet
     class			World
     {
     private:
-      Collider			collider;
+      Collider			*collider;
       BodyFactory		*Factory;
       std::vector<BasicIA*>	IAs;
       std::list<ABody*>		bodys;
@@ -32,6 +32,7 @@ namespace			gauntlet
       void			gameLoop();
       void			tester();
       void			applyMoveActor();
+      void			applyIA();
       void			notifyDeath(ABody *body);
       void			addNewBody(double xpos, double ypos, const std::string& name, short orientation);
       Collider&			getCollider();
