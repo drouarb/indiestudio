@@ -557,3 +557,24 @@ void OgreUI::playAnimation(int animationId, int entityId, bool loop)
 			pState->getAnimationName()] = pState;
 }
 
+Ogre::SceneManager *OgreUI::getSceneManager()
+{
+  return this->mSceneMgr;
+}
+
+void OgreUI::setQuality(int percent)
+{
+  this->quality = percent;
+}
+
+int OgreUI::triggerEffect(gauntlet::EffectType, std::pair<double, double>)
+{
+  return 0;
+}
+
+
+
+
+
+
+

@@ -1,5 +1,4 @@
-#ifndef Ogreui_h
-#define Ogreui_h
+#pragma once
 
 #include <OgreCamera.h>
 #include <OgreEntity.h>
@@ -19,7 +18,13 @@
 #include <SdkCameraMan.h>
 #include <core/Position.hh>
 #include <mutex>
+#include <graph/Effect.hh>
 #include "IUIObserver.hh"
+
+namespace gauntlet
+{
+  enum EffectType : int;
+}
 
 class OgreUI
 	: public Ogre::FrameListener,
@@ -49,6 +54,8 @@ class OgreUI
   OIS::InputManager *mInputManager;
   OIS::Mouse *mMouse;
   OIS::Keyboard *mKeyboard;
+  int quality = 100;
+
  public:
   bool init();
 
@@ -146,7 +153,12 @@ class OgreUI
 
   void stopAnimation(int animationId, int entityId);
 
-  void quit();
-};
+  void setQuality(int percent = 100);
 
-#endif
+  void quit();
+
+  Ogre::SceneManager *getSceneManager();
+
+  int triggerEffect(gauntlet::EffectType ef, std::pair<double, double> pair);
+
+};
