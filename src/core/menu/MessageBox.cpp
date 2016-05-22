@@ -6,7 +6,7 @@ gauntlet::core::MessageBox::MessageBox(Core & core, int idStart, Menu * parent, 
 {
   buttons.push_back(Control(LABEL, "", NULL, PCENTER, idStart + buttons.size(),
 			     core.ogre));
-  buttons.push_back(Control(BUTTON, "Ok", NULL, PCENTER, idStart + buttons.size(),
+  buttons.push_back(Control(BUTTON, "  Ok  ", NULL, PCENTER, idStart + buttons.size(),
 			    core.ogre));
   setMsg(msg);
 }
@@ -30,15 +30,6 @@ void
 gauntlet::core::MessageBox::setMsg(std::string const & newmsg)
 {
   buttons[0].setStr(newmsg);
-
-  int nbspaces = newmsg.length() * 3 / 4;
-  std::string buttonOkStr = "";
-  for (int i = 0; i < nbspaces; ++i)
-    buttonOkStr += " ";
-  buttonOkStr += "Ok";
-  for (int i = 0; i < nbspaces; ++i)
-    buttonOkStr += " ";
-  buttons[1].setStr(buttonOkStr);
 }
 
 void

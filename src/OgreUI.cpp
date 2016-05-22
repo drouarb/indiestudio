@@ -545,7 +545,7 @@ void OgreUI::addLabel(gauntlet::core::Position pos, int id, std::string text,
 {
   std::stringstream ss;
   ss << id;
-  mTrayMgr->createLabel(posmap[pos], ss.str(), text, 300);
+  mTrayMgr->createLabel(posmap[pos], ss.str(), text, text.size() * 12);
 }
 
 void OgreUI::hideItem(int id)
