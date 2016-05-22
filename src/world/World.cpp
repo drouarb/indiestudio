@@ -1,4 +1,6 @@
 #include <iostream>
+#include <fstream>
+#include <stdexcept>
 #include "World.hh"
 #include "Math.hh"
 #include "IJson.hpp"
@@ -25,7 +27,48 @@ void	World::update()
 
 void	World::loadGame(std::string const & file)
 {
+  std::ifstream is(file.c_str());
+
+  if (!is)
+    throw (std::runtime_error("Could not read file '" + file + "'"));
+
+  std::string content("");
+  std::string tmp;
+  while (!is.eof())
+    {
+      is >> tmp;
+      content += tmp;
+    }
+
+  JSON::JsonObj json;
+  json.ParseFrom(content);
   
+  dynamic_cast<JSON::JsonStr &>(json.GetObj("length"));
+  dynamic_cast<JSON::JsonStr &>(json.GetObj("width"));
+
+  JSON::JsonObj & spawn = dynamic_cast<JSON::JsonObj &>(json.GetObj("spawn"));
+  dynamic_cast<JSON::JsonStr &>(spawn.GetObj("x"));
+  dynamic_cast<JSON::JsonStr &>(spawn.GetObj("y"));
+
+  dynamic_cast<JSON::JsonStr &>(json.GetObj("map"));
+
+  JSON::JsonArr & arr = dynamic_cast<JSON::JsonArr &>(json.GetObj("dynamic"));
+  for (int i = 0; i < arr.Size(); ++i)
+    {
+      JSON::JsonObj & obj = dynamic_cast<JSON::JsonObj &>(arr[i]);
+      addNewBody(stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("x")).Get()),
+		 stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("y")).Get()),
+		 dynamic_cast<JSON::JsonStr &>(obj.GetObj("name")).Get(),
+		 Math::getAngleFromDegrees
+		 (stoi(dynamic_cast<JSON::JsonStr &>(obj.GetObj("angle")).Get())));
+    }
+
+  JSON::JsonArr & arr_p = dynamic_cast<JSON::JsonArr &>(json.GetObj("physical"));
+  for (int i = 0; i < arr_p.Size(); ++i)
+    {
+      JSON::JsonObj & obj = dynamic_cast<JSON::JsonObj &>(arr_p[i]);
+      (void)obj;
+    }
 }
 
 void	World::initNetwork()

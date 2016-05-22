@@ -4,9 +4,12 @@
 
 #include <iostream>
 #include "Core.hh"
+#include "World.hh"
 
 int main()
 {
-  gauntlet::core::Core();
+  //gauntlet::core::Core();
+  gauntlet::world::World world;
+  world.loadGame("map/map.json");
   return (0);
 }
