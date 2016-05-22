@@ -29,9 +29,9 @@ DistAttack::~DistAttack()
 
 }
 
-void		DistAttack::apply(double orientation, world::World &world,
-				  gauntlet::Actor *SpellCaster,
-				  std::pair<double, double> coordPointed)
+void		DistAttack::cast(double orientation, world::World &world,
+                             gauntlet::Actor *SpellCaster,
+                             std::pair<double, double> coordPointed)
 {
   
 }

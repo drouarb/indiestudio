@@ -21,10 +21,8 @@ namespace gauntlet
 
   class Actor : public ABody
   {
-  protected:
-    world::World		*world;
   public:
-    Stats			stats;
+    Stats			    stats;
     SpellContainer		spellBook;
   public:
     Actor(int nid, gauntlet::world::World *newWorld);

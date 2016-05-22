@@ -84,3 +84,17 @@ void				ABody::setName(const std::string& nname)
 {
   name = nname;
 }
+
+std::pair<double, double>	ABody::pointInFront(double dist)
+{
+
+    return (std::pair<double, double>
+            (coord.first + dist * world::Math::cos(orientation),
+             coord.second + dist * world::Math::sin(orientation)));
+}
+
+world::World *ABody::getWorld() {
+  return world;
+}
+
+

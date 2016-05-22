@@ -33,7 +33,7 @@ namespace gauntlet
       bool				applyVectorToId(int id, short orient, double speed);
       bool				setNewBody(ABody *body);
       void				suprBody(int id);
-      std::list<gauntlet::ABody*>	giveBodyInAreaCircle(double posx, double posy, double rayon);
+      std::list<gauntlet::ABody*>	giveBodyInAreaCircle(double posx, double posy, double radius);
       std::list<gauntlet::ABody*>	giveBodyInAreaCone(double posx, double posy, short ref_angle, double size, short cone_angle);
     };
   };

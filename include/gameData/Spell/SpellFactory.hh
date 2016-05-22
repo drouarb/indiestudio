@@ -19,42 +19,37 @@
 #include "MeleeAttack.hh"
 #include "SpellFactory.hh"
 #include "TeleportSpell.hh"
+#include <map>
+#include <src/gameData/Spell/Spell.hh>
 
 namespace gauntlet
 {
-  
-  enum		SpellEnum
-    {
-      MELEE_BARBARE,
-      MELEE_VALKYRIE,
-      DIST_BASIC_CAST_MAGE,
-      DIST_BASIC_ARROW_ELF
-    };
-
   class SpellFactory;
-
-  struct	giveSpellStruct
-  {
-    SpellEnum		spellEnum;
-    gauntlet::ASpell	*(gauntlet::SpellFactory::*givePtr)();
-  };
-  
   class	SpellFactory
   {
-  private:
-    std::vector<giveSpellStruct>	spellTab;
-  private:
-    int			giveNextId();
-    void		fillSpellTab();
+  public:
+      typedef   gauntlet::Spell (gauntlet::SpellFactory::*getSpell)();
+      enum		SpellEnum
+      {
+          VALKYRIA_ATTACK,
+          VALKYRIA_DASH
+      };
+      static std::map<SpellEnum , getSpell > spellMap =
+      {
+              {VALKYRIA_ATTACK, &SpellFactory::getValkyriaAttack},
+              {VALKYRIA_DASH, &SpellFactory::getValkyriaDash}
+      };
 
-    gauntlet::ASpell	*giveMeleeBarbare();
-    gauntlet::ASpell	*giveMeleeValkyrie();
-    gauntlet::ASpell	*giveDistBasicCastMage();
-    gauntlet::ASpell	*giveDistBasicArrowElf();
+  private:
+    int			        giveNextId();
+    Spell*              getValkyriaAttack();
+    Spell*              getValkyriaDash();
+
   public:
     SpellFactory();
     ~SpellFactory();
-    gauntlet::ASpell	*giveSpell(gauntlet::SpellEnum typeSpell);
+
+      ASpell *giveSpell(SpellEnum type);
   };
 };
 
