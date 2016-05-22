@@ -52,6 +52,31 @@ add_executable(PacketAddEntityTest
         ../src/network/packet/PacketAddEntity.cpp)
 add_test(PacketAddEntityTest PacketAddEntityTest)
 
+#Test PacketFactory
+add_executable(PacketFactoryTest
+        packet/PacketFactoryTest.cpp
+        ../src/network/packet/Packet.cpp
+        ../src/network/packet/PacketConnect.cpp
+        ../src/network/packet/PacketDisconnect.cpp
+        ../src/network/packet/PacketHandshake.cpp
+        ../src/network/packet/PacketSelectPlayer.cpp
+        ../src/network/packet/PacketMap.cpp
+        ../src/network/packet/PacketAddEntity.cpp
+        ../src/network/listener/PacketListener.cpp
+        ../src/network/listener/PacketConnectListener.cpp
+        ../src/network/listener/PacketDisconnectListener.cpp
+        ../src/network/listener/PacketHandshakeListener.cpp
+        ../src/network/listener/PacketSelectPlayerListener.cpp
+        ../src/network/listener/PacketMapListener.cpp
+        ../src/network/listener/PacketAddEntityListener.cpp
+        ../src/network/PacketFactory.cpp
+        ../src/network/PacketFactorySocketDisconnectionListener.cpp
+        ../src/network/Socket.cpp
+        )
+target_link_libraries(PacketFactoryTest pthread)
+add_test(PacketFactoryTest PacketFactoryTest)
+
+
 #Test PhysicCollideLayer
 add_executable(PhysicCollideLayer
             ../src/world/PhysicCollideLayer.cpp

@@ -8,14 +8,14 @@
 
 gauntlet::network::PacketAddEntity::PacketAddEntity(unsigned int assetId, unsigned int entityId,
                                                     const std::string &playerName) :
-        Packet(gauntlet::network::ADD_ENTITY),
+        Packet(gauntlet::network::ADD_ENTITY, -1),
         assetId(assetId),
         entityId(entityId),
         playerName(playerName) { }
 
-gauntlet::network::PacketAddEntity::PacketAddEntity(t_rawdata *data) :
-        Packet(gauntlet::network::ADD_ENTITY) {
-    this->deserialize(data);
+gauntlet::network::PacketAddEntity::PacketAddEntity(const s_socketData &data) :
+        Packet(gauntlet::network::ADD_ENTITY, data.fd) {
+    this->deserialize(data.data);
 }
 
 t_rawdata *gauntlet::network::PacketAddEntity::serialize() const {

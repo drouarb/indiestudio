@@ -11,8 +11,14 @@
 #include <netinet/in.h>
 #include <vector>
 #include <mutex>
+#include "ISocketDisconnectionListener.hh"
 
 #define BUFFER_SIZE     4096
+
+struct s_socketData {
+    int fd;
+    std::vector<unsigned char>* data;
+};
 
 namespace gauntlet {
     namespace network {
@@ -32,19 +38,24 @@ namespace gauntlet {
             Socket(in_port_t port);
             Socket(const std::string &address, in_port_t port);
             ~Socket();
+            void unlock();
             void send(std::vector<unsigned char>* data);
-            std::vector<unsigned char>* recv();
+            s_socketData recv();
             SocketType getType() const;
+            void setDisconnectionListener(ISocketDisconnectionListener *listener);
 
         private:
-            std::vector<unsigned char>* recv(int fd, int loop);
+            void notifyDisconnection(int fd);
+            s_socketData recv(int fd);
 
         private:
+            int pipe[2];
             SocketType type;
             struct sockaddr_in sock;
             int sockfd;
             std::vector<s_client> clients;
             std::mutex lock;
+            ISocketDisconnectionListener *disconnectionListener;
         };
     }
 }

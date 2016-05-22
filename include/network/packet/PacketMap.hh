@@ -18,7 +18,7 @@ namespace gauntlet {
             } __attribute__((packed));
 
         public:
-            PacketMap(t_rawdata *data);
+            PacketMap(const s_socketData &data);
             PacketMap(unsigned int mapId);
             virtual ~PacketMap() { };
 

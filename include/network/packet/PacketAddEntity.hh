@@ -21,8 +21,8 @@ namespace gauntlet {
                 char namestart;
             };
         public:
-            PacketAddEntity(t_rawdata *data);
-            PacketAddEntity(unsigned int packetId, unsigned int entityId, const std::string &playerName);
+            PacketAddEntity(const s_socketData &data);
+            PacketAddEntity(unsigned int assetId, unsigned int entityId, const std::string &playerName);
             virtual ~PacketAddEntity() { };
 
             virtual t_rawdata* serialize() const;

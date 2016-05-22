@@ -6,12 +6,12 @@
 #include "network/packet/PacketMap.hh"
 
 gauntlet::network::PacketMap::PacketMap(unsigned int mapId) :
-        Packet(gauntlet::network::MAP),
+        Packet(gauntlet::network::MAP, -1),
         mapId(mapId) { }
 
-gauntlet::network::PacketMap::PacketMap(t_rawdata *data) :
-        Packet(gauntlet::network::MAP) {
-    this->deserialize(data);
+gauntlet::network::PacketMap::PacketMap(const s_socketData &data) :
+        Packet(gauntlet::network::MAP, data.fd) {
+    this->deserialize(data.data);
 }
 
 t_rawdata *gauntlet::network::PacketMap::serialize() const {

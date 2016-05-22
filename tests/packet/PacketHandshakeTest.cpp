@@ -7,6 +7,7 @@
 #include <assert.h>
 
 int main() {
+    s_socketData data;
     std::cout << "Testing PacketHandshake" << std::endl;
 
     std::cout << "->Serialisation/Deserialitation" << std::endl;
@@ -14,7 +15,7 @@ int main() {
     gauntlet::network::PacketHandshake packetHandshake(rand() % 2, rand() % 2, rand() % 2, rand() % 2,
     rand() % 255, rand() % 255);
 
-    t_rawdata *data = packetHandshake.serialize();
+    data.data = packetHandshake.serialize();
 
     gauntlet::network::PacketHandshake packetHandshake1(data);
 

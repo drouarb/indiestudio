@@ -19,8 +19,8 @@ namespace gauntlet {
             } __attribute__((packed));
 
         public:
-            PacketDisconnect(const std::string &message);
-            PacketDisconnect(t_rawdata *data);
+            PacketDisconnect(const std::string &message, int fd = -1);
+            PacketDisconnect(const s_socketData &data);
             virtual ~PacketDisconnect() { }
 
             virtual t_rawdata* serialize() const;

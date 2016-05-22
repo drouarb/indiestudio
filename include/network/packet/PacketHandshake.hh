@@ -19,7 +19,7 @@ namespace gauntlet {
             } __attribute__((packed));
 
         public:
-            PacketHandshake(t_rawdata *data);
+            PacketHandshake(const s_socketData &data);
             PacketHandshake(bool warrior, bool wizard, bool valkyrie, bool elf, unsigned char maxPlayers,
                             unsigned char connectedPlayers);
 
