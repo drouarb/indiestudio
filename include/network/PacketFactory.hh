@@ -24,6 +24,7 @@ namespace gauntlet {
             ~PacketFactory();
 
             void send(const Packet &packet);
+            void send(const Packet &packet, int fd);
             void recv();
             void stop();
 

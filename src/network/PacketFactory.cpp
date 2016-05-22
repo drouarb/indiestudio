@@ -61,6 +61,12 @@ void gauntlet::network::PacketFactory::send(const Packet &packet) {
     delete (data);
 }
 
+void gauntlet::network::PacketFactory::send(const Packet &packet, int fd) {
+    t_rawdata *data = packet.serialize();
+    socket->send(data, fd);
+    delete (data);
+}
+
 void gauntlet::network::PacketFactory::recv() {
     s_socketData data;
     PacketId id;
