@@ -5,6 +5,7 @@
 #include <execinfo.h>
 #include <cstddef>
 #include <cstdio>
+#include <unistd.h>
 #include "StackTrace.h"
 
 void StackTrace::displayStackTrace()
@@ -13,6 +14,6 @@ void StackTrace::displayStackTrace()
   int size;
 
   size = backtrace(array, 128);
-  backtrace_symbols_fd(array, 128, stderr);
+  backtrace_symbols_fd(array, 128, STDERR_FILENO);
 }
 
