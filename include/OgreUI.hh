@@ -35,6 +35,7 @@
 namespace gauntlet
 {
   enum EffectType : int;
+  class Effect;
 }
 
 class OgreUI
