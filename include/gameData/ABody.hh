@@ -11,19 +11,25 @@
 #ifndef ABODY_HH_
 # define ABODY_HH_
 
+#include "Math.hh"
 #include <tuple>
 
 namespace gauntlet
 {
+    namespace world {
+    class World;
+    };
+
   class ABody
   {
   protected:
-    bool			collideActive;
-    int				id;
+    bool			            collideActive;
+    int				            id;
     std::pair<double, double>	coord;
     std::pair<double, double>	size;
-    short			orientation;
-    std::string			name;
+    short			            orientation;
+    std::string			        name;
+    world::World		        *world;
   public:
     ABody(int nid);
     virtual ~ABody();
@@ -33,7 +39,7 @@ namespace gauntlet
     virtual void			changeOrientation(short norient);
     virtual void			setName(const std::string& name);
     virtual void			setCollide(bool ncollide);
-
+    virtual world::World    *getWorld();
     virtual std::pair<double, double> const &	getPos() const;
     virtual std::pair<double, double> const &	getSize() const;
     virtual short			getOrientation() const;
@@ -41,6 +47,7 @@ namespace gauntlet
     virtual bool			getCollide() const;
     virtual const std::string&		getName() const;
     virtual ABody			*clone(int id) const = 0;
+    std::pair<double, double> pointInFront(double dist);
   };
 
 };

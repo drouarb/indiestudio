@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 11:46:42 2016 Alexis Trouve
-// Last update Sun May 22 16:03:32 2016 Alexis Trouve
+// Last update Sun May 22 19:07:34 2016 Esteban Lewis
 //
 
 #include "BasicIA.hh"
@@ -80,7 +80,7 @@ void			BasicIA::launchIA(Actor *actor)
   Player			*savedPlayer;
   Player			*tmpPlayer;
 
-  bodys = world->getCollider().giveBodyInAreaCircle(actor->getPos().first, actor->getPos().second, CHECK_DIST);
+  bodys = world->getCollider().giveBodyInAreaCircle(actor->getPos().first, actor->getPos().second, CHECK_DIST, 0, 0);
   it1 = bodys.begin();
   savedPlayer = NULL;
   while (it1 != bodys.end())

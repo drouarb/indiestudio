@@ -1,3 +1,13 @@
+//
+// World.hh for indie in /home/lewis_e/rendu/cpp/cpp_indie_studio
+// 
+// Made by Esteban Lewis
+// Login   <lewis_e@epitech.net>
+// 
+// Started on  Mon May  9 14:55:06 2016 Esteban Lewis
+// Last update Sun May 22 18:55:57 2016 Alexis Trouve
+//
+
 #ifndef WORLD_HH_
 # define WORLD_HH_
 
@@ -15,7 +25,7 @@ namespace			gauntlet
     class			World
     {
     private:
-      Collider			collider;
+      Collider			*collider;
       BodyFactory		*Factory;
       std::vector<BasicIA*>	IAs;
       std::list<ABody*>		bodys;
@@ -32,6 +42,7 @@ namespace			gauntlet
       void			gameLoop();
       void			tester();
       void			applyMoveActor();
+      void			applyIA();
       void			notifyDeath(ABody *body);
       void			addNewBody(double xpos, double ypos, const std::string& name, short orientation);
       Collider&			getCollider();

@@ -21,7 +21,7 @@ namespace gauntlet
   };
 
   class Actor;
-  
+
   class ASpell
   {
   protected:
@@ -31,9 +31,7 @@ namespace gauntlet
   public:
     ASpell(int nid, std::string nname, double ncastTime);
     virtual ~ASpell();
-    virtual void	 apply(double orientation, world::World &world,
-			       gauntlet::Actor *SpellCaster,
-			       std::pair<double, double> coordPointed) = 0;
+    virtual void	 cast(Actor *caster) = 0;
   };
 };
 
