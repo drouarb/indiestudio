@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:55:06 2016 Esteban Lewis
-// Last update Sun May 22 10:45:52 2016 Alexis Trouve
+// Last update Sun May 22 16:04:33 2016 Alexis Trouve
 //
 
 #ifndef WORLD_HH_
@@ -16,6 +16,7 @@
 #include "ABody.hh"
 #include "Collider.hh"
 #include "BodyFactory.hh"
+#include "BasicIA.hh"
 
 namespace			gauntlet
 {
@@ -26,9 +27,11 @@ namespace			gauntlet
     private:
       Collider			collider;
       BodyFactory		*Factory;
+      std::vector<BasicIA*>	IAs;
       std::list<ABody*>		bodys;
       double			sizeX;
       double			sizeY;
+      //network::PacketFactory	packetFactory;
     public:
       World();
       ~World();
@@ -39,6 +42,8 @@ namespace			gauntlet
       void			gameLoop();
       void			tester();
       void			applyMoveActor();
+      void			notifyDeath(ABody *body);
+      void			addNewBody(double xpos, double ypos, const std::string& name, short orientation);
       Collider&			getCollider();
     };
   };

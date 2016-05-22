@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 16:50:32 2016 Alexis Trouve
-// Last update Fri May 20 14:23:31 2016 Alexis Trouve
+// Last update Sun May 22 16:09:20 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -16,9 +16,10 @@ using namespace gauntlet;
 BodyFactory::BodyFactory()
 {}
 
-BodyFactory::BodyFactory(world::World *nworld)
+BodyFactory::BodyFactory(world::World *nworld, std::vector<world::BasicIA*>& nIAs)
 {
   world = nworld;
+  IAs = nIAs;
   fillCreatureTab();
   fillGameObjectTab();
   fillPlayerTab();
@@ -128,6 +129,7 @@ void			BodyFactory::setValkyrie()
 
 void			BodyFactory::setDraugr()
 {
+  unsigned int		i;
   Creature		*crea;
 
   crea = new Creature(-1, world);
@@ -142,6 +144,13 @@ void			BodyFactory::setDraugr()
   crea->changeSize(std::make_pair(10.0, 10.0));
   crea->changeOrientation(0);
   bodyTab.push_back(crea);
+  i = 0;
+  while (i < IAs.size())
+    {
+      if (IAs[i]->getName() == "BasicIA")
+	IAs[i]->setNewIA(crea);
+      ++i;
+    }
 }
 
 void			BodyFactory::setPorteLight()
