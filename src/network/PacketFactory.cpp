@@ -13,6 +13,7 @@
 #include <network/listener/PacketAddEntityListener.hh>
 #include <network/listener/PacketSelectPlayerListener.hh>
 #include <iostream>
+#include <network/packet/PacketMoveEntity.hh>
 #include "network/PacketFactory.hh"
 #include "network/PacketFactorySocketDisconnectionListener.hh"
 
@@ -57,6 +58,12 @@ void gauntlet::network::PacketFactory::unregisterListener(PacketListener *listen
 void gauntlet::network::PacketFactory::send(const Packet &packet) {
     t_rawdata *data = packet.serialize();
     socket->send(data);
+    delete (data);
+}
+
+void gauntlet::network::PacketFactory::send(const Packet &packet, int fd) {
+    t_rawdata *data = packet.serialize();
+    socket->send(data, fd);
     delete (data);
 }
 
@@ -109,7 +116,8 @@ const std::map<gauntlet::network::PacketId, gauntlet::network::PacketFactory::cr
         {DISCONNECT,    &PacketFactory::createPacket<PacketDisconnect>},
         {HANDSHAKE,     &PacketFactory::createPacket<PacketHandshake>},
         {PLAYER_SELECT, &PacketFactory::createPacket<PacketSelectPlayer>},
-        {ADD_ENTITY,    &PacketFactory::createPacket<PacketAddEntity>}
+        {ADD_ENTITY,    &PacketFactory::createPacket<PacketAddEntity>},
+        {MOVE_ENTITY,   &PacketFactory::createPacket<PacketMoveEntity>}
 };
 
 
