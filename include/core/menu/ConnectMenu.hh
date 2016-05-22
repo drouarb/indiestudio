@@ -15,12 +15,14 @@ namespace			gauntlet
 
       void			draw();
       void			undraw();
+      void			setPort(std::string port);
 
       std::string		ip;
 
     protected:
       std::map<int, void (ConnectMenu::*)(struct t_hitItem &)> funs;
       std::vector<std::string>	serverTypes;
+      bool			init;
 
       void			doButton(int, struct t_hitItem &);
 

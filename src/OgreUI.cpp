@@ -450,13 +450,10 @@ void OgreUI::itemSelected(OgreBites::SelectMenu *menu)
 {
   if (obs != NULL)
     {
-      if (!menu->isExpanded())
-	{
-	  struct t_hitItem m;
-	  m.type = MenuItemType::SELECTMENU;
-	  m.data = menu->getSelectedItem();
-	  obs->itemClick(std::atoi(menu->getName().c_str()), m);
-	}
+      struct t_hitItem m;
+      m.type = MenuItemType::SELECTMENU;
+      m.data = menu->getSelectedItem();
+      obs->itemClick(std::atoi(menu->getName().c_str()), m);
     }
 }
 
@@ -532,7 +529,7 @@ void OgreUI::addTextbox(gauntlet::core::Position pos, int id, std::string text,
 {
   std::stringstream ss;
   ss << id;
-  mTrayMgr->createTextBox(posmap[pos], ss.str(), text, 300, 100);
+  mTrayMgr->createTextBox(posmap[pos], ss.str(), text, 300, 80);
 }
 
 void OgreUI::addLabel(gauntlet::core::Position pos, int id, std::string text,

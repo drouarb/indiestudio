@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:23:51 2016 Esteban Lewis
-// Last update Sat May 21 13:41:22 2016 Esteban Lewis
+// Last update Sun May 22 10:38:20 2016 Esteban Lewis
 //
 
 #ifndef  MENU_HH_
@@ -36,11 +36,12 @@ namespace			gauntlet
       virtual bool		buttonClick(int buttonId, struct t_hitItem &);
       void			setOpen(bool);
       bool			getOpen();
+      bool			openSubMenu();
 
     protected:
       virtual void		doButton(int id, struct t_hitItem &) = 0;
-      void			drawButtons();
-      void			undrawButtons();
+      virtual void		drawButtons();
+      virtual void		undrawButtons();
 
       int			idStart;
       Core &			core;

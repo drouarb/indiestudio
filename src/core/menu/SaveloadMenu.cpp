@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:09:17 2016 Esteban Lewis
-// Last update Sat May 21 17:42:39 2016 Esteban Lewis
+// Last update Sun May 22 13:14:32 2016 Esteban Lewis
 //
 
 #include <dirent.h>
@@ -112,7 +112,7 @@ gauntlet::core::SaveloadMenu::doLoad(struct t_hitItem & item)
   else
     {
       setOpen(false);
-      //TODO: play?
+      //TODO: play
       core.load(selected);
     }
 }

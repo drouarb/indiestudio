@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:13:44 2016 Esteban Lewis
-// Last update Sat May 21 23:16:20 2016 Esteban Lewis
+// Last update Sun May 22 13:24:51 2016 Esteban Lewis
 //
 
 #include <math.h>
@@ -20,6 +20,9 @@ gauntlet::core::Core::Core() : keepGoing(true), observer(new CoreUIObserver(*thi
   menu = new MainMenu(*this, MENU_ID_START, NULL);
   ogreThread = NULL;
   pc = NULL;
+  serverAddr.first = "";
+  serverAddr.second = 0;
+  packetf = NULL;
   world::Math::init();
 
   ogre.setIObserver(observer);

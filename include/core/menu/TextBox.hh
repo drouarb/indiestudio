@@ -19,6 +19,9 @@ namespace			gauntlet
 
     protected:
       std::string		text;
+      std::string		caption;
+
+      void			undrawButtons();
     };
   };
 };

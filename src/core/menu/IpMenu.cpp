@@ -8,6 +8,10 @@ gauntlet::core::IpMenu::IpMenu(Core & core, int idStart, Menu * parent) :
 {
   buttons.push_back(Control(BUTTON, "OK", NULL, PCENTER,
 			    idStart + buttons.size(), core.ogre));
+  buttons.push_back(Control(BUTTON, "Cancel", NULL, PCENTER,
+			    idStart + buttons.size(), core.ogre));
+
+  submenus.push_back(new MessageBox(core, idStart + MENU_ID_LAYER, this, ""));
 }
 
 gauntlet::core::IpMenu::~IpMenu()
@@ -28,6 +32,29 @@ gauntlet::core::IpMenu::undraw()
 void
 gauntlet::core::IpMenu::doButton(int btnId, struct t_hitItem & item)
 {
-  static_cast<ConnectMenu *>(parent)->ip = text;
-  setOpen(false);
+  if (btnId == buttons[1].getId())
+    {
+      int dotCount = 0;
+      for (int i = 0; i < text.length(); ++i)
+	{
+	  if (text[i] == '.')
+	    dotCount++;
+	}
+      if (dotCount != 3)
+	{
+	  static_cast<MessageBox *>(submenus[0])->setMsg("Incorrect I.P. address.");
+	  submenus[0]->setOpen(true);
+	  return ;
+	}
+      
+      static_cast<ConnectMenu *>(parent)->ip = text;
+      setOpen(false);
+      static_cast<ConnectMenu *>(parent)->setPort(port);
+    }
+  else if (btnId == buttons[2].getId())
+    {
+      static_cast<ConnectMenu *>(parent)->ip = "";
+      setOpen(false);
+      static_cast<ConnectMenu *>(parent)->setPort(port);
+    }
 }

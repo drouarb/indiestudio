@@ -10,25 +10,25 @@
 
 gauntlet::network::Socket::Socket(in_port_t port) {
     if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) == -1)
-        throw std::logic_error("Can't open socket");
+        throw std::runtime_error("Can't open socket");
     sock.sin_family = AF_INET;
     sock.sin_addr.s_addr = INADDR_ANY;
     sock.sin_port = htons(port);
     if (bind(sockfd, (struct sockaddr *) &sock, sizeof(sock)) == -1)
-        throw std::logic_error("Can't bind port");
+        throw std::runtime_error("Can't bind port");
     if (listen(sockfd, 0) == -1)
-        throw std::logic_error("Listen error");
+        throw std::runtime_error("Listen error");
     type = SERVER;
 }
 
 gauntlet::network::Socket::Socket(const std::string &address, in_port_t port) {
     if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) == -1)
-        throw std::logic_error("Can't open socket");
+        throw std::runtime_error("Can't open socket");
     sock.sin_family = AF_INET;
     sock.sin_port = htons(port);
     sock.sin_addr.s_addr = inet_addr(address.c_str());
     if (connect(sockfd, (struct sockaddr *) &sock, sizeof(sock)) == -1)
-        throw std::logic_error("Connection error");
+        throw std::runtime_error("Connection error");
     type = CLIENT;
 }
 

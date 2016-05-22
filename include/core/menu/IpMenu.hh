@@ -16,6 +16,8 @@ namespace			gauntlet
       void			draw();
       void			undraw();
 
+      std::string		port;
+
     protected:
       std::map<int, void (IpMenu::*)(struct t_hitItem &)> funs;
 

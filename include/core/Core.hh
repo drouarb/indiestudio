@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 10:59:47 2016 Esteban Lewis
-// Last update Sat May 21 23:16:15 2016 Esteban Lewis
+// Last update Sun May 22 13:36:35 2016 Esteban Lewis
 //
 
 #ifndef  CORE_HH_
@@ -23,6 +23,7 @@
 # include "Position.hh"
 # include "OgreUI.hh"
 # include "Thread.hpp"
+# include "PacketFactory.hh"
 
 namespace			gauntlet
 {
@@ -49,6 +50,8 @@ namespace			gauntlet
       OgreUI			ogre;
       Conf			conf;
       PlayerController *	pc;
+      std::pair<std::string, int> serverAddr;
+      network::PacketFactory *	packetf;
 
     private:
       bool			keepGoing;
