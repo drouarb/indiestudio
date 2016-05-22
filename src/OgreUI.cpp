@@ -90,6 +90,14 @@ void OgreUI::createFrameListener(void)
 
 void OgreUI::destroyScene(void)
 {
+  if (mSceneMgr)
+    {
+      this->mSceneMgr->destroyAllAnimations();
+      this->mSceneMgr->destroyAllEntities();
+      this->mSceneMgr->destroyAllCameras();
+      this->mSceneMgr->destroyAllLights();
+      this->mSceneMgr->destroyAllParticleSystems();
+    }
 }
 
 void OgreUI::createViewports(void)
@@ -150,13 +158,13 @@ bool OgreUI::setup(void)
 {
   mRoot = new Ogre::Root(mPluginsCfg);
 #ifdef OGRE_STATIC
-    mRoot->installPlugin(new Ogre::GLPlugin());
-    mRoot->installPlugin(new Ogre::ParticleFXPlugin());
-    mRoot->installPlugin(new Ogre::BspSceneManagerPlugin());
-    mRoot->installPlugin(new Ogre::PCZPlugin());
-    mRoot->installPlugin(new Ogre::OctreeZonePlugin());
-    mRoot->installPlugin(new Ogre::OctreePlugin());
-    mRoot->installPlugin(new OgreOggSound::OgreOggSoundPlugin());
+  mRoot->installPlugin(new Ogre::GLPlugin());
+  mRoot->installPlugin(new Ogre::ParticleFXPlugin());
+  mRoot->installPlugin(new Ogre::BspSceneManagerPlugin());
+  mRoot->installPlugin(new Ogre::PCZPlugin());
+  mRoot->installPlugin(new Ogre::OctreeZonePlugin());
+  mRoot->installPlugin(new Ogre::OctreePlugin());
+  mRoot->installPlugin(new OgreOggSound::OgreOggSoundPlugin());
 #endif
   setupResources();
   bool carryOn = configure();
@@ -518,10 +526,10 @@ void OgreUI::updateItemValue(int itemid, struct t_hitItem item)
 	{
 	  OgreBites::CheckBox *c = static_cast<OgreBites::CheckBox *>(mTrayMgr->getWidget(
 		  ss.str()));
-		if (item.state == CHECKED)
-		  c->setChecked(true, true);
-		else
-		  c->setChecked(false, true);
+	  if (item.state == CHECKED)
+	    c->setChecked(true, true);
+	  else
+	    c->setChecked(false, true);
 	}
       break;
     }
@@ -540,7 +548,7 @@ void OgreUI::addLabel(gauntlet::core::Position pos, int id, std::string text,
 {
   std::stringstream ss;
   ss << id;
-  mTrayMgr->createLabel(posmap[pos], ss.str(), text);
+  mTrayMgr->createLabel(posmap[pos], ss.str(), text, 300);
 }
 
 void OgreUI::hideItem(int id)
@@ -596,7 +604,7 @@ void OgreUI::playAnimation(int animationId, int entityId, bool loop)
 
 std::pair<int, int> OgreUI::getSizeWindow()
 {
-  return (std::pair<int, int >(mWindow->getWidth(), mWindow->getHeight()));
+  return (std::pair<int, int>(mWindow->getWidth(), mWindow->getHeight()));
 }
 
 void OgreUI::showBackground()
@@ -611,7 +619,7 @@ void OgreUI::hideBackground()
 
 void OgreUI::initSound()
 {
-  this->mSoundManager =  OgreOggSound::OgreOggSoundManager::getSingletonPtr();
+  this->mSoundManager = OgreOggSound::OgreOggSoundManager::getSingletonPtr();
   mSoundManager->init();
 }
 
