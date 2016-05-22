@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 14:44:15 2016 Alexis Trouve
-// Last update Fri May 20 14:42:33 2016 Alexis Trouve
+// Last update Fri May 20 18:28:37 2016 Alexis Trouve
 //
 
 #include "Collider.hh"
@@ -63,6 +63,15 @@ bool	Collider::setNewBody(ABody *body)
 				  body->getSize().first, body->getSize().second) == false)
     return (false);
   return (dynamicLayer->setNewBody(body));
+}
+
+bool	Collider::setNewBodyNoCheckEntity(ABody *body)
+{
+  if (physicLayer->checkCoordSize(body->getPos().first, body->getPos().second,
+				  body->getSize().first, body->getSize().second) == false)
+    return (false);
+  dynamicLayer->forceSetBody(body);
+  return (true);
 }
 
 void	Collider::suprBody(int id)

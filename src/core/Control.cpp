@@ -9,7 +9,6 @@
 //
 
 #include <iostream>
-#include <stdexcept>
 #include "Control.hh"
 
 gauntlet::core::Control::Control(MenuItemType type, std::string const & str, void * param,
@@ -112,7 +111,7 @@ gauntlet::core::Control::undraw()
 {
   if (displayed)
     {
-      ogre.remove(id);
+      ogre.removeItem(id);
       displayed = false;
     }
 }

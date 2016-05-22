@@ -1,6 +1,7 @@
 #include <OIS/OIS.h>
 #include <iostream>
 #include "OgreUI.hh"
+#include "Math.hh"
 
 using namespace gauntlet;
 using namespace core;
@@ -37,7 +38,7 @@ bool OgreUI::configure(void)
 {
   if (mRoot->showConfigDialog())
     {
-      mWindow = mRoot->initialise(true, "Guantlet");
+      mWindow = mRoot->initialise(true, "Gauntlet");
       return true;
     }
   else
@@ -50,13 +51,13 @@ void OgreUI::chooseSceneManager(void)
   mSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC);
   mOverlaySystem = new Ogre::OverlaySystem();
   mSceneMgr->addRenderQueueListener(mOverlaySystem);
+  worldNode = mSceneMgr->getRootSceneNode()->createChildSceneNode("World");
 }
 
 void OgreUI::createCamera(void)
 {
   mCamera = mSceneMgr->createCamera("PlayerCam");
   mCamera->setPosition(Ogre::Vector3(0, 0, 80));
-  mCamera->lookAt(Ogre::Vector3(0, 0, -300));
   mCamera->setNearClipDistance(5);
   mCameraMan = new OgreBites::SdkCameraMan(mCamera);
 }
@@ -194,7 +195,6 @@ bool OgreUI::frameRenderingQueued(const Ogre::FrameEvent &evt)
   mMouse->capture();
   mTrayMgr->refreshCursor();
   mTrayMgr->frameRenderingQueued(evt);
-
   for (auto animation : this->animationsArray)
     {
       Ogre::AnimationState *t2 = animation.second;
@@ -210,7 +210,7 @@ bool OgreUI::frameRenderingQueued(const Ogre::FrameEvent &evt)
 
 bool OgreUI::keyPressed(const OIS::KeyEvent &arg)
 {
-  mCameraMan->injectKeyDown(arg);
+//  mCameraMan->injectKeyDown(arg);
   if (obs != NULL)
     if (keymap.count(arg.key) > 0)
       {
@@ -221,7 +221,8 @@ bool OgreUI::keyPressed(const OIS::KeyEvent &arg)
 
 bool OgreUI::keyReleased(const OIS::KeyEvent &arg)
 {
-  mCameraMan->injectKeyUp(arg);
+  //mCameraMan->injectKeyUp(arg);
+
   if (obs != NULL)
     if (keymap.count(arg.key) > 0)
       obs->keyUp(keymap[arg.key]);
@@ -230,8 +231,8 @@ bool OgreUI::keyReleased(const OIS::KeyEvent &arg)
 
 bool OgreUI::mouseMoved(const OIS::MouseEvent &arg)
 {
+//  mCameraMan->injectMouseMove(arg);
   mTrayMgr->injectMouseMove(arg);
-  mCameraMan->injectMouseMove(arg);
   if (obs != NULL)
     obs->mouseMove(arg.state.X.abs, arg.state.Y.abs);
   return true;
@@ -283,7 +284,6 @@ void OgreUI::windowClosed(Ogre::RenderWindow *rw)
 
 void OgreUI::buttonHit(OgreBites::Button *button)
 {
-
   if (obs != NULL)
     {
       struct t_hitItem but;
@@ -355,6 +355,7 @@ void OgreUI::initMap()
 
   keymap[OIS::KC_PERIOD] = IUIObserver::KEY_PERIOD;
   keymap[OIS::KC_SEMICOLON] = IUIObserver::KEY_PERIOD;
+
   posmap[PCENTER] = OgreBites::TL_CENTER;
   posmap[PTOPRIGHT] = OgreBites::TL_TOPRIGHT;
   posmap[PTOPLEFT] = OgreBites::TL_TOPLEFT;
@@ -368,7 +369,7 @@ void OgreUI::initMap()
   mousemap[OIS::MB_Right] = IUIObserver::KEY_MOUSE2;
 }
 
-void OgreUI::remove(int id)
+void OgreUI::removeItem(int id)
 {
   std::stringstream ss;
   ss << id;
@@ -627,13 +628,61 @@ void OgreUI::stopSound(int id)
   mSoundManager->getSound(ss.str())->stop();
 }
 
+Ogre::SceneManager *OgreUI::getSceneManager()
+{
+  return this->mSceneMgr;
+}
+
+void OgreUI::addRootEntity(int entityId, std::string &name, int x, int y,
+			   short degres, int texture_id)
+{
+  std::stringstream ss;
+  ss << entityId;
+
+  Ogre::Entity *e = mSceneMgr->createEntity(ss.str(), name);
+  Ogre::SceneNode *s = worldNode->createChildSceneNode("PLayerNode");
+  this->rootNode = s;
+  s->setPosition(x, y, 0);
+  s->yaw(Ogre::Radian(world::Math::toRad(degres)));
+  rootNode->attachObject(e);
+  rootNode->attachObject(mCamera);
+  mCamera->pitch(Ogre::Degree(-89));
+  mCamera->yaw(Ogre::Degree(20));
+}
+
+void OgreUI::addWorldEntity(int entityId, std::string &name, int x, int y,
+			    short degres, int texture_id)
+{
+  std::stringstream ss;
+  ss << entityId;
+
+  Ogre::Entity *e = mSceneMgr->createEntity(ss.str(), name);
+  Ogre::SceneNode *s = worldNode->createChildSceneNode(ss.str());
+  s->setPosition(x, y, 0);
+  s->yaw(Ogre::Radian(world::Math::toRad(degres)));
+  s->attachObject(e);
+}
 
 
+void OgreUI::setQuality(int percent)
+{
+  this->quality = percent;
+}
+
+int OgreUI::triggerEffect(int id, gauntlet::EffectType type, std::pair<double, double> coord)
+{
+  gauntlet::Effect *effect = new gauntlet::Effect(this, type, id + "", coord, this->quality);
 
 
+  return 0;
+}
 
-
-
-
+void OgreUI::removeEntity(int id)
+{
+  std::stringstream ss;
+  ss << id;
+  mSceneMgr->destroyEntity(ss.str());
+  mSceneMgr->destroySceneNode(ss.str());
+}
 
 
