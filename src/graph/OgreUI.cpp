@@ -740,7 +740,7 @@ void OgreUI::addCameraTracker(int id)
 {
   std::stringstream ss;
   ss << id;
-  Ogre::SceneNode *s = mSceneMgr->getSceneNode(ss.str());rootNode->attachObject(e);
+  Ogre::SceneNode *s = mSceneMgr->getSceneNode(ss.str());
   s->attachObject(mCamera);
   mCamera->pitch(Ogre::Degree(-89));
   mCamera->yaw(Ogre::Degree(20));
