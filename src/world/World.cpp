@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Sun May 22 20:47:16 2016 Esteban Lewis
+// Last update Mon May 23 21:27:28 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -18,7 +18,7 @@
 using namespace	gauntlet;
 using namespace world;
 
-World::World()
+World::World(GameServer *ngameserver)
 {
   IAs.push_back(new BasicIA(this));
   Factory = new BodyFactory(this, IAs);
@@ -26,6 +26,7 @@ World::World()
   Math::init();
   sizeX = 0;
   sizeY = 0;
+  gameServer = ngameserver;
 }
 
 World::~World()
@@ -96,11 +97,6 @@ void	World::loadGame(std::string const & file)
     }
 }
 
-void	World::initNetwork()
-{
-  
-}
-
 void	World::applyMoveActor()
 {
   std::list<ABody*>::iterator	it1;
@@ -165,6 +161,7 @@ void	World::addNewBody(double xpos, double ypos, const std::string& name, short 
     throw (std::runtime_error("'" + name + "': wrong name"));
   body->changePos(std::make_pair(xpos, ypos));
   body->changeOrientation(orientation);
+  gameServer->sendAddEntity(body->getPos(), body->getOrientation());
   bodys.push_back(body);
   collider->setNewBodyNoCheckEntity(body);
 }
