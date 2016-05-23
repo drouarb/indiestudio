@@ -69,6 +69,40 @@ material Ogre/Tusks
 	}
 }
 
+material Ogre/sol
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.7 0.7 0.6
+
+			texture_unit
+			{
+				texture sol.jpg
+			}
+		}
+	}
+}
+
+material Examples/SceneSkyBox
+{
+        technique
+        {
+                pass
+                {
+                        lighting off
+                        depth_write off
+
+                        texture_unit
+                        {
+                                cubic_texture  Skybox.png Skybox.png   Skybox.png   Skybox.png   Skybox.png  Skybox.png separateUV
+                                tex_address_mode clamp
+                        }
+                }
+        }
+}
+
 material Ogre/Eyes
 {
 	technique

@@ -16,6 +16,7 @@ namespace gauntlet
     DOOR,
     TUDOURHOUSE,
     WAGEN,
+    PLAN,
     CHESTCARTOON,
     CHEST,
     ROCK
