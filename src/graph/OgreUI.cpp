@@ -639,7 +639,7 @@ Ogre::SceneManager *OgreUI::getSceneManager()
   return this->mSceneMgr;
 }
 
-bool OgreUI::addRootEntity(int entityId, const std::string &name, int x, int y,
+bool OgreUI::addRootEntity(int entityId, int meshId, int x, int y,
 			   short angle, int texture_id)
 {
   std::stringstream ss;
@@ -647,7 +647,7 @@ bool OgreUI::addRootEntity(int entityId, const std::string &name, int x, int y,
   Ogre::Entity *e;
   try
     {
-      e = mSceneMgr->createEntity(ss.str(), name);
+      e = mSceneMgr->createEntity(ss.str(), meshmap[meshId]);
     }
   catch (Ogre::Exception & e)
     {
@@ -735,4 +735,16 @@ void OgreUI::moveEntity(int id, int x, int y, short degres)
   s->setPosition(x, y, 0);
   s->yaw(Ogre::Radian(world::Math::toRad(degres)));
 }
+
+void OgreUI::addCameraTracker(int id)
+{
+  std::stringstream ss;
+  ss << id;
+  Ogre::SceneNode *s = mSceneMgr->getSceneNode(ss.str());rootNode->attachObject(e);
+  s->attachObject(mCamera);
+  mCamera->pitch(Ogre::Degree(-89));
+  mCamera->yaw(Ogre::Degree(20));
+}
+
+
 
