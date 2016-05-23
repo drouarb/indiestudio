@@ -9,6 +9,7 @@ namespace gauntlet
 {
   enum EntityName
   {
+    NONE,
     OGREHEAD,
     NINJA,
     CUBE,
