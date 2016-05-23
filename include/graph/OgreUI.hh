@@ -30,6 +30,7 @@
 #include <core/Position.hh>
 #include <mutex>
 #include <graph/Effect.hh>
+#include <gameData/EntityName.hh>
 #include "IUIObserver.hh"
 
 namespace gauntlet
@@ -69,7 +70,7 @@ class OgreUI
   OgreBites::SdkTrayManager *mTrayMgr;
   OgreBites::SdkCameraMan *mCameraMan;
   OgreBites::ParamsPanel *mDetailsPanel;
-  std::map<int, std::string> meshmap;
+  std::map<gauntlet::EntityName , std::string> meshmap;
   bool mCursorWasVisible;
   bool mShutDown;
   OIS::InputManager *mInputManager;
@@ -85,9 +86,9 @@ class OgreUI
   bool setup();
 
 
-  bool addWorldEntity(int entityId, int meshid, int x, int y,
+  bool addWorldEntity(int entityId, gauntlet::EntityName meshid, int x, int y,
 		      short degres, int texture_id);
-  bool addRootEntity(int entityId, int meshId, int x, int y,
+  bool addRootEntity(int entityId, gauntlet::EntityName meshId, int x, int y,
 		     short degres, int texture_id);
 
   void initMap();
