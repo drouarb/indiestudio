@@ -69,6 +69,7 @@ class OgreUI
   OgreBites::SdkTrayManager *mTrayMgr;
   OgreBites::SdkCameraMan *mCameraMan;
   OgreBites::ParamsPanel *mDetailsPanel;
+  std::map<int, std::string> meshmap;
   bool mCursorWasVisible;
   bool mShutDown;
   OIS::InputManager *mInputManager;
@@ -84,7 +85,7 @@ class OgreUI
   bool setup();
 
 
-  bool addWorldEntity(int entityId, const std::string &name, int x, int y,
+  bool addWorldEntity(int entityId, int meshid, int x, int y,
 		      short degres, int texture_id);
   bool addRootEntity(int entityId, const std::string &name, int x, int y,
 		     short degres, int texture_id);
@@ -169,7 +170,7 @@ class OgreUI
 
   void setIObserver(gauntlet::core::IUIObserver *Obs);
 
-  void loadSound(int id, std::string &path);
+  void loadSound(int id, const std::string &path);
 
   void hideItem(int id);
 

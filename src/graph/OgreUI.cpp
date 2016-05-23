@@ -210,7 +210,7 @@ bool OgreUI::frameRenderingQueued(const Ogre::FrameEvent &evt)
 
 bool OgreUI::keyPressed(const OIS::KeyEvent &arg)
 {
-//  mCameraMan->injectKeyDown(arg);
+  mCameraMan->injectKeyDown(arg);
   if (obs != NULL)
     if (keymap.count(arg.key) > 0)
       {
@@ -221,7 +221,7 @@ bool OgreUI::keyPressed(const OIS::KeyEvent &arg)
 
 bool OgreUI::keyReleased(const OIS::KeyEvent &arg)
 {
-  //mCameraMan->injectKeyUp(arg);
+  mCameraMan->injectKeyUp(arg);
 
   if (obs != NULL)
     if (keymap.count(arg.key) > 0)
@@ -231,7 +231,7 @@ bool OgreUI::keyReleased(const OIS::KeyEvent &arg)
 
 bool OgreUI::mouseMoved(const OIS::MouseEvent &arg)
 {
-//  mCameraMan->injectMouseMove(arg);
+  mCameraMan->injectMouseMove(arg);
   mTrayMgr->injectMouseMove(arg);
   if (obs != NULL)
     obs->mouseMove(arg.state.X.abs, arg.state.Y.abs);
@@ -367,6 +367,12 @@ void OgreUI::initMap()
   posmap[PLEFT] = OgreBites::TL_LEFT;
   mousemap[OIS::MB_Left] = IUIObserver::KEY_MOUSE1;
   mousemap[OIS::MB_Right] = IUIObserver::KEY_MOUSE2;
+
+  meshmap[1] = "ogrehead.mesh";
+  meshmap[2] = "ninja.mesh";
+  meshmap[3] = "tudourhouse.mesh";
+  meshmap[4] = "door.mesh";
+  meshmap[5] = "cube.mesh";
 }
 
 void OgreUI::removeItem(int id)
@@ -391,7 +397,7 @@ void OgreUI::setIObserver(gauntlet::core::IUIObserver *Obs)
   this->obs = Obs;
 }
 
-void OgreUI::loadSound(int id, std::string &path)
+void OgreUI::loadSound(int id, const std::string &path)
 {
   std::stringstream ss;
   ss << id;
@@ -634,7 +640,7 @@ Ogre::SceneManager *OgreUI::getSceneManager()
 }
 
 bool OgreUI::addRootEntity(int entityId, const std::string &name, int x, int y,
-			   short degres, int texture_id)
+			   short angle, int texture_id)
 {
   std::stringstream ss;
   ss << entityId;
@@ -650,23 +656,24 @@ bool OgreUI::addRootEntity(int entityId, const std::string &name, int x, int y,
    Ogre::SceneNode *s = worldNode->createChildSceneNode("PLayerNode");
   this->rootNode = s;
   s->setPosition(x, y, 0);
-  s->yaw(Ogre::Radian(world::Math::toRad(degres)));
+  s->yaw(Ogre::Radian(world::Math::toRad(angle)));
   rootNode->attachObject(e);
+  s->setScale(0.5, 0.5, 0.5);
   rootNode->attachObject(mCamera);
   mCamera->pitch(Ogre::Degree(-89));
   mCamera->yaw(Ogre::Degree(20));
   return (true);
 }
 
-bool OgreUI::addWorldEntity(int entityId, const std::string &name, int x, int y,
-			    short degres, int texture_id)
+bool OgreUI::addWorldEntity(int entityId, int meshid, int x, int y,
+			    short angle, int texture_id)
 {
   std::stringstream ss;
   ss << entityId;
   Ogre::Entity *e;
   try
     {
-     e = mSceneMgr->createEntity(ss.str(), name);
+     e = mSceneMgr->createEntity(ss.str(), meshmap[meshid].c_str());
     }
   catch (Ogre::Exception & e)
     {
@@ -674,7 +681,9 @@ bool OgreUI::addWorldEntity(int entityId, const std::string &name, int x, int y,
     }
   Ogre::SceneNode *s = worldNode->createChildSceneNode(ss.str());
   s->setPosition(x, y, 0);
-  s->yaw(Ogre::Radian(world::Math::toRad(degres)));
+  s->setScale(0.5, 0.5, 0.5);
+  s->yaw(Ogre::Radian(world::Math::toRad(angle)));
+
   s->attachObject(e);
   return (true);
 }
