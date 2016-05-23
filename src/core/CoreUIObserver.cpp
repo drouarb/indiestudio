@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 10:56:08 2016 Esteban Lewis
-// Last update Sun May 22 00:11:10 2016 Esteban Lewis
+// Last update Mon May 23 16:06:41 2016 Esteban Lewis
 //
 
 #include "CoreUIObserver.hh"
@@ -42,7 +42,5 @@ void gauntlet::core::CoreUIObserver::itemClick(int buttonId, struct t_hitItem & 
 
 void gauntlet::core::CoreUIObserver::frameStarted()
 {
-
+  core.actionlists.doActions();
 }
-
-
