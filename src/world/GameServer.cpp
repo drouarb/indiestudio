@@ -5,9 +5,10 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Mon May 23 21:49:22 2016 Alexis Trouve
+// Last update Mon May 23 22:08:33 2016 Alexis Trouve
 //
 
+#include "PlayerChars.hh"
 #include "ServSelectPlayerListener.hh"
 #include "ServConnectListener.hh"
 #include "GameServer.hh"
@@ -18,6 +19,8 @@ using namespace network;
 
 GameServer::GameServer(const std::string& filePath, in_port_t port)
 {
+  unsigned int	i;
+
   world = new World(this);;
   world->loadGame(filePath);
   packetFact = new PacketFactory(port);
@@ -29,6 +32,13 @@ GameServer::GameServer(const std::string& filePath, in_port_t port)
   listeners.push_back(new ServSelectPlayerListener(this));
   maxPlayers = 4;
   coPlayers = 0;
+  i = 0;
+  while (i < listeners.size())
+    {
+      packetFact->registerListener(listeners[i]);
+      ++i;
+    }
+  listenThread = new std::thread(&GameServer::listen, std::ref(*this));
 }
 
 GameServer::~GameServer()
@@ -52,22 +62,22 @@ void		GameServer::selectPlayerAnswer(const network::PacketSelectPlayer *packet)
   if (packet->getWarrior() == true)
     {
       nbrChoose++;
-      iTaken = WARRIOR;
+      iTaken = PlayerChar::BARBARIAN;
     }
   else if (packet->getWizard() == true)
     {
       nbrChoose++;
-      iTaken = WIZARD;
+      iTaken = PlayerChar::MAGE;
     }
   else if (packet->getValkyrie() == true)
     {
       nbrChoose++;
-      iTaken = VALKYRIE;
+      iTaken = PlayerChar::VALKYRIE;
     }
   else if (packet->getElf() == true)
     {
       nbrChoose++;
-      iTaken = ELF;
+      iTaken = PlayerChar::RANGER;
     }
   if (nbrChoose == 1)
     {
@@ -82,8 +92,8 @@ void			GameServer::notifyTake()
   PacketHandshake	*packet;
   unsigned int		i;
 
-  packet = new network::PacketHandshake(players[WARRIOR].isTake, players[WIZARD].isTake,
-					players[VALKYRIE].isTake, players[ELF].isTake, maxPlayers, coPlayers);
+  packet = new network::PacketHandshake(players[PlayerChar::BARBARIAN].isTake, players[PlayerChar::MAGE].isTake,
+					players[PlayerChar::VALKYRIE].isTake, players[PlayerChar::RANGER].isTake, maxPlayers, coPlayers);
   i = 0;
   while (i < connectTmp.size())
     {
@@ -102,8 +112,8 @@ void			GameServer::sendHandShake(int socketFd)
 {
   PacketHandshake	*packet;
 
-  packet = new network::PacketHandshake(players[WARRIOR].isTake, players[WIZARD].isTake,
-			       players[VALKYRIE].isTake, players[ELF].isTake, maxPlayers, coPlayers);
+  packet = new network::PacketHandshake(players[PlayerChar::BARBARIAN].isTake, players[PlayerChar::MAGE].isTake,
+					players[PlayerChar::VALKYRIE].isTake, players[PlayerChar::RANGER].isTake, maxPlayers, coPlayers);
   packetFact->send(*packet, socketFd);
 }
 
@@ -125,4 +135,12 @@ void		GameServer::sendMap()
 void		GameServer::sendAddEntity(std::pair<double, double> pos, short norient)
 {
   
+}
+
+void		GameServer::listen()
+{
+  while (42 == 42)
+    {
+      packetFact->recv();
+    }
 }

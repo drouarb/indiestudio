@@ -5,12 +5,13 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 20:56:05 2016 Alexis Trouve
-// Last update Mon May 23 21:47:23 2016 Alexis Trouve
+// Last update Mon May 23 22:07:08 2016 Alexis Trouve
 //
 
 #ifndef GAMESERVER_HH_
 # define GAMESERVER_HH_
 
+#include <thread>
 #include <vector>
 #include <string>
 #include "PacketFactory.hh"
@@ -21,11 +22,6 @@
 #include "PacketHandshake.hh"
 #include "PacketDisconnect.hh"
 #include "PacketListener.hh"
-
-#define WARRIOR 0
-#define WIZARD 1
-#define VALKYRIE 2
-#define ELF 3
 
 namespace gauntlet
 {
@@ -48,6 +44,7 @@ namespace gauntlet
       std::vector<network::PacketListener*>	listeners;
       std::vector<playerServerData>	players;
       std::vector<int>			connectTmp;
+      std::thread			*listenThread;
     public:
       GameServer(const std::string& filePath, in_port_t port);
       ~GameServer();
@@ -61,6 +58,7 @@ namespace gauntlet
       void		DecoAll();
       void		sendMap();
       void		sendAddEntity(std::pair<double, double> pos, short orienta);
+      void		listen();
     };
   };
 };
