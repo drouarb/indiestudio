@@ -1,4 +1,5 @@
 #include "ActionLists.hh"
+#include "Core.hh"
 
 gauntlet::core::ActionLists::ActionLists(Core & core) : core(core)
 { }
@@ -19,7 +20,7 @@ gauntlet::core::ActionLists::doActions()
 			       (*it)->getTextureId());
     }
 
-  for (std::list<network::PacketAddEntity*>::iterator it = packetsDisconnect.begin();
+  for (std::list<network::PacketDisconnect*>::iterator it = packetsDisconnect.begin();
        it != packetsDisconnect.end(); ++it)
     {
       //TODO: disconnect
@@ -30,18 +31,18 @@ gauntlet::core::ActionLists::doActions()
 }
 
 void
-gauntlet::core::ActionLists::pushAddEntity(network::PacketAddEntity * packet)
+gauntlet::core::ActionLists::pushAddEntity(const network::PacketAddEntity * packet)
 {
   packetsAddEntity.push_back(new network::PacketAddEntity
-			     ((*it)->getEntityId(), (*it)->getTextureId(),
-			      (*it)->getMeshId(), (*it)->getX(), (*it)->getY(),
-			      (*it)->getAngle()));
+			     (packet->getEntityId(), packet->getTextureId(),
+			      packet->getMeshId(), packet->getX(), packet->getY(),
+			      packet->getAngle()));
 }
 
 void
-gauntlet::core::ActionLists::pushDisconnect(network::PacketDisconnect * packet)
+gauntlet::core::ActionLists::pushDisconnect(const network::PacketDisconnect * packet)
 {
-  packetsAddEntity.push_back(new network::PacketDisconnect((*it)->getMessage()));
+  packetsDisconnect.push_back(new network::PacketDisconnect(packet->getMessage()));
 }
 
 void
@@ -54,7 +55,7 @@ gauntlet::core::ActionLists::clearActions()
     }
   packetsAddEntity.clear();
 
-  for (std::list<network::PacketAddEntity*>::iterator it = packetsDisconnect.begin();
+  for (std::list<network::PacketDisconnect*>::iterator it = packetsDisconnect.begin();
        it != packetsDisconnect.end(); ++it)
     {
       delete *it;

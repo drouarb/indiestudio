@@ -78,6 +78,8 @@ namespace gauntlet {
             virtual void mouseMove(int x, int y) = 0;
 
             virtual void itemClick(int buttonId, struct t_hitItem & data) = 0;
+
+	   virtual  void frameStarted() = 0;
         };
     };
 };

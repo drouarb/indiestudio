@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:13:44 2016 Esteban Lewis
-// Last update Mon May 23 15:47:18 2016 Esteban Lewis
+// Last update Mon May 23 16:16:48 2016 Esteban Lewis
 //
 
 #include <math.h>
@@ -20,7 +20,7 @@
 #include "ListenerHandshake.hh"
 #include "ConnectMenu.hh"
 
-gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this))
+gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this)), actionlists(*this)
 {
   menu = new MainMenu(*this, MENU_ID_START, NULL);
   listenThread = NULL;
@@ -35,6 +35,9 @@ gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this))
   if (!ogre.init())
     return;
   menu->setOpen(true);
+
+  //TODO: remove this
+  listenThread = new std::thread(&Core::listen, std::ref(*this));
 
   ogre.go();
   _exit(0);
@@ -195,6 +198,13 @@ gauntlet::core::Core::getLastKey() const
 void
 gauntlet::core::Core::listen()
 {
+  //TODO: remove this
+  sleep(1);
+  ogre.hideBackground();
+  network::PacketAddEntity pae(1, 0, 1, 0, 0, 0);
+  actionlists.pushAddEntity(&pae);
+  return ;
+
   while (1)
     {
       packetf->recv();

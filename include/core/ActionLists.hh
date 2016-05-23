@@ -18,8 +18,8 @@ namespace			gauntlet
       ~ActionLists();
 
       void			doActions();
-      void			pushAddEntity(network::PacketAddEntity *);
-      void			pushDisconnect(network::PacketDisconnect *);
+      void			pushAddEntity(const network::PacketAddEntity *);
+      void			pushDisconnect(const network::PacketDisconnect *);
 
     private:
       Core &			core;

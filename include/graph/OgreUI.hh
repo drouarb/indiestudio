@@ -87,7 +87,7 @@ class OgreUI
 
   bool addWorldEntity(int entityId, int meshid, int x, int y,
 		      short angle, int texture_id);
-  bool addRootEntity(int entityId, const std::string &name, int x, int y,
+  bool addRootEntity(int entityId, int meshId, int x, int y,
 		     short angle, int texture_id);
 
   void initMap();
@@ -102,6 +102,8 @@ class OgreUI
 
   void createFrameListener(void);
 
+  void addCameraTracker(int id);
+  bool frameStarted(const Ogre::FrameEvent& evt);
   void createScene(void);
   void removeEntity(int id);
   OgreUI(void);

@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 10:59:47 2016 Esteban Lewis
-// Last update Mon May 23 15:53:46 2016 Esteban Lewis
+// Last update Mon May 23 16:10:21 2016 Esteban Lewis
 //
 
 #ifndef  CORE_HH_
@@ -22,9 +22,9 @@
 # include "ConfMenu.hh"
 # include "Position.hh"
 # include "graph/OgreUI.hh"
-# include "Thread.hpp"
 # include "PacketFactory.hh"
 # include "PacketListener.hh"
+# include "ActionLists.hh"
 
 namespace			gauntlet
 {
