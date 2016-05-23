@@ -1,0 +1,38 @@
+material Privy Council Door_obj#0
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 0.6 0.6 0.6 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+			texture_unit
+                                                {
+                                                 texture Privy.png
+                                                }
+		}
+	}
+}
+
+material Privy/Door
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 0.6 0.6 0.6 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+			texture_unit
+                        {
+                         texture Privy.png
+                        }
+		}
+	}
+}
+

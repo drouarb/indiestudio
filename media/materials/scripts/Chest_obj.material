@@ -1,0 +1,55 @@
+material Chest_obj#0
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 0.64 0.56 0.48 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+		}
+	}
+}
+
+material Chest_obj#1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 0.64 0.64 0.64 1
+			specular 0.1 0.1 0.1 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture wood_diff.jpg
+			}
+		}
+	}
+}
+
+material Chest_obj#1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 0.64 0.64 0.64 1
+			specular 0.1 0.1 0.1 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture wood_diff.jpg
+			}
+		}
+	}
+}
+

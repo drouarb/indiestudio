@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:13:44 2016 Esteban Lewis
-// Last update Mon May 23 00:51:48 2016 Esteban Lewis
+// Last update Mon May 23 15:47:18 2016 Esteban Lewis
 //
 
 #include <math.h>
@@ -35,6 +35,7 @@ gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this))
   if (!ogre.init())
     return;
   menu->setOpen(true);
+
   ogre.go();
   _exit(0);
 }
@@ -160,11 +161,11 @@ gauntlet::core::Core::disconnect(bool send)
   packetf->stop();
   //TODO: delete straight away?
 
-  packetf = NULL;
-  stop();
-
   delete listenThread;
   listenThread = NULL;
+
+  packetf = NULL;
+  stop();
 }
 
 void
@@ -196,9 +197,6 @@ gauntlet::core::Core::listen()
 {
   while (1)
     {
-      if (packetf)
-	packetf->recv();
-      else
-	usleep(100000);
+      packetf->recv();
     }
 }

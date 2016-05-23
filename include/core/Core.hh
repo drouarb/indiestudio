@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 10:59:47 2016 Esteban Lewis
-// Last update Mon May 23 00:36:47 2016 Esteban Lewis
+// Last update Mon May 23 15:53:46 2016 Esteban Lewis
 //
 
 #ifndef  CORE_HH_
@@ -58,6 +58,7 @@ namespace			gauntlet
       std::pair<std::string, int> serverAddr;
       network::PacketFactory *	packetf;
       std::string		map;
+      ActionLists		actionlists;
 
     private:
       IUIObserver *		observer;

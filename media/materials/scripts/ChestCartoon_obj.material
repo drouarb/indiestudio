@@ -1,0 +1,80 @@
+material ChestCartoon_obj#1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 0.8 0.8 0.8 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture gold.dds
+			}
+		}
+	}
+}
+
+material ChestCartoon_obj#0
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 0.8 0.8 0.8 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture chest_rare.dds
+			}
+		}
+	}
+}
+
+material ChestCartoon_obj#0
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 0.8 0.8 0.8 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture chest_rare.dds
+			}
+		}
+	}
+}
+
+material ChestCartoon_obj#0
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 0.8 0.8 0.8 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture chest_rare.dds
+			}
+		}
+	}
+}
+

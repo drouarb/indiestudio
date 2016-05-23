@@ -19,7 +19,7 @@ material Ogre/Compositor/BlendScreenRed
 				param_named green float 0.0
 				param_named blue float 0.0
 			}
-
+createScene
 			texture_unit TEX0
 			{
 				tex_coord_set 0

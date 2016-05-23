@@ -10,6 +10,5 @@ gauntlet::core::ListenerAddEntity::~ListenerAddEntity()
 void
 gauntlet::core::ListenerAddEntity::notify(const network::PacketAddEntity * packet)
 {
-  core.ogre.addWorldEntity(packet->getEntityId(), packet->getMeshId(), packet->getX(),
-			   packet->getY(), packet->getAngle(), packet->getTextureId());
+  core.actionlists.pushAddEntity(packet);
 }

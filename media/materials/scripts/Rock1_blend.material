@@ -1,4 +1,4 @@
-material Rock1_blend#0
+material Rock/surface
 {
 	technique
 	{
