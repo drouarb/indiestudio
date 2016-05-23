@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:13:44 2016 Esteban Lewis
-// Last update Mon May 23 16:16:48 2016 Esteban Lewis
+// Last update Mon May 23 16:22:31 2016 Esteban Lewis
 //
 
 #include <math.h>
@@ -201,7 +201,7 @@ gauntlet::core::Core::listen()
   //TODO: remove this
   sleep(1);
   ogre.hideBackground();
-  network::PacketAddEntity pae(1, 0, 1, 0, 0, 0);
+  network::PacketAddEntity pae(1, 0, EntityName::OGREHEAD, 0, 0, 0);
   actionlists.pushAddEntity(&pae);
   return ;
 

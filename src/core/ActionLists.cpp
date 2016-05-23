@@ -1,5 +1,6 @@
 #include "ActionLists.hh"
 #include "Core.hh"
+#include "EntityName.hh"
 
 gauntlet::core::ActionLists::ActionLists(Core & core) : core(core)
 { }
@@ -15,7 +16,7 @@ gauntlet::core::ActionLists::doActions()
   for (std::list<network::PacketAddEntity*>::iterator it = packetsAddEntity.begin();
        it != packetsAddEntity.end(); ++it)
     {
-      core.ogre.addWorldEntity((*it)->getEntityId(), (*it)->getMeshId(),
+      core.ogre.addWorldEntity((*it)->getEntityId(), (EntityName)(*it)->getMeshId(),
 			       (*it)->getX(), (*it)->getY(), (*it)->getAngle(),
 			       (*it)->getTextureId());
     }
