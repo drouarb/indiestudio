@@ -1,0 +1,180 @@
+material wagen1_Lp_End_3ds#0
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0.109804 0.109804 0.109804 1
+			emissive 0 0 0 1
+			shading flat
+
+			texture_unit
+			{
+				texture Wagen_1.jpg
+			}
+		}
+	}
+}
+
+material wagen1_Lp_End_3ds#0
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0.109804 0.109804 0.109804 1
+			emissive 0 0 0 1
+			shading flat
+
+			texture_unit
+			{
+				texture Wagen_1.jpg
+			}
+		}
+	}
+}
+
+material wagen1_Lp_End_3ds#0
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0.109804 0.109804 0.109804 1
+			emissive 0 0 0 1
+			shading flat
+
+			texture_unit
+			{
+				texture Wagen_1.jpg
+			}
+		}
+	}
+}
+
+material wagen1_Lp_End_3ds#0
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0.109804 0.109804 0.109804 1
+			emissive 0 0 0 1
+			shading flat
+
+			texture_unit
+			{
+				texture Wagen_1.jpg
+			}
+		}
+	}
+}
+
+material wagen1_Lp_End_3ds#0
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0.109804 0.109804 0.109804 1
+			emissive 0 0 0 1
+			shading flat
+
+			texture_unit
+			{
+				texture Wagen_1.jpg
+			}
+		}
+	}
+}
+
+material wagen1_Lp_End_3ds#0
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0.109804 0.109804 0.109804 1
+			emissive 0 0 0 1
+			shading flat
+
+			texture_unit
+			{
+				texture Wagen_1.jpg
+			}
+		}
+	}
+}
+
+material wagen1_Lp_End_3ds#0
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0.109804 0.109804 0.109804 1
+			emissive 0 0 0 1
+			shading flat
+
+			texture_unit
+			{
+				texture Wagen_1.jpg
+			}
+		}
+	}
+}
+
+material wagen1_Lp_End_3ds#0
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0.109804 0.109804 0.109804 1
+			emissive 0 0 0 1
+			shading flat
+
+			texture_unit
+			{
+				texture Wagen_1.jpg
+			}
+		}
+	}
+}
+
+material wagen1_Lp_End_3ds#0
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0.109804 0.109804 0.109804 1
+			emissive 0 0 0 1
+			shading flat
+
+			texture_unit
+			{
+				texture Wagen_1.jpg
+			}
+		}
+	}
+}
+
