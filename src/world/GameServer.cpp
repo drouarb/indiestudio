@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Mon May 23 22:43:57 2016 Alexis Trouve
+// Last update Mon May 23 22:52:36 2016 Alexis Trouve
 //
 
 #include "PlayerChars.hh"
@@ -41,6 +41,7 @@ GameServer::GameServer(const std::string& filePath, in_port_t port)
       ++i;
     }
   listenThread = new std::thread(&GameServer::listen, std::ref(*this));
+  world->gameLoop();
 }
 
 GameServer::~GameServer()
