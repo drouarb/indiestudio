@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:13:44 2016 Esteban Lewis
-// Last update Mon May 23 16:22:31 2016 Esteban Lewis
+// Last update Mon May 23 16:24:05 2016 Esteban Lewis
 //
 
 #include <math.h>
@@ -34,10 +34,10 @@ gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this)), actionlists(
   ogre.setIObserver(observer);
   if (!ogre.init())
     return;
+  std::string str = "menu_theme.ogg";
+  ogre.loadSound(0, str);
+  ogre.playSound(0);
   menu->setOpen(true);
-
-  //TODO: remove this
-  listenThread = new std::thread(&Core::listen, std::ref(*this));
 
   ogre.go();
   _exit(0);
@@ -198,13 +198,6 @@ gauntlet::core::Core::getLastKey() const
 void
 gauntlet::core::Core::listen()
 {
-  //TODO: remove this
-  sleep(1);
-  ogre.hideBackground();
-  network::PacketAddEntity pae(1, 0, EntityName::OGREHEAD, 0, 0, 0);
-  actionlists.pushAddEntity(&pae);
-  return ;
-
   while (1)
     {
       packetf->recv();
