@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:13:44 2016 Esteban Lewis
-// Last update Mon May 23 16:24:05 2016 Esteban Lewis
+// Last update Mon May 23 22:58:39 2016 Esteban Lewis
 //
 
 #include <math.h>
@@ -18,7 +18,9 @@
 #include "ListenerAddEntity.hh"
 #include "ListenerDisconnect.hh"
 #include "ListenerHandshake.hh"
+#include "ListenerMoveEntity.hh"
 #include "ConnectMenu.hh"
+#include "GameServer.hh"
 
 gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this)), actionlists(*this)
 {
@@ -129,9 +131,18 @@ gauntlet::core::Core::exit()
 void
 gauntlet::core::Core::createServer()
 {
-  //TODO: create server and give map
-  std::cout << std::endl << "create server " << map << std::endl << std::endl;
-  usleep(100000);
+  pid_t cpid = fork();
+  if (cpid == -1)
+    return ;
+  if (cpid == 0)
+    {
+      std::cout << "-- create server" << std::endl;
+      world::GameServer(map, serverAddr.second);
+      std::cout << "-- server shutdown" << std::endl;
+      _exit(0);
+    }
+  else
+    usleep(100000); //TODO: server ready msg?
 }
 
 void
@@ -144,6 +155,7 @@ gauntlet::core::Core::initPacketf()
 	  listeners.push_back(new ListenerAddEntity(*this));
 	  listeners.push_back(new ListenerDisconnect(*this));
 	  listeners.push_back(new ListenerHandshake(*this));
+	  listeners.push_back(new ListenerMoveEntity(*this));
 	}
       for (std::list<network::PacketListener*>::iterator it = listeners.begin();
 	   it != listeners.end(); ++it)
@@ -163,22 +175,22 @@ gauntlet::core::Core::disconnect(bool send)
     packetf->send((network::Packet&)pd);
   packetf->stop();
   //TODO: delete straight away?
-
+  
   delete listenThread;
   listenThread = NULL;
-
+  
   packetf = NULL;
   stop();
 }
 
 void
-gauntlet::core::Core::load(std::string file)
+gauntlet::core::Core::load(std::string const & file)
 {
-  map = file;
+  map = SAVE_DIR + file;
 }
 
 void
-gauntlet::core::Core::save(std::string file)
+gauntlet::core::Core::save(std::string const & file)
 {
   std::cout << "CORE save " << file << std::endl;
 }

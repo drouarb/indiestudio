@@ -169,6 +169,7 @@ gauntlet::core::ConnectMenu::doConnect(struct t_hitItem & item)
     {
       if (core.packetf)
 	core.disconnect(true);
+      std::cout << "-- client create packetfactory" << std::endl;
       core.packetf = new network::PacketFactory(ip, port);
       core.serverAddr = std::pair<std::string, int>(ip, port);
       core.initPacketf();
@@ -194,8 +195,9 @@ gauntlet::core::ConnectMenu::sendConnect()
 {
   network::PacketConnect pc;
 
-  core.packetf->send((network::Packet&)pc);
   shakehand(true, false);
+  core.packetf->send((network::Packet&)pc);
+  std::cout << "-- client send connect" << std::endl;
   usleep(100000);
   bool connected = shakehand(false, false);
   if (connected == true)

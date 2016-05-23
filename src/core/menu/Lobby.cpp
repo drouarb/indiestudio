@@ -101,6 +101,7 @@ gauntlet::core::Lobby::doPlay(struct t_hitItem & item)
     }
   else
     {
+      //TODO send select player and receive player id, then send it to ogre and play
       core.play();
     }
 }

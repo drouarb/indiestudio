@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:09:17 2016 Esteban Lewis
-// Last update Sun May 22 23:44:35 2016 Esteban Lewis
+// Last update Mon May 23 22:46:20 2016 Esteban Lewis
 //
 
 #include <dirent.h>
@@ -71,13 +71,16 @@ gauntlet::core::SaveloadMenu::getSaves()
     return ;
   struct dirent * ent;
   //saves.push_back(NEW_SAVE);
-  selected = selected[0];
   while ((ent = readdir(dir)) != NULL)
     {
       if (ent->d_name[0] != '.')
 	saves.push_back(std::string(ent->d_name));
     }
   closedir(dir);
+  if (saves.size() > 0)
+    selected = saves[0];
+  else
+    selected = NEW_SAVE;
 
   buttons.push_back(Control(SELECTMENU, "", &saves, PCENTER,
 			    idStart + buttons.size(), core.ogre));

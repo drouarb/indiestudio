@@ -10,5 +10,6 @@ gauntlet::core::ListenerHandshake::~ListenerHandshake()
 void
 gauntlet::core::ListenerHandshake::notify(const network::PacketHandshake * packet)
 {
-  ConnectMenu::shakehand(true, true);
+  if (packet->getConnectedPlayers() < packet->getMaxPlayers())
+    ConnectMenu::shakehand(true, true);
 }

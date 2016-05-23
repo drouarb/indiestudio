@@ -1,13 +1,4 @@
-//
-// GameServer.cpp for GameServer in /home/trouve_b/Desktop/CPP_project/cpp_indie_studio
-// 
-// Made by Alexis Trouve
-// Login   <trouve_b@epitech.net>
-// 
-// Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Mon May 23 22:08:33 2016 Alexis Trouve
-//
-
+#include <iostream>
 #include "PlayerChars.hh"
 #include "ServSelectPlayerListener.hh"
 #include "ServConnectListener.hh"
@@ -38,6 +29,7 @@ GameServer::GameServer(const std::string& filePath, in_port_t port)
       packetFact->registerListener(listeners[i]);
       ++i;
     }
+  std::cout << "-- server thread" << std::endl;
   listenThread = new std::thread(&GameServer::listen, std::ref(*this));
 }
 
@@ -47,6 +39,7 @@ GameServer::~GameServer()
 
 void		GameServer::connectAnswer(const network::PacketConnect *packet)
 {
+  std::cout << "-- server received connect" << std::endl;
   connectTmp.push_back(packet->getSocketId());
   sendHandShake(packet->getSocketId());
 }
@@ -112,6 +105,7 @@ void			GameServer::sendHandShake(int socketFd)
 {
   PacketHandshake	*packet;
 
+  std::cout << "-- server handshake" << std::endl;
   packet = new network::PacketHandshake(players[PlayerChar::BARBARIAN].isTake, players[PlayerChar::MAGE].isTake,
 					players[PlayerChar::VALKYRIE].isTake, players[PlayerChar::RANGER].isTake, maxPlayers, coPlayers);
   packetFact->send(*packet, socketFd);
