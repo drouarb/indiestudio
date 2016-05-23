@@ -683,7 +683,6 @@ bool OgreUI::addWorldEntity(int entityId, int meshid, int x, int y,
   s->setPosition(x, y, 0);
   s->setScale(0.5, 0.5, 0.5);
   s->yaw(Ogre::Radian(world::Math::toRad(angle)));
-
   s->attachObject(e);
   return (true);
 }
@@ -745,6 +744,15 @@ void OgreUI::addCameraTracker(int id)
   mCamera->pitch(Ogre::Degree(-89));
   mCamera->yaw(Ogre::Degree(20));
 }
+
+bool OgreUI::frameStarted(const Ogre::FrameEvent &evt)
+{
+  if (obs != NULL)
+  obs->frameStarted();
+  return true;
+}
+
+
 
 
 

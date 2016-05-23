@@ -103,6 +103,7 @@ class OgreUI
   void createFrameListener(void);
 
   void addCameraTracker(int id);
+  bool frameStarted(const Ogre::FrameEvent& evt);
   void createScene(void);
   void removeEntity(int id);
   OgreUI(void);

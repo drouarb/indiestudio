@@ -30,6 +30,7 @@ namespace gauntlet {
             void mouseMove(int x, int y);
 
             void itemClick(int buttonId, struct t_hitItem & item);
+	    void frameStarted();
 
         private:
             Core &core;

@@ -39,3 +39,10 @@ void gauntlet::core::CoreUIObserver::itemClick(int buttonId, struct t_hitItem & 
 {
   core.buttonClick(buttonId, item);
 }
+
+void gauntlet::core::CoreUIObserver::frameStarted()
+{
+
+}
+
+
