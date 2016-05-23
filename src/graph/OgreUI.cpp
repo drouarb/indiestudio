@@ -368,11 +368,14 @@ void OgreUI::initMap()
   mousemap[OIS::MB_Left] = IUIObserver::KEY_MOUSE1;
   mousemap[OIS::MB_Right] = IUIObserver::KEY_MOUSE2;
 
-  meshmap[1] = "ogrehead.mesh";
-  meshmap[2] = "ninja.mesh";
-  meshmap[3] = "tudourhouse.mesh";
-  meshmap[4] = "door.mesh";
-  meshmap[5] = "cube.mesh";
+  meshmap[gauntlet::EntityName::OGREHEAD] = "ogrehead.mesh";
+  meshmap[gauntlet::EntityName::NINJA] = "ninja.mesh";
+  meshmap[gauntlet::EntityName::TUDOURHOUSE] = "tudourhouse.mesh";
+  meshmap[gauntlet::EntityName::DOOR] = "door.mesh";
+  meshmap[gauntlet::EntityName::CUBE] = "cube.mesh";
+  meshmap[gauntlet::EntityName::ROCK] = "Rock.mesh";
+  meshmap[gauntlet::EntityName::CHEST] = "chest.mesh";
+  meshmap[gauntlet::EntityName::CHESTCARTOON] = "chestCartoon.mesh";
 }
 
 void OgreUI::removeItem(int id)
@@ -639,7 +642,7 @@ Ogre::SceneManager *OgreUI::getSceneManager()
   return this->mSceneMgr;
 }
 
-bool OgreUI::addRootEntity(int entityId, int meshId, int x, int y,
+bool OgreUI::addRootEntity(int entityId, EntityName meshId, int x, int y,
 			   short angle, int texture_id)
 {
   std::stringstream ss;
@@ -665,7 +668,7 @@ bool OgreUI::addRootEntity(int entityId, int meshId, int x, int y,
   return (true);
 }
 
-bool OgreUI::addWorldEntity(int entityId, int meshid, int x, int y,
+bool OgreUI::addWorldEntity(int entityId, EntityName meshid, int x, int y,
 			    short angle, int texture_id)
 {
   std::stringstream ss;
