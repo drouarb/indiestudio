@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 20:56:05 2016 Alexis Trouve
-// Last update Mon May 23 22:07:08 2016 Alexis Trouve
+// Last update Mon May 23 22:44:35 2016 Alexis Trouve
 //
 
 #ifndef GAMESERVER_HH_
@@ -22,6 +22,8 @@
 #include "PacketHandshake.hh"
 #include "PacketDisconnect.hh"
 #include "PacketListener.hh"
+#include "PacketAddEntity.hh"
+#include "ABody.hh"
 
 namespace gauntlet
 {
@@ -57,7 +59,7 @@ namespace gauntlet
       void		sendDeco();
       void		DecoAll();
       void		sendMap();
-      void		sendAddEntity(std::pair<double, double> pos, short orienta);
+      void		sendAddEntity(ABody *body);
       void		listen();
     };
   };

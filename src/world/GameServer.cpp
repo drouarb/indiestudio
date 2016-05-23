@@ -5,12 +5,13 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Mon May 23 22:08:33 2016 Alexis Trouve
+// Last update Mon May 23 22:43:57 2016 Alexis Trouve
 //
 
 #include "PlayerChars.hh"
 #include "ServSelectPlayerListener.hh"
 #include "ServConnectListener.hh"
+#include "ServDisconnectListener.hh"
 #include "GameServer.hh"
 
 using namespace gauntlet;
@@ -21,7 +22,7 @@ GameServer::GameServer(const std::string& filePath, in_port_t port)
 {
   unsigned int	i;
 
-  world = new World(this);;
+  world = new World(this);
   world->loadGame(filePath);
   packetFact = new PacketFactory(port);
   players.push_back({"warrior", -1, false});
@@ -30,6 +31,7 @@ GameServer::GameServer(const std::string& filePath, in_port_t port)
   players.push_back({"elf", -1, false});
   listeners.push_back(new ServConnectListener(this));
   listeners.push_back(new ServSelectPlayerListener(this));
+  listeners.push_back(new ServDisconnectListener(this));
   maxPlayers = 4;
   coPlayers = 0;
   i = 0;
@@ -110,11 +112,9 @@ void		GameServer::receiveDeco(const network::PacketDisconnect *packet)
 
 void			GameServer::sendHandShake(int socketFd)
 {
-  PacketHandshake	*packet;
-
-  packet = new network::PacketHandshake(players[PlayerChar::BARBARIAN].isTake, players[PlayerChar::MAGE].isTake,
-					players[PlayerChar::VALKYRIE].isTake, players[PlayerChar::RANGER].isTake, maxPlayers, coPlayers);
-  packetFact->send(*packet, socketFd);
+  PacketHandshake	packet(players[PlayerChar::BARBARIAN].isTake, players[PlayerChar::MAGE].isTake,
+			       players[PlayerChar::VALKYRIE].isTake, players[PlayerChar::RANGER].isTake, maxPlayers, coPlayers);
+  packetFact->send(packet, socketFd);
 }
 
 void		GameServer::sendDeco()
@@ -132,9 +132,17 @@ void		GameServer::sendMap()
 
 }
 
-void		GameServer::sendAddEntity(std::pair<double, double> pos, short norient)
+void		GameServer::sendAddEntity(ABody *body)
 {
-  
+  unsigned int	i;
+  network::PacketAddEntity	packet(body->getEntityId(), body->getTextureId(), body->getMeshId(), static_cast<int>(body->getPos().first), static_cast<int>(body->getPos().second), body->getOrientation());
+
+  i = 0;
+  while (i < players.size())
+    {
+      packetFact->send(packet, players[i].socketId);
+      ++i;
+    }
 }
 
 void		GameServer::listen()

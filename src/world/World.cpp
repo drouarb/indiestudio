@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Mon May 23 21:27:28 2016 Alexis Trouve
+// Last update Mon May 23 22:35:41 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -161,7 +161,7 @@ void	World::addNewBody(double xpos, double ypos, const std::string& name, short 
     throw (std::runtime_error("'" + name + "': wrong name"));
   body->changePos(std::make_pair(xpos, ypos));
   body->changeOrientation(orientation);
-  gameServer->sendAddEntity(body->getPos(), body->getOrientation());
+  gameServer->sendAddEntity(body);
   bodys.push_back(body);
   collider->setNewBodyNoCheckEntity(body);
 }

@@ -18,7 +18,7 @@ namespace gauntlet {
                 unsigned int entityId;
                 unsigned int textureId;
                 unsigned int meshId;
-                int x;
+	      int x;
                 int y;
                 short angle;
             }__attribute__((packed));
