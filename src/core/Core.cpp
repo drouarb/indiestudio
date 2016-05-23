@@ -36,6 +36,9 @@ gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this))
   ogre.setIObserver(observer);
   if (!ogre.init())
     return;
+  std::string str = "menu_theme.ogg";
+  ogre.loadSound(0, str);
+  ogre.playSound(0);
   menu->setOpen(true);
   listenThread = new std::thread(&Core::listen, std::ref(*this));
   ogre.go();
