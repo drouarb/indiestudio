@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:13:44 2016 Esteban Lewis
-// Last update Mon May 23 00:43:18 2016 Esteban Lewis
+// Last update Mon May 23 00:51:48 2016 Esteban Lewis
 //
 
 #include <math.h>
@@ -16,10 +16,8 @@
 #include "IUIObserver.hh"
 #include "Math.hh"
 #include "ListenerAddEntity.hh"
-#include "ListenerConnect.hh"
 #include "ListenerDisconnect.hh"
 #include "ListenerHandshake.hh"
-#include "ListenerSelectPlayer.hh"
 #include "ConnectMenu.hh"
 
 gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this))
@@ -140,10 +138,8 @@ gauntlet::core::Core::initPacketf()
       if (listeners.size() == 0)
 	{
 	  listeners.push_back(new ListenerAddEntity(*this));
-	  listeners.push_back(new ListenerConnect(*this));
 	  listeners.push_back(new ListenerDisconnect(*this));
 	  listeners.push_back(new ListenerHandshake(*this));
-	  listeners.push_back(new ListenerSelectPlayer(*this));
 	}
       for (std::list<network::PacketListener*>::iterator it = listeners.begin();
 	   it != listeners.end(); ++it)
