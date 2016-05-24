@@ -30,6 +30,8 @@ namespace gauntlet
     short			            orientation;
     std::string			        name;
     world::World		        *world;
+    int                         model;
+    int                         texture;
   public:
     ABody(int nid);
     virtual ~ABody();
