@@ -6,11 +6,11 @@
 # define CPP_INDIE_STUDIO_SPELLCONTAINER_HH
 
 #include <vector>
-#include "Actor.hh"
 
 namespace gauntlet
 {
   class Spell;
+  class Actor;
 
     class SpellContainer
     {
