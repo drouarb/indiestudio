@@ -66,6 +66,13 @@ add_executable(PacketMoveEntityTest
         ../src/network/packet/PacketMoveEntity.cpp)
 add_test(PacketMoveEntityTest PacketMoveEntityTest)
 
+#Test MoveEntity
+add_executable(PacketDeleteEntityTest
+        packet/PacketDeleteEntityTest.cpp
+        ../src/network/packet/Packet.cpp
+        ../src/network/packet/PacketDeleteEntity.cpp)
+add_test(PacketDeleteEntityTest PacketDeleteEntityTest)
+
 #Test PacketFactory
 add_executable(PacketFactoryTest
         packet/PacketFactoryTest.cpp
@@ -78,6 +85,7 @@ add_executable(PacketFactoryTest
         ../src/network/packet/PacketMap.cpp
         ../src/network/packet/PacketAddEntity.cpp
         ../src/network/packet/PacketMoveEntity.cpp
+        ../src/network/packet/PacketDeleteEntity.cpp
         ../src/network/listener/PacketListener.cpp
         ../src/network/listener/PacketDisconnectListener.cpp
         ../src/network/listener/PacketAddEntityListener.cpp
