@@ -612,6 +612,8 @@ void OgreUI::playAnimation(int animationId, int entityId, bool loop)
 			pState->getAnimationName()] = pState;
 }
 
+
+
 std::pair<int, int> OgreUI::getSizeWindow()
 {
   return (std::pair<int, int>(mWindow->getWidth(), mWindow->getHeight()));
