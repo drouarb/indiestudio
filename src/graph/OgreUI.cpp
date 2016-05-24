@@ -572,7 +572,7 @@ void OgreUI::createScene(void)
 //  showBackground();
   mSceneMgr->setAmbientLight(Ogre::ColourValue(.25, .25, .25));
 
-  Ogre::Light* pointLight = mSceneMgr->createLight("PointLight");
+  Ogre::Light *pointLight = mSceneMgr->createLight("PointLight");
   pointLight->setType(Ogre::Light::LT_POINT);
   pointLight->setPosition(0, 300, 0);
   pointLight->setPowerScale(4000000);
@@ -580,8 +580,8 @@ void OgreUI::createScene(void)
   pointLight->setSpotlightOuterAngle(Ogre::Radian(Ogre::Degree(180)));
   pointLight->setDiffuseColour(Ogre::ColourValue::White);
   pointLight->setSpecularColour(Ogre::ColourValue::White);
-  addWorldEntity(2, PLAN, 0 , 0, 0, 0);
- mSceneMgr->setSkyBox(true, "Examples/SceneSkyBox");
+  addWorldEntity(2, PLAN, 0, 0, 0, 0);
+  mSceneMgr->setSkyBox(true, "Examples/SceneSkyBox");
 }
 
 void OgreUI::quit()
@@ -613,7 +613,10 @@ void OgreUI::stopAnimation(int animationId, int entityId)
 
 void OgreUI::playAnimation(int entityId, int animationId, bool loop)
 {
-  Ogre::Entity *pEntity = this->mSceneMgr->getEntity("" + entityId);
+  std::stringstream ss;
+
+  ss << entityId;
+  Ogre::Entity *pEntity = this->mSceneMgr->getEntity(ss.str());
   int nb = 0;
 
   Ogre::AnimationStateIterator mapIterator = pEntity->getAllAnimationStates()->getAnimationStateIterator();
@@ -634,7 +637,10 @@ void OgreUI::playAnimation(int entityId, int animationId, bool loop)
 void OgreUI::playAnimation(int entityId, std::string const &animationName,
 			   bool loop)
 {
-  Ogre::Entity *pEntity = this->mSceneMgr->getEntity("" + entityId);
+  std::stringstream ss;
+
+  ss << entityId;
+  Ogre::Entity *pEntity = this->mSceneMgr->getEntity(ss.str());
   Ogre::AnimationState *pState = pEntity->getAnimationState(animationName);
 
   pState->setLoop(loop);
@@ -692,7 +698,7 @@ bool OgreUI::addWorldEntity(int entityId, EntityName meshid, int x, int y,
     }
   try
     {
-     e = mSceneMgr->createEntity(ss.str(), meshmap[meshid].c_str());
+      e = mSceneMgr->createEntity(ss.str(), meshmap[meshid].c_str());
     }
   catch (Ogre::Exception &e)
     {
@@ -767,7 +773,7 @@ void OgreUI::addCameraTracker(int id)
 bool OgreUI::frameStarted(const Ogre::FrameEvent &evt)
 {
   if (obs != NULL)
-  obs->frameStarted();
+    obs->frameStarted();
   return true;
 }
 
