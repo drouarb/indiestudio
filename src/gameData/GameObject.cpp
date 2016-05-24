@@ -16,6 +16,7 @@ GameObject::GameObject(int nid, world::World *nworld)
   : ABody(nid)
 {
   world = nworld;
+  gatherable = false;
 }
 
 GameObject::~GameObject()
