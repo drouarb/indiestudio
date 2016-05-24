@@ -610,7 +610,7 @@ bool OgreUI::addWorldEntity(int entityId, EntityName meshid, int x, int y,
   std::stringstream ss;
   ss << entityId;
   Ogre::Entity *e;
-  if (mSceneMgr->hasEntity(ss.str()) == true)
+  if (mSceneMgr->hasEntity(ss.str()))
     {
       this->moveEntity(entityId, x, y, angle);
       return (true);
@@ -647,7 +647,7 @@ __attribute_deprecated__ __attribute_warn_unused_result__ bool OgreUI::addWorldE
       return false;
     }
   if (texture_id != Texturename::TEXTURE_NONE)
-  e->setMaterialName(texturemap.at(texture_id));
+    e->setMaterialName(texturemap[texture_id]);
   Ogre::SceneNode *s = worldNode->createChildSceneNode(ss.str());
   s->setPosition(x, y, 0);
   s->yaw(Ogre::Radian(world::Math::toRad(angle)));
