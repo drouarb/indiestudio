@@ -73,6 +73,7 @@ void			BodyFactory::setBarbare()
   player->changePos(std::make_pair(-1, -1));
   player->changeSize(std::make_pair(10.0, 10.0));
   player->changeOrientation(0);
+  player->setModel(EntityName::NINJA);
   bodyTab.push_back(player);
 }
 
