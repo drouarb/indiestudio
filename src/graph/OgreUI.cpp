@@ -71,8 +71,7 @@ void OgreUI::createCamera(void)
 
 void OgreUI::createFrameListener(void)
 {
-
-  Ogre::LogManager::getSingletonPtr()->logMessage("*** Initializing OIS ***");
+ // Ogre::LogManager::getSingletonPtr()->logMessage("*** Initializing OIS ***");
   OIS::ParamList pl;
   size_t windowHnd = 0;
   std::ostringstream windowHndStr;
@@ -690,6 +689,8 @@ bool __attribute_warn_unused_result__ OgreUI::addWorldEntity(int entityId,
 			      textureId);
 }
 
+
+
 bool __attribute_warn_unused_result__ OgreUI::addWorldEntity(int entityId,
 							     const std::string &name,
 							     std::pair<int, int> position,
@@ -779,6 +780,7 @@ bool OgreUI::addMapEntity(int entityId, gauntlet::EntityName meshid, int x,
     }
   catch (Ogre::Exception &e)
     {
+      std::cerr << e.what() << std::endl;
       return false;
     }
   if (texture_id != TextureName::TEXTURE_NONE)
