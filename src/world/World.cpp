@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Tue May 24 16:28:23 2016 Alexis Trouve
+// Last update Tue May 24 18:26:37 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -193,4 +193,16 @@ const std::pair<double, double>&	World::getSpawnPoint()
 std::list<ABody*>		World::getBodysByCopy() const
 {
   return (bodys);
+}
+
+int				World::getUniqueEffectId()
+{
+  static int			i = -1;
+
+  return (++i);
+}
+
+int				World::createNewEffect(gauntlet::EffectName effect)
+{
+
 }
