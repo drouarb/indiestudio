@@ -182,10 +182,9 @@ gauntlet::core::Core::disconnect(bool send)
     {
       if (send)
 	packetf->send((network::Packet&)pd);
-      //packetf->stop();
-      //delete packetf;
-      //TODO: delete?
-       
+      packetf->stop();
+      delete packetf;
+
       listenThread->cancel();
       delete listenThread;
       listenThread = NULL;
