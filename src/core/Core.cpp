@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:13:44 2016 Esteban Lewis
-// Last update Tue May 24 11:25:59 2016 Esteban Lewis
+// Last update Tue May 24 11:34:02 2016 Esteban Lewis
 //
 
 #include <math.h>
@@ -158,7 +158,7 @@ gauntlet::core::Core::killServer()
 
   if (cpid > 0)
     {
-      kill(SIGTERM, cpid);
+      kill(cpid, SIGTERM);
       waitpid(cpid, &status, WNOHANG);
       cpid = -1;
     }
