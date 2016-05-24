@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Tue May 24 14:43:13 2016 Alexis Trouve
+// Last update Tue May 24 16:28:23 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -188,4 +188,9 @@ Collider&	World::getCollider()
 const std::pair<double, double>&	World::getSpawnPoint()
 {
   return (spawnPoint);
+}
+
+std::list<ABody*>		World::getBodysByCopy() const
+{
+  return (bodys);
 }
