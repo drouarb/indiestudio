@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:13:44 2016 Esteban Lewis
-// Last update Tue May 24 11:34:02 2016 Esteban Lewis
+// Last update Tue May 24 16:04:48 2016 Esteban Lewis
 //
 
 #include <math.h>
@@ -44,7 +44,6 @@ gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this)), actionlists(
   menu->setOpen(true);
 
   ogre.go();
-  _exit(0);
 }
 
 gauntlet::core::Core::~Core()
@@ -140,11 +139,9 @@ gauntlet::core::Core::createServer()
   cpid = fork();
   if (cpid == -1)
     return ;
-  if (cpid != 0)
+  if (cpid == 0)
     {
-      std::cout << "-- create server " << serverAddr.second << std::endl;
       world::GameServer(map, serverAddr.second);
-      std::cout << "-- server shutdown" << std::endl;
       _exit(0);
     }
   else
@@ -181,7 +178,7 @@ gauntlet::core::Core::initPacketf()
 	{
 	  packetf->registerListener(*it);
 	}
-      listenThread = new std::thread(&Core::listen, std::ref(*this));
+      listenThread = new helpers::Thread<void (Core::*)(), Core>(&Core::listen, this);
     }
 }
 
@@ -190,16 +187,22 @@ gauntlet::core::Core::disconnect(bool send)
 {
   network::PacketDisconnect pd("");
 
-  if (send)
-    packetf->send((network::Packet&)pd);
-  packetf->stop();
-  //TODO: delete straight away?
-  
-  delete listenThread;
-  listenThread = NULL;
-  
-  packetf = NULL;
-  stop();
+  if (packetf)
+    {
+      if (send)
+	packetf->send((network::Packet&)pd);
+      //packetf->stop();
+      //delete packetf;
+      //TODO: delete?
+       
+      listenThread->cancel();
+      delete listenThread;
+      listenThread = NULL;
+
+      packetf = NULL;
+      stop();
+    }
+  killServer();
 }
 
 void

@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 15:49:54 2016 Esteban Lewis
-// Last update Sun May 22 21:19:52 2016 Esteban Lewis
+// Last update Tue May 24 12:52:34 2016 Esteban Lewis
 //
 
 #ifndef  PLAYERCONTROLLER_HH_
@@ -40,6 +40,8 @@ namespace				gauntlet
       void				setAngle(short);
 
       void				loop();
+
+      int				id;
 
     private:
       double				moveX;

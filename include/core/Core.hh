@@ -5,13 +5,12 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 10:59:47 2016 Esteban Lewis
-// Last update Tue May 24 10:22:54 2016 Esteban Lewis
+// Last update Tue May 24 15:21:46 2016 Esteban Lewis
 //
 
 #ifndef  CORE_HH_
 # define CORE_HH_
 
-# include <thread>
 # include <mutex>
 # include <unistd.h>
 # include "CoreUIObserver.hh"
@@ -25,6 +24,7 @@
 # include "PacketFactory.hh"
 # include "PacketListener.hh"
 # include "ActionLists.hh"
+# include "Thread.hpp"
 
 namespace			gauntlet
 {
@@ -63,7 +63,7 @@ namespace			gauntlet
 
     private:
       IUIObserver *		observer;
-      std::thread *		listenThread;
+      helpers::Thread<void (Core::*)(), Core> *	listenThread;
       Menu *			menu;
       IUIObserver::Key		lastKey;
       std::list<network::PacketListener*> listeners;

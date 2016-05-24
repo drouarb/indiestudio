@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 15:52:38 2016 Esteban Lewis
-// Last update Sat May 21 20:10:15 2016 Esteban Lewis
+// Last update Tue May 24 12:52:46 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -14,6 +14,7 @@
 gauntlet::core::PlayerController::PlayerController(std::string const & name,
 						   world::PlayerChar c)
 {
+  id = -1;
   this->name = name;
   chartype = c;
 
