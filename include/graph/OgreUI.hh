@@ -36,7 +36,7 @@
 
 namespace gauntlet
 {
-  enum EffectType : int;
+  enum EffectName : int;
 
   class Effect;
 }
@@ -203,7 +203,7 @@ class OgreUI
 
   Ogre::SceneManager *getSceneManager();
 
-  int triggerEffect(int id, gauntlet::EffectType ef,
+  int triggerEffect(int id, gauntlet::EffectName ef,
 		    std::pair<double, double> pair);
 
   void moveEntity(int id, int x, int y, short degres);
