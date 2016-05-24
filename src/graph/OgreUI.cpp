@@ -616,7 +616,7 @@ bool __attribute_deprecated__ OgreUI::addWorldEntity(int entityId,
 						     EntityName meshid, int x,
 						     int y,
 						     short angle,
-						     Texturename texture_id)
+						     TextureName texture_id)
 {
   std::stringstream ss;
   ss << entityId;
@@ -633,7 +633,7 @@ bool __attribute_deprecated__ OgreUI::addWorldEntity(int entityId,
     {
       return false;
     }
-  if (texture_id != Texturename::TEXTURE_NONE)
+  if (texture_id != TextureName::TEXTURE_NONE)
     e->setMaterialName(texturemap.at(texture_id));
   Ogre::SceneNode *s = worldNode->createChildSceneNode(ss.str());
   s->setPosition(x, y, 0);
@@ -647,7 +647,7 @@ bool __attribute_warn_unused_result__ OgreUI::addWorldEntity(int entityId,
 							     const std::string &name,
 							     std::pair<int, int> position,
 							     Ogre::Vector3 orientation,
-							     Texturename textureId)
+							     TextureName textureId)
 {
   std::stringstream ss;
   ss << entityId;
@@ -677,13 +677,13 @@ bool __attribute_warn_unused_result__ OgreUI::addWorldEntity(int entityId,
 							     std::pair<int, int> position)
 {
   return this->addWorldEntity(entityId, name, position, Ogre::Vector3(0, 0, 0),
-			      Texturename::TEXTURE_NONE);
+			      TextureName::TEXTURE_NONE);
 }
 #warning "tg Tantanche"
 bool __attribute_warn_unused_result__ OgreUI::addWorldEntity(int entityId,
 							     const std::string &name,
 							     std::pair<int, int> position,
-							     Texturename textureId)
+							     TextureName textureId)
 {
   return this->addWorldEntity(entityId, name, position, Ogre::Vector3(0, 0, 0),
 			      textureId);
@@ -694,7 +694,7 @@ bool __attribute_warn_unused_result__ OgreUI::addWorldEntity(int entityId,
 							     std::pair<int, int> position,
 							     Ogre::Vector3 orientation)
 {
-  return this->addWorldEntity(entityId, name, position, orientation, Texturename::TEXTURE_NONE);
+  return this->addWorldEntity(entityId, name, position, orientation, TextureName::TEXTURE_NONE);
 }
 #warning "tg Tantanche"
 void OgreUI::setQuality(int percent)
@@ -762,7 +762,7 @@ bool OgreUI::frameStarted(const Ogre::FrameEvent &evt)
 }
 #warning "tg Tantanche"
 bool OgreUI::addMapEntity(int entityId, gauntlet::EntityName meshid, int x,
-			  int y, short angle, gauntlet::Texturename texture_id)
+			  int y, short angle, gauntlet::TextureName texture_id)
 {
   std::stringstream ss;
   ss << entityId;
@@ -780,7 +780,7 @@ bool OgreUI::addMapEntity(int entityId, gauntlet::EntityName meshid, int x,
     {
       return false;
     }
-  if (texture_id != Texturename::TEXTURE_NONE)
+  if (texture_id != TextureName::TEXTURE_NONE)
     e->setMaterialName(texturemap.at(texture_id));
   Ogre::SceneNode *s = planNode->createChildSceneNode(ss.str());
   s->setPosition(x, y, 0);

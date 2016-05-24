@@ -97,7 +97,7 @@ const std::map<gauntlet::EntityName, std::string> OgreUI::meshmap = {
         {gauntlet::EntityName::WAGEN,        "wagen.mesh"}
 };
 
-const std::map<gauntlet::Texturename, std::string> OgreUI::texturemap = {
-        {gauntlet::Texturename::NINjA_M,      "Ogre/Skin"},
-        {gauntlet::Texturename::TUDORHOUSE_M, "TudorHouse/house"}
+const std::map<gauntlet::TextureName, std::string> OgreUI::texturemap = {
+        {gauntlet::TextureName::NINjA_M,      "Ogre/Skin"},
+        {gauntlet::TextureName::TUDORHOUSE_M, "TudorHouse/house"}
 };

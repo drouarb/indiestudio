@@ -33,7 +33,7 @@ gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this)), actionlists(
   ogre.playSound(0);
   menu->setOpen(true);
 
-  ogre.addWorldEntity(43, gauntlet::EntityName::OGREHEAD, 0, 0, 0, gauntlet::Texturename::TEXTURE_NONE);
+  ogre.addWorldEntity(43, gauntlet::EntityName::OGREHEAD, 0, 0, 0, gauntlet::TextureName::TEXTURE_NONE);
   ogre.go();
 }
 
