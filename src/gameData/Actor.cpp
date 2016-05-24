@@ -43,6 +43,8 @@ ABody		*Actor::clone(int id) const
       ++i;
     }
   actor->setCollide(collideActive);
+  actor->setTextureId(texture);
+  actor->setMeshId(model);
   actor->changePos(coord);
   actor->changeSize(size);
   actor->changeOrientation(orientation);

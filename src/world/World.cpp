@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Tue May 24 19:16:27 2016 Alexis Trouve
+// Last update Tue May 24 19:20:20 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -223,11 +223,27 @@ int				World::getUniqueEffectId()
   return (++i);
 }
 
-int				World::createNewEffect(gauntlet::EffectName effect)
+int				World::triggerEffect(gauntlet::EffectName effect)
 {
   int				id;
 
   id = getUniqueEffectId();
   effectTab.push_back(id);
   return (id);
+}
+
+void				World::stopEffect(int id)
+{
+  int				i;
+
+  i = 0;
+  while (i < effectTab.size())
+    {
+      if (effectTab[i] == id)
+	{
+	  effectTab.erase(effectTab.begin() + i);
+	  break;
+	}
+      ++i;
+    }
 }

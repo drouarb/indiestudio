@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Mon May  9 14:07:25 2016 Alexis Trouve
-// Last update Mon May 23 22:48:50 2016 Alexis Trouve
+// Last update Tue May 24 19:39:41 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -23,6 +23,8 @@ ABody::ABody(int nid)
   size.second = 0;
   orientation = 0;
   name = "default";
+  model = 0;
+  texture = 0;
 }
 
 ABody::~ABody()
@@ -112,12 +114,17 @@ unsigned int			ABody::getMeshId() const
   return (model);
 }
 
-void                    ABody::setModel(int _model)
+void                    ABody::setMeshId(int _model)
 {
   model = _model;
 }
 
-void                    ABody::setTexture(int _texture)
+void                    ABody::setTextureId(int _texture)
 {
   texture = _texture;
+}
+
+void                    ABody::setTextureId()
+{
+  texture = 0;
 }
