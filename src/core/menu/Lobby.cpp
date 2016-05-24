@@ -128,7 +128,6 @@ gauntlet::core::Lobby::doPlay(struct t_hitItem & item)
 void
 gauntlet::core::Lobby::receivedStartgame()
 {
-  std::cout << "# received startgame" << std::endl;
   network::PacketStartGame const * packet =
     dynamic_cast<network::PacketStartGame const *>
     (static_cast<WaitPacket *>(submenus[3])->getReceived());
@@ -136,7 +135,6 @@ gauntlet::core::Lobby::receivedStartgame()
     {
       core.ogre.addCameraTracker(packet->getEntityId());
       core.play();
-      std::cout << "ok - play" << std::endl;
     }
   else
     {

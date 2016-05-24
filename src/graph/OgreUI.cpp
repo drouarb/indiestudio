@@ -636,7 +636,7 @@ bool __attribute_deprecated__ OgreUI::addWorldEntity(int entityId,
   if (texture_id != TextureName::TEXTURE_NONE)
     e->setMaterialName(texturemap.at(texture_id));
   Ogre::SceneNode *s = worldNode->createChildSceneNode(ss.str());
-  s->setPosition(x, y, 0);
+  s->setPosition(x, 0, y);
   mCamera->pitch(Ogre::Degree(-89));
   mCamera->yaw(Ogre::Degree(20));
   s->attachObject(e);
@@ -742,7 +742,7 @@ void OgreUI::moveEntity(int id, int x, int y, short degres)
   ss << id;
 
   Ogre::SceneNode *s = mSceneMgr->getSceneNode(ss.str());
-  s->setPosition(x, y, 0);
+  s->setPosition(x, 0, y);
   s->yaw(Ogre::Radian(world::Math::toRad(degres)));
 }
 
@@ -786,7 +786,7 @@ bool OgreUI::addMapEntity(int entityId, gauntlet::EntityName meshid, int x,
   if (texture_id != TextureName::TEXTURE_NONE)
     e->setMaterialName(texturemap.at(texture_id));
   Ogre::SceneNode *s = planNode->createChildSceneNode(ss.str());
-  s->setPosition(x, y, 0);
+  s->setPosition(x, 0, y);
   s->setScale(0.5, 0.5, 0.5);
   s->yaw(Ogre::Radian(world::Math::toRad(angle)));
   s->attachObject(e);

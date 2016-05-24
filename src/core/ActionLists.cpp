@@ -35,6 +35,12 @@ gauntlet::core::ActionLists::doActions()
 			       (*it)->getX(), (*it)->getY(), (*it)->getAngle(), gauntlet::TextureName::TEXTURE_NONE);
     }
 
+  for (std::list<network::PacketDeleteEntity*>::iterator it = packetsDeleteEntity.begin();
+       it != packetsDeleteEntity.end(); ++it)
+    {
+      core.ogre.removeEntity((*it)->getEntityId());
+    }
+
   clearActions();
 }
 
@@ -63,6 +69,12 @@ gauntlet::core::ActionLists::pushMoveEntity(const network::PacketMoveEntity * pa
 }
 
 void
+gauntlet::core::ActionLists::pushDeleteEntity(const network::PacketDeleteEntity * packet)
+{
+  packetsDeleteEntity.push_back(new network::PacketDeleteEntity(packet->getEntityId()));
+}
+
+void
 gauntlet::core::ActionLists::clearActions()
 {
   for (std::list<network::PacketAddEntity*>::iterator it = packetsAddEntity.begin();
@@ -85,4 +97,11 @@ gauntlet::core::ActionLists::clearActions()
       delete *it;
     }
   packetsMoveEntity.clear();
+
+  for (std::list<network::PacketDeleteEntity*>::iterator it = packetsDeleteEntity.begin();
+       it != packetsDeleteEntity.end(); ++it)
+    {
+      delete *it;
+    }
+  packetsDeleteEntity.clear();
 }

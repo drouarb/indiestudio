@@ -10,5 +10,5 @@ gauntlet::core::ListenerStartGame::~ListenerStartGame()
 void
 gauntlet::core::ListenerStartGame::notify(const network::PacketStartGame * packet)
 {
-  WaitPacket::receive(packet);
+  WaitPacket::receive(new network::PacketStartGame(packet->getEntityId()));
 }

@@ -227,6 +227,7 @@ gauntlet::core::ConnectMenu::sendConnect()
 	(static_cast<WaitPacket *>(submenus[3])->getReceived());
       if (packet != NULL && packet->getConnectedPlayers() < packet->getMaxPlayers())
 	{
+	  std::cout << "# success" << std::endl;
 	  static_cast<MessageBox *>(submenus[0])->setMsg("Connection succeeded.");
 	  submenus[0]->setOpen(true);
 	  justConnected = true;
