@@ -9,6 +9,8 @@
 class StackTrace
 {
  public:
+  static void init();
+  static void handler(int signal);
   static void displayStackTrace();
 };
 

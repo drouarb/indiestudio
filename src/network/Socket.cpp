@@ -122,13 +122,13 @@ s_socketData gauntlet::network::Socket::recv() {
     FD_SET(pipe[0], &set);
     FD_SET(sockfd, &set);
     select((pipe[0] > sockfd ? pipe[0] : sockfd) + 1, &set, NULL, NULL, NULL);
+    lock.lock();
     if (FD_ISSET(pipe[0], &set)) {
         buff = this->recv(pipe[0]);
         buff.data->resize(0);
         buff.fd = -1;
         return buff;
     }
-    lock.lock();
     return this->recv(sockfd);
 }
 
