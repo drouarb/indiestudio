@@ -1,3 +1,13 @@
+//
+// World.cpp for indie in /home/lewis_e/rendu/cpp/cpp_indie_studio
+// 
+// Made by Esteban Lewis
+// Login   <lewis_e@epitech.net>
+// 
+// Started on  Mon May  9 14:58:51 2016 Esteban Lewis
+// Last update Tue May 24 18:35:14 2016 Alexis Trouve
+//
+
 #include <iostream>
 #include <fstream>
 #include <stdexcept>
@@ -184,3 +194,15 @@ std::list<ABody*>		World::getBodysByCopy() const
 {
   return (bodys);
 }
+
+int				World::getUniqueEffectId()
+{
+  static int			i = -1;
+
+  return (++i);
+}
+
+/*int				World::createNewEffect(gauntlet::EffectName effect)
+{
+
+}*/
