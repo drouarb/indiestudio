@@ -702,7 +702,7 @@ void OgreUI::setQuality(int percent)
   this->quality = percent;
 }
 #warning "tg Tantanche"
-int OgreUI::triggerEffect(int id, gauntlet::EffectType type,
+int OgreUI::triggerEffect(int id, gauntlet::EffectName type,
 			  std::pair<double, double> coord)
 {
   std::stringstream ss;
