@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Tue May 24 19:13:37 2016 Alexis Trouve
+// Last update Tue May 24 19:16:27 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -225,5 +225,9 @@ int				World::getUniqueEffectId()
 
 int				World::createNewEffect(gauntlet::EffectName effect)
 {
+  int				id;
 
+  id = getUniqueEffectId();
+  effectTab.push_back(id);
+  return (id);
 }
