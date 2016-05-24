@@ -36,3 +36,7 @@ void gauntlet::network::PacketStartGame::deserialize(t_rawdata *data) {
 unsigned int gauntlet::network::PacketStartGame::getEntityId() const {
     return entityId;
 }
+
+size_t gauntlet::network::PacketStartGame::getPacketSize() const {
+    return sizeof(s_packetStartGameData);
+}

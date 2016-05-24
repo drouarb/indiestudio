@@ -73,3 +73,7 @@ int gauntlet::network::PacketAddEntity::getY() const {
 short gauntlet::network::PacketAddEntity::getAngle() const {
     return angle;
 }
+
+size_t gauntlet::network::PacketAddEntity::getPacketSize() const {
+    return sizeof(s_PacketAddEntity);
+}

@@ -74,3 +74,7 @@ unsigned char gauntlet::network::PacketHandshake::getMaxPlayers() const {
 unsigned char gauntlet::network::PacketHandshake::getConnectedPlayers() const {
     return connectedPlayers;
 }
+
+size_t gauntlet::network::PacketHandshake::getPacketSize() const {
+    return sizeof(s_packetHandshakeData);
+}

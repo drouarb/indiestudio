@@ -37,3 +37,7 @@ void gauntlet::network::PacketConnect::deserialize(t_rawdata *data) {
 unsigned int gauntlet::network::PacketConnect::getProtocolVersion() const {
     return protocolVersion;
 }
+
+size_t gauntlet::network::PacketConnect::getPacketSize() const {
+    return sizeof(s_packetConnectData);
+}

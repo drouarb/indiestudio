@@ -10,6 +10,7 @@
 #include <network/packet/PacketMoveEntity.hh>
 #include <network/packet/PacketStartGame.hh>
 #include <network/packet/PacketDeleteEntity.hh>
+#include <iostream>
 #include "network/PacketFactory.hh"
 #include "network/PacketFactorySocketDisconnectionListener.hh"
 
@@ -53,12 +54,14 @@ void gauntlet::network::PacketFactory::unregisterListener(PacketListener *listen
 
 void gauntlet::network::PacketFactory::send(const Packet &packet) {
     t_rawdata *data = packet.serialize();
+    std::cout << "SENDINGALL " << packet.getPacketSize() << std::endl;
     socket->send(data);
     delete (data);
 }
 
 void gauntlet::network::PacketFactory::send(const Packet &packet, int fd) {
     t_rawdata *data = packet.serialize();
+    std::cout << "SENDING " << packet.getPacketSize() << std::endl;
     socket->send(data, fd);
     delete (data);
 }
@@ -70,17 +73,31 @@ void gauntlet::network::PacketFactory::recv() {
 
     runlock.lock();
     while (run) {
+        std::cout << "LISTENING" << std::endl;
         data = socket->recv();
-        if (data.data->size() > 0) {
+        std::cout << "RECEIVED " << data.data->size() << std::endl;
+        while (data.data->size() > 0) {
             id = static_cast<PacketId>(data.data->at(0));
             packet = NULL;
             try {
                 packet = (this->*createMap.at(id))(data);
-            } catch (std::exception) { }
+            } catch (std::exception) {
+                std::cout << "Invalid packet aborting" << std::endl;
+                packet = NULL;
+                data.data->resize(0);
+            }
             if (packet) {
                 this->notifyPacket(packet);
+                std::cout << "Removing " << packet->getPacketSize() << " of " << data.data->size() << std::endl;
+                for (size_t i = 0; i < packet->getPacketSize() && data.data->size() > 0; i++) {
+                    data.data->erase(data.data->begin());
+                }
+                std::cout << "Deleting packet" << std::endl;
+                delete(packet);
             }
         }
+        delete (data.data);
+        std::cout << "DONE" << std::endl;
     }
     runlock.unlock();
 }
@@ -96,6 +113,7 @@ void gauntlet::network::PacketFactory::notifyPacket(gauntlet::network::Packet *p
     if (listeners.find(packet->getPacketId()) != listeners.end()) {
         for (std::set<PacketListener *>::iterator it = listeners[packet->getPacketId()].begin();
              it != listeners[packet->getPacketId()].end(); it++) {
+            std::cout << "Notify packet " << packet->getPacketId() << std::endl;
             (*it)->notify(packet);
         }
     }
