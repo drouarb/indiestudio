@@ -21,7 +21,8 @@ gauntlet::Spell::~Spell() {
 
 const std::map<gauntlet::Spell::Area , gauntlet::Spell::patternFun> gauntlet::Spell::patternTypes = {
         {CIRCLE, &world::Collider::giveBodyInAreaCircle},
-        {CONE, &world::Collider::giveBodyInAreaCone}
+        {CONE, &world::Collider::giveBodyInAreaCone},
+        {COLUMN, &world::Collider::giveBodyInAreaCone}
 };
 
 void gauntlet::Spell::ApplyDamage(std::list<gauntlet::ABody*> targets, Actor *caster)

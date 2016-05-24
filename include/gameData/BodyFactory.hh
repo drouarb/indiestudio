@@ -33,7 +33,7 @@ namespace gauntlet
     void		fillPlayerTab();
     void		setBarbare();
     void		setElf();
-    void		setMage();
+    void		setWizard();
     void		setValkyrie();
     void		fillCreatureTab();
     void		setDraugr();

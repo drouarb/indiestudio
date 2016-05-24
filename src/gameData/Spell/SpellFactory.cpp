@@ -52,7 +52,7 @@ gauntlet::Spell *SpellFactory::getValkyriaAttack() {
 gauntlet::Spell *SpellFactory::getValkyriaDash() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Valkyria Dash", 100, 10, 10, Spell::Area::CIRCLE);
+  spell->setBasicStats(giveNextId(), "Valkyria Dash", 100, 10, 10, Spell::Area::COLUMN);
   return spell;
 }
 
