@@ -34,6 +34,7 @@ gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this)), actionlists(
   menu->setOpen(true);
 
   ogre.addWorldEntity(43, gauntlet::EntityName::OGREHEAD, 0, 0, 0, gauntlet::Texturename::TEXTURE_NONE);
+  ogre.playAnimation(43, 0, true);
   ogre.go();
 }
 

@@ -198,18 +198,23 @@ bool OgreUI::frameRenderingQueued(const Ogre::FrameEvent &evt)
   mMouse->capture();
   mTrayMgr->refreshCursor();
   mTrayMgr->frameRenderingQueued(evt);
-  for (auto animation : this->animationsArray)
-    {
-      std::cout << "Rendring animation" << std::endl;
-      Ogre::AnimationState *t2 = animation.second;
-      t2->addTime(evt.timeSinceLastFrame);
-    }
+  applyAnimation(evt);
   if (!mTrayMgr->isDialogVisible())
     {
       mCameraMan->frameRenderingQueued(evt);
     }
 
   return true;
+}
+
+void OgreUI::applyAnimation(const Ogre::FrameEvent &evt) const
+{
+  for (auto animation : animationsArray)
+    {
+      std::cout << "Rendring animation" << std::endl;
+      Ogre::AnimationState *t2 = animation.second;
+      t2->addTime(evt.timeSinceLastFrame);
+    }
 }
 
 bool OgreUI::keyPressed(const OIS::KeyEvent &arg)
@@ -548,7 +553,7 @@ void OgreUI::playAnimation(int entityId, int animationId, bool loop)
   while (it != mapIterator.end())
     {
       std::pair<const Ogre::String, Ogre::AnimationState *> &reference1 = *it;
-      if (nb == entityId)
+      if (nb == animationId)
 	{
 	  this->playAnimation(entityId, reference1.first, loop);
 	}
