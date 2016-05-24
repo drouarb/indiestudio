@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Tue May 24 12:48:09 2016 Alexis Trouve
+// Last update Tue May 24 14:17:02 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -24,9 +24,12 @@ GameServer::GameServer(const std::string& filePath, in_port_t port)
   unsigned int	i;
 
   world = new World(this);
-  world->loadGame(filePath);
+  try {
+    world->loadGame(filePath);
+  } catch (...) {
+    std::cout << "errorMap" << std::endl;
+  }
   packetFact = new PacketFactory(port);
-  std::cout << "-- server port: " << port << std::endl;
   players.push_back({"warrior", -1, false});
   players.push_back({"wizard", -1, false});
   players.push_back({"valkyrie", -1, false});
@@ -43,7 +46,8 @@ GameServer::GameServer(const std::string& filePath, in_port_t port)
       ++i;
     }
   listenThread = new std::thread(&GameServer::listen, std::ref(*this));
-  world->gameLoop();
+  //world->gameLoop();
+  while (1);
 }
 
 GameServer::~GameServer()
@@ -52,14 +56,17 @@ GameServer::~GameServer()
 
 void		GameServer::connectAnswer(const network::PacketConnect *packet)
 {
+  std::cout << "connectAnswer" << std::endl;
   std::cout << "-- server received connect" << std::endl;
   connectTmp.push_back(packet->getSocketId());
   std::cout << "-- server sendHandShake" << std::endl;
   sendHandShake(packet->getSocketId());
+  std::cout << "connectAnswerEnd" << std::endl;
 }
 
 void		GameServer::selectPlayerAnswer(const network::PacketSelectPlayer *packet)
 {
+  std::cout << "selectplayer" << std::endl;
   bool		check;
   int		nbrChoose;
   int		iTaken;
@@ -110,26 +117,29 @@ void		GameServer::selectPlayerAnswer(const network::PacketSelectPlayer *packet)
     }
   else
     sendHandShake(packet->getSocketId());
+  std::cout << "selectplayerend" << std::endl;
 }
 
 void			GameServer::notifyTake()
 {
-  PacketHandshake	*packet;
+  std::cout << "notifyTake" << std::endl;
+  PacketHandshake	packet(players[PlayerChar::BARBARIAN].isTake, players[PlayerChar::MAGE].isTake,
+			       players[PlayerChar::VALKYRIE].isTake, players[PlayerChar::RANGER].isTake,
+			       maxPlayers, coPlayers);
   unsigned int		i;
 
-  packet = new network::PacketHandshake(players[PlayerChar::BARBARIAN].isTake, players[PlayerChar::MAGE].isTake,
-					players[PlayerChar::VALKYRIE].isTake, players[PlayerChar::RANGER].isTake, maxPlayers, coPlayers);
   i = 0;
   while (i < connectTmp.size())
     {
-      packetFact->send(*packet, connectTmp[i]);
+      packetFact->send(packet, connectTmp[i]);
       ++i;
     }
-  delete packet;
+  std::cout << "notifyTakeEnd" << std::endl;
 }
 
 void		GameServer::receiveDeco(const network::PacketDisconnect *packet)
 {
+  std::cout << "receiveDeco" << std::endl;
   int		socketId;
   unsigned int	i;
 
@@ -151,36 +161,43 @@ void		GameServer::receiveDeco(const network::PacketDisconnect *packet)
 	connectTmp.erase(connectTmp.begin() + i);
       ++i;
     }
+  std::cout << "receiveDecoEnd" << std::endl;
 }
 
 void			GameServer::sendHandShake(int socketFd)
 {
+  std::cout << "sendHandShake" << std::endl;
   PacketHandshake	packet(players[PlayerChar::BARBARIAN].isTake, players[PlayerChar::MAGE].isTake,
 			       players[PlayerChar::VALKYRIE].isTake, players[PlayerChar::RANGER].isTake, maxPlayers, coPlayers);
 
   packetFact->send(packet, socketFd);
-  std::cout << "-- server handshake ok" << std::endl;
+  std::cout << "sendHandShakeEnd" << std::endl;
 }
 
 void		GameServer::sendDeco(int socketId, const std::string& msg)
 {
+  std::cout << "sendDeco" << std::endl;
   PacketDisconnect	packet(msg, socketId);
 
   packetFact->send(packet, socketId);
+  std::cout << "sendDecoEnd" << std::endl;
 }
 
 void		GameServer::DecoAll()
 {
-
+  std::cout << "DecoAll" << std::endl;
+  std::cout << "DecoAllEnd" << std::endl;
 }
 
 void		GameServer::sendMap()
 {
-
+  std::cout << "sendMap" << std::endl;
+  std::cout << "sendMaEnd" << std::endl;
 }
 
 void		GameServer::sendAddEntity(ABody *body)
 {
+  std::cout << "sendAddEntity" << std::endl;
   unsigned int	i;
   network::PacketAddEntity	packet(body->getEntityId(), body->getTextureId(), body->getMeshId(), static_cast<int>(body->getPos().first), static_cast<int>(body->getPos().second), body->getOrientation());
 
@@ -190,13 +207,16 @@ void		GameServer::sendAddEntity(ABody *body)
       packetFact->send(packet, players[i].socketId);
       ++i;
     }
+  std::cout << "sendAddEntityEnd" << std::endl;
 }
 
 void		GameServer::listen()
 {
+  std::cout << "listen" << std::endl;
   while (42)
     {
       std::cout << "-- server listen" << std::endl;
       packetFact->recv();
     }
+  std::cout << "listenEnd" << std::endl;
 }

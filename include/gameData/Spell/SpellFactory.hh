@@ -42,7 +42,8 @@ namespace gauntlet
           WIZARD_PLACEHOLDER1,
           WIZARD_PLACEHOLDER2,
           WIZARD_PLACEHOLDER3,
-          WIZARD_PLACEHOLDER4
+          WIZARD_PLACEHOLDER4,
+          DRAUGR_ATTACK
       };
       const static std::map<SpellEnum , getSpell> spellMap;
 
@@ -56,6 +57,7 @@ namespace gauntlet
       static Spell*              getBarbarianAttack();
       static Spell*              getBarbarianTornado();
 
+      Spell *getDraugrAttack();
   };
 };
 

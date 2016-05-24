@@ -26,7 +26,9 @@ const std::map<SpellFactory::SpellEnum, SpellFactory::getSpell> gauntlet::SpellF
   {SpellFactory::VALKYRIA_ATTACK, &gauntlet::SpellFactory::getValkyriaAttack},
   {SpellFactory::VALKYRIA_DASH, &gauntlet::SpellFactory::getValkyriaDash},
   {SpellFactory::BARBARIAN_ATTACK, &gauntlet::SpellFactory::getBarbarianAttack},
-  {SpellFactory::BARBARIAN_TORNADO, &gauntlet::SpellFactory::getBarbarianTornado}
+  {SpellFactory::BARBARIAN_TORNADO, &gauntlet::SpellFactory::getBarbarianTornado},
+  {SpellFactory::DRAUGR_ATTACK, &gauntlet::SpellFactory::getDraugrAttack}
+
 };
 
 int		SpellFactory::giveNextId()
@@ -52,7 +54,7 @@ gauntlet::Spell *SpellFactory::getValkyriaAttack() {
 gauntlet::Spell *SpellFactory::getValkyriaDash() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Valkyria Dash", 100, 10, 10, Spell::Area::CIRCLE);
+  spell->setBasicStats(giveNextId(), "Valkyria Dash", 100, 10, 10, Spell::Area::COLUMN);
   return spell;
 }
 
@@ -68,6 +70,14 @@ gauntlet::Spell *SpellFactory::getBarbarianTornado() {
   Spell *spell = new Spell;
 
   spell->setBasicStats(giveNextId(), "Barbarian Tornado", 100, 10, 10, Spell::Area::CIRCLE);
+  return spell;
+}
+
+gauntlet::Spell *SpellFactory::getDraugrAttack() {
+  Spell *spell = new Spell;
+
+  spell->setBasicStats(giveNextId(), "Draugr Attack", 100, 10, 10, Spell::Area::CONE);
+  spell->setConeAngle(40);
   return spell;
 }
 

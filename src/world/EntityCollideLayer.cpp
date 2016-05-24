@@ -331,6 +331,13 @@ std::list<gauntlet::ABody*>	EntityCollideLayer::giveBodyInAreaCircle(double posx
   return (list);
 }
 
+std::list<gauntlet::ABody*> EntityCollideLayer::giveBodyInAreaRectangle(double posx, double posy, short ratio, double size, short unused)
+{
+    //ratio == ratio entre x et y -> 3 par exemple si size (x) = 4 dans ce cas là y = 12
+    //tracer trois ligne une sur chaque bord
+    return (std::list<gauntlet::ABody*>());
+}
+
 std::list<gauntlet::ABody*>	EntityCollideLayer::giveBodyInAreaCone(double posx, double posy, short ref_angle, double size, short cone_angle)
 {
   short halfangle = cone_angle / 2;
