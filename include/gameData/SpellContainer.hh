@@ -10,6 +10,7 @@
 namespace gauntlet
 {
   class Spell;
+  class Actor;
 
     class SpellContainer
     {
@@ -17,7 +18,7 @@ namespace gauntlet
       SpellContainer();
       ~SpellContainer();
       std::vector<gauntlet::Spell*> spellList;
-      void  addSpell(int SpellEnum);
+      void addSpell(int spellEnum, gauntlet::Actor *caster);
     };
 };
 

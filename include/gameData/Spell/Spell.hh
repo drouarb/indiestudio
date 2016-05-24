@@ -45,8 +45,7 @@ namespace gauntlet {
         void                        prepare();
         void                        setBasicStats(int id, const std::string &name, double range, double radius, long damage, Area pattern);
         void                        setCaster(Actor *caster);
-
-        void setConeAngle(short id);
+        void                        setConeAngle(short id);
     };
 };
 

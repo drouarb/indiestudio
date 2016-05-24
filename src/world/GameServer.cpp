@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Tue May 24 13:39:18 2016 Alexis Trouve
+// Last update Tue May 24 14:17:02 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -23,51 +23,31 @@ GameServer::GameServer(const std::string& filePath, in_port_t port)
 {
   unsigned int	i;
 
-  std::cout << "start cons" << std::endl<< std::endl<< std::endl<< std::endl<< std::endl<< std::endl<< std::endl<< std::endl<< std::endl;
   world = new World(this);
-  std::cout << "ablation des testicule de  esteban1" << std::endl;
   try {
     world->loadGame(filePath);
   } catch (...) {
-    std::cout << "error" << std::endl;
+    std::cout << "errorMap" << std::endl;
   }
-  std::cout << "ablation des testicule de  esteban2" << std::endl;
   packetFact = new PacketFactory(port);
-  std::cout << "ablation des testicule de  esteban3" << std::endl;
-  std::cout << "-- server port: " << port << std::endl;
-  std::cout << "ablation des testicule de  esteban4" << std::endl;
   players.push_back({"warrior", -1, false});
-  std::cout << "ablation des testicule de  esteban5" << std::endl;
   players.push_back({"wizard", -1, false});
-  std::cout << "ablation des testicule de  esteban6" << std::endl;
   players.push_back({"valkyrie", -1, false});
-  std::cout << "ablation des testicule de  esteban7" << std::endl;
   players.push_back({"elf", -1, false});
-  std::cout << "ablation des testicule de  esteban8" << std::endl;
   listeners.push_back(new ServConnectListener(this));
-  std::cout << "ablation des testicule de  esteban9" << std::endl;
   listeners.push_back(new ServSelectPlayerListener(this));
-  std::cout << "ablation des testicule de  esteban10" << std::endl;
   listeners.push_back(new ServDisconnectListener(this));
-  std::cout << "ablation des testicule de  esteban11" << std::endl;
   maxPlayers = 4;
-  std::cout << "ablation des testicule de  esteban12" << std::endl;
   coPlayers = 0;
-  std::cout << "ablation des testicule de  esteban13" << std::endl;
   i = 0;
   while (i < listeners.size())
     {
       packetFact->registerListener(listeners[i]);
       ++i;
-  std::cout << "ablation des testicule de  esteban14" << std::endl;
     }
-  std::cout << "ablation des testicule de  esteban15" << std::endl;
   listenThread = new std::thread(&GameServer::listen, std::ref(*this));
-  std::cout << "ablation des testicule de  esteban16" << std::endl;
   //world->gameLoop();
   while (1);
-  std::cout << "ablation des testicule de  esteban17" << std::endl;
-  std::cout << "end cons" << std::endl<< std::endl<< std::endl<< std::endl<< std::endl<< std::endl<< std::endl<< std::endl<< std::endl;
 }
 
 GameServer::~GameServer()
