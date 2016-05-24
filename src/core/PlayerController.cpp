@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 15:52:38 2016 Esteban Lewis
-// Last update Tue May 24 12:52:46 2016 Esteban Lewis
+// Last update Tue May 24 16:41:56 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -42,6 +42,12 @@ std::string const &
 gauntlet::core::PlayerController::getName() const
 {
   return (name);
+}
+
+gauntlet::world::PlayerChar
+gauntlet::core::PlayerController::getChar() const
+{
+  return (chartype);
 }
 
 std::pair<double, double>
