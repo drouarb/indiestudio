@@ -74,8 +74,8 @@ void			BodyFactory::setBarbare()
   player->changePos(std::make_pair(-1, -1));
   player->changeSize(std::make_pair(10.0, 10.0));
   player->changeOrientation(0);
-  player->setModel(EntityName::NINJA);
-  player->setTexture(TextureName::NINjA_M);
+  player->setModel(EntityName::BERSERK);
+  player->setTexture(TextureName::TEXTURE_NONE);
   bodyTab.push_back(player);
 }
 
@@ -94,8 +94,8 @@ void			BodyFactory::setElf()
   player->changePos(std::make_pair(-1, -1));
   player->changeSize(std::make_pair(10.0, 10.0));
   player->changeOrientation(0);
-  player->setModel(EntityName::NINJA);
-  player->setTexture(TextureName::NINjA_M);
+  player->setModel(EntityName::BERSERK);
+  player->setTexture(TextureName::TEXTURE_NONE);
   bodyTab.push_back(player);
 }
 
@@ -114,8 +114,8 @@ void			BodyFactory::setWizard()
   player->changePos(std::make_pair(-1, -1));
   player->changeSize(std::make_pair(10.0, 10.0));
   player->changeOrientation(0);
-  player->setModel(EntityName::NINJA);
-  player->setTexture(TextureName::NINjA_M);
+  player->setModel(EntityName::BERSERK);
+  player->setTexture(TextureName::TEXTURE_NONE);
   bodyTab.push_back(player);
 }
 
@@ -136,8 +136,8 @@ void			BodyFactory::setValkyrie()
   player->changePos(std::make_pair(-1, -1));
   player->changeSize(std::make_pair(10.0, 10.0));
   player->changeOrientation(0);
-  player->setModel(EntityName::NINJA);
-  player->setTexture(TextureName::NINjA_M);
+  player->setModel(EntityName::BERSERK);
+  player->setTexture(TextureName::TEXTURE_NONE);
   bodyTab.push_back(player);
 }
 
@@ -158,8 +158,8 @@ void			BodyFactory::setDraugr()
   crea->changePos(std::make_pair(-1, -1));
   crea->changeSize(std::make_pair(10.0, 10.0));
   crea->changeOrientation(0);
-  crea->setModel(EntityName::NINJA);
-  crea->setTexture(TextureName::NINjA_M);
+  crea->setModel(EntityName::BERSERK);
+  crea->setTexture(TextureName::TEXTURE_NONE);
   crea->setTexture(1);
   bodyTab.push_back(crea);
   i = 0;

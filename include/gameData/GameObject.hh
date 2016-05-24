@@ -26,6 +26,7 @@ namespace gauntlet
     {
     protected:
       world::World	*world;
+      bool          gatherable;
     public:
       GameObject(int nid, world::World *nworld);
       ~GameObject();
