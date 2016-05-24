@@ -1,13 +1,3 @@
-//
-// Core.cpp for indie in /home/lewis_e/rendu/cpp/cpp_indie_studio
-// 
-// Made by Esteban Lewis
-// Login   <lewis_e@epitech.net>
-// 
-// Started on  Mon May  9 11:13:44 2016 Esteban Lewis
-// Last update Tue May 24 11:34:02 2016 Esteban Lewis
-//
-
 #include <math.h>
 #include <iostream>
 #include <stdlib.h>
@@ -43,8 +33,8 @@ gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this)), actionlists(
   ogre.playSound(0);
   menu->setOpen(true);
 
+  ogre.addWorldEntity(43, gauntlet::EntityName::OGREHEAD, 0, 0, 0, gauntlet::Texturename::TEXTURE_NONE);
   ogre.go();
-  _exit(0);
 }
 
 gauntlet::core::Core::~Core()
@@ -140,11 +130,9 @@ gauntlet::core::Core::createServer()
   cpid = fork();
   if (cpid == -1)
     return ;
-  if (cpid != 0)
+  if (cpid == 0)
     {
-      std::cout << "-- create server " << serverAddr.second << std::endl;
       world::GameServer(map, serverAddr.second);
-      std::cout << "-- server shutdown" << std::endl;
       _exit(0);
     }
   else
@@ -181,7 +169,7 @@ gauntlet::core::Core::initPacketf()
 	{
 	  packetf->registerListener(*it);
 	}
-      listenThread = new std::thread(&Core::listen, std::ref(*this));
+      listenThread = new std::thread(&network::PacketFactory::recv, std::ref(*packetf));
     }
 }
 
@@ -190,16 +178,21 @@ gauntlet::core::Core::disconnect(bool send)
 {
   network::PacketDisconnect pd("");
 
-  if (send)
-    packetf->send((network::Packet&)pd);
-  packetf->stop();
-  //TODO: delete straight away?
+  if (packetf)
+    {
+      if (send)
+	packetf->send((network::Packet&)pd);
+      packetf->stop();
+      delete packetf;
 
-  delete listenThread;
-  listenThread = NULL;
+      listenThread->join();
+      delete listenThread;
+      listenThread = NULL;
 
-  packetf = NULL;
-  stop();
+      packetf = NULL;
+      stop();
+    }
+  killServer();
 }
 
 void
@@ -226,13 +219,4 @@ gauntlet::core::IUIObserver::Key
 gauntlet::core::Core::getLastKey() const
 {
   return (lastKey);
-}
-
-void
-gauntlet::core::Core::listen()
-{
-  while (1)
-    {
-      packetf->recv();
-    }
 }

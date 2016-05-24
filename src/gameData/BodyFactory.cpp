@@ -9,6 +9,7 @@
 //
 
 #include <iostream>
+#include <gameData/Spell/SpellFactory.hh>
 #include "BodyFactory.hh"
 
 using namespace gauntlet;
@@ -41,7 +42,7 @@ void			BodyFactory::fillPlayerTab()
 {
   setBarbare();
   setElf();
-  setMage();
+  setWizard();
   setValkyrie();
 }
 
@@ -67,6 +68,8 @@ void			BodyFactory::setBarbare()
   player->stats.normalSpeed = 1.0;
   player->stats.attackModifier = 1.0;
   player->setCollide(true);
+  player->spellBook.addSpell(SpellFactory::BARBARIAN_ATTACK, player);
+  player->spellBook.addSpell(SpellFactory::BARBARIAN_TORNADO, player);
   player->changePos(std::make_pair(-1, -1));
   player->changeSize(std::make_pair(10.0, 10.0));
   player->changeOrientation(0);
@@ -91,7 +94,7 @@ void			BodyFactory::setElf()
   bodyTab.push_back(player);
 }
 
-void			BodyFactory::setMage()
+void			BodyFactory::setWizard()
 {
   Player		*player;
 
@@ -120,6 +123,8 @@ void			BodyFactory::setValkyrie()
   player->stats.speed = 1.0;
   player->stats.normalSpeed = 1.0;
   player->stats.attackModifier = 1.0;
+  player->spellBook.addSpell(SpellFactory::VALKYRIA_ATTACK, player);
+  player->spellBook.addSpell(SpellFactory::VALKYRIA_DASH, player);
   player->setCollide(true);
   player->changePos(std::make_pair(-1, -1));
   player->changeSize(std::make_pair(10.0, 10.0));
@@ -139,10 +144,13 @@ void			BodyFactory::setDraugr()
   crea->stats.speed = 1.0;
   crea->stats.normalSpeed = 1.0;
   crea->stats.attackModifier = 1.0;
+  crea->spellBook.addSpell(SpellFactory::DRAUGR_ATTACK, crea);
   crea->setCollide(true);
   crea->changePos(std::make_pair(-1, -1));
   crea->changeSize(std::make_pair(10.0, 10.0));
   crea->changeOrientation(0);
+  crea->setModel(EntityName::NINJA);
+  crea->setTexture(1);
   bodyTab.push_back(crea);
   i = 0;
   while (i < AIs.size())

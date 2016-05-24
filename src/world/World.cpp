@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Tue May 24 12:04:05 2016 Alexis Trouve
+// Last update Tue May 24 14:43:13 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -151,7 +151,7 @@ void		World::gameLoop()
     }
 }
 
-void	World::addNewBody(double xpos, double ypos, const std::string& name, short orientation)
+int	World::addNewBody(double xpos, double ypos, const std::string& name, short orientation)
 {
   ABody	*body;
 
@@ -183,4 +183,9 @@ void		World::notifyDeath(ABody *body)
 Collider&	World::getCollider()
 {
   return (*collider);
+}
+
+const std::pair<double, double>&	World::getSpawnPoint()
+{
+  return (spawnPoint);
 }

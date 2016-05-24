@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 20:56:05 2016 Alexis Trouve
-// Last update Tue May 24 11:24:30 2016 Alexis Trouve
+// Last update Tue May 24 14:44:23 2016 Alexis Trouve
 //
 
 #ifndef GAMESERVER_HH_
@@ -23,6 +23,7 @@
 #include "PacketDisconnect.hh"
 #include "PacketListener.hh"
 #include "PacketAddEntity.hh"
+#include "PacketStartGame.hh"
 #include "ABody.hh"
 
 namespace gauntlet

@@ -7,13 +7,9 @@
 #include <network/packet/PacketHandshake.hh>
 #include <network/packet/PacketSelectPlayer.hh>
 #include <network/packet/PacketAddEntity.hh>
-#include <network/listener/PacketConnectListener.hh>
-#include <network/listener/PacketDisconnectListener.hh>
-#include <network/listener/PacketHandshakeListener.hh>
-#include <network/listener/PacketAddEntityListener.hh>
-#include <network/listener/PacketSelectPlayerListener.hh>
-#include <iostream>
 #include <network/packet/PacketMoveEntity.hh>
+#include <network/packet/PacketStartGame.hh>
+#include <network/packet/PacketDeleteEntity.hh>
 #include "network/PacketFactory.hh"
 #include "network/PacketFactorySocketDisconnectionListener.hh"
 
@@ -34,7 +30,7 @@ gauntlet::network::PacketFactory::PacketFactory(const std::string &address, in_p
 gauntlet::network::PacketFactory::~PacketFactory() {
     run = false;
     delete (socket);
-    delete(disconnectionListener);
+    delete (disconnectionListener);
 }
 
 void gauntlet::network::PacketFactory::registerListener(PacketListener *listener) {
@@ -116,8 +112,10 @@ const std::map<gauntlet::network::PacketId, gauntlet::network::PacketFactory::cr
         {DISCONNECT,    &PacketFactory::createPacket<PacketDisconnect>},
         {HANDSHAKE,     &PacketFactory::createPacket<PacketHandshake>},
         {PLAYER_SELECT, &PacketFactory::createPacket<PacketSelectPlayer>},
+        {START_GAME,    &PacketFactory::createPacket<PacketStartGame>},
         {ADD_ENTITY,    &PacketFactory::createPacket<PacketAddEntity>},
-        {MOVE_ENTITY,   &PacketFactory::createPacket<PacketMoveEntity>}
+        {MOVE_ENTITY,   &PacketFactory::createPacket<PacketMoveEntity>},
+        {DELETE_ENTITY, &PacketFactory::createPacket<PacketDeleteEntity>}
 };
 
 

@@ -1,5 +1,5 @@
 #include "ListenerHandshake.hh"
-#include "ConnectMenu.hh"
+#include "WaitPacket.hh"
 
 gauntlet::core::ListenerHandshake::ListenerHandshake(Core & core) : core(core)
 { }
@@ -10,7 +10,5 @@ gauntlet::core::ListenerHandshake::~ListenerHandshake()
 void
 gauntlet::core::ListenerHandshake::notify(const network::PacketHandshake * packet)
 {
-  std::cout << "client received handshake" << std::endl;
-  if (packet->getConnectedPlayers() < packet->getMaxPlayers())
-    ConnectMenu::shakehand(true, true);
+  WaitPacket::receive(packet);
 }

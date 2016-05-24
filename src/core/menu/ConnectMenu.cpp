@@ -7,6 +7,8 @@
 #include "SaveloadMenu.hh"
 #include "PacketConnect.hh"
 #include "PacketDisconnect.hh"
+#include "PacketHandshake.hh"
+#include "WaitPacket.hh"
 
 gauntlet::core::ConnectMenu::ConnectMenu(Core & core, int idStart, Menu * parent) :
   TextBox(core, idStart, parent, "Server port")
@@ -39,6 +41,7 @@ gauntlet::core::ConnectMenu::ConnectMenu(Core & core, int idStart, Menu * parent
   submenus.push_back(new MessageBox(core, idStart + MENU_ID_LAYER, this, ""));
   submenus.push_back(new IpMenu(core, idStart + MENU_ID_LAYER, this));
   submenus.push_back(new SaveloadMenu(core, idStart + MENU_ID_LAYER, this));
+  submenus.push_back(new WaitPacket(core, idStart + MENU_ID_LAYER, this));
 }
 
 gauntlet::core::ConnectMenu::~ConnectMenu()
@@ -81,6 +84,10 @@ gauntlet::core::ConnectMenu::draw()
       buttons[2].update(item);
     }
   init = false;
+
+
+  if (static_cast<WaitPacket *>(submenus[3])->receivedValue())
+    sendConnect();
 }
 
 void
@@ -144,8 +151,15 @@ gauntlet::core::ConnectMenu::doConnect(struct t_hitItem & item)
       submenus[0]->setOpen(true);
       return ;
     }
-  int port = stoi(text);
-  if (port <= 0)
+
+  int port = -1;
+  try
+    {
+      port = stoi(text);
+    }
+  catch (std::invalid_argument)
+    { }
+  if (port <= 0 || port > 65535)
     {
       static_cast<MessageBox *>(submenus[0])->setMsg("Invalid port.");
       submenus[0]->setOpen(true);
@@ -181,7 +195,6 @@ gauntlet::core::ConnectMenu::doConnect(struct t_hitItem & item)
       core.packetf = new network::PacketFactory(ip, port);
       core.initPacketf();
       sendConnect();
-      setOpen(false);
     }
   catch (std::runtime_error e)
     {
@@ -202,30 +215,28 @@ gauntlet::core::ConnectMenu::sendConnect()
 {
   network::PacketConnect pc;
 
-  shakehand(true, false);
-  core.packetf->send((network::Packet&)pc);
-  usleep(100000);
-  bool connected = shakehand(false, false);
-  if (connected == true)
+  if (static_cast<WaitPacket *>(submenus[3])->receivedValue() == false)
     {
-      static_cast<MessageBox *>(submenus[0])->setMsg("Connection succeeded.");
-      submenus[0]->setOpen(true);
-      justConnected = true;
+      core.packetf->send((network::Packet&)pc);
+      submenus[3]->setOpen(true);
     }
   else
     {
-      static_cast<MessageBox *>(submenus[0])->setMsg("No response from server.");
-      submenus[0]->setOpen(true);
-      core.disconnect(true);
+      network::PacketHandshake const * packet =
+	dynamic_cast<network::PacketHandshake const *>
+	(static_cast<WaitPacket *>(submenus[3])->getReceived());
+      if (packet != NULL && packet->getConnectedPlayers() < packet->getMaxPlayers())
+	{
+	  static_cast<MessageBox *>(submenus[0])->setMsg("Connection succeeded.");
+	  submenus[0]->setOpen(true);
+	  justConnected = true;
+	  setOpen(false);
+	}
+      else
+	{
+	  static_cast<MessageBox *>(submenus[0])->setMsg("No response from server.");
+	  submenus[0]->setOpen(true);
+	  core.disconnect(true);
+	}
     }
-}
-
-bool
-gauntlet::core::ConnectMenu::shakehand(bool set, bool val)
-{
-  static bool connected = false;
-
-  if (set)
-    connected = val;
-  return (connected);
 }

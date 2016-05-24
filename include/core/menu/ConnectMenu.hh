@@ -19,8 +19,6 @@ namespace			gauntlet
 
       std::string		ip;
 
-      static bool		shakehand(bool set, bool val);
-
     protected:
       std::map<int, void (ConnectMenu::*)(struct t_hitItem &)> funs;
       std::vector<std::string>	serverTypes;

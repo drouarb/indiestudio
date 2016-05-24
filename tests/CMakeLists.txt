@@ -38,6 +38,13 @@ add_executable(PacketSelectPlayerTest
         ../src/network/packet/PacketSelectPlayer.cpp)
 add_test(PacketSelectPlayerTest PacketSelectPlayerTest)
 
+#Test StartGame
+add_executable(PacketStartGameTest
+        packet/PacketStartGameTest.cpp
+        ../src/network/packet/Packet.cpp
+        ../src/network/packet/PacketStartGame.cpp)
+add_test(PacketStartGameTest PacketStartGameTest)
+
 #Test Map
 add_executable(PacketMapTest
         packet/PacketMapTest.cpp
@@ -59,6 +66,13 @@ add_executable(PacketMoveEntityTest
         ../src/network/packet/PacketMoveEntity.cpp)
 add_test(PacketMoveEntityTest PacketMoveEntityTest)
 
+#Test MoveEntity
+add_executable(PacketDeleteEntityTest
+        packet/PacketDeleteEntityTest.cpp
+        ../src/network/packet/Packet.cpp
+        ../src/network/packet/PacketDeleteEntity.cpp)
+add_test(PacketDeleteEntityTest PacketDeleteEntityTest)
+
 #Test PacketFactory
 add_executable(PacketFactoryTest
         packet/PacketFactoryTest.cpp
@@ -67,17 +81,14 @@ add_executable(PacketFactoryTest
         ../src/network/packet/PacketDisconnect.cpp
         ../src/network/packet/PacketHandshake.cpp
         ../src/network/packet/PacketSelectPlayer.cpp
+        ../src/network/packet/PacketStartGame.cpp
         ../src/network/packet/PacketMap.cpp
         ../src/network/packet/PacketAddEntity.cpp
         ../src/network/packet/PacketMoveEntity.cpp
+        ../src/network/packet/PacketDeleteEntity.cpp
         ../src/network/listener/PacketListener.cpp
-        ../src/network/listener/PacketConnectListener.cpp
         ../src/network/listener/PacketDisconnectListener.cpp
-        ../src/network/listener/PacketHandshakeListener.cpp
-        ../src/network/listener/PacketSelectPlayerListener.cpp
-        ../src/network/listener/PacketMapListener.cpp
         ../src/network/listener/PacketAddEntityListener.cpp
-        ../src/network/listener/PacketMoveEntityListener.cpp
         ../src/network/PacketFactory.cpp
         ../src/network/PacketFactorySocketDisconnectionListener.cpp
         ../src/network/Socket.cpp

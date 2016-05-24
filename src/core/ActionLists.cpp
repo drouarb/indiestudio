@@ -1,6 +1,5 @@
 #include "ActionLists.hh"
 #include "Core.hh"
-#include "EntityName.hh"
 
 gauntlet::core::ActionLists::ActionLists(Core & core) : core(core)
 { }
@@ -18,7 +17,8 @@ gauntlet::core::ActionLists::doActions()
     {
       core.ogre.addWorldEntity((*it)->getEntityId(), (EntityName)(*it)->getMeshId(),
 			       (*it)->getX(), (*it)->getY(), (*it)->getAngle(),
-			       (*it)->getTextureId());
+			       static_cast<gauntlet::Texturename>
+			       ((*it)->getTextureId()));
     }
 
   for (std::list<network::PacketDisconnect*>::iterator it = packetsDisconnect.begin();
@@ -32,7 +32,7 @@ gauntlet::core::ActionLists::doActions()
        it != packetsMoveEntity.end(); ++it)
     {
       core.ogre.addWorldEntity((*it)->getEntityId(), (EntityName)0,
-			       (*it)->getX(), (*it)->getY(), (*it)->getAngle(), 0);
+			       (*it)->getX(), (*it)->getY(), (*it)->getAngle(), gauntlet::Texturename::TEXTURE_NONE);
     }
 
   clearActions();

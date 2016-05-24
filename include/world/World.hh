@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:51:22 2016 Alexis Trouve
-// Last update Tue May 24 11:34:34 2016 Alexis Trouve
+// Last update Tue May 24 14:43:04 2016 Alexis Trouve
 //
 
 #ifndef WORLD_HH_
@@ -53,8 +53,9 @@ namespace			gauntlet
       void			applyMoveActor();
       void			applyAI();
       void			notifyDeath(ABody *body);
-      void			addNewBody(double xpos, double ypos, const std::string& name, short orientation);
+      int			addNewBody(double xpos, double ypos, const std::string& name, short orientation);
       Collider&			getCollider();
+      const std::pair<double, double>&	getSpawnPoint();
     };
   };
 };

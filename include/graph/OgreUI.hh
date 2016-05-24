@@ -31,6 +31,7 @@
 #include <mutex>
 #include <graph/Effect.hh>
 #include <gameData/EntityName.hh>
+#include <gameData/TextureName.hh>
 #include "IUIObserver.hh"
 
 namespace gauntlet
@@ -48,9 +49,9 @@ class OgreUI
 	  OgreBites::SdkTrayListener
 {
  private:
-  std::map<OIS::KeyCode, gauntlet::core::IUIObserver::Key> keymap;
-  std::map<OIS::MouseButtonID, gauntlet::core::IUIObserver::Key> mousemap;
-  std::map<gauntlet::core::Position, OgreBites::TrayLocation> posmap;
+  static const std::map<OIS::KeyCode, gauntlet::core::IUIObserver::Key> keymap;
+  static const std::map<OIS::MouseButtonID, gauntlet::core::IUIObserver::Key> mousemap;
+  static const std::map<gauntlet::core::Position, OgreBites::TrayLocation> posmap;
   std::map<std::string, Ogre::AnimationState *> animationsArray;
   std::map<int, gauntlet::Effect *> effectMap;
   gauntlet::core::IUIObserver *obs;
@@ -59,18 +60,18 @@ class OgreUI
 
   Ogre::Root *mRoot;
   Ogre::Camera *mCamera;
+  static const std::map<gauntlet::Texturename ,std::string>texturemap;
   Ogre::SceneManager *mSceneMgr;
   Ogre::RenderWindow *mWindow;
   Ogre::String mResourcesCfg;
   Ogre::String mPluginsCfg;
- private:
-  Ogre::SceneNode *rootNode;
+  Ogre::SceneNode *planNode;
   Ogre::SceneNode *worldNode;
   Ogre::OverlaySystem *mOverlaySystem;
   OgreBites::SdkTrayManager *mTrayMgr;
   OgreBites::SdkCameraMan *mCameraMan;
   OgreBites::ParamsPanel *mDetailsPanel;
-  std::map<gauntlet::EntityName, std::string> meshmap;
+  static const std::map<gauntlet::EntityName, std::string> meshmap;
   bool mCursorWasVisible;
   bool mShutDown;
   OIS::InputManager *mInputManager;
@@ -87,14 +88,15 @@ class OgreUI
 
 
   bool addWorldEntity(int entityId, gauntlet::EntityName meshid, int x, int y,
-		      short degres, int texture_id);
+		      short degres, gauntlet::Texturename texture_id);
 
-  void initMap();
-
+  bool addMapEntity(int entityId, gauntlet::EntityName meshid, int x, int y,
+		      short degres, gauntlet::Texturename texture_id);
   void initSound();
 
   bool configure(void);
 
+  void   resetMap();
   void chooseSceneManager(void);
 
   void createCamera(void);
@@ -220,4 +222,12 @@ class OgreUI
 		      Ogre::Vector3 orientation);
 
   void playAnimation(int entityId, const std::string &animationName, bool loop);
+
+  bool addWorldEntity(int entityId, const std::string &name,
+		      std::pair<int, int> position, Ogre::Vector3 orientation,
+		      gauntlet::Texturename textureId);
+
+  bool addWorldEntity(int entityId, const std::string &name,
+		      std::pair<int, int> position,
+		      gauntlet::Texturename textureId);
 };

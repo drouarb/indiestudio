@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Mon May  9 18:02:31 2016 Alexis Trouve
-// Last update Tue May 10 19:23:00 2016 Alexis Trouve
+// Last update Tue May 24 15:06:29 2016 Alexis Trouve
 //
 
 #ifndef SPELLFACTORY_HH_
@@ -36,6 +36,7 @@ namespace gauntlet
           VALKYRIA_DASH,
           BARBARIAN_ATTACK,
           BARBARIAN_TORNADO,
+          DRAUGR_ATTACK,
           RANGER_ATTACK,
           RANGER_ARROW_WAVE,
           RANGER_EXPLOSIVE_ARROW,
@@ -55,7 +56,7 @@ namespace gauntlet
       static Spell*              getValkyriaDash();
       static Spell*              getBarbarianAttack();
       static Spell*              getBarbarianTornado();
-
+      static Spell*              getDraugrAttack();
   };
 };
 

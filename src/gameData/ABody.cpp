@@ -99,15 +99,25 @@ world::World *ABody::getWorld() {
 
 unsigned int			ABody::getEntityId() const
 {
-  return (0);
+  return (id);
 }
 
 unsigned int			ABody::getTextureId() const
 {
-  return (0);
+  return (texture);
 }
 
 unsigned int			ABody::getMeshId() const
 {
-  return (0);
+  return (model);
+}
+
+void                    ABody::setModel(int _model)
+{
+  model = _model;
+}
+
+void                    ABody::setTexture(int _texture)
+{
+  texture = _texture;
 }

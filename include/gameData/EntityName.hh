@@ -14,7 +14,7 @@ namespace gauntlet
     NINJA,
     CUBE,
     DOOR,
-    TUDOURHOUSE,
+    TUDORHOUSE,
     WAGEN,
     PLAN,
     CHESTCARTOON,

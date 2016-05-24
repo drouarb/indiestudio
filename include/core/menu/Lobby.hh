@@ -26,6 +26,8 @@ namespace			gauntlet
       void			doCharacter(struct t_hitItem &);
       void			doPlay(struct t_hitItem &);
       void			doCancel(struct t_hitItem &);
+
+      void			receivedStartgame();
     };
   };
 };
