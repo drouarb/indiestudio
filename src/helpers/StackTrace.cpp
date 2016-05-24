@@ -22,6 +22,7 @@ void StackTrace::displayStackTrace()
 void StackTrace::init()
 {
   signal(SIGSEGV, &handler);
+  signal(SIGABRT, &handler);
 }
 
 void StackTrace::handler(int signal)
