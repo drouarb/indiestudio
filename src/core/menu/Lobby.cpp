@@ -4,6 +4,9 @@
 #include "Core.hh"
 #include "CharMenu.hh"
 #include "ConnectMenu.hh"
+#include "PacketSelectPlayer.hh"
+#include "PacketStartGame.hh"
+#include "WaitPacket.hh"
 
 gauntlet::core::Lobby::Lobby(Core & core, int idStart, Menu * parent) :
   Menu(core, idStart, parent)
@@ -35,6 +38,7 @@ gauntlet::core::Lobby::Lobby(Core & core, int idStart, Menu * parent) :
   submenus.push_back(new MessageBox(core, idStart + MENU_ID_LAYER, this, ""));
   submenus.push_back(new CharMenu(core, idStart + MENU_ID_LAYER, this));
   submenus.push_back(new ConnectMenu(core, idStart + MENU_ID_LAYER, this));
+  submenus.push_back(new WaitPacket(core, idStart + MENU_ID_LAYER, this));
 }
 
 gauntlet::core::Lobby::~Lobby()
@@ -56,6 +60,9 @@ gauntlet::core::Lobby::draw()
   else
     buttons[2].setStr(core.pc->getName());
   drawButtons();
+
+  if (static_cast<WaitPacket *>(submenus[3])->receivedValue())
+    receivedStartgame();
 }
 
 void
@@ -99,10 +106,41 @@ gauntlet::core::Lobby::doPlay(struct t_hitItem & item)
 	("You must first create your character.");
       submenus[0]->setOpen(true);
     }
+  else if (core.packetf == NULL)
+    {
+      static_cast<MessageBox *>(submenus[0])->setMsg
+	("You must first connect to a server.");
+      submenus[0]->setOpen(true);
+    }
+
   else
     {
-      //TODO send select player and receive player id, then send it to ogre and play
+      network::PacketSelectPlayer psp(core.pc->getChar() == world::BARBARIAN,
+				      core.pc->getChar() == world::MAGE,
+				      core.pc->getChar() == world::VALKYRIE,
+				      core.pc->getChar() == world::RANGER,
+				      core.pc->getName());
+      core.packetf->send(psp);
+      submenus[3]->setOpen(true);
+    }
+}
+
+void
+gauntlet::core::Lobby::receivedStartgame()
+{
+  network::PacketStartGame const * packet =
+    dynamic_cast<network::PacketStartGame const *>
+    (static_cast<WaitPacket *>(submenus[3])->getReceived());
+  if (packet != NULL)
+    {
+      core.ogre.addCameraTracker(packet->getEntityId());
       core.play();
+    }
+  else
+    {
+      static_cast<MessageBox *>(submenus[0])->setMsg("No response from server.");
+      submenus[0]->setOpen(true);
+      core.disconnect(true);
     }
 }
 

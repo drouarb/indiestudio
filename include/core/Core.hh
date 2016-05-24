@@ -5,13 +5,14 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 10:59:47 2016 Esteban Lewis
-// Last update Tue May 24 15:21:46 2016 Esteban Lewis
+// Last update Tue May 24 17:01:51 2016 Esteban Lewis
 //
 
 #ifndef  CORE_HH_
 # define CORE_HH_
 
 # include <mutex>
+# include <thread>
 # include <unistd.h>
 # include "CoreUIObserver.hh"
 # include "Menu.hh"
@@ -63,13 +64,12 @@ namespace			gauntlet
 
     private:
       IUIObserver *		observer;
-      helpers::Thread<void (Core::*)(), Core> *	listenThread;
+      std::thread *		listenThread;
       Menu *			menu;
       IUIObserver::Key		lastKey;
       std::list<network::PacketListener*> listeners;
       bool			playing;
 
-      void			listen();
       void			killServer();
     };
   };
