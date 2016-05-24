@@ -55,8 +55,7 @@ void		Actor::setMove()
 }
 
 void Actor::addSpell(int spellEnum) {
-  spellBook.addSpell(spellEnum);
-  spellBook.spellList.back()->setCaster(this);
+  spellBook.addSpell(spellEnum, this);
 }
 
 
