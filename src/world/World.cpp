@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Tue May 24 18:35:14 2016 Alexis Trouve
+// Last update Tue May 24 19:13:37 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -180,6 +180,27 @@ void		World::notifyDeath(ABody *body)
     }
 }
 
+void		World::deleteId(int id)
+{
+  unsigned int	i;
+  std::list<ABody*>::iterator it1;
+
+  collider->suprBody(id);
+  it1 = bodys.begin();
+  while (it1 != bodys.end())
+    {
+      if (id == (*it1)->getId())
+	bodys.erase(it1);
+      it1++;
+    }
+  i = 0;
+  while (i < AIs.size())
+    {
+      AIs[i]->suprActor(id);
+      ++i;
+    }
+}
+
 Collider&	World::getCollider()
 {
   return (*collider);
@@ -202,7 +223,7 @@ int				World::getUniqueEffectId()
   return (++i);
 }
 
-/*int				World::createNewEffect(gauntlet::EffectName effect)
+int				World::createNewEffect(gauntlet::EffectName effect)
 {
 
-}*/
+}
