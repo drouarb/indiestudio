@@ -26,7 +26,7 @@ namespace gauntlet
     EXPLOSION = 8,
     FAIRY = 9,
     FULLSPECTRUM = 10,
-    GALAXY 11,
+    GALAXY = 11,
     LINES = 12,
     MULTI_EMITTERS = 13,
     PLASMA = 14,
