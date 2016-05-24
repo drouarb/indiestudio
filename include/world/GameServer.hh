@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 20:56:05 2016 Alexis Trouve
-// Last update Tue May 24 14:44:23 2016 Alexis Trouve
+// Last update Tue May 24 17:26:07 2016 Alexis Trouve
 //
 
 #ifndef GAMESERVER_HH_
@@ -48,6 +48,8 @@ namespace gauntlet
       std::vector<playerServerData>	players;
       std::vector<int>			connectTmp;
       std::thread			*listenThread;
+      std::thread			*dataSendThread;
+      std::mutex			dataSendMutex;
     public:
       GameServer(const std::string& filePath, in_port_t port);
       ~GameServer();
@@ -56,6 +58,7 @@ namespace gauntlet
       void		selectPlayerAnswer(const network::PacketSelectPlayer *packet);
       void		receiveDeco(const network::PacketDisconnect *packet);
       void		sendHandShake(int fd);
+      void		sendDatas(int socketId);
       void		notifyTake();
       void		sendDeco(int fd, const std::string& msg);
       void		DecoAll();

@@ -1,13 +1,3 @@
-//
-// World.cpp for indie in /home/lewis_e/rendu/cpp/cpp_indie_studio
-// 
-// Made by Esteban Lewis
-// Login   <lewis_e@epitech.net>
-// 
-// Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Tue May 24 17:31:26 2016 Esteban Lewis
-//
-
 #include <iostream>
 #include <fstream>
 #include <stdexcept>
@@ -188,4 +178,9 @@ Collider&	World::getCollider()
 const std::pair<double, double>&	World::getSpawnPoint()
 {
   return (spawnPoint);
+}
+
+std::list<ABody*>		World::getBodysByCopy() const
+{
+  return (bodys);
 }
