@@ -1,0 +1,40 @@
+material berserkerhigh_animationsplit_ms3d#0
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 0
+			shading gouraud
+
+			texture_unit
+			{
+				texture berserker_diffuse2.tga
+			}
+		}
+	}
+}
+
+material berserkerhigh_animationsplit_ms3d#1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 0
+			shading gouraud
+
+			texture_unit
+			{
+				texture armor_diffuse.tga
+			}
+		}
+	}
+}
+
