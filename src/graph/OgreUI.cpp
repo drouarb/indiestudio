@@ -7,6 +7,9 @@
 using namespace gauntlet;
 using namespace core;
 
+
+
+
 OgreUI::OgreUI(void)
 	: mRoot(0),
 	  mCamera(0),
@@ -210,6 +213,9 @@ bool OgreUI::frameRenderingQueued(const Ogre::FrameEvent &evt)
 
   return true;
 }
+
+
+
 
 bool OgreUI::keyPressed(const OIS::KeyEvent &arg)
 {
@@ -504,7 +510,7 @@ void OgreUI::createScene(void)
   pointLight->setDiffuseColour(Ogre::ColourValue::White);
   pointLight->setSpecularColour(Ogre::ColourValue::White);
   mSceneMgr->setSkyBox(true, "Examples/SceneSkyBox");
-  addMapEntity(1, TUDORHOUSE, 0, 0, 0, TUDORHOUSE_M);
+  //addMapEntity(1, TUDORHOUSE, 0, 0, 0, TUDORHOUSE_M);
 }
 
 void OgreUI::quit()
@@ -612,6 +618,7 @@ bool __attribute_deprecated__ OgreUI::addWorldEntity(int entityId,
 						     short angle,
 						     Texturename texture_id)
 {
+  std::cout << "~ ogre add entity" << std::endl;
   std::stringstream ss;
   ss << entityId;
   Ogre::Entity *e;
@@ -664,7 +671,7 @@ bool __attribute_warn_unused_result__ OgreUI::addWorldEntity(int entityId,
   return (true);
 }
 
-#warning "C'est la faute à trouvé"
+
 
 bool __attribute_warn_unused_result__ OgreUI::addWorldEntity(int entityId,
 							     const std::string &name,
