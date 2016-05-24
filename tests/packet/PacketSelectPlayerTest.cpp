@@ -12,7 +12,8 @@ int main() {
 
     std::cout << "->Serialisation/Deserialitation" << std::endl;
     srand(time(NULL));
-    gauntlet::network::PacketSelectPlayer packetSelectPlayer(rand() % 2, rand() % 2, rand() % 2, rand() % 2);
+    gauntlet::network::PacketSelectPlayer packetSelectPlayer(rand() % 2, rand() % 2, rand() % 2, rand() % 2,
+                                                             "Tanguy l'enlise");
 
     data.data = packetSelectPlayer.serialize();
 
@@ -22,4 +23,6 @@ int main() {
     assert(packetSelectPlayer.getWizard() == packetSelectPlayer1.getWizard());
     assert(packetSelectPlayer.getValkyrie() == packetSelectPlayer1.getValkyrie());
     assert(packetSelectPlayer.getElf() == packetSelectPlayer1.getElf());
+    assert(packetSelectPlayer.getName() == packetSelectPlayer1.getName());
+    std::cout << packetSelectPlayer1.getName() << std::endl;
 }
