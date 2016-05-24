@@ -13,7 +13,7 @@ class OgreUI;
 namespace gauntlet
 {
 
-  enum EffectType : int
+  enum EffectName : int
   {
     ATOMIC,
     BLIND,
@@ -39,7 +39,7 @@ namespace gauntlet
   class Effect
   {
    public:
-    std::map<EffectType, std::string> _effectName = {
+    std::map<EffectName, std::string> _effectName = {
 	    {ATOMIC, "Atomic"},
 	    {BLIND, "Blind"},
 	    {BLINK, "Blink"},
@@ -69,7 +69,7 @@ namespace gauntlet
     Ogre::ParticleSystem *_particleSystem;
 
    public:
-    Effect(OgreUI *ogreUI, EffectType type, const std::string &name, std::pair<double, double> coord,int percent);
+    Effect(OgreUI *ogreUI, EffectName type, const std::string &name, std::pair<double, double> coord,int percent);
     ~Effect();
     Ogre::ParticleSystem *getParticleSystem() const;
     std::string const &getName() const;

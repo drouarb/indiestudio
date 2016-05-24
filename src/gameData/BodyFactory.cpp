@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include <gameData/Spell/SpellFactory.hh>
+#include <gameData/TextureName.hh>
 #include "BodyFactory.hh"
 
 using namespace gauntlet;
@@ -74,6 +75,7 @@ void			BodyFactory::setBarbare()
   player->changeSize(std::make_pair(10.0, 10.0));
   player->changeOrientation(0);
   player->setModel(EntityName::NINJA);
+  player->setTexture(TextureName::NINjA_M);
   bodyTab.push_back(player);
 }
 
@@ -92,6 +94,8 @@ void			BodyFactory::setElf()
   player->changePos(std::make_pair(-1, -1));
   player->changeSize(std::make_pair(10.0, 10.0));
   player->changeOrientation(0);
+  player->setModel(EntityName::NINJA);
+  player->setTexture(TextureName::NINjA_M);
   bodyTab.push_back(player);
 }
 
@@ -110,6 +114,8 @@ void			BodyFactory::setWizard()
   player->changePos(std::make_pair(-1, -1));
   player->changeSize(std::make_pair(10.0, 10.0));
   player->changeOrientation(0);
+  player->setModel(EntityName::NINJA);
+  player->setTexture(TextureName::NINjA_M);
   bodyTab.push_back(player);
 }
 
@@ -130,6 +136,8 @@ void			BodyFactory::setValkyrie()
   player->changePos(std::make_pair(-1, -1));
   player->changeSize(std::make_pair(10.0, 10.0));
   player->changeOrientation(0);
+  player->setModel(EntityName::NINJA);
+  player->setTexture(TextureName::NINjA_M);
   bodyTab.push_back(player);
 }
 
@@ -151,6 +159,7 @@ void			BodyFactory::setDraugr()
   crea->changeSize(std::make_pair(10.0, 10.0));
   crea->changeOrientation(0);
   crea->setModel(EntityName::NINJA);
+  crea->setTexture(TextureName::NINjA_M);
   crea->setTexture(1);
   bodyTab.push_back(crea);
   i = 0;

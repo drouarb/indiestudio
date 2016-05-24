@@ -7,7 +7,7 @@
 
 namespace  gauntlet
 {
-   enum Texturename : int
+   enum TextureName : int
    {
      TEXTURE_NONE = 0,
      NINjA_M = 1,
