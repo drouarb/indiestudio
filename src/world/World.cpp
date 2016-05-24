@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Mon May 23 23:00:33 2016 Alexis Trouve
+// Last update Tue May 24 12:04:05 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -20,8 +20,8 @@ using namespace world;
 
 World::World(GameServer *ngameserver)
 {
-  IAs.push_back(new BasicIA(this));
-  Factory = new BodyFactory(this, IAs);
+  AIs.push_back(new BasicAI(this));
+  Factory = new BodyFactory(this, AIs);
   collider = NULL;
   Math::init();
   sizeX = 0;
@@ -106,13 +106,14 @@ void	World::applyMoveActor()
   it1 = bodys.begin();
   while (it1 != bodys.end())
     {
-      if ((actor = dynamic_cast<Actor*>((*it1))) != NULL)
+      body = (*it1);
+      if ((actor = dynamic_cast<Actor*>(body)) != NULL)
 	actor->move();
       it1++;
     }
 }
 
-void		World::applyIA()
+void		World::applyAI()
 {
   std::list<ABody*>::iterator	it1;
   unsigned int	i;
@@ -131,9 +132,9 @@ void		World::applyIA()
   while (j < players.size())
     {
       i = 0;
-      while (i < IAs.size())
+      while (i < AIs.size())
 	{
-	  IAs[i]->launchIA(players[j]->getPos());
+	  AIs[i]->launchAI(players[j]->getPos());
 	  ++i;
 	}
       ++j;
@@ -145,7 +146,7 @@ void		World::gameLoop()
   while (42 == 42)
     {
       //TODO: frequency
-      applyIA();
+      applyAI();
       applyMoveActor();
     }
 }
@@ -172,9 +173,9 @@ void		World::notifyDeath(ABody *body)
 
   collider->suprBody(body->getId());
   i = 0;
-  while (i < IAs.size())
+  while (i < AIs.size())
     {
-      IAs[i]->suprActor(body->getId());
+      AIs[i]->suprActor(body->getId());
       ++i;
     }
 }

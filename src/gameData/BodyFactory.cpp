@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 16:50:32 2016 Alexis Trouve
-// Last update Sun May 22 16:09:20 2016 Alexis Trouve
+// Last update Tue May 24 11:36:17 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -16,10 +16,10 @@ using namespace gauntlet;
 BodyFactory::BodyFactory()
 {}
 
-BodyFactory::BodyFactory(world::World *nworld, std::vector<world::BasicIA*>& nIAs)
+BodyFactory::BodyFactory(world::World *nworld, std::vector<world::AbstractAI*>& nAIs)
 {
   world = nworld;
-  IAs = nIAs;
+  AIs = nAIs;
   fillCreatureTab();
   fillGameObjectTab();
   fillPlayerTab();
@@ -145,10 +145,10 @@ void			BodyFactory::setDraugr()
   crea->changeOrientation(0);
   bodyTab.push_back(crea);
   i = 0;
-  while (i < IAs.size())
+  while (i < AIs.size())
     {
-      if (IAs[i]->getName() == "BasicIA")
-	IAs[i]->setNewIA(crea);
+      if (AIs[i]->getName() == "BasicAI")
+	AIs[i]->setNewAI(crea);
       ++i;
     }
 }

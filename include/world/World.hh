@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:51:22 2016 Alexis Trouve
-// Last update Mon May 23 21:14:13 2016 Alexis Trouve
+// Last update Tue May 24 11:34:34 2016 Alexis Trouve
 //
 
 #ifndef WORLD_HH_
@@ -14,9 +14,14 @@
 #include <string>
 #include <list>
 #include "ABody.hh"
+#include "Actor.hh"
+#include "Player.hh"
+#include "Creature.hh"
+#include "GameObject.hh"
 #include "Collider.hh"
 #include "BodyFactory.hh"
-#include "BasicIA.hh"
+#include "AbstractAI.hh"
+#include "BasicAI.hh"
 #include "GameServer.hh"
 
 namespace			gauntlet
@@ -30,7 +35,7 @@ namespace			gauntlet
     private:
       Collider			*collider;
       BodyFactory		*Factory;
-      std::vector<BasicIA*>	IAs;
+      std::vector<gauntlet::world::AbstractAI*>	AIs;
       std::list<ABody*>		bodys;
       double			sizeX;
       double			sizeY;
@@ -46,7 +51,7 @@ namespace			gauntlet
       void			gameLoop();
       void			tester();
       void			applyMoveActor();
-      void			applyIA();
+      void			applyAI();
       void			notifyDeath(ABody *body);
       void			addNewBody(double xpos, double ypos, const std::string& name, short orientation);
       Collider&			getCollider();

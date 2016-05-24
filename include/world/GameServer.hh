@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 20:56:05 2016 Alexis Trouve
-// Last update Mon May 23 22:44:35 2016 Alexis Trouve
+// Last update Tue May 24 11:24:30 2016 Alexis Trouve
 //
 
 #ifndef GAMESERVER_HH_
@@ -56,7 +56,7 @@ namespace gauntlet
       void		receiveDeco(const network::PacketDisconnect *packet);
       void		sendHandShake(int fd);
       void		notifyTake();
-      void		sendDeco();
+      void		sendDeco(int fd, const std::string& msg);
       void		DecoAll();
       void		sendMap();
       void		sendAddEntity(ABody *body);

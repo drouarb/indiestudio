@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Mon May 23 22:52:36 2016 Alexis Trouve
+// Last update Tue May 24 11:44:24 2016 Alexis Trouve
 //
 
 #include "PlayerChars.hh"
@@ -59,9 +59,25 @@ void		GameServer::selectPlayerAnswer(const network::PacketSelectPlayer *packet)
   bool		check;
   int		nbrChoose;
   int		iTaken;
+  unsigned int	i;
 
-  nbrChoose = 0;
-  coPlayers++;
+  i = 0;
+  nbrChoose = -1;
+  while (i < connectTmp.size())
+    {
+      if (connectTmp[i] == packet->getSocketId())
+	{
+	  nbrChoose = 0;
+	  break;
+	}
+      ++i;
+    }
+  if (nbrChoose == -1)
+    {
+      sendDeco(packet->getSocketId(),
+	       "Error : you are not connect on the server, you must authentificate yourself.");
+      return ;
+    }
   if (packet->getWarrior() == true)
     {
       nbrChoose++;
@@ -84,10 +100,12 @@ void		GameServer::selectPlayerAnswer(const network::PacketSelectPlayer *packet)
     }
   if (nbrChoose == 1)
     {
-      notifyTake();
+      players[iTaken].isTake = true;
+      players[iTaken].socketId = packet->getSocketId();
+      connectTmp.erase(connectTmp.begin() + i);
     }
   else
-    notifyTake();
+    sendHandShake(packet->getSocketId());
 }
 
 void			GameServer::notifyTake()
@@ -108,19 +126,42 @@ void			GameServer::notifyTake()
 
 void		GameServer::receiveDeco(const network::PacketDisconnect *packet)
 {
+  int		socketId;
+  unsigned int	i;
 
+  socketId = packet->getSocketId();
+  i = 0;
+  while (i < players.size())
+    {
+      if (players[i].socketId == socketId)
+	{
+	  players[i].socketId = -1;
+	  players[i].isTake = false;
+	}
+      ++i;
+    }
+  i = 0;
+  while (i < connectTmp.size())
+    {
+      if (connectTmp[i] == socketId)
+	connectTmp.erase(connectTmp.begin() + i);
+      ++i;
+    }
 }
 
 void			GameServer::sendHandShake(int socketFd)
 {
   PacketHandshake	packet(players[PlayerChar::BARBARIAN].isTake, players[PlayerChar::MAGE].isTake,
 			       players[PlayerChar::VALKYRIE].isTake, players[PlayerChar::RANGER].isTake, maxPlayers, coPlayers);
+
   packetFact->send(packet, socketFd);
 }
 
-void		GameServer::sendDeco()
+void		GameServer::sendDeco(int socketId, const std::string& msg)
 {
+  PacketDisconnect	packet(msg, socketId);
 
+  packetFact->send(packet, socketId);
 }
 
 void		GameServer::DecoAll()
