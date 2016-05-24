@@ -33,13 +33,13 @@ namespace gauntlet
       Player(int nid, world::World *newWorld);
       ~Player();
 
-      void			addScore(long addition);
-      void			setPlayerName(const std::string& nplayerName);
+      void			        addScore(long addition);
+      void			        setPlayerName(const std::string& nplayerName);
       const std::string&	getPlayerName() const;
-      long			getScore() const;
+      long			        getScore() const;
       // void equip(Item item);
-      void			use(Item item);
-      virtual ABody		*clone(int id) const;
+      void			        use(Item item);
+      virtual ABody		    *clone(int id) const;
     };
 }
 
