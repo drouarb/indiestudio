@@ -6,6 +6,7 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <string.h>
+#include <fcntl.h>
 #include "network/Socket.hh"
 
 gauntlet::network::Socket::Socket(in_port_t port) {
@@ -19,6 +20,8 @@ gauntlet::network::Socket::Socket(in_port_t port) {
         throw std::runtime_error("Can't bind port");
     if (listen(sockfd, 0) == -1)
         throw std::runtime_error("Listen error");
+    int flags = fcntl(sockfd, F_GETFL, 0);
+    fcntl(sockfd, F_SETFL, flags | O_NONBLOCK);
     type = SERVER;
     disconnectionListener = NULL;
 }
@@ -46,11 +49,25 @@ gauntlet::network::Socket::~Socket() {
 void gauntlet::network::Socket::send(std::vector<unsigned char> *data) {
     lock.lock();
     if (type == SERVER) {
-        for (s_client cli : clients) {
+      for (s_client cli : clients) {
             ::send(cli.sockfd, &data->front(), data->size(), 0);
         }
     } else {
         ::send(sockfd, &data->front(), data->size(), 0);
+    }
+    lock.unlock();
+}
+
+void gauntlet::network::Socket::send(std::vector<unsigned char> *data, int fd) {
+    lock.lock();
+    if (type == SERVER) {
+        for (s_client client : clients) {
+            if (client.sockfd == fd)
+                ::send(client.sockfd, &data->front(), data->size(), 0);
+        }
+    } else {
+        if (fd == sockfd)
+            ::send(sockfd, &data->front(), data->size(), 0);
     }
     lock.unlock();
 }
@@ -84,7 +101,7 @@ s_socketData gauntlet::network::Socket::recv() {
                         return buff;
                     }
                     if (i == sockfd) {
-                        if ((cli.sockfd = accept(sockfd, (struct sockaddr *) &cli.sock, &cli.len)) != -1) {
+                        while ((cli.sockfd = accept(sockfd, (struct sockaddr *) &cli.sock, &cli.len)) != -1) {
                             clients.push_back(cli);
                         }
                     } else {
@@ -101,7 +118,6 @@ s_socketData gauntlet::network::Socket::recv() {
             lock.unlock();
         }
     }
-    lock.lock();
     FD_ZERO(&set);
     FD_SET(pipe[0], &set);
     FD_SET(sockfd, &set);
@@ -112,6 +128,7 @@ s_socketData gauntlet::network::Socket::recv() {
         buff.fd = -1;
         return buff;
     }
+    lock.lock();
     return this->recv(sockfd);
 }
 

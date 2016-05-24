@@ -3,14 +3,17 @@
 //
 
 #include <stdexcept>
+#include <cstring>
 #include "network/packet/PacketSelectPlayer.hh"
 
-gauntlet::network::PacketSelectPlayer::PacketSelectPlayer(bool warrior, bool wizard, bool valkyrie, bool elf) :
+gauntlet::network::PacketSelectPlayer::PacketSelectPlayer(bool warrior, bool wizard, bool valkyrie, bool elf,
+                                                          const std::string &name) :
         Packet(gauntlet::network::PLAYER_SELECT, -1),
         warrior(warrior),
         wizard(wizard),
         valkyrie(valkyrie),
-        elf(elf) { }
+        elf(elf),
+        name(name) { }
 
 gauntlet::network::PacketSelectPlayer::PacketSelectPlayer(const s_socketData &data) :
         Packet(gauntlet::network::PLAYER_SELECT, data.fd) {
@@ -19,7 +22,7 @@ gauntlet::network::PacketSelectPlayer::PacketSelectPlayer(const s_socketData &da
 
 t_rawdata *gauntlet::network::PacketSelectPlayer::serialize() const {
     t_rawdata *data = new t_rawdata;
-    data->resize(sizeof(s_packetSelectPlayerData), 0);
+    data->resize(sizeof(s_packetSelectPlayerData) + name.size(), 0);
     s_packetSelectPlayerData *packetSelectPlayerData = reinterpret_cast<s_packetSelectPlayerData *>(&data->front());
     packetSelectPlayerData->packetId = this->getPacketId();
     packetSelectPlayerData->selectedCharacters =
@@ -27,6 +30,8 @@ t_rawdata *gauntlet::network::PacketSelectPlayer::serialize() const {
             (wizard ?   1 << 1 : 0) |
             (valkyrie ? 1 << 2 : 0) |
             (elf ?      1 << 3 : 0);
+    packetSelectPlayerData->namelen = name.size();
+    strcpy(&packetSelectPlayerData->namestart, name.c_str());
     return data;
 }
 
@@ -36,11 +41,14 @@ void gauntlet::network::PacketSelectPlayer::deserialize(t_rawdata *data) {
     if (data->at(0) != gauntlet::network::PLAYER_SELECT) {
         throw std::logic_error("PacketSelectPlayer::Invalid packet id");
     }
-    s_packetSelectPlayerData *packetHandshakeData = reinterpret_cast<s_packetSelectPlayerData *>(&data->front());
-    warrior = static_cast<bool>(packetHandshakeData->selectedCharacters >> 0 & 0x01);
-    wizard = static_cast<bool>(packetHandshakeData->selectedCharacters >> 1 & 0x01);
-    valkyrie = static_cast<bool>(packetHandshakeData->selectedCharacters >> 2 & 0x01);
-    elf = static_cast<bool>(packetHandshakeData->selectedCharacters >> 3 & 0x01);
+    s_packetSelectPlayerData *packetSelectPlayerData = reinterpret_cast<s_packetSelectPlayerData *>(&data->front());
+    if (data->size() < sizeof(s_packetSelectPlayerData) + packetSelectPlayerData->namelen)
+        throw std::logic_error("PacketSelectPlayer::Invalid data");
+    warrior = static_cast<bool>(packetSelectPlayerData->selectedCharacters >> 0 & 0x01);
+    wizard = static_cast<bool>(packetSelectPlayerData->selectedCharacters >> 1 & 0x01);
+    valkyrie = static_cast<bool>(packetSelectPlayerData->selectedCharacters >> 2 & 0x01);
+    elf = static_cast<bool>(packetSelectPlayerData->selectedCharacters >> 3 & 0x01);
+    name = &packetSelectPlayerData->namestart;
 }
 
 bool gauntlet::network::PacketSelectPlayer::getWarrior() const {
@@ -60,8 +68,6 @@ bool gauntlet::network::PacketSelectPlayer::getElf() const {
 }
 
 
-
-
-
-
-
+const std::string &gauntlet::network::PacketSelectPlayer::getName() const {
+    return name;
+}

@@ -15,27 +15,37 @@ namespace gauntlet {
 
             struct s_PacketAddEntity {
                 unsigned char packetId;
-                unsigned int assetId;
                 unsigned int entityId;
-                unsigned long namelen;
-                char namestart;
-            };
+                unsigned int textureId;
+                unsigned int meshId;
+	      int x;
+                int y;
+                short angle;
+            }__attribute__((packed));
+
         public:
             PacketAddEntity(const s_socketData &data);
-            PacketAddEntity(unsigned int assetId, unsigned int entityId, const std::string &playerName);
+            PacketAddEntity(unsigned int entityId, unsigned int textureId, unsigned int meshId, int x, int y, short angle);
             virtual ~PacketAddEntity() { };
 
             virtual t_rawdata* serialize() const;
             virtual void deserialize(t_rawdata* data);
 
-            unsigned int getAssetId() const;
+
             unsigned int getEntityId() const;
-            const std::string & getPlayerName() const;
+            unsigned int getTextureId() const;
+            unsigned int getMeshId() const;
+            int getX() const;
+            int getY() const;
+            short getAngle() const;
 
         private:
-            unsigned int assetId;
             unsigned int entityId;
-            std::string playerName;
+            unsigned int textureId;
+            unsigned int meshId;
+            int x;
+            int y;
+            short angle;
         };
     }
 }

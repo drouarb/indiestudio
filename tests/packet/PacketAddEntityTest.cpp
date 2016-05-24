@@ -8,17 +8,20 @@
 
 int main() {
     s_socketData data;
-    std::cout << "Testing PacketMap" << std::endl;
+    std::cout << "Testing PacketAddEntity" << std::endl;
 
     std::cout << "->Serialisation/Deserialitation" << std::endl;
     srand(time(NULL));
-    gauntlet::network::PacketAddEntity packetAddEntity(rand(), rand(), "Maurice");
+    gauntlet::network::PacketAddEntity packetAddEntity(rand(), rand(), rand(), rand(), rand(), rand());
 
     data.data = packetAddEntity.serialize();
 
     gauntlet::network::PacketAddEntity packetAddEntity1(data);
     assert(packetAddEntity.getPacketId() == packetAddEntity1.getPacketId());
-    assert(packetAddEntity.getAssetId() == packetAddEntity1.getAssetId());
     assert(packetAddEntity.getEntityId() == packetAddEntity1.getEntityId());
-    assert(packetAddEntity.getPlayerName() == packetAddEntity.getPlayerName());
+    assert(packetAddEntity.getTextureId() == packetAddEntity1.getTextureId());
+    assert(packetAddEntity.getMeshId() == packetAddEntity1.getMeshId());
+    assert(packetAddEntity.getX() == packetAddEntity1.getX());
+    assert(packetAddEntity.getY() == packetAddEntity1.getY());
+    assert(packetAddEntity.getAngle() == packetAddEntity1.getAngle());
 }

@@ -52,6 +52,13 @@ add_executable(PacketAddEntityTest
         ../src/network/packet/PacketAddEntity.cpp)
 add_test(PacketAddEntityTest PacketAddEntityTest)
 
+#Test MoveEntity
+add_executable(PacketMoveEntityTest
+        packet/PacketMoveEntityTest.cpp
+        ../src/network/packet/Packet.cpp
+        ../src/network/packet/PacketMoveEntity.cpp)
+add_test(PacketMoveEntityTest PacketMoveEntityTest)
+
 #Test PacketFactory
 add_executable(PacketFactoryTest
         packet/PacketFactoryTest.cpp
@@ -62,6 +69,7 @@ add_executable(PacketFactoryTest
         ../src/network/packet/PacketSelectPlayer.cpp
         ../src/network/packet/PacketMap.cpp
         ../src/network/packet/PacketAddEntity.cpp
+        ../src/network/packet/PacketMoveEntity.cpp
         ../src/network/listener/PacketListener.cpp
         ../src/network/listener/PacketConnectListener.cpp
         ../src/network/listener/PacketDisconnectListener.cpp
@@ -69,6 +77,7 @@ add_executable(PacketFactoryTest
         ../src/network/listener/PacketSelectPlayerListener.cpp
         ../src/network/listener/PacketMapListener.cpp
         ../src/network/listener/PacketAddEntityListener.cpp
+        ../src/network/listener/PacketMoveEntityListener.cpp
         ../src/network/PacketFactory.cpp
         ../src/network/PacketFactorySocketDisconnectionListener.cpp
         ../src/network/Socket.cpp

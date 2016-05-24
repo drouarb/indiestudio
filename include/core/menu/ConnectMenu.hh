@@ -19,10 +19,14 @@ namespace			gauntlet
 
       std::string		ip;
 
+      static bool		shakehand(bool set, bool val);
+
     protected:
       std::map<int, void (ConnectMenu::*)(struct t_hitItem &)> funs;
       std::vector<std::string>	serverTypes;
       bool			init;
+      std::string		portstr;
+      bool			justConnected;
 
       void			doButton(int, struct t_hitItem &);
 
@@ -30,6 +34,8 @@ namespace			gauntlet
       void			doDistant(struct t_hitItem &);
       void			doConnect(struct t_hitItem &);
       void			doCancel(struct t_hitItem &);
+
+      void			sendConnect();
     };
   };
 };

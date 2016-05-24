@@ -6,12 +6,15 @@
 #include <stdexcept>
 #include "network/packet/PacketAddEntity.hh"
 
-gauntlet::network::PacketAddEntity::PacketAddEntity(unsigned int assetId, unsigned int entityId,
-                                                    const std::string &playerName) :
+gauntlet::network::PacketAddEntity::PacketAddEntity(unsigned int entityId, unsigned int textureId, unsigned int meshId,
+                                                    int x, int y, short angle) :
         Packet(gauntlet::network::ADD_ENTITY, -1),
-        assetId(assetId),
         entityId(entityId),
-        playerName(playerName) { }
+        textureId(textureId),
+        meshId(meshId),
+        x(x),
+        y(y),
+        angle(angle) { }
 
 gauntlet::network::PacketAddEntity::PacketAddEntity(const s_socketData &data) :
         Packet(gauntlet::network::ADD_ENTITY, data.fd) {
@@ -20,13 +23,15 @@ gauntlet::network::PacketAddEntity::PacketAddEntity(const s_socketData &data) :
 
 t_rawdata *gauntlet::network::PacketAddEntity::serialize() const {
     t_rawdata *data = new t_rawdata;
-    data->resize(sizeof(s_PacketAddEntity) + playerName.size(), 0);
+    data->resize(sizeof(s_PacketAddEntity), 0);
     s_PacketAddEntity *packetAddEntity = reinterpret_cast<s_PacketAddEntity *>(&data->front());
     packetAddEntity->packetId = this->getPacketId();
-    packetAddEntity->assetId = assetId;
     packetAddEntity->entityId = entityId;
-    packetAddEntity->namelen = playerName.size();
-    strcpy(&packetAddEntity->namestart, playerName.c_str());
+    packetAddEntity->textureId = textureId;
+    packetAddEntity->meshId = meshId;
+    packetAddEntity->x = x;
+    packetAddEntity->y = y;
+    packetAddEntity->angle = angle;
     return data;
 }
 
@@ -37,21 +42,34 @@ void gauntlet::network::PacketAddEntity::deserialize(t_rawdata *data) {
         throw std::logic_error("PacketAddEntity::Invalid packet id");
     }
     s_PacketAddEntity *packetAddEntity = reinterpret_cast<s_PacketAddEntity *>(&data->front());
-    if (data->size() < sizeof(s_PacketAddEntity) + packetAddEntity->namelen)
-        throw std::logic_error("PacketAddEntity::Invalid data");
-    assetId = packetAddEntity->assetId;
     entityId = packetAddEntity->entityId;
-    playerName.assign(&packetAddEntity->namestart, packetAddEntity->namelen);
-}
-
-unsigned int gauntlet::network::PacketAddEntity::getAssetId() const {
-    return assetId;
-}
-
-const std::string &gauntlet::network::PacketAddEntity::getPlayerName() const {
-    return playerName;
+    textureId = packetAddEntity->textureId;
+    meshId = packetAddEntity->meshId;
+    x = packetAddEntity->x;
+    y = packetAddEntity->y;
+    angle = packetAddEntity->angle;
 }
 
 unsigned int gauntlet::network::PacketAddEntity::getEntityId() const {
     return entityId;
+}
+
+unsigned int gauntlet::network::PacketAddEntity::getTextureId() const {
+    return textureId;
+}
+
+unsigned int gauntlet::network::PacketAddEntity::getMeshId() const {
+    return meshId;
+}
+
+int gauntlet::network::PacketAddEntity::getX() const {
+    return x;
+}
+
+int gauntlet::network::PacketAddEntity::getY() const {
+    return y;
+}
+
+short gauntlet::network::PacketAddEntity::getAngle() const {
+    return angle;
 }

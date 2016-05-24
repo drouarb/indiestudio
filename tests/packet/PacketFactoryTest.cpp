@@ -10,9 +10,9 @@
 #include "network/listener/PacketDisconnectListener.hh"
 #include "network/PacketFactory.hh"
 
-class PacketDisconnectListenerTest: public gauntlet::network::PacketDisconnectListener {
+class PacketDisconnectListenerTest : public gauntlet::network::PacketDisconnectListener {
 public:
-    PacketDisconnectListenerTest(): count(0) {};
+    PacketDisconnectListenerTest() : count(0) { };
 
     virtual void notify(const gauntlet::network::PacketDisconnect *packet) {
         std::cout << "    -> " << packet->getSocketId() << " disconnected" << std::endl;
@@ -27,9 +27,9 @@ private:
     int count;
 };
 
-class PacketAddEntityListenerTest: public gauntlet::network::PacketAddEntityListener {
+class PacketAddEntityListenerTest : public gauntlet::network::PacketAddEntityListener {
 public:
-    PacketAddEntityListenerTest(): count(0) {};
+    PacketAddEntityListenerTest() : count(0) { };
 
     virtual void notify(const gauntlet::network::PacketAddEntity *packet) {
         std::cout << "    ->  Entity received" << std::endl;
@@ -81,7 +81,9 @@ int main() {
     std::cout << "  -> OK" << std::endl;
 
     std::cout << "  -- Sending some packets" << std::endl;
-    gauntlet::network::PacketAddEntity *packetAddEntity = new gauntlet::network::PacketAddEntity(rand(), rand(), "Hi bro");
+    gauntlet::network::PacketAddEntity *packetAddEntity = new gauntlet::network::PacketAddEntity(rand(), rand(), rand(),
+                                                                                                 rand(), rand(),
+                                                                                                 rand());
     server->send(*packetAddEntity);
     sleep(1);
     std::cout << "  -- OK" << std::endl;
@@ -89,17 +91,17 @@ int main() {
     std::cout << "  -- Stopping server & clients" << std::endl;
     cli1->stop();
     cli1Thread->join();
-    delete(cli1Thread);
-    delete(cli1);
+    delete (cli1Thread);
+    delete (cli1);
     cli2->stop();
     cli2Thread->join();
-    delete(cli2Thread);
-    delete(cli2);
+    delete (cli2Thread);
+    delete (cli2);
     sleep(1);
     assert(packetDisconnectTest->getCount() == 2);
     server->stop();
     serverThread->join();
-    delete(serverThread);
-    delete(server);;
+    delete (serverThread);
+    delete (server);;
     std::cout << "  -> OK" << std::endl;
 }

@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Sun May 22 19:01:15 2016 Esteban Lewis
+// Last update Tue May 24 12:04:05 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -18,14 +18,15 @@
 using namespace	gauntlet;
 using namespace world;
 
-World::World()
+World::World(GameServer *ngameserver)
 {
-  IAs.push_back(new BasicIA(this));
-  Factory = new BodyFactory(this, IAs);
+  AIs.push_back(new BasicAI(this));
+  Factory = new BodyFactory(this, AIs);
   collider = NULL;
   Math::init();
   sizeX = 0;
   sizeY = 0;
+  gameServer = ngameserver;
 }
 
 World::~World()
@@ -54,37 +55,46 @@ void	World::loadGame(std::string const & file)
   JSON::JsonObj json;
   json.ParseFrom(content);
 
-  collider = new Collider(stoi(dynamic_cast<JSON::JsonStr &>(json.GetObj("length")).Get()),
-			  stoi(dynamic_cast<JSON::JsonStr &>(json.GetObj("width")).Get()));
-
-  JSON::JsonObj & spawn = dynamic_cast<JSON::JsonObj &>(json.GetObj("spawn"));
-  dynamic_cast<JSON::JsonStr &>(spawn.GetObj("x"));
-  dynamic_cast<JSON::JsonStr &>(spawn.GetObj("y"));
-
-  dynamic_cast<JSON::JsonStr &>(json.GetObj("map"));
-
-  JSON::JsonArr & arr = dynamic_cast<JSON::JsonArr &>(json.GetObj("dynamic"));
-  for (int i = 0; i < arr.Size(); ++i)
+  try
     {
-      JSON::JsonObj & obj = dynamic_cast<JSON::JsonObj &>(arr[i]);
-      addNewBody(stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("x")).Get()),
-		 stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("y")).Get()),
-		 dynamic_cast<JSON::JsonStr &>(obj.GetObj("name")).Get(),
-		 Math::getAngleFromDegrees
-		 (stoi(dynamic_cast<JSON::JsonStr &>(obj.GetObj("angle")).Get())));
-    }
+      sizeX = stoi(dynamic_cast<JSON::JsonStr &>(json.GetObj("length")).Get());
+      sizeY = stoi(dynamic_cast<JSON::JsonStr &>(json.GetObj("width")).Get());
+      collider = new Collider(sizeX, sizeY);
+      
+      JSON::JsonObj & spawn = dynamic_cast<JSON::JsonObj &>(json.GetObj("spawn"));
+      spawnPoint.first = stod(dynamic_cast<JSON::JsonStr &>(spawn.GetObj("x")).Get());
+      spawnPoint.second = stod(dynamic_cast<JSON::JsonStr &>(spawn.GetObj("y")).Get());
+      if (spawnPoint.first < 0 || spawnPoint.first >= sizeX ||
+	  spawnPoint.second < 0 || spawnPoint.second >= sizeY)
+	throw (std::runtime_error("Spawn point coordinates are out of bounds"));
 
-  JSON::JsonArr & arr_p = dynamic_cast<JSON::JsonArr &>(json.GetObj("physical"));
-  for (int i = 0; i < arr_p.Size(); ++i)
+      dynamic_cast<JSON::JsonStr &>(json.GetObj("map"));
+      
+      JSON::JsonArr & arr = dynamic_cast<JSON::JsonArr &>(json.GetObj("dynamic"));
+      for (int i = 0; i < arr.Size(); ++i)
+	{
+	  JSON::JsonObj & obj = dynamic_cast<JSON::JsonObj &>(arr[i]);
+	  addNewBody(stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("x")).Get()),
+		     stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("y")).Get()),
+		     dynamic_cast<JSON::JsonStr &>(obj.GetObj("name")).Get(),
+		     Math::getAngleFromDegrees
+		     (stoi(dynamic_cast<JSON::JsonStr &>(obj.GetObj("angle")).Get())));
+	}
+      
+      JSON::JsonArr & arr_p = dynamic_cast<JSON::JsonArr &>(json.GetObj("physical"));
+      for (int i = 0; i < arr_p.Size(); ++i)
+	{
+	  JSON::JsonObj & obj = dynamic_cast<JSON::JsonObj &>(arr_p[i]);
+	  (void)obj;
+	}
+    }
+  catch (std::runtime_error & e)
     {
-      JSON::JsonObj & obj = dynamic_cast<JSON::JsonObj &>(arr_p[i]);
-      (void)obj;
+      if (collider)
+	delete collider;
+      collider = NULL;
+      throw e;
     }
-}
-
-void	World::initNetwork()
-{
-  
 }
 
 void	World::applyMoveActor()
@@ -96,13 +106,14 @@ void	World::applyMoveActor()
   it1 = bodys.begin();
   while (it1 != bodys.end())
     {
-      if ((actor = dynamic_cast<Actor*>((*it1))) != NULL)
+      body = (*it1);
+      if ((actor = dynamic_cast<Actor*>(body)) != NULL)
 	actor->move();
       it1++;
     }
 }
 
-void		World::applyIA()
+void		World::applyAI()
 {
   std::list<ABody*>::iterator	it1;
   unsigned int	i;
@@ -121,9 +132,9 @@ void		World::applyIA()
   while (j < players.size())
     {
       i = 0;
-      while (i < IAs.size())
+      while (i < AIs.size())
 	{
-	  IAs[i]->launchIA(players[j]->getPos());
+	  AIs[i]->launchAI(players[j]->getPos());
 	  ++i;
 	}
       ++j;
@@ -134,7 +145,8 @@ void		World::gameLoop()
 {
   while (42 == 42)
     {
-      applyIA();
+      //TODO: frequency
+      applyAI();
       applyMoveActor();
     }
 }
@@ -143,9 +155,14 @@ void	World::addNewBody(double xpos, double ypos, const std::string& name, short 
 {
   ABody	*body;
 
+  if (xpos < 0 || xpos >= sizeX || ypos < 0 || ypos >= sizeY)
+    throw (std::runtime_error(name + " is out of bounds"));
   body = Factory->giveBody(name);
+  if (body == NULL)
+    throw (std::runtime_error("'" + name + "': wrong name"));
   body->changePos(std::make_pair(xpos, ypos));
   body->changeOrientation(orientation);
+  gameServer->sendAddEntity(body);
   bodys.push_back(body);
   collider->setNewBodyNoCheckEntity(body);
 }
@@ -156,9 +173,9 @@ void		World::notifyDeath(ABody *body)
 
   collider->suprBody(body->getId());
   i = 0;
-  while (i < IAs.size())
+  while (i < AIs.size())
     {
-      IAs[i]->suprActor(body->getId());
+      AIs[i]->suprActor(body->getId());
       ++i;
     }
 }

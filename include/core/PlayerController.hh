@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 15:49:54 2016 Esteban Lewis
-// Last update Sat May 21 19:57:53 2016 Esteban Lewis
+// Last update Sun May 22 21:19:52 2016 Esteban Lewis
 //
 
 #ifndef  PLAYERCONTROLLER_HH_
@@ -25,12 +25,12 @@ namespace				gauntlet
       PlayerController(std::string const & name, world::PlayerChar);
       ~PlayerController();
 
-      enum				Action
+      enum				Action : int
 	{
-	  NONE,
-	  ATTACK1,
-	  ATTACK2,
-	  ACTIVATE
+	  NONE = 0,
+	  ATTACK1 = 1,
+	  ATTACK2 = 2,
+	  ACTIVATE = 3
 	};
 
       std::string const &		getName() const;

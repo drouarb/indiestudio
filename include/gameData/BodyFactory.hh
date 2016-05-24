@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 15:00:30 2016 Alexis Trouve
-// Last update Sun May 22 15:59:08 2016 Alexis Trouve
+// Last update Tue May 24 11:36:46 2016 Alexis Trouve
 //
 
 #ifndef BODYFACTORY_HH_
@@ -17,7 +17,8 @@
 #include "Player.hh"
 #include "Creature.hh"
 #include "GameObject.hh"
-#include "BasicIA.hh"
+#include "AbstractAI.hh"
+#include "BasicAI.hh"
 
 namespace gauntlet
 {
@@ -26,7 +27,7 @@ namespace gauntlet
   private:
     std::vector<ABody*>			bodyTab;
     world::World			*world;
-    std::vector<world::BasicIA*>	IAs;
+    std::vector<world::AbstractAI*>	AIs;
   private:
     int			giveNextId();
     void		fillPlayerTab();
@@ -40,7 +41,7 @@ namespace gauntlet
     void		setPorteLight();
     BodyFactory();
   public:
-    BodyFactory(world::World *world, std::vector<world::BasicIA*>& nIAs);
+    BodyFactory(world::World *world, std::vector<world::AbstractAI*>& nAIs);
     ~BodyFactory();
     ABody		*giveBody(const std::string& wanted);
   };

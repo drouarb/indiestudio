@@ -49,7 +49,7 @@ gauntlet::core::Lobby::draw()
     {
       std::stringstream ss;
       ss << core.serverAddr.second;
-      buttons[0].setStr("Connected to  " + core.serverAddr.first + ":" + ss.str());
+      buttons[0].setStr("Connected to " + core.serverAddr.first + ":" + ss.str());
     }
   if (core.pc == NULL)
     buttons[2].setStr("No character.");
@@ -79,7 +79,14 @@ gauntlet::core::Lobby::doServer(struct t_hitItem & item)
 void
 gauntlet::core::Lobby::doCharacter(struct t_hitItem & item)
 {
-  submenus[1]->setOpen(true);
+  if (core.packetf == NULL)
+    {
+      static_cast<MessageBox *>(submenus[0])->setMsg
+	("You must first connect to a server.");
+      submenus[0]->setOpen(true);
+    }
+  else
+    submenus[1]->setOpen(true);
 }
 
 void
@@ -88,12 +95,13 @@ gauntlet::core::Lobby::doPlay(struct t_hitItem & item)
   (void)item;
   if (core.pc == NULL)
     {
-      static_cast<MessageBox *>(submenus[0])->setMsg("You must firt create your character.");
+      static_cast<MessageBox *>(submenus[0])->setMsg
+	("You must first create your character.");
       submenus[0]->setOpen(true);
     }
   else
     {
-      parent->setOpen(false);
+      //TODO send select player and receive player id, then send it to ogre and play
       core.play();
     }
 }

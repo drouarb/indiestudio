@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 10:59:47 2016 Esteban Lewis
-// Last update Sun May 22 13:36:35 2016 Esteban Lewis
+// Last update Tue May 24 10:22:54 2016 Esteban Lewis
 //
 
 #ifndef  CORE_HH_
@@ -21,9 +21,10 @@
 # include "Conf.hh"
 # include "ConfMenu.hh"
 # include "Position.hh"
-# include "OgreUI.hh"
-# include "Thread.hpp"
+# include "graph/OgreUI.hh"
 # include "PacketFactory.hh"
+# include "PacketListener.hh"
+# include "ActionLists.hh"
 
 namespace			gauntlet
 {
@@ -41,9 +42,13 @@ namespace			gauntlet
       void			mouseMove(int x, int y);
 
       void			play();
+      void			stop();
       void			exit();
-      void			load(std::string file);
-      void			save(std::string file);
+      void			createServer();
+      void			initPacketf();
+      void			disconnect(bool send);
+      void			load(std::string const & file);
+      void			save(std::string const & file);
       bool			gameIsRunning();
       IUIObserver::Key		getLastKey() const;
 
@@ -52,17 +57,20 @@ namespace			gauntlet
       PlayerController *	pc;
       std::pair<std::string, int> serverAddr;
       network::PacketFactory *	packetf;
+      std::string		map;
+      ActionLists		actionlists;
+      pid_t			cpid;
 
     private:
-      bool			keepGoing;
       IUIObserver *		observer;
-      std::thread *		ogreThread;
+      std::thread *		listenThread;
       Menu *			menu;
-      Stopwatch			sw;
       IUIObserver::Key		lastKey;
+      std::list<network::PacketListener*> listeners;
+      bool			playing;
 
-      void			loop();
-      void			updateWorld();
+      void			listen();
+      void			killServer();
     };
   };
 };

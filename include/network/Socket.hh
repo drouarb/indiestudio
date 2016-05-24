@@ -40,6 +40,7 @@ namespace gauntlet {
             ~Socket();
             void unlock();
             void send(std::vector<unsigned char>* data);
+            void send(std::vector<unsigned char>* data, int fd);
             s_socketData recv();
             SocketType getType() const;
             void setDisconnectionListener(ISocketDisconnectionListener *listener);

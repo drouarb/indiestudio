@@ -15,11 +15,13 @@ namespace gauntlet {
             struct s_packetSelectPlayerData {
                 unsigned char packetId;
                 unsigned char selectedCharacters;
+                unsigned int namelen;
+                char namestart;
             } __attribute__((packed));
 
         public:
             PacketSelectPlayer(const s_socketData &data);
-            PacketSelectPlayer(bool warrior, bool wizard, bool valkyrie, bool elf);
+            PacketSelectPlayer(bool warrior, bool wizard, bool valkyrie, bool elf, const std::string &name);
             virtual ~PacketSelectPlayer() { }
 
             virtual t_rawdata *serialize() const;
@@ -29,12 +31,14 @@ namespace gauntlet {
             bool getWizard() const;
             bool getValkyrie() const;
             bool getElf() const;
+            const std::string & getName() const;
 
         private:
             bool warrior;
             bool wizard;
             bool valkyrie;
             bool elf;
+            std::string name;
         };
     }
 }
