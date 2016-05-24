@@ -21,11 +21,11 @@ namespace gauntlet {
         typedef std::list<ABody *> (world::Collider::*patternFun)(double, double, short, double, short);
         enum 		Area
         {
-            RECTANGLE,
+            WALL,
+            COLUMN,
             CIRCLE,
             CONE,
-            TRIANGLE,
-            ARC
+            TRIANGLE
         };
         const static std::map<Area, patternFun> patternTypes;
 
@@ -38,12 +38,15 @@ namespace gauntlet {
         long                        damage;
         Area	                    pattern;
         std::pair<double, double>   targetedArea;
+        short                       angle;
     public:
         void                        cast(Actor *caster);
         void                        ApplyDamage(std::list<ABody *> targets, Actor *caster);
         void                        prepare();
         void                        setBasicStats(int id, const std::string &name, double range, double radius, long damage, Area pattern);
         void                        setCaster(Actor *caster);
+
+        void setConeAngle(short id);
     };
 };
 
