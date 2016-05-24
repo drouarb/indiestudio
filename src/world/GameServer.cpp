@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Tue May 24 14:47:49 2016 Alexis Trouve
+// Last update Tue May 24 17:42:27 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -30,10 +30,10 @@ GameServer::GameServer(const std::string& filePath, in_port_t port)
     std::cout << "errorMap" << std::endl;
   }
   packetFact = new PacketFactory(port);
-  players.push_back({"warrior", -1, false});
-  players.push_back({"wizard", -1, false});
-  players.push_back({"valkyrie", -1, false});
-  players.push_back({"elf", -1, false});
+  players.push_back({"Barbare", -1, false});
+  players.push_back({"Mage", -1, false});
+  players.push_back({"Valkyrie", -1, false});
+  players.push_back({"Elf", -1, false});
   listeners.push_back(new ServConnectListener(this));
   listeners.push_back(new ServSelectPlayerListener(this));
   listeners.push_back(new ServDisconnectListener(this));
@@ -115,12 +115,35 @@ void		GameServer::selectPlayerAnswer(const network::PacketSelectPlayer *packet)
       players[iTaken].socketId = packet->getSocketId();
       connectTmp.erase(connectTmp.begin() + i);
       PacketStartGame	myPacket(world->addNewBody(world->getSpawnPoint().first,
-						   world->getSpawnPoint().second, packet->getName(), 0));
+						   world->getSpawnPoint().second, players[iTaken].name, 0));
       packetFact->send(myPacket, packet->getSocketId());
+      dataSendMutex.lock();
+      dataSendThread = new std::thread(std::bind(&GameServer::sendDatas, std::ref(*this), packet->getSocketId()));
+      dataSendThread->join();
+      delete (dataSendThread);
+      dataSendMutex.unlock();
     }
   else
     sendHandShake(packet->getSocketId());
   std::cout << "selectplayerend" << std::endl;
+}
+
+void			GameServer::sendDatas(int socketId)
+{
+  std::list<ABody*>	bodys;
+  std::list<ABody*>::iterator	it1;
+
+  //mutex lock
+  bodys = world->getBodysByCopy();
+  it1 = bodys.begin();
+  while (it1 != bodys.end())
+    {
+      network::PacketAddEntity	packet((*it1)->getEntityId(), (*it1)->getTextureId(),
+				       (*it1)->getMeshId(), static_cast<int>((*it1)->getPos().first),
+				       static_cast<int>((*it1)->getPos().second), (*it1)->getOrientation());
+      packetFact->send(packet, socketId);
+      it1++;
+    }
 }
 
 void			GameServer::notifyTake()

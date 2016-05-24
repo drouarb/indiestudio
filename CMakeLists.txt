@@ -40,6 +40,7 @@ include_directories(include/helpers/JSON)
 include_directories(include/network)
 include_directories(include/network/listener)
 include_directories(include/network/packet)
+include_directories(include/graph)
 
 if (${OGRE_STATIC})
 

@@ -10,6 +10,7 @@
 #include "ListenerDisconnect.hh"
 #include "ListenerHandshake.hh"
 #include "ListenerMoveEntity.hh"
+#include "ListenerStartGame.hh"
 #include "ConnectMenu.hh"
 #include "GameServer.hh"
 
@@ -33,8 +34,8 @@ gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this)), actionlists(
   ogre.playSound(0);
   menu->setOpen(true);
 
-  ogre.addWorldEntity(43, gauntlet::EntityName::OGREHEAD, 0, 0, 0, gauntlet::Texturename::TEXTURE_NONE);
-  ogre.playAnimation(43, 0, true);
+  ogre.addWorldEntity(43, gauntlet::EntityName::SKELETON, 0, 0, 0, gauntlet::TextureName::TEXTURE_NONE);
+  ogre.playAnimation(43, 1, true);
   ogre.go();
 }
 
@@ -102,6 +103,7 @@ gauntlet::core::Core::play()
 {
   if (menu->getOpen())
     menu->setOpen(false);
+  actionlists.doActions();
   playing = true;
   ogre.hideBackground();
 }
@@ -164,6 +166,7 @@ gauntlet::core::Core::initPacketf()
 	  listeners.push_back(new ListenerDisconnect(*this));
 	  listeners.push_back(new ListenerHandshake(*this));
 	  listeners.push_back(new ListenerMoveEntity(*this));
+	  listeners.push_back(new ListenerStartGame(*this));
 	}
       for (std::list<network::PacketListener*>::iterator it = listeners.begin();
 	   it != listeners.end(); ++it)

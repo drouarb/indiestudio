@@ -65,8 +65,10 @@ bool		EntityCollideLayer::canMovePoint(double posx, double posy)
       pos = (*it1)->getPos();
       size = (*it1)->getSize();
       if (posx >= pos.first && posx <= pos.first + size.first
-	  && posy >= pos.second && posy <= pos.second + size.second)
+	  && posy >= pos.second && posy <= pos.second + size.second
+	  && (*it1)->getCollide() == true)
 	return (false);
+
       it1++;
     }
   return (true);

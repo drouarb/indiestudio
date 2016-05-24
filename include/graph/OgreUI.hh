@@ -36,7 +36,7 @@
 
 namespace gauntlet
 {
-  enum EffectType : int;
+  enum EffectName : int;
 
   class Effect;
 }
@@ -52,31 +52,39 @@ class OgreUI
   static const std::map<OIS::KeyCode, gauntlet::core::IUIObserver::Key> keymap;
   static const std::map<OIS::MouseButtonID, gauntlet::core::IUIObserver::Key> mousemap;
   static const std::map<gauntlet::core::Position, OgreBites::TrayLocation> posmap;
+  static const std::map<gauntlet::TextureName ,std::string>texturemap;
+  static const std::map<gauntlet::EntityName, std::string> meshmap;
+
   std::map<std::string, Ogre::AnimationState *> animationsArray;
   std::map<int, gauntlet::Effect *> effectMap;
+
   gauntlet::core::IUIObserver *obs;
   OgreOggSound::OgreOggSoundManager *mSoundManager;
 
 
   Ogre::Root *mRoot;
   Ogre::Camera *mCamera;
-  static const std::map<gauntlet::Texturename ,std::string>texturemap;
   Ogre::SceneManager *mSceneMgr;
   Ogre::RenderWindow *mWindow;
+
   Ogre::String mResourcesCfg;
   Ogre::String mPluginsCfg;
+
   Ogre::SceneNode *planNode;
   Ogre::SceneNode *worldNode;
+
   Ogre::OverlaySystem *mOverlaySystem;
   OgreBites::SdkTrayManager *mTrayMgr;
   OgreBites::SdkCameraMan *mCameraMan;
   OgreBites::ParamsPanel *mDetailsPanel;
-  static const std::map<gauntlet::EntityName, std::string> meshmap;
+
   bool mCursorWasVisible;
   bool mShutDown;
+
   OIS::InputManager *mInputManager;
   OIS::Mouse *mMouse;
   OIS::Keyboard *mKeyboard;
+
   int quality = 100;
 
  public:
@@ -88,10 +96,10 @@ class OgreUI
 
 
   bool addWorldEntity(int entityId, gauntlet::EntityName meshid, int x, int y,
-		      short degres, gauntlet::Texturename texture_id);
+		      short degres, gauntlet::TextureName texture_id);
 
   bool addMapEntity(int entityId, gauntlet::EntityName meshid, int x, int y,
-		      short degres, gauntlet::Texturename texture_id);
+		      short degres, gauntlet::TextureName texture_id);
   void initSound();
 
   bool configure(void);
@@ -203,7 +211,7 @@ class OgreUI
 
   Ogre::SceneManager *getSceneManager();
 
-  int triggerEffect(int id, gauntlet::EffectType ef,
+  int triggerEffect(int id, gauntlet::EffectName ef,
 		    std::pair<double, double> pair);
 
   void moveEntity(int id, int x, int y, short degres);
@@ -218,14 +226,15 @@ class OgreUI
 
   void playAnimation(int entityId, const std::string &animationName, bool loop);
 
+
   bool addWorldEntity(int entityId, const std::string &name,
 		      std::pair<int, int> position, Ogre::Vector3 orientation,
-		      gauntlet::Texturename textureId);
+		      gauntlet::TextureName textureId);
 
   bool addWorldEntity(int entityId, const std::string &name,
 		      std::pair<int, int> position,
-		      gauntlet::Texturename textureId);
-
+		      gauntlet::TextureName textureId);
  private:
+
   void applyAnimation(const Ogre::FrameEvent &evt) const;
 };

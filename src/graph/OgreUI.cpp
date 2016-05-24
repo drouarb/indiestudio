@@ -7,6 +7,9 @@
 using namespace gauntlet;
 using namespace core;
 
+
+
+
 OgreUI::OgreUI(void)
 	: mRoot(0),
 	  mCamera(0),
@@ -68,8 +71,7 @@ void OgreUI::createCamera(void)
 
 void OgreUI::createFrameListener(void)
 {
-
-  Ogre::LogManager::getSingletonPtr()->logMessage("*** Initializing OIS ***");
+ // Ogre::LogManager::getSingletonPtr()->logMessage("*** Initializing OIS ***");
   OIS::ParamList pl;
   size_t windowHnd = 0;
   std::ostringstream windowHndStr;
@@ -224,7 +226,7 @@ bool OgreUI::keyPressed(const OIS::KeyEvent &arg)
     if (keymap.count(arg.key) > 0)
       {
 	obs->keyDown(keymap.at(arg.key));
-      }
+     }
   return true;
 }
 
@@ -502,7 +504,7 @@ void OgreUI::createScene(void)
   pLight->setPowerScale(400000.0);
   this->mSceneMgr->setAmbientLight(Ogre::ColourValue(.25, .25, .25));
   this->mTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT);
-//  this->addWorldEntity(23, "draugr", 0, 0, 90, 0);
+  //this->addWorldEntity(23, "draugr", 0, 0, 90, 0);
   //END TODO
   Ogre::Light *pointLight = this->mSceneMgr->createLight("PointLight");
   pointLight->setSpotlightInnerAngle(Ogre::Radian(0));
@@ -510,7 +512,7 @@ void OgreUI::createScene(void)
   pointLight->setDiffuseColour(Ogre::ColourValue::White);
   pointLight->setSpecularColour(Ogre::ColourValue::White);
   mSceneMgr->setSkyBox(true, "Examples/SceneSkyBox");
-  addMapEntity(1, TUDORHOUSE, 0, 0, 0, TUDORHOUSE_M);
+  addMapEntity(1, TUDORHOUSE, 5000, 5000, 0, TUDORHOUSE_M);
 }
 
 void OgreUI::quit()
@@ -616,8 +618,9 @@ bool __attribute_deprecated__ OgreUI::addWorldEntity(int entityId,
 						     EntityName meshid, int x,
 						     int y,
 						     short angle,
-						     Texturename texture_id)
+						     TextureName texture_id)
 {
+  std::cout << "~ ogre add entity " << entityId << " mesh=" << meshid << " x=" << x << " y=" << y << std::endl;
   std::stringstream ss;
   ss << entityId;
   Ogre::Entity *e;
@@ -629,11 +632,11 @@ bool __attribute_deprecated__ OgreUI::addWorldEntity(int entityId,
   try
     {
       e = mSceneMgr->createEntity(ss.str(), meshmap.at(meshid).c_str());
-    } catch (Ogre::Exception &e)
+    } catch (...)
     {
       return false;
     }
-  if (texture_id != Texturename::TEXTURE_NONE)
+  if (texture_id != TextureName::TEXTURE_NONE)
     e->setMaterialName(texturemap.at(texture_id));
   Ogre::SceneNode *s = worldNode->createChildSceneNode(ss.str());
   s->setPosition(x, y, 0);
@@ -647,7 +650,7 @@ bool __attribute_warn_unused_result__ OgreUI::addWorldEntity(int entityId,
 							     const std::string &name,
 							     std::pair<int, int> position,
 							     Ogre::Vector3 orientation,
-							     Texturename textureId)
+							     TextureName textureId)
 {
   std::stringstream ss;
   ss << entityId;
@@ -670,31 +673,33 @@ bool __attribute_warn_unused_result__ OgreUI::addWorldEntity(int entityId,
   return (true);
 }
 
-#warning "C'est la faute à trouvé"
+
 
 bool __attribute_warn_unused_result__ OgreUI::addWorldEntity(int entityId,
 							     const std::string &name,
 							     std::pair<int, int> position)
 {
   return this->addWorldEntity(entityId, name, position, Ogre::Vector3(0, 0, 0),
-			      Texturename::TEXTURE_NONE);
+			      TextureName::TEXTURE_NONE);
 }
 
 bool __attribute_warn_unused_result__ OgreUI::addWorldEntity(int entityId,
 							     const std::string &name,
 							     std::pair<int, int> position,
-							     Texturename textureId)
+							     TextureName textureId)
 {
   return this->addWorldEntity(entityId, name, position, Ogre::Vector3(0, 0, 0),
 			      textureId);
 }
+
+
 
 bool __attribute_warn_unused_result__ OgreUI::addWorldEntity(int entityId,
 							     const std::string &name,
 							     std::pair<int, int> position,
 							     Ogre::Vector3 orientation)
 {
-  return this->addWorldEntity(entityId, name, position, orientation, Texturename::TEXTURE_NONE);
+  return this->addWorldEntity(entityId, name, position, orientation, TextureName::TEXTURE_NONE);
 }
 
 void OgreUI::setQuality(int percent)
@@ -702,7 +707,7 @@ void OgreUI::setQuality(int percent)
   this->quality = percent;
 }
 
-int OgreUI::triggerEffect(int id, gauntlet::EffectType type,
+int OgreUI::triggerEffect(int id, gauntlet::EffectName type,
 			  std::pair<double, double> coord)
 {
   std::stringstream ss;
@@ -762,7 +767,7 @@ bool OgreUI::frameStarted(const Ogre::FrameEvent &evt)
 }
 
 bool OgreUI::addMapEntity(int entityId, gauntlet::EntityName meshid, int x,
-			  int y, short angle, gauntlet::Texturename texture_id)
+			  int y, short angle, gauntlet::TextureName texture_id)
 {
   std::stringstream ss;
   ss << entityId;
@@ -778,9 +783,10 @@ bool OgreUI::addMapEntity(int entityId, gauntlet::EntityName meshid, int x,
     }
   catch (Ogre::Exception &e)
     {
+      std::cerr << e.what() << std::endl;
       return false;
     }
-  if (texture_id != Texturename::TEXTURE_NONE)
+  if (texture_id != TextureName::TEXTURE_NONE)
     e->setMaterialName(texturemap.at(texture_id));
   Ogre::SceneNode *s = planNode->createChildSceneNode(ss.str());
   s->setPosition(x, y, 0);

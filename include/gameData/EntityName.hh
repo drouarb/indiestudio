@@ -7,19 +7,23 @@
 
 namespace gauntlet
 {
-  enum EntityName
+  enum EntityName : int
   {
-    NONE,
-    OGREHEAD,
-    NINJA,
-    CUBE,
-    DOOR,
-    TUDORHOUSE,
-    WAGEN,
-    PLAN,
-    CHESTCARTOON,
-    CHEST,
-    ROCK
+    NONE  = 0 ,
+    OGREHEAD = 1,
+    NINJA = 2,
+    CASTLEWALL = 3,
+    CUBE = 4,
+    DOOR = 5,
+    TUDORHOUSE = 6,
+    WAGEN = 7,
+    PLAN = 8,
+    TROLL = 9,
+    CHESTCARTOON = 10,
+    CHEST = 11,
+    ROCK = 12,
+    BERSERK = 13,
+    SKELETON = 14
   };
 };
 #endif //GAUNTLET_ENTITYNAME_HH

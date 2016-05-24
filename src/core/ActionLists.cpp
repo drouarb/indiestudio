@@ -17,7 +17,7 @@ gauntlet::core::ActionLists::doActions()
     {
       core.ogre.addWorldEntity((*it)->getEntityId(), (EntityName)(*it)->getMeshId(),
 			       (*it)->getX(), (*it)->getY(), (*it)->getAngle(),
-			       static_cast<gauntlet::Texturename>
+			       static_cast<gauntlet::TextureName>
 			       ((*it)->getTextureId()));
     }
 
@@ -32,7 +32,7 @@ gauntlet::core::ActionLists::doActions()
        it != packetsMoveEntity.end(); ++it)
     {
       core.ogre.addWorldEntity((*it)->getEntityId(), (EntityName)0,
-			       (*it)->getX(), (*it)->getY(), (*it)->getAngle(), gauntlet::Texturename::TEXTURE_NONE);
+			       (*it)->getX(), (*it)->getY(), (*it)->getAngle(), gauntlet::TextureName::TEXTURE_NONE);
     }
 
   clearActions();

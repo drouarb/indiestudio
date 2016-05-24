@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Mon May  9 18:00:14 2016 Alexis Trouve
-// Last update Tue May 10 19:33:30 2016 Alexis Trouve
+// Last update Tue May 24 17:54:44 2016 Esteban Lewis
 //
 
 #include "SpellFactory.hh"
