@@ -169,7 +169,7 @@ gauntlet::core::Core::initPacketf()
 	{
 	  packetf->registerListener(*it);
 	}
-      listenThread = new helpers::Thread<void (Core::*)(), Core>(&Core::listen, this);
+      listenThread = new std::thread(&network::PacketFactory::recv, std::ref(*packetf));
     }
 }
 
@@ -185,7 +185,7 @@ gauntlet::core::Core::disconnect(bool send)
       packetf->stop();
       delete packetf;
 
-      listenThread->cancel();
+      listenThread->join();
       delete listenThread;
       listenThread = NULL;
 
@@ -217,13 +217,4 @@ gauntlet::core::IUIObserver::Key
 gauntlet::core::Core::getLastKey() const
 {
   return (lastKey);
-}
-
-void
-gauntlet::core::Core::listen()
-{
-  while (1)
-    {
-      packetf->recv();
-    }
 }
