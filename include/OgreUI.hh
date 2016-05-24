@@ -169,7 +169,7 @@ class OgreUI
 
   void setIObserver(gauntlet::core::IUIObserver *Obs);
 
-  void loadSound(int id, std::string &path);
+  void loadSound(int id, const std::string &path);
 
   void hideItem(int id);
 
