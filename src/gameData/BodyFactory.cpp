@@ -149,6 +149,8 @@ void			BodyFactory::setDraugr()
   crea->changePos(std::make_pair(-1, -1));
   crea->changeSize(std::make_pair(10.0, 10.0));
   crea->changeOrientation(0);
+  crea->setModel(EntityName::NINJA);
+  crea->setTexture(1);
   bodyTab.push_back(crea);
   i = 0;
   while (i < AIs.size())

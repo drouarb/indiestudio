@@ -12,6 +12,7 @@
 # define ABODY_HH_
 
 #include "Math.hh"
+#include "EntityName.hh"
 #include <tuple>
 
 namespace gauntlet
@@ -53,6 +54,12 @@ namespace gauntlet
     virtual unsigned int		getEntityId() const;
     virtual unsigned int		getTextureId() const;
     virtual unsigned int		getMeshId() const;
+
+      void setTexture();
+
+      void setTexture(int _texture);
+
+      void setModel(int _model);
   };
 
 };
