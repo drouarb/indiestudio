@@ -56,6 +56,7 @@ void OgreUI::chooseSceneManager(void)
 
 void OgreUI::createCamera(void)
 {
+
   mCamera = mSceneMgr->createCamera("PlayerCam");
   mCamera->setPosition(Ogre::Vector3(0, 100, 80));
   mCamera->setNearClipDistance(5);
@@ -370,13 +371,17 @@ void OgreUI::initMap()
 
   meshmap[gauntlet::EntityName::OGREHEAD] = "ogrehead.mesh";
   meshmap[gauntlet::EntityName::NINJA] = "ninja.mesh";
-  meshmap[gauntlet::EntityName::PLAN] = "plan_obj.mesh";
-  meshmap[gauntlet::EntityName::TUDOURHOUSE] = "tudourhouse.mesh";
+  meshmap[gauntlet::EntityName::PLAN] = "plan.mesh";
+  meshmap[gauntlet::EntityName::TUDOURHOUSE] = "tudorhouse.mesh";
   meshmap[gauntlet::EntityName::DOOR] = "door.mesh";
   meshmap[gauntlet::EntityName::CUBE] = "cube.mesh";
   meshmap[gauntlet::EntityName::ROCK] = "Rock.mesh";
   meshmap[gauntlet::EntityName::CHEST] = "chest.mesh";
   meshmap[gauntlet::EntityName::CHESTCARTOON] = "chestCartoon.mesh";
+  meshmap[gauntlet::EntityName::WAGEN] = "wagen.mesh";
+
+texturemap[gauntlet::Texturename::NINjA_M] = "Ogre/Skin";
+
 }
 
 void OgreUI::removeItem(int id)
@@ -580,7 +585,6 @@ void OgreUI::createScene(void)
   pointLight->setSpotlightOuterAngle(Ogre::Radian(Ogre::Degree(180)));
   pointLight->setDiffuseColour(Ogre::ColourValue::White);
   pointLight->setSpecularColour(Ogre::ColourValue::White);
-  addWorldEntity(2, PLAN, 0, 0, 0, 0);
   mSceneMgr->setSkyBox(true, "Examples/SceneSkyBox");
 }
 
@@ -685,7 +689,7 @@ Ogre::SceneManager *OgreUI::getSceneManager()
 
 
 bool OgreUI::addWorldEntity(int entityId, EntityName meshid, int x, int y,
-			    short angle, int texture_id)
+			    short angle, Texturename texture_id)
 {
   std::stringstream ss;
   ss << entityId;
@@ -704,6 +708,8 @@ bool OgreUI::addWorldEntity(int entityId, EntityName meshid, int x, int y,
     {
       return false;
     }
+  if (texture_id != Texturename::TEXTURE_NONE)
+  e->setMaterialName(texturemap[texture_id]);
   Ogre::SceneNode *s = worldNode->createChildSceneNode(ss.str());
   s->setPosition(x, y, 0);
   s->setScale(0.5, 0.5, 0.5);

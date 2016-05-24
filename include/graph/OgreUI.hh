@@ -31,6 +31,7 @@
 #include <mutex>
 #include <graph/Effect.hh>
 #include <gameData/EntityName.hh>
+#include <gameData/TextureName.hh>
 #include "IUIObserver.hh"
 
 namespace gauntlet
@@ -59,6 +60,7 @@ class OgreUI
 
   Ogre::Root *mRoot;
   Ogre::Camera *mCamera;
+  std::map<gauntlet::Texturename ,std::string>texturemap;
   Ogre::SceneManager *mSceneMgr;
   Ogre::RenderWindow *mWindow;
   Ogre::String mResourcesCfg;
@@ -87,7 +89,7 @@ class OgreUI
 
 
   bool addWorldEntity(int entityId, gauntlet::EntityName meshid, int x, int y,
-		      short degres, int texture_id);
+		      short degres, gauntlet::Texturename texture_id);
 
   void initMap();
 
