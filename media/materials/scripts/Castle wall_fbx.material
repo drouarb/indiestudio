@@ -1,0 +1,54 @@
+material Castle wall_fbx#0
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 0.8 0.8 0.8 1
+			emissive 0 0 0 1
+
+			texture_unit
+			{
+				texture BrickMedievalBlocks0129_1_S.jpg
+			}
+		}
+	}
+}
+
+material CastleWall/castle
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 0.8 0.8 0.8 1
+			emissive 0 0 0 1
+
+			texture_unit
+			{
+				texture BrickMedievalBlocks0129_1_S.jpg
+			}
+		}
+	}
+}
+
+material Castle wall_fbx#0
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 0.8 0.8 0.8 1
+			emissive 0 0 0 1
+
+			texture_unit
+			{
+				texture BrickMedievalBlocks0129_1_S.jpg
+			}
+		}
+	}
+}
+
