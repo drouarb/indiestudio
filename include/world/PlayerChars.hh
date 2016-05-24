@@ -7,11 +7,11 @@ namespace		gauntlet
   {
     enum		PlayerChar
       {
-	NOCHAR,
-	BARBARIAN,
-	RANGER,
-	MAGE,
-	VALKYRIE
+	NOCHAR = -1,
+	BARBARIAN = 0,
+	RANGER = 3,
+	MAGE = 1,
+	VALKYRIE = 2
       };
   };
 };

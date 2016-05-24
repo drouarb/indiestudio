@@ -70,7 +70,7 @@ class OgreUI
   OgreBites::SdkTrayManager *mTrayMgr;
   OgreBites::SdkCameraMan *mCameraMan;
   OgreBites::ParamsPanel *mDetailsPanel;
-  std::map<gauntlet::EntityName , std::string> meshmap;
+  std::map<gauntlet::EntityName, std::string> meshmap;
   bool mCursorWasVisible;
   bool mShutDown;
   OIS::InputManager *mInputManager;
@@ -88,8 +88,6 @@ class OgreUI
 
   bool addWorldEntity(int entityId, gauntlet::EntityName meshid, int x, int y,
 		      short degres, int texture_id);
-  bool addRootEntity(int entityId, gauntlet::EntityName meshId, int x, int y,
-		     short degres, int texture_id);
 
   void initMap();
 
@@ -104,9 +102,13 @@ class OgreUI
   void createFrameListener(void);
 
   void addCameraTracker(int id);
-  bool frameStarted(const Ogre::FrameEvent& evt);
+
+  bool frameStarted(const Ogre::FrameEvent &evt);
+
   void createScene(void);
+
   void removeEntity(int id);
+
   OgreUI(void);
 
   ~OgreUI(void);
@@ -201,6 +203,7 @@ class OgreUI
 
   int triggerEffect(int id, gauntlet::EffectType ef,
 		    std::pair<double, double> pair);
+
   void moveEntity(int id, int x, int y, short degres);
 
   void stopEffect(int id);

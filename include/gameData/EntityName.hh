@@ -9,12 +9,14 @@ namespace gauntlet
 {
   enum EntityName
   {
+    NONE,
     OGREHEAD,
     NINJA,
     CUBE,
     DOOR,
     TUDOURHOUSE,
     WAGEN,
+    PLAN,
     CHESTCARTOON,
     CHEST,
     ROCK

@@ -1,3 +1,13 @@
+//
+// World.hh for World in /home/trouve_b/Desktop/CPP_project/cpp_indie_studio
+// 
+// Made by Alexis Trouve
+// Login   <trouve_b@epitech.net>
+// 
+// Started on  Sun May 22 21:51:22 2016 Alexis Trouve
+// Last update Mon May 23 21:14:13 2016 Alexis Trouve
+//
+
 #ifndef WORLD_HH_
 # define WORLD_HH_
 
@@ -7,11 +17,14 @@
 #include "Collider.hh"
 #include "BodyFactory.hh"
 #include "BasicIA.hh"
+#include "GameServer.hh"
 
 namespace			gauntlet
 {
   namespace			world
   {
+    class			GameServer;
+    
     class			World
     {
     private:
@@ -22,14 +35,14 @@ namespace			gauntlet
       double			sizeX;
       double			sizeY;
       std::pair<double, double>	spawnPoint;
+      GameServer		*gameServer;
       //network::PacketFactory	packetFactory;
     public:
-      World();
+      World(GameServer *ngameServer);
       ~World();
 
       void			update();
       void			loadGame(std::string const & file);
-      void			initNetwork();
       void			gameLoop();
       void			tester();
       void			applyMoveActor();

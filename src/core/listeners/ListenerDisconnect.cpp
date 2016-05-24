@@ -11,4 +11,5 @@ void
 gauntlet::core::ListenerDisconnect::notify(const network::PacketDisconnect * packet)
 {
   core.disconnect(false);
+  core.actionlists.pushDisconnect(packet);
 }

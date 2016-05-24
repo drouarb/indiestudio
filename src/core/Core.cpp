@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:13:44 2016 Esteban Lewis
-// Last update Mon May 23 00:43:18 2016 Esteban Lewis
+// Last update Mon May 23 16:24:05 2016 Esteban Lewis
 //
 
 #include <math.h>
@@ -16,13 +16,11 @@
 #include "IUIObserver.hh"
 #include "Math.hh"
 #include "ListenerAddEntity.hh"
-#include "ListenerConnect.hh"
 #include "ListenerDisconnect.hh"
 #include "ListenerHandshake.hh"
-#include "ListenerSelectPlayer.hh"
 #include "ConnectMenu.hh"
 
-gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this))
+gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this)), actionlists(*this)
 {
   menu = new MainMenu(*this, MENU_ID_START, NULL);
   listenThread = NULL;
@@ -40,6 +38,7 @@ gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this))
   ogre.loadSound(0, str);
   ogre.playSound(0);
   menu->setOpen(true);
+
   ogre.go();
   _exit(0);
 }
@@ -143,10 +142,8 @@ gauntlet::core::Core::initPacketf()
       if (listeners.size() == 0)
 	{
 	  listeners.push_back(new ListenerAddEntity(*this));
-	  listeners.push_back(new ListenerConnect(*this));
 	  listeners.push_back(new ListenerDisconnect(*this));
 	  listeners.push_back(new ListenerHandshake(*this));
-	  listeners.push_back(new ListenerSelectPlayer(*this));
 	}
       for (std::list<network::PacketListener*>::iterator it = listeners.begin();
 	   it != listeners.end(); ++it)
@@ -167,11 +164,11 @@ gauntlet::core::Core::disconnect(bool send)
   packetf->stop();
   //TODO: delete straight away?
 
-  packetf = NULL;
-  stop();
-
   delete listenThread;
   listenThread = NULL;
+
+  packetf = NULL;
+  stop();
 }
 
 void
@@ -203,9 +200,6 @@ gauntlet::core::Core::listen()
 {
   while (1)
     {
-      if (packetf)
-	packetf->recv();
-      else
-	usleep(100000);
+      packetf->recv();
     }
 }
