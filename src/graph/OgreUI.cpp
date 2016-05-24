@@ -179,7 +179,6 @@ bool OgreUI::setup(void)
   Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
   createResourceListener();
   loadResources();
-  initMap();
   initSound();
   createFrameListener();
   windowResized(mWindow);
@@ -217,7 +216,7 @@ bool OgreUI::keyPressed(const OIS::KeyEvent &arg)
   if (obs != NULL)
     if (keymap.count(arg.key) > 0)
       {
-	obs->keyDown(keymap[arg.key]);
+	obs->keyDown(keymap.at(arg.key));
       }
   return true;
 }
@@ -228,7 +227,7 @@ bool OgreUI::keyReleased(const OIS::KeyEvent &arg)
 
   if (obs != NULL)
     if (keymap.count(arg.key) > 0)
-      obs->keyUp(keymap[arg.key]);
+      obs->keyUp(keymap.at(arg.key));
   return true;
 }
 
@@ -246,7 +245,7 @@ bool OgreUI::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButtonID id)
   mTrayMgr->injectMouseDown(arg, id);
   if (obs != NULL)
     if (mousemap.count(id) > 0)
-      obs->keyDown(mousemap[id]);
+      obs->keyDown(mousemap.at(id));
   return true;
 }
 
@@ -255,7 +254,7 @@ bool OgreUI::mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButtonID id)
   mTrayMgr->injectMouseUp(arg, id);
   if (obs != NULL)
     if (mousemap.count(id) > 0)
-      obs->keyUp(mousemap[id]);
+      obs->keyUp(mousemap.at(id));
   return true;
 }
 
@@ -295,98 +294,6 @@ void OgreUI::buttonHit(OgreBites::Button *button)
     }
 }
 
-void OgreUI::initMap()
-{
-  keymap[OIS::KC_UP] = IUIObserver::KEY_UP;
-  keymap[OIS::KC_DOWN] = IUIObserver::KEY_DOWN;
-  keymap[OIS::KC_RIGHT] = IUIObserver::KEY_RIGHT;
-  keymap[OIS::KC_LEFT] = IUIObserver::KEY_LEFT;
-  keymap[OIS::KC_ESCAPE] = IUIObserver::KEY_ESC;
-  keymap[OIS::KC_TAB] = IUIObserver::KEY_TAB;
-  keymap[OIS::KC_SPACE] = IUIObserver::KEY_SPACE;
-  keymap[OIS::KC_BACK] = IUIObserver::KEY_BACK;
-
-  keymap[OIS::KC_A] = IUIObserver::KEY_A;
-  keymap[OIS::KC_B] = IUIObserver::KEY_B;
-  keymap[OIS::KC_C] = IUIObserver::KEY_C;
-  keymap[OIS::KC_D] = IUIObserver::KEY_D;
-  keymap[OIS::KC_E] = IUIObserver::KEY_E;
-  keymap[OIS::KC_F] = IUIObserver::KEY_F;
-  keymap[OIS::KC_RETURN] = IUIObserver::KEY_ENTER;
-  keymap[OIS::KC_G] = IUIObserver::KEY_G;
-  keymap[OIS::KC_H] = IUIObserver::KEY_H;
-  keymap[OIS::KC_I] = IUIObserver::KEY_I;
-  keymap[OIS::KC_J] = IUIObserver::KEY_J;
-  keymap[OIS::KC_K] = IUIObserver::KEY_K;
-  keymap[OIS::KC_L] = IUIObserver::KEY_L;
-  keymap[OIS::KC_M] = IUIObserver::KEY_M;
-  keymap[OIS::KC_N] = IUIObserver::KEY_N;
-  keymap[OIS::KC_O] = IUIObserver::KEY_O;
-  keymap[OIS::KC_P] = IUIObserver::KEY_P;
-  keymap[OIS::KC_Q] = IUIObserver::KEY_Q;
-  keymap[OIS::KC_R] = IUIObserver::KEY_R;
-  keymap[OIS::KC_S] = IUIObserver::KEY_S;
-  keymap[OIS::KC_T] = IUIObserver::KEY_T;
-  keymap[OIS::KC_U] = IUIObserver::KEY_U;
-  keymap[OIS::KC_V] = IUIObserver::KEY_V;
-  keymap[OIS::KC_W] = IUIObserver::KEY_W;
-  keymap[OIS::KC_X] = IUIObserver::KEY_X;
-  keymap[OIS::KC_Y] = IUIObserver::KEY_Y;
-  keymap[OIS::KC_Z] = IUIObserver::KEY_Z;
-
-  keymap[OIS::KC_0] = IUIObserver::KEY_0;
-  keymap[OIS::KC_1] = IUIObserver::KEY_1;
-  keymap[OIS::KC_2] = IUIObserver::KEY_2;
-  keymap[OIS::KC_3] = IUIObserver::KEY_3;
-  keymap[OIS::KC_4] = IUIObserver::KEY_4;
-  keymap[OIS::KC_5] = IUIObserver::KEY_5;
-  keymap[OIS::KC_6] = IUIObserver::KEY_6;
-  keymap[OIS::KC_7] = IUIObserver::KEY_7;
-  keymap[OIS::KC_8] = IUIObserver::KEY_8;
-  keymap[OIS::KC_9] = IUIObserver::KEY_9;
-
-  keymap[OIS::KC_NUMPAD0] = IUIObserver::KEY_0;
-  keymap[OIS::KC_NUMPAD1] = IUIObserver::KEY_1;
-  keymap[OIS::KC_NUMPAD2] = IUIObserver::KEY_2;
-  keymap[OIS::KC_NUMPAD3] = IUIObserver::KEY_3;
-  keymap[OIS::KC_NUMPAD4] = IUIObserver::KEY_4;
-  keymap[OIS::KC_NUMPAD5] = IUIObserver::KEY_5;
-  keymap[OIS::KC_NUMPAD6] = IUIObserver::KEY_6;
-  keymap[OIS::KC_NUMPAD7] = IUIObserver::KEY_7;
-  keymap[OIS::KC_NUMPAD8] = IUIObserver::KEY_8;
-  keymap[OIS::KC_NUMPAD9] = IUIObserver::KEY_9;
-
-  keymap[OIS::KC_PERIOD] = IUIObserver::KEY_PERIOD;
-  keymap[OIS::KC_SEMICOLON] = IUIObserver::KEY_PERIOD;
-
-  posmap[PCENTER] = OgreBites::TL_CENTER;
-  posmap[PTOPRIGHT] = OgreBites::TL_TOPRIGHT;
-  posmap[PTOPLEFT] = OgreBites::TL_TOPLEFT;
-  posmap[PTOP] = OgreBites::TL_TOP;
-  posmap[PBOTTOM] = OgreBites::TL_BOTTOM;
-  posmap[PBOTTOMLEFT] = OgreBites::TL_BOTTOMLEFT;
-  posmap[PBOTTOMRIGHT] = OgreBites::TL_BOTTOMRIGHT;
-  posmap[PRIGHT] = OgreBites::TL_RIGHT;
-  posmap[PLEFT] = OgreBites::TL_LEFT;
-  mousemap[OIS::MB_Left] = IUIObserver::KEY_MOUSE1;
-  mousemap[OIS::MB_Right] = IUIObserver::KEY_MOUSE2;
-
-  meshmap[gauntlet::EntityName::OGREHEAD] = "ogrehead.mesh";
-  meshmap[gauntlet::EntityName::NINJA] = "ninja.mesh";
-  meshmap[gauntlet::EntityName::PLAN] = "plan.mesh";
-  meshmap[gauntlet::EntityName::TUDORHOUSE] = "tudorhouse.mesh";
-  meshmap[gauntlet::EntityName::DOOR] = "door.mesh";
-  meshmap[gauntlet::EntityName::CUBE] = "cube.mesh";
-  meshmap[gauntlet::EntityName::ROCK] = "Rock.mesh";
-  meshmap[gauntlet::EntityName::CHEST] = "chest.mesh";
-  meshmap[gauntlet::EntityName::CHESTCARTOON] = "chestCartoon.mesh";
-  meshmap[gauntlet::EntityName::WAGEN] = "wagen.mesh";
-
-  texturemap[gauntlet::Texturename::NINjA_M] = "Ogre/Skin";
-  texturemap[gauntlet::Texturename::TUDORHOUSE_M] = "TudorHouse/house";
-
-}
-
 void OgreUI::removeItem(int id)
 {
   std::stringstream ss;
@@ -399,7 +306,7 @@ void OgreUI::addButton(Position pos, int id, std::string text, int texture_id)
 
   std::stringstream ss;
   ss << id;
-  OgreBites::Button *c = mTrayMgr->createButton(posmap[pos], ss.str(), text);
+  OgreBites::Button *c = mTrayMgr->createButton(posmap.at(pos), ss.str(), text);
 
 }
 
@@ -443,7 +350,7 @@ void OgreUI::addCheckbox(gauntlet::core::Position pos, int id, std::string text,
 
   std::stringstream ss;
   ss << id;
-  mTrayMgr->createCheckBox(posmap[pos], ss.str(), text);
+  mTrayMgr->createCheckBox(posmap.at(pos), ss.str(), text);
 }
 
 void OgreUI::addProgressBar(gauntlet::core::Position pos, int id,
@@ -451,7 +358,7 @@ void OgreUI::addProgressBar(gauntlet::core::Position pos, int id,
 {
   std::stringstream ss;
   ss << id;
-  OgreBites::ProgressBar *p = mTrayMgr->createProgressBar(posmap[pos], ss.str(),
+  OgreBites::ProgressBar *p = mTrayMgr->createProgressBar(posmap.at(pos), ss.str(),
 							  text, 300, 10);
   p->setProgress(value);
 }
@@ -462,7 +369,7 @@ void OgreUI::addSelectMenu(gauntlet::core::Position pos, int id,
 {
   std::stringstream ss;
   ss << id;
-  OgreBites::SelectMenu *m = mTrayMgr->createLongSelectMenu(posmap[pos],
+  OgreBites::SelectMenu *m = mTrayMgr->createLongSelectMenu(posmap.at(pos),
 							    ss.str(), name, 200,
 							    item.size());
   std::vector<std::string>::iterator it = item.begin();
@@ -489,7 +396,7 @@ void OgreUI::addSlideBar(gauntlet::core::Position pos, int id, std::string text,
 {
   std::stringstream ss;
   ss << id;
-  mTrayMgr->createLongSlider(posmap[pos], ss.str(), text, 100, 100, 0, max,
+  mTrayMgr->createLongSlider(posmap.at(pos), ss.str(), text, 100, 100, 0, max,
 			     100);
 }
 
@@ -556,7 +463,7 @@ void OgreUI::addTextbox(gauntlet::core::Position pos, int id, std::string text,
 {
   std::stringstream ss;
   ss << id;
-  mTrayMgr->createTextBox(posmap[pos], ss.str(), text, 300, 80);
+  mTrayMgr->createTextBox(posmap.at(pos), ss.str(), text, 300, 80);
 }
 
 void OgreUI::addLabel(gauntlet::core::Position pos, int id, std::string text,
@@ -564,7 +471,7 @@ void OgreUI::addLabel(gauntlet::core::Position pos, int id, std::string text,
 {
   std::stringstream ss;
   ss << id;
-  mTrayMgr->createLabel(posmap[pos], ss.str(), text, text.size() * 12);
+  mTrayMgr->createLabel(posmap.at(pos), ss.str(), text, text.size() * 12);
 }
 
 void OgreUI::hideItem(int id)
@@ -704,14 +611,14 @@ bool OgreUI::addWorldEntity(int entityId, EntityName meshid, int x, int y,
     }
   try
     {
-      e = mSceneMgr->createEntity(ss.str(), meshmap[meshid].c_str());
+      e = mSceneMgr->createEntity(ss.str(), meshmap.at(meshid).c_str());
     }
   catch (Ogre::Exception &e)
     {
       return false;
     }
   if (texture_id != Texturename::TEXTURE_NONE)
-  e->setMaterialName(texturemap[texture_id]);
+  e->setMaterialName(texturemap.at(texture_id));
   Ogre::SceneNode *s = worldNode->createChildSceneNode(ss.str());
   s->setPosition(x, y, 0);
   s->yaw(Ogre::Radian(world::Math::toRad(angle)));
@@ -797,14 +704,14 @@ bool OgreUI::addMapEntity(int entityId, gauntlet::EntityName meshid, int x,
     }
   try
     {
-      e = mSceneMgr->createEntity(ss.str(), meshmap[meshid].c_str());
+      e = mSceneMgr->createEntity(ss.str(), meshmap.at(meshid).c_str());
     }
   catch (Ogre::Exception &e)
     {
       return false;
     }
   if (texture_id != Texturename::TEXTURE_NONE)
-    e->setMaterialName(texturemap[texture_id]);
+    e->setMaterialName(texturemap.at(texture_id));
   Ogre::SceneNode *s = planNode->createChildSceneNode(ss.str());
   s->setPosition(x, y, 0);
   s->setScale(0.5, 0.5, 0.5);
@@ -820,13 +727,4 @@ void OgreUI::resetMap()
       planNode->removeAndDestroyAllChildren();
     }
 }
-
-
-
-
-
-
-
-
-
 
