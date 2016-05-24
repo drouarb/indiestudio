@@ -84,6 +84,7 @@ gauntlet::core::Core::buttonClick(int buttonId, struct t_hitItem &item)
     {
       menu->buttonClick(buttonId, item);
     }
+  std::cout << "# end" << std::endl;
 }
 
 void

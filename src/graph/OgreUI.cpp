@@ -217,8 +217,8 @@ bool OgreUI::keyPressed(const OIS::KeyEvent &arg)
   if (obs != NULL)
     if (keymap.count(arg.key) > 0)
       {
-	obs->keyDown(keymap.at(arg.key));
-      }
+	obs->keyDown(keymap.at(arg.key)); 
+     }
   return true;
 }
 
@@ -623,7 +623,7 @@ bool __attribute_deprecated__ OgreUI::addWorldEntity(int entityId,
   try
     {
       e = mSceneMgr->createEntity(ss.str(), meshmap.at(meshid).c_str());
-    } catch (Ogre::Exception &e)
+    } catch (...)
     {
       return false;
     }
