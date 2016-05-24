@@ -49,9 +49,9 @@ class OgreUI
 	  OgreBites::SdkTrayListener
 {
  private:
-  std::map<OIS::KeyCode, gauntlet::core::IUIObserver::Key> keymap;
-  std::map<OIS::MouseButtonID, gauntlet::core::IUIObserver::Key> mousemap;
-  std::map<gauntlet::core::Position, OgreBites::TrayLocation> posmap;
+  static const std::map<OIS::KeyCode, gauntlet::core::IUIObserver::Key> keymap;
+  static const std::map<OIS::MouseButtonID, gauntlet::core::IUIObserver::Key> mousemap;
+  static const std::map<gauntlet::core::Position, OgreBites::TrayLocation> posmap;
   std::map<std::string, Ogre::AnimationState *> animationsArray;
   std::map<int, gauntlet::Effect *> effectMap;
   gauntlet::core::IUIObserver *obs;
@@ -60,7 +60,7 @@ class OgreUI
 
   Ogre::Root *mRoot;
   Ogre::Camera *mCamera;
-  std::map<gauntlet::Texturename ,std::string>texturemap;
+  static const std::map<gauntlet::Texturename ,std::string>texturemap;
   Ogre::SceneManager *mSceneMgr;
   Ogre::RenderWindow *mWindow;
   Ogre::String mResourcesCfg;
@@ -71,7 +71,7 @@ class OgreUI
   OgreBites::SdkTrayManager *mTrayMgr;
   OgreBites::SdkCameraMan *mCameraMan;
   OgreBites::ParamsPanel *mDetailsPanel;
-  std::map<gauntlet::EntityName, std::string> meshmap;
+  static const std::map<gauntlet::EntityName, std::string> meshmap;
   bool mCursorWasVisible;
   bool mShutDown;
   OIS::InputManager *mInputManager;
@@ -92,8 +92,6 @@ class OgreUI
 
   bool addMapEntity(int entityId, gauntlet::EntityName meshid, int x, int y,
 		      short degres, gauntlet::Texturename texture_id);
-  void initMap();
-
   void initSound();
 
   bool configure(void);

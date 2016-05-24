@@ -1,13 +1,3 @@
-//
-// Core.cpp for indie in /home/lewis_e/rendu/cpp/cpp_indie_studio
-// 
-// Made by Esteban Lewis
-// Login   <lewis_e@epitech.net>
-// 
-// Started on  Mon May  9 11:13:44 2016 Esteban Lewis
-// Last update Tue May 24 16:04:48 2016 Esteban Lewis
-//
-
 #include <math.h>
 #include <iostream>
 #include <stdlib.h>
@@ -43,6 +33,7 @@ gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this)), actionlists(
   ogre.playSound(0);
   menu->setOpen(true);
 
+  ogre.addWorldEntity(43, gauntlet::EntityName::OGREHEAD, 0, 0, 0, gauntlet::Texturename::TEXTURE_NONE);
   ogre.go();
 }
 
