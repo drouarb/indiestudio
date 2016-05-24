@@ -5,6 +5,7 @@
 #include <iostream>
 #include "Actor.hh"
 #include "World.hh"
+#include "Spell.hh"
 
 using namespace gauntlet;
 
@@ -55,6 +56,7 @@ void		Actor::setMove()
 
 void Actor::addSpell(int spellEnum) {
   spellBook.addSpell(spellEnum);
+  spellBook.spellList.back()->setCaster(this);
 }
 
 
