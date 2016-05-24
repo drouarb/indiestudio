@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Tue May 24 17:34:06 2016 Alexis Trouve
+// Last update Tue May 24 17:42:27 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -30,10 +30,10 @@ GameServer::GameServer(const std::string& filePath, in_port_t port)
     std::cout << "errorMap" << std::endl;
   }
   packetFact = new PacketFactory(port);
-  players.push_back({"warrior", -1, false});
-  players.push_back({"wizard", -1, false});
-  players.push_back({"valkyrie", -1, false});
-  players.push_back({"elf", -1, false});
+  players.push_back({"Barbare", -1, false});
+  players.push_back({"Mage", -1, false});
+  players.push_back({"Valkyrie", -1, false});
+  players.push_back({"Elf", -1, false});
   listeners.push_back(new ServConnectListener(this));
   listeners.push_back(new ServSelectPlayerListener(this));
   listeners.push_back(new ServDisconnectListener(this));
