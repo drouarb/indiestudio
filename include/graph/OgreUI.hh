@@ -52,31 +52,39 @@ class OgreUI
   static const std::map<OIS::KeyCode, gauntlet::core::IUIObserver::Key> keymap;
   static const std::map<OIS::MouseButtonID, gauntlet::core::IUIObserver::Key> mousemap;
   static const std::map<gauntlet::core::Position, OgreBites::TrayLocation> posmap;
+  static const std::map<gauntlet::TextureName ,std::string>texturemap;
+  static const std::map<gauntlet::EntityName, std::string> meshmap;
+
   std::map<std::string, Ogre::AnimationState *> animationsArray;
   std::map<int, gauntlet::Effect *> effectMap;
+
   gauntlet::core::IUIObserver *obs;
   OgreOggSound::OgreOggSoundManager *mSoundManager;
 
 
   Ogre::Root *mRoot;
   Ogre::Camera *mCamera;
-  static const std::map<gauntlet::TextureName ,std::string>texturemap;
   Ogre::SceneManager *mSceneMgr;
   Ogre::RenderWindow *mWindow;
+
   Ogre::String mResourcesCfg;
   Ogre::String mPluginsCfg;
+
   Ogre::SceneNode *planNode;
   Ogre::SceneNode *worldNode;
+
   Ogre::OverlaySystem *mOverlaySystem;
   OgreBites::SdkTrayManager *mTrayMgr;
   OgreBites::SdkCameraMan *mCameraMan;
   OgreBites::ParamsPanel *mDetailsPanel;
-  static const std::map<gauntlet::EntityName, std::string> meshmap;
+
   bool mCursorWasVisible;
   bool mShutDown;
+
   OIS::InputManager *mInputManager;
   OIS::Mouse *mMouse;
   OIS::Keyboard *mKeyboard;
+
   int quality = 100;
 
  public:
@@ -210,18 +218,19 @@ class OgreUI
 
   void stopEffect(int id);
 
-  bool addWorldEntity(int entityId, const std::string &name, std::pair<int, int>);
-
-  bool addWorldEntity(int entityId, const std::string &name, std::pair<int, int>,
-		      Ogre::Vector3 orientation);
-
   void playAnimation(int entityId, const std::string &animationName, bool loop);
 
   bool addWorldEntity(int entityId, const std::string &name,
-		      std::pair<int, int> position, Ogre::Vector3 orientation,
-		      gauntlet::TextureName textureId);
+		      std::pair<int, int> position, Ogre::Vector3 orientation);
 
   bool addWorldEntity(int entityId, const std::string &name,
 		      std::pair<int, int> position,
+		      gauntlet::TextureName textureId);
+
+  bool addWorldEntity(int entityId, const std::string &name,
+		      std::pair<int, int> position);
+
+  bool addWorldEntity(int entityId, const std::string &name,
+		      std::pair<int, int> position, Ogre::Vector3 orientation,
 		      gauntlet::TextureName textureId);
 };
