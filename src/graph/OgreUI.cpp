@@ -57,7 +57,7 @@ void OgreUI::chooseSceneManager(void)
 void OgreUI::createCamera(void)
 {
   mCamera = mSceneMgr->createCamera("PlayerCam");
-  mCamera->setPosition(Ogre::Vector3(0, 0, 80));
+  mCamera->setPosition(Ogre::Vector3(0, 100, 80));
   mCamera->setNearClipDistance(5);
   mCameraMan = new OgreBites::SdkCameraMan(mCamera);
 }
@@ -370,6 +370,7 @@ void OgreUI::initMap()
 
   meshmap[gauntlet::EntityName::OGREHEAD] = "ogrehead.mesh";
   meshmap[gauntlet::EntityName::NINJA] = "ninja.mesh";
+  meshmap[gauntlet::EntityName::PLAN] = "plan_obj.mesh";
   meshmap[gauntlet::EntityName::TUDOURHOUSE] = "tudourhouse.mesh";
   meshmap[gauntlet::EntityName::DOOR] = "door.mesh";
   meshmap[gauntlet::EntityName::CUBE] = "cube.mesh";
@@ -568,7 +569,19 @@ void OgreUI::hideItem(int id)
 
 void OgreUI::createScene(void)
 {
-  showBackground();
+//  showBackground();
+  mSceneMgr->setAmbientLight(Ogre::ColourValue(.25, .25, .25));
+
+  Ogre::Light* pointLight = mSceneMgr->createLight("PointLight");
+  pointLight->setType(Ogre::Light::LT_POINT);
+  pointLight->setPosition(0, 300, 0);
+  pointLight->setPowerScale(4000000);
+  pointLight->setSpotlightInnerAngle(Ogre::Radian(0));
+  pointLight->setSpotlightOuterAngle(Ogre::Radian(Ogre::Degree(180)));
+  pointLight->setDiffuseColour(Ogre::ColourValue::White);
+  pointLight->setSpecularColour(Ogre::ColourValue::White);
+  addWorldEntity(2, PLAN, 0 , 0, 0, 0);
+ mSceneMgr->setSkyBox(true, "Examples/SceneSkyBox");
 }
 
 void OgreUI::quit()
@@ -652,6 +665,7 @@ bool OgreUI::addWorldEntity(int entityId, EntityName meshid, int x, int y,
   if (mSceneMgr->hasEntity(ss.str()) == true)
     {
       this->moveEntity(entityId, x, y, angle);
+      std::exit(0);
       return (true);
     }
   try

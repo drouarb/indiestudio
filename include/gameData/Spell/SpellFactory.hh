@@ -33,7 +33,16 @@ namespace gauntlet
       enum		SpellEnum
       {
           VALKYRIA_ATTACK,
-          VALKYRIA_DASH
+          VALKYRIA_DASH,
+          BARBARIAN_ATTACK,
+          BARBARIAN_TORNADO,
+          RANGER_ATTACK,
+          RANGER_ARROW_WAVE,
+          RANGER_EXPLOSIVE_ARROW,
+          WIZARD_PLACEHOLDER1,
+          WIZARD_PLACEHOLDER2,
+          WIZARD_PLACEHOLDER3,
+          WIZARD_PLACEHOLDER4
       };
       const static std::map<SpellEnum , getSpell> spellMap;
 
@@ -44,6 +53,9 @@ namespace gauntlet
       static Spell*              giveSpell(SpellEnum type);
       static Spell*              getValkyriaAttack();
       static Spell*              getValkyriaDash();
+      static Spell*              getBarbarianAttack();
+      static Spell*              getBarbarianTornado();
+
   };
 };
 
