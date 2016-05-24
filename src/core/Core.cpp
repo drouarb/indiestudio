@@ -5,12 +5,13 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:13:44 2016 Esteban Lewis
-// Last update Mon May 23 16:24:05 2016 Esteban Lewis
+// Last update Tue May 24 11:34:02 2016 Esteban Lewis
 //
 
 #include <math.h>
 #include <iostream>
 #include <stdlib.h>
+#include <sys/wait.h>
 #include "Core.hh"
 #include "MainMenu.hh"
 #include "IUIObserver.hh"
@@ -18,7 +19,9 @@
 #include "ListenerAddEntity.hh"
 #include "ListenerDisconnect.hh"
 #include "ListenerHandshake.hh"
+#include "ListenerMoveEntity.hh"
 #include "ConnectMenu.hh"
+#include "GameServer.hh"
 
 gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this)), actionlists(*this)
 {
@@ -29,6 +32,7 @@ gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this)), actionlists(
   serverAddr.first = "";
   serverAddr.second = 0;
   packetf = NULL;
+  cpid = -1;
   world::Math::init();
 
   ogre.setIObserver(observer);
@@ -108,6 +112,7 @@ gauntlet::core::Core::play()
   if (menu->getOpen())
     menu->setOpen(false);
   playing = true;
+  ogre.hideBackground();
 }
 
 void
@@ -116,6 +121,7 @@ gauntlet::core::Core::stop()
   if (menu->getOpen() == false)
     menu->setOpen(true);
   playing = false;
+  ogre.showBackground();
 }
 
 void
@@ -124,14 +130,38 @@ gauntlet::core::Core::exit()
   ogre.quit();
   if (packetf)
     disconnect(false);
+  killServer();
 }
 
 void
 gauntlet::core::Core::createServer()
 {
-  //TODO: create server and give map
-  std::cout << std::endl << "create server " << map << std::endl << std::endl;
-  usleep(100000);
+  killServer();
+  cpid = fork();
+  if (cpid == -1)
+    return ;
+  if (cpid != 0)
+    {
+      std::cout << "-- create server " << serverAddr.second << std::endl;
+      world::GameServer(map, serverAddr.second);
+      std::cout << "-- server shutdown" << std::endl;
+      _exit(0);
+    }
+  else
+    usleep(1000000); //TODO: server ready msg?
+}
+
+void
+gauntlet::core::Core::killServer()
+{
+  int status = 0;
+
+  if (cpid > 0)
+    {
+      kill(cpid, SIGTERM);
+      waitpid(cpid, &status, WNOHANG);
+      cpid = -1;
+    }
 }
 
 void
@@ -144,6 +174,7 @@ gauntlet::core::Core::initPacketf()
 	  listeners.push_back(new ListenerAddEntity(*this));
 	  listeners.push_back(new ListenerDisconnect(*this));
 	  listeners.push_back(new ListenerHandshake(*this));
+	  listeners.push_back(new ListenerMoveEntity(*this));
 	}
       for (std::list<network::PacketListener*>::iterator it = listeners.begin();
 	   it != listeners.end(); ++it)
@@ -163,22 +194,22 @@ gauntlet::core::Core::disconnect(bool send)
     packetf->send((network::Packet&)pd);
   packetf->stop();
   //TODO: delete straight away?
-
+  
   delete listenThread;
   listenThread = NULL;
-
+  
   packetf = NULL;
   stop();
 }
 
 void
-gauntlet::core::Core::load(std::string file)
+gauntlet::core::Core::load(std::string const & file)
 {
-  map = file;
+  map = SAVE_DIR + file;
 }
 
 void
-gauntlet::core::Core::save(std::string file)
+gauntlet::core::Core::save(std::string const & file)
 {
   std::cout << "CORE save " << file << std::endl;
 }

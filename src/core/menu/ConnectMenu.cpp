@@ -11,6 +11,7 @@
 gauntlet::core::ConnectMenu::ConnectMenu(Core & core, int idStart, Menu * parent) :
   TextBox(core, idStart, parent, "Server port")
 {
+  justConnected = false;
   init = false;
   portstr = "";
 
@@ -46,6 +47,13 @@ gauntlet::core::ConnectMenu::~ConnectMenu()
 void
 gauntlet::core::ConnectMenu::draw()
 {
+  if (justConnected)
+    {
+      justConnected = false;
+      setOpen(false);
+      return ;
+    }
+
   drawButtons();
 
   if (portstr != "")
@@ -151,6 +159,7 @@ gauntlet::core::ConnectMenu::doConnect(struct t_hitItem & item)
       return ;
     }
 
+  core.serverAddr = std::pair<std::string, int>(ip, port);
   if (ip == "127.0.0.1")
     {
       if (core.map == "")
@@ -170,7 +179,6 @@ gauntlet::core::ConnectMenu::doConnect(struct t_hitItem & item)
       if (core.packetf)
 	core.disconnect(true);
       core.packetf = new network::PacketFactory(ip, port);
-      core.serverAddr = std::pair<std::string, int>(ip, port);
       core.initPacketf();
       sendConnect();
       setOpen(false);
@@ -194,14 +202,15 @@ gauntlet::core::ConnectMenu::sendConnect()
 {
   network::PacketConnect pc;
 
-  core.packetf->send((network::Packet&)pc);
   shakehand(true, false);
+  core.packetf->send((network::Packet&)pc);
   usleep(100000);
   bool connected = shakehand(false, false);
   if (connected == true)
     {
       static_cast<MessageBox *>(submenus[0])->setMsg("Connection succeeded.");
       submenus[0]->setOpen(true);
+      justConnected = true;
     }
   else
     {

@@ -5,13 +5,13 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:06:35 2016 Esteban Lewis
-// Last update Sat May 21 11:46:05 2016 Esteban Lewis
+// Last update Mon May 23 22:45:53 2016 Esteban Lewis
 //
 
 #ifndef  SAVELOADMENU_HH_
 # define SAVELOADMENU_HH_
 
-# define SAVE_DIR "./saves/"
+# define SAVE_DIR "./map/"
 # define NEW_SAVE "NEW_SAVE"
 
 # include <map>

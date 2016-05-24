@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 10:59:47 2016 Esteban Lewis
-// Last update Mon May 23 16:10:21 2016 Esteban Lewis
+// Last update Tue May 24 10:22:54 2016 Esteban Lewis
 //
 
 #ifndef  CORE_HH_
@@ -47,8 +47,8 @@ namespace			gauntlet
       void			createServer();
       void			initPacketf();
       void			disconnect(bool send);
-      void			load(std::string file);
-      void			save(std::string file);
+      void			load(std::string const & file);
+      void			save(std::string const & file);
       bool			gameIsRunning();
       IUIObserver::Key		getLastKey() const;
 
@@ -59,6 +59,7 @@ namespace			gauntlet
       network::PacketFactory *	packetf;
       std::string		map;
       ActionLists		actionlists;
+      pid_t			cpid;
 
     private:
       IUIObserver *		observer;
@@ -69,6 +70,7 @@ namespace			gauntlet
       bool			playing;
 
       void			listen();
+      void			killServer();
     };
   };
 };

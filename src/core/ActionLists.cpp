@@ -28,6 +28,13 @@ gauntlet::core::ActionLists::doActions()
       (void)it;
     }
 
+  for (std::list<network::PacketMoveEntity*>::iterator it = packetsMoveEntity.begin();
+       it != packetsMoveEntity.end(); ++it)
+    {
+      core.ogre.addWorldEntity((*it)->getEntityId(), (EntityName)0,
+			       (*it)->getX(), (*it)->getY(), (*it)->getAngle(), 0);
+    }
+
   clearActions();
 }
 
@@ -47,6 +54,15 @@ gauntlet::core::ActionLists::pushDisconnect(const network::PacketDisconnect * pa
 }
 
 void
+gauntlet::core::ActionLists::pushMoveEntity(const network::PacketMoveEntity * packet)
+{
+  packetsMoveEntity.push_back(new network::PacketMoveEntity
+			      (packet->getEntityId(),
+			       packet->getX(), packet->getY(),
+			       packet->getAngle()));
+}
+
+void
 gauntlet::core::ActionLists::clearActions()
 {
   for (std::list<network::PacketAddEntity*>::iterator it = packetsAddEntity.begin();
@@ -62,4 +78,11 @@ gauntlet::core::ActionLists::clearActions()
       delete *it;
     }
   packetsDisconnect.clear();
+
+  for (std::list<network::PacketMoveEntity*>::iterator it = packetsMoveEntity.begin();
+       it != packetsMoveEntity.end(); ++it)
+    {
+      delete *it;
+    }
+  packetsMoveEntity.clear();
 }

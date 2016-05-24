@@ -49,7 +49,7 @@ gauntlet::network::Socket::~Socket() {
 void gauntlet::network::Socket::send(std::vector<unsigned char> *data) {
     lock.lock();
     if (type == SERVER) {
-        for (s_client cli : clients) {
+      for (s_client cli : clients) {
             ::send(cli.sockfd, &data->front(), data->size(), 0);
         }
     } else {
@@ -118,7 +118,6 @@ s_socketData gauntlet::network::Socket::recv() {
             lock.unlock();
         }
     }
-    lock.lock();
     FD_ZERO(&set);
     FD_SET(pipe[0], &set);
     FD_SET(sockfd, &set);
@@ -129,6 +128,7 @@ s_socketData gauntlet::network::Socket::recv() {
         buff.fd = -1;
         return buff;
     }
+    lock.lock();
     return this->recv(sockfd);
 }
 

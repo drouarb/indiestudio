@@ -5,9 +5,10 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Tue May 24 11:44:24 2016 Alexis Trouve
+// Last update Tue May 24 12:48:09 2016 Alexis Trouve
 //
 
+#include <iostream>
 #include "PlayerChars.hh"
 #include "ServSelectPlayerListener.hh"
 #include "ServConnectListener.hh"
@@ -25,6 +26,7 @@ GameServer::GameServer(const std::string& filePath, in_port_t port)
   world = new World(this);
   world->loadGame(filePath);
   packetFact = new PacketFactory(port);
+  std::cout << "-- server port: " << port << std::endl;
   players.push_back({"warrior", -1, false});
   players.push_back({"wizard", -1, false});
   players.push_back({"valkyrie", -1, false});
@@ -50,7 +52,9 @@ GameServer::~GameServer()
 
 void		GameServer::connectAnswer(const network::PacketConnect *packet)
 {
+  std::cout << "-- server received connect" << std::endl;
   connectTmp.push_back(packet->getSocketId());
+  std::cout << "-- server sendHandShake" << std::endl;
   sendHandShake(packet->getSocketId());
 }
 
@@ -155,6 +159,7 @@ void			GameServer::sendHandShake(int socketFd)
 			       players[PlayerChar::VALKYRIE].isTake, players[PlayerChar::RANGER].isTake, maxPlayers, coPlayers);
 
   packetFact->send(packet, socketFd);
+  std::cout << "-- server handshake ok" << std::endl;
 }
 
 void		GameServer::sendDeco(int socketId, const std::string& msg)
@@ -189,8 +194,9 @@ void		GameServer::sendAddEntity(ABody *body)
 
 void		GameServer::listen()
 {
-  while (42 == 42)
+  while (42)
     {
+      std::cout << "-- server listen" << std::endl;
       packetFact->recv();
     }
 }
