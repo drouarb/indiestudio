@@ -502,7 +502,7 @@ void OgreUI::createScene(void)
   pLight->setPowerScale(400000.0);
   this->mSceneMgr->setAmbientLight(Ogre::ColourValue(.25, .25, .25));
   this->mTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT);
-//  this->addWorldEntity(23, "draugr", 0, 0, 90, 0);
+  //this->addWorldEntity(23, "draugr", 0, 0, 90, 0);
   //END TODO
   Ogre::Light *pointLight = this->mSceneMgr->createLight("PointLight");
   pointLight->setSpotlightInnerAngle(Ogre::Radian(0));
@@ -510,7 +510,7 @@ void OgreUI::createScene(void)
   pointLight->setDiffuseColour(Ogre::ColourValue::White);
   pointLight->setSpecularColour(Ogre::ColourValue::White);
   mSceneMgr->setSkyBox(true, "Examples/SceneSkyBox");
-  //addMapEntity(1, TUDORHOUSE, 0, 0, 0, TUDORHOUSE_M);
+  addMapEntity(1, TUDORHOUSE, 5000, 5000, 0, TUDORHOUSE_M);
 }
 
 void OgreUI::quit()
@@ -618,7 +618,7 @@ bool __attribute_deprecated__ OgreUI::addWorldEntity(int entityId,
 						     short angle,
 						     TextureName texture_id)
 {
-  std::cout << "~ ogre add entity" << std::endl;
+  std::cout << "~ ogre add entity " << entityId << " mesh=" << meshid << " x=" << x << " y=" << y << std::endl;
   std::stringstream ss;
   ss << entityId;
   Ogre::Entity *e;

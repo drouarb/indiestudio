@@ -1,0 +1,36 @@
+{
+    name : "Default map",
+    length : "10000",
+    width : "10000",
+    spawn :
+    {
+	x : "1000",
+	y : "1000"
+    },
+    map : "",
+    dynamic :
+    [
+	{
+	    name : "Draugr",
+	    x : "100",
+	    y : "100",
+	    angle : "0"
+	},
+	{
+	    name : "Draugr",
+	    x : "0",
+	    y : "100",
+	    angle : "180"
+	}
+    ]
+    physical :
+    [
+	{
+	    mesh_id : "123",
+	    pos_x : "300",
+	    pos_y : "500",
+	    size_x : "100",
+	    size_y : "20"
+	}
+    ]
+}
