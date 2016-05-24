@@ -5,12 +5,13 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 11:13:44 2016 Esteban Lewis
-// Last update Mon May 23 22:58:39 2016 Esteban Lewis
+// Last update Tue May 24 11:25:59 2016 Esteban Lewis
 //
 
 #include <math.h>
 #include <iostream>
 #include <stdlib.h>
+#include <sys/wait.h>
 #include "Core.hh"
 #include "MainMenu.hh"
 #include "IUIObserver.hh"
@@ -31,6 +32,7 @@ gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this)), actionlists(
   serverAddr.first = "";
   serverAddr.second = 0;
   packetf = NULL;
+  cpid = -1;
   world::Math::init();
 
   ogre.setIObserver(observer);
@@ -110,6 +112,7 @@ gauntlet::core::Core::play()
   if (menu->getOpen())
     menu->setOpen(false);
   playing = true;
+  ogre.hideBackground();
 }
 
 void
@@ -118,6 +121,7 @@ gauntlet::core::Core::stop()
   if (menu->getOpen() == false)
     menu->setOpen(true);
   playing = false;
+  ogre.showBackground();
 }
 
 void
@@ -126,23 +130,38 @@ gauntlet::core::Core::exit()
   ogre.quit();
   if (packetf)
     disconnect(false);
+  killServer();
 }
 
 void
 gauntlet::core::Core::createServer()
 {
-  pid_t cpid = fork();
+  killServer();
+  cpid = fork();
   if (cpid == -1)
     return ;
-  if (cpid == 0)
+  if (cpid != 0)
     {
-      std::cout << "-- create server" << std::endl;
+      std::cout << "-- create server " << serverAddr.second << std::endl;
       world::GameServer(map, serverAddr.second);
       std::cout << "-- server shutdown" << std::endl;
       _exit(0);
     }
   else
-    usleep(100000); //TODO: server ready msg?
+    usleep(1000000); //TODO: server ready msg?
+}
+
+void
+gauntlet::core::Core::killServer()
+{
+  int status = 0;
+
+  if (cpid > 0)
+    {
+      kill(SIGTERM, cpid);
+      waitpid(cpid, &status, WNOHANG);
+      cpid = -1;
+    }
 }
 
 void

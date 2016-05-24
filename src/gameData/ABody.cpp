@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Mon May  9 14:07:25 2016 Alexis Trouve
-// Last update Fri May 20 14:17:12 2016 Alexis Trouve
+// Last update Mon May 23 22:48:50 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -97,4 +97,17 @@ world::World *ABody::getWorld() {
   return world;
 }
 
+unsigned int			ABody::getEntityId() const
+{
+  return (0);
+}
 
+unsigned int			ABody::getTextureId() const
+{
+  return (0);
+}
+
+unsigned int			ABody::getMeshId() const
+{
+  return (0);
+}

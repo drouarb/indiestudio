@@ -49,7 +49,7 @@ gauntlet::core::Lobby::draw()
     {
       std::stringstream ss;
       ss << core.serverAddr.second;
-      buttons[0].setStr("Connected to  " + core.serverAddr.first + ":" + ss.str());
+      buttons[0].setStr("Connected to " + core.serverAddr.first + ":" + ss.str());
     }
   if (core.pc == NULL)
     buttons[2].setStr("No character.");

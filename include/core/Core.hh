@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 10:59:47 2016 Esteban Lewis
-// Last update Mon May 23 22:44:21 2016 Esteban Lewis
+// Last update Tue May 24 10:22:54 2016 Esteban Lewis
 //
 
 #ifndef  CORE_HH_
@@ -70,6 +70,7 @@ namespace			gauntlet
       bool			playing;
 
       void			listen();
+      void			killServer();
     };
   };
 };

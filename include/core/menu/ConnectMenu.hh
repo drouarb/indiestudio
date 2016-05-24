@@ -26,7 +26,7 @@ namespace			gauntlet
       std::vector<std::string>	serverTypes;
       bool			init;
       std::string		portstr;
-      bool			connected;
+      bool			justConnected;
 
       void			doButton(int, struct t_hitItem &);
 
