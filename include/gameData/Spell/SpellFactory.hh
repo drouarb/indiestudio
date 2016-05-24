@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Mon May  9 18:02:31 2016 Alexis Trouve
-// Last update Tue May 10 19:23:00 2016 Alexis Trouve
+// Last update Tue May 24 14:55:54 2016 Alexis Trouve
 //
 
 #ifndef SPELLFACTORY_HH_
@@ -51,13 +51,13 @@ namespace gauntlet
     static int			        giveNextId();
 
   public:
-      static Spell*              giveSpell(SpellEnum type);
-      static Spell*              getValkyriaAttack();
-      static Spell*              getValkyriaDash();
-      static Spell*              getBarbarianAttack();
-      static Spell*              getBarbarianTornado();
+    static Spell*              giveSpell(SpellEnum type);
+    static Spell*              getValkyriaAttack();
+    static Spell*              getValkyriaDash();
+    static Spell*              getBarbarianAttack();
+    static Spell*              getBarbarianTornado();
 
-      Spell *getDraugrAttack();
+    static Spell *getDraugrAttack();
   };
 };
 

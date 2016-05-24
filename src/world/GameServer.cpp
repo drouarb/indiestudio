@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Tue May 24 14:17:02 2016 Alexis Trouve
+// Last update Tue May 24 14:47:49 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -114,6 +114,9 @@ void		GameServer::selectPlayerAnswer(const network::PacketSelectPlayer *packet)
       players[iTaken].isTake = true;
       players[iTaken].socketId = packet->getSocketId();
       connectTmp.erase(connectTmp.begin() + i);
+      PacketStartGame	myPacket(world->addNewBody(world->getSpawnPoint().first,
+						   world->getSpawnPoint().second, packet->getName(), 0));
+      packetFact->send(myPacket, packet->getSocketId());
     }
   else
     sendHandShake(packet->getSocketId());
