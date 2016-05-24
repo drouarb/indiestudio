@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Tue May 24 18:26:37 2016 Alexis Trouve
+// Last update Tue May 24 18:32:27 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -202,7 +202,7 @@ int				World::getUniqueEffectId()
   return (++i);
 }
 
-int				World::createNewEffect(gauntlet::EffectName effect)
+/*int				World::createNewEffect(gauntlet::EffectName effect)
 {
 
-}
+}*/
