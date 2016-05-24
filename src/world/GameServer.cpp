@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Tue May 24 17:42:27 2016 Alexis Trouve
+// Last update Tue May 24 19:24:45 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -133,7 +133,6 @@ void			GameServer::sendDatas(int socketId)
   std::list<ABody*>	bodys;
   std::list<ABody*>::iterator	it1;
 
-  //mutex lock
   bodys = world->getBodysByCopy();
   it1 = bodys.begin();
   while (it1 != bodys.end())

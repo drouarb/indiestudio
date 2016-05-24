@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 16:50:32 2016 Alexis Trouve
-// Last update Tue May 24 11:36:17 2016 Alexis Trouve
+// Last update Tue May 24 19:37:53 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -74,8 +74,8 @@ void			BodyFactory::setBarbare()
   player->changePos(std::make_pair(-1, -1));
   player->changeSize(std::make_pair(10.0, 10.0));
   player->changeOrientation(0);
-  player->setModel(EntityName::BERSERK);
-  player->setTexture(TextureName::TEXTURE_NONE);
+  player->setMeshId(EntityName::BERSERK);
+  player->setTextureId(TextureName::TEXTURE_NONE);
   bodyTab.push_back(player);
 }
 
@@ -94,8 +94,8 @@ void			BodyFactory::setElf()
   player->changePos(std::make_pair(-1, -1));
   player->changeSize(std::make_pair(10.0, 10.0));
   player->changeOrientation(0);
-  player->setModel(EntityName::BERSERK);
-  player->setTexture(TextureName::TEXTURE_NONE);
+  player->setMeshId(EntityName::BERSERK);
+  player->setTextureId(TextureName::TEXTURE_NONE);
   bodyTab.push_back(player);
 }
 
@@ -114,8 +114,8 @@ void			BodyFactory::setWizard()
   player->changePos(std::make_pair(-1, -1));
   player->changeSize(std::make_pair(10.0, 10.0));
   player->changeOrientation(0);
-  player->setModel(EntityName::BERSERK);
-  player->setTexture(TextureName::TEXTURE_NONE);
+  player->setMeshId(EntityName::BERSERK);
+  player->setTextureId(TextureName::TEXTURE_NONE);
   bodyTab.push_back(player);
 }
 
@@ -136,8 +136,8 @@ void			BodyFactory::setValkyrie()
   player->changePos(std::make_pair(-1, -1));
   player->changeSize(std::make_pair(10.0, 10.0));
   player->changeOrientation(0);
-  player->setModel(EntityName::BERSERK);
-  player->setTexture(TextureName::TEXTURE_NONE);
+  player->setMeshId(EntityName::BERSERK);
+  player->setTextureId(TextureName::TEXTURE_NONE);
   bodyTab.push_back(player);
 }
 
@@ -158,9 +158,9 @@ void			BodyFactory::setDraugr()
   crea->changePos(std::make_pair(-1, -1));
   crea->changeSize(std::make_pair(10.0, 10.0));
   crea->changeOrientation(0);
-  crea->setModel(EntityName::BERSERK);
-  crea->setTexture(TextureName::TEXTURE_NONE);
-  crea->setTexture(1);
+  crea->setMeshId(EntityName::BERSERK);
+  crea->setTextureId(TextureName::TEXTURE_NONE);
+  crea->setTextureId(1);
   bodyTab.push_back(crea);
   i = 0;
   while (i < AIs.size())
