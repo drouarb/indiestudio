@@ -98,7 +98,7 @@ void
 gauntlet::core::WaitPacket::timer()
 {
   int counter = 0;
-  while (mustClose(false, false) == false && counter < 1000)
+  while (mustClose(false, false) == false && counter < 100)
     {
       usleep(10000);
       counter++;

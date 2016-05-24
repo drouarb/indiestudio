@@ -10,6 +10,7 @@
 #include "ListenerDisconnect.hh"
 #include "ListenerHandshake.hh"
 #include "ListenerMoveEntity.hh"
+#include "ListenerStartGame.hh"
 #include "ConnectMenu.hh"
 #include "GameServer.hh"
 
@@ -33,7 +34,6 @@ gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this)), actionlists(
   ogre.playSound(0);
   menu->setOpen(true);
 
-  ogre.addWorldEntity(43, gauntlet::EntityName::OGREHEAD, 0, 0, 0, gauntlet::TextureName::TEXTURE_NONE);
   ogre.go();
 }
 
@@ -163,6 +163,7 @@ gauntlet::core::Core::initPacketf()
 	  listeners.push_back(new ListenerDisconnect(*this));
 	  listeners.push_back(new ListenerHandshake(*this));
 	  listeners.push_back(new ListenerMoveEntity(*this));
+	  listeners.push_back(new ListenerStartGame(*this));
 	}
       for (std::list<network::PacketListener*>::iterator it = listeners.begin();
 	   it != listeners.end(); ++it)
