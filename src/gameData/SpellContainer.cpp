@@ -23,5 +23,3 @@ void SpellContainer::addSpell(int spellEnum, Actor *caster)
     spell->setCaster(caster);
     this->spellList.push_back(spell);
 }
-
-
