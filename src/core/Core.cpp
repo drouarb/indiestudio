@@ -101,6 +101,7 @@ gauntlet::core::Core::play()
 {
   if (menu->getOpen())
     menu->setOpen(false);
+  actionlists.doActions();
   playing = true;
   ogre.hideBackground();
 }
