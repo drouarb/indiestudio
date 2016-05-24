@@ -65,8 +65,7 @@ class OgreUI
   Ogre::RenderWindow *mWindow;
   Ogre::String mResourcesCfg;
   Ogre::String mPluginsCfg;
- private:
-  Ogre::SceneNode *rootNode;
+  Ogre::SceneNode *planNode;
   Ogre::SceneNode *worldNode;
   Ogre::OverlaySystem *mOverlaySystem;
   OgreBites::SdkTrayManager *mTrayMgr;
@@ -91,12 +90,15 @@ class OgreUI
   bool addWorldEntity(int entityId, gauntlet::EntityName meshid, int x, int y,
 		      short degres, gauntlet::Texturename texture_id);
 
+  bool addMapEntity(int entityId, gauntlet::EntityName meshid, int x, int y,
+		      short degres, gauntlet::Texturename texture_id);
   void initMap();
 
   void initSound();
 
   bool configure(void);
 
+  void   resetMap();
   void chooseSceneManager(void);
 
   void createCamera(void);

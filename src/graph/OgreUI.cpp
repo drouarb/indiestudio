@@ -20,6 +20,7 @@ OgreUI::OgreUI(void)
 	  mShutDown(false),
 	  mInputManager(0),
 	  mMouse(0),
+	  planNode(0),
 	  mKeyboard(0),
 	  obs(NULL)
 {
@@ -52,6 +53,7 @@ void OgreUI::chooseSceneManager(void)
   mOverlaySystem = new Ogre::OverlaySystem();
   mSceneMgr->addRenderQueueListener(mOverlaySystem);
   worldNode = mSceneMgr->getRootSceneNode()->createChildSceneNode("World");
+  planNode = mSceneMgr->getRootSceneNode()->createChildSceneNode("Plan");
 }
 
 void OgreUI::createCamera(void)
@@ -372,7 +374,7 @@ void OgreUI::initMap()
   meshmap[gauntlet::EntityName::OGREHEAD] = "ogrehead.mesh";
   meshmap[gauntlet::EntityName::NINJA] = "ninja.mesh";
   meshmap[gauntlet::EntityName::PLAN] = "plan.mesh";
-  meshmap[gauntlet::EntityName::TUDOURHOUSE] = "tudorhouse.mesh";
+  meshmap[gauntlet::EntityName::TUDORHOUSE] = "tudorhouse.mesh";
   meshmap[gauntlet::EntityName::DOOR] = "door.mesh";
   meshmap[gauntlet::EntityName::CUBE] = "cube.mesh";
   meshmap[gauntlet::EntityName::ROCK] = "Rock.mesh";
@@ -380,7 +382,8 @@ void OgreUI::initMap()
   meshmap[gauntlet::EntityName::CHESTCARTOON] = "chestCartoon.mesh";
   meshmap[gauntlet::EntityName::WAGEN] = "wagen.mesh";
 
-texturemap[gauntlet::Texturename::NINjA_M] = "Ogre/Skin";
+  texturemap[gauntlet::Texturename::NINjA_M] = "Ogre/Skin";
+  texturemap[gauntlet::Texturename::TUDORHOUSE_M] = "TudorHouse/house";
 
 }
 
@@ -574,9 +577,8 @@ void OgreUI::hideItem(int id)
 
 void OgreUI::createScene(void)
 {
-//  showBackground();
+// showBackground();
   mSceneMgr->setAmbientLight(Ogre::ColourValue(.25, .25, .25));
-
   Ogre::Light *pointLight = mSceneMgr->createLight("PointLight");
   pointLight->setType(Ogre::Light::LT_POINT);
   pointLight->setPosition(0, 300, 0);
@@ -586,6 +588,7 @@ void OgreUI::createScene(void)
   pointLight->setDiffuseColour(Ogre::ColourValue::White);
   pointLight->setSpecularColour(Ogre::ColourValue::White);
   mSceneMgr->setSkyBox(true, "Examples/SceneSkyBox");
+  addMapEntity(1,TUDORHOUSE, 0, 0, 0,  TUDORHOUSE_M);
 }
 
 void OgreUI::quit()
@@ -697,7 +700,6 @@ bool OgreUI::addWorldEntity(int entityId, EntityName meshid, int x, int y,
   if (mSceneMgr->hasEntity(ss.str()) == true)
     {
       this->moveEntity(entityId, x, y, angle);
-      std::exit(0);
       return (true);
     }
   try
@@ -712,7 +714,6 @@ bool OgreUI::addWorldEntity(int entityId, EntityName meshid, int x, int y,
   e->setMaterialName(texturemap[texture_id]);
   Ogre::SceneNode *s = worldNode->createChildSceneNode(ss.str());
   s->setPosition(x, y, 0);
-  s->setScale(0.5, 0.5, 0.5);
   s->yaw(Ogre::Radian(world::Math::toRad(angle)));
   s->attachObject(e);
   return (true);
@@ -782,6 +783,48 @@ bool OgreUI::frameStarted(const Ogre::FrameEvent &evt)
     obs->frameStarted();
   return true;
 }
+
+bool OgreUI::addMapEntity(int entityId, gauntlet::EntityName meshid, int x,
+			  int y, short angle, gauntlet::Texturename texture_id)
+{
+  std::stringstream ss;
+  ss << entityId;
+  Ogre::Entity *e;
+  if (mSceneMgr->hasEntity(ss.str()) == true)
+    {
+      this->moveEntity(entityId, x, y, angle);
+      return (true);
+    }
+  try
+    {
+      e = mSceneMgr->createEntity(ss.str(), meshmap[meshid].c_str());
+    }
+  catch (Ogre::Exception &e)
+    {
+      return false;
+    }
+  if (texture_id != Texturename::TEXTURE_NONE)
+    e->setMaterialName(texturemap[texture_id]);
+  Ogre::SceneNode *s = planNode->createChildSceneNode(ss.str());
+  s->setPosition(x, y, 0);
+  s->setScale(0.5, 0.5, 0.5);
+  s->yaw(Ogre::Radian(world::Math::toRad(angle)));
+  s->attachObject(e);
+  return (true);
+}
+
+void OgreUI::resetMap()
+{
+  if (planNode)
+    {
+      planNode->removeAndDestroyAllChildren();
+    }
+}
+
+
+
+
+
 
 
 
