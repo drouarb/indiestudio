@@ -48,7 +48,7 @@ void gauntlet::network::PacketSelectPlayer::deserialize(t_rawdata *data) {
     wizard = static_cast<bool>(packetSelectPlayerData->selectedCharacters >> 1 & 0x01);
     valkyrie = static_cast<bool>(packetSelectPlayerData->selectedCharacters >> 2 & 0x01);
     elf = static_cast<bool>(packetSelectPlayerData->selectedCharacters >> 3 & 0x01);
-    name = &packetSelectPlayerData->namestart;
+    name.assign(&packetSelectPlayerData->namestart, packetSelectPlayerData->namelen);
 }
 
 bool gauntlet::network::PacketSelectPlayer::getWarrior() const {
@@ -67,7 +67,10 @@ bool gauntlet::network::PacketSelectPlayer::getElf() const {
     return elf;
 }
 
-
 const std::string &gauntlet::network::PacketSelectPlayer::getName() const {
     return name;
+}
+
+size_t gauntlet::network::PacketSelectPlayer::getPacketSize() const {
+    return sizeof(s_packetSelectPlayerData) + name.size();
 }

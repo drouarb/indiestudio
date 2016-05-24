@@ -31,6 +31,7 @@ namespace gauntlet {
             int getX() const;
             int getY() const;
             short getAngle() const;
+            virtual size_t getPacketSize() const;
 
         private:
             unsigned int entityId;

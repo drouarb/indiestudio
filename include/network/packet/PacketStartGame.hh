@@ -24,6 +24,7 @@ namespace gauntlet {
 
             virtual t_rawdata *serialize() const;
             virtual void deserialize(t_rawdata *data);
+            virtual size_t getPacketSize() const;
 
             unsigned int getEntityId() const;
 
