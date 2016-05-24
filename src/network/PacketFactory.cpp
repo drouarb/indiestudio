@@ -9,6 +9,7 @@
 #include <network/packet/PacketAddEntity.hh>
 #include <network/packet/PacketMoveEntity.hh>
 #include <network/packet/PacketStartGame.hh>
+#include <network/packet/PacketDeleteEntity.hh>
 #include "network/PacketFactory.hh"
 #include "network/PacketFactorySocketDisconnectionListener.hh"
 
@@ -113,7 +114,8 @@ const std::map<gauntlet::network::PacketId, gauntlet::network::PacketFactory::cr
         {PLAYER_SELECT, &PacketFactory::createPacket<PacketSelectPlayer>},
         {START_GAME,    &PacketFactory::createPacket<PacketStartGame>},
         {ADD_ENTITY,    &PacketFactory::createPacket<PacketAddEntity>},
-        {MOVE_ENTITY,   &PacketFactory::createPacket<PacketMoveEntity>}
+        {MOVE_ENTITY,   &PacketFactory::createPacket<PacketMoveEntity>},
+        {DELETE_ENTITY, &PacketFactory::createPacket<PacketDeleteEntity>}
 };
 
 

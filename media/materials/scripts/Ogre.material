@@ -18,6 +18,21 @@ material Ogre/Earring
 	}
 }
 
+material TudorHouse/house
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture fw12b.jpg
+				tex_address_mode clamp
+			}
+		}
+	}
+}
+
 material Ogre/Skin
 {
 	technique
