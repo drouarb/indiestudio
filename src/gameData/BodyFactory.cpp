@@ -144,6 +144,7 @@ void			BodyFactory::setDraugr()
   crea->stats.speed = 1.0;
   crea->stats.normalSpeed = 1.0;
   crea->stats.attackModifier = 1.0;
+  crea->spellBook.addSpell(SpellFactory::DRAUGR_ATTACK, crea);
   crea->setCollide(true);
   crea->changePos(std::make_pair(-1, -1));
   crea->changeSize(std::make_pair(10.0, 10.0));
