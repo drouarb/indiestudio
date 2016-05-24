@@ -207,4 +207,6 @@ class OgreUI
   void moveEntity(int id, int x, int y, short degres);
 
   void stopEffect(int id);
+
+  void playAnimation(int entityId, const std::string &animationName, bool loop);
 };

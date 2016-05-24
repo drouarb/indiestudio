@@ -405,7 +405,7 @@ void OgreUI::loadSound(int id, const std::string &path)
 {
   std::stringstream ss;
   ss << id;
-      mSoundManager->createSound(ss.str(), path.c_str(), true, false, false);
+  mSoundManager->createSound(ss.str(), path.c_str(), true, false, false);
 }
 
 void OgreUI::playSound(int id)
@@ -611,16 +611,38 @@ void OgreUI::stopAnimation(int animationId, int entityId)
   animation = NULL;
 }
 
-void OgreUI::playAnimation(int animationId, int entityId, bool loop)
+void OgreUI::playAnimation(int entityId, int animationId, bool loop)
 {
   Ogre::Entity *pEntity = this->mSceneMgr->getEntity("" + entityId);
-  Ogre::AnimationState *pState = pEntity->getAnimationState("");
+  int nb = 0;
+
+  Ogre::AnimationStateIterator mapIterator = pEntity->getAllAnimationStates()->getAnimationStateIterator();
+  auto it = mapIterator.begin();
+  while (it != mapIterator.end())
+    {
+      std::pair<const Ogre::String, Ogre::AnimationState *> &reference1 = *it;
+      if (nb == entityId)
+	{
+	  this->playAnimation(entityId, reference1.first, loop);
+	}
+      it++;
+      ++nb;
+    }
+}
+
+
+void OgreUI::playAnimation(int entityId, std::string const &animationName,
+			   bool loop)
+{
+  Ogre::Entity *pEntity = this->mSceneMgr->getEntity("" + entityId);
+  Ogre::AnimationState *pState = pEntity->getAnimationState(animationName);
 
   pState->setLoop(loop);
   pState->setEnabled(true);
   this->animationsArray[pEntity->getName() +
 			pState->getAnimationName()] = pState;
 }
+
 
 std::pair<int, int> OgreUI::getSizeWindow()
 {
@@ -672,7 +694,7 @@ bool OgreUI::addWorldEntity(int entityId, EntityName meshid, int x, int y,
     {
      e = mSceneMgr->createEntity(ss.str(), meshmap[meshid].c_str());
     }
-  catch (Ogre::Exception & e)
+  catch (Ogre::Exception &e)
     {
       return false;
     }
