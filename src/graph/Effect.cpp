@@ -4,7 +4,7 @@
 
 #include "graph/Effect.hh"
 
-gauntlet::Effect::Effect(OgreUI *ogreUI, gauntlet::EffectType type, std::string const &name, std::pair<double, double> coord, int percent)
+gauntlet::Effect::Effect(OgreUI *ogreUI, gauntlet::EffectName type, std::string const &name, std::pair<double, double> coord, int percent)
 {
   try
     {
