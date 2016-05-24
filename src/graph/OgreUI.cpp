@@ -198,6 +198,7 @@ bool OgreUI::frameRenderingQueued(const Ogre::FrameEvent &evt)
   mTrayMgr->frameRenderingQueued(evt);
   for (auto animation : this->animationsArray)
     {
+      std::cout << "Rendring animation" << std::endl;
       Ogre::AnimationState *t2 = animation.second;
       t2->addTime(evt.timeSinceLastFrame);
     }
