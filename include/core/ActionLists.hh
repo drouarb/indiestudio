@@ -5,6 +5,7 @@
 # include "ListenerAddEntity.hh"
 # include "ListenerDisconnect.hh"
 # include "ListenerMoveEntity.hh"
+# include "ListenerDeleteEntity.hh"
 
 namespace			gauntlet
 {
@@ -22,6 +23,7 @@ namespace			gauntlet
       void			pushAddEntity(const network::PacketAddEntity *);
       void			pushDisconnect(const network::PacketDisconnect *);
       void			pushMoveEntity(const network::PacketMoveEntity *);
+      void			pushDeleteEntity(const network::PacketDeleteEntity *);
 
     private:
       Core &			core;
@@ -31,6 +33,7 @@ namespace			gauntlet
       std::list<network::PacketAddEntity*> packetsAddEntity;
       std::list<network::PacketDisconnect*> packetsDisconnect;
       std::list<network::PacketMoveEntity*> packetsMoveEntity;
+      std::list<network::PacketDeleteEntity*> packetsDeleteEntity;
     };
   };
 };

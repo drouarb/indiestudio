@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Tue May 24 19:24:45 2016 Alexis Trouve
+// Last update Tue May 24 22:00:01 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -114,14 +114,17 @@ void		GameServer::selectPlayerAnswer(const network::PacketSelectPlayer *packet)
       players[iTaken].isTake = true;
       players[iTaken].socketId = packet->getSocketId();
       connectTmp.erase(connectTmp.begin() + i);
-      PacketStartGame	myPacket(world->addNewBody(world->getSpawnPoint().first,
-						   world->getSpawnPoint().second, players[iTaken].name, 0));
-      packetFact->send(myPacket, packet->getSocketId());
       dataSendMutex.lock();
+      PacketStartGame	myPacket(world->addNewBody(world->getSpawnPoint().first,
+						   world->getSpawnPoint().second,
+						   players[iTaken].name, 0));
+      packetFact->send(myPacket, packet->getSocketId());
+
       dataSendThread = new std::thread(std::bind(&GameServer::sendDatas, std::ref(*this), packet->getSocketId()));
       dataSendThread->join();
       delete (dataSendThread);
       dataSendMutex.unlock();
+
     }
   else
     sendHandShake(packet->getSocketId());
@@ -222,9 +225,10 @@ void		GameServer::sendMap()
 
 void		GameServer::sendAddEntity(ABody *body)
 {
-  std::cout << "sendAddEntity" << std::endl;
+  std::cout << "sendAddEntity" << body->getEntityId() << " " << body->getPos().first << ":" << body->getPos().second << std::endl;
   unsigned int	i;
   network::PacketAddEntity	packet(body->getEntityId(), body->getTextureId(), body->getMeshId(), static_cast<int>(body->getPos().first), static_cast<int>(body->getPos().second), body->getOrientation());
+  std::cout << packet.getEntityId() << std::endl;
 
   i = 0;
   while (i < players.size())
