@@ -5,12 +5,13 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:09:17 2016 Esteban Lewis
-// Last update Tue May 24 21:30:01 2016 Esteban Lewis
+// Last update Wed May 25 19:44:37 2016 Esteban Lewis
 //
 
 #include <iostream>
 #include "MainMenu.hh"
 #include "Lobby.hh"
+#include "ConfMenu.hh"
 
 gauntlet::core::MainMenu::MainMenu(Core & core, int idStart, Menu * parent) :
   Menu(core, idStart, parent)

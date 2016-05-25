@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 15:52:38 2016 Esteban Lewis
-// Last update Tue May 24 18:00:11 2016 Esteban Lewis
+// Last update Wed May 25 19:29:03 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -14,25 +14,17 @@
 gauntlet::core::PlayerController::PlayerController(std::string const & name,
 						   world::PlayerChar c)
 {
-  id = -1;
   this->name = name;
   chartype = c;
 
-  ctrls.insert(std::pair<Command, void (PlayerController::*)(bool)>
-	       (UP, &PlayerController::cmdUp));
-  ctrls.insert(std::pair<Command, void (PlayerController::*)(bool)>
-	       (DOWN, &PlayerController::cmdDown));
-  ctrls.insert(std::pair<Command, void (PlayerController::*)(bool)>
-	       (LEFT, &PlayerController::cmdLeft));
-  ctrls.insert(std::pair<Command, void (PlayerController::*)(bool)>
-	       (RIGHT, &PlayerController::cmdRight));
-  ctrls.insert(std::pair<Command, void (PlayerController::*)(bool)>
-	       (ENTER, &PlayerController::cmdAttack1));
-
-  moveX = 0;
-  moveY = 0;
-  action = NONE;
-  playerRef = NULL;
+  ctrls =
+    {
+      UP,
+      ATTACK1,
+      ATTACK2,
+      ATTACK3,
+      ATTACK4
+    };
 }
 
 gauntlet::core::PlayerController::~PlayerController()
@@ -50,102 +42,23 @@ gauntlet::core::PlayerController::getChar() const
   return (chartype);
 }
 
-std::pair<double, double>
-gauntlet::core::PlayerController::getMovement()
-{
-  return (std::pair<double, double>(moveX, moveY));
-}
-
-int
-gauntlet::core::PlayerController::getAction()
-{
-  return (action);
-}
-
 void
 gauntlet::core::PlayerController::setAngle(short angle)
 {
   (void)angle;
-}
-
-void
-gauntlet::core::PlayerController::loop()
-{
-  action = NONE;
+  //TODO: send angle
 }
 
 void
 gauntlet::core::PlayerController::doCmd(Command key, bool down)
 {
-  std::cout << "player cmd " << key << " " << down << std::endl;
-  for (std::map<Command, void (PlayerController::*)(bool)>::iterator
-	 it = ctrls.begin(); it != ctrls.end(); ++it)
+  for (std::vector<Command>::iterator it = ctrls.begin(); it != ctrls.end(); ++it)
     {
-      if (it->first == key)
+      if (*it == key)
 	{
-	  (this->*(it->second))(down);
+	  std::cout << "player cmd " << key << " " << down << std::endl;
+	  //TODO: send command package
 	  return ;
 	}
-    }
-}
-
-void
-gauntlet::core::PlayerController::cmdUp(bool down)
-{
-  if (down)
-    {
-      moveY = (moveY != 0 ? -0.707 : -1);
-    }
-  else
-    {
-      moveY = 0;
-    }
-}
-
-void
-gauntlet::core::PlayerController::cmdDown(bool down)
-{
-  if (down)
-    {
-      moveY = (moveY != 0 ? 0.707 : 1);
-    }
-  else
-    {
-      moveY = 0;
-    }
-}
-
-void
-gauntlet::core::PlayerController::cmdLeft(bool down)
-{
-  if (down)
-    {
-      moveX = (moveX != 0 ? -0.707 : -1);
-    }
-  else
-    {
-      moveX = 0;
-    }
-}
-
-void
-gauntlet::core::PlayerController::cmdRight(bool down)
-{
-  if (down)
-    {
-      moveX = (moveX != 0 ? 0.707 : 1);
-    }
-  else
-    {
-      moveX = 0;
-    }
-}
-
-void
-gauntlet::core::PlayerController::cmdAttack1(bool down)
-{
-  if (down)
-    {
-      action = ATTACK1;
     }
 }

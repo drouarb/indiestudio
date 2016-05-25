@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Tue May 10 14:50:56 2016 Esteban Lewis
-// Last update Tue May 17 13:52:02 2016 Esteban Lewis
+// Last update Wed May 25 19:06:36 2016 Esteban Lewis
 //
 
 #ifndef  CONF_HH_
@@ -27,7 +27,10 @@ namespace			gauntlet
 	RIGHT,
 	ENTER,
 	ESC,
-	ATTACK
+	ATTACK1,
+	ATTACK2,
+	ATTACK3,
+	ATTACK4
       };
 
     class			Conf
