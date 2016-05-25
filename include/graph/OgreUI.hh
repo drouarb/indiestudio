@@ -207,6 +207,8 @@ class OgreUI
 
   void setQuality(int percent = 100);
 
+  int getQuality() const;
+  
   void quit();
 
   Ogre::SceneManager *getSceneManager();

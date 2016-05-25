@@ -701,6 +701,11 @@ void OgreUI::setQuality(int percent)
   this->quality = percent;
 }
 
+int OgreUI::getQuality() const
+{
+	return this->quality;
+}
+
 int OgreUI::triggerEffect(int id, gauntlet::EffectName type,
 			  std::pair<double, double> coord)
 {
