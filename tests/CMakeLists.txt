@@ -66,12 +66,47 @@ add_executable(PacketMoveEntityTest
         ../src/network/packet/PacketMoveEntity.cpp)
 add_test(PacketMoveEntityTest PacketMoveEntityTest)
 
-#Test MoveEntity
+#Test DeleteEntity
 add_executable(PacketDeleteEntityTest
         packet/PacketDeleteEntityTest.cpp
         ../src/network/packet/Packet.cpp
         ../src/network/packet/PacketDeleteEntity.cpp)
 add_test(PacketDeleteEntityTest PacketDeleteEntityTest)
+
+#Test AddParticle
+add_executable(PacketAddParticleTest
+        packet/PacketAddParticleTest.cpp
+        ../src/network/packet/Packet.cpp
+        ../src/network/packet/PacketAddParticle.cpp)
+add_test(PacketAddParticleTest PacketAddParticleTest)
+
+#Test DeleteParticle
+add_executable(PacketDeleteParticleTest
+        packet/PacketDeleteParticleTest.cpp
+        ../src/network/packet/Packet.cpp
+        ../src/network/packet/PacketDeleteParticle.cpp)
+add_test(PacketDeleteParticleTest PacketDeleteParticleTest)
+
+#Test PlaySound
+add_executable(PacketPlaySoundTest
+        packet/PacketPlaySoundTest.cpp
+        ../src/network/packet/Packet.cpp
+        ../src/network/packet/PacketPlaySound.cpp)
+add_test(PacketPlaySoundTest PacketPlaySoundTest)
+
+#Test StopSound
+add_executable(PacketStopSoundTest
+        packet/PacketStopSoundTest.cpp
+        ../src/network/packet/Packet.cpp
+        ../src/network/packet/PacketStopSound.cpp)
+add_test(PacketStopSoundTest PacketStopSoundTest)
+
+#Test Control
+add_executable(PacketControlTest
+        packet/PacketControlTest.cpp
+        ../src/network/packet/Packet.cpp
+        ../src/network/packet/PacketControl.cpp)
+add_test(PacketControlTest PacketControlTest)
 
 #Test PacketFactory
 add_executable(PacketFactoryTest
@@ -86,6 +121,11 @@ add_executable(PacketFactoryTest
         ../src/network/packet/PacketAddEntity.cpp
         ../src/network/packet/PacketMoveEntity.cpp
         ../src/network/packet/PacketDeleteEntity.cpp
+        ../src/network/packet/PacketAddParticle.cpp
+        ../src/network/packet/PacketDeleteParticle.cpp
+        ../src/network/packet/PacketPlaySound.cpp
+        ../src/network/packet/PacketStopSound.cpp
+        ../src/network/packet/PacketControl.cpp
         ../src/network/listener/PacketListener.cpp
         ../src/network/listener/PacketDisconnectListener.cpp
         ../src/network/listener/PacketAddEntityListener.cpp

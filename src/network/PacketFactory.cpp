@@ -10,6 +10,11 @@
 #include <network/packet/PacketMoveEntity.hh>
 #include <network/packet/PacketStartGame.hh>
 #include <network/packet/PacketDeleteEntity.hh>
+#include <network/packet/PacketAddParticle.hh>
+#include <network/packet/PacketDeleteParticle.hh>
+#include <network/packet/PacketPlaySound.hh>
+#include <network/packet/PacketStopSound.hh>
+#include <network/packet/PacketControlTest.hh>
 #include "network/PacketFactory.hh"
 #include "network/PacketFactorySocketDisconnectionListener.hh"
 
@@ -85,7 +90,7 @@ void gauntlet::network::PacketFactory::recv() {
                 for (size_t i = 0; i < packet->getPacketSize() && data.data->size() > 0; i++) {
                     data.data->erase(data.data->begin());
                 }
-                delete(packet);
+                delete (packet);
             }
         }
         delete (data.data);
@@ -116,14 +121,19 @@ void gauntlet::network::PacketFactory::disconnectionHandler(int fd) {
 
 const std::map<gauntlet::network::PacketId, gauntlet::network::PacketFactory::createPacketFunc>
         gauntlet::network::PacketFactory::createMap = {
-        {CONNECT,       &PacketFactory::createPacket<PacketConnect>},
-        {DISCONNECT,    &PacketFactory::createPacket<PacketDisconnect>},
-        {HANDSHAKE,     &PacketFactory::createPacket<PacketHandshake>},
-        {PLAYER_SELECT, &PacketFactory::createPacket<PacketSelectPlayer>},
-        {START_GAME,    &PacketFactory::createPacket<PacketStartGame>},
-        {ADD_ENTITY,    &PacketFactory::createPacket<PacketAddEntity>},
-        {MOVE_ENTITY,   &PacketFactory::createPacket<PacketMoveEntity>},
-        {DELETE_ENTITY, &PacketFactory::createPacket<PacketDeleteEntity>}
+        {CONNECT,         &PacketFactory::createPacket<PacketConnect>},
+        {DISCONNECT,      &PacketFactory::createPacket<PacketDisconnect>},
+        {HANDSHAKE,       &PacketFactory::createPacket<PacketHandshake>},
+        {PLAYER_SELECT,   &PacketFactory::createPacket<PacketSelectPlayer>},
+        {START_GAME,      &PacketFactory::createPacket<PacketStartGame>},
+        {ADD_ENTITY,      &PacketFactory::createPacket<PacketAddEntity>},
+        {MOVE_ENTITY,     &PacketFactory::createPacket<PacketMoveEntity>},
+        {DELETE_ENTITY,   &PacketFactory::createPacket<PacketDeleteEntity>},
+        {ADD_PARTICLE,    &PacketFactory::createPacket<PacketAddParticle>},
+        {DELETE_PARTICLE, &PacketFactory::createPacket<PacketDeleteParticle>},
+        {PLAY_SOUND,      &PacketFactory::createPacket<PacketPlaySound>},
+        {STOP_SOUND,      &PacketFactory::createPacket<PacketStopSound>},
+        {PACKET_CONTROL,  &PacketFactory::createPacket<PacketControl>}
 };
 
 

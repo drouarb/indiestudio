@@ -7,7 +7,7 @@
 #include "network/packet/PacketAddEntity.hh"
 
 gauntlet::network::PacketAddEntity::PacketAddEntity(unsigned int entityId, unsigned int textureId, unsigned int meshId,
-                                                    int x, int y, short angle) :
+                                                    double x, double y, short angle) :
         Packet(gauntlet::network::ADD_ENTITY, -1),
         entityId(entityId),
         textureId(textureId),
@@ -62,11 +62,11 @@ unsigned int gauntlet::network::PacketAddEntity::getMeshId() const {
     return meshId;
 }
 
-int gauntlet::network::PacketAddEntity::getX() const {
+double gauntlet::network::PacketAddEntity::getX() const {
     return x;
 }
 
-int gauntlet::network::PacketAddEntity::getY() const {
+double gauntlet::network::PacketAddEntity::getY() const {
     return y;
 }
 
