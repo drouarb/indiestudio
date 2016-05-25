@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 15:52:38 2016 Esteban Lewis
-// Last update Wed May 25 23:23:21 2016 Esteban Lewis
+// Last update Wed May 25 23:48:48 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -14,7 +14,8 @@
 #include "Core.hh"
 
 gauntlet::core::PlayerController::PlayerController(std::string const & name,
-						   world::PlayerChar c, Core &) : core(core)
+						   world::PlayerChar c,
+						   Core & core) : core(core)
 {
   this->name = name;
   chartype = c;
@@ -76,12 +77,7 @@ gauntlet::core::PlayerController::doCmd(Command key, bool down)
     {
       if (*it == key)
 	{
-	  std::cout << "# player cmd " << key << " " << down << std::endl;
-
-	  network::PacketControl pc((unsigned char)key, angle);
-	  std::cout << "# packetcontrol created" << std::endl;
-	  core.packetf->send(pc);
-	  std::cout << "# packetcontrol sent" << std::endl;
+	  core.packetf->send(network::PacketControl((unsigned char)key, angle));
 	  return ;
 	}
     }
