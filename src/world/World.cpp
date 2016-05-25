@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Wed May 25 18:28:46 2016 Alexis Trouve
+// Last update Wed May 25 19:29:20 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -166,7 +166,8 @@ void		World::gameLoop()
       body = (*it1);
       if ((actor = dynamic_cast<Actor*>(body)) != NULL)
 	{
-	  actor->setMove();
+	  std::cout << "lol" << std::endl;
+	  //actor->setMove();
 	}
       it1++;
     }

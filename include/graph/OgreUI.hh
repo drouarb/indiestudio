@@ -218,20 +218,25 @@ class OgreUI
 
   void stopEffect(int id);
 
+  bool addWorldEntity(int entityId, const std::string &name, std::pair<int, int>);
+
+
+  bool addWorldEntity(int entityId, const std::string &name, std::pair<int, int>,
+		      Ogre::Vector3 orientation);
+
   void playAnimation(int entityId, const std::string &animationName, bool loop);
 
-  bool addWorldEntity(int entityId, const std::string &name,
-		      std::pair<int, int> position, Ogre::Vector3 orientation);
-
-  bool addWorldEntity(int entityId, const std::string &name,
-		      std::pair<int, int> position,
-		      gauntlet::TextureName textureId);
-
-  bool addWorldEntity(int entityId, const std::string &name,
-		      std::pair<int, int> position);
 
   bool addWorldEntity(int entityId, const std::string &name,
 		      std::pair<int, int> position, Ogre::Vector3 orientation,
 		      gauntlet::TextureName textureId);
+
+  bool addWorldEntity(int entityId, const std::string &name,
+		      std::pair<int, int> position,
+		      gauntlet::TextureName textureId);
   bool entityExist(int id);
+
+ private:
+
+  void applyAnimation(const Ogre::FrameEvent &evt) const;
 };

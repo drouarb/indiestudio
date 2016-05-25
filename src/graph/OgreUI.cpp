@@ -198,11 +198,7 @@ bool OgreUI::frameRenderingQueued(const Ogre::FrameEvent &evt)
   mMouse->capture();
   mTrayMgr->refreshCursor();
   mTrayMgr->frameRenderingQueued(evt);
-  for (auto animation : this->animationsArray)
-    {
-      Ogre::AnimationState *t2 = animation.second;
-      t2->addTime(evt.timeSinceLastFrame);
-    }
+  applyAnimation(evt);
   if (!mTrayMgr->isDialogVisible())
     {
       mCameraMan->frameRenderingQueued(evt);
@@ -211,6 +207,15 @@ bool OgreUI::frameRenderingQueued(const Ogre::FrameEvent &evt)
   return true;
 }
 
+void OgreUI::applyAnimation(const Ogre::FrameEvent &evt) const
+{
+  for (auto animation : animationsArray)
+    {
+      std::cout << "Rendring animation" << std::endl;
+      Ogre::AnimationState *t2 = animation.second;
+      t2->addTime(evt.timeSinceLastFrame);
+    }
+}
 
 bool OgreUI::keyPressed(const OIS::KeyEvent &arg)
 {
@@ -219,7 +224,7 @@ bool OgreUI::keyPressed(const OIS::KeyEvent &arg)
     if (keymap.count(arg.key) > 0)
       {
 	obs->keyDown(keymap.at(arg.key));
-      }
+     }
   return true;
 }
 
@@ -488,24 +493,12 @@ void OgreUI::hideItem(int id)
 void OgreUI::createScene(void)
 {
   showBackground();
-  //TODO clean
-  Ogre::Light *pLight = this->mSceneMgr->createLight();
-  pLight->setType(Ogre::Light::LT_SPOTLIGHT);
-  pLight->setDiffuseColour(Ogre::ColourValue::White);
-  pLight->setPosition(0, 500, 0);
-  pLight->setSpotlightRange(Ogre::Radian(0.0), Ogre::Radian(180.0));
-  pLight->setPowerScale(400000.0);
-  this->mSceneMgr->setAmbientLight(Ogre::ColourValue(.25, .25, .25));
-  this->mTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT);
-  //this->addWorldEntity(23, "draugr", 0, 0, 90, 0);
-  //END TODO
   Ogre::Light *pointLight = this->mSceneMgr->createLight("PointLight");
   pointLight->setSpotlightInnerAngle(Ogre::Radian(0));
   pointLight->setSpotlightOuterAngle(Ogre::Radian(Ogre::Degree(180)));
   pointLight->setDiffuseColour(Ogre::ColourValue::White);
   pointLight->setSpecularColour(Ogre::ColourValue::White);
   mSceneMgr->setSkyBox(true, "Examples/SceneSkyBox");
-  // addMapEntity(1, TUDORHOUSE, 5000, 5000, 0, TUDORHOUSE_M);
 }
 
 void OgreUI::quit()
@@ -629,6 +622,7 @@ bool __attribute_deprecated__ OgreUI::addWorldEntity(int entityId,
       e = mSceneMgr->createEntity(ss.str(), meshmap.at(meshid).c_str());
     } catch (...)
     {
+      std::cout << "~ false" << std::endl;
       return false;
     }
   if (texture_id != TextureName::TEXTURE_NONE)

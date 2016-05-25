@@ -80,6 +80,8 @@ gauntlet::core::Lobby::doButton(int btnId, struct t_hitItem & item)
 void
 gauntlet::core::Lobby::doServer(struct t_hitItem & item)
 {
+  if (core.packetf == NULL)
+    static_cast<TextBox *>(submenus[2])->setText("38424");
   submenus[2]->setOpen(true);
 }
 
@@ -93,7 +95,13 @@ gauntlet::core::Lobby::doCharacter(struct t_hitItem & item)
       submenus[0]->setOpen(true);
     }
   else
-    submenus[1]->setOpen(true);
+    {
+      if (core.pc == NULL)
+	static_cast<TextBox *>(submenus[1])->setText("Hero");
+      else
+	static_cast<TextBox *>(submenus[1])->setText(core.pc->getName());
+      submenus[1]->setOpen(true);
+    }
 }
 
 void

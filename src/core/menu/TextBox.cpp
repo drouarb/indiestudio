@@ -6,6 +6,7 @@ gauntlet::core::TextBox::TextBox(Core & core, int idStart, Menu * parent,
 				 std::string const & title) :
   Menu(core, idStart, parent)
 {
+  textSet = false;
   caption = title;
   buttons.push_back(Control(TEXTBOX, title, NULL, PCENTER, idStart, core.ogre));
 }
@@ -23,7 +24,12 @@ gauntlet::core::TextBox::keyDown(Command cmd)
 
   IUIObserver::Key key = core.getLastKey();
   if (key == IUIObserver::KEY_BACK && text.length() > 0)
-    text = text.substr(0, text.length() - 1);
+    {
+      if (textSet)
+	text = "";
+      else
+	text = text.substr(0, text.length() - 1);
+    }
   else if (key >= IUIObserver::KEY_A && key <= IUIObserver::KEY_Z)
     {
       char c = (text.length() == 0) ?
@@ -37,6 +43,9 @@ gauntlet::core::TextBox::keyDown(Command cmd)
     }
   else if (key == IUIObserver::KEY_PERIOD)
     text += ".";
+
+  textSet = false;
+
   struct t_hitItem item;
   item.data = text;
   buttons[0].update(item);
@@ -50,12 +59,27 @@ gauntlet::core::TextBox::getText() const
 }
 
 void
+gauntlet::core::TextBox::setText(std::string const & newtext)
+{
+  textSet = true;
+  text = newtext;
+}
+
+void
+gauntlet::core::TextBox::drawButtons()
+{
+  Menu::drawButtons();
+  
+  struct t_hitItem item;
+  item.data = text;
+  buttons[0].update(item);
+}
+
+void
 gauntlet::core::TextBox::undrawButtons()
 {
-  for (std::vector<Control>::iterator it = buttons.begin(); it != buttons.end(); ++it)
-    {
-      it->undraw();
-    }
+  Menu::undrawButtons();
   buttons[0].setStr(caption);
   text = "";
+  textSet = false;
 }
