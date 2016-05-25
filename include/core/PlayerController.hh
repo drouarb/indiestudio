@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 15:49:54 2016 Esteban Lewis
-// Last update Wed May 25 19:46:03 2016 Esteban Lewis
+// Last update Wed May 25 19:52:34 2016 Esteban Lewis
 //
 
 #ifndef  PLAYERCONTROLLER_HH_
@@ -34,6 +34,7 @@ namespace				gauntlet
     private:
       std::vector<Command>		ctrls;
       world::PlayerChar			chartype;
+      short				angle;
       std::string			name;
     };
   };

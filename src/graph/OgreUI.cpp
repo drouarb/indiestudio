@@ -621,7 +621,6 @@ bool __attribute_deprecated__ OgreUI::addWorldEntity(int entityId,
       e = mSceneMgr->createEntity(ss.str(), meshmap.at(meshid).c_str());
     } catch (...)
     {
-      std::cout << "~ false" << std::endl;
       return false;
     }
   if (texture_id != TextureName::TEXTURE_NONE)

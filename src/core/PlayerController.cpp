@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 15:52:38 2016 Esteban Lewis
-// Last update Wed May 25 19:29:03 2016 Esteban Lewis
+// Last update Wed May 25 19:52:56 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -43,10 +43,9 @@ gauntlet::core::PlayerController::getChar() const
 }
 
 void
-gauntlet::core::PlayerController::setAngle(short angle)
+gauntlet::core::PlayerController::setAngle(short newangle)
 {
-  (void)angle;
-  //TODO: send angle
+  angle = newangle;
 }
 
 void
@@ -57,7 +56,7 @@ gauntlet::core::PlayerController::doCmd(Command key, bool down)
       if (*it == key)
 	{
 	  std::cout << "player cmd " << key << " " << down << std::endl;
-	  //TODO: send command package
+	  //TODO: send command packet with angle
 	  return ;
 	}
     }

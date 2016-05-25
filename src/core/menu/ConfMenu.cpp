@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:09:17 2016 Esteban Lewis
-// Last update Wed May 25 19:17:21 2016 Esteban Lewis
+// Last update Wed May 25 22:14:12 2016 Esteban Lewis
 //
 
 #include "ConfMenu.hh"
@@ -15,44 +15,65 @@
 gauntlet::core::ConfMenu::ConfMenu(Core & core, int idStart, Menu * parent) :
   Menu(core, idStart, parent)
 {
-  buttons.push_back(Control(BUTTON, "- Return -", NULL, PCENTER, idStart, core.ogre));
-  buttons.push_back(Control(LABEL, "Controls:", NULL, PCENTER, idStart + 1, core.ogre));
+  funs.insert(std::pair<int, void (ConfMenu::*)(int, struct t_hitItem &)>
+	      (buttons.size() + idStart, &ConfMenu::doReturn));
+  buttons.push_back(Control(BUTTON, "- Return -", NULL, PCENTER,
+			    idStart + buttons.size(), core.ogre));
 
-  buttons.push_back(Control(BUTTON, "Go forward", NULL, PCENTER, idStart + 2, core.ogre));
-  buttons.push_back(Control(BUTTON, "Go backward", NULL, PCENTER, idStart + 3, core.ogre));
-  buttons.push_back(Control(BUTTON, "Go left", NULL, PCENTER, idStart + 4, core.ogre));
-  buttons.push_back(Control(BUTTON, "Go right", NULL, PCENTER, idStart + 5, core.ogre));
-  buttons.push_back(Control(BUTTON, "Validate", NULL, PCENTER, idStart + 6, core.ogre));
-  buttons.push_back(Control(BUTTON, "Menu", NULL, PCENTER, idStart + 7, core.ogre));
-  buttons.push_back(Control(BUTTON, "Normal attack", NULL, PCENTER, idStart + 8, core.ogre));
-  buttons.push_back(Control(BUTTON, "Special ability", NULL, PCENTER, idStart + 9, core.ogre));
-  buttons.push_back(Control(BUTTON, "Extra ability 1", NULL, PCENTER, idStart + 10, core.ogre));
-  buttons.push_back(Control(BUTTON, "Extra ability 2", NULL, PCENTER, idStart + 11, core.ogre));
+
+  buttons.push_back(Control(LABEL, "Graphics:", NULL, PCENTER,
+			    idStart + buttons.size(), core.ogre));
+
+  funs.insert(std::pair<int, void (ConfMenu::*)(int, struct t_hitItem &)>
+	      (buttons.size() + idStart, &ConfMenu::doParticles));
+  buttons.push_back(Control(SLIDE, "Particles", (void*)(new int(100)), PCENTER,
+			    idStart + buttons.size(), core.ogre));
+
+
+  buttons.push_back(Control(LABEL, "Controls:", NULL, PCENTER,
+			    idStart + buttons.size(), core.ogre));
+
+  funs.insert(std::pair<int, void (ConfMenu::*)(int, struct t_hitItem &)>
+	      (buttons.size() + idStart, &ConfMenu::doKeylink));
+  buttons.push_back(Control(BUTTON, "Go forward", NULL, PCENTER,
+			    idStart + buttons.size(), core.ogre));
+  funs.insert(std::pair<int, void (ConfMenu::*)(int, struct t_hitItem &)>
+	      (buttons.size() + idStart, &ConfMenu::doKeylink));
+  buttons.push_back(Control(BUTTON, "Go backward", NULL, PCENTER,
+			    idStart + buttons.size(), core.ogre));
+  funs.insert(std::pair<int, void (ConfMenu::*)(int, struct t_hitItem &)>
+	      (buttons.size() + idStart, &ConfMenu::doKeylink));
+  buttons.push_back(Control(BUTTON, "Go left", NULL, PCENTER,
+			    idStart + buttons.size(), core.ogre));
+  funs.insert(std::pair<int, void (ConfMenu::*)(int, struct t_hitItem &)>
+	      (buttons.size() + idStart, &ConfMenu::doKeylink));
+  buttons.push_back(Control(BUTTON, "Go right", NULL, PCENTER,
+			    idStart + buttons.size(), core.ogre));
+  funs.insert(std::pair<int, void (ConfMenu::*)(int, struct t_hitItem &)>
+	      (buttons.size() + idStart, &ConfMenu::doKeylink));
+  buttons.push_back(Control(BUTTON, "Validate", NULL, PCENTER,
+			    idStart + buttons.size(), core.ogre));
+  funs.insert(std::pair<int, void (ConfMenu::*)(int, struct t_hitItem &)>
+	      (buttons.size() + idStart, &ConfMenu::doKeylink));
+  buttons.push_back(Control(BUTTON, "Menu", NULL, PCENTER,
+			    idStart + buttons.size(), core.ogre));
+  funs.insert(std::pair<int, void (ConfMenu::*)(int, struct t_hitItem &)>
+	      (buttons.size() + idStart, &ConfMenu::doKeylink));
+  buttons.push_back(Control(BUTTON, "Normal attack", NULL, PCENTER,
+			    idStart + buttons.size(), core.ogre));
+  funs.insert(std::pair<int, void (ConfMenu::*)(int, struct t_hitItem &)>
+	      (buttons.size() + idStart, &ConfMenu::doKeylink));
+  buttons.push_back(Control(BUTTON, "Special ability", NULL, PCENTER,
+			    idStart + buttons.size(), core.ogre));
+  funs.insert(std::pair<int, void (ConfMenu::*)(int, struct t_hitItem &)>
+	      (buttons.size() + idStart, &ConfMenu::doKeylink));
+  buttons.push_back(Control(BUTTON, "Extra ability 1", NULL, PCENTER,
+			    idStart + buttons.size(), core.ogre));
+  funs.insert(std::pair<int, void (ConfMenu::*)(int, struct t_hitItem &)>
+	      (buttons.size() + idStart, &ConfMenu::doKeylink));
+  buttons.push_back(Control(BUTTON, "Extra ability 2", NULL, PCENTER,
+			    idStart + buttons.size(), core.ogre));
   
-  funs.insert(std::pair<int, void (ConfMenu::*)(int)>
-	      (buttons[0].getId(), &ConfMenu::doReturn));
-  funs.insert(std::pair<int, void (ConfMenu::*)(int)>
-	      (buttons[1].getId(), &ConfMenu::doKeylink));
-  funs.insert(std::pair<int, void (ConfMenu::*)(int)>
-	      (buttons[2].getId(), &ConfMenu::doKeylink));
-  funs.insert(std::pair<int, void (ConfMenu::*)(int)>
-	      (buttons[3].getId(), &ConfMenu::doKeylink));
-  funs.insert(std::pair<int, void (ConfMenu::*)(int)>
-	      (buttons[4].getId(), &ConfMenu::doKeylink));
-  funs.insert(std::pair<int, void (ConfMenu::*)(int)>
-	      (buttons[5].getId(), &ConfMenu::doKeylink));
-  funs.insert(std::pair<int, void (ConfMenu::*)(int)>
-	      (buttons[6].getId(), &ConfMenu::doKeylink));
-  funs.insert(std::pair<int, void (ConfMenu::*)(int)>
-	      (buttons[7].getId(), &ConfMenu::doKeylink));
-  funs.insert(std::pair<int, void (ConfMenu::*)(int)>
-	      (buttons[8].getId(), &ConfMenu::doKeylink));
-  funs.insert(std::pair<int, void (ConfMenu::*)(int)>
-	      (buttons[9].getId(), &ConfMenu::doKeylink));
-  funs.insert(std::pair<int, void (ConfMenu::*)(int)>
-	      (buttons[10].getId(), &ConfMenu::doKeylink));
-  funs.insert(std::pair<int, void (ConfMenu::*)(int)>
-	      (buttons[11].getId(), &ConfMenu::doKeylink));
 
 
   // KEY NAMES
@@ -144,6 +165,10 @@ void
 gauntlet::core::ConfMenu::draw()
 {
   drawButtons();
+
+  struct t_hitItem item;
+  item.value = core.ogre.getQuality();
+  buttons[2].update(item);
 }
 
 void
@@ -179,20 +204,28 @@ gauntlet::core::ConfMenu::getNameKey(std::string const & name)
 void
 gauntlet::core::ConfMenu::doButton(int btnId, struct t_hitItem & item)
 {
-  (void)item;
-  (this->*(funs[btnId]))(btnId);
+  (this->*(funs[btnId]))(btnId, item);
 }
 
 void
-gauntlet::core::ConfMenu::doReturn(int btnId)
+gauntlet::core::ConfMenu::doReturn(int btnId, struct t_hitItem & item)
 {
   (void)btnId;
+  (void)item;
   setOpen(false);
 }
 
 void
-gauntlet::core::ConfMenu::doKeylink(int btnId)
+gauntlet::core::ConfMenu::doKeylink(int btnId, struct t_hitItem & item)
 {
+  (void)item;
   static_cast<KeyMenu*>(submenus[0])->setCmd((Command)(btnId - idStart - 1));
   submenus[0]->setOpen(true);
+}
+
+void
+gauntlet::core::ConfMenu::doParticles(int btnId, struct t_hitItem & item)
+{
+  (void)btnId;
+  core.ogre.setQuality(item.value);
 }
