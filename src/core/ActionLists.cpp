@@ -1,7 +1,7 @@
 #include "ActionLists.hh"
 #include "Core.hh"
 
-gauntlet::core::ActionLists::ActionLists(Core & core) : core(core)
+gauntlet::core::ActionLists::ActionLists(Core & core) : core(core), pendingTracker(false)
 { }
 
 gauntlet::core::ActionLists::~ActionLists()
@@ -19,6 +19,11 @@ gauntlet::core::ActionLists::doActions()
 			       (*it)->getX(), (*it)->getY(), (*it)->getAngle(),
 			       static_cast<gauntlet::TextureName>
 			       ((*it)->getTextureId()));
+      if (pendingTracker && (*it)->getEntityId() == entityIdTracker)
+        {
+          core.ogre.addCameraTracker((*it)->getEntityId());
+          pendingTracker = false;
+        }
       core.ogre.playAnimation((*it)->getEntityId(), 0, true);
     }
 
@@ -106,3 +111,11 @@ gauntlet::core::ActionLists::clearActions()
     }
   packetsDeleteEntity.clear();
 }
+
+void gauntlet::core::ActionLists::setCameraTrackerId(int id)
+{
+  entityIdTracker = id;
+  pendingTracker = true;
+}
+
+

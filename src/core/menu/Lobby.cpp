@@ -133,7 +133,10 @@ gauntlet::core::Lobby::receivedStartgame()
     (static_cast<WaitPacket *>(submenus[3])->getReceived());
   if (packet != NULL)
     {
-      core.ogre.addCameraTracker(packet->getEntityId());
+      if (core.ogre.entityExist(packet->getEntityId()))
+        core.ogre.addCameraTracker(packet->getEntityId());
+      else
+        core.actionlists.setCameraTrackerId(packet->getEntityId());
       core.play();
     }
   else
