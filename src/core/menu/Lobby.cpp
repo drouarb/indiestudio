@@ -80,6 +80,8 @@ gauntlet::core::Lobby::doButton(int btnId, struct t_hitItem & item)
 void
 gauntlet::core::Lobby::doServer(struct t_hitItem & item)
 {
+  if (core.packetf == NULL)
+    static_cast<TextBox *>(submenus[2])->setText("38424");
   submenus[2]->setOpen(true);
 }
 

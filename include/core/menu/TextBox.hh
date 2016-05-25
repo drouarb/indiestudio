@@ -21,6 +21,7 @@ namespace			gauntlet
     protected:
       std::string		text;
       std::string		caption;
+      bool			textSet;
 
       void			undrawButtons();
       void			drawButtons();
