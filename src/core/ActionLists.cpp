@@ -1,7 +1,7 @@
 #include "ActionLists.hh"
 #include "Core.hh"
 
-gauntlet::core::ActionLists::ActionLists(Core & core) : core(core)
+gauntlet::core::ActionLists::ActionLists(Core & core) : core(core), pendingTracker(false)
 { }
 
 gauntlet::core::ActionLists::~ActionLists()
@@ -20,6 +20,11 @@ gauntlet::core::ActionLists::doActions()
 			       static_cast<gauntlet::TextureName>
 			       ((*it)->getTextureId()));
       core.ogre.playAnimation((*it)->getEntityId(), 0, true);
+      if (pendingTracker && (*it)->getEntityId() == entityIdTracker)
+	{
+	  core.ogre.addCameraTracker((*it)->getEntityId());
+	  pendingTracker = false;
+	}
     }
 
   for (std::list<network::PacketDisconnect*>::iterator it = packetsDisconnect.begin();
@@ -105,4 +110,10 @@ gauntlet::core::ActionLists::clearActions()
       delete *it;
     }
   packetsDeleteEntity.clear();
+}
+
+void gauntlet::core::ActionLists::setCameraTrackerId(int id)
+{
+  entityIdTracker = id;
+  pendingTracker = true;
 }

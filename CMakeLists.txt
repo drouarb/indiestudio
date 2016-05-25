@@ -6,7 +6,7 @@ option(OGRE_STATIC "Use statically compiled OGRE (HUGE Binary!!)" OFF)
 option(OGRE_PROGRESS "Show ogre download progress" OFF)
 
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMake)
-set(CMAKE_CXX_FLAGS "-std=c++11")
+set(CMAKE_CXX_FLAGS "-std=c++11 -Wunused-result")
 
 set(OGRE_REPOSITORY "http://minewolf.tf/ogre")
 set(OGRE_FILE "${CMAKE_BINARY_DIR}/ogre.tar.xz")

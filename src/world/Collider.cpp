@@ -5,9 +5,10 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 14:44:15 2016 Alexis Trouve
-// Last update Sun May 22 19:36:23 2016 Esteban Lewis
+// Last update Wed May 25 21:07:23 2016 Alexis Trouve
 //
 
+#include <iostream>
 #include <stdexcept>
 #include "Collider.hh"
 
@@ -33,7 +34,7 @@ bool	Collider::tryMoveBody(int id, double posx, double posy)
 
   if ((body = dynamicLayer->getBodyId(id)) == NULL)
     return (false);
-  if (physicLayer->checkCoordSize(body->getPos().first, body->getPos().second,
+  if (physicLayer->checkCoordSizeIsEmpty(body->getPos().first, body->getPos().second,
 				  body->getSize().first, body->getSize().second) == false)
     return (false);
   return (dynamicLayer->tryMoveId(id, posx, posy));
@@ -53,16 +54,19 @@ bool				Collider::applyVectorToId(int id, short orient, double speed)
   vectX = (Math::cos(orient) * speed);
   sizeB = body->getSize();
   posB = body->getPos();
-  if (physicLayer->checkCoordSize(posB.first + vectX, posB.second, sizeB.first, sizeB.second) == false ||
-      dynamicLayer->tryMoveId(id, posB.first + vectX, posB.second) == false)
-    if (physicLayer->checkCoordSize(posB.first, posB.second + vectY, sizeB.first, sizeB.second) != false)
-      dynamicLayer->tryMoveId(id, posB.first, posB.second + vectY);
+  if (physicLayer->checkCoordSizeIsEmpty(posB.first + vectX, posB.second, sizeB.first, sizeB.second) == true)
+    {
+      dynamicLayer->tryMoveId(id, posB.first + vectX, posB.second);
+      posB = body->getPos();
+      if (physicLayer->checkCoordSizeIsEmpty(posB.first, posB.second + vectY, sizeB.first, sizeB.second) == true)
+	dynamicLayer->tryMoveId(id, posB.first, posB.second + vectY);
+    }
   return (true);
 }
 
 bool	Collider::setNewBody(ABody *body)
 {
-  if (physicLayer->checkCoordSize(body->getPos().first, body->getPos().second,
+  if (physicLayer->checkCoordSizeIsEmpty(body->getPos().first, body->getPos().second,
 				  body->getSize().first, body->getSize().second) == false)
     return (false);
   return (dynamicLayer->setNewBody(body));
@@ -70,7 +74,7 @@ bool	Collider::setNewBody(ABody *body)
 
 bool	Collider::setNewBodyNoCheckEntity(ABody *body)
 {
-  if (physicLayer->checkCoordSize(body->getPos().first, body->getPos().second,
+  if (physicLayer->checkCoordSizeIsEmpty(body->getPos().first, body->getPos().second,
 				  body->getSize().first, body->getSize().second) == false)
     return (false);
   dynamicLayer->forceSetBody(body);

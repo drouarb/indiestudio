@@ -13,7 +13,7 @@
 
 #include <string>
 #include <list>
-#include "Effect.hh"
+#include "EffectName.hh"
 #include "ABody.hh"
 #include "Actor.hh"
 #include "Player.hh"

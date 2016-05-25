@@ -13,6 +13,8 @@
 #include "ListenerStartGame.hh"
 #include "ConnectMenu.hh"
 #include "GameServer.hh"
+#include "ConfMenu.hh"
+#include "PlayerController.hh"
 
 gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this)), actionlists(*this)
 {
@@ -70,7 +72,7 @@ gauntlet::core::Core::keyDown(IUIObserver::Key key)
 	}
       else
 	{
-	  if (pc)
+	  if (pc && gameIsRunning())
 	    pc->doCmd(cmd, true);
 	}
     }

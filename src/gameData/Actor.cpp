@@ -24,6 +24,11 @@ void		Actor::move()
   world->getCollider().applyVectorToId(id, orientation, stats.speed);
 }
 
+bool		Actor::getMove() const
+{
+  return (ismoving);
+}
+
 ABody		*Actor::clone(int id) const
 {
   Actor		*actor;

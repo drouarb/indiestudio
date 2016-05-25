@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:09:17 2016 Esteban Lewis
-// Last update Sun May 22 14:13:57 2016 Esteban Lewis
+// Last update Wed May 25 19:17:21 2016 Esteban Lewis
 //
 
 #include "ConfMenu.hh"
@@ -24,6 +24,10 @@ gauntlet::core::ConfMenu::ConfMenu(Core & core, int idStart, Menu * parent) :
   buttons.push_back(Control(BUTTON, "Go right", NULL, PCENTER, idStart + 5, core.ogre));
   buttons.push_back(Control(BUTTON, "Validate", NULL, PCENTER, idStart + 6, core.ogre));
   buttons.push_back(Control(BUTTON, "Menu", NULL, PCENTER, idStart + 7, core.ogre));
+  buttons.push_back(Control(BUTTON, "Normal attack", NULL, PCENTER, idStart + 8, core.ogre));
+  buttons.push_back(Control(BUTTON, "Special ability", NULL, PCENTER, idStart + 9, core.ogre));
+  buttons.push_back(Control(BUTTON, "Extra ability 1", NULL, PCENTER, idStart + 10, core.ogre));
+  buttons.push_back(Control(BUTTON, "Extra ability 2", NULL, PCENTER, idStart + 11, core.ogre));
   
   funs.insert(std::pair<int, void (ConfMenu::*)(int)>
 	      (buttons[0].getId(), &ConfMenu::doReturn));
@@ -41,6 +45,14 @@ gauntlet::core::ConfMenu::ConfMenu(Core & core, int idStart, Menu * parent) :
 	      (buttons[6].getId(), &ConfMenu::doKeylink));
   funs.insert(std::pair<int, void (ConfMenu::*)(int)>
 	      (buttons[7].getId(), &ConfMenu::doKeylink));
+  funs.insert(std::pair<int, void (ConfMenu::*)(int)>
+	      (buttons[8].getId(), &ConfMenu::doKeylink));
+  funs.insert(std::pair<int, void (ConfMenu::*)(int)>
+	      (buttons[9].getId(), &ConfMenu::doKeylink));
+  funs.insert(std::pair<int, void (ConfMenu::*)(int)>
+	      (buttons[10].getId(), &ConfMenu::doKeylink));
+  funs.insert(std::pair<int, void (ConfMenu::*)(int)>
+	      (buttons[11].getId(), &ConfMenu::doKeylink));
 
 
   // KEY NAMES
