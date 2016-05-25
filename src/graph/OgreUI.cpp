@@ -1,6 +1,5 @@
 #include <OIS/OIS.h>
 #include <iostream>
-#include <stdlib.h>
 #include "graph/OgreUI.hh"
 #include "Math.hh"
 
@@ -198,7 +197,7 @@ bool OgreUI::frameRenderingQueued(const Ogre::FrameEvent &evt)
   mMouse->capture();
   mTrayMgr->refreshCursor();
   mTrayMgr->frameRenderingQueued(evt);
-  applyAnimation(evt);
+    applyAnimation(evt);
   if (!mTrayMgr->isDialogVisible())
     {
       mCameraMan->frameRenderingQueued(evt);
@@ -504,7 +503,14 @@ void OgreUI::createScene(void)
   pointLight->setSpotlightOuterAngle(Ogre::Radian(Ogre::Degree(180)));
   pointLight->setDiffuseColour(Ogre::ColourValue::White);
   pointLight->setSpecularColour(Ogre::ColourValue::White);
-  mSceneMgr->setSkyBox(true, "Examples/SceneSkyBox");
+  pointLight->setPowerScale(8900000);
+  Ogre::Light *pointLight2 = this->mSceneMgr->createLight("PointLight2");
+  pointLight->setPosition(0, 200, 200);
+  pointLight2->setPowerScale(8900000);
+  Ogre::Light *pointLight3 = this->mSceneMgr->createLight("PointLight3");
+  pointLight->setPosition(0, 200, -200);
+  pointLight3->setPowerScale(8900000);
+   mSceneMgr->setSkyBox(true, "Examples/SceneSkyBox");
 }
 
 void OgreUI::quit()
@@ -753,8 +759,9 @@ void OgreUI::addCameraTracker(int id)
   ss << id;
   Ogre::SceneNode *s = mSceneMgr->getSceneNode(ss.str());
   s->attachObject(mCamera);
-  mCamera->pitch(Ogre::Degree(-89));
-  mCamera->yaw(Ogre::Degree(20));
+  mCamera->setPosition(mCamera->getPosition().x - 150, mCamera->getPosition().y + 150, mCamera->getPosition().z - 150);
+  mCamera->lookAt(s->getPosition());
+  mCamera->pitch(Ogre::Degree(5));
 }
 
 bool OgreUI::frameStarted(const Ogre::FrameEvent &evt)
