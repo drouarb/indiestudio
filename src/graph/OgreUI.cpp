@@ -498,7 +498,7 @@ void OgreUI::hideItem(int id)
 
 void OgreUI::createScene(void)
 {
- // showBackground();
+  showBackground();
   Ogre::Light *pointLight = this->mSceneMgr->createLight("PointLight");
   pointLight->setSpotlightInnerAngle(Ogre::Radian(0));
   pointLight->setSpotlightOuterAngle(Ogre::Radian(Ogre::Degree(180)));
@@ -512,8 +512,6 @@ void OgreUI::createScene(void)
   pointLight->setPosition(0, 200, -200);
   pointLight3->setPowerScale(8900000);
    mSceneMgr->setSkyBox(true, "Examples/SceneSkyBox");
-addMapEntity(2, BERSERK, 0, 0, 0, TEXTURE_NONE);
-  addCameraTracker(2);
 }
 
 void OgreUI::quit()
