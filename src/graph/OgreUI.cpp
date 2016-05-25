@@ -509,7 +509,7 @@ void OgreUI::createScene(void)
   pointLight->setDiffuseColour(Ogre::ColourValue::White);
   pointLight->setSpecularColour(Ogre::ColourValue::White);
   mSceneMgr->setSkyBox(true, "Examples/SceneSkyBox");
-  addMapEntity(1, TUDORHOUSE, 5000, 5000, 0, TUDORHOUSE_M);
+  addMapEntity(1000, TUDORHOUSE, 5000, 5000, 0, TUDORHOUSE_M);
 }
 
 void OgreUI::quit()
@@ -617,7 +617,7 @@ bool __attribute_deprecated__ OgreUI::addWorldEntity(int entityId,
 						     short angle,
 						     TextureName texture_id)
 {
-  std::cout << "~ ogre add entity " << entityId << " mesh=" << meshid << " x=" << x << " y=" << y << std::endl;
+  std::cout << "~ ogre add entity " << entityId << " mesh=" << meshid << " x=" << x << " y=" << y << " text=" << texture_id << std::endl;
   std::stringstream ss;
   ss << entityId;
   Ogre::Entity *e;
@@ -631,6 +631,7 @@ bool __attribute_deprecated__ OgreUI::addWorldEntity(int entityId,
       e = mSceneMgr->createEntity(ss.str(), meshmap.at(meshid).c_str());
     } catch (...)
     {
+      std::cout << "~ false" << std::endl;
       return false;
     }
   if (texture_id != TextureName::TEXTURE_NONE)
