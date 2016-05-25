@@ -233,4 +233,5 @@ class OgreUI
   bool addWorldEntity(int entityId, const std::string &name,
 		      std::pair<int, int> position, Ogre::Vector3 orientation,
 		      gauntlet::TextureName textureId);
+  bool entityExist(int id);
 };

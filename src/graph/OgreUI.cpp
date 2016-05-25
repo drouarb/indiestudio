@@ -8,8 +8,6 @@ using namespace gauntlet;
 using namespace core;
 
 
-
-
 OgreUI::OgreUI(void)
 	: mRoot(0),
 	  mCamera(0),
@@ -71,7 +69,7 @@ void OgreUI::createCamera(void)
 
 void OgreUI::createFrameListener(void)
 {
- // Ogre::LogManager::getSingletonPtr()->logMessage("*** Initializing OIS ***");
+  // Ogre::LogManager::getSingletonPtr()->logMessage("*** Initializing OIS ***");
   OIS::ParamList pl;
   size_t windowHnd = 0;
   std::ostringstream windowHndStr;
@@ -214,16 +212,14 @@ bool OgreUI::frameRenderingQueued(const Ogre::FrameEvent &evt)
 }
 
 
-
-
 bool OgreUI::keyPressed(const OIS::KeyEvent &arg)
 {
   mCameraMan->injectKeyDown(arg);
   if (obs != NULL)
     if (keymap.count(arg.key) > 0)
       {
-	obs->keyDown(keymap.at(arg.key)); 
-     }
+	obs->keyDown(keymap.at(arg.key));
+      }
   return true;
 }
 
@@ -509,7 +505,7 @@ void OgreUI::createScene(void)
   pointLight->setDiffuseColour(Ogre::ColourValue::White);
   pointLight->setSpecularColour(Ogre::ColourValue::White);
   mSceneMgr->setSkyBox(true, "Examples/SceneSkyBox");
-  addMapEntity(1, TUDORHOUSE, 5000, 5000, 0, TUDORHOUSE_M);
+  // addMapEntity(1, TUDORHOUSE, 5000, 5000, 0, TUDORHOUSE_M);
 }
 
 void OgreUI::quit()
@@ -546,7 +542,7 @@ void OgreUI::playAnimation(int entityId, int animationId, bool loop)
   ss << entityId;
   Ogre::Entity *pEntity = this->mSceneMgr->getEntity(ss.str());
   int nb = 0;
-  Ogre::AnimationStateSet* allAnims;
+  Ogre::AnimationStateSet *allAnims;
 
   if ((allAnims = pEntity->getAllAnimationStates()) == NULL)
     return;
@@ -554,10 +550,11 @@ void OgreUI::playAnimation(int entityId, int animationId, bool loop)
   auto it = mapIterator.begin();
   while (it != mapIterator.end())
     {
-      if (nb == animationId) {
-          this->playAnimation(entityId, (*it).first, loop);
-          return;
-      }
+      if (nb == animationId)
+	{
+	  this->playAnimation(entityId, (*it).first, loop);
+	  return;
+	}
       it++;
       ++nb;
     }
@@ -619,11 +616,10 @@ bool __attribute_deprecated__ OgreUI::addWorldEntity(int entityId,
 						     short angle,
 						     TextureName texture_id)
 {
-  std::cout << "~ ogre add entity " << entityId << " mesh=" << meshid << " x=" << x << " y=" << y << std::endl;
   std::stringstream ss;
   ss << entityId;
   Ogre::Entity *e;
-  if (mSceneMgr->hasEntity(ss.str()))
+  if (mSceneMgr->hasEntity(ss.str()) == true)
     {
       this->moveEntity(entityId, x, y, angle);
       return (true);
@@ -673,7 +669,6 @@ bool __attribute_warn_unused_result__ OgreUI::addWorldEntity(int entityId,
 }
 
 
-
 bool __attribute_warn_unused_result__ OgreUI::addWorldEntity(int entityId,
 							     const std::string &name,
 							     std::pair<int, int> position)
@@ -692,13 +687,13 @@ bool __attribute_warn_unused_result__ OgreUI::addWorldEntity(int entityId,
 }
 
 
-
 bool __attribute_warn_unused_result__ OgreUI::addWorldEntity(int entityId,
 							     const std::string &name,
 							     std::pair<int, int> position,
 							     Ogre::Vector3 orientation)
 {
-  return this->addWorldEntity(entityId, name, position, orientation, TextureName::TEXTURE_NONE);
+  return this->addWorldEntity(entityId, name, position, orientation,
+			      TextureName::TEXTURE_NONE);
 }
 
 void OgreUI::setQuality(int percent)
@@ -802,4 +797,15 @@ void OgreUI::resetMap()
       planNode->removeAndDestroyAllChildren();
     }
 }
+
+bool OgreUI::entityExist(int id)
+{
+  std::stringstream ss;
+  ss << id;
+  if (mSceneMgr->hasEntity(ss.str()) == true)
+      return (true);
+  return false;
+}
+
+
 
