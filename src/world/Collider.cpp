@@ -5,9 +5,10 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 14:44:15 2016 Alexis Trouve
-// Last update Sun May 22 19:36:23 2016 Esteban Lewis
+// Last update Wed May 25 18:34:00 2016 Alexis Trouve
 //
 
+#include <iostream>
 #include <stdexcept>
 #include "Collider.hh"
 
@@ -47,6 +48,7 @@ bool				Collider::applyVectorToId(int id, short orient, double speed)
   double			vectX;
   double			vectY;
 
+  std::cout << "groslol" << std::endl;
   if ((body = dynamicLayer->getBodyId(id)) == NULL)
     return (false);
   vectY = (Math::sin(orient) * speed);
@@ -55,8 +57,15 @@ bool				Collider::applyVectorToId(int id, short orient, double speed)
   posB = body->getPos();
   if (physicLayer->checkCoordSize(posB.first + vectX, posB.second, sizeB.first, sizeB.second) == false ||
       dynamicLayer->tryMoveId(id, posB.first + vectX, posB.second) == false)
-    if (physicLayer->checkCoordSize(posB.first, posB.second + vectY, sizeB.first, sizeB.second) != false)
-      dynamicLayer->tryMoveId(id, posB.first, posB.second + vectY);
+    {
+      std::cout << "yolo" << std::endl;
+      if (physicLayer->checkCoordSize(posB.first, posB.second + vectY, sizeB.first, sizeB.second) != false)
+	{
+	  std::cout << "koko" << std::endl;
+	  if (dynamicLayer->tryMoveId(id, posB.first, posB.second + vectY) == true)
+	    std::cout << "moveOk" << std::endl;
+	}
+    }
   return (true);
 }
 

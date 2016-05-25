@@ -5,12 +5,13 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Tue May 24 19:20:20 2016 Alexis Trouve
+// Last update Wed May 25 19:36:39 2016 Alexis Trouve
 //
 
 #include <iostream>
 #include <fstream>
 #include <stdexcept>
+#include <unistd.h>
 #include "World.hh"
 #include "Math.hh"
 #include "IJson.hpp"
@@ -20,6 +21,7 @@ using namespace world;
 
 World::World(GameServer *ngameserver)
 {
+  std::cout << "world created" << std::endl;
   AIs.push_back(new BasicAI(this));
   Factory = new BodyFactory(this, AIs);
   collider = NULL;
@@ -27,6 +29,7 @@ World::World(GameServer *ngameserver)
   sizeX = 0;
   sizeY = 0;
   gameServer = ngameserver;
+  std::cout << "world created end" << std::endl;
 }
 
 World::~World()
@@ -39,6 +42,7 @@ void	World::update()
 
 void	World::loadGame(std::string const & file)
 {
+  std::cout << "world loadGame" << std::endl;
   std::ifstream is(file.c_str());
 
   if (!is)
@@ -95,10 +99,12 @@ void	World::loadGame(std::string const & file)
       collider = NULL;
       throw e;
     }
+  std::cout << "world loadGame end" << std::endl;
 }
 
 void	World::applyMoveActor()
 {
+  std::cout << "world applyMoveActor" << std::endl;
   std::list<ABody*>::iterator	it1;
   ABody				*body;
   Actor				*actor;
@@ -108,13 +114,18 @@ void	World::applyMoveActor()
     {
       body = (*it1);
       if ((actor = dynamic_cast<Actor*>(body)) != NULL)
-	actor->move();
+	{
+	  actor->move();
+	  gameServer->sendMoveId(actor);
+	}
       it1++;
     }
+  std::cout << "world applyMoveActor end" << std::endl;
 }
 
 void		World::applyAI()
 {
+  std::cout << "world applyAI" << std::endl;
   std::list<ABody*>::iterator	it1;
   unsigned int	i;
   unsigned int	j;
@@ -139,20 +150,41 @@ void		World::applyAI()
 	}
       ++j;
     }
+  std::cout << "world applyAI end" << std::endl;
 }
 
 void		World::gameLoop()
 {
-  while (true)
+  std::cout << "world gameLoop" << std::endl;
+  unsigned int i;
+  Actor *actor;
+  ABody	*body;
+  std::list<ABody*>::iterator it1;
+  it1 = bodys.begin();
+  sleep(1);
+  while (it1 != bodys.end())
     {
+      body = (*it1);
+      if ((actor = dynamic_cast<Actor*>(body)) != NULL)
+	{
+	  std::cout << "lol" << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
+	  //actor->setMove();
+	}
+      it1++;
+    }
+  while (42 == 42)
+    {
+      usleep(100000);
       //TODO: frequency
       applyAI();
       applyMoveActor();
     }
+  std::cout << "world gameLoop end" << std::endl;
 }
 
 int	World::addNewBody(double xpos, double ypos, const std::string& name, short orientation)
 {
+  std::cout << "world addnewbody" << std::endl;
   ABody	*body;
 
   if (xpos < 0 || xpos >= sizeX || ypos < 0 || ypos >= sizeY)
@@ -165,10 +197,12 @@ int	World::addNewBody(double xpos, double ypos, const std::string& name, short o
   gameServer->sendAddEntity(body);
   bodys.push_back(body);
   collider->setNewBodyNoCheckEntity(body);
+  std::cout << "world addnewbody end" << std::endl;
 }
 
 void		World::notifyDeath(ABody *body)
 {
+  std::cout << "world notify Death" << std::endl;
   unsigned int	i;
 
   collider->suprBody(body->getId());
@@ -178,10 +212,12 @@ void		World::notifyDeath(ABody *body)
       AIs[i]->suprActor(body->getId());
       ++i;
     }
+  std::cout << "world notify Death end" << std::endl;
 }
 
 void		World::deleteId(int id)
 {
+  std::cout << "world deleteId" << std::endl;
   unsigned int	i;
   std::list<ABody*>::iterator it1;
 
@@ -199,6 +235,7 @@ void		World::deleteId(int id)
       AIs[i]->suprActor(id);
       ++i;
     }
+  std::cout << "world deleteId end" << std::endl;
 }
 
 Collider&	World::getCollider()

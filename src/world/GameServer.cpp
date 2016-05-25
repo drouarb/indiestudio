@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Tue May 24 22:00:01 2016 Esteban Lewis
+// Last update Wed May 25 18:21:22 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -46,8 +46,7 @@ GameServer::GameServer(const std::string& filePath, in_port_t port)
       ++i;
     }
   listenThread = new std::thread(&GameServer::listen, std::ref(*this));
-  //world->gameLoop();
-  while (1);
+  world->gameLoop();
 }
 
 GameServer::~GameServer()
@@ -237,6 +236,21 @@ void		GameServer::sendAddEntity(ABody *body)
       ++i;
     }
   std::cout << "sendAddEntityEnd" << std::endl;
+}
+
+void		GameServer::sendMoveId(ABody *body)
+{
+  std::cout << "sendMoveId:" << body->getEntityId() << ";" << body->getPos().first << ":" << body->getPos().second << " , " << body->getOrientation() << std::endl;
+  network::PacketMoveEntity	packet(body->getEntityId(), body->getPos().first,
+				       body->getPos().second, body->getOrientation());
+  unsigned int	i;
+  i = 0;
+  while (i < players.size())
+    {
+      packetFact->send(packet, players[i].socketId);
+      ++i;
+    }
+  std::cout << "sendMoveId end" << std::endl;
 }
 
 void		GameServer::listen()

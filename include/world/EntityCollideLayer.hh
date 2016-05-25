@@ -1,3 +1,13 @@
+//
+// EntityCollideLayer.hh for indie in /home/trouve_b/Desktop/CPP_project/cpp_indie_studio
+// 
+// Made by Alexis Trouve
+// Login   <trouve_b@epitech.net>
+// 
+// Started on  Wed May 25 18:33:15 2016 Alexis Trouve
+// Last update Wed May 25 19:12:06 2016 Alexis Trouve
+//
+
 #ifndef ENTITYCOLLIDELAYER_HH_
 # define ENTITYCOLLIDELAYER_HH_
 
@@ -43,7 +53,7 @@ namespace gauntlet
       EntityCollideLayer(gauntlet::world::PhysicCollideLayer *physicLayer);
       ~EntityCollideLayer();
 
-      bool				canMovePoint(double posx, double posy);
+      bool				canMovePoint(double posx, double posy, int id);
       void				forceMoveId(int id, double posx, double posy);
       bool				tryMoveId(int id, double posx, double posy);
       void				applyVectorToId(int id, short orient, double speed);

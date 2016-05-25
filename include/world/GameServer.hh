@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 20:56:05 2016 Alexis Trouve
-// Last update Tue May 24 17:26:07 2016 Alexis Trouve
+// Last update Wed May 25 18:09:38 2016 Alexis Trouve
 //
 
 #ifndef GAMESERVER_HH_
@@ -24,6 +24,7 @@
 #include "PacketListener.hh"
 #include "PacketAddEntity.hh"
 #include "PacketStartGame.hh"
+#include "PacketMoveEntity.hh"
 #include "ABody.hh"
 
 namespace gauntlet
@@ -64,6 +65,7 @@ namespace gauntlet
       void		DecoAll();
       void		sendMap();
       void		sendAddEntity(ABody *body);
+      void		sendMoveId(ABody *body);
       void		listen();
     };
   };

@@ -1,3 +1,13 @@
+//
+// EntityCollideLayer.cpp for indie in /home/trouve_b/Desktop/CPP_project/cpp_indie_studio
+// 
+// Made by Alexis Trouve
+// Login   <trouve_b@epitech.net>
+// 
+// Started on  Wed May 25 18:33:27 2016 Alexis Trouve
+// Last update Wed May 25 19:17:49 2016 Alexis Trouve
+//
+
 #include <iostream>
 #include <err.h>
 #include "EntityCollideLayer.hh"
@@ -49,7 +59,7 @@ void		EntityCollideLayer::setCollidingAreaData()
     }
 }
 
-bool		EntityCollideLayer::canMovePoint(double posx, double posy)
+bool		EntityCollideLayer::canMovePoint(double posx, double posy, int id)
 {
   int		x;
   int		y;
@@ -62,13 +72,15 @@ bool		EntityCollideLayer::canMovePoint(double posx, double posy)
   it1 = map[y][x].Entity.begin();
   while (it1 != map[y][x].Entity.end())
     {
-      pos = (*it1)->getPos();
-      size = (*it1)->getSize();
-      if (posx >= pos.first && posx <= pos.first + size.first
-	  && posy >= pos.second && posy <= pos.second + size.second
-	  && (*it1)->getCollide() == true)
-	return (false);
-
+      if ((*it1)->getId() != id)
+	{
+	  pos = (*it1)->getPos();
+	  size = (*it1)->getSize();
+	  if (posx >= pos.first && posx <= pos.first + size.first
+	      && posy >= pos.second && posy <= pos.second + size.second
+	      && (*it1)->getCollide() == true)
+	    return (false);
+	}
       it1++;
     }
   return (true);
@@ -91,19 +103,18 @@ bool		EntityCollideLayer::tryMoveId(int id, double posx, double posy)
 	  size = (*it1)->getSize();
 	  x = static_cast<int>(pos.first / SIZE_CASE);
 	  y = static_cast<int>(pos.second / SIZE_CASE);
-	  if ((static_cast<int>(posx / SIZE_CASE) != x
-	       || static_cast<int>(posy / SIZE_CASE) != y)
-	      && canMovePoint(pos.first, pos.second) == true
-	      && canMovePoint(pos.first + size.first, pos.second) == true
-	      && canMovePoint(pos.first, pos.second + size.second) == true
-	      && canMovePoint(pos.first + size.first, pos.second + size.second) == true)
-	    {
-	      map[static_cast<int>(posy / SIZE_CASE)]
-		[static_cast<int>(posy / SIZE_CASE)]
-		.Entity.push_front(*it1);
-	      suprMapId(id, x, y);
-	      return (true);
-	    }
+	  if (canMovePoint(pos.first, pos.second, id) == true
+	      && canMovePoint(pos.first + size.first, pos.second, id) == true
+	      && canMovePoint(pos.first, pos.second + size.second, id) == true
+	      && canMovePoint(pos.first + size.first, pos.second + size.second, id) == true)
+	      {
+		map[static_cast<int>(posy / SIZE_CASE)]
+		  [static_cast<int>(posy / SIZE_CASE)]
+		  .Entity.push_front(*it1);
+		suprMapId(id, x, y);
+		(*it1)->changePos(std::make_pair(posx, posy));
+		return (true);
+	      }
 	  return (false);
 	}
       it1++;
@@ -177,17 +188,19 @@ bool		EntityCollideLayer::setNewBody(gauntlet::ABody *newBody)
 {
   std::pair<double, double>	pos;
   std::pair<double, double>	size;
+  int				id;
   int				x;
   int				y;
 
   pos = newBody->getPos();
+  id = newBody->getId();
   size = newBody->getSize();
   x = static_cast<int>(pos.first / SIZE_CASE);
   y = static_cast<int>(pos.second / SIZE_CASE);
-  if (canMovePoint(pos.first, pos.second) == true
-      && canMovePoint(pos.first + size.first, pos.second) == true
-      && canMovePoint(pos.first, pos.second + size.second) == true
-      && canMovePoint(pos.first + size.first, pos.second + size.second) == true)
+  if (canMovePoint(pos.first, pos.second, id) == true
+      && canMovePoint(pos.first + size.first, pos.second, id) == true
+      && canMovePoint(pos.first, pos.second + size.second, id) == true
+      && canMovePoint(pos.first + size.first, pos.second + size.second, id) == true)
     {
       Entity.push_front(newBody);
       map[y][x].Entity.push_front(newBody);
