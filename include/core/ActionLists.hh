@@ -24,11 +24,15 @@ namespace			gauntlet
       void			pushDisconnect(const network::PacketDisconnect *);
       void			pushMoveEntity(const network::PacketMoveEntity *);
       void			pushDeleteEntity(const network::PacketDeleteEntity *);
+      void			setCameraTrackerId(int id);
 
     private:
       Core &			core;
 
       void			clearActions();
+
+      bool			pendingTracker;
+      int			entityIdTracker;
 
       std::list<network::PacketAddEntity*> packetsAddEntity;
       std::list<network::PacketDisconnect*> packetsDisconnect;

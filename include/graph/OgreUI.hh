@@ -195,7 +195,7 @@ class OgreUI
 
   void showItem(int id);
 
-  void playAnimation(int animationId, int entityId, bool loop);
+  void playAnimation(int entityId, int animationId, bool loop);
 
   void showBackground();
 
@@ -233,4 +233,5 @@ class OgreUI
   bool addWorldEntity(int entityId, const std::string &name,
 		      std::pair<int, int> position, Ogre::Vector3 orientation,
 		      gauntlet::TextureName textureId);
+  bool entityExist(int id);
 };
