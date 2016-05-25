@@ -1,6 +1,5 @@
 #include <OIS/OIS.h>
 #include <iostream>
-#include <stdlib.h>
 #include "graph/OgreUI.hh"
 #include "Math.hh"
 
