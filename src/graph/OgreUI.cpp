@@ -497,6 +497,7 @@ void OgreUI::createScene(void)
   pointLight->setSpotlightOuterAngle(Ogre::Radian(Ogre::Degree(180)));
   pointLight->setDiffuseColour(Ogre::ColourValue::White);
   pointLight->setSpecularColour(Ogre::ColourValue::White);
+  this->createLight(200, 200, 50);
   mSceneMgr->setSkyBox(true, "Examples/SceneSkyBox");
 }
 
@@ -799,6 +800,21 @@ bool OgreUI::entityExist(int id)
       return (true);
   return false;
 }
+
+void OgreUI::createLight(unsigned int height, unsigned int width, unsigned int interval)
+{
+  for (int x = -width, y = -height; x < width && y < height; x += interval, y += interval)
+    {
+      Ogre::Light *pLight = this->mSceneMgr->createLight();
+
+      pLight->setType(Ogre::Light::LT_POINT);
+      pLight->setPowerScale(100000);
+      pLight->setPosition(x, 0, y);
+      this->lightList.push_back(pLight);
+    }
+}
+
+
 
 
 

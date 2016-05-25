@@ -54,6 +54,7 @@ class OgreUI
   static const std::map<gauntlet::core::Position, OgreBites::TrayLocation> posmap;
   static const std::map<gauntlet::TextureName ,std::string>texturemap;
   static const std::map<gauntlet::EntityName, std::string> meshmap;
+  Ogre::LightList lightList;
 
   std::map<std::string, Ogre::AnimationState *> animationsArray;
   std::map<int, gauntlet::Effect *> effectMap;
@@ -239,4 +240,7 @@ class OgreUI
  private:
 
   void applyAnimation(const Ogre::FrameEvent &evt) const;
+
+  void createLight(unsigned int height, unsigned int width,
+		   unsigned int interval);
 };
