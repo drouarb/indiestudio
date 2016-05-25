@@ -212,7 +212,8 @@ gauntlet::core::Core::save(std::string const & file)
 bool
 gauntlet::core::Core::gameIsRunning()
 {
-  return (playing);
+  ogre.hideBackground();
+  return (this->gameIsRunning());
 }
 
 gauntlet::core::IUIObserver::Key
