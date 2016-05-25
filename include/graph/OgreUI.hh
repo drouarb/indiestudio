@@ -195,7 +195,7 @@ class OgreUI
 
   void showItem(int id);
 
-  void playAnimation(int animationId, int entityId, bool loop);
+  void playAnimation(int entityId, int animationId, bool loop);
 
   void showBackground();
 

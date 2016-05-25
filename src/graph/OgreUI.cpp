@@ -546,16 +546,18 @@ void OgreUI::playAnimation(int entityId, int animationId, bool loop)
   ss << entityId;
   Ogre::Entity *pEntity = this->mSceneMgr->getEntity(ss.str());
   int nb = 0;
+  Ogre::AnimationStateSet* allAnims;
 
-  Ogre::AnimationStateIterator mapIterator = pEntity->getAllAnimationStates()->getAnimationStateIterator();
+  if ((allAnims = pEntity->getAllAnimationStates()) == NULL)
+    return;
+  Ogre::AnimationStateIterator mapIterator = allAnims->getAnimationStateIterator();
   auto it = mapIterator.begin();
   while (it != mapIterator.end())
     {
-      std::pair<const Ogre::String, Ogre::AnimationState *> &reference1 = *it;
-      if (nb == entityId)
-	{
-	  this->playAnimation(entityId, reference1.first, loop);
-	}
+      if (nb == animationId) {
+          this->playAnimation(entityId, (*it).first, loop);
+          return;
+      }
       it++;
       ++nb;
     }

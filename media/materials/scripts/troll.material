@@ -1,0 +1,46 @@
+material "Troll_2_H_anims_split_Material__2"
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.588 0.588 0.588 1
+			diffuse 1 1 1 1
+			specular 0 0 0 0
+			emissive 0 0 0
+
+			texture_unit
+			{
+				texture Troll_2_D.tga
+				tex_coord_set 0
+				colour_op modulate
+				scale 1 1
+				scroll 0 0
+				rotate 0
+			}
+		}
+	}
+}
+material "Troll_2_H_anims_split__7___Default"
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.588235 0.588235 0.588235 1
+			diffuse 1 1 1 1
+			specular 0 0 0 0
+			emissive 0 0 0
+
+			texture_unit
+			{
+				texture Sword_D.tga
+				tex_coord_set 0
+				colour_op modulate
+				scale 1 1
+				scroll 0 0
+				rotate 0
+			}
+		}
+	}
+}

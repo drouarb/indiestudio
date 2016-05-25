@@ -1,0 +1,381 @@
+material "Skeleton_archer_skeleton_footman_sword"
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.588 0.588 0.588 1
+			diffuse 1 1 1 1
+			specular 0 0 0 0
+			emissive 0 0 0
+
+			texture_unit
+			{
+				texture Skeleton_footman_sword_color.tif
+				tex_coord_set 0
+				colour_op modulate
+				scale 1 1
+				scroll 0 0
+				rotate 0
+			}
+		}
+	}
+}
+material "Skeleton_archer_bow_stuff"
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.588 0.588 0.588 1
+			diffuse 1 1 1 1
+			specular 0 0 0 0
+			emissive 0 0 0
+
+			texture_unit
+			{
+				texture Skeleton_archer_bow_color.tif
+				tex_coord_set 0
+				colour_op modulate
+				scale 1 1
+				scroll 0 0
+				rotate 0
+			}
+		}
+	}
+}
+material "Skeleton_archer_Standard_2"
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.588 0.588 0.588 1
+			diffuse 0.588 0.588 0.588 1
+			specular 0 0 0 0
+			emissive 0 0 0
+		}
+	}
+}
+material "Skeleton_archer_skeleton_body"
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.470588 0.541176 0.588235 1
+			diffuse 1 1 1 1
+			specular 0 0 0 0
+			emissive 0 0 0
+
+			texture_unit
+			{
+				texture Skeleton_color.tif
+				tex_coord_set 0
+				colour_op modulate
+				scale 1 1
+				scroll 0 0
+				rotate 0
+			}
+		}
+	}
+}
+material "Skeleton_archer_skeleton_archer_armor"
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.447059 0.537255 0.580392 1
+			diffuse 1 1 1 1
+			specular 0 0 0 0
+			emissive 0 0 0
+
+			texture_unit
+			{
+				texture Skeleton_archer_armor_color.tif
+				tex_coord_set 0
+				colour_op modulate
+				scale 1 1
+				scroll 0 0
+				rotate 0
+			}
+		}
+	}
+}
+material "Skeleton_archer_skeleton_archer_mail"
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.588 0.588 0.588 1
+			diffuse 1 1 1 1
+			specular 0 0 0 0
+			emissive 0 0 0
+
+			texture_unit
+			{
+				texture skeleton_archer_mail_color.tif
+				tex_coord_set 0
+				colour_op modulate
+				scale 1 1
+				scroll 0 0
+				rotate 0
+			}
+		}
+	}
+}
+material "Skeleton_footman_skeleton_footman_sword"
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.588 0.588 0.588 1
+			diffuse 1 1 1 1
+			specular 0 0 0 0
+			emissive 0 0 0
+
+			texture_unit
+			{
+				texture Skeleton_footman_sword_color.tif
+				tex_coord_set 0
+				colour_op modulate
+				scale 1 1
+				scroll 0 0
+				rotate 0
+			}
+		}
+	}
+}
+material "Skeleton_footman_Skeleton_shield_A"
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.588 0.588 0.588 1
+			diffuse 1 1 1 1
+			specular 0 0 0 0
+			emissive 0 0 0
+
+			texture_unit
+			{
+				texture Skeleton_footman_shield_color.tif
+				tex_coord_set 0
+				colour_op modulate
+				scale 1 1
+				scroll 0 0
+				rotate 0
+			}
+		}
+	}
+}
+material "Skeleton_footman_skeleton_body"
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.470588 0.541176 0.588235 1
+			diffuse 1 1 1 1
+			specular 0 0 0 0
+			emissive 0 0 0
+
+			texture_unit
+			{
+				texture Skeleton_color.tif
+				tex_coord_set 0
+				colour_op modulate
+				scale 1 1
+				scroll 0 0
+				rotate 0
+			}
+		}
+	}
+}
+material "Skeleton_footman_skeleton_1H_armor"
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.133333 0.137255 0.172549 1
+			diffuse 1 1 1 1
+			specular 0 0 0 0
+			emissive 0 0 0
+
+			texture_unit
+			{
+				texture Skeleton_footman_armor_color.tif
+				tex_coord_set 0
+				colour_op modulate
+				scale 1 1
+				scroll 0 0
+				rotate 0
+			}
+		}
+	}
+}
+material "Skeleton_Sorcerer_stuff"
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.588235 0.588235 0.588235 1
+			diffuse 1 1 1 1
+			specular 0 0 0 0
+			emissive 0 0 0
+
+			texture_unit
+			{
+				texture Skeleton_Stuff_color.tif
+				tex_coord_set 0
+				colour_op modulate
+				scale 1 1
+				scroll 0 0
+				rotate 0
+			}
+		}
+	}
+}
+material "Skeleton_Sorcerer_skeleton_body"
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.470588 0.541176 0.588235 1
+			diffuse 1 1 1 1
+			specular 0 0 0 0
+			emissive 0 0 0
+
+			texture_unit
+			{
+				texture Skeleton_color.tif
+				tex_coord_set 0
+				colour_op modulate
+				scale 1 1
+				scroll 0 0
+				rotate 0
+			}
+		}
+	}
+}
+material "Skeleton_Sorcerer_robe"
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.588 0.588 0.588 1
+			diffuse 1 1 1 1
+			specular 0 0 0 0
+			emissive 0 0 0
+
+			texture_unit
+			{
+				texture Skeleton_Robe_color.tif
+				tex_coord_set 0
+				colour_op modulate
+				scale 1 1
+				scroll 0 0
+				rotate 0
+			}
+		}
+	}
+}
+material "Warlord_warlord_sword"
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.588 0.588 0.588 1
+			diffuse 1 1 1 1
+			specular 0 0 0 0
+			emissive 0 0 0
+
+			texture_unit
+			{
+				texture Skeleton_warlord_sword_color.tif
+				tex_coord_set 0
+				colour_op modulate
+				scale 1 1
+				scroll 0 0
+				rotate 0
+			}
+		}
+	}
+}
+material "Warlord_skeleton_body"
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.470588 0.541176 0.588235 1
+			diffuse 1 1 1 1
+			specular 0 0 0 0
+			emissive 0 0 0
+
+			texture_unit
+			{
+				texture Skeleton_color.tif
+				tex_coord_set 0
+				colour_op modulate
+				scale 1 1
+				scroll 0 0
+				rotate 0
+			}
+		}
+	}
+}
+material "Warlord_hair"
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.235294 0.215686 0.2 1
+			diffuse 1 1 1 1
+			specular 0 0 0 0
+			emissive 0 0 0
+
+			texture_unit
+			{
+				texture hair_color.tif
+				tex_coord_set 0
+				colour_op modulate
+				scale 1 1
+				scroll 0 0
+				rotate 0
+			}
+		}
+	}
+}
+material "Warlord_Warlord_armor"
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.588 0.588 0.588 1
+			diffuse 1 1 1 1
+			specular 0 0 0 0
+			emissive 0 0 0
+
+			texture_unit
+			{
+				texture Skeleton_Warlord_armor_color.tif
+				tex_coord_set 0
+				colour_op modulate
+				scale 1 1
+				scroll 0 0
+				rotate 0
+			}
+		}
+	}
+}

@@ -22,7 +22,12 @@ namespace gauntlet
     CHESTCARTOON = 10,
     CHEST = 11,
     ROCK = 12,
-    BERSERK = 13
+    BERSERK = 13,
+      SKELETON_ARCHER = 14,
+      SKELETON_FOOTMAN = 15,
+      SKELETON_SORCERER = 16,
+      SKELETON_WARLORD = 17,
+
   };
 };
 #endif //GAUNTLET_ENTITYNAME_HH

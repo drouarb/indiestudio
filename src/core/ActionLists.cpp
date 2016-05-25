@@ -19,6 +19,7 @@ gauntlet::core::ActionLists::doActions()
 			       (*it)->getX(), (*it)->getY(), (*it)->getAngle(),
 			       static_cast<gauntlet::TextureName>
 			       ((*it)->getTextureId()));
+      core.ogre.playAnimation((*it)->getEntityId(), 0, true);
     }
 
   for (std::list<network::PacketDisconnect*>::iterator it = packetsDisconnect.begin();
