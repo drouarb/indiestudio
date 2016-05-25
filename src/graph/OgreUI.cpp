@@ -322,17 +322,24 @@ void OgreUI::setIObserver(gauntlet::core::IUIObserver *Obs)
   this->obs = Obs;
 }
 
-void OgreUI::loadSound(int id, const std::string &path)
+bool OgreUI::loadSound(int id, const std::string &path)
 {
   std::stringstream ss;
   ss << id;
-  mSoundManager->createSound(ss.str(), path.c_str(), true, false, false);
+  if (access(("../media/sounds/" + path).c_str(), F_OK) == 0)
+    {
+      mSoundManager->createSound(ss.str(), path.c_str(), true, false, false);
+      return (true);
+    }
+  else
+    return (false);
 }
 
 void OgreUI::playSound(int id)
 {
   std::stringstream ss;
   ss << id;
+  if (mSoundManager->hasSound(ss.str()))
   mSoundManager->getSound(ss.str())->play();
 }
 
@@ -403,7 +410,7 @@ void OgreUI::addSlideBar(gauntlet::core::Position pos, int id, std::string text,
 {
   std::stringstream ss;
   ss << id;
-  mTrayMgr->createLongSlider(posmap.at(pos), ss.str(), text, 100, 100, 0, max,
+  mTrayMgr->createLongSlider(posmap.at(pos), ss.str(), text, 100, 100, 1, max,
 			     100);
 }
 
@@ -691,6 +698,11 @@ bool __attribute_warn_unused_result__ OgreUI::addWorldEntity(int entityId,
 void OgreUI::setQuality(int percent)
 {
   this->quality = percent;
+}
+
+int OgreUI::getQuality() const
+{
+	return this->quality;
 }
 
 int OgreUI::triggerEffect(int id, gauntlet::EffectName type,
