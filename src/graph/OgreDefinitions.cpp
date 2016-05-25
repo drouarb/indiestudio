@@ -85,18 +85,22 @@ const std::map<gauntlet::core::Position, OgreBites::TrayLocation> OgreUI::posmap
 };
 
 const std::map<gauntlet::EntityName, std::string> OgreUI::meshmap = {
-        {gauntlet::EntityName::OGREHEAD,     "Troll_2_H_FBX.mesh"},
-        {gauntlet::EntityName::NINJA,        "ninja.mesh"},
-        {gauntlet::EntityName::PLAN,         "plan.mesh"},
-        {gauntlet::EntityName::TUDORHOUSE,   "tudorhouse.mesh"},
-        {gauntlet::EntityName::DOOR,         "door.mesh"},
-        {gauntlet::EntityName::CUBE,         "cube.mesh"},
-        {gauntlet::EntityName::ROCK,         "Rock.mesh"},
-        {gauntlet::EntityName::CHEST,        "chest.mesh"},
-	{gauntlet::EntityName::BERSERK,      "berserkerhigh.mesh"},
-        {gauntlet::EntityName::CHESTCARTOON, "chestCartoon.mesh"},
-        {gauntlet::EntityName::WAGEN,        "wagen.mesh"},
-        {gauntlet::EntityName::SKELETON,     "robot.mesh"}
+		{gauntlet::EntityName::OGREHEAD,          "ogrehead.mesh"},
+		{gauntlet::EntityName::NINJA,             "ninja.mesh"},
+		{gauntlet::EntityName::PLAN,              "plan.mesh"},
+		{gauntlet::EntityName::TUDORHOUSE,        "tudorhouse.mesh"},
+		{gauntlet::EntityName::DOOR,              "door.mesh"},
+		{gauntlet::EntityName::CUBE,              "cube.mesh"},
+		{gauntlet::EntityName::ROCK,              "Rock.mesh"},
+		{gauntlet::EntityName::CHEST,             "chest.mesh"},
+		{gauntlet::EntityName::BERSERK,           "berserker.mesh"},
+		{gauntlet::EntityName::CHESTCARTOON,      "chestCartoon.mesh"},
+		{gauntlet::EntityName::WAGEN,             "wagen.mesh"},
+		{gauntlet::EntityName::TROLL,             "troll.mesh"},
+		{gauntlet::EntityName::SKELETON_ARCHER,   "skeleton_archer.mesh"},
+		{gauntlet::EntityName::SKELETON_FOOTMAN,  "skeleton_footman.mesh"},
+		{gauntlet::EntityName::SKELETON_SORCERER, "skeleton_sorcerer.mesh"},
+		{gauntlet::EntityName::SKELETON_WARLORD,  "skeleton_warlord.mesh"}
 };
 
 const std::map<gauntlet::TextureName, std::string> OgreUI::texturemap = {

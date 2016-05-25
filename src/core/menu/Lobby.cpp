@@ -128,15 +128,16 @@ gauntlet::core::Lobby::doPlay(struct t_hitItem & item)
 void
 gauntlet::core::Lobby::receivedStartgame()
 {
-  std::cout << "# received startgame" << std::endl;
   network::PacketStartGame const * packet =
     dynamic_cast<network::PacketStartGame const *>
     (static_cast<WaitPacket *>(submenus[3])->getReceived());
   if (packet != NULL)
     {
-      core.ogre.addCameraTracker(packet->getEntityId());
+      if (core.ogre.entityExist(packet->getEntityId()))
+        core.ogre.addCameraTracker(packet->getEntityId());
+      else
+        core.actionlists.setCameraTrackerId(packet->getEntityId());
       core.play();
-      std::cout << "ok - play" << std::endl;
     }
   else
     {

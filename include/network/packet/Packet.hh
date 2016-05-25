@@ -46,6 +46,7 @@ namespace gauntlet {
 
             virtual t_rawdata* serialize() const = 0;
             virtual void deserialize(t_rawdata* data) = 0;
+            virtual size_t getPacketSize() const = 0;
 
         private:
             const PacketId packetId;

@@ -36,3 +36,8 @@ void gauntlet::network::PacketMap::deserialize(t_rawdata *data) {
 unsigned int gauntlet::network::PacketMap::getMapId() const {
     return mapId;
 }
+
+size_t gauntlet::network::PacketMap::getPacketSize() const {
+    return sizeof(s_packetMapData);
+}
+

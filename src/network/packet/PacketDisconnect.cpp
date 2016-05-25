@@ -43,3 +43,7 @@ void gauntlet::network::PacketDisconnect::deserialize(t_rawdata *data) {
 const std::string &gauntlet::network::PacketDisconnect::getMessage() const {
     return message;
 }
+
+size_t gauntlet::network::PacketDisconnect::getPacketSize() const {
+    return sizeof(s_packetDisconnectData) + message.size();
+}

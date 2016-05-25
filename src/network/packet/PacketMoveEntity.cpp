@@ -56,3 +56,8 @@ int gauntlet::network::PacketMoveEntity::getY() const {
 short gauntlet::network::PacketMoveEntity::getAngle() const {
     return angle;
 }
+
+size_t gauntlet::network::PacketMoveEntity::getPacketSize() const {
+    return sizeof(s_packetMoveEntityData);
+}
+

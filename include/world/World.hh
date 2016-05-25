@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:51:22 2016 Alexis Trouve
-// Last update Tue May 24 19:11:32 2016 Alexis Trouve
+// Last update Tue May 24 19:34:46 2016 Alexis Trouve
 //
 
 #ifndef WORLD_HH_
@@ -13,7 +13,7 @@
 
 #include <string>
 #include <list>
-#include "Effect.hh"
+#include "EffectName.hh"
 #include "ABody.hh"
 #include "Actor.hh"
 #include "Player.hh"
@@ -62,7 +62,8 @@ namespace			gauntlet
       Collider&			getCollider();
       const std::pair<double, double>&	getSpawnPoint();
       std::list<ABody*>		getBodysByCopy() const;
-      int			createNewEffect(gauntlet::EffectName effect);
+      int			triggerEffect(gauntlet::EffectName effect);
+      void			stopEffect(int id);
     };
   };
 };

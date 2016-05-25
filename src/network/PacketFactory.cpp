@@ -71,16 +71,24 @@ void gauntlet::network::PacketFactory::recv() {
     runlock.lock();
     while (run) {
         data = socket->recv();
-        if (data.data->size() > 0) {
+        while (data.data->size() > 0) {
             id = static_cast<PacketId>(data.data->at(0));
             packet = NULL;
             try {
                 packet = (this->*createMap.at(id))(data);
-            } catch (std::exception) { }
+            } catch (std::exception) {
+                packet = NULL;
+                data.data->resize(0);
+            }
             if (packet) {
                 this->notifyPacket(packet);
+                for (size_t i = 0; i < packet->getPacketSize() && data.data->size() > 0; i++) {
+                    data.data->erase(data.data->begin());
+                }
+                delete(packet);
             }
         }
+        delete (data.data);
     }
     runlock.unlock();
 }

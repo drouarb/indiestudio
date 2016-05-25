@@ -36,3 +36,9 @@ void gauntlet::network::PacketDeleteEntity::deserialize(t_rawdata *data) {
 unsigned int gauntlet::network::PacketDeleteEntity::getEntityId() const {
     return entityId;
 }
+
+size_t gauntlet::network::PacketDeleteEntity::getPacketSize() const {
+    return sizeof(s_packetDeleteEntityData);
+}
+
+

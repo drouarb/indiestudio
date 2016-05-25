@@ -67,6 +67,8 @@ ABody			*Player::clone(int id) const
   player->setCollide(collideActive);
   player->changePos(coord);
   player->changeSize(size);
+  player->setMeshId(model);
+  player->setTextureId(texture);
   player->changeOrientation(orientation);
   return (player);
 }
