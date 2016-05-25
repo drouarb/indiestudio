@@ -211,7 +211,6 @@ void OgreUI::applyAnimation(const Ogre::FrameEvent &evt) const
 {
   for (auto animation : animationsArray)
     {
-      std::cout << "Rendring animation" << std::endl;
       Ogre::AnimationState *t2 = animation.second;
       t2->addTime(evt.timeSinceLastFrame);
     }

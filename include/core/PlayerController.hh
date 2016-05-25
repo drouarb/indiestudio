@@ -5,13 +5,13 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 15:49:54 2016 Esteban Lewis
-// Last update Wed May 25 19:28:44 2016 Esteban Lewis
+// Last update Wed May 25 19:46:03 2016 Esteban Lewis
 //
 
 #ifndef  PLAYERCONTROLLER_HH_
 # define PLAYERCONTROLLER_HH_
 
-# include <map>
+# include <vector>
 # include "Conf.hh"
 # include "PlayerChars.hh"
 
@@ -35,6 +35,7 @@ namespace				gauntlet
       std::vector<Command>		ctrls;
       world::PlayerChar			chartype;
       std::string			name;
+    };
   };
 };
 

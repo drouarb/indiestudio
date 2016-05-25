@@ -13,6 +13,8 @@
 #include "ListenerStartGame.hh"
 #include "ConnectMenu.hh"
 #include "GameServer.hh"
+#include "ConfMenu.hh"
+#include "PlayerController.hh"
 
 gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this)), actionlists(*this)
 {
@@ -212,8 +214,7 @@ gauntlet::core::Core::save(std::string const & file)
 bool
 gauntlet::core::Core::gameIsRunning()
 {
-  ogre.hideBackground();
-  return (this->gameIsRunning());
+  return (playing);
 }
 
 gauntlet::core::IUIObserver::Key

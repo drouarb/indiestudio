@@ -7,6 +7,7 @@
 #include "PacketSelectPlayer.hh"
 #include "PacketStartGame.hh"
 #include "WaitPacket.hh"
+#include "PlayerController.hh"
 
 gauntlet::core::Lobby::Lobby(Core & core, int idStart, Menu * parent) :
   Menu(core, idStart, parent)

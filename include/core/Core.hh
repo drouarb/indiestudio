@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 10:59:47 2016 Esteban Lewis
-// Last update Tue May 24 17:01:51 2016 Esteban Lewis
+// Last update Wed May 25 19:37:41 2016 Esteban Lewis
 //
 
 #ifndef  CORE_HH_
@@ -15,11 +15,8 @@
 # include <thread>
 # include <unistd.h>
 # include "CoreUIObserver.hh"
-# include "Menu.hh"
-# include "PlayerController.hh"
 # include "Stopwatch.hh"
 # include "Conf.hh"
-# include "ConfMenu.hh"
 # include "Position.hh"
 # include "graph/OgreUI.hh"
 # include "PacketFactory.hh"
@@ -31,6 +28,9 @@ namespace			gauntlet
 {
   namespace			core
   {
+    class			Menu;
+    class			PlayerController;
+
     class			Core
     {
     public:
