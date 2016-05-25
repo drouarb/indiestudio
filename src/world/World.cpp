@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Wed May 25 19:29:20 2016 Alexis Trouve
+// Last update Wed May 25 19:36:39 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -161,12 +161,13 @@ void		World::gameLoop()
   ABody	*body;
   std::list<ABody*>::iterator it1;
   it1 = bodys.begin();
+  sleep(1);
   while (it1 != bodys.end())
     {
       body = (*it1);
       if ((actor = dynamic_cast<Actor*>(body)) != NULL)
 	{
-	  std::cout << "lol" << std::endl;
+	  std::cout << "lol" << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
 	  //actor->setMove();
 	}
       it1++;
