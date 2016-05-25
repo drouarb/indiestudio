@@ -1,4 +1,4 @@
-{
+B1;2802;0c{
     name : "Default map",
     length : "10000",
     width : "10000",
@@ -13,14 +13,14 @@
 	{
 	    name : "Draugr",
 	    x : "100",
-	    y : "100",
+	    y : "0",
 	    angle : "0"
 	},
 	{
 	    name : "Draugr",
 	    x : "0",
 	    y : "100",
-	    angle : "180"
+	    angle : "0"
 	}
     ]
     physical :

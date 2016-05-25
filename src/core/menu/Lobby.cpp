@@ -93,7 +93,13 @@ gauntlet::core::Lobby::doCharacter(struct t_hitItem & item)
       submenus[0]->setOpen(true);
     }
   else
-    submenus[1]->setOpen(true);
+    {
+      if (core.pc == NULL)
+	static_cast<TextBox *>(submenus[1])->setText("Hero");
+      else
+	static_cast<TextBox *>(submenus[1])->setText(core.pc->getName());
+      submenus[1]->setOpen(true);
+    }
 }
 
 void

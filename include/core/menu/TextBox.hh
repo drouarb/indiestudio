@@ -16,12 +16,14 @@ namespace			gauntlet
       virtual bool		keyDown(Command);
 
       std::string const &	getText() const;
+      void			setText(std::string const &);
 
     protected:
       std::string		text;
       std::string		caption;
 
       void			undrawButtons();
+      void			drawButtons();
     };
   };
 };

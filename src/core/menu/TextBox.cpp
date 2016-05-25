@@ -50,12 +50,25 @@ gauntlet::core::TextBox::getText() const
 }
 
 void
+gauntlet::core::TextBox::setText(std::string const & newtext)
+{
+  text = newtext;
+}
+
+void
+gauntlet::core::TextBox::drawButtons()
+{
+  Menu::drawButtons();
+  
+  struct t_hitItem item;
+  item.data = text;
+  buttons[0].update(item);
+}
+
+void
 gauntlet::core::TextBox::undrawButtons()
 {
-  for (std::vector<Control>::iterator it = buttons.begin(); it != buttons.end(); ++it)
-    {
-      it->undraw();
-    }
+  Menu::undrawButtons();
   buttons[0].setStr(caption);
   text = "";
 }
