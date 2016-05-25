@@ -5,14 +5,16 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 15:52:38 2016 Esteban Lewis
-// Last update Wed May 25 19:52:56 2016 Esteban Lewis
+// Last update Wed May 25 23:23:21 2016 Esteban Lewis
 //
 
 #include <iostream>
 #include "PlayerController.hh"
+#include "PacketControl.hh"
+#include "Core.hh"
 
 gauntlet::core::PlayerController::PlayerController(std::string const & name,
-						   world::PlayerChar c)
+						   world::PlayerChar c, Core &) : core(core)
 {
   this->name = name;
   chartype = c;
@@ -25,6 +27,8 @@ gauntlet::core::PlayerController::PlayerController(std::string const & name,
       ATTACK3,
       ATTACK4
     };
+
+  stopCmds.insert(std::pair<Command, Command>(UP, UP_STOP));
 }
 
 gauntlet::core::PlayerController::~PlayerController()
@@ -51,12 +55,33 @@ gauntlet::core::PlayerController::setAngle(short newangle)
 void
 gauntlet::core::PlayerController::doCmd(Command key, bool down)
 {
+  if (!down)
+    {
+      bool ok = false;
+      for (std::map<Command, Command>::iterator it = stopCmds.begin();
+	   it != stopCmds.end(); ++it)
+	{
+	  if (it->first == key)
+	    {
+	      ok = true;
+	      key = it->second;
+	      break ;
+	    }
+	}
+      if (!ok)
+	return ;
+    }
+
   for (std::vector<Command>::iterator it = ctrls.begin(); it != ctrls.end(); ++it)
     {
       if (*it == key)
 	{
-	  std::cout << "player cmd " << key << " " << down << std::endl;
-	  //TODO: send command packet with angle
+	  std::cout << "# player cmd " << key << " " << down << std::endl;
+
+	  network::PacketControl pc((unsigned char)key, angle);
+	  std::cout << "# packetcontrol created" << std::endl;
+	  core.packetf->send(pc);
+	  std::cout << "# packetcontrol sent" << std::endl;
 	  return ;
 	}
     }

@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:09:17 2016 Esteban Lewis
-// Last update Wed May 25 22:14:12 2016 Esteban Lewis
+// Last update Wed May 25 23:06:24 2016 Esteban Lewis
 //
 
 #include "ConfMenu.hh"
@@ -33,45 +33,46 @@ gauntlet::core::ConfMenu::ConfMenu(Core & core, int idStart, Menu * parent) :
   buttons.push_back(Control(LABEL, "Controls:", NULL, PCENTER,
 			    idStart + buttons.size(), core.ogre));
 
-  funs.insert(std::pair<int, void (ConfMenu::*)(int, struct t_hitItem &)>
-	      (buttons.size() + idStart, &ConfMenu::doKeylink));
-  buttons.push_back(Control(BUTTON, "Go forward", NULL, PCENTER,
-			    idStart + buttons.size(), core.ogre));
-  funs.insert(std::pair<int, void (ConfMenu::*)(int, struct t_hitItem &)>
-	      (buttons.size() + idStart, &ConfMenu::doKeylink));
-  buttons.push_back(Control(BUTTON, "Go backward", NULL, PCENTER,
-			    idStart + buttons.size(), core.ogre));
-  funs.insert(std::pair<int, void (ConfMenu::*)(int, struct t_hitItem &)>
-	      (buttons.size() + idStart, &ConfMenu::doKeylink));
-  buttons.push_back(Control(BUTTON, "Go left", NULL, PCENTER,
-			    idStart + buttons.size(), core.ogre));
-  funs.insert(std::pair<int, void (ConfMenu::*)(int, struct t_hitItem &)>
-	      (buttons.size() + idStart, &ConfMenu::doKeylink));
-  buttons.push_back(Control(BUTTON, "Go right", NULL, PCENTER,
-			    idStart + buttons.size(), core.ogre));
-  funs.insert(std::pair<int, void (ConfMenu::*)(int, struct t_hitItem &)>
-	      (buttons.size() + idStart, &ConfMenu::doKeylink));
-  buttons.push_back(Control(BUTTON, "Validate", NULL, PCENTER,
-			    idStart + buttons.size(), core.ogre));
+  idCmdMap.insert(std::pair<int, Command>(buttons.size() + idStart, ESC));
   funs.insert(std::pair<int, void (ConfMenu::*)(int, struct t_hitItem &)>
 	      (buttons.size() + idStart, &ConfMenu::doKeylink));
   buttons.push_back(Control(BUTTON, "Menu", NULL, PCENTER,
 			    idStart + buttons.size(), core.ogre));
+
+  idCmdMap.insert(std::pair<int, Command>(buttons.size() + idStart, ENTER));
+  funs.insert(std::pair<int, void (ConfMenu::*)(int, struct t_hitItem &)>
+	      (buttons.size() + idStart, &ConfMenu::doKeylink));
+  buttons.push_back(Control(BUTTON, "Validate", NULL, PCENTER,
+			    idStart + buttons.size(), core.ogre));
+
+  idCmdMap.insert(std::pair<int, Command>(buttons.size() + idStart, UP));
+  funs.insert(std::pair<int, void (ConfMenu::*)(int, struct t_hitItem &)>
+	      (buttons.size() + idStart, &ConfMenu::doKeylink));
+  buttons.push_back(Control(BUTTON, "Go forward", NULL, PCENTER,
+			    idStart + buttons.size(), core.ogre));
+
+  idCmdMap.insert(std::pair<int, Command>(buttons.size() + idStart, ATTACK1));
   funs.insert(std::pair<int, void (ConfMenu::*)(int, struct t_hitItem &)>
 	      (buttons.size() + idStart, &ConfMenu::doKeylink));
   buttons.push_back(Control(BUTTON, "Normal attack", NULL, PCENTER,
 			    idStart + buttons.size(), core.ogre));
+
+  idCmdMap.insert(std::pair<int, Command>(buttons.size() + idStart, ATTACK2));
   funs.insert(std::pair<int, void (ConfMenu::*)(int, struct t_hitItem &)>
 	      (buttons.size() + idStart, &ConfMenu::doKeylink));
   buttons.push_back(Control(BUTTON, "Special ability", NULL, PCENTER,
 			    idStart + buttons.size(), core.ogre));
+
+  idCmdMap.insert(std::pair<int, Command>(buttons.size() + idStart, ATTACK3));
   funs.insert(std::pair<int, void (ConfMenu::*)(int, struct t_hitItem &)>
 	      (buttons.size() + idStart, &ConfMenu::doKeylink));
-  buttons.push_back(Control(BUTTON, "Extra ability 1", NULL, PCENTER,
+  buttons.push_back(Control(BUTTON, "Ability 3", NULL, PCENTER,
 			    idStart + buttons.size(), core.ogre));
+
+  idCmdMap.insert(std::pair<int, Command>(buttons.size() + idStart, ATTACK4));
   funs.insert(std::pair<int, void (ConfMenu::*)(int, struct t_hitItem &)>
 	      (buttons.size() + idStart, &ConfMenu::doKeylink));
-  buttons.push_back(Control(BUTTON, "Extra ability 2", NULL, PCENTER,
+  buttons.push_back(Control(BUTTON, "Ability 4", NULL, PCENTER,
 			    idStart + buttons.size(), core.ogre));
   
 
@@ -219,7 +220,7 @@ void
 gauntlet::core::ConfMenu::doKeylink(int btnId, struct t_hitItem & item)
 {
   (void)item;
-  static_cast<KeyMenu*>(submenus[0])->setCmd((Command)(btnId - idStart - 1));
+  static_cast<KeyMenu*>(submenus[0])->setCmd(idCmdMap[btnId]);
   submenus[0]->setOpen(true);
 }
 

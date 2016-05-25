@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:06:35 2016 Esteban Lewis
-// Last update Wed May 25 21:48:27 2016 Esteban Lewis
+// Last update Wed May 25 23:07:26 2016 Esteban Lewis
 //
 
 #ifndef  CONFMENU_HH_
@@ -30,6 +30,7 @@ namespace			gauntlet
     protected:
       std::map<int, void (ConfMenu::*)(int, struct t_hitItem &)> funs;
       std::map<IUIObserver::Key, std::string> keyNames;
+      std::map<int, Command>	idCmdMap;
 
       std::string const &	getKeyName(IUIObserver::Key);
       IUIObserver::Key		getNameKey(std::string const &);
