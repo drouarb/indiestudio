@@ -70,7 +70,7 @@ gauntlet::core::Core::keyDown(IUIObserver::Key key)
 	}
       else
 	{
-	  if (pc)
+	  if (pc && gameIsRunning())
 	    pc->doCmd(cmd, true);
 	}
     }
