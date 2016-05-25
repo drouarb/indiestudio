@@ -143,7 +143,7 @@ void		World::applyAI()
 
 void		World::gameLoop()
 {
-  while (42 == 42)
+  while (true)
     {
       //TODO: frequency
       applyAI();
