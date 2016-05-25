@@ -11,7 +11,6 @@
 #include <iostream>
 #include <gameData/Spell/SpellFactory.hh>
 #include <gameData/TextureName.hh>
-#include "BodyFactory.hh"
 
 using namespace gauntlet;
 
@@ -160,7 +159,6 @@ void			BodyFactory::setDraugr()
   crea->changeOrientation(0);
   crea->setMeshId(EntityName::BERSERK);
   crea->setTextureId(TextureName::TEXTURE_NONE);
-  crea->setTextureId(1);
   bodyTab.push_back(crea);
   i = 0;
   while (i < AIs.size())
