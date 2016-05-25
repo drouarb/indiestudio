@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Wed May 25 18:21:22 2016 Alexis Trouve
+// Last update Wed May 25 21:08:42 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -56,9 +56,7 @@ GameServer::~GameServer()
 void		GameServer::connectAnswer(const network::PacketConnect *packet)
 {
   std::cout << "connectAnswer" << std::endl;
-  std::cout << "-- server received connect" << std::endl;
   connectTmp.push_back(packet->getSocketId());
-  std::cout << "-- server sendHandShake" << std::endl;
   sendHandShake(packet->getSocketId());
   std::cout << "connectAnswerEnd" << std::endl;
 }

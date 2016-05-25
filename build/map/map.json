@@ -4,8 +4,8 @@ B1;2802;0c{
     width : "10000",
     spawn :
     {
-	x : "200",
-	y : "200"
+	x : "300",
+	y : "300"
     },
     map : "",
     dynamic :
@@ -13,12 +13,30 @@ B1;2802;0c{
 	{
 	    name : "Draugr",
 	    x : "100",
-	    y : "0",
+	    y : "100",
 	    angle : "0"
 	},
 	{
 	    name : "Draugr",
-	    x : "0",
+	    x : "100",
+	    y : "200",
+	    angle : "0"
+	},
+	{
+	    name : "Draugr",
+	    x : "200",
+	    y : "100",
+	    angle : "0"
+	},
+	{
+	    name : "Draugr",
+	    x : "200",
+	    y : "200",
+	    angle : "0"
+	},
+	{
+	    name : "Draugr",
+	    x : "500",
 	    y : "100",
 	    angle : "0"
 	}
@@ -27,8 +45,8 @@ B1;2802;0c{
     [
 	{
 	    mesh_id : "123",
-	    pos_x : "300",
-	    pos_y : "500",
+	    pos_x : "3000",
+	    pos_y : "5000",
 	    size_x : "100",
 	    size_y : "20"
 	}
