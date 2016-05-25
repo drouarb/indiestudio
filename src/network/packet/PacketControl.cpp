@@ -2,7 +2,7 @@
 // Created by drouar_b on 5/25/16.
 //
 
-#include "PacketControlTest.hh"
+#include "PacketControl.hh"
 
 gauntlet::network::PacketControl::PacketControl(s_socketData data):
         Packet(gauntlet::network::PACKET_CONTROL, data.fd) {

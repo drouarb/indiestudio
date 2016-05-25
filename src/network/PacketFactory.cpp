@@ -14,7 +14,7 @@
 #include <network/packet/PacketDeleteParticle.hh>
 #include <network/packet/PacketPlaySound.hh>
 #include <network/packet/PacketStopSound.hh>
-#include <network/packet/PacketControlTest.hh>
+#include <network/packet/PacketControl.hh>
 #include "network/PacketFactory.hh"
 #include "network/PacketFactorySocketDisconnectionListener.hh"
 

@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include <network/packet/PacketControlTest.hh>
+#include <network/packet/PacketControl.hh>
 #include <assert.h>
 
 int main() {

@@ -6,7 +6,7 @@
 #define GAUNTLET_PACKETCONTROLLISTENER_HH
 
 
-#include <network/packet/PacketControlTest.hh>
+#include <network/packet/PacketControl.hh>
 #include "PacketListener.hh"
 
 namespace gauntlet {
