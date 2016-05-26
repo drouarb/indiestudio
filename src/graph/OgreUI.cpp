@@ -321,13 +321,14 @@ void OgreUI::setIObserver(gauntlet::core::IUIObserver *Obs)
   this->obs = Obs;
 }
 
-bool OgreUI::loadSound(int id, const std::string &path)
+bool OgreUI::loadSound(int id, SoundName name, bool loop)
 {
   std::stringstream ss;
   ss << id;
-  if (access(("../media/sounds/" + path).c_str(), F_OK) == 0)
+  if (name != SOUND_NONE)
+  if (access(("../media/sounds/" + soundmap.at(name)).c_str(), F_OK) == 0)
     {
-      mSoundManager->createSound(ss.str(), path.c_str(), true, false, false);
+      mSoundManager->createSound(ss.str(), soundmap.at(name), true, loop, false);
       return (true);
     }
   else
@@ -511,7 +512,9 @@ void OgreUI::createScene(void)
   pointLight->setPosition(0, 200, -200);
   pointLight3->setPowerScale(8900000);
    mSceneMgr->setSkyBox(true, "Examples/SceneSkyBox");
+  addMapEntity(10, OGREHEAD, 0, 0, 0, TEXTURE_NONE);
 }
+
 
 void OgreUI::quit()
 {
