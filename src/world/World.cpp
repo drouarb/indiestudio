@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Thu May 26 11:17:46 2016 Alexis Trouve
+// Last update Thu May 26 13:37:47 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -161,6 +161,8 @@ void		World::gameLoop()
   ABody	*body;
   std::list<ABody*>::iterator it1;
   it1 = bodys.begin();
+  it1++;
+  it1++;
   sleep(1);
   while (it1 != bodys.end())
     {
@@ -184,10 +186,12 @@ int	World::addNewBody(double xpos, double ypos, const std::string& name, short o
 {
   std::cout << "world addnewbody" << std::endl;
   ABody	*body;
+  std::pair<unsigned int, unsigned int>	sizeMap;
 
-  if (xpos < 0 || xpos >= sizeX || ypos < 0 || ypos >= sizeY)
-    throw (std::runtime_error(name + " is out of bounds"));
   body = Factory->giveBody(name);
+  if ((xpos - (body->getSize().first / 2.0)) < 0 || (xpos + (body->getSize().first / 2.0)) >= sizeX
+      || (ypos - (body->getSize().second / 2.0)) < 0 || (ypos + (body->getSize().second / 2.0)) >= sizeY)
+    throw (std::runtime_error(name + " is out of bounds"));
   if (body == NULL)
     throw (std::runtime_error("'" + name + "': wrong name"));
   body->changePos(std::make_pair(xpos, ypos));

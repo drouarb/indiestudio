@@ -4,12 +4,8 @@
 #include <sys/wait.h>
 #include "Core.hh"
 #include "MainMenu.hh"
-#include "IUIObserver.hh"
 #include "Math.hh"
-#include "ListenerAddEntity.hh"
-#include "ListenerDisconnect.hh"
 #include "ListenerHandshake.hh"
-#include "ListenerMoveEntity.hh"
 #include "ListenerStartGame.hh"
 #include "ListenerStopSound.hh"
 #include "ListenerPlaySound.hh"
@@ -17,10 +13,10 @@
 #include "ListenerDeleteParticle.hh"
 #include "ConnectMenu.hh"
 #include "GameServer.hh"
-#include "ConfMenu.hh"
 #include "PlayerController.hh"
 
-gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this)), actionlists(*this)
+gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this)), actionlists(*this),
+			       hud(*this, 0, NULL)
 {
   menu = new MainMenu(*this, MENU_ID_START, NULL);
   listenThread = NULL;
@@ -35,9 +31,9 @@ gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this)), actionlists(
   ogre.setIObserver(observer);
   if (!ogre.init())
     return;
-  std::string str = "menu_theme.ogg";
-  menu->setOpen(true);
+  ogre.playSound(0, SoundName::MENU_SOUND, false);
   ogre.playSound(0);
+  menu->setOpen(true);
 
   ogre.go();
 }

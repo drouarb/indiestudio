@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Thu May 26 11:28:34 2016 Alexis Trouve
+// Last update Thu May 26 13:33:37 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -13,6 +13,7 @@
 #include "ServSelectPlayerListener.hh"
 #include "ServConnectListener.hh"
 #include "ServDisconnectListener.hh"
+#include "ServControlListener.hh"
 #include "GameServer.hh"
 
 using namespace gauntlet;
@@ -21,6 +22,7 @@ using namespace network;
 
 GameServer::GameServer(const std::string& filePath, in_port_t port)
 {
+  std::cout << "GameServer build" << std::endl;
   unsigned int	i;
 
   world = new World(this);
@@ -30,13 +32,14 @@ GameServer::GameServer(const std::string& filePath, in_port_t port)
     std::cout << "errorMap" << std::endl;
   }
   packetFact = new PacketFactory(port);
-  players.push_back({"Barbare", -1, false});
-  players.push_back({"Mage", -1, false});
-  players.push_back({"Valkyrie", -1, false});
-  players.push_back({"Elf", -1, false});
+  players.push_back({"Barbare", -1, false, -1});
+  players.push_back({"Mage", -1, false, -1});
+  players.push_back({"Valkyrie", -1, false, -1});
+  players.push_back({"Elf", -1, false, -1});
   listeners.push_back(new ServConnectListener(this));
   listeners.push_back(new ServSelectPlayerListener(this));
   listeners.push_back(new ServDisconnectListener(this));
+  listeners.push_back(new ServControlListener(this));
   maxPlayers = 4;
   coPlayers = 0;
   i = 0;
@@ -47,6 +50,7 @@ GameServer::GameServer(const std::string& filePath, in_port_t port)
     }
   listenThread = new std::thread(&GameServer::listen, std::ref(*this));
   world->gameLoop();
+  std::cout << "GameServer build end" << std::endl;
 }
 
 GameServer::~GameServer()
@@ -68,6 +72,7 @@ void		GameServer::selectPlayerAnswer(const network::PacketSelectPlayer *packet)
   int		nbrChoose;
   int		iTaken;
   unsigned int	i;
+  int		id;
 
   i = 0;
   nbrChoose = -1;
@@ -112,9 +117,10 @@ void		GameServer::selectPlayerAnswer(const network::PacketSelectPlayer *packet)
       players[iTaken].socketId = packet->getSocketId();
       connectTmp.erase(connectTmp.begin() + i);
       dataSendMutex.lock();
-      PacketStartGame	myPacket(world->addNewBody(world->getSpawnPoint().first,
-						   world->getSpawnPoint().second,
-						   players[iTaken].name, 0));
+      PacketStartGame	myPacket((id = world->addNewBody(world->getSpawnPoint().first,
+							 world->getSpawnPoint().second,
+							 players[iTaken].name, 0)));
+      players[iTaken].idPlayer = id;
       packetFact->send(myPacket, packet->getSocketId());
       dataSendThread = new std::thread(std::bind(&GameServer::sendDatas, std::ref(*this), packet->getSocketId()));
       dataSendThread->join();
@@ -210,6 +216,21 @@ void		GameServer::sendDeco(int socketId, const std::string& msg)
 void		GameServer::DecoAll()
 {
   std::cout << "DecoAll" << std::endl;
+  unsigned int		i;
+
+  i = 0;
+  while (i < players.size())
+    {
+      if (players[i].socketId != -1)
+	sendDeco(players[i].socketId, "You have been disconnected");
+      ++i;
+    }
+  i = 0;
+  while (i < connectTmp.size())
+    {
+      sendDeco(connectTmp[i], "You have been disconnected");
+      ++i;
+    }
   std::cout << "DecoAllEnd" << std::endl;
 }
 
@@ -248,6 +269,11 @@ void		GameServer::sendMoveId(ABody *body)
       ++i;
     }
   std::cout << "sendMoveId end" << std::endl;
+}
+
+void		GameServer::controlInput(const network::PacketControl *packet)
+{
+  std::cout << "ici c'est le lol" << std::endl;
 }
 
 void		GameServer::listen()

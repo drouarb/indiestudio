@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 10:59:47 2016 Esteban Lewis
-// Last update Thu May 26 10:35:45 2016 Esteban Lewis
+// Last update Thu May 26 14:22:00 2016 Esteban Lewis
 //
 
 #ifndef  CORE_HH_
@@ -22,7 +22,7 @@
 # include "PacketFactory.hh"
 # include "PacketListener.hh"
 # include "ActionLists.hh"
-# include "Thread.hpp"
+# include "Hud.hh"
 
 namespace			gauntlet
 {
@@ -66,6 +66,7 @@ namespace			gauntlet
       IUIObserver *		observer;
       std::thread *		listenThread;
       Menu *			menu;
+      Hud			hud;
       IUIObserver::Key		lastKey;
       std::list<network::PacketListener*> listeners;
       bool			playing;

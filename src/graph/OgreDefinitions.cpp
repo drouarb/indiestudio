@@ -107,3 +107,7 @@ const std::map<gauntlet::TextureName, std::string> OgreUI::texturemap = {
         {gauntlet::TextureName::NINjA_M,      "Ogre/Skin"},
         {gauntlet::TextureName::TUDORHOUSE_M, "TudorHouse/house"}
 };
+
+const std::map<gauntlet::SoundName , std::string> OgreUI::soundmap = {
+	{gauntlet::SoundName::MENU_SOUND,      "menu_theme.ogg"},
+};

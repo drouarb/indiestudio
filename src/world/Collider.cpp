@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 14:44:15 2016 Alexis Trouve
-// Last update Wed May 25 21:07:23 2016 Alexis Trouve
+// Last update Thu May 26 13:10:42 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -21,6 +21,8 @@ Collider::Collider(unsigned int xsize, unsigned int ysize)
     throw std::runtime_error("Map size too small");
   physicLayer = new PhysicCollideLayer(static_cast<double>(xsize), static_cast<double>(ysize));
   dynamicLayer = new EntityCollideLayer(physicLayer);
+  sizeX = xsize;
+  sizeY = ysize;
 }
 
 Collider::~Collider()
@@ -86,7 +88,8 @@ void	Collider::suprBody(int id)
   dynamicLayer->suprId(id);
 }
 
-std::list<gauntlet::ABody*>	Collider::giveBodyInAreaCircle(double posx, double posy, short unused, double radius, short unused2)
+std::list<gauntlet::ABody*>	Collider::giveBodyInAreaCircle(double posx, double posy, short unused,
+							       double radius, short unused2)
 {
   (void)unused;
   (void)unused2;
@@ -96,4 +99,9 @@ std::list<gauntlet::ABody*>	Collider::giveBodyInAreaCircle(double posx, double p
 std::list<gauntlet::ABody*>	Collider::giveBodyInAreaCone(double posx, double posy, short ref_angle, double size, short cone_angle)
 {
   return (dynamicLayer->giveBodyInAreaCone(posx, posy, ref_angle, size, cone_angle));
+}
+
+std::pair<unsigned int, unsigned int>	Collider::getSizeMap() const
+{
+  return (std::make_pair(sizeX, sizeY));
 }

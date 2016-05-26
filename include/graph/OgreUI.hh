@@ -32,6 +32,7 @@
 #include <graph/Effect.hh>
 #include <gameData/EntityName.hh>
 #include <gameData/TextureName.hh>
+#include <gameData/SoundName.hh>
 #include "IUIObserver.hh"
 
 namespace gauntlet
@@ -54,6 +55,7 @@ class OgreUI
   static const std::map<gauntlet::core::Position, OgreBites::TrayLocation> posmap;
   static const std::map<gauntlet::TextureName ,std::string>texturemap;
   static const std::map<gauntlet::EntityName, std::string> meshmap;
+  static const std::map<gauntlet::SoundName, std::string> soundmap;
 
   std::map<std::string, Ogre::AnimationState *> animationsArray;
   std::map<int, gauntlet::Effect *> effectMap;
@@ -185,7 +187,7 @@ class OgreUI
 
   void setIObserver(gauntlet::core::IUIObserver *Obs);
 
-  bool loadSound(int id, const std::string &path);
+  bool loadSound(int id, gauntlet::SoundName name, bool loop);
 
   void hideItem(int id);
 
