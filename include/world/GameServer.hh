@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 20:56:05 2016 Alexis Trouve
-// Last update Thu May 26 12:19:25 2016 Alexis Trouve
+// Last update Thu May 26 17:46:01 2016 Alexis Trouve
 //
 
 #ifndef GAMESERVER_HH_
@@ -26,6 +26,10 @@
 #include "PacketStartGame.hh"
 #include "PacketMoveEntity.hh"
 #include "PacketControl.hh"
+#include "PacketAddParticle.hh"
+#include "PacketDeleteParticle.hh"
+#include "PacketPlaySound.hh"
+#include "PacketStopSound.hh"
 #include "ABody.hh"
 
 namespace gauntlet
@@ -69,6 +73,11 @@ namespace gauntlet
       void		sendMap();
       void		sendAddEntity(ABody *body);
       void		sendMoveId(ABody *body);
+      void		sendEffect(gauntlet::EffectName effect, int id, std::pair<double, double> pos,
+				   int decayTime);
+      void		sendStopEffect(int id);
+      void		sendSound(unsigned int soundId, int id, bool loop);
+      void		sendStopSound(int id);
       void		listen();
     };
   };

@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Thu May 26 13:37:47 2016 Alexis Trouve
+// Last update Thu May 26 17:59:56 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -263,25 +263,62 @@ int				World::getUniqueEffectId()
   return (++i);
 }
 
-int				World::triggerEffect(gauntlet::EffectName effect)
+int				World::triggerEffect(gauntlet::EffectName effect,
+						     std::pair<double, double> pos, int decayTime)
 {
   int				id;
 
   id = getUniqueEffectId();
+  gameServer->sendEffect(effect, id, pos, decayTime);
   effectTab.push_back(id);
   return (id);
 }
 
 void				World::stopEffect(int id)
 {
-  int				i;
+  unsigned int			i;
 
   i = 0;
   while (i < effectTab.size())
     {
       if (effectTab[i] == id)
 	{
+	  gameServer->sendStopEffect(id);
 	  effectTab.erase(effectTab.begin() + i);
+	  break;
+	}
+      ++i;
+    }
+}
+
+int				World::getUniqueSoundId()
+{
+  static int			id = -1;
+
+  return (++id);
+}
+
+int				World::playSound(unsigned int soundId, bool loop)
+{
+  int				id;
+
+  id = getUniqueEffectId();
+  gameServer->sendSound(soundId, id, loop);
+  soundTab.push_back(id);
+  return (id);
+}
+
+void				World::stopSound(int idToStop)
+{
+  unsigned int			i;
+
+  i = 0;
+  while (i < soundTab.size())
+    {
+      if (soundTab[i] == idToStop)
+	{
+	  gameServer->sendStopSound(idToStop);
+	  soundTab.erase(soundTab.begin() + i);
 	  break;
 	}
       ++i;

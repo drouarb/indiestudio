@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Thu May 26 13:33:37 2016 Alexis Trouve
+// Last update Thu May 26 18:00:19 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -55,6 +55,7 @@ GameServer::GameServer(const std::string& filePath, in_port_t port)
 
 GameServer::~GameServer()
 {
+  dataSendThread->join();
 }
 
 void		GameServer::connectAnswer(const network::PacketConnect *packet)
@@ -123,10 +124,7 @@ void		GameServer::selectPlayerAnswer(const network::PacketSelectPlayer *packet)
       players[iTaken].idPlayer = id;
       packetFact->send(myPacket, packet->getSocketId());
       dataSendThread = new std::thread(std::bind(&GameServer::sendDatas, std::ref(*this), packet->getSocketId()));
-      dataSendThread->join();
-      delete (dataSendThread);
       dataSendMutex.unlock();
-
     }
   else
     sendHandShake(packet->getSocketId());
@@ -274,6 +272,59 @@ void		GameServer::sendMoveId(ABody *body)
 void		GameServer::controlInput(const network::PacketControl *packet)
 {
   std::cout << "ici c'est le lol" << std::endl;
+}
+
+void		GameServer::sendEffect(gauntlet::EffectName effect, int id,
+				       std::pair<double, double> pos, int decayTime)
+{
+  PacketAddParticle	packet(effect, id, pos.first, pos.second, decayTime);
+  unsigned int		i;
+
+  i = 0;
+  while (i < players.size())
+    {
+      packetFact->send(packet, players[i].socketId);
+      ++i;
+    }
+}
+
+void		GameServer::sendStopEffect(int id)
+{
+  PacketDeleteParticle	packet(id);
+  unsigned int	i;
+
+  i = 0;
+  while (i < players.size())
+    {
+      packetFact->send(packet, players[i].socketId);
+      ++i;
+    }
+}
+
+void		GameServer::sendStopSound(int id)
+{
+  PacketStopSound	packet(id);
+  unsigned int		i;
+
+  i = 0;
+  while (i < players.size())
+    {
+      packetFact->send(packet, players[i].socketId);
+      ++i;
+    }
+}
+
+void		GameServer::sendSound(unsigned int soundId, int id, bool loop)
+{
+  PacketPlaySound	packet(soundId, id, loop);
+  unsigned int		i;
+
+  i = 0;
+  while (i < players.size())
+    {
+      packetFact->send(packet, players[i].socketId);
+      ++i;
+    }
 }
 
 void		GameServer::listen()
