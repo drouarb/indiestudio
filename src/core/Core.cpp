@@ -7,12 +7,20 @@
 #include "Math.hh"
 #include "ListenerHandshake.hh"
 #include "ListenerStartGame.hh"
+#include "ListenerStopSound.hh"
+#include "ListenerPlaySound.hh"
+#include "ListenerAddParticle.hh"
+#include "ListenerDeleteParticle.hh"
+#include "PacketFactory.hh"
+#include "ConnectMenu.hh"
 #include "GameServer.hh"
 #include "PlayerController.hh"
+#include "CoreUIObserver.hh"
+#include "SaveloadMenu.hh"
 
-gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this)), actionlists(*this)
+gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this)), actionlists(*this),
+			       menu(*this, MENU_ID_START, NULL), hud(*this, 0, NULL)
 {
-  menu = new MainMenu(*this, MENU_ID_START, NULL);
   listenThread = NULL;
   pc = NULL;
   playing = false;
@@ -26,7 +34,7 @@ gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this)), actionlists(
   if (!ogre.init())
     return;
   ogre.playSound(0, (MENU_SOUND), false);
-  menu->setOpen(true);
+  menu.setOpen(true);
 
   ogre.go();
 }
@@ -39,7 +47,7 @@ gauntlet::core::Core::keyUp(IUIObserver::Key key)
 {
   Command cmd = conf.getLinkedKey(key);
 
-  if (!menu->getOpen() && cmd != ESC)
+  if (!menu.getOpen() && cmd != ESC)
     {
       if (pc)
 	pc->doCmd(cmd, false);
@@ -52,15 +60,15 @@ gauntlet::core::Core::keyDown(IUIObserver::Key key)
   lastKey = key;
   Command cmd = conf.getLinkedKey(key);
 
-  if (menu->getOpen())
+  if (menu.getOpen())
     {
-      menu->keyDown(cmd);
+      menu.keyDown(cmd);
     }
   else
     {
       if (cmd == ESC)
 	{
-	  menu->setOpen(!menu->getOpen());
+	  menu.setOpen(!menu.getOpen());
 	}
       else
 	{
@@ -73,9 +81,9 @@ gauntlet::core::Core::keyDown(IUIObserver::Key key)
 void
 gauntlet::core::Core::buttonClick(int buttonId, struct t_hitItem &item)
 {
-  if (menu->getOpen())
+  if (menu.getOpen())
     {
-      menu->buttonClick(buttonId, item);
+      menu.buttonClick(buttonId, item);
     }
 }
 
@@ -93,18 +101,26 @@ gauntlet::core::Core::mouseMove(int x, int y)
 void
 gauntlet::core::Core::play()
 {
-  if (menu->getOpen())
-    menu->setOpen(false);
+  if (menu.getOpen())
+    {
+      hud.setOpen(true);
+      menu.setOpen(false);
+    } 
   actionlists.doActions();
   playing = true;
-  ogre.hideBackground();
+  ogre.hideBackground(); 
+  ogre.stopSound(0);
 }
 
 void
 gauntlet::core::Core::stop()
 {
-  if (menu->getOpen() == false)
-    menu->setOpen(true);
+  if (menu.getOpen() == false)
+    {
+      ogre.playSound(0, (MENU_SOUND), false);
+      menu.setOpen(true);
+      hud.setOpen(false);
+    }
   playing = false;
   ogre.showBackground();
 }
@@ -159,6 +175,10 @@ gauntlet::core::Core::initPacketf()
 	  listeners.push_back(new ListenerHandshake(*this));
 	  listeners.push_back(new ListenerMoveEntity(*this));
 	  listeners.push_back(new ListenerStartGame(*this));
+	  listeners.push_back(new ListenerStopSound(*this));
+	  listeners.push_back(new ListenerPlaySound(*this));
+	  listeners.push_back(new ListenerAddParticle(*this));
+	  listeners.push_back(new ListenerDeleteParticle(*this));
 	}
       for (std::list<network::PacketListener*>::iterator it = listeners.begin();
 	   it != listeners.end(); ++it)
@@ -184,10 +204,10 @@ gauntlet::core::Core::disconnect()
       delete listenThread;
       listenThread = NULL;
 
-      bool sendMsg = gameIsRunning();
+      bool sendMsg = menu.getOpen() && gameIsRunning();
       stop();
       if (sendMsg)
-	static_cast<MainMenu *>(menu)->message("Disconnected from server.");
+	menu.message("Disconnected from server.");
     }
   killServer();
   mutex.unlock();

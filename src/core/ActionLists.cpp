@@ -1,5 +1,7 @@
 #include "ActionLists.hh"
 #include "Core.hh"
+#include "EffectName.hh"
+#include "SoundName.hh"
 
 gauntlet::core::ActionLists::ActionLists(Core & core) : core(core), pendingTracker(false)
 { }
@@ -47,6 +49,33 @@ gauntlet::core::ActionLists::doActions()
 	{
 	  core.ogre.removeEntity((*it)->getEntityId());
 	}
+
+      for (std::list<network::PacketAddParticle*>::iterator
+	     it = packetsAddParticle.begin(); it != packetsAddParticle.end(); ++it)
+	{
+	  core.ogre.triggerEffect((*it)->getRefId(), (EffectName)(*it)->getParticleId(),
+				  std::pair<double, double>
+				  ((double)(*it)->getX(), (double)(*it)->getY()));
+	}
+
+      for (std::list<network::PacketDeleteParticle*>::iterator
+	     it = packetsDeleteParticle.begin(); it != packetsDeleteParticle.end(); ++it)
+	{
+	  core.ogre.stopEffect((*it)->getParticleId());
+	}
+
+      for (std::list<network::PacketPlaySound*>::iterator
+	     it = packetsPlaySound.begin(); it != packetsPlaySound.end(); ++it)
+	{
+	  core.ogre.playSound((*it)->getRefId() + 1, (SoundName)(*it)->getSoundId(),
+			      (*it)->getLoop());
+	}
+
+      for (std::list<network::PacketStopSound*>::iterator
+	     it = packetsStopSound.begin(); it != packetsStopSound.end(); ++it)
+	{
+	  core.ogre.stopSound((*it)->getSoundId() + 1);
+	}
     }
   clearActions();
 }
@@ -86,6 +115,40 @@ gauntlet::core::ActionLists::pushDeleteEntity(const network::PacketDeleteEntity 
 }
 
 void
+gauntlet::core::ActionLists::pushStopSound(const network::PacketStopSound * packet)
+{
+  packetsStopSound.push_back(new network::PacketStopSound(packet->getSoundId()));
+  allPackets.push_back(packetsStopSound.back());
+}
+
+void
+gauntlet::core::ActionLists::pushPlaySound(const network::PacketPlaySound * packet)
+{
+  packetsPlaySound.push_back(new network::PacketPlaySound(packet->getSoundId(),
+							  packet->getRefId(),
+							  packet->getLoop()));
+  allPackets.push_back(packetsPlaySound.back());
+}
+
+void
+gauntlet::core::ActionLists::pushAddParticle(const network::PacketAddParticle * packet)
+{
+  packetsAddParticle.push_back(new network::PacketAddParticle
+			       (packet->getParticleId(), packet->getRefId(),
+				packet->getX(), packet->getY(),
+				packet->getDecayTime()));
+  allPackets.push_back(packetsAddParticle.back());
+}
+
+void
+gauntlet::core::ActionLists::pushDeleteParticle(const network::PacketDeleteParticle * packet)
+{
+  packetsDeleteParticle.push_back(new network::PacketDeleteParticle
+				  (packet->getParticleId()));
+  allPackets.push_back(packetsDeleteParticle.back());
+}
+
+void
 gauntlet::core::ActionLists::clearActions()
 {
   for (std::list<network::Packet*>::iterator it = allPackets.begin();
@@ -99,6 +162,10 @@ gauntlet::core::ActionLists::clearActions()
   packetsDisconnect.clear();
   packetsMoveEntity.clear();
   packetsDeleteEntity.clear();
+  packetsStopSound.clear();
+  packetsPlaySound.clear();
+  packetsAddParticle.clear();
+  packetsDeleteParticle.clear();
 }
 
 void gauntlet::core::ActionLists::setCameraTrackerId(int id)

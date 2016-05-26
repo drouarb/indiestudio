@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:09:17 2016 Esteban Lewis
-// Last update Thu May 26 11:00:46 2016 Esteban Lewis
+// Last update Thu May 26 14:44:34 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -13,6 +13,8 @@
 #include "Lobby.hh"
 #include "ConfMenu.hh"
 #include "MessageBox.hh"
+#include "Core.hh"
+#include "SaveloadMenu.hh"
 
 gauntlet::core::MainMenu::MainMenu(Core & core, int idStart, Menu * parent) :
   Menu(core, idStart, parent)
