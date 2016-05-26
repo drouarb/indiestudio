@@ -32,7 +32,6 @@ gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this)), actionlists(
   if (!ogre.init())
     return;
   ogre.playSound(0, SoundName::MENU_SOUND, false);
-  ogre.playSound(0);
   menu->setOpen(true);
 
   ogre.go();
