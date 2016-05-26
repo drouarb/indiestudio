@@ -321,10 +321,10 @@ void OgreUI::setIObserver(gauntlet::core::IUIObserver *Obs)
   this->obs = Obs;
 }
 
-bool OgreUI::loadSound(SoundName name)
+bool OgreUI::loadSound(int id, SoundName name)
 {
   std::stringstream ss;
-  ss << name;
+  ss << id;
   if (name != SOUND_NONE)
   if (access(("../media/sounds/" + soundmap.at(name)).c_str(), F_OK) == 0)
     {
@@ -335,10 +335,15 @@ bool OgreUI::loadSound(SoundName name)
     return (false);
 }
 
-void OgreUI::playSound(SoundName id, bool loop)
+bool OgreUI::playSound(int id, gauntlet::SoundName name, bool loop)
 {
   std::stringstream ss;
   ss << id;
+ if (loadSound(id, name) == false)
+   {
+     std::cerr << "sound " << name << "doesn t exit" << std::endl;
+     return false;
+   }
   if (mSoundManager->hasSound(ss.str())){
 
       mSoundManager->getSound(ss.str())->play();
@@ -516,7 +521,6 @@ void OgreUI::createScene(void)
   pointLight->setPosition(0, 200, -200);
   pointLight3->setPowerScale(8900000);
    mSceneMgr->setSkyBox(true, "Examples/SceneSkyBox");
-  loadSound(MENU_SOUND);
 }
 
 
@@ -609,7 +613,7 @@ void OgreUI::initSound()
   mSoundManager->init();
 }
 
-void OgreUI::stopSound(SoundName id)
+void OgreUI::stopSound(int id)
 {
   std::stringstream ss;
   ss << id;
@@ -628,8 +632,6 @@ bool __attribute_deprecated__ OgreUI::addWorldEntity(int entityId,
 						     short angle,
 						     TextureName texture_id)
 {
-  std::cout << "# ogre " << entityId << " " << x << " " << y << std::endl;
-
   std::stringstream ss;
   ss << entityId;
   Ogre::Entity *e;

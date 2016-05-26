@@ -4,8 +4,8 @@
 gauntlet::core::Hud::Hud(Core & core, int idStart, Menu * parent) :
   Menu(core, idStart, parent)
 {
-  buttons.push_back(Control(PROGRESSBAR, "", NULL, PBOTTOM, idStart + buttons.size(),
-			     core.ogre));
+  buttons.push_back(Control(PROGRESSBAR, "Health", new int(100), PBOTTOM,
+			    idStart + buttons.size(), core.ogre));
 }
 
 gauntlet::core::Hud::~Hud()

@@ -1,6 +1,7 @@
 #include "ActionLists.hh"
 #include "Core.hh"
 #include "EffectName.hh"
+#include "SoundName.hh"
 
 gauntlet::core::ActionLists::ActionLists(Core & core) : core(core), pendingTracker(false)
 { }
@@ -66,14 +67,14 @@ gauntlet::core::ActionLists::doActions()
       for (std::list<network::PacketPlaySound*>::iterator
 	     it = packetsPlaySound.begin(); it != packetsPlaySound.end(); ++it)
 	{
-	  (void)it;
-	  //TODO
+	  core.ogre.playSound((*it)->getRefId() + 1, (SoundName)(*it)->getSoundId(),
+			      (*it)->getLoop());
 	}
 
       for (std::list<network::PacketStopSound*>::iterator
 	     it = packetsStopSound.begin(); it != packetsStopSound.end(); ++it)
 	{
-	  //core.ogre.stopSound((*it)->getSoundId());
+	  core.ogre.stopSound((*it)->getSoundId() + 1);
 	}
     }
   clearActions();

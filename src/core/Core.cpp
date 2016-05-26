@@ -33,7 +33,7 @@ gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this)), actionlists(
   ogre.setIObserver(observer);
   if (!ogre.init())
     return;
-  ogre.playSound(MENU_SOUND, false);
+  ogre.playSound(0, (MENU_SOUND), false);
   menu.setOpen(true);
 
   ogre.go();
@@ -102,11 +102,14 @@ void
 gauntlet::core::Core::play()
 {
   if (menu.getOpen())
-    menu.setOpen(false);
+    {
+      hud.setOpen(true);
+      menu.setOpen(false);
+    } 
   actionlists.doActions();
   playing = true;
-  ogre.hideBackground();
-  ogre.stopSound(MENU_SOUND);
+  ogre.hideBackground(); 
+  ogre.stopSound(0);
 }
 
 void
@@ -114,8 +117,9 @@ gauntlet::core::Core::stop()
 {
   if (menu.getOpen() == false)
     {
-      ogre.playSound(MENU_SOUND, false);
+      ogre.playSound(0, (MENU_SOUND), false);
       menu.setOpen(true);
+      hud.setOpen(false);
     }
   playing = false;
   ogre.showBackground();
@@ -200,7 +204,7 @@ gauntlet::core::Core::disconnect()
       delete listenThread;
       listenThread = NULL;
 
-      bool sendMsg = gameIsRunning();
+      bool sendMsg = menu.getOpen() && gameIsRunning();
       stop();
       if (sendMsg)
 	menu.message("Disconnected from server.");
