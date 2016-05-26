@@ -11,6 +11,10 @@
 #include "ListenerHandshake.hh"
 #include "ListenerMoveEntity.hh"
 #include "ListenerStartGame.hh"
+#include "ListenerStopSound.hh"
+#include "ListenerPlaySound.hh"
+#include "ListenerAddParticle.hh"
+#include "ListenerDeleteParticle.hh"
 #include "ConnectMenu.hh"
 #include "GameServer.hh"
 #include "ConfMenu.hh"
@@ -32,9 +36,8 @@ gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this)), actionlists(
   if (!ogre.init())
     return;
   std::string str = "menu_theme.ogg";
-  ogre.loadSound(0, str);
-  ogre.playSound(0);
   menu->setOpen(true);
+  ogre.playSound(0);
 
   ogre.go();
 }
@@ -106,13 +109,17 @@ gauntlet::core::Core::play()
   actionlists.doActions();
   playing = true;
   ogre.hideBackground();
+  ogre.stopSound(0);
 }
 
 void
 gauntlet::core::Core::stop()
 {
   if (menu->getOpen() == false)
-    menu->setOpen(true);
+    {
+      ogre.playSound(0);
+      menu->setOpen(true);
+    }
   playing = false;
   ogre.showBackground();
 }
@@ -167,6 +174,10 @@ gauntlet::core::Core::initPacketf()
 	  listeners.push_back(new ListenerHandshake(*this));
 	  listeners.push_back(new ListenerMoveEntity(*this));
 	  listeners.push_back(new ListenerStartGame(*this));
+	  listeners.push_back(new ListenerStopSound(*this));
+	  listeners.push_back(new ListenerPlaySound(*this));
+	  listeners.push_back(new ListenerAddParticle(*this));
+	  listeners.push_back(new ListenerDeleteParticle(*this));
 	}
       for (std::list<network::PacketListener*>::iterator it = listeners.begin();
 	   it != listeners.end(); ++it)
