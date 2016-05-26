@@ -187,13 +187,13 @@ class OgreUI
 
   void setIObserver(gauntlet::core::IUIObserver *Obs);
 
-  bool loadSound(int id, gauntlet::SoundName name, bool loop);
+  bool loadSound(gauntlet::SoundName name);
 
   void hideItem(int id);
 
-  void playSound(int id);
+  void playSound(gauntlet::SoundName id, bool loop);
 
-  void stopSound(int id);
+  void stopSound(gauntlet::SoundName id);
 
   void showItem(int id);
 
@@ -204,6 +204,7 @@ class OgreUI
   void hideBackground();
 
   void stopAnimation(int animationId, int entityId);
+
 
   std::pair<int, int> getSizeWindow();
 
