@@ -8,6 +8,7 @@
 #include "PacketStartGame.hh"
 #include "WaitPacket.hh"
 #include "PlayerController.hh"
+#include "PacketFactory.hh"
 
 gauntlet::core::Lobby::Lobby(Core & core, int idStart, Menu * parent) :
   Menu(core, idStart, parent)

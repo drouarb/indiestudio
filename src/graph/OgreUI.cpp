@@ -321,26 +321,30 @@ void OgreUI::setIObserver(gauntlet::core::IUIObserver *Obs)
   this->obs = Obs;
 }
 
-bool OgreUI::loadSound(int id, SoundName name, bool loop)
+bool OgreUI::loadSound(SoundName name)
 {
   std::stringstream ss;
-  ss << id;
+  ss << name;
   if (name != SOUND_NONE)
   if (access(("../media/sounds/" + soundmap.at(name)).c_str(), F_OK) == 0)
     {
-      mSoundManager->createSound(ss.str(), soundmap.at(name), true, loop, false);
+      mSoundManager->createSound(ss.str(), soundmap.at(name), true, false, false);
       return (true);
     }
   else
     return (false);
 }
 
-void OgreUI::playSound(int id)
+void OgreUI::playSound(SoundName id, bool loop)
 {
   std::stringstream ss;
   ss << id;
-  if (mSoundManager->hasSound(ss.str()))
-  mSoundManager->getSound(ss.str())->play();
+  if (mSoundManager->hasSound(ss.str())){
+
+      mSoundManager->getSound(ss.str())->play();
+      mSoundManager->getSound(ss.str())->loop(loop);
+    }
+
 }
 
 void OgreUI::checkBoxToggled(OgreBites::CheckBox *checkBox)
@@ -512,7 +516,7 @@ void OgreUI::createScene(void)
   pointLight->setPosition(0, 200, -200);
   pointLight3->setPowerScale(8900000);
    mSceneMgr->setSkyBox(true, "Examples/SceneSkyBox");
-  addMapEntity(10, OGREHEAD, 0, 0, 0, TEXTURE_NONE);
+  loadSound(MENU_SOUND);
 }
 
 
@@ -605,7 +609,7 @@ void OgreUI::initSound()
   mSoundManager->init();
 }
 
-void OgreUI::stopSound(int id)
+void OgreUI::stopSound(SoundName id)
 {
   std::stringstream ss;
   ss << id;

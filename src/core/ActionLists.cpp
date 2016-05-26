@@ -73,7 +73,7 @@ gauntlet::core::ActionLists::doActions()
       for (std::list<network::PacketStopSound*>::iterator
 	     it = packetsStopSound.begin(); it != packetsStopSound.end(); ++it)
 	{
-	  core.ogre.stopSound((*it)->getSoundId());
+	  //core.ogre.stopSound((*it)->getSoundId());
 	}
     }
   clearActions();

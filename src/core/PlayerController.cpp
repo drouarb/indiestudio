@@ -5,13 +5,14 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 15:52:38 2016 Esteban Lewis
-// Last update Wed May 25 23:48:48 2016 Esteban Lewis
+// Last update Thu May 26 14:47:41 2016 Esteban Lewis
 //
 
 #include <iostream>
 #include "PlayerController.hh"
 #include "PacketControl.hh"
 #include "Core.hh"
+#include "PacketFactory.hh"
 
 gauntlet::core::PlayerController::PlayerController(std::string const & name,
 						   world::PlayerChar c,

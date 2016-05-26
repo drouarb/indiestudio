@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 10:59:47 2016 Esteban Lewis
-// Last update Thu May 26 14:22:00 2016 Esteban Lewis
+// Last update Thu May 26 14:43:27 2016 Esteban Lewis
 //
 
 #ifndef  CORE_HH_
@@ -14,21 +14,23 @@
 # include <mutex>
 # include <thread>
 # include <unistd.h>
-# include "CoreUIObserver.hh"
-# include "Stopwatch.hh"
+# include "IUIObserver.hh"
 # include "Conf.hh"
-# include "Position.hh"
 # include "graph/OgreUI.hh"
-# include "PacketFactory.hh"
-# include "PacketListener.hh"
 # include "ActionLists.hh"
+# include "MainMenu.hh"
 # include "Hud.hh"
 
 namespace			gauntlet
 {
+  namespace			network
+  {
+    class			PacketFactory;
+    class			PacketListener;
+  };
+
   namespace			core
   {
-    class			Menu;
     class			PlayerController;
 
     class			Core
@@ -65,7 +67,7 @@ namespace			gauntlet
     private:
       IUIObserver *		observer;
       std::thread *		listenThread;
-      Menu *			menu;
+      MainMenu			menu;
       Hud			hud;
       IUIObserver::Key		lastKey;
       std::list<network::PacketListener*> listeners;

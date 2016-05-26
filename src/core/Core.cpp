@@ -11,14 +11,16 @@
 #include "ListenerPlaySound.hh"
 #include "ListenerAddParticle.hh"
 #include "ListenerDeleteParticle.hh"
+#include "PacketFactory.hh"
 #include "ConnectMenu.hh"
 #include "GameServer.hh"
 #include "PlayerController.hh"
+#include "CoreUIObserver.hh"
+#include "SaveloadMenu.hh"
 
 gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this)), actionlists(*this),
-			       hud(*this, 0, NULL)
+			       menu(*this, MENU_ID_START, NULL), hud(*this, 0, NULL)
 {
-  menu = new MainMenu(*this, MENU_ID_START, NULL);
   listenThread = NULL;
   pc = NULL;
   playing = false;
@@ -31,8 +33,8 @@ gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this)), actionlists(
   ogre.setIObserver(observer);
   if (!ogre.init())
     return;
-  ogre.playSound(0, SoundName::MENU_SOUND, false);
-  menu->setOpen(true);
+  ogre.playSound(MENU_SOUND, false);
+  menu.setOpen(true);
 
   ogre.go();
 }
@@ -45,7 +47,7 @@ gauntlet::core::Core::keyUp(IUIObserver::Key key)
 {
   Command cmd = conf.getLinkedKey(key);
 
-  if (!menu->getOpen() && cmd != ESC)
+  if (!menu.getOpen() && cmd != ESC)
     {
       if (pc)
 	pc->doCmd(cmd, false);
@@ -58,15 +60,15 @@ gauntlet::core::Core::keyDown(IUIObserver::Key key)
   lastKey = key;
   Command cmd = conf.getLinkedKey(key);
 
-  if (menu->getOpen())
+  if (menu.getOpen())
     {
-      menu->keyDown(cmd);
+      menu.keyDown(cmd);
     }
   else
     {
       if (cmd == ESC)
 	{
-	  menu->setOpen(!menu->getOpen());
+	  menu.setOpen(!menu.getOpen());
 	}
       else
 	{
@@ -79,9 +81,9 @@ gauntlet::core::Core::keyDown(IUIObserver::Key key)
 void
 gauntlet::core::Core::buttonClick(int buttonId, struct t_hitItem &item)
 {
-  if (menu->getOpen())
+  if (menu.getOpen())
     {
-      menu->buttonClick(buttonId, item);
+      menu.buttonClick(buttonId, item);
     }
 }
 
@@ -99,21 +101,21 @@ gauntlet::core::Core::mouseMove(int x, int y)
 void
 gauntlet::core::Core::play()
 {
-  if (menu->getOpen())
-    menu->setOpen(false);
+  if (menu.getOpen())
+    menu.setOpen(false);
   actionlists.doActions();
   playing = true;
   ogre.hideBackground();
-  ogre.stopSound(0);
+  ogre.stopSound(MENU_SOUND);
 }
 
 void
 gauntlet::core::Core::stop()
 {
-  if (menu->getOpen() == false)
+  if (menu.getOpen() == false)
     {
-      ogre.playSound(0);
-      menu->setOpen(true);
+      ogre.playSound(MENU_SOUND, false);
+      menu.setOpen(true);
     }
   playing = false;
   ogre.showBackground();
@@ -201,7 +203,7 @@ gauntlet::core::Core::disconnect()
       bool sendMsg = gameIsRunning();
       stop();
       if (sendMsg)
-	static_cast<MainMenu *>(menu)->message("Disconnected from server.");
+	menu.message("Disconnected from server.");
     }
   killServer();
   mutex.unlock();
