@@ -387,7 +387,7 @@ void OgreUI::addProgressBar(gauntlet::core::Position pos, int id,
   OgreBites::ProgressBar *p = mTrayMgr->createProgressBar(posmap.at(pos),
 							  ss.str(),
 							  text, 300, 10);
-  p->setProgress(value);
+  p->setProgress(value / 100);
 }
 
 void OgreUI::addSelectMenu(gauntlet::core::Position pos, int id,
