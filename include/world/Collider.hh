@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 14:41:17 2016 Alexis Trouve
-// Last update Sun May 22 19:07:06 2016 Esteban Lewis
+// Last update Thu May 26 13:19:22 2016 Alexis Trouve
 //
 
 #ifndef COLLIDER_HH_
@@ -26,6 +26,8 @@ namespace gauntlet
     private:
       gauntlet::world::EntityCollideLayer	*dynamicLayer;
       gauntlet::world::PhysicCollideLayer	*physicLayer;
+      unsigned int				sizeX;
+      unsigned int				sizeY;
     public:
       Collider(unsigned int xsize, unsigned int ysize);
       ~Collider();
@@ -34,6 +36,7 @@ namespace gauntlet
       bool				setNewBody(ABody *body);
       bool				setNewBodyNoCheckEntity(ABody *body);
       void				suprBody(int id);
+      std::pair<unsigned int, unsigned int>		getSizeMap() const;
 
       std::list<ABody *> giveBodyInAreaCircle(double posx, double posy, short unused, double radius, short unused2);
       std::list<ABody*>	giveBodyInAreaCone(double posx, double posy, short ref_angle, double size, short cone_angle);

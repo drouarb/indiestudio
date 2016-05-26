@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 20:56:05 2016 Alexis Trouve
-// Last update Thu May 26 11:30:01 2016 Alexis Trouve
+// Last update Thu May 26 12:19:25 2016 Alexis Trouve
 //
 
 #ifndef GAMESERVER_HH_
@@ -25,6 +25,7 @@
 #include "PacketAddEntity.hh"
 #include "PacketStartGame.hh"
 #include "PacketMoveEntity.hh"
+#include "PacketControl.hh"
 #include "ABody.hh"
 
 namespace gauntlet
@@ -59,6 +60,7 @@ namespace gauntlet
       void		connectAnswer(const network::PacketConnect *packet);
       void		selectPlayerAnswer(const network::PacketSelectPlayer *packet);
       void		receiveDeco(const network::PacketDisconnect *packet);
+      void		controlInput(const network::PacketControl *packet);
       void		sendHandShake(int fd);
       void		sendDatas(int socketId);
       void		notifyTake();

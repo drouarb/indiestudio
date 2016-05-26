@@ -21,7 +21,8 @@ Actor::~Actor()
 
 void		Actor::move()
 {
-  world->getCollider().applyVectorToId(id, orientation, stats.speed);
+  if (ismoving == true)
+    world->getCollider().applyVectorToId(id, orientation, stats.speed);
 }
 
 bool		Actor::getMove() const
