@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Wed May 25 21:01:33 2016 Alexis Trouve
+// Last update Thu May 26 11:17:46 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -196,6 +196,7 @@ int	World::addNewBody(double xpos, double ypos, const std::string& name, short o
   bodys.push_back(body);
   collider->setNewBodyNoCheckEntity(body);
   std::cout << "world addnewbody end" << std::endl;
+  return (body->getId());
 }
 
 void		World::notifyDeath(ABody *body)

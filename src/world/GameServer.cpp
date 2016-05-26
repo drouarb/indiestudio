@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Wed May 25 21:08:42 2016 Alexis Trouve
+// Last update Thu May 26 11:28:34 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -116,7 +116,6 @@ void		GameServer::selectPlayerAnswer(const network::PacketSelectPlayer *packet)
 						   world->getSpawnPoint().second,
 						   players[iTaken].name, 0));
       packetFact->send(myPacket, packet->getSocketId());
-
       dataSendThread = new std::thread(std::bind(&GameServer::sendDatas, std::ref(*this), packet->getSocketId()));
       dataSendThread->join();
       delete (dataSendThread);
