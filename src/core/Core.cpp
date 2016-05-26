@@ -25,7 +25,7 @@ gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this)), actionlists(
   ogre.setIObserver(observer);
   if (!ogre.init())
     return;
-  ogre.playSound(MENU_SOUND, false);
+  ogre.playSound(0, (MENU_SOUND), false);
   menu->setOpen(true);
 
   ogre.go();
