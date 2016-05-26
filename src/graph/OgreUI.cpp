@@ -197,7 +197,7 @@ bool OgreUI::frameRenderingQueued(const Ogre::FrameEvent &evt)
   mMouse->capture();
   mTrayMgr->refreshCursor();
   mTrayMgr->frameRenderingQueued(evt);
-    applyAnimation(evt);
+  applyAnimation(evt);
   if (!mTrayMgr->isDialogVisible())
     {
       mCameraMan->frameRenderingQueued(evt);
@@ -222,7 +222,7 @@ bool OgreUI::keyPressed(const OIS::KeyEvent &arg)
     if (keymap.count(arg.key) > 0)
       {
 	obs->keyDown(keymap.at(arg.key));
-     }
+      }
   return true;
 }
 
@@ -326,25 +326,29 @@ bool OgreUI::loadSound(int id, SoundName name)
   std::stringstream ss;
   ss << id;
   if (name != SOUND_NONE)
-  if (access(("../media/sounds/" + soundmap.at(name)).c_str(), F_OK) == 0)
-    {
-      mSoundManager->createSound(ss.str(), soundmap.at(name), true, false, false);
-      return (true);
-    }
-  else
-    return (false);
+    if (access(("../media/sounds/" + soundmap.at(name)).c_str(), F_OK) == 0)
+      {
+	mSoundManager->createSound(ss.str(), soundmap.at(name), true, false,
+				   false);
+	return (true);
+      }
+    else
+      return (false);
 }
 
 bool OgreUI::playSound(int id, gauntlet::SoundName name, bool loop)
 {
   std::stringstream ss;
   ss << id;
- if (loadSound(id, name) == false)
-   {
-     std::cerr << "sound " << name << "doesn t exit" << std::endl;
-     return false;
-   }
-  if (mSoundManager->hasSound(ss.str())){
+
+  if (!mSoundManager->hasSound(ss.str()))
+    if (loadSound(id, name) == false)
+      {
+	std::cerr << "sound " << name << "doesn t exit" << std::endl;
+	return false;
+      }
+  if (mSoundManager->hasSound(ss.str()))
+    {
 
       mSoundManager->getSound(ss.str())->play();
       mSoundManager->getSound(ss.str())->loop(loop);
@@ -520,7 +524,7 @@ void OgreUI::createScene(void)
   Ogre::Light *pointLight3 = this->mSceneMgr->createLight("PointLight3");
   pointLight->setPosition(0, 200, -200);
   pointLight3->setPowerScale(8900000);
-   mSceneMgr->setSkyBox(true, "Examples/SceneSkyBox");
+  mSceneMgr->setSkyBox(true, "Examples/SceneSkyBox");
 }
 
 
@@ -719,7 +723,7 @@ void OgreUI::setQuality(int percent)
 
 int OgreUI::getQuality() const
 {
-	return this->quality;
+  return this->quality;
 }
 
 int OgreUI::triggerEffect(int id, gauntlet::EffectName type,
@@ -770,7 +774,9 @@ void OgreUI::addCameraTracker(int id)
   ss << id;
   Ogre::SceneNode *s = mSceneMgr->getSceneNode(ss.str());
   s->attachObject(mCamera);
-  mCamera->setPosition(mCamera->getPosition().x - 150, mCamera->getPosition().y + 150, mCamera->getPosition().z - 150);
+  mCamera->setPosition(mCamera->getPosition().x - 150,
+		       mCamera->getPosition().y + 150,
+		       mCamera->getPosition().z - 150);
   mCamera->lookAt(s->getPosition());
   mCamera->pitch(Ogre::Degree(5));
 }
@@ -825,7 +831,7 @@ bool OgreUI::entityExist(int id)
   std::stringstream ss;
   ss << id;
   if (mSceneMgr->hasEntity(ss.str()) == true)
-      return (true);
+    return (true);
   return false;
 }
 
