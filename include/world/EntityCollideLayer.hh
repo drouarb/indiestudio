@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 25 18:33:15 2016 Alexis Trouve
-// Last update Wed May 25 19:12:06 2016 Alexis Trouve
+// Last update Thu May 26 13:07:39 2016 Alexis Trouve
 //
 
 #ifndef ENTITYCOLLIDELAYER_HH_
