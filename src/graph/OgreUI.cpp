@@ -455,7 +455,7 @@ void OgreUI::updateItemValue(int itemid, struct t_hitItem item)
 	{
 	  OgreBites::ProgressBar *p = static_cast<OgreBites::ProgressBar *>(mTrayMgr->getWidget(
 		  ss.str()));
-	  p->setProgress(item.value);
+	  p->setProgress(item.value / 100);
 	}
       break;
       case MenuItemType::TEXTBOX:
