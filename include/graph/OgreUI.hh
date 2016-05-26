@@ -75,6 +75,7 @@ class OgreUI
   Ogre::SceneNode *planNode;
   Ogre::SceneNode *worldNode;
 
+  Ogre::SceneNode *rootNode;
   Ogre::OverlaySystem *mOverlaySystem;
   OgreBites::SdkTrayManager *mTrayMgr;
   OgreBites::SdkCameraMan *mCameraMan;

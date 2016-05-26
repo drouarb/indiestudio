@@ -25,6 +25,7 @@ OgreUI::OgreUI(void)
 	  mKeyboard(0),
 	  obs(NULL)
 {
+  rootNode = NULL;
 }
 
 OgreUI::~OgreUI(void)
@@ -229,7 +230,6 @@ bool OgreUI::keyPressed(const OIS::KeyEvent &arg)
 bool OgreUI::keyReleased(const OIS::KeyEvent &arg)
 {
   mCameraMan->injectKeyUp(arg);
-
   if (obs != NULL)
     if (keymap.count(arg.key) > 0)
       obs->keyUp(keymap.at(arg.key));
@@ -239,7 +239,7 @@ bool OgreUI::keyReleased(const OIS::KeyEvent &arg)
 bool OgreUI::mouseMoved(const OIS::MouseEvent &arg)
 {
   mCameraMan->injectMouseMove(arg);
-  mTrayMgr->injectMouseMove(arg);
+   mTrayMgr->injectMouseMove(arg);
   if (obs != NULL)
     obs->mouseMove(arg.state.X.abs, arg.state.Y.abs);
   return true;
@@ -514,17 +514,19 @@ void OgreUI::createScene(void)
   showBackground();
   Ogre::Light *pointLight = this->mSceneMgr->createLight("PointLight");
   pointLight->setSpotlightInnerAngle(Ogre::Radian(0));
+  mSceneMgr->setAmbientLight(Ogre::ColourValue(Ogre::ColourValue::Blue));
   pointLight->setSpotlightOuterAngle(Ogre::Radian(Ogre::Degree(180)));
   pointLight->setDiffuseColour(Ogre::ColourValue::White);
   pointLight->setSpecularColour(Ogre::ColourValue::White);
   pointLight->setPowerScale(8900000);
   Ogre::Light *pointLight2 = this->mSceneMgr->createLight("PointLight2");
-  pointLight->setPosition(0, 200, 200);
+  pointLight2->setPosition(0, 200, 200);
   pointLight2->setPowerScale(8900000);
   Ogre::Light *pointLight3 = this->mSceneMgr->createLight("PointLight3");
-  pointLight->setPosition(0, 200, -200);
+  pointLight3->setPosition(0, 200, -200);
   pointLight3->setPowerScale(8900000);
   mSceneMgr->setSkyBox(true, "Examples/SceneSkyBox");
+  addMapEntity(9000, MAP_TEST, 0, 0, 0 , NINjA_M);
 }
 
 
@@ -647,6 +649,7 @@ bool __attribute_deprecated__ OgreUI::addWorldEntity(int entityId,
   try
     {
       e = mSceneMgr->createEntity(ss.str(), meshmap.at(meshid).c_str());
+      playAnimation(entityId, 0, true);
     } catch (...)
     {
       return false;
@@ -655,8 +658,6 @@ bool __attribute_deprecated__ OgreUI::addWorldEntity(int entityId,
     e->setMaterialName(texturemap.at(texture_id));
   Ogre::SceneNode *s = worldNode->createChildSceneNode(ss.str());
   s->setPosition(x, 0, y);
-  mCamera->pitch(Ogre::Degree(-89));
-  mCamera->yaw(Ogre::Degree(20));
   s->attachObject(e);
   return (true);
 }
@@ -762,9 +763,8 @@ void OgreUI::moveEntity(int id, int x, int y, short degres)
 {
   std::stringstream ss;
   ss << id;
-
   Ogre::SceneNode *s = mSceneMgr->getSceneNode(ss.str());
-  s->setPosition(x, 0, y);
+  s->setPosition(Ogre::Vector3(x, 0, y));
   s->yaw(Ogre::Radian(world::Math::toRad(degres)));
 }
 
@@ -773,10 +773,7 @@ void OgreUI::addCameraTracker(int id)
   std::stringstream ss;
   ss << id;
   Ogre::SceneNode *s = mSceneMgr->getSceneNode(ss.str());
-  s->attachObject(mCamera);
-  mCamera->setPosition(mCamera->getPosition().x - 150,
-		       mCamera->getPosition().y + 150,
-		       mCamera->getPosition().z - 150);
+  rootNode = s;
   mCamera->lookAt(s->getPosition());
   mCamera->pitch(Ogre::Degree(5));
 }
@@ -812,7 +809,7 @@ bool OgreUI::addMapEntity(int entityId, gauntlet::EntityName meshid, int x,
     e->setMaterialName(texturemap.at(texture_id));
   Ogre::SceneNode *s = planNode->createChildSceneNode(ss.str());
   s->setPosition(x, 0, y);
-  s->setScale(0.5, 0.5, 0.5);
+  s->setScale(5, 5, 5);
   s->yaw(Ogre::Radian(world::Math::toRad(angle)));
   s->attachObject(e);
   return (true);
