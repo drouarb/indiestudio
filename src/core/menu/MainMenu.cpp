@@ -5,13 +5,14 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:09:17 2016 Esteban Lewis
-// Last update Wed May 25 19:44:37 2016 Esteban Lewis
+// Last update Thu May 26 11:00:46 2016 Esteban Lewis
 //
 
 #include <iostream>
 #include "MainMenu.hh"
 #include "Lobby.hh"
 #include "ConfMenu.hh"
+#include "MessageBox.hh"
 
 gauntlet::core::MainMenu::MainMenu(Core & core, int idStart, Menu * parent) :
   Menu(core, idStart, parent)
@@ -19,6 +20,7 @@ gauntlet::core::MainMenu::MainMenu(Core & core, int idStart, Menu * parent) :
   submenus.push_back(new SaveloadMenu(core, idStart + MENU_ID_LAYER, this));
   submenus.push_back(new ConfMenu(core, idStart + MENU_ID_LAYER, this));
   submenus.push_back(new Lobby(core, idStart + MENU_ID_LAYER, this));
+  submenus.push_back(new MessageBox(core, idStart + MENU_ID_LAYER, this, ""));
 }
 
 gauntlet::core::MainMenu::~MainMenu()
@@ -88,6 +90,13 @@ gauntlet::core::MainMenu::keyDown(Command cmd)
     }
 
   return (Menu::keyDown(cmd));
+}
+
+void
+gauntlet::core::MainMenu::message(std::string const & msg)
+{
+  static_cast<MessageBox *>(submenus[3])->setMsg(msg);
+  submenus[3]->setOpen(true);
 }
 
 void

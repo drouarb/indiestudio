@@ -122,7 +122,7 @@ gauntlet::core::Core::exit()
 {
   ogre.quit();
   if (packetf)
-    disconnect(false);
+    disconnect();
   killServer();
 }
 
@@ -150,7 +150,7 @@ gauntlet::core::Core::killServer()
   if (cpid > 0)
     {
       kill(cpid, SIGTERM);
-      waitpid(cpid, &status, WNOHANG);
+      waitpid(cpid, &status, 0);
       cpid = -1;
     }
 }
@@ -178,25 +178,27 @@ gauntlet::core::Core::initPacketf()
 }
 
 void
-gauntlet::core::Core::disconnect(bool send)
+gauntlet::core::Core::disconnect()
 {
-  network::PacketDisconnect pd("");
-
+  if (mutex.try_lock() == false)
+    return ;
   if (packetf)
     {
-      if (send)
-	packetf->send((network::Packet&)pd);
       packetf->stop();
-      delete packetf;
-
       listenThread->join();
+
+      delete packetf;
+      packetf = NULL;
       delete listenThread;
       listenThread = NULL;
 
-      packetf = NULL;
+      bool sendMsg = gameIsRunning();
       stop();
+      if (sendMsg)
+	static_cast<MainMenu *>(menu)->message("Disconnected from server.");
     }
   killServer();
+  mutex.unlock();
 }
 
 void

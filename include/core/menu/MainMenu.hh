@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:06:35 2016 Esteban Lewis
-// Last update Sat May 21 16:11:08 2016 Esteban Lewis
+// Last update Thu May 26 10:57:03 2016 Esteban Lewis
 //
 
 #ifndef  MAINMENU_HH_
@@ -36,6 +36,7 @@ namespace			gauntlet
       void			draw();
       void			undraw();
       bool			keyDown(Command);
+      void			message(std::string const &);
 
     protected:
       std::map<int, void (MainMenu::*)()> funs;

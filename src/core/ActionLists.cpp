@@ -12,41 +12,42 @@ gauntlet::core::ActionLists::~ActionLists()
 void
 gauntlet::core::ActionLists::doActions()
 {
-  for (std::list<network::PacketAddEntity*>::iterator it = packetsAddEntity.begin();
-       it != packetsAddEntity.end(); ++it)
+  if (packetsDisconnect.size() > 0 && core.gameIsRunning())
     {
-      core.ogre.addWorldEntity((*it)->getEntityId(), (EntityName)(*it)->getMeshId(),
-			       (*it)->getX(), (*it)->getY(), (*it)->getAngle(),
-			       static_cast<gauntlet::TextureName>
-			       ((*it)->getTextureId()));
-      core.ogre.playAnimation((*it)->getEntityId(), 0, true);
-      if (pendingTracker && (*it)->getEntityId() == entityIdTracker)
+      core.disconnect();
+    }
+  else
+    {
+      for (std::list<network::PacketAddEntity*>::iterator it = packetsAddEntity.begin();
+	   it != packetsAddEntity.end(); ++it)
 	{
-	  core.ogre.addCameraTracker((*it)->getEntityId());
-	  pendingTracker = false;
+	  core.ogre.addWorldEntity((*it)->getEntityId(), (EntityName)(*it)->getMeshId(),
+				   (*it)->getX(), (*it)->getY(), (*it)->getAngle(),
+				   static_cast<gauntlet::TextureName>
+				   ((*it)->getTextureId()));
+	  core.ogre.playAnimation((*it)->getEntityId(), 0, true);
+
+	  if (pendingTracker && (*it)->getEntityId() == entityIdTracker)
+	    {
+	      core.ogre.addCameraTracker((*it)->getEntityId());
+	      pendingTracker = false;
+	    }
+	}
+
+      for (std::list<network::PacketMoveEntity*>::iterator it = packetsMoveEntity.begin();
+	   it != packetsMoveEntity.end(); ++it)
+	{
+	  core.ogre.addWorldEntity((*it)->getEntityId(), (EntityName)0,
+				   (*it)->getX(), (*it)->getY(), (*it)->getAngle(),
+				   gauntlet::TextureName::TEXTURE_NONE);
+	}
+
+      for (std::list<network::PacketDeleteEntity*>::iterator
+	     it = packetsDeleteEntity.begin(); it != packetsDeleteEntity.end(); ++it)
+	{
+	  core.ogre.removeEntity((*it)->getEntityId());
 	}
     }
-
-  for (std::list<network::PacketDisconnect*>::iterator it = packetsDisconnect.begin();
-       it != packetsDisconnect.end(); ++it)
-    {
-      //TODO: disconnect
-      (void)it;
-    }
-
-  for (std::list<network::PacketMoveEntity*>::iterator it = packetsMoveEntity.begin();
-       it != packetsMoveEntity.end(); ++it)
-    {
-      core.ogre.addWorldEntity((*it)->getEntityId(), (EntityName)0,
-			       (*it)->getX(), (*it)->getY(), (*it)->getAngle(), gauntlet::TextureName::TEXTURE_NONE);
-    }
-
-  for (std::list<network::PacketDeleteEntity*>::iterator it = packetsDeleteEntity.begin();
-       it != packetsDeleteEntity.end(); ++it)
-    {
-      core.ogre.removeEntity((*it)->getEntityId());
-    }
-
   clearActions();
 }
 
