@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 20:56:05 2016 Alexis Trouve
-// Last update Wed May 25 18:09:38 2016 Alexis Trouve
+// Last update Thu May 26 11:30:01 2016 Alexis Trouve
 //
 
 #ifndef GAMESERVER_HH_
@@ -36,6 +36,7 @@ namespace gauntlet
       std::string	name;
       int		socketId;
       bool		isTake;
+      int		idPlayer;
     };
 
     class GameServer

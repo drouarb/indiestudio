@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Thu May 26 11:28:34 2016 Alexis Trouve
+// Last update Thu May 26 11:35:21 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -30,13 +30,14 @@ GameServer::GameServer(const std::string& filePath, in_port_t port)
     std::cout << "errorMap" << std::endl;
   }
   packetFact = new PacketFactory(port);
-  players.push_back({"Barbare", -1, false});
-  players.push_back({"Mage", -1, false});
-  players.push_back({"Valkyrie", -1, false});
-  players.push_back({"Elf", -1, false});
+  players.push_back({"Barbare", -1, false, -1});
+  players.push_back({"Mage", -1, false, -1});
+  players.push_back({"Valkyrie", -1, false, -1});
+  players.push_back({"Elf", -1, false, -1});
   listeners.push_back(new ServConnectListener(this));
   listeners.push_back(new ServSelectPlayerListener(this));
   listeners.push_back(new ServDisconnectListener(this));
+  //playerControl
   maxPlayers = 4;
   coPlayers = 0;
   i = 0;
@@ -68,6 +69,7 @@ void		GameServer::selectPlayerAnswer(const network::PacketSelectPlayer *packet)
   int		nbrChoose;
   int		iTaken;
   unsigned int	i;
+  int		id;
 
   i = 0;
   nbrChoose = -1;
@@ -112,9 +114,10 @@ void		GameServer::selectPlayerAnswer(const network::PacketSelectPlayer *packet)
       players[iTaken].socketId = packet->getSocketId();
       connectTmp.erase(connectTmp.begin() + i);
       dataSendMutex.lock();
-      PacketStartGame	myPacket(world->addNewBody(world->getSpawnPoint().first,
-						   world->getSpawnPoint().second,
-						   players[iTaken].name, 0));
+      PacketStartGame	myPacket((id = world->addNewBody(world->getSpawnPoint().first,
+							 world->getSpawnPoint().second,
+							 players[iTaken].name, 0)));
+      players[iTaken].idPlayer = id;
       packetFact->send(myPacket, packet->getSocketId());
       dataSendThread = new std::thread(std::bind(&GameServer::sendDatas, std::ref(*this), packet->getSocketId()));
       dataSendThread->join();
