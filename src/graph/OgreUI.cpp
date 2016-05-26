@@ -387,7 +387,7 @@ void OgreUI::addProgressBar(gauntlet::core::Position pos, int id,
   OgreBites::ProgressBar *p = mTrayMgr->createProgressBar(posmap.at(pos),
 							  ss.str(),
 							  text, 300, 10);
-  p->setProgress((float)(value / 100));
+  p->setProgress((float)value / 100);
 }
 
 void OgreUI::addSelectMenu(gauntlet::core::Position pos, int id,
@@ -455,7 +455,7 @@ void OgreUI::updateItemValue(int itemid, struct t_hitItem item)
 	{
 	  OgreBites::ProgressBar *p = static_cast<OgreBites::ProgressBar *>(mTrayMgr->getWidget(
 		  ss.str()));
-	  p->setProgress((float)(item.value / 100));
+	  p->setProgress((float)item.value / 100);
 	}
       break;
       case MenuItemType::TEXTBOX:
