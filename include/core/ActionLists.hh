@@ -34,6 +34,7 @@ namespace			gauntlet
       bool			pendingTracker;
       int			entityIdTracker;
 
+      std::list<network::Packet*> allPackets;
       std::list<network::PacketAddEntity*> packetsAddEntity;
       std::list<network::PacketDisconnect*> packetsDisconnect;
       std::list<network::PacketMoveEntity*> packetsMoveEntity;

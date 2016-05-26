@@ -58,12 +58,14 @@ gauntlet::core::ActionLists::pushAddEntity(const network::PacketAddEntity * pack
 			     (packet->getEntityId(), packet->getTextureId(),
 			      packet->getMeshId(), packet->getX(), packet->getY(),
 			      packet->getAngle()));
+  allPackets.push_back(packetsAddEntity.back());
 }
 
 void
 gauntlet::core::ActionLists::pushDisconnect(const network::PacketDisconnect * packet)
 {
   packetsDisconnect.push_back(new network::PacketDisconnect(packet->getMessage()));
+  allPackets.push_back(packetsDisconnect.back());
 }
 
 void
@@ -73,43 +75,29 @@ gauntlet::core::ActionLists::pushMoveEntity(const network::PacketMoveEntity * pa
 			      (packet->getEntityId(),
 			       packet->getX(), packet->getY(),
 			       packet->getAngle()));
+  allPackets.push_back(packetsMoveEntity.back());
 }
 
 void
 gauntlet::core::ActionLists::pushDeleteEntity(const network::PacketDeleteEntity * packet)
 {
   packetsDeleteEntity.push_back(new network::PacketDeleteEntity(packet->getEntityId()));
+  allPackets.push_back(packetsDeleteEntity.back());
 }
 
 void
 gauntlet::core::ActionLists::clearActions()
 {
-  for (std::list<network::PacketAddEntity*>::iterator it = packetsAddEntity.begin();
-       it != packetsAddEntity.end(); ++it)
+  for (std::list<network::Packet*>::iterator it = allPackets.begin();
+       it != allPackets.end(); ++it)
     {
       delete *it;
     }
+  allPackets.clear();
+
   packetsAddEntity.clear();
-
-  for (std::list<network::PacketDisconnect*>::iterator it = packetsDisconnect.begin();
-       it != packetsDisconnect.end(); ++it)
-    {
-      delete *it;
-    }
   packetsDisconnect.clear();
-
-  for (std::list<network::PacketMoveEntity*>::iterator it = packetsMoveEntity.begin();
-       it != packetsMoveEntity.end(); ++it)
-    {
-      delete *it;
-    }
   packetsMoveEntity.clear();
-
-  for (std::list<network::PacketDeleteEntity*>::iterator it = packetsDeleteEntity.begin();
-       it != packetsDeleteEntity.end(); ++it)
-    {
-      delete *it;
-    }
   packetsDeleteEntity.clear();
 }
 
