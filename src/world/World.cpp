@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Fri May 27 17:12:52 2016 Alexis Trouve
+// Last update Fri May 27 18:37:21 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -116,7 +116,6 @@ void	World::loadGame(std::string const & file)
 
 void	World::applyMoveActor()
 {
-  std::cout << "world applyMoveActor" << std::endl;
   std::list<ABody*>::iterator	it1;
   ABody				*body;
   Actor				*actor;
@@ -132,12 +131,10 @@ void	World::applyMoveActor()
 	}
       it1++;
     }
-  std::cout << "world applyMoveActor end" << std::endl;
 }
 
 void		World::applyAI()
 {
-  std::cout << "world applyAI" << std::endl;
   std::list<ABody*>::iterator	it1;
   unsigned int	i;
   unsigned int	j;
@@ -162,7 +159,6 @@ void		World::applyAI()
 	}
       ++j;
     }
-  std::cout << "world applyAI end" << std::endl;
 }
 
 void		World::gameLoop()

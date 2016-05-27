@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 20:56:05 2016 Alexis Trouve
-// Last update Fri May 27 15:29:43 2016 Alexis Trouve
+// Last update Fri May 27 18:38:09 2016 Alexis Trouve
 //
 
 #ifndef GAMESERVER_HH_
@@ -30,6 +30,7 @@
 #include "PacketDeleteParticle.hh"
 #include "PacketPlaySound.hh"
 #include "PacketStopSound.hh"
+#include "PacketAnimation.hh"
 #include "ABody.hh"
 
 namespace gauntlet
