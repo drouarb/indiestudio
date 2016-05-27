@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Fri May 27 17:45:01 2016 Alexis Trouve
+// Last update Fri May 27 18:38:28 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -342,8 +342,7 @@ void		GameServer::sendStopSound(int id)
 
 void		GameServer::sendSound(unsigned int soundId, int id, bool loop, const std::pair<double, double>& pos)
 {
-#warning "Alexis oublie pas de remplacer les coordonées du PacketPlaySound"
-  PacketPlaySound	packet(soundId, id, 0, 0, loop);
+  PacketPlaySound	packet(soundId, id, pos.first, pos.second, loop);
   unsigned int		i;
 
   i = 0;
@@ -356,10 +355,15 @@ void		GameServer::sendSound(unsigned int soundId, int id, bool loop, const std::
 
 void		GameServer::animeEntity(int id, unsigned int idAnime)
 {
-  /*int		i;
+  PacketAnimation	packet(id, idAnime);
+  unsigned int		i;
 
   i = 0;
-  while (*/
+  while (i < players.size())
+    {
+      packetFact->send(packet, players[i].socketId);
+      ++i;
+    }
 }
 
 void		GameServer::listen()
@@ -367,7 +371,7 @@ void		GameServer::listen()
   std::cout << "listen" << std::endl;
   while (42)
     {
-      std::cout << "-- server listen" << std::endl;
+      std::cout << "server listen" << std::endl;
       packetFact->recv();
     }
   std::cout << "listenEnd" << std::endl;
