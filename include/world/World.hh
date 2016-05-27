@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:51:22 2016 Alexis Trouve
-// Last update Fri May 27 13:21:57 2016 Esteban Lewis
+// Last update Fri May 27 14:43:55 2016 Alexis Trouve
 //
 
 #ifndef WORLD_HH_
@@ -30,6 +30,22 @@ namespace			gauntlet
 {
   namespace			world
   {
+    struct			soundGlobal
+    {
+      int			Id;
+      std::pair<double, double>	pos;
+      unsigned int		soundId;
+    };
+
+    struct			effectGlobal
+    {
+      int			Id;
+      std::pair<double, double>	pos;
+      unsigned int		effectId;
+      short			orientation;
+      int			decayTime;
+    };
+
     class			GameServer;
     
     class			World
@@ -43,8 +59,9 @@ namespace			gauntlet
       double			sizeY;
       std::pair<double, double>	spawnPoint;
       GameServer		*gameServer;
-      std::vector<int>		effectTab;
-      std::vector<int>		soundTab;
+      std::vector<effectGlobal>	effectTab;
+      std::vector<soundGlobal>	soundTab;
+      
       //network::PacketFactory	packetFactory;
     private:
       int			getUniqueEffectId();
@@ -64,11 +81,18 @@ namespace			gauntlet
       Collider&			getCollider();
       const std::pair<double, double>&	getSpawnPoint();
       std::list<ABody*>		getBodysByCopy() const;
-      int			triggerEffect(gauntlet::EffectName effect, std::pair<double, double> pos,
-					      int decayTime);
+      const std::vector<effectGlobal>&	getEffect() const;
+      const std::vector<soundGlobal>&	getSound() const;
+      void			putEffect(unsigned int effectId, short orient,
+					      const std::pair<double, double>& pos);
+      int			triggerEffect(gauntlet::EffectName effect, short orient,
+					      const std::pair<double, double>& pos, int decayTime);
+      int			triggerEffect(gauntlet::EffectName effect,
+					      const std::pair<double, double>& pos, int decayTime);
       void			stopEffect(int id);
       int			getUniqueSoundId();
-      int			playSound(unsigned int soundId, bool loop);
+      void			putSound(unsigned int soundId, const std::pair<double, double>& pos);
+      int			playSound(unsigned int soundId, bool loop, const std::pair<double, double>& pos);
       void			stopSound(int idToStop);
       void			applyCommand(Player & player, core::Command command);
     };

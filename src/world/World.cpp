@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Fri May 27 13:22:25 2016 Esteban Lewis
+// Last update Fri May 27 14:44:52 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -263,14 +263,59 @@ int				World::getUniqueEffectId()
   return (++i);
 }
 
-int				World::triggerEffect(gauntlet::EffectName effect,
-						     std::pair<double, double> pos, int decayTime)
+void				World::putEffect(unsigned int effectId, short orient,
+						 const std::pair<double, double>& pos)
 {
   int				id;
+  effectGlobal			eff;
 
   id = getUniqueEffectId();
-  gameServer->sendEffect(effect, id, pos, decayTime);
-  effectTab.push_back(id);
+  gameServer->sendEffect(effectId, id, orient, pos, -1);
+  eff.Id = id;
+  eff.pos = pos;
+  eff.effectId = effectId;
+  eff.orientation = orient;
+  eff.decayTime = -1;
+  effectTab.push_back(eff);
+}
+
+int				World::triggerEffect(gauntlet::EffectName effect, short orient,
+						     const std::pair<double, double>& pos, int decayTime)
+{
+  int				id;
+  unsigned int			effectId;
+  effectGlobal			eff;
+
+  id = getUniqueEffectId();
+  effectId = static_cast<unsigned int>(effect);
+  gameServer->sendEffect(effectId, id, orient, pos, decayTime);
+  eff.Id = id;
+  eff.pos = pos;
+  eff.effectId = effectId;
+  eff.orientation = orient;
+  eff.decayTime = decayTime;
+  effectTab.push_back(eff);
+  return (id);
+}
+
+#warning "mettre un rand en dessous orientation"
+
+int				World::triggerEffect(gauntlet::EffectName effect,
+						     const std::pair<double, double>& pos, int decayTime)
+{
+  int				id;
+  unsigned int			effectId;
+  effectGlobal			eff;
+
+  id = getUniqueEffectId();
+  effectId = static_cast<unsigned int>(effect);
+  gameServer->sendEffect(effectId, id, 0, pos, decayTime);
+  eff.Id = id;
+  eff.pos = pos;
+  eff.effectId = effectId;
+  eff.orientation = 0;
+  eff.decayTime = decayTime;
+  effectTab.push_back(eff);
   return (id);
 }
 
@@ -281,7 +326,7 @@ void				World::stopEffect(int id)
   i = 0;
   while (i < effectTab.size())
     {
-      if (effectTab[i] == id)
+      if (effectTab[i].Id == id)
 	{
 	  gameServer->sendStopEffect(id);
 	  effectTab.erase(effectTab.begin() + i);
@@ -298,13 +343,31 @@ int				World::getUniqueSoundId()
   return (++id);
 }
 
-int				World::playSound(unsigned int soundId, bool loop)
+void				World::putSound(unsigned int soundId, const std::pair<double, double>& pos)
 {
   int				id;
+  soundGlobal			sound;
 
   id = getUniqueEffectId();
-  gameServer->sendSound(soundId, id, loop);
-  soundTab.push_back(id);
+  gameServer->sendSound(soundId, id, true, pos);
+  sound.Id = id;
+  sound.pos = pos;
+  sound.soundId = soundId;
+  soundTab.push_back(sound);
+}
+
+int				World::playSound(unsigned int soundId, bool loop,
+						 const std::pair<double, double>& pos)
+{
+  int				id;
+  soundGlobal			sound;
+
+  id = getUniqueEffectId();
+  gameServer->sendSound(soundId, id, loop, pos);
+  sound.Id = id;
+  sound.pos = pos;
+  sound.soundId = soundId;
+  soundTab.push_back(sound);
   return (id);
 }
 
@@ -315,7 +378,7 @@ void				World::stopSound(int idToStop)
   i = 0;
   while (i < soundTab.size())
     {
-      if (soundTab[i] == idToStop)
+      if (soundTab[i].Id == idToStop)
 	{
 	  gameServer->sendStopSound(idToStop);
 	  soundTab.erase(soundTab.begin() + i);
@@ -323,6 +386,16 @@ void				World::stopSound(int idToStop)
 	}
       ++i;
     }
+}
+
+const std::vector<effectGlobal>&	World::getEffect() const
+{
+  return (effectTab);
+}
+
+const std::vector<soundGlobal>&		World::getSound() const
+{
+  return (soundTab);
 }
 
 void				World::applyCommand(Player & player, core::Command command)

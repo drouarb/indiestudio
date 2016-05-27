@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 20:56:05 2016 Alexis Trouve
-// Last update Thu May 26 17:46:01 2016 Alexis Trouve
+// Last update Fri May 27 14:41:48 2016 Alexis Trouve
 //
 
 #ifndef GAMESERVER_HH_
@@ -73,10 +73,10 @@ namespace gauntlet
       void		sendMap();
       void		sendAddEntity(ABody *body);
       void		sendMoveId(ABody *body);
-      void		sendEffect(gauntlet::EffectName effect, int id, std::pair<double, double> pos,
-				   int decayTime);
+      void		sendEffect(unsigned int effect, int id, short orient,
+				   const std::pair<double, double>& pos, int decayTime);
       void		sendStopEffect(int id);
-      void		sendSound(unsigned int soundId, int id, bool loop);
+      void		sendSound(unsigned int soundId, int id, bool loop, const std::pair<double, double>& pos);
       void		sendStopSound(int id);
       void		listen();
     };
