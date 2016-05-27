@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 14:44:15 2016 Alexis Trouve
-// Last update Fri May 27 20:00:37 2016 Alexis Trouve
+// Last update Fri May 27 21:33:07 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -52,8 +52,9 @@ bool				Collider::applyVectorToId(int id, short orient, double speed)
 
   if ((body = dynamicLayer->getBodyId(id)) == NULL)
     return (false);
-  vectY = (Math::sin(orient) * speed);
-  vectX = (Math::cos(orient) * speed);
+  vectY = -(Math::sin(orient) * speed);
+  vectX = -(Math::cos(orient) * speed);
+  std::cout << "orient: " << orient << ", vectX : " << vectX << ", vectY : " << vectY << std::endl;
   sizeB = body->getSize();
   posB = body->getPos();
   if (physicLayer->checkCoordSizeIsEmpty(posB.first + vectX, posB.second, sizeB.first, sizeB.second) == true)
