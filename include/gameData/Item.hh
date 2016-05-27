@@ -32,6 +32,7 @@ namespace gauntlet {
         Stats   getStats();
         bool    isConsumable();
         bool    isKey();
+        void    setKey(bool key);
         bool    operator==(Item item);
         bool    operator<(Item item);
         int     getNewId();

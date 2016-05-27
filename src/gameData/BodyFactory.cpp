@@ -54,6 +54,8 @@ void			BodyFactory::fillCreatureTab()
 void			BodyFactory::fillGameObjectTab()
 {
   setPorteLight();
+  setDoor();
+  setKey();
 }
 
 void			BodyFactory::setBarbare()
@@ -174,10 +176,13 @@ void			BodyFactory::setDraugr()
     }
 }
 
-void            BodyFactory::setKey(Item *key)
+void            BodyFactory::setKey()
 {
   GameObject		*obj;
+  Item              *key;
 
+  key = new Item();
+  key->setKey(true);
   obj = new GameObject(-1, world);
   obj->setBasicParameters("Key", true, false);
   obj->setCollide(false);

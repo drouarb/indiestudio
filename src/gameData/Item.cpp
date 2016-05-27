@@ -54,3 +54,9 @@ bool    gauntlet::Item::isKey() {
     return key;
 }
 
+void Item::setKey(bool _key) {
+    key = _key;
+}
+
+
+
