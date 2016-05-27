@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Fri May 27 19:35:00 2016 Esteban Lewis
+// Last update Fri May 27 19:47:57 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -15,6 +15,7 @@
 #include "World.hh"
 #include "Math.hh"
 #include "IJson.hpp"
+#include "Rand.hh"
 
 using namespace	gauntlet;
 using namespace world;
@@ -309,7 +310,7 @@ int				World::triggerEffect(gauntlet::EffectName effect,
   eff->Id = id;
   eff->pos = pos;
   eff->effectId = effectId;
-  eff->orientation = rand() % 628;
+  eff->orientation = Rand::generate() % 628;
   eff->decayTime = decayTime;
   effectTab.push_back(eff);
   return (id);

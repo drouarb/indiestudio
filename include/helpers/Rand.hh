@@ -3,6 +3,7 @@
 
 class			Rand
 {
+public:
   static int		generate();
 };
 
