@@ -40,6 +40,8 @@ namespace gauntlet
 
       std::list<ABody *> giveBodyInAreaCircle(double posx, double posy, short unused, double radius, short unused2);
       std::list<ABody*>	giveBodyInAreaCone(double posx, double posy, short ref_angle, double size, short cone_angle);
+
+        std::list<ABody *> giveBodyInAreaflightPath(double posx, double posy, short ref_angle, double size, short cone_angle);
     };
   };
 };
