@@ -14,10 +14,16 @@ using namespace gauntlet;
 
 gauntlet::Item::Item()
 {
+    consumable = false;
 }
 
 gauntlet::Item::~Item()
 {
+}
+
+int     gauntlet::Item::getNewId() {
+    static int  i = 0;
+    return (i++);
 }
 
 Stats   gauntlet::Item::getStats() {
@@ -32,3 +38,13 @@ bool    gauntlet::Item::operator==(Item item)
 {
     return this->id == item.id;
 }
+
+bool    gauntlet::Item::operator<(Item item)
+{
+    return true; //ne modifie pas l'ordre pour merge. sujet à changement.
+}
+
+bool    gauntlet::Item::isKey() {
+    return key;
+}
+

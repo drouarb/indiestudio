@@ -12,6 +12,7 @@
 # define ITEM_HH_
 
 #include "Stats.hh"
+
 namespace gauntlet {
     class Item {
     private:
@@ -20,6 +21,7 @@ namespace gauntlet {
         int id;
         int number;
         int price;
+        bool key;
         Stats stats;
     public:
         Item();
@@ -27,7 +29,10 @@ namespace gauntlet {
 
         Stats   getStats();
         bool    isConsumable();
+        bool    isKey();
         bool    operator==(Item item);
+        bool    operator<(Item item);
+        int     getNewId();
     };
 };
 

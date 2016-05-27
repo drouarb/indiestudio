@@ -16,6 +16,16 @@ ItemContainer::~ItemContainer()
 
 }
 
+void ItemContainer::operator+=(ItemContainer *itemContainer)
+{
+    itemList.merge(itemContainer->itemList);
+}
+
 void ItemContainer::remove(gauntlet::Item item) {
     this->itemList.remove(item);
 }
+
+std::list<Item> *ItemContainer::getItemList() {
+    return &this->itemList;
+}
+
