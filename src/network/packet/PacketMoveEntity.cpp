@@ -9,7 +9,7 @@ gauntlet::network::PacketMoveEntity::PacketMoveEntity(s_socketData data) :
     this->deserialize(data.data);
 }
 
-gauntlet::network::PacketMoveEntity::PacketMoveEntity(unsigned int entityId, int x, int y, short angle) :
+gauntlet::network::PacketMoveEntity::PacketMoveEntity(unsigned int entityId, double x, double y, short angle) :
         Packet(gauntlet::network::MOVE_ENTITY, -1),
         entityId(entityId),
         x(x),
@@ -45,11 +45,11 @@ unsigned int gauntlet::network::PacketMoveEntity::getEntityId() const {
     return entityId;
 }
 
-int gauntlet::network::PacketMoveEntity::getX() const {
+double gauntlet::network::PacketMoveEntity::getX() const {
     return x;
 }
 
-int gauntlet::network::PacketMoveEntity::getY() const {
+double gauntlet::network::PacketMoveEntity::getY() const {
     return y;
 }
 
