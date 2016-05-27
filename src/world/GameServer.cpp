@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Fri May 27 18:38:28 2016 Alexis Trouve
+// Last update Fri May 27 19:56:04 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -259,7 +259,7 @@ void		GameServer::sendMap()
 
 void		GameServer::sendAddEntity(ABody *body)
 {
-  std::cout << "sendAddEntity" << body->getEntityId() << " " << body->getPos().first << ":" << body->getPos().second << std::endl;
+  std::cout << "sendAddEntity" << body->getEntityId() << " " << body->getPos().first << ":" << body->getPos().second << ":" << body->getOrientation() << std::endl;
   unsigned int	i;
   network::PacketAddEntity	packet(body->getEntityId(), body->getTextureId(), body->getMeshId(), static_cast<int>(body->getPos().first), static_cast<int>(body->getPos().second), body->getOrientation());
   std::cout << packet.getEntityId() << std::endl;
@@ -278,6 +278,7 @@ void		GameServer::sendMoveId(ABody *body)
   network::PacketMoveEntity	packet(body->getEntityId(), body->getPos().first,
 				       body->getPos().second, body->getOrientation());
   unsigned int	i;
+  std::cout << "send angle : " << body->getOrientation() << std::endl;
   i = 0;
   while (i < players.size())
     {
@@ -289,6 +290,7 @@ void		GameServer::sendMoveId(ABody *body)
 void		GameServer::controlInput(const network::PacketControl *packet)
 {
   unsigned int	i;
+  ABody		*body;
 
   i = 0;
   while (i < players.size())
@@ -297,6 +299,8 @@ void		GameServer::controlInput(const network::PacketControl *packet)
 	break;
       ++i;
     }
+  body = world->getBodyById(players[i].idPlayer);
+  body->changeOrientation(packet->getAngle());
   world->applyCommand(players[i].idPlayer, static_cast<core::Command>(packet->getCmd()));
 }
 
