@@ -1,5 +1,4 @@
 {
-    {
     name : "Default map",
     length : "10000",
     width : "10000",
@@ -27,12 +26,5 @@
 	}
     ],
     particles:
-    [
-	{
-	    id : "2",
-	    x : "300",
-	    y : "300",
-	    angle : "0"
-	}
-    ]
+    [ ]
 }

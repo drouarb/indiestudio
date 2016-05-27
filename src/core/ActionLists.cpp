@@ -2,6 +2,7 @@
 #include "Core.hh"
 #include "EffectName.hh"
 #include "SoundName.hh"
+#include "Math.hh"
 
 gauntlet::core::ActionLists::ActionLists(Core & core) : core(core), pendingTracker(false)
 { }
@@ -48,7 +49,8 @@ gauntlet::core::ActionLists::doActions()
 	   it != packetsAddEntity.end(); ++it)
 	{
 	  core.ogre.addWorldEntity((*it)->getEntityId(), (EntityName)(*it)->getMeshId(),
-				   (*it)->getX(), (*it)->getY(), (*it)->getAngle(),
+				   (*it)->getX(), (*it)->getY(),
+				   (*it)->getAngle() - world::Math::A_RIGHT,
 				   static_cast<gauntlet::TextureName>
 				   ((*it)->getTextureId()));
 	  core.ogre.playAnimation((*it)->getEntityId(), 0, true);
@@ -64,7 +66,8 @@ gauntlet::core::ActionLists::doActions()
 	   it != packetsMoveEntity.end(); ++it)
 	{
 	  core.ogre.addWorldEntity((*it)->getEntityId(), (EntityName)0,
-				   (*it)->getX(), (*it)->getY(), (*it)->getAngle(),
+				   (*it)->getX(), (*it)->getY(),
+				   (*it)->getAngle() - world::Math::A_RIGHT,
 				   gauntlet::TextureName::TEXTURE_NONE);
 	}
 
