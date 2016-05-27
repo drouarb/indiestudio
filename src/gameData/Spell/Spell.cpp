@@ -22,7 +22,7 @@ gauntlet::Spell::~Spell() {
 
 }
 
-const std::map<gauntlet::Spell::Area , gauntlet::Spell::patternFun> gauntlet::Spell::patternTypes = {
+const std::map<gauntlet::Area , gauntlet::Spell::patternFun> gauntlet::Spell::patternTypes = {
         {CIRCLE, &world::Collider::giveBodyInAreaCircle},
         {CONE, &world::Collider::giveBodyInAreaCone},
         {COLUMN, &world::Collider::giveBodyInAreaCone},
@@ -86,7 +86,32 @@ void gauntlet::Spell::setConeAngle(short _angle)
     this->angle = _angle;
 }
 
+long			gauntlet::Spell::getDamage() const
+{
+  return (damage);
+}
 
+short			gauntlet::Spell::getAngle() const
+{
+  return (angle);
+}
 
+gauntlet::Area		gauntlet::Spell::getAreaType() const
+{
+  return (pattern);
+}
 
+double			gauntlet::Spell::getRadius() const
+{
+  return (radius);
+}
 
+double			gauntlet::Spell::getRange() const
+{
+  return (range);
+}
+
+const std::string&	gauntlet::Spell::getName() const
+{
+  return (name);
+}
