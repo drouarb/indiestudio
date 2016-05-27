@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Thu May 26 18:00:19 2016 Alexis Trouve
+// Last update Fri May 27 14:51:45 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -274,8 +274,10 @@ void		GameServer::controlInput(const network::PacketControl *packet)
   std::cout << "ici c'est le lol" << std::endl;
 }
 
-void		GameServer::sendEffect(gauntlet::EffectName effect, int id,
-				       std::pair<double, double> pos, int decayTime)
+#warning "l'orientation dans le sendEffect"
+
+void		GameServer::sendEffect(unsigned int effect, int id, short orient,
+				       const std::pair<double, double>& pos, int decayTime)
 {
   PacketAddParticle	packet(effect, id, pos.first, pos.second, decayTime);
   unsigned int		i;
@@ -314,7 +316,9 @@ void		GameServer::sendStopSound(int id)
     }
 }
 
-void		GameServer::sendSound(unsigned int soundId, int id, bool loop)
+#warning "le pos dans le sendSound"
+
+void		GameServer::sendSound(unsigned int soundId, int id, bool loop, const std::pair<double, double>& pos)
 {
 #warning "Alexis oublie pas de remplacer les coordonées du PacketPlaySound"
   PacketPlaySound	packet(soundId, id, 0, 0, loop);

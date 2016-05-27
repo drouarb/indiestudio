@@ -1,13 +1,3 @@
-//
-// World.cpp for indie in /home/lewis_e/rendu/cpp/cpp_indie_studio
-// 
-// Made by Esteban Lewis
-// Login   <lewis_e@epitech.net>
-// 
-// Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Fri May 27 14:35:37 2016 Esteban Lewis
-//
-
 #include <iostream>
 #include <fstream>
 #include <stdexcept>
@@ -89,24 +79,24 @@ void	World::loadGame(std::string const & file)
       JSON::JsonArr & sounds = dynamic_cast<JSON::JsonArr &>(json.GetObj("sounds"));
       for (int i = 0; i < sounds.Size(); ++i)
 	{
-	  /*JSON::JsonObj & obj = dynamic_cast<JSON::JsonObj &>(sounds[i]);
-	  putEffect(dynamic_cast<JSON::JsonStr &>(obj.GetObj("id")).Get(),
-		    std::pair<double, double>
-		    (stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("x")).Get()),
-		    stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("y")).Get())));*/
+	  JSON::JsonObj & obj = dynamic_cast<JSON::JsonObj &>(sounds[i]);
+	  putSound(stoi(dynamic_cast<JSON::JsonStr &>(obj.GetObj("id")).Get()),
+		   std::pair<double, double>
+		   (stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("x")).Get()),
+		    stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("y")).Get())));
 	}
 
       JSON::JsonArr & particles = dynamic_cast<JSON::JsonArr &>
 	(json.GetObj("particles"));
       for (int i = 0; i < particles.Size(); ++i)
 	{
-	  /*JSON::JsonObj & obj = dynamic_cast<JSON::JsonObj &>(particles[i]);
-	  putSound(dynamic_cast<JSON::JsonStr &>(obj.GetObj("id")).Get(),
-		   Math::getAngleFromDegrees
-		   (stoi(dynamic_cast<JSON::JsonStr &>(obj.GetObj("angle")).Get())),
-		   std::pair<double, double>
-		   (stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("x")).Get()),
-		   stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("y")).Get())));*/
+	  JSON::JsonObj & obj = dynamic_cast<JSON::JsonObj &>(particles[i]);
+	  putEffect(stoi(dynamic_cast<JSON::JsonStr &>(obj.GetObj("id")).Get()),
+		    Math::getAngleFromDegrees
+		    (stoi(dynamic_cast<JSON::JsonStr &>(obj.GetObj("angle")).Get())),
+		    std::pair<double, double>
+		    (stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("x")).Get()),
+		     stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("y")).Get())));
 	}
     }
   catch (std::runtime_error & e)
@@ -280,14 +270,59 @@ int				World::getUniqueEffectId()
   return (++i);
 }
 
-int				World::triggerEffect(gauntlet::EffectName effect,
-						     std::pair<double, double> pos, int decayTime)
+void				World::putEffect(unsigned int effectId, short orient,
+						 const std::pair<double, double>& pos)
 {
   int				id;
+  effectGlobal			eff;
 
   id = getUniqueEffectId();
-  gameServer->sendEffect(effect, id, pos, decayTime);
-  effectTab.push_back(id);
+  gameServer->sendEffect(effectId, id, orient, pos, -1);
+  eff.Id = id;
+  eff.pos = pos;
+  eff.effectId = effectId;
+  eff.orientation = orient;
+  eff.decayTime = -1;
+  effectTab.push_back(eff);
+}
+
+int				World::triggerEffect(gauntlet::EffectName effect, short orient,
+						     const std::pair<double, double>& pos, int decayTime)
+{
+  int				id;
+  unsigned int			effectId;
+  effectGlobal			eff;
+
+  id = getUniqueEffectId();
+  effectId = static_cast<unsigned int>(effect);
+  gameServer->sendEffect(effectId, id, orient, pos, decayTime);
+  eff.Id = id;
+  eff.pos = pos;
+  eff.effectId = effectId;
+  eff.orientation = orient;
+  eff.decayTime = decayTime;
+  effectTab.push_back(eff);
+  return (id);
+}
+
+#warning "mettre un rand en dessous orientation"
+
+int				World::triggerEffect(gauntlet::EffectName effect,
+						     const std::pair<double, double>& pos, int decayTime)
+{
+  int				id;
+  unsigned int			effectId;
+  effectGlobal			eff;
+
+  id = getUniqueEffectId();
+  effectId = static_cast<unsigned int>(effect);
+  gameServer->sendEffect(effectId, id, 0, pos, decayTime);
+  eff.Id = id;
+  eff.pos = pos;
+  eff.effectId = effectId;
+  eff.orientation = 0;
+  eff.decayTime = decayTime;
+  effectTab.push_back(eff);
   return (id);
 }
 
@@ -298,7 +333,7 @@ void				World::stopEffect(int id)
   i = 0;
   while (i < effectTab.size())
     {
-      if (effectTab[i] == id)
+      if (effectTab[i].Id == id)
 	{
 	  gameServer->sendStopEffect(id);
 	  effectTab.erase(effectTab.begin() + i);
@@ -315,13 +350,31 @@ int				World::getUniqueSoundId()
   return (++id);
 }
 
-int				World::playSound(unsigned int soundId, bool loop)
+void				World::putSound(unsigned int soundId, const std::pair<double, double>& pos)
 {
   int				id;
+  soundGlobal			sound;
 
   id = getUniqueEffectId();
-  gameServer->sendSound(soundId, id, loop);
-  soundTab.push_back(id);
+  gameServer->sendSound(soundId, id, true, pos);
+  sound.Id = id;
+  sound.pos = pos;
+  sound.soundId = soundId;
+  soundTab.push_back(sound);
+}
+
+int				World::playSound(unsigned int soundId, bool loop,
+						 const std::pair<double, double>& pos)
+{
+  int				id;
+  soundGlobal			sound;
+
+  id = getUniqueEffectId();
+  gameServer->sendSound(soundId, id, loop, pos);
+  sound.Id = id;
+  sound.pos = pos;
+  sound.soundId = soundId;
+  soundTab.push_back(sound);
   return (id);
 }
 
@@ -332,7 +385,7 @@ void				World::stopSound(int idToStop)
   i = 0;
   while (i < soundTab.size())
     {
-      if (soundTab[i] == idToStop)
+      if (soundTab[i].Id == idToStop)
 	{
 	  gameServer->sendStopSound(idToStop);
 	  soundTab.erase(soundTab.begin() + i);
@@ -340,6 +393,16 @@ void				World::stopSound(int idToStop)
 	}
       ++i;
     }
+}
+
+const std::vector<effectGlobal>&	World::getEffect() const
+{
+  return (effectTab);
+}
+
+const std::vector<soundGlobal>&		World::getSound() const
+{
+  return (soundTab);
 }
 
 void				World::applyCommand(Player & player, core::Command command)

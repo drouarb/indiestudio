@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 16:50:32 2016 Alexis Trouve
-// Last update Wed May 25 20:46:20 2016 Alexis Trouve
+// Last update Fri May 27 13:26:40 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -62,19 +62,20 @@ void			BodyFactory::setBarbare()
 
   player = new Player(-1, world);
   player->setName("Barbare");
-  player->stats.HP = 1000;
-  player->stats.normalHP = 1000;
-  player->stats.speed = 1.0;
-  player->stats.normalSpeed = 1.0;
+  player->stats.HP = 4000;
+  player->stats.normalHP = 4000;
+  player->stats.speed = 1.1;
+  player->stats.normalSpeed = 1.1;
   player->stats.attackModifier = 1.0;
   player->setCollide(true);
   player->spellBook.addSpell(SpellFactory::BARBARIAN_ATTACK, player);
   player->spellBook.addSpell(SpellFactory::BARBARIAN_TORNADO, player);
   player->changePos(std::make_pair(-1, -1));
-  player->changeSize(std::make_pair(10.0, 10.0));
-  player->changeOrientation(0);
+  player->changeSize(std::make_pair(80.0, 80.0));
+  player->changeOrientation(90);
   player->setMeshId(EntityName::BERSERK);
   player->setTextureId(TextureName::TEXTURE_NONE);
+  player->setIdAI(NOAI);
   bodyTab.push_back(player);
 }
 
@@ -84,17 +85,18 @@ void			BodyFactory::setElf()
 
   player = new Player(-1, world);
   player->setName("Elf");
-  player->stats.HP = 1000;
-  player->stats.normalHP = 1000;
-  player->stats.speed = 1.0;
-  player->stats.normalSpeed = 1.0;
+  player->stats.HP = 3000;
+  player->stats.normalHP = 3000;
+  player->stats.speed = 1.4;
+  player->stats.normalSpeed = 1.4;
   player->stats.attackModifier = 1.0;
   player->setCollide(true);
   player->changePos(std::make_pair(-1, -1));
-  player->changeSize(std::make_pair(10.0, 10.0));
+  player->changeSize(std::make_pair(80.0, 80.0));
   player->changeOrientation(0);
   player->setMeshId(EntityName::BERSERK);
   player->setTextureId(TextureName::TEXTURE_NONE);
+  player->setIdAI(NOAI);
   bodyTab.push_back(player);
 }
 
@@ -106,15 +108,16 @@ void			BodyFactory::setWizard()
   player->setName("Mage");
   player->stats.HP = 1000;
   player->stats.normalHP = 1000;
-  player->stats.speed = 1.0;
-  player->stats.normalSpeed = 1.0;
-  player->stats.attackModifier = 1.0;
+  player->stats.speed = 1.2;
+  player->stats.normalSpeed = 1.2;
+  player->stats.attackModifier = 1.2;
   player->setCollide(true);
   player->changePos(std::make_pair(-1, -1));
-  player->changeSize(std::make_pair(10.0, 10.0));
+  player->changeSize(std::make_pair(80.0, 80.0));
   player->changeOrientation(0);
   player->setMeshId(EntityName::BERSERK);
   player->setTextureId(TextureName::TEXTURE_NONE);
+  player->setIdAI(NOAI);
   bodyTab.push_back(player);
 }
 
@@ -124,19 +127,20 @@ void			BodyFactory::setValkyrie()
 
   player = new Player(-1, world);
   player->setName("Valkyrie");
-  player->stats.HP = 1000;
-  player->stats.normalHP = 1000;
-  player->stats.speed = 1.0;
-  player->stats.normalSpeed = 1.0;
+  player->stats.HP = 5000;
+  player->stats.normalHP = 5000;
+  player->stats.speed = 0.9;
+  player->stats.normalSpeed = 0.9;
   player->stats.attackModifier = 1.0;
   player->spellBook.addSpell(SpellFactory::VALKYRIA_ATTACK, player);
   player->spellBook.addSpell(SpellFactory::VALKYRIA_DASH, player);
   player->setCollide(true);
   player->changePos(std::make_pair(-1, -1));
-  player->changeSize(std::make_pair(10.0, 10.0));
+  player->changeSize(std::make_pair(100.0, 100.0));
   player->changeOrientation(0);
   player->setMeshId(EntityName::BERSERK);
   player->setTextureId(TextureName::TEXTURE_NONE);
+  player->setIdAI(NOAI);
   bodyTab.push_back(player);
 }
 
@@ -147,18 +151,19 @@ void			BodyFactory::setDraugr()
 
   crea = new Creature(-1, world);
   crea->setName("Draugr");
-  crea->stats.HP = 1000;
-  crea->stats.normalHP = 1000;
-  crea->stats.speed = 1.0;
-  crea->stats.normalSpeed = 1.0;
-  crea->stats.attackModifier = 1.0;
+  crea->stats.HP = 400;
+  crea->stats.normalHP = 400;
+  crea->stats.speed = 0.6;
+  crea->stats.normalSpeed = 0.6;
+  crea->stats.attackModifier = 0.6;
   crea->spellBook.addSpell(SpellFactory::DRAUGR_ATTACK, crea);
   crea->setCollide(true);
   crea->changePos(std::make_pair(-1, -1));
-  crea->changeSize(std::make_pair(10.0, 10.0));
+  crea->changeSize(std::make_pair(50.0, 50.0));
   crea->changeOrientation(0);
   crea->setMeshId(EntityName::BERSERK);
   crea->setTextureId(TextureName::TEXTURE_NONE);
+  crea->setIdAI(MELEEBASICAI);
   bodyTab.push_back(crea);
   i = 0;
   while (i < AIs.size())
@@ -177,7 +182,7 @@ void			BodyFactory::setPorteLight()
   obj->setName("PorteLight");
   obj->setCollide(true);
   obj->changePos(std::make_pair(-1, -1));
-  obj->changeSize(std::make_pair(20.0, 20.0));
+  obj->changeSize(std::make_pair(160.0, 160.0));
   obj->changeOrientation(0);
   bodyTab.push_back(obj);
 }
@@ -185,12 +190,23 @@ void			BodyFactory::setPorteLight()
 ABody	*BodyFactory::giveBody(const std::string& name)
 {
   unsigned int	i;
+  ABody		*body;
+  Actor		*actor;
 
   i = 0;
   while (i < bodyTab.size())
     {
       if (name == bodyTab[i]->getName())
-	return (bodyTab[i]->clone(giveNextId()));
+	{
+	  body = bodyTab[i]->clone(giveNextId());
+	  if ((actor = dynamic_cast<Actor*>(body)) != NULL)
+	    {
+	      i = actor->getIdAI();
+	      if (i != NOAI)
+		AIs[i]->setNewAI(actor);
+	    }
+	  return (body);
+	}
       ++i;
     }
   return (NULL);
