@@ -7,6 +7,7 @@
 
 #include <map>
 #include <list>
+#include <graph/EffectName.hh>
 #include "ASpell.hh"
 #include "ABody.hh"
 #include "Actor.hh"
@@ -39,6 +40,11 @@ namespace gauntlet {
         Area	                    pattern;
         std::pair<double, double>   targetedArea;
         short                       angle;
+        short                       effectOrientation;
+        int                         openingEffect;
+        int                         endingEffect;
+        int                         openingId;
+        int                         endingId;
     public:
         void                        cast(Actor *caster);
         void                        ApplyDamage(std::list<ABody *> targets, Actor *caster);
@@ -46,6 +52,8 @@ namespace gauntlet {
         void                        setBasicStats(int id, const std::string &name, double range, double radius, long damage, Area pattern);
         void                        setCaster(Actor *caster);
         void                        setConeAngle(short id);
+
+        void setEffect(gauntlet::EffectName opening, gauntlet::EffectName ending);
     };
 };
 

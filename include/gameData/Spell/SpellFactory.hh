@@ -40,7 +40,7 @@ namespace gauntlet
           RANGER_ATTACK,
           RANGER_ARROW_WAVE,
           RANGER_EXPLOSIVE_ARROW,
-          WIZARD_PLACEHOLDER1,
+          WIZARD_FIREBALL,
           WIZARD_PLACEHOLDER2,
           WIZARD_PLACEHOLDER3,
           WIZARD_PLACEHOLDER4
@@ -57,6 +57,10 @@ namespace gauntlet
       static Spell*              getBarbarianAttack();
       static Spell*              getBarbarianTornado();
       static Spell*              getDraugrAttack();
+
+      Spell *getWizardFireBall();
+
+      Spell *getWizardFireCone();
   };
 };
 
