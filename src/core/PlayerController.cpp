@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 15:52:38 2016 Esteban Lewis
-// Last update Fri May 27 19:23:32 2016 Esteban Lewis
+// Last update Fri May 27 19:39:31 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -53,6 +53,8 @@ void
 gauntlet::core::PlayerController::setAngle(short newangle)
 {
   angle = newangle;
+
+  core.packetf->send(network::PacketControl(NONE, angle));
 }
 
 void

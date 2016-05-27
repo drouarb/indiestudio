@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Fri May 27 19:22:23 2016 Esteban Lewis
+// Last update Fri May 27 19:35:00 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -309,7 +309,7 @@ int				World::triggerEffect(gauntlet::EffectName effect,
   eff->Id = id;
   eff->pos = pos;
   eff->effectId = effectId;
-  eff->orientation = 0;
+  eff->orientation = rand() % 628;
   eff->decayTime = decayTime;
   effectTab.push_back(eff);
   return (id);
