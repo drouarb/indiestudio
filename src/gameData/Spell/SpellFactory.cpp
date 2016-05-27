@@ -30,7 +30,7 @@ const std::map<SpellFactory::SpellEnum, SpellFactory::getSpell> gauntlet::SpellF
   {SpellFactory::WIZARD_FIREBALL, &gauntlet::SpellFactory::getWizardFireBall},
   {SpellFactory::WIZARD_FIRECONE, &gauntlet::SpellFactory::getWizardFireCone},
   {SpellFactory::DRAUGR_ATTACK, &gauntlet::SpellFactory::getDraugrAttack}
-};
+   };
 
 int		SpellFactory::giveNextId()
 {
