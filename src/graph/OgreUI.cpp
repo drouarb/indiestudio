@@ -518,6 +518,7 @@ void OgreUI::createScene(void)
   pointLight->setSpotlightOuterAngle(Ogre::Radian(Ogre::Degree(180)));
   pointLight->setDiffuseColour(Ogre::ColourValue::White);
   pointLight->setSpecularColour(Ogre::ColourValue::White);
+  this->createLight(200, 200, 50);
   pointLight->setPowerScale(8900000);
   Ogre::Light *pointLight2 = this->mSceneMgr->createLight("PointLight2");
   pointLight2->setPosition(0, 200, 200);
@@ -641,7 +642,8 @@ bool __attribute_deprecated__ OgreUI::addWorldEntity(int entityId,
   std::stringstream ss;
   ss << entityId;
   Ogre::Entity *e;
-  if (mSceneMgr->hasEntity(ss.str()) == true)
+
+  if (mSceneMgr->hasEntity(ss.str()))
     {
       this->moveEntity(entityId, x, y, angle);
       return (true);
@@ -831,6 +833,21 @@ bool OgreUI::entityExist(int id)
     return (true);
   return false;
 }
+
+void OgreUI::createLight(unsigned int height, unsigned int width, unsigned int interval)
+{
+  for (int x = -width, y = -height; x < width && y < height; x += interval, y += interval)
+    {
+      Ogre::Light *pLight = this->mSceneMgr->createLight();
+
+      pLight->setType(Ogre::Light::LT_POINT);
+      pLight->setPowerScale(100000);
+      pLight->setPosition(x, 0, y);
+      this->lightList.push_back(pLight);
+    }
+}
+
+
 
 
 

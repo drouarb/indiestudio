@@ -108,6 +108,13 @@ add_executable(PacketControlTest
         ../src/network/packet/PacketControl.cpp)
 add_test(PacketControlTest PacketControlTest)
 
+#Test Animation
+add_executable(PacketAnimationTest
+        packet/PacketAnimationTest.cpp
+        ../src/network/packet/Packet.cpp
+        ../src/network/packet/PacketAnimation.cpp)
+add_test(PacketAnimationTest PacketAnimationTest)
+
 #Test PacketFactory
 add_executable(PacketFactoryTest
         packet/PacketFactoryTest.cpp
@@ -126,6 +133,7 @@ add_executable(PacketFactoryTest
         ../src/network/packet/PacketPlaySound.cpp
         ../src/network/packet/PacketStopSound.cpp
         ../src/network/packet/PacketControl.cpp
+        ../src/network/packet/PacketAnimation.cpp
         ../src/network/listener/PacketListener.cpp
         ../src/network/listener/PacketDisconnectListener.cpp
         ../src/network/listener/PacketAddEntityListener.cpp
