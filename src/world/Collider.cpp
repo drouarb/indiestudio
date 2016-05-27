@@ -101,6 +101,16 @@ std::list<gauntlet::ABody*>	Collider::giveBodyInAreaCone(double posx, double pos
   return (dynamicLayer->giveBodyInAreaCone(posx, posy, ref_angle, size, cone_angle));
 }
 
+std::list<gauntlet::ABody*>	Collider::giveBodyInAreaflightPath(double posx, double posy, short ref_angle, double size, short cone_angle)
+{
+  std::list<gauntlet::ABody*> e_list = dynamicLayer->giveBodyInAreaCone(posx, posy, ref_angle, size, cone_angle); //truc pourri rapide pour test. A modifier.
+  while (e_list.size() > 1) //méthode pour test, à changer.
+  {
+    e_list.pop_back();
+  }
+  return (e_list);
+}
+
 std::pair<unsigned int, unsigned int>	Collider::getSizeMap() const
 {
   return (std::make_pair(sizeX, sizeY));

@@ -59,6 +59,8 @@ namespace gauntlet
       static Spell*              getDraugrAttack();
       static Spell*              getWizardFireBall();
       static Spell*              getWizardFireCone();
+      static Spell*              getRangerAttack();
+      static Spell*              getRangerExplosiveArrow();
   };
 };
 

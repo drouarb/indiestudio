@@ -24,6 +24,7 @@ namespace gauntlet {
         {
             WALL,
             COLUMN,
+            FLIGHT_PATH,
             CIRCLE,
             CONE,
             TRIANGLE
