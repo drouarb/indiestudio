@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Fri May 27 19:56:04 2016 Alexis Trouve
+// Last update Fri May 27 20:17:04 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -278,7 +278,7 @@ void		GameServer::sendMoveId(ABody *body)
   network::PacketMoveEntity	packet(body->getEntityId(), body->getPos().first,
 				       body->getPos().second, body->getOrientation());
   unsigned int	i;
-  std::cout << "send angle : " << body->getOrientation() << std::endl;
+
   i = 0;
   while (i < players.size())
     {

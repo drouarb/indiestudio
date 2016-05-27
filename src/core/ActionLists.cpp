@@ -53,7 +53,6 @@ gauntlet::core::ActionLists::doActions()
 				   (*it)->getAngle() - world::Math::A_RIGHT,
 				   static_cast<gauntlet::TextureName>
 				   ((*it)->getTextureId()));
-	  core.ogre.playAnimation((*it)->getEntityId(), 0, true);
 
 	  if (pendingTracker && (*it)->getEntityId() == entityIdTracker)
 	    {

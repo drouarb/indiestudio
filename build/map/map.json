@@ -9,14 +9,7 @@
     },
     map : "une_vraie_map.obj",
     dynamic :
-    [
-	{
-	    name : "Draugr",
-	    x : "500",
-	    y : "100",
-	    angle : "0"
-	}
-    ],
+    [ ],
     sounds:
     [
 	{
