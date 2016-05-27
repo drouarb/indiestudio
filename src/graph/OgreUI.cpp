@@ -642,7 +642,7 @@ bool __attribute_deprecated__ OgreUI::addWorldEntity(int entityId,
   std::stringstream ss;
   ss << entityId;
   Ogre::Entity *e;
-  
+
   if (mSceneMgr->hasEntity(ss.str()))
     {
       this->moveEntity(entityId, x, y, angle);

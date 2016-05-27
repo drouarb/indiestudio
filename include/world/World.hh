@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:51:22 2016 Alexis Trouve
-// Last update Thu May 26 17:59:36 2016 Alexis Trouve
+// Last update Fri May 27 13:21:57 2016 Esteban Lewis
 //
 
 #ifndef WORLD_HH_
@@ -24,6 +24,7 @@
 #include "AbstractAI.hh"
 #include "BasicAI.hh"
 #include "GameServer.hh"
+#include "Conf.hh"
 
 namespace			gauntlet
 {
@@ -69,6 +70,7 @@ namespace			gauntlet
       int			getUniqueSoundId();
       int			playSound(unsigned int soundId, bool loop);
       void			stopSound(int idToStop);
+      void			applyCommand(Player & player, core::Command command);
     };
   };
 };

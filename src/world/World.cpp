@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Thu May 26 17:59:56 2016 Alexis Trouve
+// Last update Fri May 27 13:22:25 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -322,5 +322,24 @@ void				World::stopSound(int idToStop)
 	  break;
 	}
       ++i;
+    }
+}
+
+void				World::applyCommand(Player & player, core::Command command)
+{
+  if (command == core::UP)
+    {
+      if (!player.getMove())
+	player.setMove();
+    }
+  else if (command == core::UP_STOP)
+    {
+      if (player.getMove())
+	player.setMove();
+    }
+  else if (command >= core::ATTACK1 && command <= core::ATTACK4)
+    {
+      applyCommand(player, core::UP_STOP);
+      player.castSpell(command - core::ATTACK1);
     }
 }
