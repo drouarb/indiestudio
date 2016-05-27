@@ -189,6 +189,7 @@ void            BodyFactory::setKey()
   obj->setMeshId(EntityName::CHEST);
   obj->setTextureId(EntityName::CHEST);
   obj->addItem(*key);
+  bodyTab.push_back(obj);
 }
 
 void            BodyFactory::setDoor()
@@ -200,6 +201,7 @@ void            BodyFactory::setDoor()
   obj->setCollide(true);
   obj->setMeshId(EntityName::DOOR);
   obj->setTextureId(EntityName::DOOR);
+  bodyTab.push_back(obj);
 }
 
 void			BodyFactory::setPorteLight()
