@@ -11,6 +11,28 @@ gauntlet::core::ActionLists::~ActionLists()
   clearActions();
 }
 
+gauntlet::core::ActionLists::particle::particle(int id, int decaytime) :
+  id(id), decayTime(decaytime)
+{
+  sw.set();
+}
+
+void
+gauntlet::core::ActionLists::particlesDecay()
+{
+  for (std::list<particle *>::iterator it = particles.begin(); it != particles.end(); ++it)
+    {
+      if ((*it)->sw.ellapsedMs() >= (*it)->decayTime)
+	{
+	  packetsDeleteParticle.push_back(new network::PacketDeleteParticle((*it)->id));
+	  allPackets.push_back(packetsDeleteParticle.back());
+	  delete (*it);
+	  it = particles.erase(it);
+	  it--;
+	}
+    }
+}
+
 void
 gauntlet::core::ActionLists::doActions()
 {
@@ -20,6 +42,8 @@ gauntlet::core::ActionLists::doActions()
     }
   else
     {
+      particlesDecay();
+
       for (std::list<network::PacketAddEntity*>::iterator it = packetsAddEntity.begin();
 	   it != packetsAddEntity.end(); ++it)
 	{
@@ -61,7 +85,12 @@ gauntlet::core::ActionLists::doActions()
       for (std::list<network::PacketDeleteParticle*>::iterator
 	     it = packetsDeleteParticle.begin(); it != packetsDeleteParticle.end(); ++it)
 	{
-	  core.ogre.stopEffect((*it)->getParticleId());
+	  try
+	    {
+	      core.ogre.stopEffect((*it)->getParticleId());
+	    }
+	  catch (...)
+	    { }
 	}
 
       for (std::list<network::PacketPlaySound*>::iterator
@@ -125,7 +154,7 @@ void
 gauntlet::core::ActionLists::pushPlaySound(const network::PacketPlaySound * packet)
 {
   packetsPlaySound.push_back(new network::PacketPlaySound(packet->getSoundId(),
-							  packet->getRefId(),
+							  packet->getRefId(), packet->getX(), packet->getY(),
 							  packet->getLoop()));
   allPackets.push_back(packetsPlaySound.back());
 }
@@ -138,6 +167,7 @@ gauntlet::core::ActionLists::pushAddParticle(const network::PacketAddParticle * 
 				packet->getX(), packet->getY(),
 				packet->getDecayTime()));
   allPackets.push_back(packetsAddParticle.back());
+  particles.push_back(new particle(packet->getRefId(), packet->getDecayTime()));
 }
 
 void

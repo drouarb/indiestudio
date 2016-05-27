@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Fri May 27 13:53:14 2016 Esteban Lewis
+// Last update Fri May 27 14:35:37 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -86,28 +86,27 @@ void	World::loadGame(std::string const & file)
 		     (stoi(dynamic_cast<JSON::JsonStr &>(obj.GetObj("angle")).Get())));
 	}
 
-      JSON::JsonSounds & sounds = dynamic_cast<JSON::JsonSounds &>(json.GetObj("sounds"));
+      JSON::JsonArr & sounds = dynamic_cast<JSON::JsonArr &>(json.GetObj("sounds"));
       for (int i = 0; i < sounds.Size(); ++i)
 	{
-	  JSON::JsonObj & obj = dynamic_cast<JSON::JsonObj &>(sounds[i]);
+	  /*JSON::JsonObj & obj = dynamic_cast<JSON::JsonObj &>(sounds[i]);
 	  putEffect(dynamic_cast<JSON::JsonStr &>(obj.GetObj("id")).Get(),
-		    stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("x")).Get()) == -1,
 		    std::pair<double, double>
 		    (stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("x")).Get()),
-		     stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("y")).Get())));
+		    stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("y")).Get())));*/
 	}
 
-      JSON::JsonParticles & particles = dynamic_cast<JSON::JsonParticles &>
+      JSON::JsonArr & particles = dynamic_cast<JSON::JsonArr &>
 	(json.GetObj("particles"));
       for (int i = 0; i < particles.Size(); ++i)
 	{
-	  JSON::JsonObj & obj = dynamic_cast<JSON::JsonObj &>(particles[i]);
+	  /*JSON::JsonObj & obj = dynamic_cast<JSON::JsonObj &>(particles[i]);
 	  putSound(dynamic_cast<JSON::JsonStr &>(obj.GetObj("id")).Get(),
 		   Math::getAngleFromDegrees
 		   (stoi(dynamic_cast<JSON::JsonStr &>(obj.GetObj("angle")).Get())),
 		   std::pair<double, double>
 		   (stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("x")).Get()),
-		    stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("y")).Get())));
+		   stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("y")).Get())));*/
 	}
     }
   catch (std::runtime_error & e)

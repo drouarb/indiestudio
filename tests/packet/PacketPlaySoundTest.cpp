@@ -12,7 +12,7 @@ int main() {
 
     std::cout << "->Serialisation/Deserialitation" << std::endl;
     srand(time(NULL));
-    gauntlet::network::PacketPlaySound packetPlaySound(rand(), rand(), rand() % 2);
+    gauntlet::network::PacketPlaySound packetPlaySound(rand(), rand(), rand(), rand(), rand() % 2);
     data.data = packetPlaySound.serialize();
     gauntlet::network::PacketPlaySound packetPlaySound1(data);
     assert(packetPlaySound.getPacketId() == packetPlaySound1.getPacketId());
