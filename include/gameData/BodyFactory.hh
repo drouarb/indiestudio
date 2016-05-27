@@ -46,9 +46,6 @@ namespace gauntlet
     ABody		*giveBody(const std::string& wanted);
 
       void setKey();
-
-      void setKey(Item *key);
-
       void setDoor();
   };
 };
