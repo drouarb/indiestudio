@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Fri May 27 19:05:59 2016 Esteban Lewis
+// Last update Fri May 27 19:22:23 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -164,9 +164,12 @@ void		World::applyAI()
 void		World::gameLoop()
 {
   std::cout << "world gameLoop" << std::endl;
+  stopwatch.set();
   while (42 == 42)
     {
-      usleep(100000);
+      if (stopwatch.ellapsedMs() < ROUND_DURATION)
+	usleep(ROUND_DURATION * 1000 - stopwatch.ellapsedMs());
+      stopwatch.set();
       //TODO: frequency
       applyAI();
       applyMoveActor();

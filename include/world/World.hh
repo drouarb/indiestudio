@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:51:22 2016 Alexis Trouve
-// Last update Fri May 27 16:56:36 2016 Alexis Trouve
+// Last update Fri May 27 19:18:08 2016 Esteban Lewis
 //
 
 #ifndef WORLD_HH_
@@ -25,6 +25,9 @@
 #include "BasicAI.hh"
 #include "GameServer.hh"
 #include "Conf.hh"
+#include "Stopwatch.hh"
+
+# define ROUND_DURATION 33
 
 namespace			gauntlet
 {
@@ -62,6 +65,7 @@ namespace			gauntlet
       GameServer		*gameServer;
       std::vector<effectGlobal*>	effectTab;
       std::vector<soundGlobal*>	soundTab;
+      Stopwatch			stopwatch;
       
       //network::PacketFactory	packetFactory;
     private:
