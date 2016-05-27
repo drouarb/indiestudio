@@ -221,6 +221,9 @@ class OgreUI
   int triggerEffect(int id, gauntlet::EffectName ef,
 		    std::pair<double, double> pair);
 
+  int triggerEffect(int id, gauntlet::EffectName type,
+		    std::pair<double, double> coord, double yRotation);
+
   int triggerEffect(int id, gauntlet::EffectName ef,
 		    std::pair<double, double> pair,
 		    std::tuple<double, double, double> orientation);
