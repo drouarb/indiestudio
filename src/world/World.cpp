@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Fri May 27 18:37:21 2016 Alexis Trouve
+// Last update Fri May 27 19:05:59 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -164,22 +164,6 @@ void		World::applyAI()
 void		World::gameLoop()
 {
   std::cout << "world gameLoop" << std::endl;
-  unsigned int i;
-  Actor *actor;
-  ABody	*body;
-  std::list<ABody*>::iterator it1;
-  it1 = bodys.begin();
-  it1++;
-  it1++;
-  sleep(1);
-  while (it1 != bodys.end())
-    {
-      body = (*it1);
-      if ((actor = dynamic_cast<Actor*>(body)) != NULL)
-	if (actor->getMove() == false)
-	  actor->setMove();
-      it1++;
-    }
   while (42 == 42)
     {
       usleep(100000);

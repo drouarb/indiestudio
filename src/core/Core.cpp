@@ -48,10 +48,9 @@ gauntlet::core::Core::keyUp(IUIObserver::Key key)
 {
   Command cmd = conf.getLinkedKey(key);
 
-  if (!menu.getOpen() && cmd != ESC)
+  if (pc && gameIsRunning())
     {
-      if (pc)
-	pc->doCmd(cmd, false);
+      pc->doCmd(cmd, false);
     }
 }
 
