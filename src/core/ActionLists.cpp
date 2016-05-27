@@ -99,7 +99,10 @@ gauntlet::core::ActionLists::doActions()
 	  if ((*it)->getX() < 0 || (*it)->getY() < 0)
 	    core.ogre.playSound((*it)->getRefId() + 1, (SoundName)(*it)->getSoundId(),
 				(*it)->getLoop());
-	  //TODO else
+	  else
+	    core.ogre.playSound((*it)->getRefId() + 1, (SoundName)(*it)->getSoundId(),
+				(*it)->getLoop());
+	  //TODO else: localized sound
 	}
 
       for (std::list<network::PacketStopSound*>::iterator
