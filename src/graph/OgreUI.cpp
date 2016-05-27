@@ -736,13 +736,24 @@ int OgreUI::triggerEffect(int id, gauntlet::EffectName type,
 
   ss << "effect" << id;
   Effect *&mapped_type = this->effectMap[id];
-  if (mapped_type != NULL)
-    {
-//      delete (mapped_type);
-    }
   gauntlet::Effect *effect = new gauntlet::Effect(this, type, ss.str(), coord,
 						  this->quality);
   mapped_type = effect;
+  return 0;
+}
+
+int OgreUI::triggerEffect(int id, gauntlet::EffectName type,
+			  std::pair<double, double> coord,
+			  std::tuple<double, double, double> orientation)
+{
+  std::stringstream ss;
+
+  ss << "effect" << id;
+  Effect *&mapped_type = this->effectMap[id];
+  gauntlet::Effect *effect = new gauntlet::Effect(this, type, ss.str(), coord,
+						  this->quality);
+  mapped_type = effect;
+  effect->getParticleSystem()->getEmitter(0)->setDirection(Ogre::Vector3(std::get<0>(orientation), std::get<1>(orientation), std::get<2>(orientation)));
   return 0;
 }
 
@@ -846,8 +857,5 @@ void OgreUI::createLight(unsigned int height, unsigned int width, unsigned int i
       this->lightList.push_back(pLight);
     }
 }
-
-
-
 
 
