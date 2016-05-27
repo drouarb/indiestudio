@@ -15,12 +15,14 @@ namespace gauntlet {
                 unsigned char packetId;
                 unsigned int soundId;
                 unsigned int refId;
+                double x;
+                double y;
                 unsigned char loop;
             };
 
         public:
             PacketPlaySound(s_socketData data);
-            PacketPlaySound(unsigned int soundId, unsigned int refId, bool loop);
+            PacketPlaySound(unsigned int soundId, unsigned int refId, double x, double y, bool loop);
             virtual ~PacketPlaySound() { }
 
             virtual t_rawdata* serialize() const;
@@ -29,11 +31,15 @@ namespace gauntlet {
 
             unsigned int getSoundId() const;
             unsigned int getRefId() const;
+            double getX() const;
+            double getY() const;
             bool getLoop() const;
 
         private:
             unsigned int soundId;
             unsigned int refId;
+            double x;
+            double y;
             bool loop;
         };
     }

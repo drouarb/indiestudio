@@ -1,138 +1,141 @@
 {
-    name : "Default map",
-    length : "10000",
-    width : "10000",
-    spawn :
+  name: "Default map",
+  length: "10000",
+  width: "10000",
+  spawn: {
+    x: "300",
+    y: "300"
+  },
+  map: "",
+  dynamic: [
     {
-	x : "300",
-	y : "300"
+      name: "Draugr",
+      x: "0",
+      y: "50",
+      angle: "0"
     },
-    map : "",
-    dynamic :
-    [
-	{
-	    name : "Draugr",
-	    x : "100",
-	    y : "1700",
-	    angle : "0"
-	},
-	{
-	    name : "Draugr",
-	    x : "100",
-	    y : "1600",
-	    angle : "0"
-	},
-	{
-	    name : "Draugr",
-	    x : "100",
-	    y : "1500",
-	    angle : "0"
-	},
-	{
-	    name : "Draugr",
-	    x : "100",
-	    y : "1400",
-	    angle : "0"
-	},
-	{
-	    name : "Draugr",
-	    x : "100",
-	    y : "1300",
-	    angle : "0"
-	},
-	{
-	    name : "Draugr",
-	    x : "100",
-	    y : "1200",
-	    angle : "0"
-	},
-	{
-	    name : "Draugr",
-	    x : "100",
-	    y : "1100",
-	    angle : "0"
-	},
-	{
-	    name : "Draugr",
-	    x : "100",
-	    y : "1000",
-	    angle : "0"
-	},
-	{
-	    name : "Draugr",
-	    x : "100",
-	    y : "900",
-	    angle : "0"
-	},
-	{
-	    name : "Draugr",
-	    x : "100",
-	    y : "800",
-	    angle : "0"
-	},
-	{
-	    name : "Draugr",
-	    x : "100",
-	    y : "700",
-	    angle : "0"
-	},
-	{
-	    name : "Draugr",
-	    x : "100",
-	    y : "600",
-	    angle : "0"
-	},
-	{
-	    name : "Draugr",
-	    x : "100",
-	    y : "500",
-	    angle : "0"
-	},
-	{
-	    name : "Draugr",
-	    x : "100",
-	    y : "400",
-	    angle : "0"
-	},
-	{
-	    name : "Draugr",
-	    x : "100",
-	    y : "300",
-	    angle : "0"
-	},
-	{
-	    name : "Draugr",
-	    x : "100",
-	    y : "200",
-	    angle : "0"
-	},
-	{
-	    name : "Draugr",
-	    x : "200",
-	    y : "100",
-	    angle : "0"
-	},
-	{
-	    name : "Draugr",
-	    x : "200",
-	    y : "200",
-	    angle : "0"
-	},
-	{
-	    name : "Draugr",
-	    x : "500",
-	    y : "100",
-	    angle : "0"
-	}
-    ]
-    physical :
-    [
-	{
-	    mesh_id : "123",
-	    pos_x : "3000",
-	    pos_y : "5000",
-	    size_x : "100",
-	    size_y : "20"
-	}
-    ]
+    {
+      name: "Draugr",
+      x: "100",
+      y: "1700",
+      angle: "0"
+    },
+    {
+      name: "Draugr",
+      x: "100",
+      y: "1600",
+      angle: "0"
+    },
+    {
+      name: "Draugr",
+      x: "100",
+      y: "1500",
+      angle: "0"
+    },
+    {
+      name: "Draugr",
+      x: "100",
+      y: "1400",
+      angle: "0"
+    },
+    {
+      name: "Draugr",
+      x: "100",
+      y: "1300",
+      angle: "0"
+    },
+    {
+      name: "Draugr",
+      x: "100",
+      y: "1200",
+      angle: "0"
+    },
+    {
+      name: "Draugr",
+      x: "100",
+      y: "1100",
+      angle: "0"
+    },
+    {
+      name: "Draugr",
+      x: "100",
+      y: "1000",
+      angle: "0"
+    },
+    {
+      name: "Draugr",
+      x: "100",
+      y: "900",
+      angle: "0"
+    },
+    {
+      name: "Draugr",
+      x: "100",
+      y: "800",
+      angle: "0"
+    },
+    {
+      name: "Draugr",
+      x: "100",
+      y: "700",
+      angle: "0"
+    },
+    {
+      name: "Draugr",
+      x: "100",
+      y: "600",
+      angle: "0"
+    },
+    {
+      name: "Draugr",
+      x: "100",
+      y: "500",
+      angle: "0"
+    },
+    {
+      name: "Draugr",
+      x: "100",
+      y: "400",
+      angle: "0"
+    },
+    {
+      name: "Draugr",
+      x: "100",
+      y: "300",
+      angle: "0"
+    },
+    {
+      name: "Draugr",
+      x: "100",
+      y: "200",
+      angle: "0"
+    },
+    {
+      name: "Draugr",
+      x: "200",
+      y: "100",
+      angle: "0"
+    },
+    {
+      name: "Draugr",
+      x: "200",
+      y: "200",
+      angle: "0"
+    },
+    {
+      name: "Draugr",
+      x: "500",
+      y: "100",
+      angle: "0"
+    }
+  ]
+  physical: [
+    {
+      mesh_id: "123",
+      pos_x: "3000",
+      pos_y: "5000",
+      size_x: "100",
+      size_y: "20"
+    }
+  ]
 }

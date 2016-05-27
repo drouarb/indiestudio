@@ -30,7 +30,7 @@ namespace gauntlet {
             PLAY_SOUND            = 0x0C,
             STOP_SOUND            = 0x0D,
             PACKET_CONTROL        = 0x0E,
-            UPDATE_HUD            = 0x0F
+            ANIMATION             = 0x0F
         };
 
         class Packet {
