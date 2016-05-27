@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 15:52:38 2016 Esteban Lewis
-// Last update Fri May 27 19:14:48 2016 Esteban Lewis
+// Last update Fri May 27 19:23:32 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -20,6 +20,7 @@ gauntlet::core::PlayerController::PlayerController(std::string const & name,
 {
   this->name = name;
   chartype = c;
+  angle = 0;
 
   ctrls =
     {
