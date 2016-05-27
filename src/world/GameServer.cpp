@@ -316,7 +316,8 @@ void		GameServer::sendStopSound(int id)
 
 void		GameServer::sendSound(unsigned int soundId, int id, bool loop)
 {
-  PacketPlaySound	packet(soundId, id, loop);
+#warning "Alexis oublie pas de remplacer les coordonées du PacketPlaySound"
+  PacketPlaySound	packet(soundId, id, 0, 0, loop);
   unsigned int		i;
 
   i = 0;

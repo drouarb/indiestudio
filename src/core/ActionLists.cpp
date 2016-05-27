@@ -125,7 +125,7 @@ void
 gauntlet::core::ActionLists::pushPlaySound(const network::PacketPlaySound * packet)
 {
   packetsPlaySound.push_back(new network::PacketPlaySound(packet->getSoundId(),
-							  packet->getRefId(),
+							  packet->getRefId(), packet->getX(), packet->getY(),
 							  packet->getLoop()));
   allPackets.push_back(packetsPlaySound.back());
 }
