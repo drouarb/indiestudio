@@ -1,0 +1,2200 @@
+material unityexportmap_obj#0
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Up_elements1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture deco1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#3
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+		}
+	}
+}
+
+material unityexportmap_obj#1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture deco1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture deco1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#0
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Up_elements1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture deco1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#4
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Addons.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#3
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+		}
+	}
+}
+
+material unityexportmap_obj#1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture deco1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture deco1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#0
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Up_elements1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture deco1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#4
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Addons.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#3
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+		}
+	}
+}
+
+material unityexportmap_obj#1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture deco1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#3
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+		}
+	}
+}
+
+material unityexportmap_obj#1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture deco1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#5
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Wood_elements1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#3
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+		}
+	}
+}
+
+material unityexportmap_obj#1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture deco1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#3
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+		}
+	}
+}
+
+material unityexportmap_obj#1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture deco1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#3
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+		}
+	}
+}
+
+material unityexportmap_obj#1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture deco1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#3
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+		}
+	}
+}
+
+material unityexportmap_obj#1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture deco1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#4
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Addons.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#3
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+		}
+	}
+}
+
+material unityexportmap_obj#1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture deco1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#0
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Up_elements1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#3
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+		}
+	}
+}
+
+material unityexportmap_obj#3
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+		}
+	}
+}
+
+material unityexportmap_obj#3
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture deco1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#0
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Up_elements1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture deco1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture deco1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#3
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+		}
+	}
+}
+
+material unityexportmap_obj#1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture deco1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#3
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+		}
+	}
+}
+
+material unityexportmap_obj#3
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+		}
+	}
+}
+
+material unityexportmap_obj#4
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Addons.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#3
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+		}
+	}
+}
+
+material unityexportmap_obj#1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture deco1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#3
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+		}
+	}
+}
+
+material unityexportmap_obj#1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture deco1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture deco1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#0
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Up_elements1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture deco1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#3
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+		}
+	}
+}
+
+material unityexportmap_obj#1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture deco1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#3
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+		}
+	}
+}
+
+material unityexportmap_obj#1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture deco1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#3
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+		}
+	}
+}
+
+material unityexportmap_obj#1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture deco1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#0
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Up_elements1.png
+			}
+		}
+	}
+}
+
+material unityexportmap_obj#2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0 1
+			shading gouraud
+
+			texture_unit
+			{
+				texture Bricks1.png
+			}
+		}
+	}
+}
+

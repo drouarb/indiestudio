@@ -62,6 +62,7 @@ void OgreUI::createCamera(void)
 {
 
   mCamera = mSceneMgr->createCamera("PlayerCam");
+    mSceneMgr->createSceneNode()->attachObject(mCamera);
   mCamera->setPosition(Ogre::Vector3(0, 100, 80));
   mCamera->setNearClipDistance(5);
   mCameraMan = new OgreBites::SdkCameraMan(mCamera);
@@ -199,6 +200,7 @@ bool OgreUI::frameRenderingQueued(const Ogre::FrameEvent &evt)
   mTrayMgr->refreshCursor();
   mTrayMgr->frameRenderingQueued(evt);
   applyAnimation(evt);
+    mSoundManager->update(evt.timeSinceLastFrame);
   if (!mTrayMgr->isDialogVisible())
     {
       mCameraMan->frameRenderingQueued(evt);
@@ -329,7 +331,7 @@ bool OgreUI::loadSound(int id, SoundName name)
     if (access(("../media/sounds/" + soundmap.at(name)).c_str(), F_OK) == 0)
       {
 	mSoundManager->createSound(ss.str(), soundmap.at(name), true, false,
-				   false);
+				   false, mSceneMgr);
 	return (true);
       }
     else
@@ -512,6 +514,7 @@ void OgreUI::hideItem(int id)
 void OgreUI::createScene(void)
 {
   showBackground();
+    mTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT, true);
   Ogre::Light *pointLight = this->mSceneMgr->createLight("PointLight");
   pointLight->setSpotlightInnerAngle(Ogre::Radian(0));
   mSceneMgr->setAmbientLight(Ogre::ColourValue(Ogre::ColourValue::Blue));
@@ -527,7 +530,7 @@ void OgreUI::createScene(void)
   pointLight3->setPosition(0, 200, -200);
   pointLight3->setPowerScale(8900000);
   mSceneMgr->setSkyBox(true, "Examples/SceneSkyBox");
-  addMapEntity(9000, MAP_TEST, 0, 0, 0 , NINjA_M);
+  addMapEntity(9000, MAP_TEST, 0, 0, 0 , TEXTURE_NONE);
 }
 
 
@@ -617,7 +620,7 @@ void OgreUI::hideBackground()
 void OgreUI::initSound()
 {
   this->mSoundManager = OgreOggSound::OgreOggSoundManager::getSingletonPtr();
-  mSoundManager->init();
+  mSoundManager->init("Gauntlet");
 }
 
 void OgreUI::stopSound(int id)
@@ -776,9 +779,18 @@ void OgreUI::moveEntity(int id, int x, int y, short degres)
 {
   std::stringstream ss;
   ss << id;
-  Ogre::SceneNode *s = mSceneMgr->getSceneNode(ss.str());
-  s->setPosition(Ogre::Vector3(x, 0, y));
-  s->yaw(Ogre::Radian(world::Math::toRad(degres)));
+ Ogre::SceneNode *s = mSceneMgr->getSceneNode(ss.str());
+  Ogre::Vector3 des(x , 0 , y);
+  Ogre::Vector3 direction;
+  direction = des - s->getPosition();
+  direction.normalise();
+    s->translate(direction);
+    if (rootNode != NULL && s ==  rootNode)
+    {
+        this->mCamera->move(direction);
+    }
+
+    s->yaw(Ogre::Radian(world::Math::toRad(degres)));
 }
 
 void OgreUI::addCameraTracker(int id)
@@ -787,6 +799,7 @@ void OgreUI::addCameraTracker(int id)
   ss << id;
   Ogre::SceneNode *s = mSceneMgr->getSceneNode(ss.str());
   rootNode = s;
+    mCamera->setPosition(mCamera->getPosition().x - 150, mCamera->getPosition().y + 550, mCamera->getPosition().z - 150);
   mCamera->lookAt(s->getPosition());
   mCamera->pitch(Ogre::Degree(5));
 }
@@ -822,7 +835,7 @@ bool OgreUI::addMapEntity(int entityId, gauntlet::EntityName meshid, int x,
     e->setMaterialName(texturemap.at(texture_id));
   Ogre::SceneNode *s = planNode->createChildSceneNode(ss.str());
   s->setPosition(x, 0, y);
-  s->setScale(5, 5, 5);
+//  s->setScale(1, 1, 1);
   s->yaw(Ogre::Radian(world::Math::toRad(angle)));
   s->attachObject(e);
   return (true);
@@ -857,5 +870,26 @@ void OgreUI::createLight(unsigned int height, unsigned int width, unsigned int i
       this->lightList.push_back(pLight);
     }
 }
+
+void OgreUI::load3dSound(int id, SoundName name, int x, int y) {
+
+    std::stringstream ss;
+    ss << id;
+    OgreOggSound::OgreOggISound* sound = 0;
+
+    if (name != SOUND_NONE)
+    if ((sound = mSoundManager->createSound(ss.str(), soundmap.at(name))))
+    {
+//        addWorldEntity(1000, BERSERK, 0, 0, 0, NINjA_M);
+        mSceneMgr->getSceneNode("1000")->attachObject(sound);
+        mCamera->getParentSceneNode()->attachObject(this->mSoundManager->getListener());
+    }
+}
+
+
+
+
+
+
 
 
