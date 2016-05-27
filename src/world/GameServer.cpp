@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Fri May 27 20:17:04 2016 Alexis Trouve
+// Last update Fri May 27 21:53:39 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -295,11 +295,13 @@ void		GameServer::controlInput(const network::PacketControl *packet)
   i = 0;
   while (i < players.size())
     {
-      if (packet->getSocketId() == players[i].idPlayer)
+      if (packet->getSocketId() == players[i].socketId)
 	break;
       ++i;
     }
+  std::cout << "# " << i << ";" << players[i].idPlayer << std::endl;
   body = world->getBodyById(players[i].idPlayer);
+  std::cout << "& " << body->getId() << std::endl;
   body->changeOrientation(packet->getAngle());
   world->applyCommand(players[i].idPlayer, static_cast<core::Command>(packet->getCmd()));
 }

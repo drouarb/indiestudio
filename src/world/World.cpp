@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Fri May 27 19:47:57 2016 Esteban Lewis
+// Last update Fri May 27 22:23:59 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -72,7 +72,7 @@ void	World::loadGame(std::string const & file)
 		<< std::endl;
 
       JSON::JsonArr & arr = dynamic_cast<JSON::JsonArr &>(json.GetObj("dynamic"));
-      for (int i = 0; i < arr.Size(); ++i)
+      for (unsigned int i = 0; i < arr.Size(); ++i)
 	{
 	  JSON::JsonObj & obj = dynamic_cast<JSON::JsonObj &>(arr[i]);
 	  addNewBody(stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("x")).Get()),
@@ -83,7 +83,7 @@ void	World::loadGame(std::string const & file)
 	}
 
       JSON::JsonArr & sounds = dynamic_cast<JSON::JsonArr &>(json.GetObj("sounds"));
-      for (int i = 0; i < sounds.Size(); ++i)
+      for (unsigned int i = 0; i < sounds.Size(); ++i)
 	{
 	  JSON::JsonObj & obj = dynamic_cast<JSON::JsonObj &>(sounds[i]);
 	  putSound(stoi(dynamic_cast<JSON::JsonStr &>(obj.GetObj("id")).Get()),
@@ -94,7 +94,7 @@ void	World::loadGame(std::string const & file)
 
       JSON::JsonArr & particles = dynamic_cast<JSON::JsonArr &>
 	(json.GetObj("particles"));
-      for (int i = 0; i < particles.Size(); ++i)
+      for (unsigned int i = 0; i < particles.Size(); ++i)
 	{
 	  JSON::JsonObj & obj = dynamic_cast<JSON::JsonObj &>(particles[i]);
 	  putEffect(stoi(dynamic_cast<JSON::JsonStr &>(obj.GetObj("id")).Get()),
@@ -439,10 +439,11 @@ ABody				*World::getBodyById(int id)
   it = bodys.begin();
   while (it != bodys.end())
     {
-      if (id = (*it)->getId())
-	return (*it);
+      if (id == ((*it)->getId()))
+	return ((*it));
       it++;
     }
+  return (NULL);
 }
 
 void				World::animeEntity(int id, unsigned int animeId)

@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Mon May  9 14:07:25 2016 Alexis Trouve
-// Last update Wed May 25 21:07:33 2016 Alexis Trouve
+// Last update Fri May 27 21:55:59 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -44,6 +44,7 @@ void				ABody::changeSize(const std::pair<double, double>& nsize)
 
 void				ABody::changeOrientation(short norient)
 {
+  std::cout << "id :"<< id << " no:" << norient << std::endl;
   orientation = norient;
 }
 
