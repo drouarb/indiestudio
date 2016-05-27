@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Fri May 27 17:10:59 2016 Alexis Trouve
+// Last update Fri May 27 17:45:01 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -275,7 +275,6 @@ void		GameServer::sendAddEntity(ABody *body)
 
 void		GameServer::sendMoveId(ABody *body)
 {
-  std::cout << "sendMoveId:" << body->getEntityId() << ";" << body->getPos().first << ":" << body->getPos().second << " , " << body->getOrientation() << std::endl;
   network::PacketMoveEntity	packet(body->getEntityId(), body->getPos().first,
 				       body->getPos().second, body->getOrientation());
   unsigned int	i;
@@ -285,7 +284,6 @@ void		GameServer::sendMoveId(ABody *body)
       packetFact->send(packet, players[i].socketId);
       ++i;
     }
-  std::cout << "sendMoveId end" << std::endl;
 }
 
 void		GameServer::controlInput(const network::PacketControl *packet)
