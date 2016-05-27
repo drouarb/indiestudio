@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:51:22 2016 Alexis Trouve
-// Last update Fri May 27 14:43:55 2016 Alexis Trouve
+// Last update Fri May 27 16:01:24 2016 Alexis Trouve
 //
 
 #ifndef WORLD_HH_
@@ -94,7 +94,9 @@ namespace			gauntlet
       void			putSound(unsigned int soundId, const std::pair<double, double>& pos);
       int			playSound(unsigned int soundId, bool loop, const std::pair<double, double>& pos);
       void			stopSound(int idToStop);
-      void			applyCommand(Player & player, core::Command command);
+      void			applyCommand(int id, core::Command command);
+      ABody			*getBodyById(int id);
+      void			animeEntity(int id, unsigned int animeId);
     };
   };
 };

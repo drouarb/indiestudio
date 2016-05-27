@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Fri May 27 14:51:45 2016 Alexis Trouve
+// Last update Fri May 27 16:00:33 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -271,10 +271,17 @@ void		GameServer::sendMoveId(ABody *body)
 
 void		GameServer::controlInput(const network::PacketControl *packet)
 {
-  std::cout << "ici c'est le lol" << std::endl;
-}
+  unsigned int	i;
 
-#warning "l'orientation dans le sendEffect"
+  i = 0;
+  while (i < players.size())
+    {
+      if (packet->getSocketId() == players[i].idPlayer)
+	break;
+      ++i;
+    }
+  world->applyCommand(players[i].idPlayer, static_cast<core::Command>(packet->getCmd()));
+}
 
 void		GameServer::sendEffect(unsigned int effect, int id, short orient,
 				       const std::pair<double, double>& pos, int decayTime)
@@ -316,8 +323,6 @@ void		GameServer::sendStopSound(int id)
     }
 }
 
-#warning "le pos dans le sendSound"
-
 void		GameServer::sendSound(unsigned int soundId, int id, bool loop, const std::pair<double, double>& pos)
 {
 #warning "Alexis oublie pas de remplacer les coordonées du PacketPlaySound"
@@ -330,6 +335,14 @@ void		GameServer::sendSound(unsigned int soundId, int id, bool loop, const std::
       packetFact->send(packet, players[i].socketId);
       ++i;
     }
+}
+
+void		GameServer::animeEntity(int id, unsigned int idAnime)
+{
+  /*int		i;
+
+  i = 0;
+  while (*/
 }
 
 void		GameServer::listen()

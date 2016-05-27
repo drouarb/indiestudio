@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Fri May 27 14:44:52 2016 Alexis Trouve
+// Last update Fri May 27 15:55:30 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -298,8 +298,6 @@ int				World::triggerEffect(gauntlet::EffectName effect, short orient,
   return (id);
 }
 
-#warning "mettre un rand en dessous orientation"
-
 int				World::triggerEffect(gauntlet::EffectName effect,
 						     const std::pair<double, double>& pos, int decayTime)
 {
@@ -398,21 +396,45 @@ const std::vector<soundGlobal>&		World::getSound() const
   return (soundTab);
 }
 
-void				World::applyCommand(Player & player, core::Command command)
+void				World::applyCommand(int id, core::Command command)
 {
+  Player			*player;
+  ABody				*body;
+
+  body = getBodyById(id);
+  if ((player = dynamic_cast<Player*>(body)) == NULL)
+    return ;
   if (command == core::UP)
     {
-      if (!player.getMove())
-	player.setMove();
+      if (!player->getMove())
+	player->setMove();
     }
   else if (command == core::UP_STOP)
     {
-      if (player.getMove())
-	player.setMove();
+      if (player->getMove())
+	player->setMove();
     }
   else if (command >= core::ATTACK1 && command <= core::ATTACK4)
     {
-      applyCommand(player, core::UP_STOP);
-      player.castSpell(command - core::ATTACK1);
+      applyCommand(id, core::UP_STOP);
+      player->castSpell(command - core::ATTACK1);
     }
+}
+
+ABody				*World::getBodyById(int id)
+{
+  std::list<ABody*>::iterator	it;
+
+  it = bodys.begin();
+  while (it != bodys.end())
+    {
+      if (id = (*it)->getId())
+	return (*it);
+      it++;
+    }
+}
+
+void				World::animeEntity(int id, unsigned int animeId)
+{
+  gameServer->animeEntity(id, animeId);
 }
