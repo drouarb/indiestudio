@@ -13,6 +13,7 @@ Actor::Actor(int nid, world::World *nworld)
   : ABody(nid)
 {
   world = nworld;
+  idAI = -1;
 }
 
 Actor::~Actor()
@@ -54,6 +55,7 @@ ABody		*Actor::clone(int id) const
   actor->changePos(coord);
   actor->changeSize(size);
   actor->changeOrientation(orientation);
+  actor->setIdAI(idAI);
   return (actor);
 }
 
@@ -66,4 +68,12 @@ void Actor::addSpell(int spellEnum) {
   spellBook.addSpell(spellEnum, this);
 }
 
+void		Actor::setIdAI(int ia)
+{
+  idAI = ia;
+}
 
+int		Actor::getIdAI() const
+{
+  return (idAI);
+}

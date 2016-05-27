@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 16:50:32 2016 Alexis Trouve
-// Last update Wed May 25 20:46:20 2016 Alexis Trouve
+// Last update Thu May 26 19:12:57 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -75,6 +75,7 @@ void			BodyFactory::setBarbare()
   player->changeOrientation(0);
   player->setMeshId(EntityName::BERSERK);
   player->setTextureId(TextureName::TEXTURE_NONE);
+  player->setIdAI(NOAI);
   bodyTab.push_back(player);
 }
 
@@ -95,6 +96,7 @@ void			BodyFactory::setElf()
   player->changeOrientation(0);
   player->setMeshId(EntityName::BERSERK);
   player->setTextureId(TextureName::TEXTURE_NONE);
+  player->setIdAI(NOAI);
   bodyTab.push_back(player);
 }
 
@@ -115,6 +117,7 @@ void			BodyFactory::setWizard()
   player->changeOrientation(0);
   player->setMeshId(EntityName::BERSERK);
   player->setTextureId(TextureName::TEXTURE_NONE);
+  player->setIdAI(NOAI);
   bodyTab.push_back(player);
 }
 
@@ -137,6 +140,7 @@ void			BodyFactory::setValkyrie()
   player->changeOrientation(0);
   player->setMeshId(EntityName::BERSERK);
   player->setTextureId(TextureName::TEXTURE_NONE);
+  player->setIdAI(NOAI);
   bodyTab.push_back(player);
 }
 
@@ -159,6 +163,7 @@ void			BodyFactory::setDraugr()
   crea->changeOrientation(0);
   crea->setMeshId(EntityName::BERSERK);
   crea->setTextureId(TextureName::TEXTURE_NONE);
+  crea->setIdAI(MELEEBASICAI);
   bodyTab.push_back(crea);
   i = 0;
   while (i < AIs.size())
@@ -185,12 +190,23 @@ void			BodyFactory::setPorteLight()
 ABody	*BodyFactory::giveBody(const std::string& name)
 {
   unsigned int	i;
+  ABody		*body;
+  Actor		*actor;
 
   i = 0;
   while (i < bodyTab.size())
     {
       if (name == bodyTab[i]->getName())
-	return (bodyTab[i]->clone(giveNextId()));
+	{
+	  body = bodyTab[i]->clone(giveNextId());
+	  if ((actor = dynamic_cast<Actor*>(body)) != NULL)
+	    {
+	      i = actor->getIdAI();
+	      if (i != NOAI)
+		AIs[i]->setNewAI(actor);
+	    }
+	  return (body);
+	}
       ++i;
     }
   return (NULL);

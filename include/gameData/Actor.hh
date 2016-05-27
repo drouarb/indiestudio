@@ -22,10 +22,11 @@ namespace gauntlet
   class Actor : public ABody
   {
   public:
-    Stats			    stats;
-    SpellContainer		spellBook;
-
-    bool			    ismoving = false;
+    Stats				stats;
+    SpellContainer			spellBook;
+    int					i;
+    int					idAI;
+    bool				ismoving = false;
   public:
     Actor(int nid, gauntlet::world::World *newWorld);
     ~Actor();
@@ -34,6 +35,8 @@ namespace gauntlet
     virtual void			setMove();
     virtual ABody			*clone(int id) const;
     void                    addSpell(int spellEnum);
+    void			setIdAI(int ia);
+    int				getIdAI() const;
   };
 };
 

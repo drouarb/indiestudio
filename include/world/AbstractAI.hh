@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 11:42:26 2016 Alexis Trouve
-// Last update Tue May 24 11:37:54 2016 Alexis Trouve
+// Last update Thu May 26 19:14:08 2016 Alexis Trouve
 //
 
 #ifndef ABSTRACTAI_HH_
@@ -17,8 +17,16 @@
 #define AI_LAUNCH_DIST 800.0
 #define CHECK_DIST 1000.0
 
+
 namespace gauntlet
 {
+  enum	EnumAI : int
+    {
+      NOAI = -1,
+	MELEEBASICAI = 0,
+	DISTBASICAI = 1
+	};
+
   namespace world
   {
 
