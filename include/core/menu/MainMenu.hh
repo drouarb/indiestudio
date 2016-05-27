@@ -5,20 +5,21 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:06:35 2016 Esteban Lewis
-// Last update Sat May 21 16:11:08 2016 Esteban Lewis
+// Last update Thu May 26 14:45:04 2016 Esteban Lewis
 //
 
 #ifndef  MAINMENU_HH_
 # define MAINMENU_HH_
 
 # include <map>
-# include "SaveloadMenu.hh"
-# include "Core.hh"
+# include "Menu.hh"
 
 namespace			gauntlet
 {
   namespace			core
   {
+    class			Core;
+
     class			MainMenu : public Menu
     {
     private:
@@ -36,6 +37,7 @@ namespace			gauntlet
       void			draw();
       void			undraw();
       bool			keyDown(Command);
+      void			message(std::string const &);
 
     protected:
       std::map<int, void (MainMenu::*)()> funs;

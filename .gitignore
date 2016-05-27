@@ -159,3 +159,5 @@ Testing
 CTestTestfile.cmake
 exe
 clean
+tmpfile
+trace

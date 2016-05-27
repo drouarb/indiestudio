@@ -5,13 +5,12 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 16:50:32 2016 Alexis Trouve
-// Last update Tue May 24 19:37:53 2016 Alexis Trouve
+// Last update Wed May 25 20:46:20 2016 Alexis Trouve
 //
 
 #include <iostream>
 #include <gameData/Spell/SpellFactory.hh>
 #include <gameData/TextureName.hh>
-#include "BodyFactory.hh"
 
 using namespace gauntlet;
 
@@ -160,7 +159,6 @@ void			BodyFactory::setDraugr()
   crea->changeOrientation(0);
   crea->setMeshId(EntityName::BERSERK);
   crea->setTextureId(TextureName::TEXTURE_NONE);
-  crea->setTextureId(1);
   bodyTab.push_back(crea);
   i = 0;
   while (i < AIs.size())

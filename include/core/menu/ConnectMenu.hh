@@ -25,6 +25,7 @@ namespace			gauntlet
       bool			init;
       std::string		portstr;
       bool			justConnected;
+      bool			local;
 
       void			doButton(int, struct t_hitItem &);
 

@@ -33,5 +33,6 @@ ABody		*GameObject::clone(int id) const
   obj->changePos(coord);
   obj->changeSize(size);
   obj->changeOrientation(orientation);
+  obj->gatherable = this->gatherable;
   return (obj);
 }

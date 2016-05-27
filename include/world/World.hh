@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:51:22 2016 Alexis Trouve
-// Last update Tue May 24 19:34:46 2016 Alexis Trouve
+// Last update Thu May 26 17:59:36 2016 Alexis Trouve
 //
 
 #ifndef WORLD_HH_
@@ -43,6 +43,7 @@ namespace			gauntlet
       std::pair<double, double>	spawnPoint;
       GameServer		*gameServer;
       std::vector<int>		effectTab;
+      std::vector<int>		soundTab;
       //network::PacketFactory	packetFactory;
     private:
       int			getUniqueEffectId();
@@ -62,8 +63,12 @@ namespace			gauntlet
       Collider&			getCollider();
       const std::pair<double, double>&	getSpawnPoint();
       std::list<ABody*>		getBodysByCopy() const;
-      int			triggerEffect(gauntlet::EffectName effect);
+      int			triggerEffect(gauntlet::EffectName effect, std::pair<double, double> pos,
+					      int decayTime);
       void			stopEffect(int id);
+      int			getUniqueSoundId();
+      int			playSound(unsigned int soundId, bool loop);
+      void			stopSound(int idToStop);
     };
   };
 };

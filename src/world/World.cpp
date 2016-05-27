@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Wed May 25 19:36:39 2016 Alexis Trouve
+// Last update Thu May 26 17:59:56 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -161,15 +161,15 @@ void		World::gameLoop()
   ABody	*body;
   std::list<ABody*>::iterator it1;
   it1 = bodys.begin();
+  it1++;
+  it1++;
   sleep(1);
   while (it1 != bodys.end())
     {
       body = (*it1);
       if ((actor = dynamic_cast<Actor*>(body)) != NULL)
-	{
-	  std::cout << "lol" << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
-	  //actor->setMove();
-	}
+	if (actor->getMove() == false)
+	  actor->setMove();
       it1++;
     }
   while (42 == 42)
@@ -186,10 +186,12 @@ int	World::addNewBody(double xpos, double ypos, const std::string& name, short o
 {
   std::cout << "world addnewbody" << std::endl;
   ABody	*body;
+  std::pair<unsigned int, unsigned int>	sizeMap;
 
-  if (xpos < 0 || xpos >= sizeX || ypos < 0 || ypos >= sizeY)
-    throw (std::runtime_error(name + " is out of bounds"));
   body = Factory->giveBody(name);
+  if ((xpos - (body->getSize().first / 2.0)) < 0 || (xpos + (body->getSize().first / 2.0)) >= sizeX
+      || (ypos - (body->getSize().second / 2.0)) < 0 || (ypos + (body->getSize().second / 2.0)) >= sizeY)
+    throw (std::runtime_error(name + " is out of bounds"));
   if (body == NULL)
     throw (std::runtime_error("'" + name + "': wrong name"));
   body->changePos(std::make_pair(xpos, ypos));
@@ -198,6 +200,7 @@ int	World::addNewBody(double xpos, double ypos, const std::string& name, short o
   bodys.push_back(body);
   collider->setNewBodyNoCheckEntity(body);
   std::cout << "world addnewbody end" << std::endl;
+  return (body->getId());
 }
 
 void		World::notifyDeath(ABody *body)
@@ -260,25 +263,62 @@ int				World::getUniqueEffectId()
   return (++i);
 }
 
-int				World::triggerEffect(gauntlet::EffectName effect)
+int				World::triggerEffect(gauntlet::EffectName effect,
+						     std::pair<double, double> pos, int decayTime)
 {
   int				id;
 
   id = getUniqueEffectId();
+  gameServer->sendEffect(effect, id, pos, decayTime);
   effectTab.push_back(id);
   return (id);
 }
 
 void				World::stopEffect(int id)
 {
-  int				i;
+  unsigned int			i;
 
   i = 0;
   while (i < effectTab.size())
     {
       if (effectTab[i] == id)
 	{
+	  gameServer->sendStopEffect(id);
 	  effectTab.erase(effectTab.begin() + i);
+	  break;
+	}
+      ++i;
+    }
+}
+
+int				World::getUniqueSoundId()
+{
+  static int			id = -1;
+
+  return (++id);
+}
+
+int				World::playSound(unsigned int soundId, bool loop)
+{
+  int				id;
+
+  id = getUniqueEffectId();
+  gameServer->sendSound(soundId, id, loop);
+  soundTab.push_back(id);
+  return (id);
+}
+
+void				World::stopSound(int idToStop)
+{
+  unsigned int			i;
+
+  i = 0;
+  while (i < soundTab.size())
+    {
+      if (soundTab[i] == idToStop)
+	{
+	  gameServer->sendStopSound(idToStop);
+	  soundTab.erase(soundTab.begin() + i);
 	  break;
 	}
       ++i;

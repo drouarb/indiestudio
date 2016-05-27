@@ -77,7 +77,7 @@ gauntlet::core::CharMenu::doOk(struct t_hitItem & item)
     {
       if (core.pc)
 	delete (core.pc);
-      core.pc = new PlayerController(text, charType);
+      core.pc = new PlayerController(text, charType, core);
       setOpen(false);
     }
 }

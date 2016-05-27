@@ -8,6 +8,7 @@
 #include "PacketStartGame.hh"
 #include "WaitPacket.hh"
 #include "PlayerController.hh"
+#include "PacketFactory.hh"
 
 gauntlet::core::Lobby::Lobby(Core & core, int idStart, Menu * parent) :
   Menu(core, idStart, parent)
@@ -152,7 +153,7 @@ gauntlet::core::Lobby::receivedStartgame()
     {
       static_cast<MessageBox *>(submenus[0])->setMsg("No response from server.");
       submenus[0]->setOpen(true);
-      core.disconnect(true);
+      core.disconnect();
     }
 }
 

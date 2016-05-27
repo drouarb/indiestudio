@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 13:47:34 2016 Esteban Lewis
-// Last update Sat May 21 22:46:08 2016 Esteban Lewis
+// Last update Thu May 26 15:35:04 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -143,7 +143,7 @@ gauntlet::core::Control::makeButton()
 void
 gauntlet::core::Control::makeSlidebar()
 {
-  ogre.addSlideBar(pos, id, str, *(int*)param, 0);
+  ogre.addSlideBar(pos, id, str, *((int*)param), 0);
 }
 
 void
@@ -173,5 +173,5 @@ gauntlet::core::Control::makeSelectmenu()
 void
 gauntlet::core::Control::makeProgressbar()
 {
-  ogre.addProgressBar(pos, id, str, 0, *(int*)param);
+  ogre.addProgressBar(pos, id, str, 0, *((int*)param));
 }

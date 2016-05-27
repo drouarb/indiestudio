@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 13:37:58 2016 Esteban Lewis
-// Last update Sat May 21 16:02:15 2016 Esteban Lewis
+// Last update Thu May 26 15:34:00 2016 Esteban Lewis
 //
 
 #ifndef  CONTROL_HH_
@@ -28,7 +28,7 @@ namespace			gauntlet
       Control(Control const &);
       ~Control();
 
-      Control &		operator=(Control const &);
+      Control &			operator=(Control const &);
 
       Position			getPos() const;
       const std::string &	getStr() const;
@@ -43,7 +43,7 @@ namespace			gauntlet
       typedef void (Control::*CtrlFun)();
 
     private:
-      MenuItemType			type;
+      MenuItemType		type;
       Position			pos;
       std::string		str;
       void *			param;

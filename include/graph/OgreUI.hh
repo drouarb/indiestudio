@@ -32,6 +32,7 @@
 #include <graph/Effect.hh>
 #include <gameData/EntityName.hh>
 #include <gameData/TextureName.hh>
+#include <gameData/SoundName.hh>
 #include "IUIObserver.hh"
 
 namespace gauntlet
@@ -55,6 +56,7 @@ class OgreUI
   static const std::map<gauntlet::TextureName ,std::string>texturemap;
   static const std::map<gauntlet::EntityName, std::string> meshmap;
   Ogre::LightList lightList;
+  static const std::map<gauntlet::SoundName, std::string> soundmap;
 
   std::map<std::string, Ogre::AnimationState *> animationsArray;
   std::map<int, gauntlet::Effect *> effectMap;
@@ -74,6 +76,7 @@ class OgreUI
   Ogre::SceneNode *planNode;
   Ogre::SceneNode *worldNode;
 
+  Ogre::SceneNode *rootNode;
   Ogre::OverlaySystem *mOverlaySystem;
   OgreBites::SdkTrayManager *mTrayMgr;
   OgreBites::SdkCameraMan *mCameraMan;
@@ -186,11 +189,11 @@ class OgreUI
 
   void setIObserver(gauntlet::core::IUIObserver *Obs);
 
-  void loadSound(int id, const std::string &path);
+  bool loadSound(int id , gauntlet::SoundName name);
 
   void hideItem(int id);
 
-  void playSound(int id);
+  bool playSound(int id, gauntlet::SoundName name, bool loop);
 
   void stopSound(int id);
 
@@ -204,9 +207,12 @@ class OgreUI
 
   void stopAnimation(int animationId, int entityId);
 
+
   std::pair<int, int> getSizeWindow();
 
   void setQuality(int percent = 100);
+
+  int getQuality() const;
 
   void quit();
 

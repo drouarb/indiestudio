@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Thu May 12 16:15:29 2016 Alexis Trouve
-// Last update Fri May 20 14:18:49 2016 Alexis Trouve
+// Last update Wed May 25 20:36:46 2016 Alexis Trouve
 //
 
 #pragma once
@@ -36,7 +36,7 @@ namespace gauntlet {
 
             void unsetWall(double xpos, double ypos, double xsize, double ysize);
 
-            bool checkCoordSize(double xpos, double ypos, double xsize, double ysize);
+            bool checkCoordSizeIsEmpty(double xpos, double ypos, double xsize, double ysize);
 
             const unsigned char *getLayer() const;
         };

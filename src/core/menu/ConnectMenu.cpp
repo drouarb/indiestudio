@@ -16,6 +16,7 @@ gauntlet::core::ConnectMenu::ConnectMenu(Core & core, int idStart, Menu * parent
   justConnected = false;
   init = false;
   portstr = "";
+  local = false;
 
   buttons.push_back(Control(CHECKBOX, "Local server", &serverTypes, PCENTER,
 			    idStart + buttons.size(), core.ogre));
@@ -73,7 +74,7 @@ gauntlet::core::ConnectMenu::draw()
   struct t_hitItem item;
   item.type = CHECKBOX;
   item.state = CHECKED;
-  if (ip == "127.0.0.1")
+  if (local)
     {
       item.data = buttons[1].getStr();
       buttons[1].update(item);
@@ -122,6 +123,7 @@ gauntlet::core::ConnectMenu::doLocal(struct t_hitItem & item)
       other.state = NOCHECKED;
       buttons[2].update(other);
 
+      local = true;
       ip = "127.0.0.1";
     }
 }
@@ -136,6 +138,7 @@ gauntlet::core::ConnectMenu::doDistant(struct t_hitItem & item)
       other.data = buttons[1].getStr();
       other.state = NOCHECKED;
       buttons[1].update(other);
+      local = false;
 
       static_cast<IpMenu *>(submenus[1])->port = text;
       submenus[1]->setOpen(true);
@@ -174,7 +177,7 @@ gauntlet::core::ConnectMenu::doConnect(struct t_hitItem & item)
     }
 
   core.serverAddr = std::pair<std::string, int>(ip, port);
-  if (ip == "127.0.0.1")
+  if (local)
     {
       if (core.map == "")
 	{
@@ -191,7 +194,7 @@ gauntlet::core::ConnectMenu::doConnect(struct t_hitItem & item)
   try
     {
       if (core.packetf)
-	core.disconnect(true);
+	core.disconnect();
       core.packetf = new network::PacketFactory(ip, port);
       core.initPacketf();
       sendConnect();
@@ -236,7 +239,7 @@ gauntlet::core::ConnectMenu::sendConnect()
 	{
 	  static_cast<MessageBox *>(submenus[0])->setMsg("No response from server.");
 	  submenus[0]->setOpen(true);
-	  core.disconnect(true);
+	  core.disconnect();
 	}
     }
 }

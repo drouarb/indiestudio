@@ -85,7 +85,7 @@ const std::map<gauntlet::core::Position, OgreBites::TrayLocation> OgreUI::posmap
 };
 
 const std::map<gauntlet::EntityName, std::string> OgreUI::meshmap = {
-		{gauntlet::EntityName::OGREHEAD,          "ogrehead.mesh"},
+		{gauntlet::EntityName::OGREHEAD,          "unityexportmap_obj.mesh"},
 		{gauntlet::EntityName::NINJA,             "ninja.mesh"},
 		{gauntlet::EntityName::PLAN,              "plan.mesh"},
 		{gauntlet::EntityName::TUDORHOUSE,        "tudorhouse.mesh"},
@@ -96,6 +96,7 @@ const std::map<gauntlet::EntityName, std::string> OgreUI::meshmap = {
 		{gauntlet::EntityName::BERSERK,           "berserker.mesh"},
 		{gauntlet::EntityName::CHESTCARTOON,      "chestCartoon.mesh"},
 		{gauntlet::EntityName::WAGEN,             "wagen.mesh"},
+		{gauntlet::EntityName::MAP_TEST,             "unityexportmap_obj.mesh"},
 		{gauntlet::EntityName::TROLL,             "troll.mesh"},
 		{gauntlet::EntityName::SKELETON_ARCHER,   "skeleton_archer.mesh"},
 		{gauntlet::EntityName::SKELETON_FOOTMAN,  "skeleton_footman.mesh"},
@@ -104,6 +105,10 @@ const std::map<gauntlet::EntityName, std::string> OgreUI::meshmap = {
 };
 
 const std::map<gauntlet::TextureName, std::string> OgreUI::texturemap = {
-        {gauntlet::TextureName::NINjA_M,      "Ogre/Skin"},
+        {gauntlet::TextureName::NINjA_M,      "Plan/sol"},
         {gauntlet::TextureName::TUDORHOUSE_M, "TudorHouse/house"}
+};
+
+const std::map<gauntlet::SoundName , std::string> OgreUI::soundmap = {
+	{gauntlet::SoundName::MENU_SOUND,      "menu_theme.ogg"},
 };

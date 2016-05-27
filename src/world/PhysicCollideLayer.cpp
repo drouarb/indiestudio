@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Thu May 12 16:17:25 2016 Alexis Trouve
-// Last update Fri May 20 14:21:37 2016 Alexis Trouve
+// Last update Wed May 25 21:10:07 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -52,13 +52,7 @@ void    PhysicCollideLayer::setWall(double xpos, double ypos, double xsize, doub
     {
       x = static_cast<unsigned int>(xpos);
       while (x < maxX)
-	if (x % 8 == 0 && maxX - x > 8)
-	  {
-	    layer[(y * sizeX) + x] = 255;
-	    x += 8;
-	  }
-	else
-	  setWall(x++, y);
+	setWall(x++, y);
       ++y;
     }
 }
@@ -93,18 +87,12 @@ void    PhysicCollideLayer::unsetWall(double xpos, double ypos, double xsize, do
     {
       x = static_cast<unsigned int>(xpos);
       while (x < maxX)
-	if (x % 8 == 0 && maxX - x > 8)
-	  {
-	    layer[(y * sizeX) + x] = 0;
-	    x += 8;
-	  }
-	else
-	  setWall(x++, y);
+	unsetWall(x++, y);
       ++y;
     }
 }
 
-bool    PhysicCollideLayer::checkCoordSize(double xpos, double ypos, double xsize, double ysize)
+bool    PhysicCollideLayer::checkCoordSizeIsEmpty(double xpos, double ypos, double xsize, double ysize)
 {
   unsigned int	minX;
   unsigned int	minY;
@@ -121,23 +109,15 @@ bool    PhysicCollideLayer::checkCoordSize(double xpos, double ypos, double xsiz
 			      ? xpos - xsize - 1 : xpos - xsize);
   maxY = static_cast<unsigned int>(((ypos - ysize) - static_cast<unsigned int>(ypos - ysize) > 0.0)
 			      ? ypos - ysize - 1 : ypos - ysize);
-  y = minY;
   if (maxX >= sizeX || maxY >= sizeY || minX >= sizeX || minY >= sizeX)
     return (false);
+  y = minY;
   while (y < maxY)
     {
       x = minX;
       while (x < maxX)
-	{
-	  if (x % 8 == 0 && maxX - x > 8)
-	    {
-	      if (layer[(y * sizeX) + x] > 0)
-		return (false);
-	      x += 8;
-	    }
-	  else
-	    isWall(x++, y);
-	}
+	if (isWall(x++, y) == true)
+	  return (false);
       ++y;
     }
   return (true);

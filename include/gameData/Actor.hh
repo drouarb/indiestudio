@@ -30,9 +30,12 @@ namespace gauntlet
     Actor(int nid, gauntlet::world::World *newWorld);
     ~Actor();
     virtual void			move();
+    virtual bool			getMove() const;
     virtual void			setMove();
     virtual ABody			*clone(int id) const;
     void                    addSpell(int spellEnum);
+
+      void castSpell(int spellEnum);
   };
 };
 
