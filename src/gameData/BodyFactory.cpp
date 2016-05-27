@@ -174,6 +174,29 @@ void			BodyFactory::setDraugr()
     }
 }
 
+void            BodyFactory::setKey(Item *key)
+{
+  GameObject		*obj;
+
+  obj = new GameObject(-1, world);
+  obj->setBasicParameters("Key", true, false);
+  obj->setCollide(false);
+  obj->setMeshId(EntityName::CHEST);
+  obj->setTextureId(EntityName::CHEST);
+  obj->addItem(*key);
+}
+
+void            BodyFactory::setDoor()
+{
+  GameObject        *obj;
+
+  obj = new GameObject(-1, world);
+  obj->setBasicParameters("Door", false, true);
+  obj->setCollide(true);
+  obj->setMeshId(EntityName::DOOR);
+  obj->setTextureId(EntityName::DOOR);
+}
+
 void			BodyFactory::setPorteLight()
 {
   GameObject		*obj;

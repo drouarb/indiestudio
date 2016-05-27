@@ -15,10 +15,16 @@ using namespace gauntlet;
 gauntlet::Item::Item()
 {
     consumable = false;
+    id = getNewId();
 }
 
 gauntlet::Item::~Item()
 {
+}
+
+void     gauntlet::Item::generateItem(int pf) {
+    price = 100 * pf;
+    name = "Shiny stuff";
 }
 
 int     gauntlet::Item::getNewId() {

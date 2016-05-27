@@ -11,6 +11,7 @@
 #ifndef ITEM_HH_
 # define ITEM_HH_
 
+#include <string>
 #include "Stats.hh"
 
 namespace gauntlet {
@@ -19,6 +20,7 @@ namespace gauntlet {
         //bool equiped;
         bool consumable;
         int id;
+        std::string name;
         int number;
         int price;
         bool key;
@@ -33,6 +35,7 @@ namespace gauntlet {
         bool    operator==(Item item);
         bool    operator<(Item item);
         int     getNewId();
+        void    generateItem(int pf);
     };
 };
 

@@ -44,6 +44,12 @@ namespace gauntlet
     BodyFactory(world::World *world, std::vector<world::AbstractAI*>& nAIs);
     ~BodyFactory();
     ABody		*giveBody(const std::string& wanted);
+
+      void setKey();
+
+      void setKey(Item *key);
+
+      void setDoor();
   };
 };
 
