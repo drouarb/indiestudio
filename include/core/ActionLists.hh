@@ -11,6 +11,7 @@
 # include "ListenerPlaySound.hh"
 # include "ListenerAddParticle.hh"
 # include "ListenerDeleteParticle.hh"
+# include "ListenerAnimation.hh"
 
 namespace			gauntlet
 {
@@ -33,6 +34,7 @@ namespace			gauntlet
       void			pushPlaySound(const network::PacketPlaySound *);
       void			pushAddParticle(const network::PacketAddParticle *);
       void			pushDeleteParticle(const network::PacketDeleteParticle *);
+      void			pushAnimation(const network::PacketAnimation *);
       void			setCameraTrackerId(int id);
 
     private:
@@ -63,6 +65,7 @@ namespace			gauntlet
       std::list<network::PacketPlaySound*> packetsPlaySound;
       std::list<network::PacketAddParticle*> packetsAddParticle;
       std::list<network::PacketDeleteParticle*> packetsDeleteParticle;
+      std::list<network::PacketAnimation*> packetsAnimation;
     };
   };
 };

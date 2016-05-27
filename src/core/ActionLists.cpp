@@ -96,14 +96,22 @@ gauntlet::core::ActionLists::doActions()
       for (std::list<network::PacketPlaySound*>::iterator
 	     it = packetsPlaySound.begin(); it != packetsPlaySound.end(); ++it)
 	{
-	  core.ogre.playSound((*it)->getRefId() + 1, (SoundName)(*it)->getSoundId(),
-			      (*it)->getLoop());
+	  if ((*it)->getX() < 0 || (*it)->getY() < 0)
+	    core.ogre.playSound((*it)->getRefId() + 1, (SoundName)(*it)->getSoundId(),
+				(*it)->getLoop());
+	  //TODO else
 	}
 
       for (std::list<network::PacketStopSound*>::iterator
 	     it = packetsStopSound.begin(); it != packetsStopSound.end(); ++it)
 	{
 	  core.ogre.stopSound((*it)->getSoundId() + 1);
+	}
+
+      for (std::list<network::PacketAnimation*>::iterator
+	     it = packetsAnimation.begin(); it != packetsAnimation.end(); ++it)
+	{
+	  core.ogre.playAnimation((*it)->getEntityId(), (*it)->getAnimationId(), true);
 	}
     }
   clearActions();
@@ -177,6 +185,14 @@ gauntlet::core::ActionLists::pushDeleteParticle(const network::PacketDeleteParti
   packetsDeleteParticle.push_back(new network::PacketDeleteParticle
 				  (packet->getParticleId()));
   allPackets.push_back(packetsDeleteParticle.back());
+}
+
+void
+gauntlet::core::ActionLists::pushAnimation(const network::PacketAnimation * packet)
+{
+  packetsAnimation.push_back(new network::PacketAnimation
+			     (packet->getEntityId(), packet->getAnimationId()));
+  allPackets.push_back(packetsAnimation.back());
 }
 
 void

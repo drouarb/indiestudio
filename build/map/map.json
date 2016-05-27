@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 {
+=======
+B1;2802;0c{
+>>>>>>> b20d2827ac62aabbd1a36be9929ee86ba619eee2
     name : "Default map",
     length : "10000",
     width : "10000",
@@ -7,7 +11,11 @@
 	x : "300",
 	y : "300"
     },
+<<<<<<< HEAD
     map : "une_vraie_map.obj",
+=======
+    map : "",
+>>>>>>> b20d2827ac62aabbd1a36be9929ee86ba619eee2
     dynamic :
     [
 	{
@@ -124,6 +132,7 @@
 	    y : "100",
 	    angle : "0"
 	}
+<<<<<<< HEAD
     ],
     sounds:
     [
@@ -140,6 +149,17 @@
 	    x : "300",
 	    y : "300",
 	    angle : "0"
+=======
+    ]
+    physical :
+    [
+	{
+	    mesh_id : "123",
+	    pos_x : "3000",
+	    pos_y : "5000",
+	    size_x : "100",
+	    size_y : "20"
+>>>>>>> b20d2827ac62aabbd1a36be9929ee86ba619eee2
 	}
     ]
 }
