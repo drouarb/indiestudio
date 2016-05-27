@@ -16,8 +16,10 @@ namespace gauntlet
     public:
       ItemContainer();
       ~ItemContainer();
-      
+
+        std::list<Item> *getItemList();
       void    remove(Item item);
+      void    operator+=(ItemContainer *itemContainer);
     };
 };
 

@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:51:22 2016 Alexis Trouve
-// Last update Fri May 27 16:01:24 2016 Alexis Trouve
+// Last update Fri May 27 16:56:36 2016 Alexis Trouve
 //
 
 #ifndef WORLD_HH_
@@ -35,6 +35,7 @@ namespace			gauntlet
       int			Id;
       std::pair<double, double>	pos;
       unsigned int		soundId;
+      bool			loop;
     };
 
     struct			effectGlobal
@@ -59,8 +60,8 @@ namespace			gauntlet
       double			sizeY;
       std::pair<double, double>	spawnPoint;
       GameServer		*gameServer;
-      std::vector<effectGlobal>	effectTab;
-      std::vector<soundGlobal>	soundTab;
+      std::vector<effectGlobal*>	effectTab;
+      std::vector<soundGlobal*>	soundTab;
       
       //network::PacketFactory	packetFactory;
     private:
@@ -69,7 +70,6 @@ namespace			gauntlet
       World(GameServer *ngameServer);
       ~World();
 
-      void			update();
       void			loadGame(std::string const & file);
       void			gameLoop();
       void			tester();
@@ -81,8 +81,8 @@ namespace			gauntlet
       Collider&			getCollider();
       const std::pair<double, double>&	getSpawnPoint();
       std::list<ABody*>		getBodysByCopy() const;
-      const std::vector<effectGlobal>&	getEffect() const;
-      const std::vector<soundGlobal>&	getSound() const;
+      std::vector<effectGlobal*>	getEffectByCopy() const;
+      std::vector<soundGlobal*>	getSoundByCopy() const;
       void			putEffect(unsigned int effectId, short orient,
 					      const std::pair<double, double>& pos);
       int			triggerEffect(gauntlet::EffectName effect, short orient,

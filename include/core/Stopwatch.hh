@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon Apr 18 16:05:33 2016 Esteban Lewis
-// Last update Mon May  9 18:00:00 2016 Esteban Lewis
+// Last update Fri May 27 14:39:02 2016 Esteban Lewis
 //
 
 #ifndef  STOPWATCH_HPP_
@@ -24,8 +24,8 @@ namespace			gauntlet
       Stopwatch();
       ~Stopwatch();
       
-      void			Set();
-      long			EllapsedMs();
+      void			set();
+      long			ellapsedMs();
       
     private:
       struct timeval		startTime;

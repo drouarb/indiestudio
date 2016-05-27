@@ -11,7 +11,7 @@
 
 namespace gauntlet {
     namespace network {
-        class PacketAnimationListener: PacketListener {
+        class PacketAnimationListener: public PacketListener {
         protected:
             PacketAnimationListener();
         public:

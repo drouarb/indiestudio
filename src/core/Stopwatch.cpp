@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon Apr 18 16:11:08 2016 Esteban Lewis
-// Last update Mon May  9 18:05:08 2016 Esteban Lewis
+// Last update Fri May 27 14:27:11 2016 Esteban Lewis
 //
 
 #include "Stopwatch.hh"
@@ -17,13 +17,13 @@ gauntlet::core::Stopwatch::~Stopwatch()
 { }
 
 void
-gauntlet::core::Stopwatch::Set()
+gauntlet::core::Stopwatch::set()
 {
   gettimeofday(&startTime, NULL);
 }
 
 long
-gauntlet::core::Stopwatch::EllapsedMs()
+gauntlet::core::Stopwatch::ellapsedMs()
 {
   struct timeval checkTime;
 

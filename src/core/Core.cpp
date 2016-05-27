@@ -11,6 +11,7 @@
 #include "ListenerPlaySound.hh"
 #include "ListenerAddParticle.hh"
 #include "ListenerDeleteParticle.hh"
+#include "ListenerAnimation.hh"
 #include "PacketFactory.hh"
 #include "ConnectMenu.hh"
 #include "GameServer.hh"
@@ -179,6 +180,7 @@ gauntlet::core::Core::initPacketf()
 	  listeners.push_back(new ListenerPlaySound(*this));
 	  listeners.push_back(new ListenerAddParticle(*this));
 	  listeners.push_back(new ListenerDeleteParticle(*this));
+	  listeners.push_back(new ListenerAnimation(*this));
 	}
       for (std::list<network::PacketListener*>::iterator it = listeners.begin();
 	   it != listeners.end(); ++it)

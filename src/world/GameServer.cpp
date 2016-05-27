@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Fri May 27 16:00:33 2016 Alexis Trouve
+// Last update Fri May 27 17:10:59 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -134,9 +134,14 @@ void		GameServer::selectPlayerAnswer(const network::PacketSelectPlayer *packet)
 void			GameServer::sendDatas(int socketId)
 {
   std::list<ABody*>	bodys;
+  std::vector<effectGlobal*>	effectTab;
+  std::vector<soundGlobal*>	soundTab;
   std::list<ABody*>::iterator	it1;
+  unsigned int			i;
 
   bodys = world->getBodysByCopy();
+  soundTab = world->getSoundByCopy();
+  effectTab = world->getEffectByCopy();
   it1 = bodys.begin();
   while (it1 != bodys.end())
     {
@@ -145,6 +150,20 @@ void			GameServer::sendDatas(int socketId)
 				       static_cast<int>((*it1)->getPos().second), (*it1)->getOrientation());
       packetFact->send(packet, socketId);
       it1++;
+    }
+  i = 0;
+  while (i < soundTab.size())
+    {
+      if (soundTab[i]->loop == true)
+	sendSound(soundTab[i]->soundId, soundTab[i]->Id, true, soundTab[i]->pos);
+      ++i;
+    }
+  i = 0;
+  while (i < effectTab.size())
+    {
+      sendEffect(effectTab[i]->effectId, effectTab[i]->Id, effectTab[i]->orientation,
+		 effectTab[i]->pos, effectTab[i]->decayTime);
+      ++i;
     }
 }
 
