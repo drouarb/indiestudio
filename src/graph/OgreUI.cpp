@@ -790,7 +790,7 @@ void OgreUI::moveEntity(int id, int x, int y, short degres)
         this->mCamera->move(direction);
     }
 
-    s->yaw(Ogre::Radian(world::Math::toRad(degres)));
+    s->yaw(Ogre::Radian(world::Math::toRad(degres)) - s->getOrientation().getYaw());
 }
 
 void OgreUI::addCameraTracker(int id)
