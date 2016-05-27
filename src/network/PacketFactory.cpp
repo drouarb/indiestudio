@@ -15,6 +15,7 @@
 #include <network/packet/PacketPlaySound.hh>
 #include <network/packet/PacketStopSound.hh>
 #include <network/packet/PacketControl.hh>
+#include <network/packet/PacketAnimation.hh>
 #include "network/PacketFactory.hh"
 #include "network/PacketFactorySocketDisconnectionListener.hh"
 
@@ -133,7 +134,8 @@ const std::map<gauntlet::network::PacketId, gauntlet::network::PacketFactory::cr
         {DELETE_PARTICLE, &PacketFactory::createPacket<PacketDeleteParticle>},
         {PLAY_SOUND,      &PacketFactory::createPacket<PacketPlaySound>},
         {STOP_SOUND,      &PacketFactory::createPacket<PacketStopSound>},
-        {PACKET_CONTROL,  &PacketFactory::createPacket<PacketControl>}
+        {PACKET_CONTROL,  &PacketFactory::createPacket<PacketControl>},
+        {ANIMATION,       &PacketFactory::createPacket<PacketAnimation>}
 };
 
 
