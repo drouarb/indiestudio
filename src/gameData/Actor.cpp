@@ -59,6 +59,12 @@ ABody		*Actor::clone(int id) const
   return (actor);
 }
 
+void        Actor::castSpell(int spellEnum)
+{
+  spellBook.spellList[spellEnum]->prepare();
+  spellBook.spellList[spellEnum]->cast(this);
+}
+
 void		Actor::setMove()
 {
   ismoving = !ismoving;

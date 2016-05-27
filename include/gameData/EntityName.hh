@@ -27,6 +27,7 @@ namespace gauntlet
     SKELETON_FOOTMAN = 15,
     SKELETON_SORCERER = 16,
     SKELETON_WARLORD = 17,
+    MAP_TEST = 18
   };
 };
 #endif //GAUNTLET_ENTITYNAME_HH

@@ -35,8 +35,10 @@ namespace gauntlet
     virtual void			setMove();
     virtual ABody			*clone(int id) const;
     void                    addSpell(int spellEnum);
+
     void			setIdAI(int ia);
     int				getIdAI() const;
+    void			castSpell(int spellEnum);
   };
 };
 
