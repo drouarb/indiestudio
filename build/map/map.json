@@ -7,7 +7,7 @@
 	x : "300",
 	y : "300"
     },
-    map : "",
+    map : "une_vraie_map.obj",
     dynamic :
     [
 	{
@@ -124,15 +124,22 @@
 	    y : "100",
 	    angle : "0"
 	}
-    ]
-    physical :
+    ],
+    sounds:
     [
 	{
-	    mesh_id : "123",
-	    pos_x : "3000",
-	    pos_y : "5000",
-	    size_x : "100",
-	    size_y : "20"
+	    id : "1",
+	    x : "-1",
+	    y : "-1"
+	}
+    ],
+    particles:
+    [
+	{
+	    id : "2",
+	    x : "300",
+	    y : "300",
+	    angle : "0"
 	}
     ]
 }
