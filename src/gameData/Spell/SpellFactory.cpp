@@ -27,8 +27,10 @@ const std::map<SpellFactory::SpellEnum, SpellFactory::getSpell> gauntlet::SpellF
   {SpellFactory::VALKYRIA_DASH, &gauntlet::SpellFactory::getValkyriaDash},
   {SpellFactory::BARBARIAN_ATTACK, &gauntlet::SpellFactory::getBarbarianAttack},
   {SpellFactory::BARBARIAN_TORNADO, &gauntlet::SpellFactory::getBarbarianTornado},
-        {SpellFactory::DRAUGR_ATTACK, &gauntlet::SpellFactory::getDraugrAttack}
-};
+  {SpellFactory::WIZARD_FIREBALL, &gauntlet::SpellFactory::getWizardFireBall},
+  {SpellFactory::WIZARD_FIRECONE, &gauntlet::SpellFactory::getWizardFireCone},
+  {SpellFactory::DRAUGR_ATTACK, &gauntlet::SpellFactory::getDraugrAttack}
+   };
 
 int		SpellFactory::giveNextId()
 {
@@ -41,6 +43,23 @@ int		SpellFactory::giveNextId()
 Spell		*SpellFactory::giveSpell(SpellEnum type)
 {
   return ((spellMap.at(type))());
+}
+
+gauntlet::Spell *SpellFactory::getWizardFireBall() {
+  Spell *spell = new Spell;
+
+  spell->setBasicStats(giveNextId(), "Wizard Fire Ball", 1500, 100, 50, Spell::Area::CIRCLE);
+  spell->setEffect(EffectName::PLASMA, EffectName::EXPLOSION);
+  return spell;
+}
+
+gauntlet::Spell *SpellFactory::getWizardFireCone() {
+  Spell *spell = new Spell;
+
+  spell->setBasicStats(giveNextId(), "Wizard Fire Cone", 500, 100, 50, Spell::Area::CIRCLE);
+  spell->setConeAngle(30);
+  spell->setEffect(EffectName::PLASMA, EffectName::EXPLOSION);
+  return spell;
 }
 
 gauntlet::Spell *SpellFactory::getValkyriaAttack() {

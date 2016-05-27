@@ -13,6 +13,9 @@ gauntlet::Spell::Spell() {
     damage = 0;
     pattern = CIRCLE;
     angle = 0;
+    openingEffect = -1;
+    endingEffect = -1;
+    effectOrientation = 0;
 }
 
 gauntlet::Spell::~Spell() {
@@ -42,14 +45,17 @@ void gauntlet::Spell::ApplyDamage(std::list<gauntlet::ABody*> targets, Actor *ca
 
 void gauntlet::Spell::prepare()
 {
-    //effet sur opening sur coord
-    caster->getPos();
+    if (openingEffect > -1)
+        openingId = caster->getWorld()->triggerEffect((EffectName) openingEffect, caster->getOrientation(), caster->getPos(), 1000);
+    //lancer animation sur caster
     targetedArea = caster->pointInFront(range);
 }
 
 void gauntlet::Spell::cast(Actor *caster)
 {
     std::list<gauntlet::ABody*> targets;
+    if (endingEffect > -1)
+        endingId = caster->getWorld()->triggerEffect((EffectName) endingEffect, caster->getOrientation(), caster->getPos(), 1000);
     targets = (caster->getWorld()->getCollider().*patternTypes.at(pattern))(targetedArea.first, targetedArea.second, caster->getOrientation(), radius, angle); //remplacer les 0 par des variables setées à 0 dans le constructy kthxbye
     ApplyDamage(targets, caster);
 }
@@ -57,6 +63,12 @@ void gauntlet::Spell::cast(Actor *caster)
 void gauntlet::Spell::setCaster(Actor* caster)
 {
     this->caster = caster;
+}
+
+void gauntlet::Spell::setEffect(EffectName opening, EffectName ending)
+{
+    openingEffect = opening;
+    endingEffect = ending;
 }
 
 void gauntlet::Spell::setBasicStats(int id, const std::string &name, double range, double radius, long damage, Area pattern) {
@@ -72,7 +84,6 @@ void gauntlet::Spell::setConeAngle(short _angle)
 {
     this->angle = _angle;
 }
-
 
 
 
