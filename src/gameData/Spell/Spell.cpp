@@ -121,3 +121,5 @@ const std::string&	gauntlet::Spell::getName() const
 {
   return (name);
 }
+
+

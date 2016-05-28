@@ -61,8 +61,11 @@ ABody		*Actor::clone(int id) const
 
 void        Actor::castSpell(int spellEnum)
 {
-  spellBook.spellList[spellEnum]->prepare();
-  spellBook.spellList[spellEnum]->cast(this);
+  if (recharged())
+  {
+    spellBook.spellList[spellEnum]->prepare();
+    spellBook.spellList[spellEnum]->cast(this);
+  }
 }
 
 void		Actor::setMove()
