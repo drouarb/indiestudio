@@ -3,7 +3,6 @@
 #include <stdexcept>
 #include <unistd.h>
 #include "World.hh"
-#include "Math.hh"
 #include "IJson.hpp"
 #include "Rand.hh"
 
