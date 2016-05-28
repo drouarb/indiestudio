@@ -5,9 +5,10 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Thu May 12 17:13:51 2016 Alexis Trouve
-// Last update Thu May 19 16:19:15 2016 Alexis Trouve
+// Last update Sun May 29 00:38:47 2016 Alexis Trouve
 //
 
+#include <iostream>
 #include "GameObject.hh"
 #include "World.hh"
 
@@ -31,9 +32,13 @@ void        GameObject::gather(Player *player)
 {
   if (gatherable)
   {
+  std::cout << "a" << std::endl;
     player->getInventory()->operator+=(this->items);
+  std::cout << "b" << std::endl;
     player->getInventory()->useUpgrades(player);
+  std::cout << "c" << std::endl;
     world->notifyDeath(this);
+  std::cout << "d" << std::endl;
   }
 }
 
