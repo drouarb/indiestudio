@@ -24,8 +24,8 @@ namespace gauntlet
       ~SpellContainer();
       void		addSpell(int spellEnum, gauntlet::Actor *caster);
 
-      Spell		*giveSpell(double desireRange, double minRange, bool mustDamage,
-				   Area desireArea, double desireRadius, short desireAngle);
+      int		giveSpell(double desireRange, double minRange, bool mustDamage,
+				  Area desireArea, double desireRadius, short desireAngle);
     };
 };
 

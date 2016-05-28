@@ -39,7 +39,6 @@ namespace gauntlet {
     int                         endingEffect;
     int                         openingId;
     int                         endingId;
-#warning "Emile on doit pouvoir taunt avec un sort"
     bool			taunt;
   public:
     void                        cast(Actor *caster);
