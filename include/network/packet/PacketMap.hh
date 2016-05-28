@@ -15,11 +15,14 @@ namespace gauntlet {
             struct s_packetMapData {
                 unsigned char packetId;
                 unsigned int mapId;
+                unsigned int stringsize;
+                char stringstart;
+
             } __attribute__((packed));
 
         public:
             PacketMap(const s_socketData &data);
-            PacketMap(unsigned int mapId);
+            PacketMap(unsigned int mapId, const std::string &filename);
             virtual ~PacketMap() { };
 
             virtual t_rawdata *serialize() const;
@@ -27,9 +30,11 @@ namespace gauntlet {
             virtual size_t getPacketSize() const;
 
             unsigned int getMapId() const;
+            const std::string & getFilename() const;
 
         private:
             unsigned int mapId;
+            std::string filename;
         };
     }
 }

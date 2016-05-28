@@ -307,7 +307,7 @@ void		GameServer::controlInput(const network::PacketControl *packet)
 void		GameServer::sendEffect(unsigned int effect, int id, short orient,
 				       const std::pair<double, double>& pos, int decayTime)
 {
-  PacketAddParticle	packet(effect, id, pos.first, pos.second, decayTime);
+  PacketAddParticle	packet(effect, id, pos.first, pos.second, orient, decayTime);
   unsigned int		i;
 
   i = 0;

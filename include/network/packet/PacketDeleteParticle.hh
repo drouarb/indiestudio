@@ -15,7 +15,7 @@ namespace gauntlet {
             struct s_packetDeleteParticle {
                 unsigned char packetId;
                 unsigned int particleId;
-            };
+            }__attribute__((packed));
 
         public:
             PacketDeleteParticle(s_socketData data);

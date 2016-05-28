@@ -15,7 +15,7 @@ namespace gauntlet {
             struct s_packetStartGameData {
                 unsigned char packetId;
                 unsigned int entityId;
-            };
+            }__attribute__((packed));
 
         public:
             PacketStartGame(unsigned int entityId);

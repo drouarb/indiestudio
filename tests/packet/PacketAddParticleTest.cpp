@@ -12,7 +12,7 @@ int main() {
 
     std::cout << "->Serialisation/Deserialitation" << std::endl;
     srand(time(NULL));
-    gauntlet::network::PacketAddParticle packetAddParticle(rand(), rand(), rand(), rand(), rand());
+    gauntlet::network::PacketAddParticle packetAddParticle(rand(), rand(), rand(), rand(), rand(), rand());
     data.data = packetAddParticle.serialize();
     gauntlet::network::PacketAddParticle packetAddParticle1(data);
     assert(packetAddParticle.getPacketId() == packetAddParticle1.getPacketId());
@@ -21,4 +21,5 @@ int main() {
     assert(packetAddParticle.getX() == packetAddParticle1.getX());
     assert(packetAddParticle.getY() == packetAddParticle1.getY());
     assert(packetAddParticle.getDecayTime() == packetAddParticle1.getDecayTime());
+    assert(packetAddParticle.getAngle() == packetAddParticle1.getAngle());
 }

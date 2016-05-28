@@ -14,7 +14,7 @@ namespace gauntlet {
 
             struct s_packetDisconnectData {
                 unsigned char packetId;
-                unsigned long stringsize;
+                unsigned int stringsize;
                 char stringstart;
             } __attribute__((packed));
 

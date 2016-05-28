@@ -177,7 +177,7 @@ gauntlet::core::ActionLists::pushAddParticle(const network::PacketAddParticle * 
 {
   packetsAddParticle.push_back(new network::PacketAddParticle
 			       (packet->getParticleId(), packet->getRefId(),
-				packet->getX(), packet->getY(),
+				packet->getX(), packet->getY(), packet->getAngle(),
 				packet->getDecayTime()));
   allPackets.push_back(packetsAddParticle.back());
   if (packet->getDecayTime() > 0)
