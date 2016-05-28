@@ -1,3 +1,13 @@
+//
+// World.cpp for indie in /home/trouve_b/Desktop/CPP_project/cpp_indie_studio
+// 
+// Made by Alexis Trouve
+// Login   <trouve_b@epitech.net>
+// 
+// Started on  Sat May 28 16:36:35 2016 Alexis Trouve
+// Last update Sat May 28 18:08:55 2016 Alexis Trouve
+//
+
 #include <iostream>
 #include <fstream>
 #include <stdexcept>
@@ -48,6 +58,11 @@ void	World::loadGame(std::string const & file)
     {
       //sizeX = stoi(dynamic_cast<JSON::JsonStr &>(json.GetObj("length")).Get());
       //sizeY = stoi(dynamic_cast<JSON::JsonStr &>(json.GetObj("width")).Get());
+      JSON::JsonObj & endZone = dynamic_cast<JSON::JsonObj &>(json.GetObj("endZone"));
+      endPos.first = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("posX")).Get());
+      endPos.second = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("posY")).Get());
+      endSize.first = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("sizeX")).Get());
+      endSize.second = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("sizeX")).Get());
       
       JSON::JsonObj & spawn = dynamic_cast<JSON::JsonObj &>(json.GetObj("spawn"));
       spawnPoint.first = stod(dynamic_cast<JSON::JsonStr &>(spawn.GetObj("x")).Get());
@@ -171,9 +186,54 @@ void		World::gameLoop()
       applyMoveActor();
       if (turn % GATHERING_PRIORITY == 0)
 	applyGatheringAndOpening();
+      if (turn % WIN_PRIORITY == 0)
+	checkWin();
+      if (turn % RESPAWN_PRIORITY == 0)
+	checkRespawn();
       ++turn;
     }
   std::cout << "world gameLoop end" << std::endl;
+}
+
+void	World::checkRespawn()
+{
+  unsigned int		i;
+  Player		*player;
+
+  i = 0;
+  while (i < deathPlayers.size())
+    {
+      deathPlayers[i].coolDownRespawn -= RESPAWN_PRIORITY;
+      if (deathPlayers[i].coolDownRespawn)
+	{
+	  player = deathPlayers[i].player;
+	  player->stats.HP = player->stats.normalHP;
+	}
+      ++i;
+    }
+}
+
+void	World::checkWin()
+{
+  std::list<ABody*>::iterator	it;
+  unsigned char			nbrPlayer;
+  ABody				*body;
+  Player			*player;
+
+  it = bodys.begin();
+  nbrPlayer = 0;
+  while (it != bodys.end())
+    {
+      body = (*it);
+      if ((player = dynamic_cast<Player*>(body)) != NULL)
+	nbrPlayer++;
+      it++;
+    }
+  if (nbrPlayer != gameServer->getNbrPlayer())
+    {
+      gameServer->decoAll();
+      exit(0);
+    }
 }
 
 void	World::applyGatheringAndOpening()
@@ -237,6 +297,7 @@ void		World::notifyDeath(ABody *body)
 {
   std::cout << "world notify Death" << std::endl;
   unsigned int	i;
+  Player	*player;
 
   collider->suprBody(body->getId());
   i = 0;
@@ -245,6 +306,8 @@ void		World::notifyDeath(ABody *body)
       AIs[i]->suprActor(body->getId());
       ++i;
     }
+  if ((player = dynamic_cast<Player*>(body)) != NULL)
+    deathPlayers.push_back({450, player});
   std::cout << "world notify Death end" << std::endl;
 }
 

@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 14:41:17 2016 Alexis Trouve
-// Last update Sat May 28 16:13:54 2016 Alexis Trouve
+// Last update Sat May 28 17:42:04 2016 Alexis Trouve
 //
 
 #ifndef COLLIDER_HH_
@@ -38,10 +38,12 @@ namespace gauntlet
       void				suprBody(int id);
       std::pair<unsigned int, unsigned int>		getSizeMap() const;
 
-      std::list<ABody *> giveBodyInAreaCircle(double posx, double posy, short unused, double radius, short unused2);
-      std::list<ABody*>	giveBodyInAreaCone(double posx, double posy, short ref_angle, double size, short cone_angle);
-
-        std::list<ABody *> giveBodyInAreaflightPath(double posx, double posy, short ref_angle, double size, short cone_angle);
+      std::list<ABody *> giveBodyInAreaCircle(double posx, double posy, short unused,
+					      double radius, short unused2);
+      std::list<ABody*>	giveBodyInAreaCone(double posx, double posy, short ref_angle,
+					   double size, short cone_angle);
+        std::list<ABody *> giveBodyInAreaflightPath(double posx, double posy, short ref_angle,
+						    double size, short cone_angle);
     };
   };
 };
