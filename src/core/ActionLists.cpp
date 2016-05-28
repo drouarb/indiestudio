@@ -39,11 +39,23 @@ gauntlet::core::ActionLists::doActions()
 {
   if (packetsDisconnect.size() > 0 && core.gameIsRunning())
     {
-      core.disconnect();
+      core.disconnect(packetsDisconnect.front()->getMessage());
     }
   else
     {
       particlesDecay();
+
+      for (std::list<network::PacketMap*>::iterator
+	     it = packetsMap.begin(); it != packetsMap.end(); ++it)
+	{
+	  std::size_t index = (*it)->getFilename().find(';');
+	  if (index != std::string::npos)
+	    {
+	      (*it)->getFilename().substr(0, index);
+	      (*it)->getFilename().substr(index + 1);
+	      //TODO: ogre maps
+	    }
+	}
 
       for (std::list<network::PacketAddEntity*>::iterator it = packetsAddEntity.begin();
 	   it != packetsAddEntity.end(); ++it)
@@ -198,6 +210,13 @@ gauntlet::core::ActionLists::pushAnimation(const network::PacketAnimation * pack
   packetsAnimation.push_back(new network::PacketAnimation
 			     (packet->getEntityId(), packet->getAnimationId()));
   allPackets.push_back(packetsAnimation.back());
+}
+
+void
+gauntlet::core::ActionLists::pushMap(const network::PacketMap * packet)
+{
+  packetsMap.push_back(new network::PacketMap(packet->getMapId(), packet->getFilename()));
+  allPackets.push_back(packetsMap.back());
 }
 
 void
