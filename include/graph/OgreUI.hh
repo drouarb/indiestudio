@@ -59,7 +59,7 @@ class OgreUI
   static const std::map<gauntlet::TextureName, std::string> texturemap;
   static const std::map<gauntlet::EntityName, std::string> meshmap;
   static const std::map<gauntlet::SoundName, std::string> soundmap;
-  static const std::map<gauntlet::animations::animation *, > ;
+//  static const std::map<gauntlet::animations::animation *, > ;
   Ogre::LightList lightList;
 
   std::map<std::string, Ogre::AnimationState *> animationsArray;
@@ -267,8 +267,6 @@ class OgreUI
 
   void createLight(unsigned int height, unsigned int width,
 		   unsigned int interval);
-
-  void playTrack(int entityId, int animationId, int trackId, bool loop);
 
   const std::string &getAnimationName(int animationId,
 				      const Ogre::Entity *pEntity) const;

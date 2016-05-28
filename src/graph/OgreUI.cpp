@@ -599,25 +599,6 @@ void OgreUI::playAnimation(int entityId, int animationId, bool loop)
     }
 }
 
-void OgreUI::playTrack(int entityId, int animationId, int trackId, bool loop)
-{
-  std::stringstream ss;
-  std::stringstream error;
-
-  ss << entityId;
-  Ogre::Entity *pEntity = this->mSceneMgr->getEntity(ss.str());
-
-  std::string animationName = getAnimationName(animationId, pEntity);
-  Ogre::AnimationState *pState = pEntity->getAnimationState(animationName);
-
-  if (pState == NULL)
-    {
-      error << "Error: " << animationName << " not found for entity id " << entityId;
-      throw std::logic_error(error.str());
-    }
-  
-}
-
 const std::string &OgreUI::getAnimationName(int animationId,
 					    const Ogre::Entity *pEntity) const
 {

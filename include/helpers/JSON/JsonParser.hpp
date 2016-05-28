@@ -34,6 +34,13 @@ namespace			JSON
       
     std::string			chars(char c, int n);
   };
+
+  void findProprerties(const std::string &animationName);
+
+  void findProprerties(const std::string &animationName)
+  {
+
+  }
 };
 
 #endif

@@ -6,6 +6,7 @@
 #define GAUNTLET_ANIMATIONS_HH
 
 
+#include "JSON/JsonArr.hpp"
 #include "JSON/JsonParser.hpp"
 #include <string>
 #include <helpers/JSON/JsonObj.hpp>
@@ -17,7 +18,6 @@ namespace gauntlet
     enum animationSource
     {
       JSON,
-      TRACK,
       NAME
     };
 
@@ -25,8 +25,10 @@ namespace gauntlet
     {
      protected:
       animationSource type;
+      std::string name;
      public:
-      virtual void update(float elapsedTime) = 0;
+      virtual void update(double elapsedTime) = 0;
+      virtual std::string const & getName() const = 0;
     };
 
     class JSON : public animation
@@ -34,9 +36,18 @@ namespace gauntlet
      private:
       ::JSON::JsonObj jsonObj;
       const std::string & filename;
+      Ogre::AnimationState *animationState;
+      double begin = -1;
+      double end = -1;
+      double currentTimePosition = 0;
+
+     private:
+      void findProprerties(const std::string &animationName);
+
      public:
-      JSON(const std::string &filename);
-      virtual void update(float elapsedTime) final;
+      JSON(const std::string &filename, const std::string &animationName, Ogre::AnimationState *);
+      virtual void update(double elapsedTime) final;
+      virtual std::string const & getName() const final;
     };
 
   }
