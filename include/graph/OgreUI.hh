@@ -111,6 +111,9 @@ public:
     bool addMapEntity(int entityId, gauntlet::EntityName meshid, int x, int y,
                       short degres, gauntlet::TextureName texture_id);
 
+  bool addMapEntity(int entityId, const std::string &path, int x, int y,
+		      short angle, gauntlet::TextureName texture_id);
+
     void initSound();
 
     bool configure(void);

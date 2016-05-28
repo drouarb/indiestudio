@@ -10,5 +10,6 @@ gauntlet::core::ListenerMap::~ListenerMap()
 void
 gauntlet::core::ListenerMap::notify(const network::PacketMap * packet)
 {
+  std::cout << "# receive map" << std::endl;
   core.actionlists.pushMap(packet);
 }

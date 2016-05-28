@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sat May 28 16:36:35 2016 Alexis Trouve
-// Last update Sat May 28 23:55:11 2016 Alexis Trouve
+// Last update Sun May 29 00:44:51 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -182,10 +182,10 @@ void		World::gameLoop()
       if (turn % AI_PRIORITY == 0)
 	applyAI();
       applyMoveActor();
-      /*if (turn % GATHERING_PRIORITY == 0)
-	applyGatheringAndOpening();*/
-      /*if (turn % WIN_PRIORITY == 0)
-	checkWin();*/
+      //if (turn % GATHERING_PRIORITY == 0)
+      //applyGatheringAndOpening();
+      if (turn % WIN_PRIORITY == 0)
+	checkWin();
       if (turn % RESPAWN_PRIORITY == 0)
 	checkRespawn();
       ++turn;
@@ -217,24 +217,30 @@ void	World::checkWin()
 {
   std::cout << "checkWin" << std::endl;
   std::list<ABody*>::iterator	it;
-  unsigned char			nbrPlayer;
   ABody				*body;
   Player			*player;
+  bool				pass;
 
   it = bodys.begin();
-  nbrPlayer = 0;
+  pass = false;
   while (it != bodys.end())
     {
       body = (*it);
       if ((player = dynamic_cast<Player*>(body)) != NULL)
-	nbrPlayer++;
+	{
+	  pass = true;
+	  if (player->getPos().first < endPos.first
+	      || player->getPos().first + player->getSize().first > endPos.first + endSize.first
+	      || player->getPos().second < endPos.second
+	      || player->getPos().second + player->getSize().second > endPos.second + endSize.second)
+	    return ;
+	}
       it++;
     }
-  if (nbrPlayer != gameServer->getNbrPlayer())
-    {
-      gameServer->decoAll("Good game, you win.");
-      exit(0);
-    }
+  if (pass == false)
+    return ;
+  gameServer->decoAll("Good game, you win.");
+  exit(0);
   std::cout << "checkWin end" << std::endl;
 }
 
@@ -249,28 +255,45 @@ void	World::applyGatheringAndOpening()
   std::list<ABody*>		list;
 
   it = bodys.begin();
+  std::cout << "1" << std::endl;
   while (it != bodys.end())
     {
+  std::cout << "2" << std::endl;
       body = (*it);
+  std::cout << "3" << std::endl;
       if ((player = dynamic_cast<Player*>(body)) != NULL)
 	{
+  std::cout << "4" << std::endl;
 	  list = collider->giveBodyInAreaCircle(player->getPos().first, player->getPos().second, 0,
 						(player->getSize().first + player->getSize().second) / 2.0, 0);
+  std::cout << "5" << std::endl;
 	  if (list.size() > 0)
 	    {
+  std::cout << "6" << std::endl;
 	      it2 = list.begin();
+  std::cout << "7" << std::endl;
 	      while (it2 != list.end())
 		{
+  std::cout << "8" << std::endl;
 		  body = (*it2);
+  std::cout << "9" << std::endl;
 		  if ((gameobject = dynamic_cast<GameObject*>(body)) != NULL)
 		    {
+  std::cout << "10" << std::endl;
 		      gameobject->open(&player->inventory);
+  std::cout << "11" << std::endl;
 		      gameobject->gather(player);
+  std::cout << "12" << std::endl;
 		    }
+  std::cout << "13" << std::endl;
 		  it2++;
+  std::cout << "14" << std::endl;
 		}
+  std::cout << "15" << std::endl;
 	    }
+  std::cout << "16" << std::endl;
 	}
+  std::cout << "17" << std::endl;
       it++;
     }
   std::cout << "checkGather end" << std::endl;
