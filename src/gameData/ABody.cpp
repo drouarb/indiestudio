@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include "ABody.hh"
+#include "World.hh"
 
 using namespace gauntlet;
 
@@ -130,11 +131,11 @@ void                    ABody::setTextureId()
 
 void                    ABody::setCooldown(unsigned long _cooldown)
 {
-  cooldown = world->turn + _cooldown;
+  cooldown = world->getTurn() + _cooldown;
 }
 
 bool ABody::recharged() {
-  return (world->turn > cooldown);
+  return (world->getTurn() > cooldown);
 }
 
 
