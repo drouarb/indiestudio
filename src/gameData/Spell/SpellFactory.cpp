@@ -31,8 +31,9 @@ const std::map<SpellFactory::SpellEnum, SpellFactory::getSpell> gauntlet::SpellF
   {SpellFactory::WIZARD_FIRECONE, &gauntlet::SpellFactory::getWizardFireCone},
   {SpellFactory::RANGER_ATTACK, &gauntlet::SpellFactory::getRangerAttack},
   {SpellFactory::RANGER_EXPLOSIVE_ARROW, &gauntlet::SpellFactory::getRangerExplosiveArrow},
-  {SpellFactory::DRAUGR_ATTACK, &gauntlet::SpellFactory::getDraugrAttack}
-   };
+  {SpellFactory::ICEBALL, &gauntlet::SpellFactory::iceBall},
+  {SpellFactory::SIMPLE_ATTACK, &gauntlet::SpellFactory::simpleAttack}
+};
 
 int		SpellFactory::giveNextId()
 {
@@ -73,7 +74,7 @@ gauntlet::Spell *SpellFactory::getWizardFireCone() {
   Spell *spell = new Spell;
 
   spell->setBasicStats(giveNextId(), "Wizard Fire Cone", 500, 100, 50, Area::CIRCLE, SoundName::FIRE_BIG);
-  spell->setConeAngle(30);
+  spell->setConeAngle(80);
   spell->setEffect(EffectName::PLASMA, EffectName::EXPLOSION);
   return spell;
 }
@@ -96,7 +97,7 @@ gauntlet::Spell *SpellFactory::getBarbarianAttack() {
   Spell *spell = new Spell;
 
   spell->setBasicStats(giveNextId(), "Barbarian Primary Attack", 100, 10, 10, Area::CONE, SoundName::HAMMER_HIT_SOFT);
-  spell->setConeAngle(100);
+  spell->setConeAngle(200);
   return spell;
 }
 
@@ -107,11 +108,19 @@ gauntlet::Spell *SpellFactory::getBarbarianTornado() {
   return spell;
 }
 
-gauntlet::Spell *SpellFactory::getDraugrAttack() {
+gauntlet::Spell *SpellFactory::iceBall() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Draugr Attack", 100, 10, 10, Area::CONE, SoundName::AXE_HIT_SOFT);
-  spell->setConeAngle(40);
+  spell->setBasicStats(giveNextId(), "Ice Ball", 1500, 200, 50, Area::COLUMN, SoundName::MAGIC_EXPLOSION_2);
+  spell->setEffect(EffectName::SNOW, EffectName::BLIND);
+  return spell;
+}
+
+gauntlet::Spell *SpellFactory::simpleAttack() {
+  Spell *spell = new Spell;
+
+  spell->setBasicStats(giveNextId(), "Simple Attack", 100, 10, 10, Area::CONE, SoundName::AXE_HIT_SOFT);
+  spell->setConeAngle(60);
   return spell;
 }
 
