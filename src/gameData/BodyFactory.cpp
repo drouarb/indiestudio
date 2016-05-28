@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 16:50:32 2016 Alexis Trouve
-// Last update Sat May 28 23:13:09 2016 Alexis Trouve
+// Last update Sat May 28 23:45:31 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -70,8 +70,8 @@ void			BodyFactory::setBarbare()
   player->setName("Barbare");
   player->stats.HP = 4000;
   player->stats.normalHP = 4000;
-  player->stats.speed = 1000.0;
-  player->stats.normalSpeed = 1000.0;
+  player->stats.speed = 1.1;
+  player->stats.normalSpeed = 1.1;
   player->stats.attackModifier = 1.0;
   player->setCollide(true);
   player->spellBook.addSpell(SpellFactory::BARBARIAN_ATTACK, player);

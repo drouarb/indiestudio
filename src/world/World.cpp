@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sat May 28 16:36:35 2016 Alexis Trouve
-// Last update Sat May 28 23:13:46 2016 Alexis Trouve
+// Last update Sat May 28 23:43:19 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -182,12 +182,12 @@ void		World::gameLoop()
       if (turn % AI_PRIORITY == 0)
 	applyAI();
       applyMoveActor();
-      if (turn % GATHERING_PRIORITY == 0)
-	applyGatheringAndOpening();
-      if (turn % WIN_PRIORITY == 0)
-	checkWin();
-      if (turn % RESPAWN_PRIORITY == 0)
-	checkRespawn();
+      /*if (turn % GATHERING_PRIORITY == 0)
+	applyGatheringAndOpening();*/
+      /*if (turn % WIN_PRIORITY == 0)
+	checkWin();*/
+      /*if (turn % RESPAWN_PRIORITY == 0)
+	checkRespawn();*/
       ++turn;
     }
   std::cout << "world gameLoop end" << std::endl;

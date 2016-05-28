@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Sat May 28 23:20:27 2016 Esteban Lewis
+// Last update Sat May 28 23:40:00 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -32,7 +32,11 @@ GameServer::GameServer(const std::string& filePath, in_port_t port)
     std::cout << "errorMap " << e.what() << std::endl;
   }
   std::cout << "# world new packetf" << std::endl;
-  packetFact = new PacketFactory(port);
+  try {
+    packetFact = new PacketFactory(port);
+  } catch (std::exception & f) {
+    std::cout << "PacketFactory failed creation" << std::endl;
+  }
   std::cout << "# world packetf ok" << std::endl;
   players.push_back({"Barbare", -1, false, -1});
   players.push_back({"Mage", -1, false, -1});
@@ -57,7 +61,7 @@ GameServer::GameServer(const std::string& filePath, in_port_t port)
 
 GameServer::~GameServer()
 {
-  dataSendThread->join();
+  //dataSendThread->join();
 }
 
 void		GameServer::connectAnswer(const network::PacketConnect *packet)
@@ -119,14 +123,15 @@ void		GameServer::selectPlayerAnswer(const network::PacketSelectPlayer *packet)
       players[iTaken].isTake = true;
       players[iTaken].socketId = packet->getSocketId();
       connectTmp.erase(connectTmp.begin() + i);
-      dataSendMutex.lock();
+      //dataSendMutex.lock();
       PacketStartGame	myPacket((id = world->addNewBody(world->getSpawnPoint().first,
 							 world->getSpawnPoint().second,
 							 players[iTaken].name, 0)));
       players[iTaken].idPlayer = id;
       packetFact->send(myPacket, packet->getSocketId());
-      dataSendThread = new std::thread(std::bind(&GameServer::sendDatas, std::ref(*this), packet->getSocketId()));
-      dataSendMutex.unlock();
+      sendDatas(packet->getSocketId());
+      //dataSendThread = new std::thread(std::bind(&GameServer::sendDatas, std::ref(*this), packet->getSocketId()));
+      //dataSendMutex.unlock();
     }
   else
     sendHandShake(packet->getSocketId());
@@ -286,6 +291,7 @@ void		GameServer::sendMoveId(ABody *body)
       packetFact->send(packet, players[i].socketId);
       ++i;
     }
+  std::cout << "sendMoveId end" << std::endl;
 }
 
 void		GameServer::controlInput(const network::PacketControl *packet)
