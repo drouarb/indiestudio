@@ -40,7 +40,6 @@ namespace gauntlet {
     int                         openingId;
     int                         endingId;
     unsigned int                soundEffect;
-    bool			taunt;
   public:
     void                        cast(Actor *caster);
     void                        ApplyDamage(std::list<ABody *> targets, Actor *caster);

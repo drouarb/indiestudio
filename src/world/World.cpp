@@ -1,13 +1,3 @@
-//
-// World.cpp for indie in /home/lewis_e/rendu/cpp/cpp_indie_studio
-// 
-// Made by Esteban Lewis
-// Login   <lewis_e@epitech.net>
-// 
-// Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Fri May 27 22:23:59 2016 Alexis Trouve
-//
-
 #include <iostream>
 #include <fstream>
 #include <stdexcept>
@@ -70,6 +60,12 @@ void	World::loadGame(std::string const & file)
 
       std::cout << "map: " << dynamic_cast<JSON::JsonStr &>(json.GetObj("map")).Get()
 		<< std::endl;
+      //TODO map
+
+      std::cout << "height map: "
+		<< dynamic_cast<JSON::JsonStr &>(json.GetObj("height_map")).Get()
+		<< std::endl;
+      //TODO height map
 
       JSON::JsonArr & arr = dynamic_cast<JSON::JsonArr &>(json.GetObj("dynamic"));
       for (unsigned int i = 0; i < arr.Size(); ++i)
