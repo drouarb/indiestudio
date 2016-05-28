@@ -47,6 +47,14 @@ namespace gauntlet
 
       void setKey();
       void setDoor();
+
+      void setSkeleton();
+
+      void setSkeletonWarlord();
+
+      void setSkeletonArcher();
+
+      void setSkeletonWizard();
   };
 };
 

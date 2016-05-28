@@ -50,13 +50,13 @@ Spell		*SpellFactory::giveSpell(SpellEnum type)
 gauntlet::Spell *SpellFactory::getRangerAttack() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Ranger Attack", 1500, 100, 50, Area::FLIGHT_PATH);
+  spell->setBasicStats(giveNextId(), "Ranger Attack", 1500, 100, 50, Area::FLIGHT_PATH, SoundName::BOW);
   return spell;
 }
 
 gauntlet::Spell *SpellFactory::getRangerExplosiveArrow() {
   Spell *spell = new Spell;
-  spell->setBasicStats(giveNextId(), "Ranger Explosive Arrow", 1500, 100, 100, Area::CIRCLE);
+  spell->setBasicStats(giveNextId(), "Ranger Explosive Arrow", 1500, 100, 100, Area::CIRCLE, SoundName::MAGIC_EXPLOSION_1);
   spell->setEffect(EffectName::CELLS, EffectName::ATOMIC);
   return spell;
 }
@@ -64,7 +64,7 @@ gauntlet::Spell *SpellFactory::getRangerExplosiveArrow() {
 gauntlet::Spell *SpellFactory::getWizardFireBall() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Wizard Fire Ball", 1500, 200, 50, Area::COLUMN);
+  spell->setBasicStats(giveNextId(), "Wizard Fire Ball", 1500, 200, 50, Area::COLUMN, SoundName::MAGIC_EXPLOSION_2);
   spell->setEffect(EffectName::PLASMA, EffectName::EXPLOSION);
   return spell;
 }
@@ -72,7 +72,7 @@ gauntlet::Spell *SpellFactory::getWizardFireBall() {
 gauntlet::Spell *SpellFactory::getWizardFireCone() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Wizard Fire Cone", 500, 100, 50, Area::CIRCLE);
+  spell->setBasicStats(giveNextId(), "Wizard Fire Cone", 500, 100, 50, Area::CIRCLE, SoundName::FIRE_BIG);
   spell->setConeAngle(30);
   spell->setEffect(EffectName::PLASMA, EffectName::EXPLOSION);
   return spell;
@@ -81,21 +81,21 @@ gauntlet::Spell *SpellFactory::getWizardFireCone() {
 gauntlet::Spell *SpellFactory::getValkyriaAttack() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Valkyria Primary Attack", 100, 10, 10, Area::CIRCLE);
+  spell->setBasicStats(giveNextId(), "Valkyria Primary Attack", 100, 10, 10, Area::CIRCLE, SoundName::SWORD_HIT);
   return spell;
 }
 
 gauntlet::Spell *SpellFactory::getValkyriaDash() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Valkyria Dash", 100, 10, 10, Area::COLUMN);
+  spell->setBasicStats(giveNextId(), "Valkyria Dash", 100, 10, 10, Area::COLUMN, SoundName::SPIKE_TRAP_2);
   return spell;
 }
 
 gauntlet::Spell *SpellFactory::getBarbarianAttack() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Barbarian Primary Attack", 100, 10, 10, Area::CONE);
+  spell->setBasicStats(giveNextId(), "Barbarian Primary Attack", 100, 10, 10, Area::CONE, SoundName::HAMMER_HIT_SOFT);
   spell->setConeAngle(100);
   return spell;
 }
@@ -103,14 +103,14 @@ gauntlet::Spell *SpellFactory::getBarbarianAttack() {
 gauntlet::Spell *SpellFactory::getBarbarianTornado() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Barbarian Tornado", 100, 10, 10, Area::CIRCLE);
+  spell->setBasicStats(giveNextId(), "Barbarian Tornado", 100, 10, 10, Area::CIRCLE, SoundName::MAGIC_BATTLECRY);
   return spell;
 }
 
 gauntlet::Spell *SpellFactory::getDraugrAttack() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Draugr Attack", 100, 10, 10, Area::CONE);
+  spell->setBasicStats(giveNextId(), "Draugr Attack", 100, 10, 10, Area::CONE, SoundName::AXE_HIT_SOFT);
   spell->setConeAngle(40);
   return spell;
 }

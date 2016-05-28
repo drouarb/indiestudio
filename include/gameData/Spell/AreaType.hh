@@ -11,13 +11,11 @@
 #ifndef AREATYPE_HH_
 #define AREATYPE_HH_
 
-#warning "Emile j'ai bougé l'enum des type de Area dans ce fichier."
-
 namespace	gauntlet
 {
   enum                Area
     {
-  WALL,
+    WALL,
     COLUMN,
     FLIGHT_PATH,
     CIRCLE,

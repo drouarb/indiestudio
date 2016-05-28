@@ -31,7 +31,7 @@ namespace gauntlet {
     double                      range;
     double                      radius;
     long                        damage;
-    Area	                pattern;
+    Area	                    pattern;
     std::pair<double, double>   targetedArea;
     short                       angle;
     short                       effectOrientation;
@@ -39,14 +39,13 @@ namespace gauntlet {
     int                         endingEffect;
     int                         openingId;
     int                         endingId;
-#warning "Emile on doit pouvoir taunt avec un sort"
+    unsigned int                soundEffect;
     bool			taunt;
   public:
     void                        cast(Actor *caster);
     void                        ApplyDamage(std::list<ABody *> targets, Actor *caster);
     void                        prepare();
-    void                        setBasicStats(int id, const std::string &name, double range,
-					      double radius, long damage, Area pattern);
+
     void                        setCaster(Actor *caster);
     void                        setConeAngle(short id);
 
@@ -58,6 +57,9 @@ namespace gauntlet {
     double			getRadius() const;
     double			getRange() const;
     const std::string&		getName() const;
+
+    void setBasicStats(int id, const std::string &name, double range, double radius, long damage, Area pattern,
+                       unsigned int effect);
   };
 };
 

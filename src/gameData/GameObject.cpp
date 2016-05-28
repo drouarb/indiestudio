@@ -44,6 +44,7 @@ void        GameObject::open(ItemContainer *curInventory) //unfinished
       if (item.isKey())
       {
         inv->remove(item);
+        world->playSound(SoundName::DOOR_STONE, false, this->getPos());
         world->notifyDeath(this);
         break;
       }
