@@ -1,7 +1,7 @@
 {
     name : "Default map",
-    asset_map : "une_vraie_map.obj",
-    height_map : "maps/map.pgm",
+    asset_map : "mapAsset/mapTest.mesh",
+    height_map : "mapHeight/map.pgm",
     endZone :
     {
 	posX : "1000"

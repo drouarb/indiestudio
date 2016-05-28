@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sat May 28 16:36:35 2016 Alexis Trouve
-// Last update Sat May 28 20:53:17 2016 Alexis Trouve
+// Last update Sat May 28 22:45:46 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -56,6 +56,15 @@ void	World::loadGame(std::string const & file)
 
   try
     {
+      mapAssetName = dynamic_cast<JSON::JsonStr &>(json.GetObj("asset_map")).Get();
+
+      mapHeightName = dynamic_cast<JSON::JsonStr &>(json.GetObj("height_map")).Get();
+
+      collider = new Collider(mapHeightName);
+
+      sizeX = collider->getSizeMap().first;
+      sizeY = collider->getSizeMap().second;
+
       JSON::JsonObj & endZone = dynamic_cast<JSON::JsonObj &>(json.GetObj("endZone"));
       endPos.first = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("posX")).Get());
       endPos.second = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("posY")).Get());
@@ -68,10 +77,6 @@ void	World::loadGame(std::string const & file)
       if (spawnPoint.first < 0 || spawnPoint.first >= sizeX ||
 	  spawnPoint.second < 0 || spawnPoint.second >= sizeY)
 	throw (std::runtime_error("Spawn point coordinates are out of bounds"));
-
-      mapAssetName = dynamic_cast<JSON::JsonStr &>(json.GetObj("asset_map")).Get();
-
-      mapHeightName = dynamic_cast<JSON::JsonStr &>(json.GetObj("height_map")).Get();
 
       JSON::JsonArr & arr = dynamic_cast<JSON::JsonArr &>(json.GetObj("dynamic"));
       for (unsigned int i = 0; i < arr.Size(); ++i)
@@ -169,7 +174,7 @@ void		World::gameLoop()
   std::cout << "world gameLoop" << std::endl;
   stopwatch.set();
   turn = 0;
-  while (42 == 42)
+  while (42)
     {
       if (stopwatch.ellapsedMs() < ROUND_DURATION)
 	usleep(ROUND_DURATION * 1000 - stopwatch.ellapsedMs());
@@ -271,16 +276,27 @@ int	World::addNewBody(double xpos, double ypos, const std::string& name, short o
   ABody	*body;
   std::pair<unsigned int, unsigned int>	sizeMap;
 
+  std::cout << "1" << std::endl;
   body = Factory->giveBody(name);
+  std::cout << "pos : " << xpos << ":" << ypos << " sizeGens:" << body->getSize().first << ":" << body->getSize().second << " size:" << sizeX << ":" << sizeY << std::endl;
   if ((xpos - (body->getSize().first / 2.0)) < 0 || (xpos + (body->getSize().first / 2.0)) >= sizeX
       || (ypos - (body->getSize().second / 2.0)) < 0 || (ypos + (body->getSize().second / 2.0)) >= sizeY)
-    throw (std::runtime_error(name + " is out of bounds"));
+    {
+      std::cout << "error" << std::endl;
+      throw (std::runtime_error(name + " is out of bounds"));
+    }
+  std::cout << "2" << std::endl;
   if (body == NULL)
     throw (std::runtime_error("'" + name + "': wrong name"));
+  std::cout << "3" << std::endl;
   body->changePos(std::make_pair(xpos, ypos));
+  std::cout << "4" << std::endl;
   body->changeOrientation(orientation);
+  std::cout << "5" << std::endl;
   gameServer->sendAddEntity(body);
+  std::cout << "6" << std::endl;
   bodys.push_back(body);
+  std::cout << "7" << std::endl;
   collider->setNewBodyNoCheckEntity(body);
   std::cout << "world addnewbody end" << std::endl;
   return (body->getId());
