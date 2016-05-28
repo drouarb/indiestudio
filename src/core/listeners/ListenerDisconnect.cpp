@@ -10,5 +10,6 @@ gauntlet::core::ListenerDisconnect::~ListenerDisconnect()
 void
 gauntlet::core::ListenerDisconnect::notify(const network::PacketDisconnect * packet)
 {
+  std::cout << "#core received disconnect" << std::endl;
   core.actionlists.pushDisconnect(packet);
 }

@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:58:51 2016 Esteban Lewis
-// Last update Fri May 27 19:47:57 2016 Esteban Lewis
+// Last update Sat May 28 11:23:27 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -70,6 +70,12 @@ void	World::loadGame(std::string const & file)
 
       std::cout << "map: " << dynamic_cast<JSON::JsonStr &>(json.GetObj("map")).Get()
 		<< std::endl;
+      //TODO map
+
+      std::cout << "height map: "
+		<< dynamic_cast<JSON::JsonStr &>(json.GetObj("height_map")).Get()
+		<< std::endl;
+      //TODO height map
 
       JSON::JsonArr & arr = dynamic_cast<JSON::JsonArr &>(json.GetObj("dynamic"));
       for (int i = 0; i < arr.Size(); ++i)

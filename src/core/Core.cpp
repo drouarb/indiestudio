@@ -195,6 +195,7 @@ gauntlet::core::Core::disconnect()
 {
   if (mutex.try_lock() == false)
     return ;
+  std::cout << "#core disconnect" << std::endl;
   if (packetf)
     {
       packetf->stop();
