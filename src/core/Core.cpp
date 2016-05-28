@@ -195,11 +195,25 @@ gauntlet::core::Core::initPacketf()
 void
 gauntlet::core::Core::disconnect(std::string const & msg)
 {
-  if (mutex.try_lock() == false)
-    return ;
+  destroyPacketf();
+  bool sendMsg = menu.getOpen() && gameIsRunning();
+  stop();
+  if (sendMsg)
+    {
+      if (msg.length() > 0)
+	menu.message(msg);
+      else
+	menu.message("Disconnected from server.");
+    }
+  killServer();
+}
+
+void
+gauntlet::core::Core::destroyPacketf()
+{
+  networkmutex.lock();
   if (packetf)
     {
-      std::cout << "# core rm packet factory" << std::endl;
       packetf->stop();
       listenThread->join();
 
@@ -207,19 +221,8 @@ gauntlet::core::Core::disconnect(std::string const & msg)
       packetf = NULL;
       delete listenThread;
       listenThread = NULL;
-
-      bool sendMsg = menu.getOpen() && gameIsRunning();
-      stop();
-      if (sendMsg)
-	{
-	  if (msg.length() > 0)
-	    menu.message(msg);
-	  else
-	    menu.message("Disconnected from server.");
-	}
     }
-  killServer();
-  mutex.unlock();
+  networkmutex.unlock();
 }
 
 void

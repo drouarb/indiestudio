@@ -110,6 +110,7 @@ void
 gauntlet::core::Lobby::doPlay(struct t_hitItem & item)
 {
   (void)item;
+  core.networkmutex.lock();
   if (core.pc == NULL)
     {
       static_cast<MessageBox *>(submenus[0])->setMsg
@@ -134,6 +135,7 @@ gauntlet::core::Lobby::doPlay(struct t_hitItem & item)
       std::cout << "# core send select player" << std::endl;
       submenus[3]->setOpen(true);
     }
+  core.networkmutex.unlock();
 }
 
 void

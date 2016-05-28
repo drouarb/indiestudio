@@ -195,11 +195,10 @@ gauntlet::core::ConnectMenu::doConnect(struct t_hitItem & item)
     {
       if (core.packetf)
 	core.disconnect("");
-      std::cout << "# core new packetf" << std::endl;
       core.packetf = new network::PacketFactory(ip, port);
-      std::cout << "# core packetf ok" << std::endl;
       core.initPacketf();
       sendConnect();
+      std::cout << "# connect end" << std::endl;
     }
   catch (std::runtime_error e)
     {
@@ -219,6 +218,19 @@ void
 gauntlet::core::ConnectMenu::sendConnect()
 {
   network::PacketConnect pc;
+  bool recursive = static_cast<WaitPacket *>(submenus[3])->receivedValue();
+
+  if (!recursive)
+    core.networkmutex.lock();
+
+  if (core.packetf == NULL)
+    {
+      static_cast<MessageBox *>(submenus[0])->setMsg("Connection lost.");
+      submenus[0]->setOpen(true);
+      if (!recursive)
+	core.networkmutex.unlock();
+      return ;
+    }
 
   if (static_cast<WaitPacket *>(submenus[3])->receivedValue() == false)
     {
@@ -244,4 +256,7 @@ gauntlet::core::ConnectMenu::sendConnect()
 	  core.disconnect("");
 	}
     }
+
+  if (!recursive)
+    core.networkmutex.unlock();
 }
