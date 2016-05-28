@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 16:50:32 2016 Alexis Trouve
-// Last update Fri May 27 13:26:40 2016 Alexis Trouve
+// Last update Fri May 27 22:28:03 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -220,6 +220,7 @@ void			BodyFactory::setPorteLight()
 ABody	*BodyFactory::giveBody(const std::string& name)
 {
   unsigned int	i;
+  int		j;
   ABody		*body;
   Actor		*actor;
 
@@ -231,9 +232,9 @@ ABody	*BodyFactory::giveBody(const std::string& name)
 	  body = bodyTab[i]->clone(giveNextId());
 	  if ((actor = dynamic_cast<Actor*>(body)) != NULL)
 	    {
-	      i = actor->getIdAI();
-	      if (i != NOAI)
-		AIs[i]->setNewAI(actor);
+	      j = actor->getIdAI();
+	      if (j != NOAI)
+		AIs[j]->setNewAI(actor);
 	    }
 	  return (body);
 	}

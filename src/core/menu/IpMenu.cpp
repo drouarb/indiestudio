@@ -35,7 +35,7 @@ gauntlet::core::IpMenu::doButton(int btnId, struct t_hitItem & item)
   if (btnId == buttons[1].getId())
     {
       int dotCount = 0;
-      for (int i = 0; i < text.length(); ++i)
+      for (int i = 0; i < (int)text.length(); ++i)
 	{
 	  if (text[i] == '.')
 	    dotCount++;

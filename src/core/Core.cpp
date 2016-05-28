@@ -19,7 +19,7 @@
 #include "CoreUIObserver.hh"
 #include "SaveloadMenu.hh"
 
-gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this)), actionlists(*this),
+gauntlet::core::Core::Core() : actionlists(*this), observer(new CoreUIObserver(*this)),
 			       menu(*this, MENU_ID_START, NULL), hud(*this, 0, NULL)
 {
   listenThread = NULL;

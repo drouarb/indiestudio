@@ -14,6 +14,7 @@ namespace gauntlet {
         class PacketFactorySocketDisconnectionListener: public ISocketDisconnectionListener {
         public:
             PacketFactorySocketDisconnectionListener(PacketFactory *);
+            virtual ~PacketFactorySocketDisconnectionListener() { }
             virtual void notify(int fd);
 
         private:

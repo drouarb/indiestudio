@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Mon May  9 18:00:14 2016 Alexis Trouve
-// Last update Tue May 24 17:54:44 2016 Esteban Lewis
+// Last update Fri May 27 23:35:10 2016 Alexis Trouve
 //
 
 #include "SpellFactory.hh"
@@ -50,13 +50,13 @@ Spell		*SpellFactory::giveSpell(SpellEnum type)
 gauntlet::Spell *SpellFactory::getRangerAttack() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Ranger Attack", 1500, 100, 50, Spell::Area::FLIGHT_PATH);
+  spell->setBasicStats(giveNextId(), "Ranger Attack", 1500, 100, 50, Area::FLIGHT_PATH);
   return spell;
 }
 
 gauntlet::Spell *SpellFactory::getRangerExplosiveArrow() {
   Spell *spell = new Spell;
-  spell->setBasicStats(giveNextId(), "Ranger Explosive Arrow", 1500, 100, 100, Spell::Area::CIRCLE);
+  spell->setBasicStats(giveNextId(), "Ranger Explosive Arrow", 1500, 100, 100, Area::CIRCLE);
   spell->setEffect(EffectName::CELLS, EffectName::ATOMIC);
   return spell;
 }
@@ -64,7 +64,7 @@ gauntlet::Spell *SpellFactory::getRangerExplosiveArrow() {
 gauntlet::Spell *SpellFactory::getWizardFireBall() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Wizard Fire Ball", 1500, 200, 50, Spell::Area::COLUMN);
+  spell->setBasicStats(giveNextId(), "Wizard Fire Ball", 1500, 200, 50, Area::COLUMN);
   spell->setEffect(EffectName::PLASMA, EffectName::EXPLOSION);
   return spell;
 }
@@ -72,7 +72,7 @@ gauntlet::Spell *SpellFactory::getWizardFireBall() {
 gauntlet::Spell *SpellFactory::getWizardFireCone() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Wizard Fire Cone", 500, 100, 50, Spell::Area::CIRCLE);
+  spell->setBasicStats(giveNextId(), "Wizard Fire Cone", 500, 100, 50, Area::CIRCLE);
   spell->setConeAngle(30);
   spell->setEffect(EffectName::PLASMA, EffectName::EXPLOSION);
   return spell;
@@ -81,21 +81,21 @@ gauntlet::Spell *SpellFactory::getWizardFireCone() {
 gauntlet::Spell *SpellFactory::getValkyriaAttack() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Valkyria Primary Attack", 100, 10, 10, Spell::Area::CIRCLE);
+  spell->setBasicStats(giveNextId(), "Valkyria Primary Attack", 100, 10, 10, Area::CIRCLE);
   return spell;
 }
 
 gauntlet::Spell *SpellFactory::getValkyriaDash() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Valkyria Dash", 100, 10, 10, Spell::Area::COLUMN);
+  spell->setBasicStats(giveNextId(), "Valkyria Dash", 100, 10, 10, Area::COLUMN);
   return spell;
 }
 
 gauntlet::Spell *SpellFactory::getBarbarianAttack() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Barbarian Primary Attack", 100, 10, 10, Spell::Area::CONE);
+  spell->setBasicStats(giveNextId(), "Barbarian Primary Attack", 100, 10, 10, Area::CONE);
   spell->setConeAngle(100);
   return spell;
 }
@@ -103,14 +103,14 @@ gauntlet::Spell *SpellFactory::getBarbarianAttack() {
 gauntlet::Spell *SpellFactory::getBarbarianTornado() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Barbarian Tornado", 100, 10, 10, Spell::Area::CIRCLE);
+  spell->setBasicStats(giveNextId(), "Barbarian Tornado", 100, 10, 10, Area::CIRCLE);
   return spell;
 }
 
 gauntlet::Spell *SpellFactory::getDraugrAttack() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Draugr Attack", 100, 10, 10, Spell::Area::CONE);
+  spell->setBasicStats(giveNextId(), "Draugr Attack", 100, 10, 10, Area::CONE);
   spell->setConeAngle(40);
   return spell;
 }

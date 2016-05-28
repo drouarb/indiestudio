@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Fri May 27 20:17:04 2016 Alexis Trouve
+// Last update Fri May 27 22:30:35 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -295,7 +295,7 @@ void		GameServer::controlInput(const network::PacketControl *packet)
   i = 0;
   while (i < players.size())
     {
-      if (packet->getSocketId() == players[i].idPlayer)
+      if (packet->getSocketId() == players[i].socketId)
 	break;
       ++i;
     }

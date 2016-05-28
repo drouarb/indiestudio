@@ -6,6 +6,9 @@
 # define CPP_INDIE_STUDIO_SPELLCONTAINER_HH
 
 #include <vector>
+#include "AreaType.hh"
+
+#define SIZE_UNIT 20.0
 
 namespace gauntlet
 {
@@ -15,12 +18,15 @@ namespace gauntlet
     class SpellContainer
     {
     public:
+      std::vector<gauntlet::Spell*> spellList;
+    public:
       SpellContainer();
       ~SpellContainer();
-      std::vector<gauntlet::Spell*> spellList;
-      void addSpell(int spellEnum, gauntlet::Actor *caster);
+      void		addSpell(int spellEnum, gauntlet::Actor *caster);
+
+      Spell		*giveSpell(double desireRange, double minRange, bool mustDamage,
+				   Area desireArea, double desireRadius, short desireAngle);
     };
 };
-
 
 #endif //CPP_INDIE_STUDIO_SPELLCONTAINER_HH
