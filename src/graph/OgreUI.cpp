@@ -9,28 +9,28 @@ using namespace core;
 
 OgreUI::OgreUI(void)
   : obs(NULL),
-    
+
     mRoot(0),
     mCamera(0),
     mSceneMgr(0),
     mWindow(0),
-    
+
     mResourcesCfg(Ogre::StringUtil::BLANK),
     mPluginsCfg(Ogre::StringUtil::BLANK),
-    
+
     planNode(0),
-    
+
     mTrayMgr(0),
     mCameraMan(0),
     mDetailsPanel(0),
-    
+
     mCursorWasVisible(true),
     mShutDown(false),
-    
+
     mInputManager(0),
     mMouse(0),
     mKeyboard(0)
-    
+
     {
     rootNode = NULL;
 }
@@ -681,11 +681,27 @@ int OgreUI::triggerEffect(int id, gauntlet::EffectName type,
     return 0;
 }
 
-void OgreUI::removeEntity(int id) {
-    std::stringstream ss;
-    ss << id;
-    mSceneMgr->destroyEntity(ss.str());
-    mSceneMgr->destroySceneNode(ss.str());
+int OgreUI::triggerEffect(int id, gauntlet::EffectName type,
+			  std::pair<double, double> coord,
+			  double yRotation)
+{
+  std::stringstream ss;
+
+  ss << "effect" << id;
+  Effect *&mapped_type = this->effectMap[id];
+  gauntlet::Effect *effect = new gauntlet::Effect(this, type, ss.str(), coord,
+						  this->quality);
+  mapped_type = effect;
+  effect->getParticleSystem()->getEmitter(0)->setDirection(Ogre::Vector3(0, yRotation, 0));
+  return 0;
+}
+
+void OgreUI::removeEntity(int id)
+{
+  std::stringstream ss;
+  ss << id;
+  mSceneMgr->destroyEntity(ss.str());
+  mSceneMgr->destroySceneNode(ss.str());
 }
 
 void OgreUI::stopEffect(int id) {

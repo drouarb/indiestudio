@@ -8,8 +8,6 @@
 #include <vector>
 #include "AreaType.hh"
 
-#define SIZE_UNIT 20.0
-
 namespace gauntlet
 {
   class Spell;
