@@ -51,13 +51,13 @@ Spell		*SpellFactory::giveSpell(SpellEnum type)
 gauntlet::Spell *SpellFactory::getRangerAttack() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Ranger Attack", 1500, 100, 50, Area::FLIGHT_PATH, SoundName::BOW);
+  spell->setBasicStats(giveNextId(), "Ranger Attack", 1500, 100, 50, Area::FLIGHT_PATH, SoundName::BOW, 100);
   return spell;
 }
 
 gauntlet::Spell *SpellFactory::getRangerExplosiveArrow() {
   Spell *spell = new Spell;
-  spell->setBasicStats(giveNextId(), "Ranger Explosive Arrow", 1500, 100, 100, Area::CIRCLE, SoundName::MAGIC_EXPLOSION_1);
+  spell->setBasicStats(giveNextId(), "Ranger Explosive Arrow", 1500, 100, 100, Area::CIRCLE, SoundName::MAGIC_EXPLOSION_1, 300);
   spell->setEffect(EffectName::CELLS, EffectName::ATOMIC);
   return spell;
 }
@@ -65,7 +65,7 @@ gauntlet::Spell *SpellFactory::getRangerExplosiveArrow() {
 gauntlet::Spell *SpellFactory::getWizardFireBall() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Wizard Fire Ball", 1500, 200, 50, Area::COLUMN, SoundName::MAGIC_EXPLOSION_2);
+  spell->setBasicStats(giveNextId(), "Wizard Fire Ball", 1500, 200, 50, Area::COLUMN, SoundName::MAGIC_EXPLOSION_2, 100);
   spell->setEffect(EffectName::PLASMA, EffectName::EXPLOSION);
   return spell;
 }
@@ -73,7 +73,7 @@ gauntlet::Spell *SpellFactory::getWizardFireBall() {
 gauntlet::Spell *SpellFactory::getWizardFireCone() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Wizard Fire Cone", 500, 100, 50, Area::CIRCLE, SoundName::FIRE_BIG);
+  spell->setBasicStats(giveNextId(), "Wizard Fire Cone", 500, 100, 50, Area::CIRCLE, SoundName::FIRE_BIG, 200);
   spell->setConeAngle(80);
   spell->setEffect(EffectName::PLASMA, EffectName::EXPLOSION);
   return spell;
@@ -82,21 +82,21 @@ gauntlet::Spell *SpellFactory::getWizardFireCone() {
 gauntlet::Spell *SpellFactory::getValkyriaAttack() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Valkyria Primary Attack", 100, 10, 10, Area::CIRCLE, SoundName::SWORD_HIT);
+  spell->setBasicStats(giveNextId(), "Valkyria Primary Attack", 100, 10, 10, Area::CIRCLE, SoundName::SWORD_HIT, 100);
   return spell;
 }
 
 gauntlet::Spell *SpellFactory::getValkyriaDash() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Valkyria Dash", 100, 10, 10, Area::COLUMN, SoundName::SPIKE_TRAP_2);
+  spell->setBasicStats(giveNextId(), "Valkyria Dash", 100, 10, 10, Area::COLUMN, SoundName::SPIKE_TRAP_2, 200);
   return spell;
 }
 
 gauntlet::Spell *SpellFactory::getBarbarianAttack() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Barbarian Primary Attack", 100, 10, 10, Area::CONE, SoundName::HAMMER_HIT_SOFT);
+  spell->setBasicStats(giveNextId(), "Barbarian Primary Attack", 100, 10, 10, Area::CONE, SoundName::HAMMER_HIT_SOFT, 100);
   spell->setConeAngle(200);
   return spell;
 }
@@ -104,14 +104,14 @@ gauntlet::Spell *SpellFactory::getBarbarianAttack() {
 gauntlet::Spell *SpellFactory::getBarbarianTornado() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Barbarian Tornado", 100, 10, 10, Area::CIRCLE, SoundName::MAGIC_BATTLECRY);
+  spell->setBasicStats(giveNextId(), "Barbarian Tornado", 100, 10, 10, Area::CIRCLE, SoundName::MAGIC_BATTLECRY, 300);
   return spell;
 }
 
 gauntlet::Spell *SpellFactory::iceBall() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Ice Ball", 1500, 200, 50, Area::COLUMN, SoundName::MAGIC_EXPLOSION_2);
+  spell->setBasicStats(giveNextId(), "Ice Ball", 1500, 200, 50, Area::COLUMN, SoundName::MAGIC_EXPLOSION_2, 200);
   spell->setEffect(EffectName::SNOW, EffectName::BLIND);
   return spell;
 }
@@ -119,7 +119,7 @@ gauntlet::Spell *SpellFactory::iceBall() {
 gauntlet::Spell *SpellFactory::simpleAttack() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Simple Attack", 100, 10, 10, Area::CONE, SoundName::AXE_HIT_SOFT);
+  spell->setBasicStats(giveNextId(), "Simple Attack", 100, 10, 10, Area::CONE, SoundName::AXE_HIT_SOFT, 100);
   spell->setConeAngle(60);
   return spell;
 }

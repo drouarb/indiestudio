@@ -58,9 +58,8 @@ namespace gauntlet {
     double			        getRadius() const;
     double			        getRange() const;
     const std::string&		getName() const;
-
     void setBasicStats(int id, const std::string &name, double range, double radius, long damage, Area pattern,
-                       unsigned int effect);
+                       unsigned int effect, unsigned long castTime);
   };
 };
 
