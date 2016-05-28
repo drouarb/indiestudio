@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Sat May 28 23:05:29 2016 Alexis Trouve
+// Last update Sat May 28 23:20:27 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -31,7 +31,9 @@ GameServer::GameServer(const std::string& filePath, in_port_t port)
   } catch (std::runtime_error & e) {
     std::cout << "errorMap " << e.what() << std::endl;
   }
+  std::cout << "# world new packetf" << std::endl;
   packetFact = new PacketFactory(port);
+  std::cout << "# world packetf ok" << std::endl;
   players.push_back({"Barbare", -1, false, -1});
   players.push_back({"Mage", -1, false, -1});
   players.push_back({"Valkyrie", -1, false, -1});

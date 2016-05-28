@@ -195,7 +195,9 @@ gauntlet::core::ConnectMenu::doConnect(struct t_hitItem & item)
     {
       if (core.packetf)
 	core.disconnect("");
+      std::cout << "# core new packetf" << std::endl;
       core.packetf = new network::PacketFactory(ip, port);
+      std::cout << "# core packetf ok" << std::endl;
       core.initPacketf();
       sendConnect();
     }

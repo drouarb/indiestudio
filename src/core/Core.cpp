@@ -148,7 +148,7 @@ gauntlet::core::Core::createServer()
       _exit(0);
     }
   else
-    usleep(1000000); //TODO: server ready msg?
+    usleep(2000000); //TODO: server ready msg?
 }
 
 void
@@ -199,6 +199,7 @@ gauntlet::core::Core::disconnect(std::string const & msg)
     return ;
   if (packetf)
     {
+      std::cout << "# core rm packet factory" << std::endl;
       packetf->stop();
       listenThread->join();
 

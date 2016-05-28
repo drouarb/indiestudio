@@ -131,6 +131,7 @@ gauntlet::core::Lobby::doPlay(struct t_hitItem & item)
 				      core.pc->getChar() == world::RANGER,
 				      core.pc->getName());
       core.packetf->send(psp);
+      std::cout << "# core send select player" << std::endl;
       submenus[3]->setOpen(true);
     }
 }
