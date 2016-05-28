@@ -4,8 +4,8 @@
     width : "10000",
     spawn :
     {
-	x : "300",
-	y : "300"
+	x : "100",
+	y : "100"
     },
     map : "une_vraie_map.obj",
     dynamic :

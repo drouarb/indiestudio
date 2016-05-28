@@ -92,7 +92,7 @@ s_socketData gauntlet::network::Socket::recv() {
             select(FD_SETSIZE, &set, NULL, NULL, NULL);
 
             lock.lock();
-            for (size_t i = 0; i < FD_SETSIZE; i++) {
+            for (int i = 0; i < FD_SETSIZE; i++) {
                 if (FD_ISSET(i, &set)) {
                     if (i == pipe[0]) {
                         buff = this->recv(pipe[0]);
