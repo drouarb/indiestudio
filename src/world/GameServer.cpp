@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Sat May 28 20:51:08 2016 Alexis Trouve
+// Last update Sat May 28 23:05:29 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -28,8 +28,8 @@ GameServer::GameServer(const std::string& filePath, in_port_t port)
   world = new World(this);
   try {
     world->loadGame(filePath);
-  } catch (...) {
-    std::cout << "errorMap" << std::endl;
+  } catch (std::runtime_error & e) {
+    std::cout << "errorMap " << e.what() << std::endl;
   }
   packetFact = new PacketFactory(port);
   players.push_back({"Barbare", -1, false, -1});
@@ -133,6 +133,7 @@ void		GameServer::selectPlayerAnswer(const network::PacketSelectPlayer *packet)
 
 void			GameServer::sendDatas(int socketId)
 {
+  std::cout << "sendData" << std::endl;
   std::list<ABody*>	bodys;
   std::vector<effectGlobal*>	effectTab;
   std::vector<soundGlobal*>	soundTab;
@@ -167,6 +168,7 @@ void			GameServer::sendDatas(int socketId)
 		 effectTab[i]->pos, effectTab[i]->decayTime);
       ++i;
     }
+  std::cout << "sendData end" << std::endl;
 }
 
 void			GameServer::notifyTake()
@@ -251,12 +253,6 @@ void		GameServer::decoAll(const std::string& msg)
       ++i;
     }
   std::cout << "DecoAllEnd" << std::endl;
-}
-
-void		GameServer::sendMap()
-{
-  std::cout << "sendMap" << std::endl;
-  std::cout << "sendMaEnd" << std::endl;
 }
 
 void		GameServer::sendAddEntity(ABody *body)

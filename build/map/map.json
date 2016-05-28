@@ -23,6 +23,12 @@
 	    angle : "0"
 	},
 	{
+	    name : "Skeleton",
+	    x : "800",
+	    y : "800",
+	    angle : "0"
+	},
+	{
 	    name : "Key",
 	    x : "80",
 	    y : "80",

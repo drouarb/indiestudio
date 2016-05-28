@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sat May 28 16:36:35 2016 Alexis Trouve
-// Last update Sat May 28 22:45:46 2016 Alexis Trouve
+// Last update Sat May 28 23:02:16 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -277,7 +277,8 @@ int	World::addNewBody(double xpos, double ypos, const std::string& name, short o
   std::pair<unsigned int, unsigned int>	sizeMap;
 
   std::cout << "1" << std::endl;
-  body = Factory->giveBody(name);
+  if ((body = Factory->giveBody(name)) == NULL)
+    throw (std::runtime_error(name + " does not exist"));
   std::cout << "pos : " << xpos << ":" << ypos << " sizeGens:" << body->getSize().first << ":" << body->getSize().second << " size:" << sizeX << ":" << sizeY << std::endl;
   if ((xpos - (body->getSize().first / 2.0)) < 0 || (xpos + (body->getSize().first / 2.0)) >= sizeX
       || (ypos - (body->getSize().second / 2.0)) < 0 || (ypos + (body->getSize().second / 2.0)) >= sizeY)

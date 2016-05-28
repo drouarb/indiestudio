@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 20:56:05 2016 Alexis Trouve
-// Last update Sat May 28 20:55:18 2016 Alexis Trouve
+// Last update Sat May 28 22:56:10 2016 Alexis Trouve
 //
 
 #ifndef GAMESERVER_HH_
@@ -73,7 +73,6 @@ namespace gauntlet
       void		notifyTake();
       void		sendDeco(int fd, const std::string& msg);
       void		decoAll(const std::string& msg);
-      void		sendMap();
       void		sendAddEntity(ABody *body);
       void		sendMoveId(ABody *body);
       void		sendEffect(unsigned int effect, int id, short orient,

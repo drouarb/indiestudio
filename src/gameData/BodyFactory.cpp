@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 16:50:32 2016 Alexis Trouve
-// Last update Sat May 28 14:07:26 2016 Alexis Trouve
+// Last update Sat May 28 23:00:24 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -450,19 +450,29 @@ ABody	*BodyFactory::giveBody(const std::string& name)
   Actor		*actor;
 
   i = 0;
+  std::cout << "a" << std::endl;
   while (i < bodyTab.size())
     {
+  std::cout << "b" << std::endl;
       if (name == bodyTab[i]->getName())
 	{
+  std::cout << "c" << std::endl;
 	  body = bodyTab[i]->clone(giveNextId());
+  std::cout << "d" << std::endl;
 	  if ((actor = dynamic_cast<Actor*>(body)) != NULL)
 	    {
+  std::cout << "e" << std::endl;
 	      j = actor->getIdAI();
+  std::cout << "f" << std::endl;
 	      if (j != NOAI)
 		AIs[j]->setNewAI(actor);
+  std::cout << "g" << std::endl;
 	    }
+  std::cout << "h" << std::endl;
 	  return (body);
+  std::cout << "i" << std::endl;
 	}
+  std::cout << "j" << std::endl;
       ++i;
     }
   return (NULL);
