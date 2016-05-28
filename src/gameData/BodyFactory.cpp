@@ -183,7 +183,7 @@ void			BodyFactory::setValkyrie()
           SoundName::FEMALE_DEATH,
           SoundName::SOUND_NONE
   };
-  player->setMeshId(EntityName::BERSERK);
+  player->setMeshId(EntityName::VALKYRIE);
   player->setTextureId(TextureName::TEXTURE_NONE);
   player->setIdAI(NOAI);
   bodyTab.push_back(player);
