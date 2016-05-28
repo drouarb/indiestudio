@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sat May 28 16:36:35 2016 Alexis Trouve
-// Last update Sat May 28 23:43:19 2016 Alexis Trouve
+// Last update Sat May 28 23:55:11 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -186,8 +186,8 @@ void		World::gameLoop()
 	applyGatheringAndOpening();*/
       /*if (turn % WIN_PRIORITY == 0)
 	checkWin();*/
-      /*if (turn % RESPAWN_PRIORITY == 0)
-	checkRespawn();*/
+      if (turn % RESPAWN_PRIORITY == 0)
+	checkRespawn();
       ++turn;
     }
   std::cout << "world gameLoop end" << std::endl;
@@ -195,6 +195,7 @@ void		World::gameLoop()
 
 void	World::checkRespawn()
 {
+  std::cout << "checkSpawn" << std::endl;
   unsigned int		i;
   Player		*player;
 
@@ -209,10 +210,12 @@ void	World::checkRespawn()
 	}
       ++i;
     }
+  std::cout << "checkSpawn end" << std::endl;
 }
 
 void	World::checkWin()
 {
+  std::cout << "checkWin" << std::endl;
   std::list<ABody*>::iterator	it;
   unsigned char			nbrPlayer;
   ABody				*body;
@@ -232,10 +235,12 @@ void	World::checkWin()
       gameServer->decoAll("Good game, you win.");
       exit(0);
     }
+  std::cout << "checkWin end" << std::endl;
 }
 
 void	World::applyGatheringAndOpening()
 {
+  std::cout << "checkGather" << std::endl;
   std::list<ABody*>::iterator	it;
   std::list<ABody*>::iterator	it2;
   Player			*player;
@@ -268,6 +273,7 @@ void	World::applyGatheringAndOpening()
 	}
       it++;
     }
+  std::cout << "checkGather end" << std::endl;
 }
 
 int	World::addNewBody(double xpos, double ypos, const std::string& name, short orientation)
