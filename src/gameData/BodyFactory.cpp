@@ -201,7 +201,7 @@ void			BodyFactory::setSkeleton()
   crea->stats.speed = 0.6;
   crea->stats.normalSpeed = 0.6;
   crea->stats.attackModifier = 0.6;
-  crea->spellBook.addSpell(SpellFactory::DRAUGR_ATTACK, crea);
+  crea->spellBook.addSpell(SpellFactory::SIMPLE_ATTACK, crea);
   crea->setCollide(true);
   crea->changePos(std::make_pair(-1, -1));
   crea->changeSize(std::make_pair(50.0, 50.0));
@@ -245,7 +245,7 @@ void			BodyFactory::setSkeletonWarlord()
   crea->stats.speed = 0.6;
   crea->stats.normalSpeed = 0.6;
   crea->stats.attackModifier = 0.6;
-  crea->spellBook.addSpell(SpellFactory::DRAUGR_ATTACK, crea);
+  crea->spellBook.addSpell(SpellFactory::SIMPLE_ATTACK, crea);
   crea->setCollide(true);
   crea->changePos(std::make_pair(-1, -1));
   crea->changeSize(std::make_pair(50.0, 50.0));
@@ -289,7 +289,7 @@ void			BodyFactory::setSkeletonArcher()
   crea->stats.speed = 0.6;
   crea->stats.normalSpeed = 0.6;
   crea->stats.attackModifier = 0.6;
-  crea->spellBook.addSpell(SpellFactory::DRAUGR_ATTACK, crea);
+  crea->spellBook.addSpell(SpellFactory::SIMPLE_ATTACK, crea);
   crea->setCollide(true);
   crea->changePos(std::make_pair(-1, -1));
   crea->changeSize(std::make_pair(50.0, 50.0));
@@ -333,7 +333,7 @@ void			BodyFactory::setSkeletonWizard()
   crea->stats.speed = 0.6;
   crea->stats.normalSpeed = 0.6;
   crea->stats.attackModifier = 0.6;
-  crea->spellBook.addSpell(SpellFactory::DRAUGR_ATTACK, crea);
+  crea->spellBook.addSpell(SpellFactory::SIMPLE_ATTACK, crea);
   crea->setCollide(true);
   crea->changePos(std::make_pair(-1, -1));
   crea->changeSize(std::make_pair(50.0, 50.0));
@@ -377,7 +377,7 @@ void			BodyFactory::setDraugr()
   crea->stats.speed = 0.6;
   crea->stats.normalSpeed = 0.6;
   crea->stats.attackModifier = 0.6;
-  crea->spellBook.addSpell(SpellFactory::DRAUGR_ATTACK, crea);
+  crea->spellBook.addSpell(SpellFactory::SIMPLE_ATTACK, crea);
   crea->setCollide(true);
   crea->changePos(std::make_pair(-1, -1));
   crea->changeSize(std::make_pair(15.0, 15.0));

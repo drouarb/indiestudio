@@ -63,6 +63,7 @@ void gauntlet::Spell::cast(Actor *caster)
     caster->getWorld()->playSound(soundEffect, false, targetedArea);
     targets = (caster->getWorld()->getCollider().*patternTypes.at(pattern))(targetedArea.first, targetedArea.second, caster->getOrientation(), radius, angle); //remplacer les 0 par des variables setées à 0 dans le constructy kthxbye
     ApplyDamage(targets, caster);
+    caster->setCooldown(castTime);
 }
 
 void gauntlet::Spell::setCaster(Actor* caster)
@@ -77,7 +78,7 @@ void gauntlet::Spell::setEffect(EffectName opening, EffectName ending)
 }
 
 void gauntlet::Spell::setBasicStats(int id, const std::string &name, double range, double radius, long damage, Area pattern,
-                                    unsigned int effect) {
+                                    unsigned int effect, unsigned long castTime) {
     this->id = id;
     this->name = name;
     this->range = range;
@@ -85,6 +86,7 @@ void gauntlet::Spell::setBasicStats(int id, const std::string &name, double rang
     this->pattern = pattern;
     this->damage = damage;
     this->soundEffect = effect;
+    this->castTime = ((castTime * 10) / ROUND_DURATION);
 }
 
 void gauntlet::Spell::setConeAngle(short _angle)
@@ -121,3 +123,5 @@ const std::string&	gauntlet::Spell::getName() const
 {
   return (name);
 }
+
+

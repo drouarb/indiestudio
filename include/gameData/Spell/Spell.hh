@@ -40,6 +40,8 @@ namespace gauntlet {
     int                         openingId;
     int                         endingId;
     unsigned int                soundEffect;
+    unsigned long               castTime;
+
   public:
     void                        cast(Actor *caster);
     void                        ApplyDamage(std::list<ABody *> targets, Actor *caster);
@@ -48,17 +50,16 @@ namespace gauntlet {
     void                        setCaster(Actor *caster);
     void                        setConeAngle(short id);
 
-    void			setEffect(gauntlet::EffectName opening, gauntlet::EffectName ending);
+    void			        setEffect(gauntlet::EffectName opening, gauntlet::EffectName ending);
 
-    long			getDamage() const;
-    short			getAngle() const;
-    Area			getAreaType() const;
-    double			getRadius() const;
-    double			getRange() const;
+    long			        getDamage() const;
+    short			        getAngle() const;
+    Area			        getAreaType() const;
+    double			        getRadius() const;
+    double			        getRange() const;
     const std::string&		getName() const;
-
     void setBasicStats(int id, const std::string &name, double range, double radius, long damage, Area pattern,
-                       unsigned int effect);
+                       unsigned int effect, unsigned long castTime);
   };
 };
 

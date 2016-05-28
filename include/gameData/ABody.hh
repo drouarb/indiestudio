@@ -34,6 +34,7 @@ namespace gauntlet
     world::World		        *world;
     int                         model;
     int                         texture;
+    unsigned long               cooldown;
   public:
     enum    soundType {
             ATTACK_SOUND = 0,
@@ -47,6 +48,7 @@ namespace gauntlet
     ABody(int nid);
     virtual ~ABody();
 
+    virtual bool            recharged();
     virtual void			changePos(const std::pair<double, double>& ncoord);
     virtual void			changeSize(const std::pair<double, double>& nsize);
     virtual void			changeOrientation(short norient);
@@ -67,6 +69,7 @@ namespace gauntlet
     virtual void			setTextureId();
     virtual void			setTextureId(int text);
     virtual void			setMeshId(int model);
+    virtual void            setCooldown(unsigned long _cooldown);
   };
 
 };

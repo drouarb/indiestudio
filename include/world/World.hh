@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:51:22 2016 Alexis Trouve
-// Last update Sat May 28 15:02:43 2016 Alexis Trouve
+// Last update Sat May 28 15:19:29 2016 Alexis Trouve
 //
 
 #ifndef WORLD_HH_
@@ -29,6 +29,7 @@
 
 # define ROUND_DURATION 33
 # define AI_PRIORITY 15
+# define GATHERING_PRIORITY 5
 
 namespace			gauntlet
 {

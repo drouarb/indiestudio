@@ -52,7 +52,7 @@ void        GameObject::open(ItemContainer *curInventory) //unfinished
   }
 }
 
-void        *GameObject::setBasicParameters(std::string _name, bool _gatherable, bool _openable)
+void        GameObject::setBasicParameters(std::string _name, bool _gatherable, bool _openable)
 {
   name = _name;
   gatherable = _gatherable;

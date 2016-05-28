@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 14:41:17 2016 Alexis Trouve
-// Last update Fri May 27 13:51:07 2016 Alexis Trouve
+// Last update Sat May 28 16:13:54 2016 Alexis Trouve
 //
 
 #ifndef COLLIDER_HH_
@@ -29,7 +29,7 @@ namespace gauntlet
       unsigned int				sizeX;
       unsigned int				sizeY;
     public:
-      Collider(unsigned int xsize, unsigned int ysize);
+      Collider(const std::string& filePath);
       ~Collider();
       bool				tryMoveBody(int id, double pox, double posy);
       bool				applyVectorToId(int id, short orient, double speed);

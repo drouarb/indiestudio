@@ -38,13 +38,12 @@ namespace gauntlet
           BARBARIAN_TORNADO,
           WIZARD_FIREBALL,
           WIZARD_FIRECONE,
-          DRAUGR_ATTACK,
           RANGER_ATTACK,
-          RANGER_ARROW_WAVE,
           RANGER_EXPLOSIVE_ARROW,
-          WIZARD_PLACEHOLDER3,
-          WIZARD_PLACEHOLDER4
+          SIMPLE_ATTACK,
+          ICEBALL
       };
+
       const static std::map<SpellEnum , getSpell> spellMap;
 
   private:
@@ -56,11 +55,13 @@ namespace gauntlet
       static Spell*              getValkyriaDash();
       static Spell*              getBarbarianAttack();
       static Spell*              getBarbarianTornado();
-      static Spell*              getDraugrAttack();
       static Spell*              getWizardFireBall();
       static Spell*              getWizardFireCone();
       static Spell*              getRangerAttack();
       static Spell*              getRangerExplosiveArrow();
+
+      static Spell*              simpleAttack();
+      static Spell*              iceBall();
   };
 };
 
