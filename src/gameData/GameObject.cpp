@@ -27,11 +27,12 @@ GameObject::~GameObject()
   delete(items); //newItemContainer gameObject();
 }
 
-void        GameObject::gather(ItemContainer *curInventory)
+void        GameObject::gather(Player *player)
 {
   if (gatherable)
   {
-    curInventory->operator+=(this->items);
+    player->getInventory()->operator+=(this->items);
+    player->getInventory()->useUpgrades(player);
     world->notifyDeath(this);
   }
 }
@@ -59,17 +60,29 @@ void        GameObject::setBasicParameters(std::string _name, bool _gatherable, 
   openable = _openable;
 }
 
+void        GameObject::setItems(ItemContainer *itemContainer)
+{
+  ItemContainer itemCont;
+
+  itemCont = *itemContainer;
+  this->items = &itemCont;
+}
+
 ABody		*GameObject::clone(int id) const
 {
   GameObject	*obj;
 
   obj = new GameObject(id, world);
+  obj->setItems(this->items);
+  obj->items->clone(this->items);
   obj->setName(name);
   obj->setCollide(collideActive);
   obj->changePos(coord);
   obj->changeSize(size);
   obj->changeOrientation(orientation);
   obj->gatherable = this->gatherable;
+  obj->model = this->model;
+  obj->texture = this->texture;
   obj->openable = this->openable;
   return (obj);
 }

@@ -36,6 +36,7 @@ namespace gauntlet
       void			        addScore(long addition);
       void			        setPlayerName(const std::string& nplayerName);
       const std::string&	getPlayerName() const;
+      ItemContainer         *getInventory();
       long			        getScore() const;
       // void equip(Item item);
       void			        use(Item item);

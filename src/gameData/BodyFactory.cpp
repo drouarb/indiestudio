@@ -66,8 +66,8 @@ void			BodyFactory::setBarbare()
   player->setName("Barbare");
   player->stats.HP = 4000;
   player->stats.normalHP = 4000;
-  player->stats.speed = 1.1;
-  player->stats.normalSpeed = 1.1;
+  player->stats.speed = 1000.0;
+  player->stats.normalSpeed = 1000.0;
   player->stats.attackModifier = 1.0;
   player->setCollide(true);
   player->spellBook.addSpell(SpellFactory::BARBARIAN_ATTACK, player);
@@ -405,7 +405,9 @@ void            BodyFactory::setKey()
   obj = new GameObject(-1, world);
   obj->setBasicParameters("Key", true, false);
   obj->setCollide(false);
-  obj->changeSize(std::make_pair(50.0, 50.0));
+  obj->changeSize(std::make_pair(20.0, 20.0));
+  obj->changePos(std::make_pair(-1, -1));
+  obj->changeOrientation(90);
   obj->setMeshId(EntityName::CHEST);
   obj->setTextureId(TextureName::TEXTURE_NONE);
   obj->addItem(*key);
@@ -419,7 +421,9 @@ void            BodyFactory::setDoor()
   obj = new GameObject(-1, world);
   obj->setBasicParameters("Door", false, true);
   obj->setCollide(true);
-  obj->changeSize(std::make_pair(50.0, 50.0));
+  obj->changeSize(std::make_pair(10.0, 10.0));
+  obj->changePos(std::make_pair(-1, -1));
+  obj->changeOrientation(90);
   obj->setMeshId(EntityName::BERSERK);
   obj->setTextureId(TextureName::TEXTURE_NONE);
   bodyTab.push_back(obj);

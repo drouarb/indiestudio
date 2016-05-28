@@ -2,6 +2,7 @@
 // Created by jonas_e on 5/9/16.
 //
 
+#include "Player.hh"
 #include "ItemContainer.hh"
 
 using namespace gauntlet;
@@ -16,9 +17,9 @@ ItemContainer::~ItemContainer()
 
 }
 
-void ItemContainer::operator+=(ItemContainer *itemContainer)
+void ItemContainer::operator+=(Player *player)
 {
-    itemList.merge(itemContainer->itemList);
+    itemList.merge(player->getInventory()->itemList);
 }
 
 void ItemContainer::remove(gauntlet::Item item) {
@@ -28,4 +29,28 @@ void ItemContainer::remove(gauntlet::Item item) {
 std::list<Item> *ItemContainer::getItemList() {
     return &this->itemList;
 }
+
+void ItemContainer::useUpgrades(Player *player) {
+    std::list<Item>::iterator iter;
+    for(iter = this->itemList.begin(); iter != this->itemList.end(); ++iter)
+    {
+        if (iter->isUpgrade())
+        {
+            player->use(*iter);
+            iter = this->itemList.erase(iter);
+        }
+    }
+}
+
+ItemContainer *ItemContainer::clone(ItemContainer *itemContainer) {
+    ItemContainer *newItemContainer;
+
+    newItemContainer = new ItemContainer();
+    newItemContainer->itemList = itemContainer->itemList;
+    return newItemContainer;
+}
+
+
+
+
 

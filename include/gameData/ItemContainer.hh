@@ -7,9 +7,11 @@
 
 #include <list>
 #include "Item.hh"
+#include "Player.hh"
 
 namespace gauntlet
 {
+    class Player;
     class ItemContainer
     {
       std::list <Item> itemList;
@@ -18,8 +20,10 @@ namespace gauntlet
       ~ItemContainer();
 
         std::list<Item> *getItemList();
-      void    remove(Item item);
-      void    operator+=(ItemContainer *itemContainer);
+        void    remove(Item item);
+        void operator+=(gauntlet::Player *player);
+        void useUpgrades(Player *player);
+        ItemContainer *clone(ItemContainer *itemContainer);
     };
 };
 
