@@ -199,8 +199,8 @@ void            BodyFactory::setDoor()
   obj = new GameObject(-1, world);
   obj->setBasicParameters("Door", false, true);
   obj->setCollide(true);
-  obj->setMeshId(EntityName::DOOR);
-  obj->setTextureId(EntityName::DOOR);
+  obj->setMeshId(EntityName::BERSERK);
+  obj->setTextureId(EntityName::BERSERK);
   bodyTab.push_back(obj);
 }
 
