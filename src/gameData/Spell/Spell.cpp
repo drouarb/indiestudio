@@ -78,7 +78,7 @@ void gauntlet::Spell::setEffect(EffectName opening, EffectName ending)
 }
 
 void gauntlet::Spell::setBasicStats(int id, const std::string &name, double range, double radius, long damage, Area pattern,
-                                    unsigned int effect) {
+                                    unsigned int effect, unsigned long castTime) {
     this->id = id;
     this->name = name;
     this->range = range;
@@ -86,6 +86,7 @@ void gauntlet::Spell::setBasicStats(int id, const std::string &name, double rang
     this->pattern = pattern;
     this->damage = damage;
     this->soundEffect = effect;
+    this->castTime = ((castTime * 10) / ROUND_DURATION);
 }
 
 void gauntlet::Spell::setConeAngle(short _angle)
