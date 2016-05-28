@@ -8,22 +8,30 @@ using namespace core;
 
 
 OgreUI::OgreUI(void)
-        : mRoot(0),
-          mCamera(0),
-          mSceneMgr(0),
-          mWindow(0),
-          mResourcesCfg(Ogre::StringUtil::BLANK),
-          mPluginsCfg(Ogre::StringUtil::BLANK),
-          mTrayMgr(0),
-          mCameraMan(0),
-          mDetailsPanel(0),
-          mCursorWasVisible(true),
-          mShutDown(false),
-          mInputManager(0),
-          mMouse(0),
-          planNode(0),
-          mKeyboard(0),
-          obs(NULL) {
+  : obs(NULL),
+    
+    mRoot(0),
+    mCamera(0),
+    mSceneMgr(0),
+    mWindow(0),
+    
+    mResourcesCfg(Ogre::StringUtil::BLANK),
+    mPluginsCfg(Ogre::StringUtil::BLANK),
+    
+    planNode(0),
+    
+    mTrayMgr(0),
+    mCameraMan(0),
+    mDetailsPanel(0),
+    
+    mCursorWasVisible(true),
+    mShutDown(false),
+    
+    mInputManager(0),
+    mMouse(0),
+    mKeyboard(0)
+    
+    {
     rootNode = NULL;
 }
 
@@ -285,13 +293,18 @@ void OgreUI::setIObserver(gauntlet::core::IUIObserver *Obs) {
 bool OgreUI::loadSound(int id, SoundName name) {
     std::stringstream ss;
     ss << id;
-    if (name != SOUND_NONE) if (access(("../media/sounds/" + soundmap.at(name)).c_str(), F_OK) == 0) {
-        mSoundManager->createSound(ss.str(), soundmap.at(name), true, false,
-                                   false, mSceneMgr);
-        return (true);
-    }
+    if (name != SOUND_NONE)
+      {
+	if (access(("../media/sounds/" + soundmap.at(name)).c_str(), F_OK) == 0) {
+	  mSoundManager->createSound(ss.str(), soundmap.at(name), true, false,
+				     false, mSceneMgr);
+	  return (true);
+	}
+	else
+	  return (false);
+      }
     else
-        return (false);
+      return (false);
 }
 
 bool OgreUI::playSound(int id, gauntlet::SoundName name, bool loop) {
@@ -306,8 +319,9 @@ bool OgreUI::playSound(int id, gauntlet::SoundName name, bool loop) {
 
         mSoundManager->getSound(ss.str())->play();
         mSoundManager->getSound(ss.str())->loop(loop);
+	return (true);
     }
-
+    return (false);
 }
 
 void OgreUI::checkBoxToggled(OgreBites::CheckBox *checkBox) {
@@ -384,41 +398,44 @@ void OgreUI::sliderMoved(OgreBites::Slider *slider) {
 void OgreUI::updateItemValue(int itemid, struct t_hitItem item) {
     std::stringstream ss;
     ss << itemid;
-    switch (item.type) {
-        case MenuItemType::SLIDE: {
-            OgreBites::Slider *s = static_cast<OgreBites::Slider *>(mTrayMgr->getWidget(
-                    ss.str()));
-            s->setValue(item.value, true);
-        }
-            break;
-        case MenuItemType::PROGRESSBAR: {
-            OgreBites::ProgressBar *p = static_cast<OgreBites::ProgressBar *>(mTrayMgr->getWidget(
-                    ss.str()));
-            p->setProgress((float) item.value / 100);
-        }
-            break;
-        case MenuItemType::TEXTBOX: {
-            OgreBites::TextBox *t = static_cast<OgreBites::TextBox *>(mTrayMgr->getWidget(
-                    ss.str()));
-            t->setText(item.data);
-        }
-            break;
-        case MenuItemType::LABEL: {
-            OgreBites::Label *label = static_cast<OgreBites::Label *>(mTrayMgr->getWidget(
-                    ss.str()));
-            label->setCaption(item.data);
-        }
-            break;
-        case MenuItemType::CHECKBOX: {
-            OgreBites::CheckBox *c = static_cast<OgreBites::CheckBox *>(mTrayMgr->getWidget(
-                    ss.str()));
-            if (item.state == CHECKED)
-                c->setChecked(true, true);
-            else
-                c->setChecked(false, true);
-        }
-            break;
-    }
+    switch (item.type)
+      {
+      case MenuItemType::SLIDE: {
+	OgreBites::Slider *s = static_cast<OgreBites::Slider *>
+	  (mTrayMgr->getWidget(ss.str()));
+	s->setValue(item.value, true);
+      }
+	break;
+      case MenuItemType::PROGRESSBAR: {
+	OgreBites::ProgressBar *p = static_cast<OgreBites::ProgressBar *>
+	  (mTrayMgr->getWidget(
+											      ss.str()));
+	p->setProgress((float) item.value / 100);
+      }
+	break;
+      case MenuItemType::TEXTBOX: {
+	OgreBites::TextBox *t = static_cast<OgreBites::TextBox *>(mTrayMgr->getWidget
+								  (ss.str()));
+	t->setText(item.data);
+      }
+	break;
+      case MenuItemType::LABEL: {
+	OgreBites::Label *label = static_cast<OgreBites::Label *>(mTrayMgr->getWidget
+								  (ss.str()));
+	label->setCaption(item.data);
+      }
+	break;
+      case MenuItemType::CHECKBOX: {
+	OgreBites::CheckBox *c = static_cast<OgreBites::CheckBox *>(mTrayMgr->getWidget
+								    (ss.str()));
+	if (item.state == CHECKED)
+	  c->setChecked(true, true);
+	else
+	  c->setChecked(false, true);
+      }
+      default:
+	break;
+      }
 }
 
 void OgreUI::addTextbox(gauntlet::core::Position pos, int id, std::string text,
@@ -750,7 +767,7 @@ bool OgreUI::entityExist(int id) {
 }
 
 void OgreUI::createLight(unsigned int height, unsigned int width, unsigned int interval) {
-    for (int x = -width, y = -height; x < width && y < height; x += interval, y += interval) {
+  for (int x = -width, y = -height; x < (int)width && y < (int)height; x += (int)interval, y += (int)interval) {
         Ogre::Light *pLight = this->mSceneMgr->createLight();
 
         pLight->setType(Ogre::Light::LT_POINT);

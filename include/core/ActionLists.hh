@@ -53,7 +53,7 @@ namespace			gauntlet
       void			particlesDecay();
 
       bool			pendingTracker;
-      int			entityIdTracker;
+      unsigned int		entityIdTracker;
 
       std::list<particle *>	particles;
       std::list<network::Packet*> allPackets;

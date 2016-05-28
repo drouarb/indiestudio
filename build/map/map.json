@@ -8,6 +8,7 @@
 	y : "100"
     },
     map : "une_vraie_map.obj",
+    height_map : "height_map.pgm",
     dynamic :
     [ ],
     sounds:
