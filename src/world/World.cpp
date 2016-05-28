@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sat May 28 16:36:35 2016 Alexis Trouve
-// Last update Sun May 29 00:35:47 2016 Alexis Trouve
+// Last update Sun May 29 00:44:51 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -182,8 +182,8 @@ void		World::gameLoop()
       if (turn % AI_PRIORITY == 0)
 	applyAI();
       applyMoveActor();
-      if (turn % GATHERING_PRIORITY == 0)
-	applyGatheringAndOpening();
+      //if (turn % GATHERING_PRIORITY == 0)
+      //applyGatheringAndOpening();
       if (turn % WIN_PRIORITY == 0)
 	checkWin();
       if (turn % RESPAWN_PRIORITY == 0)
