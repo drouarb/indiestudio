@@ -5,9 +5,10 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 11:46:42 2016 Alexis Trouve
-// Last update Sat May 28 15:03:25 2016 Alexis Trouve
+// Last update Sun May 29 00:51:58 2016 Alexis Trouve
 //
 
+#include <iostream>
 #include "BasicAI.hh"
 #include "World.hh"
 
@@ -66,5 +67,6 @@ void			BasicAI::launchAI(gauntlet::Actor *actor)
   actor->changeOrientation(Math::getAngle(-atan2(savedPlayer->getPos().first - actor->getPos().first,
 						 savedPlayer->getPos().second - actor->getPos().second)));
   idAttack = actor->spellBook.giveSpell(30, 30, true, NOAREA, 0, 100);
+  std::cout << "ia" << std::endl;
   actor->castSpell(idAttack);
 }

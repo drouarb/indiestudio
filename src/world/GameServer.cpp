@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Sun May 29 00:27:30 2016 Alexis Trouve
+// Last update Sun May 29 01:00:05 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -152,6 +152,7 @@ void			GameServer::sendDatas(int socketId)
   soundTab = world->getSoundByCopy();
   effectTab = world->getEffectByCopy();
   it1 = bodys.begin();
+  std::cout << packetMap.getFilename() << std::endl;
   packetFact->send(packetMap, socketId);
   while (it1 != bodys.end())
     {
