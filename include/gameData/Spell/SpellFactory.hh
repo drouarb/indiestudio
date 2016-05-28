@@ -36,12 +36,12 @@ namespace gauntlet
           VALKYRIA_DASH,
           BARBARIAN_ATTACK,
           BARBARIAN_TORNADO,
+          WIZARD_FIREBALL,
+          WIZARD_FIRECONE,
           DRAUGR_ATTACK,
           RANGER_ATTACK,
           RANGER_ARROW_WAVE,
           RANGER_EXPLOSIVE_ARROW,
-          WIZARD_PLACEHOLDER1,
-          WIZARD_PLACEHOLDER2,
           WIZARD_PLACEHOLDER3,
           WIZARD_PLACEHOLDER4
       };
@@ -57,6 +57,10 @@ namespace gauntlet
       static Spell*              getBarbarianAttack();
       static Spell*              getBarbarianTornado();
       static Spell*              getDraugrAttack();
+      static Spell*              getWizardFireBall();
+      static Spell*              getWizardFireCone();
+      static Spell*              getRangerAttack();
+      static Spell*              getRangerExplosiveArrow();
   };
 };
 

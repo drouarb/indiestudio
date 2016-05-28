@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Mon May  9 14:07:25 2016 Alexis Trouve
-// Last update Wed May 25 21:07:33 2016 Alexis Trouve
+// Last update Fri May 27 22:32:14 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -89,10 +89,9 @@ void				ABody::setName(const std::string& nname)
 
 std::pair<double, double>	ABody::pointInFront(double dist)
 {
-
-    return (std::pair<double, double>
-            (coord.first + dist * world::Math::cos(orientation),
-             coord.second + dist * world::Math::sin(orientation)));
+  return (std::pair<double, double>
+	  (coord.first + dist * world::Math::cos(orientation),
+	   coord.second + dist * world::Math::sin(orientation)));
 }
 
 world::World *ABody::getWorld() {

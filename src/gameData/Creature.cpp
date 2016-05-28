@@ -13,5 +13,4 @@ Creature::Creature(int nid, world::World *nworld)
 
 Creature::~Creature()
 {
-    //drop stuff on position
 }

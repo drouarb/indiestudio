@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 14:44:15 2016 Alexis Trouve
-// Last update Thu May 26 13:10:42 2016 Alexis Trouve
+// Last update Fri May 27 21:33:07 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -52,8 +52,9 @@ bool				Collider::applyVectorToId(int id, short orient, double speed)
 
   if ((body = dynamicLayer->getBodyId(id)) == NULL)
     return (false);
-  vectY = (Math::sin(orient) * speed);
-  vectX = (Math::cos(orient) * speed);
+  vectY = -(Math::sin(orient) * speed);
+  vectX = -(Math::cos(orient) * speed);
+  std::cout << "orient: " << orient << ", vectX : " << vectX << ", vectY : " << vectY << std::endl;
   sizeB = body->getSize();
   posB = body->getPos();
   if (physicLayer->checkCoordSizeIsEmpty(posB.first + vectX, posB.second, sizeB.first, sizeB.second) == true)
@@ -99,6 +100,16 @@ std::list<gauntlet::ABody*>	Collider::giveBodyInAreaCircle(double posx, double p
 std::list<gauntlet::ABody*>	Collider::giveBodyInAreaCone(double posx, double posy, short ref_angle, double size, short cone_angle)
 {
   return (dynamicLayer->giveBodyInAreaCone(posx, posy, ref_angle, size, cone_angle));
+}
+
+std::list<gauntlet::ABody*>	Collider::giveBodyInAreaflightPath(double posx, double posy, short ref_angle, double size, short cone_angle)
+{
+  std::list<gauntlet::ABody*> e_list = dynamicLayer->giveBodyInAreaCone(posx, posy, ref_angle, size, cone_angle); //truc pourri rapide pour test. A modifier.
+  while (e_list.size() > 1) //méthode pour test, à changer.
+  {
+    e_list.pop_back();
+  }
+  return (e_list);
 }
 
 std::pair<unsigned int, unsigned int>	Collider::getSizeMap() const

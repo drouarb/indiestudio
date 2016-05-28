@@ -13,14 +13,15 @@
 
 #include "Math.hh"
 #include "EntityName.hh"
+#include "SoundName.hh"
 #include <tuple>
+#include <vector>
 
 namespace gauntlet
 {
     namespace world {
     class World;
     };
-
   class ABody
   {
   protected:
@@ -33,6 +34,15 @@ namespace gauntlet
     world::World		        *world;
     int                         model;
     int                         texture;
+  public:
+    enum    soundType {
+            ATTACK_SOUND = 0,
+            WOUND_SOUND = 1,
+            DEATH_SOUND = 2,
+            SIZE = 3
+    };
+    std::vector<SoundName>                   soundEffect[SIZE];
+
   public:
     ABody(int nid);
     virtual ~ABody();

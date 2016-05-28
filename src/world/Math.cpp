@@ -18,6 +18,11 @@ gauntlet::world::Math::init()
       }
 }
 
+double		gauntlet::world::Math::abs(double value)
+{
+  return ((value < 0) ? -value : value);
+}
+
 short
 gauntlet::world::Math::getAngle(double rad)
 {

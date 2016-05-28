@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 15:52:38 2016 Esteban Lewis
-// Last update Thu May 26 14:47:41 2016 Esteban Lewis
+// Last update Fri May 27 19:46:03 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -20,6 +20,7 @@ gauntlet::core::PlayerController::PlayerController(std::string const & name,
 {
   this->name = name;
   chartype = c;
+  angle = 0;
 
   ctrls =
     {
@@ -52,14 +53,30 @@ void
 gauntlet::core::PlayerController::setAngle(short newangle)
 {
   angle = newangle;
+
+  if (core.gameIsRunning() && core.packetf)
+    core.packetf->send(network::PacketControl(NONE, angle));
 }
 
 void
 gauntlet::core::PlayerController::doCmd(Command key, bool down)
 {
+  bool ok;
+  
+  ok = false;
+  for (std::vector<Command>::iterator it = ctrls.begin(); it != ctrls.end(); ++it)
+    {
+      if (*it == key)
+	{
+	  ok = true;
+	  break;
+	}
+    }
+  if (!ok)
+    return;
+
   if (!down)
     {
-      bool ok = false;
       for (std::map<Command, Command>::iterator it = stopCmds.begin();
 	   it != stopCmds.end(); ++it)
 	{
@@ -70,16 +87,9 @@ gauntlet::core::PlayerController::doCmd(Command key, bool down)
 	      break ;
 	    }
 	}
-      if (!ok)
-	return ;
     }
-
-  for (std::vector<Command>::iterator it = ctrls.begin(); it != ctrls.end(); ++it)
-    {
-      if (*it == key)
-	{
-	  core.packetf->send(network::PacketControl((unsigned char)key, angle));
-	  return ;
-	}
-    }
+  if (!ok)
+    return;
+  
+  core.packetf->send(network::PacketControl((unsigned char)key, angle));
 }

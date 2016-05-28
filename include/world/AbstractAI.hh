@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 11:42:26 2016 Alexis Trouve
-// Last update Thu May 26 19:14:08 2016 Alexis Trouve
+// Last update Sat May 28 11:34:49 2016 Alexis Trouve
 //
 
 #ifndef ABSTRACTAI_HH_

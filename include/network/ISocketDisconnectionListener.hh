@@ -10,6 +10,7 @@ namespace gauntlet {
     namespace network {
         class ISocketDisconnectionListener {
         public:
+            virtual ~ISocketDisconnectionListener() { }
             virtual void notify(int fd) = 0;
         };
     }

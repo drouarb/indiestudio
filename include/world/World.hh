@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:51:22 2016 Alexis Trouve
-// Last update Fri May 27 14:43:55 2016 Alexis Trouve
+// Last update Fri May 27 19:18:08 2016 Esteban Lewis
 //
 
 #ifndef WORLD_HH_
@@ -25,6 +25,9 @@
 #include "BasicAI.hh"
 #include "GameServer.hh"
 #include "Conf.hh"
+#include "Stopwatch.hh"
+
+# define ROUND_DURATION 33
 
 namespace			gauntlet
 {
@@ -35,6 +38,7 @@ namespace			gauntlet
       int			Id;
       std::pair<double, double>	pos;
       unsigned int		soundId;
+      bool			loop;
     };
 
     struct			effectGlobal
@@ -59,8 +63,9 @@ namespace			gauntlet
       double			sizeY;
       std::pair<double, double>	spawnPoint;
       GameServer		*gameServer;
-      std::vector<effectGlobal>	effectTab;
-      std::vector<soundGlobal>	soundTab;
+      std::vector<effectGlobal*>	effectTab;
+      std::vector<soundGlobal*>	soundTab;
+      Stopwatch			stopwatch;
       
       //network::PacketFactory	packetFactory;
     private:
@@ -69,7 +74,6 @@ namespace			gauntlet
       World(GameServer *ngameServer);
       ~World();
 
-      void			update();
       void			loadGame(std::string const & file);
       void			gameLoop();
       void			tester();
@@ -81,8 +85,8 @@ namespace			gauntlet
       Collider&			getCollider();
       const std::pair<double, double>&	getSpawnPoint();
       std::list<ABody*>		getBodysByCopy() const;
-      const std::vector<effectGlobal>&	getEffect() const;
-      const std::vector<soundGlobal>&	getSound() const;
+      std::vector<effectGlobal*>	getEffectByCopy() const;
+      std::vector<soundGlobal*>	getSoundByCopy() const;
       void			putEffect(unsigned int effectId, short orient,
 					      const std::pair<double, double>& pos);
       int			triggerEffect(gauntlet::EffectName effect, short orient,
@@ -94,7 +98,9 @@ namespace			gauntlet
       void			putSound(unsigned int soundId, const std::pair<double, double>& pos);
       int			playSound(unsigned int soundId, bool loop, const std::pair<double, double>& pos);
       void			stopSound(int idToStop);
-      void			applyCommand(Player & player, core::Command command);
+      void			applyCommand(int id, core::Command command);
+      ABody			*getBodyById(int id);
+      void			animeEntity(int id, unsigned int animeId);
     };
   };
 };

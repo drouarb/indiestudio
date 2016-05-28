@@ -73,12 +73,3 @@ ABody			*Player::clone(int id) const
   player->setIdAI(idAI);
   return (player);
 }
-
-/*
-void    gauntlet::Player::equip(Item item) {
-    if (item.notEquiped)
-    {
-        this->stats += item.getStats();
-    }
-}
-*/

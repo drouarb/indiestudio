@@ -2,6 +2,7 @@
 #include "Core.hh"
 #include "EffectName.hh"
 #include "SoundName.hh"
+#include "Math.hh"
 
 gauntlet::core::ActionLists::ActionLists(Core & core) : core(core), pendingTracker(false)
 { }
@@ -9,6 +10,28 @@ gauntlet::core::ActionLists::ActionLists(Core & core) : core(core), pendingTrack
 gauntlet::core::ActionLists::~ActionLists()
 {
   clearActions();
+}
+
+gauntlet::core::ActionLists::particle::particle(int id, int decaytime) :
+  id(id), decayTime(decaytime)
+{
+  sw.set();
+}
+
+void
+gauntlet::core::ActionLists::particlesDecay()
+{
+  for (std::list<particle *>::iterator it = particles.begin(); it != particles.end(); ++it)
+    {
+      if ((*it)->sw.ellapsedMs() >= (*it)->decayTime)
+	{
+	  packetsDeleteParticle.push_back(new network::PacketDeleteParticle((*it)->id));
+	  allPackets.push_back(packetsDeleteParticle.back());
+	  delete (*it);
+	  it = particles.erase(it);
+	  it--;
+	}
+    }
 }
 
 void
@@ -20,14 +43,16 @@ gauntlet::core::ActionLists::doActions()
     }
   else
     {
+      particlesDecay();
+
       for (std::list<network::PacketAddEntity*>::iterator it = packetsAddEntity.begin();
 	   it != packetsAddEntity.end(); ++it)
 	{
 	  core.ogre.addWorldEntity((*it)->getEntityId(), (EntityName)(*it)->getMeshId(),
-				   (*it)->getX(), (*it)->getY(), (*it)->getAngle(),
+				   (*it)->getX(), (*it)->getY(),
+				   (*it)->getAngle() - world::Math::A_RIGHT,
 				   static_cast<gauntlet::TextureName>
 				   ((*it)->getTextureId()));
-	  core.ogre.playAnimation((*it)->getEntityId(), 0, true);
 
 	  if (pendingTracker && (*it)->getEntityId() == entityIdTracker)
 	    {
@@ -40,7 +65,8 @@ gauntlet::core::ActionLists::doActions()
 	   it != packetsMoveEntity.end(); ++it)
 	{
 	  core.ogre.addWorldEntity((*it)->getEntityId(), (EntityName)0,
-				   (*it)->getX(), (*it)->getY(), (*it)->getAngle(),
+				   (*it)->getX(), (*it)->getY(),
+				   (*it)->getAngle() - world::Math::A_RIGHT,
 				   gauntlet::TextureName::TEXTURE_NONE);
 	}
 
@@ -61,20 +87,36 @@ gauntlet::core::ActionLists::doActions()
       for (std::list<network::PacketDeleteParticle*>::iterator
 	     it = packetsDeleteParticle.begin(); it != packetsDeleteParticle.end(); ++it)
 	{
-	  core.ogre.stopEffect((*it)->getParticleId());
+	  try
+	    {
+	      core.ogre.stopEffect((*it)->getParticleId());
+	    }
+	  catch (...)
+	    { }
 	}
 
       for (std::list<network::PacketPlaySound*>::iterator
 	     it = packetsPlaySound.begin(); it != packetsPlaySound.end(); ++it)
 	{
-	  core.ogre.playSound((*it)->getRefId() + 1, (SoundName)(*it)->getSoundId(),
-			      (*it)->getLoop());
+	  if ((*it)->getX() < 0 || (*it)->getY() < 0)
+	    core.ogre.playSound((*it)->getRefId() + 1, (SoundName)(*it)->getSoundId(),
+				(*it)->getLoop());
+	  else
+	    core.ogre.playSound((*it)->getRefId() + 1, (SoundName)(*it)->getSoundId(),
+				(*it)->getLoop());
+	  //TODO else: localized sound
 	}
 
       for (std::list<network::PacketStopSound*>::iterator
 	     it = packetsStopSound.begin(); it != packetsStopSound.end(); ++it)
 	{
 	  core.ogre.stopSound((*it)->getSoundId() + 1);
+	}
+
+      for (std::list<network::PacketAnimation*>::iterator
+	     it = packetsAnimation.begin(); it != packetsAnimation.end(); ++it)
+	{
+	  core.ogre.playAnimation((*it)->getEntityId(), (*it)->getAnimationId(), true);
 	}
     }
   clearActions();
@@ -138,6 +180,8 @@ gauntlet::core::ActionLists::pushAddParticle(const network::PacketAddParticle * 
 				packet->getX(), packet->getY(),
 				packet->getDecayTime()));
   allPackets.push_back(packetsAddParticle.back());
+  if (packet->getDecayTime() > 0)
+    particles.push_back(new particle(packet->getRefId(), packet->getDecayTime()));
 }
 
 void
@@ -146,6 +190,14 @@ gauntlet::core::ActionLists::pushDeleteParticle(const network::PacketDeleteParti
   packetsDeleteParticle.push_back(new network::PacketDeleteParticle
 				  (packet->getParticleId()));
   allPackets.push_back(packetsDeleteParticle.back());
+}
+
+void
+gauntlet::core::ActionLists::pushAnimation(const network::PacketAnimation * packet)
+{
+  packetsAnimation.push_back(new network::PacketAnimation
+			     (packet->getEntityId(), packet->getAnimationId()));
+  allPackets.push_back(packetsAnimation.back());
 }
 
 void

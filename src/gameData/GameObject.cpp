@@ -9,6 +9,7 @@
 //
 
 #include "GameObject.hh"
+#include "World.hh"
 
 using namespace gauntlet;
 
@@ -17,10 +18,45 @@ GameObject::GameObject(int nid, world::World *nworld)
 {
   world = nworld;
   gatherable = false;
+  openable = false;
+  items = new ItemContainer();
 }
 
 GameObject::~GameObject()
 {
+  delete(items); //newItemContainer gameObject();
+}
+
+void        GameObject::gather(ItemContainer *curInventory)
+{
+  if (gatherable)
+  {
+    curInventory->operator+=(this->items);
+    world->notifyDeath(this);
+  }
+}
+
+void        GameObject::open(ItemContainer *curInventory) //unfinished
+{
+  if (openable) {
+    std::list<Item> *inv = curInventory->getItemList();
+    for (auto item: *inv) {
+      if (item.isKey())
+      {
+        inv->remove(item);
+        world->playSound(SoundName::DOOR_STONE, false, this->getPos());
+        world->notifyDeath(this);
+        break;
+      }
+    }
+  }
+}
+
+void        *GameObject::setBasicParameters(std::string _name, bool _gatherable, bool _openable)
+{
+  name = _name;
+  gatherable = _gatherable;
+  openable = _openable;
 }
 
 ABody		*GameObject::clone(int id) const
@@ -34,5 +70,12 @@ ABody		*GameObject::clone(int id) const
   obj->changeSize(size);
   obj->changeOrientation(orientation);
   obj->gatherable = this->gatherable;
+  obj->openable = this->openable;
   return (obj);
 }
+
+void GameObject::addItem(Item item) {
+  items->getItemList()->push_back(item);
+}
+
+

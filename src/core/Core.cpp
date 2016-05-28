@@ -11,6 +11,7 @@
 #include "ListenerPlaySound.hh"
 #include "ListenerAddParticle.hh"
 #include "ListenerDeleteParticle.hh"
+#include "ListenerAnimation.hh"
 #include "PacketFactory.hh"
 #include "ConnectMenu.hh"
 #include "GameServer.hh"
@@ -18,7 +19,7 @@
 #include "CoreUIObserver.hh"
 #include "SaveloadMenu.hh"
 
-gauntlet::core::Core::Core() : observer(new CoreUIObserver(*this)), actionlists(*this),
+gauntlet::core::Core::Core() : actionlists(*this), observer(new CoreUIObserver(*this)),
 			       menu(*this, MENU_ID_START, NULL), hud(*this, 0, NULL)
 {
   listenThread = NULL;
@@ -47,10 +48,9 @@ gauntlet::core::Core::keyUp(IUIObserver::Key key)
 {
   Command cmd = conf.getLinkedKey(key);
 
-  if (!menu.getOpen() && cmd != ESC)
+  if (pc && gameIsRunning())
     {
-      if (pc)
-	pc->doCmd(cmd, false);
+      pc->doCmd(cmd, false);
     }
 }
 
@@ -179,6 +179,7 @@ gauntlet::core::Core::initPacketf()
 	  listeners.push_back(new ListenerPlaySound(*this));
 	  listeners.push_back(new ListenerAddParticle(*this));
 	  listeners.push_back(new ListenerDeleteParticle(*this));
+	  listeners.push_back(new ListenerAnimation(*this));
 	}
       for (std::list<network::PacketListener*>::iterator it = listeners.begin();
 	   it != listeners.end(); ++it)
@@ -194,6 +195,7 @@ gauntlet::core::Core::disconnect()
 {
   if (mutex.try_lock() == false)
     return ;
+  std::cout << "#core disconnect" << std::endl;
   if (packetf)
     {
       packetf->stop();

@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 20:56:05 2016 Alexis Trouve
-// Last update Fri May 27 14:41:48 2016 Alexis Trouve
+// Last update Fri May 27 18:38:09 2016 Alexis Trouve
 //
 
 #ifndef GAMESERVER_HH_
@@ -30,6 +30,7 @@
 #include "PacketDeleteParticle.hh"
 #include "PacketPlaySound.hh"
 #include "PacketStopSound.hh"
+#include "PacketAnimation.hh"
 #include "ABody.hh"
 
 namespace gauntlet
@@ -78,6 +79,7 @@ namespace gauntlet
       void		sendStopEffect(int id);
       void		sendSound(unsigned int soundId, int id, bool loop, const std::pair<double, double>& pos);
       void		sendStopSound(int id);
+      void		animeEntity(int id, unsigned int idanime);
       void		listen();
     };
   };

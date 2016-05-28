@@ -2,13 +2,15 @@
 
 
 #ifdef OGRE_STATIC
+
 #include <OgreGLPlugin.h>
-  #include <OgreParticleFXPlugin.h>
-  #include <OgreBspSceneManagerPlugin.h>
-  #include <OgrePCZPlugin.h>
-  #include <OgreOctreePlugin.h>
-  #include <OgreOctreeZonePlugin.h>
-  #include <OgreOggSoundPlugin.h>
+#include <OgreParticleFXPlugin.h>
+#include <OgreBspSceneManagerPlugin.h>
+#include <OgrePCZPlugin.h>
+#include <OgreOctreePlugin.h>
+#include <OgreOctreeZonePlugin.h>
+#include <OgreOggSoundPlugin.h>
+
 #endif
 
 #include <OgreCamera.h>
@@ -35,225 +37,227 @@
 #include <gameData/SoundName.hh>
 #include "IUIObserver.hh"
 
-namespace gauntlet
-{
-  enum EffectName : int;
+namespace gauntlet {
+    enum EffectName : int;
 
-  class Effect;
+    class Effect;
 }
 
 class OgreUI
-	: public Ogre::FrameListener,
-	  public Ogre::WindowEventListener,
-	  public OIS::KeyListener,
-	  public OIS::MouseListener,
-	  OgreBites::SdkTrayListener
-{
- private:
-  static const std::map<OIS::KeyCode, gauntlet::core::IUIObserver::Key> keymap;
-  static const std::map<OIS::MouseButtonID, gauntlet::core::IUIObserver::Key> mousemap;
-  static const std::map<gauntlet::core::Position, OgreBites::TrayLocation> posmap;
-  static const std::map<gauntlet::TextureName ,std::string>texturemap;
-  static const std::map<gauntlet::EntityName, std::string> meshmap;
-  Ogre::LightList lightList;
-  static const std::map<gauntlet::SoundName, std::string> soundmap;
+        : public Ogre::FrameListener,
+          public Ogre::WindowEventListener,
+          public OIS::KeyListener,
+          public OIS::MouseListener,
+          OgreBites::SdkTrayListener {
+private:
+    static const std::map<OIS::KeyCode, gauntlet::core::IUIObserver::Key> keymap;
+    static const std::map<OIS::MouseButtonID, gauntlet::core::IUIObserver::Key> mousemap;
+    static const std::map<gauntlet::core::Position, OgreBites::TrayLocation> posmap;
+    static const std::map<gauntlet::TextureName, std::string> texturemap;
+    static const std::map<gauntlet::EntityName, std::string> meshmap;
+    Ogre::LightList lightList;
+    static const std::map<gauntlet::SoundName, std::string> soundmap;
 
-  std::map<std::string, Ogre::AnimationState *> animationsArray;
-  std::map<int, gauntlet::Effect *> effectMap;
+    std::map<std::string, Ogre::AnimationState *> animationsArray;
+    std::map<int, gauntlet::Effect *> effectMap;
 
-  gauntlet::core::IUIObserver *obs;
-  OgreOggSound::OgreOggSoundManager *mSoundManager;
+    gauntlet::core::IUIObserver *obs;
+    OgreOggSound::OgreOggSoundManager *mSoundManager;
 
 
-  Ogre::Root *mRoot;
-  Ogre::Camera *mCamera;
-  Ogre::SceneManager *mSceneMgr;
-  Ogre::RenderWindow *mWindow;
+    Ogre::Root *mRoot;
+    Ogre::Camera *mCamera;
+    Ogre::SceneManager *mSceneMgr;
+    Ogre::RenderWindow *mWindow;
 
-  Ogre::String mResourcesCfg;
-  Ogre::String mPluginsCfg;
+    Ogre::String mResourcesCfg;
+    Ogre::String mPluginsCfg;
 
-  Ogre::SceneNode *planNode;
-  Ogre::SceneNode *worldNode;
+    Ogre::SceneNode *planNode;
+    Ogre::SceneNode *worldNode;
 
-  Ogre::SceneNode *rootNode;
-  Ogre::OverlaySystem *mOverlaySystem;
-  OgreBites::SdkTrayManager *mTrayMgr;
-  OgreBites::SdkCameraMan *mCameraMan;
-  OgreBites::ParamsPanel *mDetailsPanel;
+    Ogre::SceneNode *rootNode;
+    Ogre::OverlaySystem *mOverlaySystem;
+    OgreBites::SdkTrayManager *mTrayMgr;
+    OgreBites::SdkCameraMan *mCameraMan;
+    OgreBites::ParamsPanel *mDetailsPanel;
 
-  bool mCursorWasVisible;
-  bool mShutDown;
+    bool mCursorWasVisible;
+    bool mShutDown;
 
-  OIS::InputManager *mInputManager;
-  OIS::Mouse *mMouse;
-  OIS::Keyboard *mKeyboard;
+    OIS::InputManager *mInputManager;
+    OIS::Mouse *mMouse;
+    OIS::Keyboard *mKeyboard;
 
-  int quality = 100;
+    int quality = 100;
 
- public:
-  bool init();
+public:
+    bool init();
 
-  void go();
+    void go();
 
-  bool setup();
+    bool setup();
 
 
-  bool addWorldEntity(int entityId, gauntlet::EntityName meshid, int x, int y,
-		      short degres, gauntlet::TextureName texture_id);
+    bool addWorldEntity(int entityId, gauntlet::EntityName meshid, int x, int y,
+                        short degres, gauntlet::TextureName texture_id);
 
-  bool addMapEntity(int entityId, gauntlet::EntityName meshid, int x, int y,
-		      short degres, gauntlet::TextureName texture_id);
-  void initSound();
+    bool addMapEntity(int entityId, gauntlet::EntityName meshid, int x, int y,
+                      short degres, gauntlet::TextureName texture_id);
 
-  bool configure(void);
+    void initSound();
 
-  void   resetMap();
-  void chooseSceneManager(void);
+    bool configure(void);
 
-  void createCamera(void);
+    void resetMap();
 
-  void createFrameListener(void);
+    void chooseSceneManager(void);
 
-  void addCameraTracker(int id);
+    void createCamera(void);
 
-  bool frameStarted(const Ogre::FrameEvent &evt);
+    void createFrameListener(void);
 
-  void createScene(void);
+    void addCameraTracker(int id);
 
-  void removeEntity(int id);
+    bool frameStarted(const Ogre::FrameEvent &evt);
 
-  OgreUI(void);
+    void createScene(void);
 
-  ~OgreUI(void);
+    void removeEntity(int id);
 
-  void destroyScene(void);
+    OgreUI(void);
 
-  void createViewports(void);
+    ~OgreUI(void);
 
-  void setupResources(void);
+    void destroyScene(void);
 
-  void createResourceListener(void);
+    void createViewports(void);
 
-  void loadResources(void);
+    void setupResources(void);
 
-  void buttonHit(OgreBites::Button *button);
+    void createResourceListener(void);
 
-  void itemSelected(OgreBites::SelectMenu *menu);
+    void loadResources(void);
 
-  void checkBoxToggled(OgreBites::CheckBox *checkBox);
+    void buttonHit(OgreBites::Button *button);
 
-  void updateItemValue(int itemid, struct gauntlet::core::t_hitItem item);
+    void itemSelected(OgreBites::SelectMenu *menu);
 
-  bool frameRenderingQueued(const Ogre::FrameEvent &evt);
+    void checkBoxToggled(OgreBites::CheckBox *checkBox);
 
-  bool keyPressed(const OIS::KeyEvent &arg);
+    void updateItemValue(int itemid, struct gauntlet::core::t_hitItem item);
 
-  bool keyReleased(const OIS::KeyEvent &arg);
+    bool frameRenderingQueued(const Ogre::FrameEvent &evt);
 
-  bool mouseMoved(const OIS::MouseEvent &arg);
+    bool keyPressed(const OIS::KeyEvent &arg);
 
-  bool mousePressed(const OIS::MouseEvent &arg, OIS::MouseButtonID id);
+    bool keyReleased(const OIS::KeyEvent &arg);
 
-  bool mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButtonID id);
+    bool mouseMoved(const OIS::MouseEvent &arg);
 
-  void windowResized(Ogre::RenderWindow *rw);
+    bool mousePressed(const OIS::MouseEvent &arg, OIS::MouseButtonID id);
 
-  void windowClosed(Ogre::RenderWindow *rw);
+    bool mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButtonID id);
 
-  void addButton(gauntlet::core::Position pos, int id, std::string text,
-		 int texture_id);
+    void windowResized(Ogre::RenderWindow *rw);
 
-  void addSlideBar(gauntlet::core::Position pos, int id, std::string text,
-		   int max_value, int texture_id);
+    void windowClosed(Ogre::RenderWindow *rw);
 
-  void addCheckbox(gauntlet::core::Position pos, int id, std::string text,
-		   int texture_id);
+    void addButton(gauntlet::core::Position pos, int id, std::string text,
+                   int texture_id);
 
-  void addTextbox(gauntlet::core::Position pos, int id, std::string text,
-		  int texture_id);
+    void addSlideBar(gauntlet::core::Position pos, int id, std::string text,
+                     int max_value, int texture_id);
 
-  void addLabel(gauntlet::core::Position pos, int id, std::string text,
-		int texture_id);
+    void addCheckbox(gauntlet::core::Position pos, int id, std::string text,
+                     int texture_id);
 
-  void addSelectMenu(gauntlet::core::Position pos, int id, std::string name,
-		     std::vector<std::string> &,
-		     int texture_id);
+    void addTextbox(gauntlet::core::Position pos, int id, std::string text,
+                    int texture_id);
 
-  void addProgressBar(gauntlet::core::Position pos, int id, std::string text,
-		      int texture_id, int value);
+    void addLabel(gauntlet::core::Position pos, int id, std::string text,
+                  int texture_id);
 
-  void removeItem(int ID);
+    void addSelectMenu(gauntlet::core::Position pos, int id, std::string name,
+                       std::vector<std::string> &,
+                       int texture_id);
 
-  void sliderMoved(OgreBites::Slider *slider);
+    void addProgressBar(gauntlet::core::Position pos, int id, std::string text,
+                        int texture_id, int value);
 
-  void setIObserver(gauntlet::core::IUIObserver *Obs);
+    void removeItem(int ID);
 
-  bool loadSound(int id , gauntlet::SoundName name);
+    void sliderMoved(OgreBites::Slider *slider);
 
-  void hideItem(int id);
+    void setIObserver(gauntlet::core::IUIObserver *Obs);
 
-  bool playSound(int id, gauntlet::SoundName name, bool loop);
+    bool loadSound(int id, gauntlet::SoundName name);
 
-  void stopSound(int id);
+    void load3dSound(int id, gauntlet::SoundName name, int x, int y);
 
-  void showItem(int id);
+    void hideItem(int id);
 
-  void playAnimation(int entityId, int animationId, bool loop);
+    bool playSound(int id, gauntlet::SoundName name, bool loop);
 
-  void showBackground();
+    void stopSound(int id);
 
-  void hideBackground();
+    void showItem(int id);
 
-  void stopAnimation(int animationId, int entityId);
+    void playAnimation(int entityId, int animationId, bool loop);
 
+    void showBackground();
 
-  std::pair<int, int> getSizeWindow();
+    void hideBackground();
 
-  void setQuality(int percent = 100);
+    void stopAnimation(int animationId, int entityId);
 
-  int getQuality() const;
 
-  void quit();
+    std::pair<int, int> getSizeWindow();
 
-  Ogre::SceneManager *getSceneManager();
+    void setQuality(int percent = 100);
 
-  int triggerEffect(int id, gauntlet::EffectName ef,
-		    std::pair<double, double> pair);
+    int getQuality() const;
 
+    void quit();
+
+    Ogre::SceneManager *getSceneManager();
+
+    int triggerEffect(int id, gauntlet::EffectName ef,
+                      std::pair<double, double> pair);
+
+    int triggerEffect(int id, gauntlet::EffectName ef,
+                      std::pair<double, double> pair,
+                      std::tuple<double, double, double> orientation);
   int triggerEffect(int id, gauntlet::EffectName type,
 		    std::pair<double, double> coord, double yRotation);
 
-  int triggerEffect(int id, gauntlet::EffectName ef,
-		    std::pair<double, double> pair,
-		    std::tuple<double, double, double> orientation);
+    void moveEntity(int id, int x, int y, short degres);
 
-  void moveEntity(int id, int x, int y, short degres);
+    void stopEffect(int id);
 
-  void stopEffect(int id);
-
-  bool addWorldEntity(int entityId, const std::string &name, std::pair<int, int>);
+    bool addWorldEntity(int entityId, const std::string &name, std::pair<int, int>);
 
 
-  bool addWorldEntity(int entityId, const std::string &name, std::pair<int, int>,
-		      Ogre::Vector3 orientation);
+    bool addWorldEntity(int entityId, const std::string &name, std::pair<int, int>,
+                        Ogre::Vector3 orientation);
 
-  void playAnimation(int entityId, const std::string &animationName, bool loop);
+    void playAnimation(int entityId, const std::string &animationName, bool loop);
 
 
-  bool addWorldEntity(int entityId, const std::string &name,
-		      std::pair<int, int> position, Ogre::Vector3 orientation,
-		      gauntlet::TextureName textureId);
+    bool addWorldEntity(int entityId, const std::string &name,
+                        std::pair<int, int> position, Ogre::Vector3 orientation,
+                        gauntlet::TextureName textureId);
 
-  bool addWorldEntity(int entityId, const std::string &name,
-		      std::pair<int, int> position,
-		      gauntlet::TextureName textureId);
-  bool entityExist(int id);
+    bool addWorldEntity(int entityId, const std::string &name,
+                        std::pair<int, int> position,
+                        gauntlet::TextureName textureId);
 
- private:
+    bool entityExist(int id);
 
-  void applyAnimation(const Ogre::FrameEvent &evt) const;
+private:
 
-  void createLight(unsigned int height, unsigned int width,
-		   unsigned int interval);
+    void applyAnimation(const Ogre::FrameEvent &evt) const;
+
+    void createLight(unsigned int height, unsigned int width,
+                     unsigned int interval);
 };

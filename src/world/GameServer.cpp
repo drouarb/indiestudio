@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Fri May 27 14:51:45 2016 Alexis Trouve
+// Last update Fri May 27 22:30:35 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -134,9 +134,14 @@ void		GameServer::selectPlayerAnswer(const network::PacketSelectPlayer *packet)
 void			GameServer::sendDatas(int socketId)
 {
   std::list<ABody*>	bodys;
+  std::vector<effectGlobal*>	effectTab;
+  std::vector<soundGlobal*>	soundTab;
   std::list<ABody*>::iterator	it1;
+  unsigned int			i;
 
   bodys = world->getBodysByCopy();
+  soundTab = world->getSoundByCopy();
+  effectTab = world->getEffectByCopy();
   it1 = bodys.begin();
   while (it1 != bodys.end())
     {
@@ -145,6 +150,20 @@ void			GameServer::sendDatas(int socketId)
 				       static_cast<int>((*it1)->getPos().second), (*it1)->getOrientation());
       packetFact->send(packet, socketId);
       it1++;
+    }
+  i = 0;
+  while (i < soundTab.size())
+    {
+      if (soundTab[i]->loop == true)
+	sendSound(soundTab[i]->soundId, soundTab[i]->Id, true, soundTab[i]->pos);
+      ++i;
+    }
+  i = 0;
+  while (i < effectTab.size())
+    {
+      sendEffect(effectTab[i]->effectId, effectTab[i]->Id, effectTab[i]->orientation,
+		 effectTab[i]->pos, effectTab[i]->decayTime);
+      ++i;
     }
 }
 
@@ -240,7 +259,7 @@ void		GameServer::sendMap()
 
 void		GameServer::sendAddEntity(ABody *body)
 {
-  std::cout << "sendAddEntity" << body->getEntityId() << " " << body->getPos().first << ":" << body->getPos().second << std::endl;
+  std::cout << "sendAddEntity" << body->getEntityId() << " " << body->getPos().first << ":" << body->getPos().second << ":" << body->getOrientation() << std::endl;
   unsigned int	i;
   network::PacketAddEntity	packet(body->getEntityId(), body->getTextureId(), body->getMeshId(), static_cast<int>(body->getPos().first), static_cast<int>(body->getPos().second), body->getOrientation());
   std::cout << packet.getEntityId() << std::endl;
@@ -256,25 +275,34 @@ void		GameServer::sendAddEntity(ABody *body)
 
 void		GameServer::sendMoveId(ABody *body)
 {
-  std::cout << "sendMoveId:" << body->getEntityId() << ";" << body->getPos().first << ":" << body->getPos().second << " , " << body->getOrientation() << std::endl;
   network::PacketMoveEntity	packet(body->getEntityId(), body->getPos().first,
 				       body->getPos().second, body->getOrientation());
   unsigned int	i;
+
   i = 0;
   while (i < players.size())
     {
       packetFact->send(packet, players[i].socketId);
       ++i;
     }
-  std::cout << "sendMoveId end" << std::endl;
 }
 
 void		GameServer::controlInput(const network::PacketControl *packet)
 {
-  std::cout << "ici c'est le lol" << std::endl;
-}
+  unsigned int	i;
+  ABody		*body;
 
-#warning "l'orientation dans le sendEffect"
+  i = 0;
+  while (i < players.size())
+    {
+      if (packet->getSocketId() == players[i].socketId)
+	break;
+      ++i;
+    }
+  body = world->getBodyById(players[i].idPlayer);
+  body->changeOrientation(packet->getAngle());
+  world->applyCommand(players[i].idPlayer, static_cast<core::Command>(packet->getCmd()));
+}
 
 void		GameServer::sendEffect(unsigned int effect, int id, short orient,
 				       const std::pair<double, double>& pos, int decayTime)
@@ -316,12 +344,22 @@ void		GameServer::sendStopSound(int id)
     }
 }
 
-#warning "le pos dans le sendSound"
-
 void		GameServer::sendSound(unsigned int soundId, int id, bool loop, const std::pair<double, double>& pos)
 {
-#warning "Alexis oublie pas de remplacer les coordonées du PacketPlaySound"
-  PacketPlaySound	packet(soundId, id, 0, 0, loop);
+  PacketPlaySound	packet(soundId, id, pos.first, pos.second, loop);
+  unsigned int		i;
+
+  i = 0;
+  while (i < players.size())
+    {
+      packetFact->send(packet, players[i].socketId);
+      ++i;
+    }
+}
+
+void		GameServer::animeEntity(int id, unsigned int idAnime)
+{
+  PacketAnimation	packet(id, idAnime);
   unsigned int		i;
 
   i = 0;
@@ -337,7 +375,7 @@ void		GameServer::listen()
   std::cout << "listen" << std::endl;
   while (42)
     {
-      std::cout << "-- server listen" << std::endl;
+      std::cout << "server listen" << std::endl;
       packetFact->recv();
     }
   std::cout << "listenEnd" << std::endl;
