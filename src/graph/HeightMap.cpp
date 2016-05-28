@@ -103,3 +103,9 @@ gauntlet::HeightMap::getSize() const
   return (std::pair<double, double>((double)width * HEIGHT_MAP_SCALE,
 				    (double)height * HEIGHT_MAP_SCALE));
 }
+
+bool
+gauntlet::HeightMap::isLoaded() const
+{
+  return (map != NULL);
+}
