@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 16:50:32 2016 Alexis Trouve
-// Last update Fri May 27 22:28:03 2016 Alexis Trouve
+// Last update Sat May 28 14:07:26 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -73,7 +73,7 @@ void			BodyFactory::setBarbare()
   player->spellBook.addSpell(SpellFactory::BARBARIAN_ATTACK, player);
   player->spellBook.addSpell(SpellFactory::BARBARIAN_TORNADO, player);
   player->changePos(std::make_pair(-1, -1));
-  player->changeSize(std::make_pair(80.0, 80.0));
+  player->changeSize(std::make_pair(20.0, 20.0));
   player->changeOrientation(90);
   player->setMeshId(EntityName::BERSERK);
   player->setTextureId(TextureName::TEXTURE_NONE);
@@ -94,7 +94,7 @@ void			BodyFactory::setElf()
   player->stats.attackModifier = 1.0;
   player->setCollide(true);
   player->changePos(std::make_pair(-1, -1));
-  player->changeSize(std::make_pair(80.0, 80.0));
+  player->changeSize(std::make_pair(20.0, 20.0));
   player->changeOrientation(0);
   player->setMeshId(EntityName::BERSERK);
   player->setTextureId(TextureName::TEXTURE_NONE);
@@ -115,7 +115,7 @@ void			BodyFactory::setWizard()
   player->stats.attackModifier = 1.2;
   player->setCollide(true);
   player->changePos(std::make_pair(-1, -1));
-  player->changeSize(std::make_pair(80.0, 80.0));
+  player->changeSize(std::make_pair(20.0, 20.0));
   player->changeOrientation(0);
   player->setMeshId(EntityName::BERSERK);
   player->setTextureId(TextureName::TEXTURE_NONE);
@@ -138,7 +138,7 @@ void			BodyFactory::setValkyrie()
   player->spellBook.addSpell(SpellFactory::VALKYRIA_DASH, player);
   player->setCollide(true);
   player->changePos(std::make_pair(-1, -1));
-  player->changeSize(std::make_pair(100.0, 100.0));
+  player->changeSize(std::make_pair(25.0, 25.0));
   player->changeOrientation(0);
   player->setMeshId(EntityName::BERSERK);
   player->setTextureId(TextureName::TEXTURE_NONE);
@@ -161,7 +161,7 @@ void			BodyFactory::setDraugr()
   crea->spellBook.addSpell(SpellFactory::DRAUGR_ATTACK, crea);
   crea->setCollide(true);
   crea->changePos(std::make_pair(-1, -1));
-  crea->changeSize(std::make_pair(50.0, 50.0));
+  crea->changeSize(std::make_pair(15.0, 15.0));
   crea->changeOrientation(0);
   crea->setMeshId(EntityName::BERSERK);
   crea->setTextureId(TextureName::TEXTURE_NONE);

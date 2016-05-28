@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 11:46:42 2016 Alexis Trouve
-// Last update Tue May 24 12:15:39 2016 Alexis Trouve
+// Last update Sat May 28 14:28:02 2016 Alexis Trouve
 //
 
 #include "BasicAI.hh"
@@ -48,6 +48,7 @@ void			BasicAI::launchAI(gauntlet::Actor *actor)
   std::list<ABody*>::iterator	it1;
   Player			*savedPlayer;
   Player			*tmpPlayer;
+  int				idAttack;
 
   bodys = world->getCollider().giveBodyInAreaCircle(actor->getPos().first, actor->getPos().second, CHECK_DIST, 0, 0);
   it1 = bodys.begin();
@@ -64,5 +65,6 @@ void			BasicAI::launchAI(gauntlet::Actor *actor)
     return ;
   actor->changeOrientation(Math::getAngle(-atan2(savedPlayer->getPos().first - actor->getPos().first,
 						 savedPlayer->getPos().second - actor->getPos().second)));
-  // faire l'attack de melee
+  idAttack = actor->spellBook->giveSpell(30, 30, true, NOAREA, 0, 100);
+  actor->castSpell(idSpell);
 }
