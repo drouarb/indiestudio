@@ -1,0 +1,239 @@
+{
+  name: "Skeleton_Sorcerer",
+  animation: [
+    {
+      name: "Skeleton_Idle",
+      begin: "0",
+      end: "100"
+    },
+    {
+      name: "Skeleton_Use_object",
+      begin: "101",
+      end: "141"
+    },
+    {
+      name: "Skeleton_anger",
+      begin: "142",
+      end: "192"
+    },
+    {
+      name: "Skeleton_Drinking",
+      begin: "193",
+      end: "293"
+    },
+    {
+      name: "Skeleton_Hit_from_back",
+      begin: "296",
+      end: "331"
+    },
+    {
+      name: "Skeleton_Hit_from_front",
+      begin: "332",
+      end: "367"
+    },
+    {
+      name: "Skeleton_Looking_around",
+      begin: "370",
+      end: "546"
+    },
+    {
+      name: "Skeleton_pointing_A",
+      begin: "547",
+      end: "607"
+    },
+    {
+      name: "Skeleton_salute",
+      begin: "608",
+      end: "668"
+    },
+    {
+      name: "Skeleton_Talking",
+      begin: "669",
+      end: "714"
+    },
+    {
+      name: "Skeleton_thinking",
+      begin: "715",
+      end: "790"
+    },
+    {
+      name: "Skeleton_Tracking",
+      begin: "791",
+      end: "966"
+    },
+    {
+      name: "Skeleton_sit_down",
+      begin: "967",
+      end: "993"
+    },
+    {
+      name: "Skeleton_sitting",
+      begin: "994",
+      end: "1094"
+    },
+    {
+      name: "Skeleton_came_up",
+      begin: "1095",
+      end: "1121"
+    },
+    {
+      name: "Skeleton_Going_asleep",
+      begin: "1122",
+      end: "1192"
+    },
+    {
+      name: "Skeleton_sleeping",
+      begin: "1193",
+      end: "1268"
+    },
+    {
+      name: "Skeleton_waking_up",
+      begin: "1269",
+      end: "1334"
+    },
+    {
+      name: "Skeleton_walking_back",
+      begin: "1337",
+      end: "1372"
+    },
+    {
+      name: "Skeleton_Climbing_ladder",
+      begin: "1375",
+      end: "1405"
+    },
+    {
+      name: "Skeleton_Crouching",
+      begin: "1408",
+      end: "1508"
+    },
+    {
+      name: "Skeleton_falling_down",
+      begin: "1511",
+      end: "1551"
+    },
+    {
+      name: "Skeleton_Moving_left",
+      begin: "1554",
+      end: "1574"
+    },
+    {
+      name: "Skeleton_Moving_right",
+      begin: "1575",
+      end: "1595"
+    },
+    {
+      name: "Skeleton_Sneaking",
+      begin: "1598",
+      end: "1648"
+    },
+    {
+      name: "Skeleton_Run",
+      begin: "1651",
+      end: "1673"
+    },
+    {
+      name: "Skeleton_Jump_runing",
+      begin: "1676",
+      end: "1716"
+    },
+    {
+      name: "Skeleton_Dying_A",
+      begin: "1719",
+      end: "1784"
+    },
+    {
+      name: "Skeleton_walk",
+      begin: "1787",
+      end: "1822"
+    },
+    {
+      name: "M_skeleton_combat_mode_A",
+      begin: "1825",
+      end: "1900"
+    },
+    {
+      name: "M_skeleton_dodge_to_left",
+      begin: "1901",
+      end: "1936"
+    },
+    {
+      name: "M_skeleton_dodge_to_right",
+      begin: "1937",
+      end: "1972"
+    },
+    {
+      name: "M_skeleton_staf_block",
+      begin: "1973",
+      end: "2008"
+    },
+    {
+      name: "M_skeleton_staff_earthquake_spell",
+      begin: "2009",
+      end: "2044"
+    },
+    {
+      name: "M_skeleton_staff_Hit",
+      begin: "2045",
+      end: "2080"
+    },
+    {
+      name: "M_skeleton_straight_down_hit",
+      begin: "2081",
+      end: "2116"
+    },
+    {
+      name: "M_skeleton_swing_right",
+      begin: "2117",
+      end: "2152"
+    },
+    {
+      name: "M_skeleton_combat_mode_B",
+      begin: "2155",
+      end: "2230"
+    },
+    {
+      name: "M_skeleton_duck_below_swing",
+      begin: "2231",
+      end: "2266"
+    },
+    {
+      name: "M_skeleton_magic_light_spell",
+      begin: "2267",
+      end: "2317"
+    },
+    {
+      name: "M_skeleton_magic_shot_stright",
+      begin: "2318",
+      end: "2353"
+    },
+    {
+      name: "M_skeleton_combat_mode_C",
+      begin: "2356",
+      end: "2431"
+    },
+    {
+      name: "M_skeleton_buff_spell_A",
+      begin: "2432",
+      end: "2482"
+    },
+    {
+      name: "M_skeleton_buff_spell_B",
+      begin: "2483",
+      end: "2573"
+    },
+    {
+      name: "M_skeleton_fire_ball_spell",
+      begin: "2574",
+      end: "2649"
+    },
+    {
+      name: "M_skeleton_spell_cast_A",
+      begin: "2650",
+      end: "2725"
+    },
+    {
+      name: "M_skeleton_making_potion",
+      begin: "2728",
+      end: "2758"
+    }
+  ]
