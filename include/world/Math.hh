@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Sat May 14 13:43:42 2016 Esteban Lewis
-// Last update Sun May 22 18:30:26 2016 Esteban Lewis
+// Last update Sat May 28 11:13:15 2016 Alexis Trouve
 //
 
 #ifndef  GAUNTLET_MATH_HH_
@@ -22,6 +22,7 @@ namespace			gauntlet
     public:
       static void		init();
       static short		getAngle(double rad);
+      static double		abs(double value);
       static double		cos(short angle);
       static double		sin(short angle);
       static bool		isBetween(short ref, short angle_sup, short angle_inf);
