@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Fri May 27 22:30:35 2016 Alexis Trouve
+// Last update Sat May 28 17:31:58 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -230,7 +230,7 @@ void		GameServer::sendDeco(int socketId, const std::string& msg)
   std::cout << "sendDecoEnd" << std::endl;
 }
 
-void		GameServer::DecoAll()
+void		GameServer::decoAll()
 {
   std::cout << "DecoAll" << std::endl;
   unsigned int		i;
@@ -307,7 +307,7 @@ void		GameServer::controlInput(const network::PacketControl *packet)
 void		GameServer::sendEffect(unsigned int effect, int id, short orient,
 				       const std::pair<double, double>& pos, int decayTime)
 {
-  PacketAddParticle	packet(effect, id, pos.first, pos.second, decayTime);
+  PacketAddParticle	packet(effect, id, pos.first, pos.second, orient, decayTime);
   unsigned int		i;
 
   i = 0;
@@ -379,4 +379,9 @@ void		GameServer::listen()
       packetFact->recv();
     }
   std::cout << "listenEnd" << std::endl;
+}
+
+unsigned char	GameServer::getNbrPlayer() const
+{
+  return (coPlayers);
 }

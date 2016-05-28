@@ -1,14 +1,19 @@
 {
     name : "Default map",
-    length : "10000",
-    width : "10000",
+    map : "une_vraie_map.obj",
+    height_map : "maps/map.pgm",
+    endZone :
+    {
+	posX : "1000"
+	posY : "1000"
+	sizeX : "100"
+	sizeY : "100"
+    },
     spawn :
     {
 	x : "100",
 	y : "100"
     },
-    map : "une_vraie_map.obj",
-    height_map : "maps/map.pgm",
     dynamic :
     [ ],
     sounds:

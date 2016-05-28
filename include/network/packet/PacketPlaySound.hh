@@ -18,7 +18,7 @@ namespace gauntlet {
                 double x;
                 double y;
                 unsigned char loop;
-            };
+            }__attribute__((packed));
 
         public:
             PacketPlaySound(s_socketData data);

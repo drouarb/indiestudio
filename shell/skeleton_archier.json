@@ -1,0 +1,239 @@
+{
+  name: "skeleton_archier",
+  animation: [
+    {
+      name: "Skeleton_Idle",
+      begin: "0",
+      end: "100"
+    },
+    {
+      name: "Skeleton_Use_object",
+      begin: "101",
+      end: "141"
+    },
+    {
+      name: "Skeleton_anger",
+      begin: "142",
+      end: "192"
+    },
+    {
+      name: "Skeleton_Drinking",
+      begin: "193",
+      end: "293"
+    },
+    {
+      name: "Skeleton_Hit_from_back",
+      begin: "294",
+      end: "329"
+    },
+    {
+      name: "Skeleton_Hit_from_front",
+      begin: "330",
+      end: "365"
+    },
+    {
+      name: "Skeleton_Looking_around",
+      begin: "367",
+      end: "542"
+    },
+    {
+      name: "Skeleton_pointing_A",
+      begin: "543",
+      end: "603"
+    },
+    {
+      name: "Skeleton_salute",
+      begin: "604",
+      end: "664"
+    },
+    {
+      name: "Skeleton_Talking",
+      begin: "665",
+      end: "710"
+    },
+    {
+      name: "Skeleton_thinking",
+      begin: "711",
+      end: "786"
+    },
+    {
+      name: "Skeleton_Tracking",
+      begin: "787",
+      end: "962"
+    },
+    {
+      name: "Skeleton_sit_down",
+      begin: "963",
+      end: "989"
+    },
+    {
+      name: "Skeleton_sitting",
+      begin: "990",
+      end: "1090"
+    },
+    {
+      name: "Skeleton_came_up",
+      begin: "1091",
+      end: "1117"
+    },
+    {
+      name: "Skeleton_Going_asleep",
+      begin: "1118",
+      end: "1188"
+    },
+    {
+      name: "Skeleton_sleeping",
+      begin: "1189",
+      end: "1264"
+    },
+    {
+      name: "Skeleton_waking_up",
+      begin: "1265",
+      end: "1330"
+    },
+    {
+      name: "Skeleton_walking_back",
+      begin: "1332",
+      end: "1365"
+    },
+    {
+      name: "Skeleton_Climbing_ladder",
+      begin: "1367",
+      end: "1396"
+    },
+    {
+      name: "Skeleton_Crouching",
+      begin: "1400",
+      end: "1496"
+    },
+    {
+      name: "Skeleton_falling_down",
+      begin: "1499",
+      end: "1539"
+    },
+    {
+      name: "Skeleton_Moving_left",
+      begin: "1540",
+      end: "1560"
+    },
+    {
+      name: "Skeleton_Moving_right",
+      begin: "1561",
+      end: "1581"
+    },
+    {
+      name: "Skeleton_Sneaking",
+      begin: "1584",
+      end: "1631"
+    },
+    {
+      name: "Skeleton_Run",
+      begin: "1633",
+      end: "1655"
+    },
+    {
+      name: "Skeleton_Jump_runing",
+      begin: "1657",
+      end: "1696"
+    },
+    {
+      name: "Skeleton_Dying_B",
+      begin: "1697",
+      end: "1736"
+    },
+    {
+      name: "Skeleton_1H_combat_mode",
+      begin: "1739",
+      end: "1788"
+    },
+    {
+      name: "Skeleton_1H_dodge_backwards",
+      begin: "1789",
+      end: "1824"
+    },
+    {
+      name: "Skeleton_1H_dodge_to_left",
+      begin: "1825",
+      end: "1860"
+    },
+    {
+      name: "Skeleton_1H_dodge_to_right",
+      begin: "1861",
+      end: "1896"
+    },
+    {
+      name: "Skeleton_1H_duck_below_high_swing",
+      begin: "1897",
+      end: "1932"
+    },
+    {
+      name: "Skeleton_1H_parry_A",
+      begin: "1933",
+      end: "1968"
+    },
+    {
+      name: "Skeleton_1H_parry_B",
+      begin: "1969",
+      end: "2004"
+    },
+    {
+      name: "Skeleton_1H_parry_from_stright_down",
+      begin: "2005",
+      end: "2040"
+    },
+    {
+      name: "Skeleton_1H_swing_high_straight_down",
+      begin: "2041",
+      end: "2076"
+    },
+    {
+      name: "Skeleton_1H_swing_left",
+      begin: "2077",
+      end: "2112"
+    },
+    {
+      name: "Skeleton_1H_swing_right",
+      begin: "2113",
+      end: "2148"
+    },
+    {
+      name: "Skeleton_1H_thrust",
+      begin: "2149",
+      end: "2184"
+    },
+    {
+      name: "Skeleton_1H_walk",
+      begin: "2186",
+      end: "2217"
+    },
+    {
+      name: "Skeleton_archer_combat_mode",
+      begin: "2222",
+      end: "2296"
+    },
+    {
+      name: "Skeleton_archer_get_arrow_fromBack",
+      begin: "2297",
+      end: "2347"
+    },
+    {
+      name: "Skeleton_archer_charging",
+      begin: "2348",
+      end: "2383"
+    },
+    {
+      name: "Skeleton_archer_aim",
+      begin: "2384",
+      end: "2484"
+    },
+    {
+      name: "Skeleton_archer_shoting",
+      begin: "2485",
+      end: "2520"
+    },
+    {
+      name: "Skeleton_archer_Hit_from_front",
+      begin: "2521",
+      end: "2556"
+    }
+  ]
