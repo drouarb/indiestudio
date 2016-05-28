@@ -477,7 +477,7 @@ void OgreUI::createScene(void) {
     pointLight3->setPosition(0, 200, -200);
     pointLight3->setPowerScale(8900000);
     mSceneMgr->setSkyBox(true, "Examples/SceneSkyBox");
-    addMapEntity(9000, MAP_TEST, 0, 0, 0, TEXTURE_NONE);
+    //addMapEntity(9000, MAP_TEST, 0, 0, 0, TEXTURE_NONE);
 }
 
 

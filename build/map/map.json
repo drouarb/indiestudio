@@ -1,6 +1,6 @@
 {
     name : "Default map",
-    asset_map : "mapAsset/mapTest.mesh",
+    asset_map : "../media/models/mapTest.mesh",
     height_map : "mapHeight/map.pgm",
     endZone :
     {

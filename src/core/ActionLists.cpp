@@ -52,8 +52,9 @@ gauntlet::core::ActionLists::doActions()
 	  if (index != std::string::npos)
 	    {
 	      //TODO asset
-	      (*it)->getFilename().substr(0, index);
-	      core.ogre.loadMap((*it)->getFilename().substr(index + 1));	      
+	      core.ogre.addMapEntity(-1, (*it)->getFilename().substr(0, index),
+				     0, 0, TEXTURE_NONE);
+	      core.ogre.loadMap((*it)->getFilename().substr(index + 1));
 	    }
 	}
 

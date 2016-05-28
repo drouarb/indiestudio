@@ -198,6 +198,7 @@ gauntlet::core::Core::disconnect(std::string const & msg)
   destroyPacketf();
   bool sendMsg = menu.getOpen() && gameIsRunning();
   stop();
+  ogre.resetMap();
   if (sendMsg)
     {
       if (msg.length() > 0)
