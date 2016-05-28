@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Thu May 12 16:15:29 2016 Alexis Trouve
-// Last update Sat May 28 20:52:39 2016 Esteban Lewis
+// Last update Sat May 28 20:58:18 2016 Alexis Trouve
 //
 
 #pragma once
@@ -21,36 +21,34 @@ namespace gauntlet {
     namespace world {
         class PhysicCollideLayer {
         private:
-	  double		sizeX;
-	  double		sizeY;
-	  unsigned char		*layer;
+	  double			sizeX;
+	  double			sizeY;
+	  unsigned char			*layer;
+	  HeightMap			heightmap;
+	  std::pair<double, double>	inc;
+	  int				nb_points;
+	  std::pair<double, double>	lastPoint;
+	private:
+	  bool				doOnLine(std::pair<double, double> start, std::pair <double, double> end,
+						 bool (PhysicCollideLayer::*func)(std::pair<double, double>),
+						 bool divide);
+	  bool				checkLine(std::pair<double, double> point);
+	  bool				checkPoint(std::pair<double, double> point);
         public:
 	  PhysicCollideLayer(const std::string& filePath);
 
 	  ~PhysicCollideLayer();
 
-	  std::pair<double, double> getSize()const;
+	  std::pair<double, double>	getSize()const;
 
-	  bool isWall(const std::pair<double, double>& oldPos,
-		      const std::pair<double, double>& wantedPos);
+	  bool				isWall(const std::pair<double, double>& oldPos,
+					       const std::pair<double, double>& wantedPos);
 
-	  bool checkCoordSizeCanPass(const std::pair<double, double>& oldPos,
-				     const std::pair<double, double>& wantedPos,
-				     const std::pair<double, double>& size);
+	  bool				checkCoordSizeCanPass(const std::pair<double, double>& oldPos,
+							      const std::pair<double, double>& wantedPos,
+							      const std::pair<double, double>& size);
 
-	  const unsigned char *getLayer(int nb) const;
-
-	private:
-	  HeightMap		heightmap;
-	  std::pair<double, double> inc;
-	  int			nb_points;
-	  std::pair<double, double> lastPoint;
-
-	  bool doOnLine(std::pair<double, double> start, std::pair <double, double> end,
-			bool (PhysicCollideLayer::*func)(std::pair<double, double>),
-			bool divide);
-	  bool checkLine(std::pair<double, double> point);
-	  bool checkPoint(std::pair<double, double> point);
+	  const unsigned char		*getLayer() const;
         };
     };
 };

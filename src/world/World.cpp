@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sat May 28 16:36:35 2016 Alexis Trouve
-// Last update Sat May 28 18:08:55 2016 Alexis Trouve
+// Last update Sat May 28 20:53:17 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -56,8 +56,6 @@ void	World::loadGame(std::string const & file)
 
   try
     {
-      //sizeX = stoi(dynamic_cast<JSON::JsonStr &>(json.GetObj("length")).Get());
-      //sizeY = stoi(dynamic_cast<JSON::JsonStr &>(json.GetObj("width")).Get());
       JSON::JsonObj & endZone = dynamic_cast<JSON::JsonObj &>(json.GetObj("endZone"));
       endPos.first = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("posX")).Get());
       endPos.second = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("posY")).Get());
@@ -71,14 +69,9 @@ void	World::loadGame(std::string const & file)
 	  spawnPoint.second < 0 || spawnPoint.second >= sizeY)
 	throw (std::runtime_error("Spawn point coordinates are out of bounds"));
 
-      std::cout << "map: " << dynamic_cast<JSON::JsonStr &>(json.GetObj("map")).Get()
-		<< std::endl;
-      //TODO map
+      mapAssetName = dynamic_cast<JSON::JsonStr &>(json.GetObj("asset_map")).Get();
 
-      std::cout << "height map: "
-		<< dynamic_cast<JSON::JsonStr &>(json.GetObj("height_map")).Get()
-		<< std::endl;
-      //TODO height map
+      mapHeightName = dynamic_cast<JSON::JsonStr &>(json.GetObj("height_map")).Get();
 
       JSON::JsonArr & arr = dynamic_cast<JSON::JsonArr &>(json.GetObj("dynamic"));
       for (unsigned int i = 0; i < arr.Size(); ++i)
@@ -231,7 +224,7 @@ void	World::checkWin()
     }
   if (nbrPlayer != gameServer->getNbrPlayer())
     {
-      gameServer->decoAll();
+      gameServer->decoAll("Good game, you win.");
       exit(0);
     }
 }
@@ -316,13 +309,18 @@ void		World::deleteId(int id)
   std::cout << "world deleteId" << std::endl;
   unsigned int	i;
   std::list<ABody*>::iterator it1;
+  ABody				*body;
 
   collider->suprBody(id);
   it1 = bodys.begin();
   while (it1 != bodys.end())
     {
       if (id == (*it1)->getId())
-	bodys.erase(it1);
+	{
+	  body = (*it1);
+	  bodys.erase(it1);
+	  break;
+	}
       it1++;
     }
   i = 0;
@@ -331,6 +329,8 @@ void		World::deleteId(int id)
       AIs[i]->suprActor(id);
       ++i;
     }
+  gameServer->sendDeleteEntity(body);
+  delete (body);
   std::cout << "world deleteId end" << std::endl;
 }
 
@@ -551,4 +551,9 @@ void				World::animeEntity(int id, unsigned int animeId)
 unsigned long			World::getTurn() const
 {
   return (turn);
+}
+
+std::string		World::getMapNames() const
+{
+  return (mapAssetName + ";" + mapHeightName);
 }

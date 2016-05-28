@@ -1,6 +1,6 @@
 {
     name : "Default map",
-    map : "une_vraie_map.obj",
+    asset_map : "une_vraie_map.obj",
     height_map : "maps/map.pgm",
     endZone :
     {

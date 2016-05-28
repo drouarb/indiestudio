@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:51:22 2016 Alexis Trouve
-// Last update Sat May 28 17:54:17 2016 Alexis Trouve
+// Last update Sat May 28 20:53:29 2016 Alexis Trouve
 //
 
 #ifndef WORLD_HH_
@@ -80,6 +80,8 @@ namespace			gauntlet
       std::pair<double, double>	endPos;
       std::pair<double, double>	endSize;
       std::vector<playerDeath>	deathPlayers;
+      std::string		mapAssetName;
+      std::string		mapHeightName;
     private:
       int			getUniqueEffectId();
     public:
@@ -117,6 +119,7 @@ namespace			gauntlet
       void			applyGatheringAndOpening();
       void			checkWin();
       void			checkRespawn();
+      std::string		getMapNames() const;
     };
   };
 };

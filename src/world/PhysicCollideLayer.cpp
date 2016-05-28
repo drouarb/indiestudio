@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Thu May 12 16:17:25 2016 Alexis Trouve
-// Last update Sat May 28 20:51:10 2016 Esteban Lewis
+// Last update Sat May 28 21:54:04 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -193,7 +193,7 @@ bool PhysicCollideLayer::checkPoint(std::pair<double, double> point)
   return (true);
 }
 
-const unsigned char *PhysicCollideLayer::getLayer(int nb) const
+const unsigned char *PhysicCollideLayer::getLayer() const
 {
   return (layer);
 }
