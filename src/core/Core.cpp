@@ -12,6 +12,7 @@
 #include "ListenerAddParticle.hh"
 #include "ListenerDeleteParticle.hh"
 #include "ListenerAnimation.hh"
+#include "ListenerMap.hh"
 #include "PacketFactory.hh"
 #include "ConnectMenu.hh"
 #include "GameServer.hh"
@@ -130,7 +131,7 @@ gauntlet::core::Core::exit()
 {
   ogre.quit();
   if (packetf)
-    disconnect();
+    disconnect("");
   killServer();
 }
 
@@ -180,6 +181,7 @@ gauntlet::core::Core::initPacketf()
 	  listeners.push_back(new ListenerAddParticle(*this));
 	  listeners.push_back(new ListenerDeleteParticle(*this));
 	  listeners.push_back(new ListenerAnimation(*this));
+	  listeners.push_back(new ListenerMap(*this));
 	}
       for (std::list<network::PacketListener*>::iterator it = listeners.begin();
 	   it != listeners.end(); ++it)
@@ -191,11 +193,10 @@ gauntlet::core::Core::initPacketf()
 }
 
 void
-gauntlet::core::Core::disconnect()
+gauntlet::core::Core::disconnect(std::string const & msg)
 {
   if (mutex.try_lock() == false)
     return ;
-  std::cout << "#core disconnect" << std::endl;
   if (packetf)
     {
       packetf->stop();
@@ -209,7 +210,12 @@ gauntlet::core::Core::disconnect()
       bool sendMsg = menu.getOpen() && gameIsRunning();
       stop();
       if (sendMsg)
-	menu.message("Disconnected from server.");
+	{
+	  if (msg.length() > 0)
+	    menu.message(msg);
+	  else
+	    menu.message("Disconnected from server.");
+	}
     }
   killServer();
   mutex.unlock();

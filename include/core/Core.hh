@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 10:59:47 2016 Esteban Lewis
-// Last update Thu May 26 14:43:27 2016 Esteban Lewis
+// Last update Sat May 28 21:29:43 2016 Esteban Lewis
 //
 
 #ifndef  CORE_HH_
@@ -49,7 +49,7 @@ namespace			gauntlet
       void			exit();
       void			createServer();
       void			initPacketf();
-      void			disconnect();
+      void			disconnect(std::string const & msg);
       void			load(std::string const & file);
       void			save(std::string const & file);
       bool			gameIsRunning();

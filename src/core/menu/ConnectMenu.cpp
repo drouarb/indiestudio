@@ -194,7 +194,7 @@ gauntlet::core::ConnectMenu::doConnect(struct t_hitItem & item)
   try
     {
       if (core.packetf)
-	core.disconnect();
+	core.disconnect("");
       core.packetf = new network::PacketFactory(ip, port);
       core.initPacketf();
       sendConnect();
@@ -239,7 +239,7 @@ gauntlet::core::ConnectMenu::sendConnect()
 	{
 	  static_cast<MessageBox *>(submenus[0])->setMsg("No response from server.");
 	  submenus[0]->setOpen(true);
-	  core.disconnect();
+	  core.disconnect("");
 	}
     }
 }
