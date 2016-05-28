@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Thu May 12 16:15:29 2016 Alexis Trouve
-// Last update Wed May 25 20:36:46 2016 Alexis Trouve
+// Last update Sat May 28 16:21:26 2016 Alexis Trouve
 //
 
 #pragma once
@@ -16,29 +16,24 @@ namespace gauntlet {
     namespace world {
         class PhysicCollideLayer {
         private:
-	  unsigned int		sizeX;
-	  unsigned int		sizeY;
+	  double		sizeX;
+	  double		sizeY;
 	  unsigned char		*layer;
         public:
-            PhysicCollideLayer(unsigned int sizeX, unsigned int sizeY);
+	  PhysicCollideLayer(const std::string& filePath);
 
-            ~PhysicCollideLayer();
+	  ~PhysicCollideLayer();
 
-            std::pair<double, double> getSize()const;
+	  std::pair<double, double> getSize()const;
 
-            void setWall(unsigned int x, unsigned int y);
+	  bool isWall(const std::pair<double, double>& oldPos,
+		      const std::pair<double, double>& wantedPos);
+	  
+	  bool checkCoordSizeCanPass(const std::pair<double, double>& oldPos,
+				     const std::pair<double, double>& wantedPos,
+				     const std::pair<double, double>& size);
 
-            void unsetWall(unsigned int x, unsigned int y);
-
-            bool isWall(unsigned int x, unsigned int y);
-
-            void setWall(double xpos, double ypos, double xsize, double ysize);
-
-            void unsetWall(double xpos, double ypos, double xsize, double ysize);
-
-            bool checkCoordSizeIsEmpty(double xpos, double ypos, double xsize, double ysize);
-
-            const unsigned char *getLayer() const;
+	  const unsigned char *getLayer(int nb) const;
         };
     };
 };

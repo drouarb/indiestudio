@@ -47,9 +47,8 @@ void	World::loadGame(std::string const & file)
 
   try
     {
-      sizeX = stoi(dynamic_cast<JSON::JsonStr &>(json.GetObj("length")).Get());
-      sizeY = stoi(dynamic_cast<JSON::JsonStr &>(json.GetObj("width")).Get());
-      collider = new Collider(sizeX, sizeY);
+      //sizeX = stoi(dynamic_cast<JSON::JsonStr &>(json.GetObj("length")).Get());
+      //sizeY = stoi(dynamic_cast<JSON::JsonStr &>(json.GetObj("width")).Get());
       
       JSON::JsonObj & spawn = dynamic_cast<JSON::JsonObj &>(json.GetObj("spawn"));
       spawnPoint.first = stod(dynamic_cast<JSON::JsonStr &>(spawn.GetObj("x")).Get());
@@ -171,7 +170,8 @@ void		World::gameLoop()
       if (turn % AI_PRIORITY == 0)
 	applyAI();
       applyMoveActor();
-      applyGatheringAndOpening();
+      if (turn % GATHERING_PRIORITY == 0)
+	applyGatheringAndOpening();
       ++turn;
     }
   std::cout << "world gameLoop end" << std::endl;
@@ -179,7 +179,38 @@ void		World::gameLoop()
 
 void	World::applyGatheringAndOpening()
 {
+  std::list<ABody*>::iterator	it;
+  std::list<ABody*>::iterator	it2;
+  Player			*player;
+  GameObject			*gameobject;
+  ABody				*body;
+  std::list<ABody*>		list;
 
+  it = bodys.begin();
+  while (it != bodys.end())
+    {
+      body = (*it);
+      if ((player = dynamic_cast<Player*>(body)) != NULL)
+	{
+	  list = collider->giveBodyInAreaCircle(player->getPos().first, player->getPos().second, 0,
+						(player->getSize().first + player->getSize().second) / 2.0, 0);
+	  if (list.size() > 0)
+	    {
+	      it2 = list.begin();
+	      while (it2 != list.end())
+		{
+		  body = (*it2);
+		  if ((gameobject = dynamic_cast<GameObject*>(body)) != NULL)
+		    {
+		      gameobject->open(&player->inventory);
+		      gameobject->gather(&player->inventory);
+		    }
+		  it2++;
+		}
+	    }
+	}
+      it++;
+    }
 }
 
 int	World::addNewBody(double xpos, double ypos, const std::string& name, short orientation)
