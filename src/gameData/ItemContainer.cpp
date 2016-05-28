@@ -17,9 +17,9 @@ ItemContainer::~ItemContainer()
 
 }
 
-void ItemContainer::operator+=(Player *player)
+void ItemContainer::operator+=(ItemContainer *items)
 {
-    itemList.merge(player->getInventory()->itemList);
+    itemList.merge(items->itemList);
 }
 
 void ItemContainer::remove(gauntlet::Item item) {

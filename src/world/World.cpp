@@ -169,7 +169,7 @@ void		World::gameLoop()
   std::cout << "world gameLoop" << std::endl;
   stopwatch.set();
   turn = 0;
-  while (42 == 42)
+  while (42)
     {
       if (stopwatch.ellapsedMs() < ROUND_DURATION)
 	usleep(ROUND_DURATION * 1000 - stopwatch.ellapsedMs());
@@ -255,7 +255,7 @@ void	World::applyGatheringAndOpening()
 		  if ((gameobject = dynamic_cast<GameObject*>(body)) != NULL)
 		    {
 		      gameobject->open(&player->inventory);
-		      gameobject->gather(&player->inventory);
+		      gameobject->gather(player);
 		    }
 		  it2++;
 		}

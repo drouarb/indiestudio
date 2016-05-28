@@ -7,7 +7,6 @@
 
 #include <list>
 #include "Item.hh"
-#include "Player.hh"
 
 namespace gauntlet
 {
@@ -24,6 +23,8 @@ namespace gauntlet
         void operator+=(gauntlet::Player *player);
         void useUpgrades(Player *player);
         ItemContainer *clone(ItemContainer *itemContainer);
+
+        void operator+=(ItemContainer *items);
     };
 };
 
