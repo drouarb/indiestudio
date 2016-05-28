@@ -51,9 +51,9 @@ gauntlet::core::ActionLists::doActions()
 	  std::size_t index = (*it)->getFilename().find(';');
 	  if (index != std::string::npos)
 	    {
+	      //TODO asset
 	      (*it)->getFilename().substr(0, index);
-	      (*it)->getFilename().substr(index + 1);
-	      //TODO: ogre maps
+	      core.ogre.loadMap((*it)->getFilename().substr(index + 1));	      
 	    }
 	}
 
@@ -76,10 +76,11 @@ gauntlet::core::ActionLists::doActions()
       for (std::list<network::PacketMoveEntity*>::iterator it = packetsMoveEntity.begin();
 	   it != packetsMoveEntity.end(); ++it)
 	{
-	  core.ogre.addWorldEntity((*it)->getEntityId(), (EntityName)0,
-				   (*it)->getX(), (*it)->getY(),
-				   (*it)->getAngle() - world::Math::A_RIGHT,
-				   gauntlet::TextureName::TEXTURE_NONE);
+	  if (core.ogre.entityExist((*it)->getEntityId()))
+	    core.ogre.addWorldEntity((*it)->getEntityId(), (EntityName)0,
+				     (*it)->getX(), (*it)->getY(),
+				     (*it)->getAngle() - world::Math::A_RIGHT,
+				     gauntlet::TextureName::TEXTURE_NONE);
 	}
 
       for (std::list<network::PacketDeleteEntity*>::iterator
@@ -128,7 +129,8 @@ gauntlet::core::ActionLists::doActions()
       for (std::list<network::PacketAnimation*>::iterator
 	     it = packetsAnimation.begin(); it != packetsAnimation.end(); ++it)
 	{
-	  core.ogre.playAnimation((*it)->getEntityId(), (*it)->getAnimationId(), true);
+	  if (core.ogre.entityExist((*it)->getEntityId()))
+	    core.ogre.playAnimation((*it)->getEntityId(), (*it)->getAnimationId(), true);
 	}
     }
   clearActions();
