@@ -8,6 +8,7 @@
 
 #include "JSON/JsonArr.hpp"
 #include "JSON/JsonParser.hpp"
+#include "AnimationsList.hh"
 #include <string>
 #include <helpers/JSON/JsonObj.hpp>
 
@@ -50,6 +51,11 @@ namespace gauntlet
       virtual std::string const & getName() const final;
     };
 
+    /*
+     * \quote
+     * <Type, <filename, animationName>>
+     */
+    const static std::map<animations::AnimationsListJson, std::pair<std::string, std::string>> jsonMap;
   }
 }
 

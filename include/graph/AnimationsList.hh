@@ -9,7 +9,7 @@ namespace gauntlet
 {
   namespace animations
   {
-    enum AnimationsList
+    enum AnimationsListJson
     {
       SKELETON_ARCHIER_JSON_SKELETON_ARCHIER,
       SKELETON_ARCHIER_JSON_SKELETON_IDLE,
@@ -201,6 +201,8 @@ namespace gauntlet
       SKELETON_WARLORD_JSON_2H_SKELETON_SWORD_THRUST_MID
     };
   }
+
+
 }
 
 #endif //GAUNTLET_ANIMATIONSLIST_HH

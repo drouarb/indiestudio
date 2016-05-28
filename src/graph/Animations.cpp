@@ -66,3 +66,8 @@ std::string const &animations::JSON::getName() const
 {
   return this->name;
 }
+
+const static std::map<animations::AnimationsListJson, std::pair<std::string, std::string>> animations::jsonMap =
+	{
+
+	};
