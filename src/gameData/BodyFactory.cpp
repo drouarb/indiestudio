@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 16:50:32 2016 Alexis Trouve
-// Last update Sat May 28 23:00:24 2016 Alexis Trouve
+// Last update Sat May 28 23:13:09 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -49,6 +49,10 @@ void			BodyFactory::fillPlayerTab()
 void			BodyFactory::fillCreatureTab()
 {
   setDraugr();
+  setSkeleton();
+  setSkeletonArcher();
+  setSkeletonWarlord();
+  setSkeletonWizard();
 }
 
 void			BodyFactory::fillGameObjectTab()
@@ -183,7 +187,7 @@ void			BodyFactory::setValkyrie()
           SoundName::FEMALE_DEATH,
           SoundName::SOUND_NONE
   };
-  player->setMeshId(EntityName::BERSERK);
+  player->setMeshId(EntityName::VALKYRIE);
   player->setTextureId(TextureName::TEXTURE_NONE);
   player->setIdAI(NOAI);
   bodyTab.push_back(player);
@@ -200,7 +204,7 @@ void			BodyFactory::setSkeleton()
   crea->stats.normalHP = 400;
   crea->stats.speed = 0.6;
   crea->stats.normalSpeed = 0.6;
-  crea->stats.attackModifier = 0.6;
+  crea->stats.attackModifier = 0.4;
   crea->spellBook.addSpell(SpellFactory::SIMPLE_ATTACK, crea);
   crea->setCollide(true);
   crea->changePos(std::make_pair(-1, -1));
@@ -244,7 +248,7 @@ void			BodyFactory::setSkeletonWarlord()
   crea->stats.normalHP = 400;
   crea->stats.speed = 0.6;
   crea->stats.normalSpeed = 0.6;
-  crea->stats.attackModifier = 0.6;
+  crea->stats.attackModifier = 0.8;
   crea->spellBook.addSpell(SpellFactory::SIMPLE_ATTACK, crea);
   crea->setCollide(true);
   crea->changePos(std::make_pair(-1, -1));
@@ -288,8 +292,8 @@ void			BodyFactory::setSkeletonArcher()
   crea->stats.normalHP = 400;
   crea->stats.speed = 0.6;
   crea->stats.normalSpeed = 0.6;
-  crea->stats.attackModifier = 0.6;
-  crea->spellBook.addSpell(SpellFactory::SIMPLE_ATTACK, crea);
+  crea->stats.attackModifier = 0.3;
+  crea->spellBook.addSpell(SpellFactory::RANGER_ATTACK, crea);
   crea->setCollide(true);
   crea->changePos(std::make_pair(-1, -1));
   crea->changeSize(std::make_pair(50.0, 50.0));
@@ -332,8 +336,8 @@ void			BodyFactory::setSkeletonWizard()
   crea->stats.normalHP = 400;
   crea->stats.speed = 0.6;
   crea->stats.normalSpeed = 0.6;
-  crea->stats.attackModifier = 0.6;
-  crea->spellBook.addSpell(SpellFactory::SIMPLE_ATTACK, crea);
+  crea->stats.attackModifier = 0.2;
+  crea->spellBook.addSpell(SpellFactory::ICEBALL, crea);
   crea->setCollide(true);
   crea->changePos(std::make_pair(-1, -1));
   crea->changeSize(std::make_pair(50.0, 50.0));
@@ -450,29 +454,19 @@ ABody	*BodyFactory::giveBody(const std::string& name)
   Actor		*actor;
 
   i = 0;
-  std::cout << "a" << std::endl;
   while (i < bodyTab.size())
     {
-  std::cout << "b" << std::endl;
       if (name == bodyTab[i]->getName())
 	{
-  std::cout << "c" << std::endl;
 	  body = bodyTab[i]->clone(giveNextId());
-  std::cout << "d" << std::endl;
 	  if ((actor = dynamic_cast<Actor*>(body)) != NULL)
 	    {
-  std::cout << "e" << std::endl;
 	      j = actor->getIdAI();
-  std::cout << "f" << std::endl;
 	      if (j != NOAI)
 		AIs[j]->setNewAI(actor);
-  std::cout << "g" << std::endl;
 	    }
-  std::cout << "h" << std::endl;
 	  return (body);
-  std::cout << "i" << std::endl;
 	}
-  std::cout << "j" << std::endl;
       ++i;
     }
   return (NULL);

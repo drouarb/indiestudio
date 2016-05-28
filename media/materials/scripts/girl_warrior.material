@@ -1,0 +1,46 @@
+material "girl_Warrior_00112"
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.588235 0.588235 0.588235 1
+			diffuse 1 1 1 1
+			specular 0 0 0 0
+			emissive 0 0 0
+
+			texture_unit
+			{
+				texture "dunjian_d.dds"
+				tex_coord_set 0
+				colour_op modulate
+				scale 1 1
+				scroll 0 0
+				rotate 0
+			}
+		}
+	}
+}
+material "girl_Warrior_00"
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.588 0.588 0.588 1
+			diffuse 1 1 1 1
+			specular 0 0 0 0
+			emissive 0 0 0
+
+			texture_unit
+			{
+				texture "nvzhanshidi_d.dds"
+				tex_coord_set 0
+				colour_op modulate
+				scale 1 1
+				scroll 0 0
+				rotate 0
+			}
+		}
+	}
+}

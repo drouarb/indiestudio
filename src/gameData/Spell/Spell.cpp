@@ -39,7 +39,14 @@ void gauntlet::Spell::ApplyDamage(std::list<gauntlet::ABody*> targets, Actor *ca
         actor = dynamic_cast<Actor*>(target);
         //gameObject = dynamic_cast<GameObject*>(target);
         if (actor != NULL)
+        {
             actor->stats.HP -= damage * caster->stats.attackModifier;
+            if (actor->stats.HP <= 0)
+            {
+                actor->setCollide(false);
+                actor->getWorld()->notifyDeath(actor);
+            }
+        }
         //if (gameObject != NULL)
         //    faire les dégats
     }
