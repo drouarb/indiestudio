@@ -5,12 +5,13 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Tue May 24 12:06:37 2016 Alexis Trouve
-// Last update Tue May 24 12:22:03 2016 Alexis Trouve
+// Last update Sat May 28 14:22:13 2016 Alexis Trouve
 //
 
 #ifndef DISTAI_HH_
 # define DISTAI_HH_
 
+#define DIST_BATTLE 800.0
 #define DIST_EVADE 300.0
 
 #include "AbstractAI.hh"

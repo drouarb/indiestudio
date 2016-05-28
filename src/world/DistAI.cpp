@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Tue May 24 12:09:30 2016 Alexis Trouve
-// Last update Tue May 24 12:32:36 2016 Alexis Trouve
+// Last update Sat May 28 14:28:01 2016 Alexis Trouve
 //
 
 #include "DistAI.hh"
@@ -51,6 +51,7 @@ void		DistAI::launchAI(gauntlet::Actor *actor)
   short				ttRad;
   double			smallestDist;
   int				nbrPlayer;
+  int				idSpell;
 
   bodys = world->getCollider().giveBodyInAreaCircle(actor->getPos().first,
 						    actor->getPos().second, CHECK_DIST, 0, 0);
@@ -84,4 +85,6 @@ void		DistAI::launchAI(gauntlet::Actor *actor)
   else
     actor->changeOrientation(Math::getAngle(atan2(savedPlayer->getPos().first - actor->getPos().first,
 						  savedPlayer->getPos().second - actor->getPos().second)));
+  idSpell = actor->spellBook.giveSpell(600.0, DIST_BATTLE, true, NOAREA, 0, 100);
+  actor->castSpell(idSpell);
 }

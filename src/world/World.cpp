@@ -162,16 +162,24 @@ void		World::gameLoop()
 {
   std::cout << "world gameLoop" << std::endl;
   stopwatch.set();
+  turn = 0;
   while (42 == 42)
     {
       if (stopwatch.ellapsedMs() < ROUND_DURATION)
 	usleep(ROUND_DURATION * 1000 - stopwatch.ellapsedMs());
       stopwatch.set();
-      //TODO: frequency
-      applyAI();
+      if (turn % AI_PRIORITY == 0)
+	applyAI();
       applyMoveActor();
+      applyGatheringAndOpening();
+      ++turn;
     }
   std::cout << "world gameLoop end" << std::endl;
+}
+
+void	World::applyGatheringAndOpening()
+{
+
 }
 
 int	World::addNewBody(double xpos, double ypos, const std::string& name, short orientation)
@@ -445,4 +453,9 @@ ABody				*World::getBodyById(int id)
 void				World::animeEntity(int id, unsigned int animeId)
 {
   gameServer->animeEntity(id, animeId);
+}
+
+unsigned long			World::getTurn() const
+{
+  return (turn);
 }

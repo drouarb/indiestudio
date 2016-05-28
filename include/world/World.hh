@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:51:22 2016 Alexis Trouve
-// Last update Fri May 27 19:18:08 2016 Esteban Lewis
+// Last update Sat May 28 15:02:43 2016 Alexis Trouve
 //
 
 #ifndef WORLD_HH_
@@ -28,6 +28,7 @@
 #include "Stopwatch.hh"
 
 # define ROUND_DURATION 33
+# define AI_PRIORITY 15
 
 namespace			gauntlet
 {
@@ -66,6 +67,7 @@ namespace			gauntlet
       std::vector<effectGlobal*>	effectTab;
       std::vector<soundGlobal*>	soundTab;
       Stopwatch			stopwatch;
+      unsigned long		turn;
       
       //network::PacketFactory	packetFactory;
     private:
@@ -101,6 +103,8 @@ namespace			gauntlet
       void			applyCommand(int id, core::Command command);
       ABody			*getBodyById(int id);
       void			animeEntity(int id, unsigned int animeId);
+      unsigned long		getTurn() const;
+      void			applyGatheringAndOpening();
     };
   };
 };
