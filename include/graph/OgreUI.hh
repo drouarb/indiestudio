@@ -27,6 +27,7 @@
 #include <OIS/OISKeyboard.h>
 #include <OIS/OISMouse.h>
 
+
 #include <SdkTrays.h>
 #include <SdkCameraMan.h>
 #include <core/Position.hh>
@@ -36,6 +37,7 @@
 #include <gameData/TextureName.hh>
 #include <gameData/SoundName.hh>
 #include "IUIObserver.hh"
+#include "HeightMap.hh"
 
 namespace gauntlet {
     enum EffectName : int;
@@ -82,12 +84,15 @@ private:
     OgreBites::SdkCameraMan *mCameraMan;
     OgreBites::ParamsPanel *mDetailsPanel;
 
+
     bool mCursorWasVisible;
     bool mShutDown;
 
     OIS::InputManager *mInputManager;
     OIS::Mouse *mMouse;
     OIS::Keyboard *mKeyboard;
+
+   gauntlet::HeightMap heightmap;
 
     int quality = 100;
 
@@ -99,6 +104,7 @@ public:
     bool setup();
 
 
+    bool loadMap(const std::string & map);
     bool addWorldEntity(int entityId, gauntlet::EntityName meshid, int x, int y,
                         short degres, gauntlet::TextureName texture_id);
 

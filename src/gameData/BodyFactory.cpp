@@ -70,7 +70,7 @@ void			BodyFactory::setBarbare()
   player->setName("Barbare");
   player->stats.HP = 4000;
   player->stats.normalHP = 4000;
-  player->stats.speed = 1.1;
+  player->stats.speed = 10.1;
   player->stats.normalSpeed = 1.1;
   player->stats.attackModifier = 1.0;
   player->setCollide(true);
