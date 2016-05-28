@@ -14,10 +14,10 @@ namespace			gauntlet
     ~HeightMap();
 
     bool			load(std::string const & filename);
-    int				at(double x, double y);
+    unsigned char		at(double x, double y);
 
   private:
-    int				*map;
+    unsigned char		*map;
     int				width;
     int				height;
 

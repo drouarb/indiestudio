@@ -49,7 +49,7 @@ gauntlet::HeightMap::load(std::string const & filename)
 	}
     }
 
-  map = new int [height * width];
+  map = new unsigned char [height * width];
   int i = 0;
   std::stringstream ss;
   ss.str(content);
@@ -58,7 +58,7 @@ gauntlet::HeightMap::load(std::string const & filename)
     {
       if (c.length() > 0)
 	{
-	  map[i] = stoi(c);
+	  map[i] = (unsigned char)stoi(c);
 	  i++;
 	}
     }
@@ -66,7 +66,7 @@ gauntlet::HeightMap::load(std::string const & filename)
   return (true);
 }
 
-int
+unsigned char
 gauntlet::HeightMap::at(double x, double y)
 {
   if (!map)
