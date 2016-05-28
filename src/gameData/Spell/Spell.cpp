@@ -67,8 +67,10 @@ void gauntlet::Spell::cast(Actor *caster)
     std::list<gauntlet::ABody*> targets;
     if (endingEffect > -1)
         endingId = caster->getWorld()->triggerEffect((EffectName) endingEffect, caster->getOrientation(), caster->getPos(), 1000);
-    caster->getWorld()->playSound(soundEffect, false, targetedArea);
     targets = (caster->getWorld()->getCollider().*patternTypes.at(pattern))(targetedArea.first, targetedArea.second, caster->getOrientation(), radius, angle); //remplacer les 0 par des variables setées à 0 dans le constructy kthxbye
+    if (targets.size() > 0) {
+        caster->getWorld()->playSound(soundEffect, false, targetedArea);
+    }
     ApplyDamage(targets, caster);
     caster->setCooldown(castTime);
 }
