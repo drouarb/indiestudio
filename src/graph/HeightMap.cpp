@@ -93,3 +93,13 @@ gauntlet::HeightMap::linelength(std::string const & line)
     }
   return (len);
 }
+
+std::pair<double, double>
+gauntlet::HeightMap::getSize() const
+{
+  if (!map)
+    throw (std::runtime_error("HeightMap not loaded"));
+
+  return (std::pair<double, double>((double)width * HEIGHT_MAP_SCALE,
+				    (double)height * HEIGHT_MAP_SCALE));
+}

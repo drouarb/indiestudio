@@ -15,6 +15,7 @@ namespace			gauntlet
 
     bool			load(std::string const & filename);
     unsigned char		at(double x, double y);
+    std::pair<double, double>	getSize() const;
 
   private:
     unsigned char		*map;
