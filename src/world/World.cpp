@@ -1,3 +1,13 @@
+//
+// World.cpp for indie in /home/trouve_b/Desktop/CPP_project/cpp_indie_studio
+// 
+// Made by Alexis Trouve
+// Login   <trouve_b@epitech.net>
+// 
+// Started on  Sat May 28 16:36:35 2016 Alexis Trouve
+// Last update Sat May 28 20:53:17 2016 Alexis Trouve
+//
+
 #include <iostream>
 #include <fstream>
 #include <stdexcept>
@@ -46,9 +56,11 @@ void	World::loadGame(std::string const & file)
 
   try
     {
-      sizeX = stoi(dynamic_cast<JSON::JsonStr &>(json.GetObj("length")).Get());
-      sizeY = stoi(dynamic_cast<JSON::JsonStr &>(json.GetObj("width")).Get());
-      collider = new Collider(sizeX, sizeY);
+      JSON::JsonObj & endZone = dynamic_cast<JSON::JsonObj &>(json.GetObj("endZone"));
+      endPos.first = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("posX")).Get());
+      endPos.second = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("posY")).Get());
+      endSize.first = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("sizeX")).Get());
+      endSize.second = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("sizeX")).Get());
       
       JSON::JsonObj & spawn = dynamic_cast<JSON::JsonObj &>(json.GetObj("spawn"));
       spawnPoint.first = stod(dynamic_cast<JSON::JsonStr &>(spawn.GetObj("x")).Get());
@@ -57,14 +69,9 @@ void	World::loadGame(std::string const & file)
 	  spawnPoint.second < 0 || spawnPoint.second >= sizeY)
 	throw (std::runtime_error("Spawn point coordinates are out of bounds"));
 
-      std::cout << "map: " << dynamic_cast<JSON::JsonStr &>(json.GetObj("map")).Get()
-		<< std::endl;
-      //TODO map
+      mapAssetName = dynamic_cast<JSON::JsonStr &>(json.GetObj("asset_map")).Get();
 
-      std::cout << "height map: "
-		<< dynamic_cast<JSON::JsonStr &>(json.GetObj("height_map")).Get()
-		<< std::endl;
-      //TODO height map
+      mapHeightName = dynamic_cast<JSON::JsonStr &>(json.GetObj("height_map")).Get();
 
       JSON::JsonArr & arr = dynamic_cast<JSON::JsonArr &>(json.GetObj("dynamic"));
       for (unsigned int i = 0; i < arr.Size(); ++i)
@@ -170,15 +177,92 @@ void		World::gameLoop()
       if (turn % AI_PRIORITY == 0)
 	applyAI();
       applyMoveActor();
-      applyGatheringAndOpening();
+      if (turn % GATHERING_PRIORITY == 0)
+	applyGatheringAndOpening();
+      if (turn % WIN_PRIORITY == 0)
+	checkWin();
+      if (turn % RESPAWN_PRIORITY == 0)
+	checkRespawn();
       ++turn;
     }
   std::cout << "world gameLoop end" << std::endl;
 }
 
+void	World::checkRespawn()
+{
+  unsigned int		i;
+  Player		*player;
+
+  i = 0;
+  while (i < deathPlayers.size())
+    {
+      deathPlayers[i].coolDownRespawn -= RESPAWN_PRIORITY;
+      if (deathPlayers[i].coolDownRespawn)
+	{
+	  player = deathPlayers[i].player;
+	  player->stats.HP = player->stats.normalHP;
+	}
+      ++i;
+    }
+}
+
+void	World::checkWin()
+{
+  std::list<ABody*>::iterator	it;
+  unsigned char			nbrPlayer;
+  ABody				*body;
+  Player			*player;
+
+  it = bodys.begin();
+  nbrPlayer = 0;
+  while (it != bodys.end())
+    {
+      body = (*it);
+      if ((player = dynamic_cast<Player*>(body)) != NULL)
+	nbrPlayer++;
+      it++;
+    }
+  if (nbrPlayer != gameServer->getNbrPlayer())
+    {
+      gameServer->decoAll("Good game, you win.");
+      exit(0);
+    }
+}
+
 void	World::applyGatheringAndOpening()
 {
+  std::list<ABody*>::iterator	it;
+  std::list<ABody*>::iterator	it2;
+  Player			*player;
+  GameObject			*gameobject;
+  ABody				*body;
+  std::list<ABody*>		list;
 
+  it = bodys.begin();
+  while (it != bodys.end())
+    {
+      body = (*it);
+      if ((player = dynamic_cast<Player*>(body)) != NULL)
+	{
+	  list = collider->giveBodyInAreaCircle(player->getPos().first, player->getPos().second, 0,
+						(player->getSize().first + player->getSize().second) / 2.0, 0);
+	  if (list.size() > 0)
+	    {
+	      it2 = list.begin();
+	      while (it2 != list.end())
+		{
+		  body = (*it2);
+		  if ((gameobject = dynamic_cast<GameObject*>(body)) != NULL)
+		    {
+		      gameobject->open(&player->inventory);
+		      gameobject->gather(&player->inventory);
+		    }
+		  it2++;
+		}
+	    }
+	}
+      it++;
+    }
 }
 
 int	World::addNewBody(double xpos, double ypos, const std::string& name, short orientation)
@@ -206,6 +290,7 @@ void		World::notifyDeath(ABody *body)
 {
   std::cout << "world notify Death" << std::endl;
   unsigned int	i;
+  Player	*player;
 
   collider->suprBody(body->getId());
   i = 0;
@@ -214,6 +299,8 @@ void		World::notifyDeath(ABody *body)
       AIs[i]->suprActor(body->getId());
       ++i;
     }
+  if ((player = dynamic_cast<Player*>(body)) != NULL)
+    deathPlayers.push_back({450, player});
   std::cout << "world notify Death end" << std::endl;
 }
 
@@ -222,13 +309,18 @@ void		World::deleteId(int id)
   std::cout << "world deleteId" << std::endl;
   unsigned int	i;
   std::list<ABody*>::iterator it1;
+  ABody				*body;
 
   collider->suprBody(id);
   it1 = bodys.begin();
   while (it1 != bodys.end())
     {
       if (id == (*it1)->getId())
-	bodys.erase(it1);
+	{
+	  body = (*it1);
+	  bodys.erase(it1);
+	  break;
+	}
       it1++;
     }
   i = 0;
@@ -237,6 +329,8 @@ void		World::deleteId(int id)
       AIs[i]->suprActor(id);
       ++i;
     }
+  gameServer->sendDeleteEntity(body);
+  delete (body);
   std::cout << "world deleteId end" << std::endl;
 }
 
@@ -457,4 +551,9 @@ void				World::animeEntity(int id, unsigned int animeId)
 unsigned long			World::getTurn() const
 {
   return (turn);
+}
+
+std::string		World::getMapNames() const
+{
+  return (mapAssetName + ";" + mapHeightName);
 }

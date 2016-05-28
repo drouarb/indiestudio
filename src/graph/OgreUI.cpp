@@ -585,7 +585,7 @@ bool __attribute_deprecated__ OgreUI::addWorldEntity(int entityId,
     }
     try {
         e = mSceneMgr->createEntity(ss.str(), meshmap.at(meshid).c_str());
-        playAnimation(entityId, 0, true);
+        playAnimation(entityId, 1, true);
     } catch (...) {
         return false;
     }

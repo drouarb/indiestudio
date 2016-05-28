@@ -24,7 +24,7 @@ namespace gauntlet
 
     class Player : public Actor
     {
-    protected:
+    public:
 
       std::string playerName;
       long score;

@@ -10,12 +10,13 @@ gauntlet::network::PacketAddParticle::PacketAddParticle(s_socketData data):
 }
 
 gauntlet::network::PacketAddParticle::PacketAddParticle(unsigned int particleId, unsigned int refId, double x, double y,
-                                                        int decayTime):
+                                                        short angle, int decayTime):
         Packet(gauntlet::network::ADD_PARTICLE, -1),
         particleId(particleId),
         refId(refId),
         x(x),
         y(y),
+        angle(angle),
         decayTime(decayTime)
 { }
 
@@ -28,6 +29,7 @@ t_rawdata *gauntlet::network::PacketAddParticle::serialize() const {
     packetAddParticle->refId = refId;
     packetAddParticle->x = x;
     packetAddParticle->y = y;
+    packetAddParticle->angle = angle;
     packetAddParticle->decayTime = decayTime;
     return data;
 }
@@ -43,6 +45,7 @@ void gauntlet::network::PacketAddParticle::deserialize(t_rawdata *data) {
     refId = packetAddParticle->refId;
     x = packetAddParticle->x;
     y = packetAddParticle->y;
+    angle = packetAddParticle->angle;
     decayTime = packetAddParticle->decayTime;
 }
 
@@ -69,4 +72,8 @@ double gauntlet::network::PacketAddParticle::getY() const {
 
 int gauntlet::network::PacketAddParticle::getDecayTime() const {
     return decayTime;
+}
+
+short gauntlet::network::PacketAddParticle::getAngle() const {
+    return angle;
 }

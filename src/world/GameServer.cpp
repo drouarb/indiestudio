@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Sat May 28 18:32:34 2016 Emile Jonas
+// Last update Sat May 28 20:51:08 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -138,11 +138,13 @@ void			GameServer::sendDatas(int socketId)
   std::vector<soundGlobal*>	soundTab;
   std::list<ABody*>::iterator	it1;
   unsigned int			i;
+  PacketMap			packetMap(0, world->getMapNames());
 
   bodys = world->getBodysByCopy();
   soundTab = world->getSoundByCopy();
   effectTab = world->getEffectByCopy();
   it1 = bodys.begin();
+  packetFact->send(packetMap, socketId);
   while (it1 != bodys.end())
     {
       network::PacketAddEntity	packet((*it1)->getEntityId(), (*it1)->getTextureId(),
@@ -230,7 +232,7 @@ void		GameServer::sendDeco(int socketId, const std::string& msg)
   std::cout << "sendDecoEnd" << std::endl;
 }
 
-void		GameServer::DecoAll()
+void		GameServer::decoAll(const std::string& msg)
 {
   std::cout << "DecoAll" << std::endl;
   unsigned int		i;
@@ -239,13 +241,13 @@ void		GameServer::DecoAll()
   while (i < players.size())
     {
       if (players[i].socketId != -1)
-	sendDeco(players[i].socketId, "You have been disconnected");
+	sendDeco(players[i].socketId, msg);
       ++i;
     }
   i = 0;
   while (i < connectTmp.size())
     {
-      sendDeco(connectTmp[i], "You have been disconnected");
+      sendDeco(connectTmp[i], "You have been disconnected by the server before your total login");
       ++i;
     }
   std::cout << "DecoAllEnd" << std::endl;
@@ -308,7 +310,7 @@ void		GameServer::controlInput(const network::PacketControl *packet)
 void		GameServer::sendEffect(unsigned int effect, int id, short orient,
 				       const std::pair<double, double>& pos, int decayTime)
 {
-  PacketAddParticle	packet(effect, id, pos.first, pos.second, decayTime);
+  PacketAddParticle	packet(effect, id, pos.first, pos.second, orient, decayTime);
   unsigned int		i;
 
   i = 0;
@@ -380,4 +382,22 @@ void		GameServer::listen()
       packetFact->recv();
     }
   std::cout << "listenEnd" << std::endl;
+}
+
+unsigned char	GameServer::getNbrPlayer() const
+{
+  return (coPlayers);
+}
+
+void		GameServer::sendDeleteEntity(ABody *body)
+{
+  PacketDeleteEntity	packet(body->getId());
+  unsigned int		i;
+
+  i = 0;
+  while (i < players.size())
+    {
+      packetFact->send(packet, players[i].socketId);
+      ++i;
+    }
 }

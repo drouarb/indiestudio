@@ -12,7 +12,7 @@ int main() {
 
     std::cout << "->Serialisation/Deserialitation" << std::endl;
     srand(time(NULL));
-    gauntlet::network::PacketMap packetMap(rand());
+    gauntlet::network::PacketMap packetMap(rand(), "Tanguy l'enlise");
 
     data.data = packetMap.serialize();
 
@@ -20,4 +20,5 @@ int main() {
 
     assert(packetMap.getPacketId() == packetMap1.getPacketId());
     assert(packetMap.getMapId() == packetMap1.getMapId());
+    assert(packetMap.getFilename() == packetMap1.getFilename());
 }

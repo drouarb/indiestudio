@@ -1,0 +1,229 @@
+{
+  name: "Skeleton_footman",
+  animation: [
+    {
+      name: "Skeleton_Idle",
+      begin: "0",
+      end: "100"
+    },
+    {
+      name: "Skeleton_Use_object",
+      begin: "101",
+      end: "141"
+    },
+    {
+      name: "Skeleton_anger",
+      begin: "142",
+      end: "192"
+    },
+    {
+      name: "Skeleton_Drinking",
+      begin: "193",
+      end: "293"
+    },
+    {
+      name: "Skeleton_Hit_from_back",
+      begin: "296",
+      end: "331"
+    },
+    {
+      name: "Skeleton_Hit_from_front",
+      begin: "332",
+      end: "367"
+    },
+    {
+      name: "Skeleton_Looking_around",
+      begin: "370",
+      end: "546"
+    },
+    {
+      name: "Skeleton_pointing_A",
+      begin: "547",
+      end: "607"
+    },
+    {
+      name: "Skeleton_salute",
+      begin: "608",
+      end: "668"
+    },
+    {
+      name: "Skeleton_Talking",
+      begin: "669",
+      end: "714"
+    },
+    {
+      name: "Skeleton_thinking",
+      begin: "715",
+      end: "790"
+    },
+    {
+      name: "Skeleton_Tracking",
+      begin: "791",
+      end: "966"
+    },
+    {
+      name: "Skeleton_sit_down",
+      begin: "967",
+      end: "993"
+    },
+    {
+      name: "Skeleton_sitting",
+      begin: "994",
+      end: "1094"
+    },
+    {
+      name: "Skeleton_came_up",
+      begin: "1095",
+      end: "1121"
+    },
+    {
+      name: "Skeleton_Going_asleep",
+      begin: "1122",
+      end: "1192"
+    },
+    {
+      name: "Skeleton_sleeping",
+      begin: "1193",
+      end: "1268"
+    },
+    {
+      name: "Skeleton_waking_up",
+      begin: "1269",
+      end: "1334"
+    },
+    {
+      name: "Skeleton_walking_back",
+      begin: "1337",
+      end: "1372"
+    },
+    {
+      name: "Skeleton_Climbing_ladder",
+      begin: "1375",
+      end: "1405"
+    },
+    {
+      name: "Skeleton_Crouching",
+      begin: "1408",
+      end: "1508"
+    },
+    {
+      name: "Skeleton_falling_down",
+      begin: "1511",
+      end: "1551"
+    },
+    {
+      name: "Skeleton_Moving_left",
+      begin: "1554",
+      end: "1574"
+    },
+    {
+      name: "Skeleton_Moving_right",
+      begin: "1575",
+      end: "1595"
+    },
+    {
+      name: "Skeleton_Sneaking",
+      begin: "1598",
+      end: "1648"
+    },
+    {
+      name: "Skeleton_Run",
+      begin: "1651",
+      end: "1673"
+    },
+    {
+      name: "Skeleton_Jump_runing",
+      begin: "1676",
+      end: "1716"
+    },
+    {
+      name: "Skeleton_Dying_A",
+      begin: "1719",
+      end: "1784"
+    },
+    {
+      name: "Skeleton_Dying_B",
+      begin: "1787",
+      end: "1827"
+    },
+    {
+      name: "Skeleton_1H_combat_mode",
+      begin: "1830",
+      end: "1880"
+    },
+    {
+      name: "Skeleton_1H_dodge_backwards",
+      begin: "1881",
+      end: "1916"
+    },
+    {
+      name: "Skeleton_1H_dodge_to_left",
+      begin: "1917",
+      end: "1952"
+    },
+    {
+      name: "Skeleton_1H_dodge_to_right",
+      begin: "1953",
+      end: "1988"
+    },
+    {
+      name: "Skeleton_1H_duck_below_high_swing",
+      begin: "1989",
+      end: "2024"
+    },
+    {
+      name: "Skeleton_1H_parry_A",
+      begin: "2025",
+      end: "2060"
+    },
+    {
+      name: "Skeleton_1H_parry_B",
+      begin: "2061",
+      end: "2096"
+    },
+    {
+      name: "Skeleton_1H_parry_from_stright_down",
+      begin: "2097",
+      end: "2132"
+    },
+    {
+      name: "Skeleton_1H_shield_block",
+      begin: "2133",
+      end: "2168"
+    },
+    {
+      name: "Skeleton_1H_shield_blow",
+      begin: "2169",
+      end: "2204"
+    },
+    {
+      name: "Skeleton_1H_swing_high_straight_down",
+      begin: "2205",
+      end: "2240"
+    },
+    {
+      name: "Skeleton_1H_swing_left",
+      begin: "2241",
+      end: "2276"
+    },
+    {
+      name: "Skeleton_1H_swing_right",
+      begin: "2277",
+      end: "2312"
+    },
+    {
+      name: "Skeleton_1H_thrust",
+      begin: "2313",
+      end: "2348"
+    },
+    {
+      name: "Skeleton_1H_banging_shield",
+      begin: "2349",
+      end: "2369"
+    },
+    {
+      name: "Skeleton_1H_charging",
+      begin: "2372",
+      end: "2394"
+    }
+  ]

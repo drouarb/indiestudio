@@ -153,7 +153,7 @@ gauntlet::core::Lobby::receivedStartgame()
     {
       static_cast<MessageBox *>(submenus[0])->setMsg("No response from server.");
       submenus[0]->setOpen(true);
-      core.disconnect();
+      core.disconnect("");
     }
 }
 
