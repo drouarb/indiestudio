@@ -128,6 +128,11 @@ void                    ABody::setTextureId()
   texture = 0;
 }
 
+void                    ABody::setCooldown(unsigned long _cooldown)
+{
+  cooldown = world->turn + _cooldown;
+}
+
 bool ABody::recharged() {
   return (world->turn > cooldown);
 }

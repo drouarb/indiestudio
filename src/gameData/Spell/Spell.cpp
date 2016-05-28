@@ -63,6 +63,7 @@ void gauntlet::Spell::cast(Actor *caster)
     caster->getWorld()->playSound(soundEffect, false, targetedArea);
     targets = (caster->getWorld()->getCollider().*patternTypes.at(pattern))(targetedArea.first, targetedArea.second, caster->getOrientation(), radius, angle); //remplacer les 0 par des variables setées à 0 dans le constructy kthxbye
     ApplyDamage(targets, caster);
+    caster->setCooldown(castTime);
 }
 
 void gauntlet::Spell::setCaster(Actor* caster)

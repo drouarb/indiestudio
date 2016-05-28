@@ -69,6 +69,7 @@ namespace gauntlet
     virtual void			setTextureId();
     virtual void			setTextureId(int text);
     virtual void			setMeshId(int model);
+    virtual void            setCooldown(unsigned long _cooldown);
   };
 
 };
