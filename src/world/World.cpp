@@ -260,7 +260,7 @@ void	World::applyGatheringAndOpening()
 		  if ((gameobject = dynamic_cast<GameObject*>(body)) != NULL)
 		    {
 		      gameobject->open(&player->inventory);
-		      gameobject->gather(&player->inventory);
+		      gameobject->gather(player);
 		    }
 		  it2++;
 		}

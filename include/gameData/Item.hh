@@ -24,6 +24,7 @@ namespace gauntlet {
         int number;
         int price;
         bool key;
+        bool upgrade;
         Stats stats;
     public:
         Item();
@@ -37,6 +38,7 @@ namespace gauntlet {
         bool    operator<(Item item);
         int     getNewId();
         void    generateItem(int pf);
+        bool    isUpgrade();
     };
 };
 

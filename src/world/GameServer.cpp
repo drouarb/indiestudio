@@ -279,6 +279,7 @@ void		GameServer::sendMoveId(ABody *body)
 {
   network::PacketMoveEntity	packet(body->getEntityId(), body->getPos().first,
 				       body->getPos().second, body->getOrientation());
+  std::cout << "Packet : id : " << body->getEntityId() << " pos:" << body->getPos().first << ":" << body->getPos().second << " angle:" << body->getOrientation() << std::endl;
   unsigned int	i;
 
   i = 0;

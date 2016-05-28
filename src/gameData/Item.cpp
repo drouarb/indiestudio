@@ -32,6 +32,10 @@ int     gauntlet::Item::getNewId() {
     return (i++);
 }
 
+bool    gauntlet::Item::isUpgrade() {
+    return upgrade;
+}
+
 Stats   gauntlet::Item::getStats() {
     return this->stats;
 }
