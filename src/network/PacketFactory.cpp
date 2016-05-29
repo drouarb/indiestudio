@@ -16,6 +16,7 @@
 #include <network/packet/PacketStopSound.hh>
 #include <network/packet/PacketControl.hh>
 #include <network/packet/PacketAnimation.hh>
+#include <network/packet/PacketMap.hh>
 #include "network/PacketFactory.hh"
 #include "network/PacketFactorySocketDisconnectionListener.hh"
 
@@ -130,6 +131,7 @@ const std::map<gauntlet::network::PacketId, gauntlet::network::PacketFactory::cr
         {HANDSHAKE,       &PacketFactory::createPacket<PacketHandshake>},
         {PLAYER_SELECT,   &PacketFactory::createPacket<PacketSelectPlayer>},
         {START_GAME,      &PacketFactory::createPacket<PacketStartGame>},
+        {MAP,             &PacketFactory::createPacket<PacketMap>},
         {ADD_ENTITY,      &PacketFactory::createPacket<PacketAddEntity>},
         {MOVE_ENTITY,     &PacketFactory::createPacket<PacketMoveEntity>},
         {DELETE_ENTITY,   &PacketFactory::createPacket<PacketDeleteEntity>},
