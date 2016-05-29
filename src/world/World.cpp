@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sat May 28 16:36:35 2016 Alexis Trouve
-// Last update Sun May 29 18:23:34 2016 Esteban Lewis
+// Last update Mon May 30 00:42:36 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -42,7 +42,7 @@ void	World::loadGame(std::string const & file)
 
   if (!is)
     throw (std::runtime_error("Could not read file '" + file + "'"));
-
+  std::cout << "world loadGame 1" << std::endl;
   std::string content("");
   std::string tmp;
   while (!is.eof())
@@ -50,16 +50,16 @@ void	World::loadGame(std::string const & file)
       is >> tmp;
       content += tmp;
     }
-
+  std::cout << "world loadGame 2" << std::endl;
   JSON::JsonObj json;
   json.ParseFrom(content);
 
   mapAssetName = dynamic_cast<JSON::JsonStr &>(json.GetObj("asset_map")).Get();
   
   mapHeightName = dynamic_cast<JSON::JsonStr &>(json.GetObj("height_map")).Get();
-
+  std::cout << "world loadGame coll3" << std::endl;
   collider = new Collider(mapHeightName);
-
+  std::cout << "world loadGame coll4" << std::endl;
   sizeX = collider->getSizeMap().first;
   sizeY = collider->getSizeMap().second;
 
@@ -67,28 +67,31 @@ void	World::loadGame(std::string const & file)
     {
       JSON::JsonObj & endZone = dynamic_cast<JSON::JsonObj &>(json.GetObj("endZone"));
       endPos.first = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("posX")).Get());
-      endPos.second = sizeY - stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("posY")).Get());
+      endPos.second = (sizeY - 1) - stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("posY")).Get());
       endSize.first = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("sizeX")).Get());
       endSize.second = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("sizeY")).Get());
       
       JSON::JsonObj & spawn = dynamic_cast<JSON::JsonObj &>(json.GetObj("spawn"));
       spawnPoint.first = stod(dynamic_cast<JSON::JsonStr &>(spawn.GetObj("x")).Get());
-      spawnPoint.second = sizeY - stod(dynamic_cast<JSON::JsonStr &>(spawn.GetObj("y")).Get());
+      spawnPoint.second = (sizeY - 1) - stod(dynamic_cast<JSON::JsonStr &>(spawn.GetObj("y")).Get());
       if (spawnPoint.first < 0 || spawnPoint.first >= sizeX ||
 	  spawnPoint.second < 0 || spawnPoint.second >= sizeY)
 	throw (std::runtime_error("Spawn point coordinates are out of bounds"));
-
+  std::cout << "world loadGame dyn5" << std::endl;
       JSON::JsonArr & arr = dynamic_cast<JSON::JsonArr &>(json.GetObj("dynamic"));
       for (unsigned int i = 0; i < arr.Size(); ++i)
 	{
+  std::cout << "world loadGame dyn6" << std::endl;
 	  JSON::JsonObj & obj = dynamic_cast<JSON::JsonObj &>(arr[i]);
+  std::cout << "world loadGame dyn7" << std::endl;
 	  addNewBody(stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("x")).Get()),
-		     sizeY - stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("y")).Get()),
+		     (sizeY - 1) - stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("y")).Get()),
 		     dynamic_cast<JSON::JsonStr &>(obj.GetObj("name")).Get(),
 		     Math::getAngleFromDegrees
 		     (stoi(dynamic_cast<JSON::JsonStr &>(obj.GetObj("angle")).Get())));
+  std::cout << "world loadGame dyn8" << std::endl;
 	}
-
+  std::cout << "world loadGame9" << std::endl;
       JSON::JsonArr & sounds = dynamic_cast<JSON::JsonArr &>(json.GetObj("sounds"));
       for (unsigned int i = 0; i < sounds.Size(); ++i)
 	{
@@ -96,9 +99,9 @@ void	World::loadGame(std::string const & file)
 	  putSound(stoi(dynamic_cast<JSON::JsonStr &>(obj.GetObj("id")).Get()),
 		   std::pair<double, double>
 		   (stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("x")).Get()),
-		    sizeY - stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("y")).Get())));
+		    (sizeY - 1) - stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("y")).Get())));
 	}
-
+  std::cout << "world loadGame10" << std::endl;
       JSON::JsonArr & particles = dynamic_cast<JSON::JsonArr &>
 	(json.GetObj("particles"));
       for (unsigned int i = 0; i < particles.Size(); ++i)
@@ -109,8 +112,9 @@ void	World::loadGame(std::string const & file)
 		    (stoi(dynamic_cast<JSON::JsonStr &>(obj.GetObj("angle")).Get())),
 		    std::pair<double, double>
 		    (stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("x")).Get()),
-		     sizeY - stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("y")).Get())));
+		     (sizeY - 1) - stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("y")).Get())));
 	}
+  std::cout << "world loadGame11" << std::endl;
     }
   catch (std::runtime_error & e)
     {
@@ -281,7 +285,7 @@ void	World::applyGatheringAndOpening()
 
 int	World::addNewBody(double xpos, double ypos, const std::string& name, short orientation)
 {
-  std::cout << "world addnewbody" << std::endl;
+  std::cout << "world addnewbody pos:" << xpos << ":" << ypos << " name:" << name << std::endl;
 
   ABody	*body;
   std::pair<unsigned int, unsigned int>	sizeMap;
@@ -300,10 +304,14 @@ int	World::addNewBody(double xpos, double ypos, const std::string& name, short o
       throw (std::runtime_error("'" + name + "': wrong name"));
       exit(0);
     }
+  std::cout << "salut" << std::endl;
   body->changePos(std::make_pair(xpos, ypos));
   body->changeOrientation(orientation);
+  std::cout << "iron" << std::endl;
   gameServer->sendAddEntity(body);
+  std::cout << "coal" << std::endl;
   bodys.push_back(body);
+  std::cout << "copper" << std::endl;
   collider->setNewBodyNoCheckEntity(body);
   std::cout << "world addnewbody end" << std::endl;
   return (body->getId());
