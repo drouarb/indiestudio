@@ -4,6 +4,7 @@
 
 #include <gameData/SoundName.hh>
 #include <iostream>
+#include <stdlib.h>
 #include "Spell.hh"
 #include "World.hh"
 
@@ -60,13 +61,14 @@ void gauntlet::Spell::prepare(Actor *actor)
     unsigned int sound = caster->soundEffect[ABody::ATTACK].at(rand() % caster->soundEffect[ABody::ATTACK].size());
     caster->getWorld()->playSound(sound, false, actor->getPos());
     //lancer Animation sur caster
-//    caster->getWorld()->animeEntity(actor->getId(), caster->animations[ABody::ATTACK].at(rand() % caster->animations[ABody::ATTACK].size()));
+    caster->getWorld()->animeEntity(actor->getId(), caster->animations[ABody::ATTACK].at(rand() % caster->animations[ABody::ATTACK].size()));
     targetedArea = actor->pointInFront(range);
 }
 
 void gauntlet::Spell::cast(Actor *actor)
 {
     std::list<gauntlet::ABody*> targets;
+
     if (endingEffect > -1)
         endingId = caster->getWorld()->triggerEffect((EffectName) endingEffect, actor->getOrientation(), actor->getPos(), 1000);
     targets = (caster->getWorld()->getCollider().*patternTypes.at(pattern))(targetedArea.first, targetedArea.second, actor->getOrientation(), radius, angle); //remplacer les 0 par des variables setées à 0 dans le constructy kthxbye

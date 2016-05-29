@@ -1,0 +1,90 @@
+{
+  name: "berseker",
+  animation: [
+    {
+      name: "idle",
+      begin: "0",
+      end: "48"
+    },
+    {
+      name: "walk",
+      begin: "48",
+      end: "92"
+    },
+    {
+      name: "run",
+      begin: "92",
+      end: "117"
+    },
+    {
+      name: "attack_idle",
+      begin: "117",
+      end: "150"
+    },
+    {
+      name: "attack_1",
+      begin: "150",
+      end: "192"
+    },
+    {
+      name: "attack_2",
+      begin: "192",
+      end: "232"
+    },
+    {
+      name: "attack_3",
+      begin: "232",
+      end: "278"
+    },
+    {
+      name: "attack_4",
+      begin: "278",
+      end: "347"
+    },
+    {
+      name: "attack_5",
+      begin: "347",
+      end: "450"
+    },
+    {
+      name: "jump",
+      begin: "450",
+      end: "510"
+    },
+    {
+      name: "hit",
+      begin: "510",
+      end: "526"
+    },
+    {
+      name: "death",
+      begin: "526",
+      end: "600"
+    },
+    {
+      name: "recover",
+      begin: "600",
+      end: "740"
+    },
+    {
+      name: "taunt",
+      begin: "740",
+      end: "790"
+    },
+    {
+      name: "strafe_right",
+      begin: "790",
+      end: "815"
+    },
+    {
+      name: "strafe_left",
+      begin: "815",
+      end: "840"
+    },
+    {
+      name: "dodge_right",
+      begin: "840",
+      end: "865"
+    }
+  ]
+}
