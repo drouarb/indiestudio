@@ -13,6 +13,8 @@
 
 #endif
 
+#define SCALE_MAP 90
+
 #include <OgreCamera.h>
 #include <OgreEntity.h>
 #include <OgreLogManager.h>
