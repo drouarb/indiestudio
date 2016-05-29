@@ -334,8 +334,8 @@ std::list<gauntlet::ABody*>	EntityCollideLayer::giveBodyInAreaCircle(double posx
       int it_y = min_y;
       while (it_y <= max_y)
 	{
-	  for (std::list<ABody*>::const_iterator it = map[it_x][it_y].Entity.begin();
-	       it != map[it_x][it_y].Entity.end(); ++it)
+	  for (std::list<ABody*>::const_iterator it = map[it_y][it_x].Entity.begin();
+	       it != map[it_y][it_x].Entity.end(); ++it)
 	    {
 	      if (getDist(posx, posy, **it) < rayon)
 		list.push_back(*it);

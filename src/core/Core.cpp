@@ -3,18 +3,10 @@
 #include <stdlib.h>
 #include <sys/wait.h>
 #include "Core.hh"
-#include "MainMenu.hh"
 #include "Math.hh"
 #include "ListenerHandshake.hh"
 #include "ListenerStartGame.hh"
-#include "ListenerStopSound.hh"
-#include "ListenerPlaySound.hh"
-#include "ListenerAddParticle.hh"
-#include "ListenerDeleteParticle.hh"
-#include "ListenerAnimation.hh"
-#include "ListenerMap.hh"
 #include "PacketFactory.hh"
-#include "ConnectMenu.hh"
 #include "GameServer.hh"
 #include "PlayerController.hh"
 #include "CoreUIObserver.hh"
@@ -149,7 +141,7 @@ gauntlet::core::Core::createServer()
       _exit(0);
     }
   else
-    usleep(3000000); //TODO: server ready msg?
+    usleep(4000000); //TODO: server ready msg?
 }
 
 void

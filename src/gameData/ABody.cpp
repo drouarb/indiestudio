@@ -138,4 +138,16 @@ bool ABody::recharged() {
   return (world->getTurn() > cooldown);
 }
 
+void ABody::setRunning(animations::AnimationsListJson _running) {
+  this->running = _running;
+}
+
+void ABody::setIdle(animations::AnimationsListJson _idle) {
+  this->idle = _idle;
+}
+
+
+
+
+
 

@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 11:46:42 2016 Alexis Trouve
-// Last update Sun May 29 17:38:08 2016 Esteban Lewis
+// Last update Sun May 29 17:56:45 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -73,8 +73,8 @@ void			BasicAI::launchAI(gauntlet::Actor *actor)
     }
   if (savedPlayer == NULL)
     return ;
-  actor->changeOrientation(Math::getAngle(-atan2(savedPlayer->getPos().first - actor->getPos().first,
-						 savedPlayer->getPos().second - actor->getPos().second)));
+  actor->changeOrientation(Math::getAngle(-atan2(savedPlayer->getPos().second - actor->getPos().second,
+						 savedPlayer->getPos().first - actor->getPos().first)));
 
   idAttack = actor->spellBook.giveSpell(30, 30, true, NOAREA, 0, 100);
 

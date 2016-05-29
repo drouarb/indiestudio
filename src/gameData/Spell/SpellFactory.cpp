@@ -111,7 +111,7 @@ gauntlet::Spell *SpellFactory::getBarbarianTornado() {
 gauntlet::Spell *SpellFactory::iceBall() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Ice Ball", 1500, 200, 50, Area::COLUMN, SoundName::MAGIC_EXPLOSION_2, 200);
+  spell->setBasicStats(giveNextId(), "Ice Ball", 1500, 200, 50, Area::COLUMN, SoundName::MAGIC_EXPLOSION_2, 600);
   spell->setEffect(EffectName::SNOW, EffectName::BLIND);
   return spell;
 }
@@ -119,7 +119,7 @@ gauntlet::Spell *SpellFactory::iceBall() {
 gauntlet::Spell *SpellFactory::simpleAttack() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Simple Attack", 100, 10, 10, Area::CONE, SoundName::AXE_HIT_SOFT, 100);
+  spell->setBasicStats(giveNextId(), "Simple Attack", 100, 10, 10, Area::CONE, SoundName::AXE_HIT_SOFT, 500);
   spell->setConeAngle(60);
   return spell;
 }

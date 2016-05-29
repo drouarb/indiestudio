@@ -1,7 +1,5 @@
 #include "ActionLists.hh"
 #include "Core.hh"
-#include "EffectName.hh"
-#include "SoundName.hh"
 #include "Math.hh"
 
 gauntlet::core::ActionLists::ActionLists(Core & core) : core(core), pendingTracker(false)
@@ -51,9 +49,9 @@ gauntlet::core::ActionLists::doActions()
 	  std::size_t index = (*it)->getFilename().find(';');
 	  if (index != std::string::npos)
 	    {
+	      core.ogre.loadMap((*it)->getFilename().substr(index + 1));
 	      core.ogre.addMapEntity(-1, (*it)->getFilename().substr(0, index),
 				     0, 0, 0, TEXTURE_NONE);
-	      core.ogre.loadMap((*it)->getFilename().substr(index + 1));
 	    }
 	}
 

@@ -288,4 +288,6 @@ class OgreUI
 
   const std::string &getAnimationName(int animationId,
 				      const Ogre::Entity *pEntity) const;
+
+  void createAmbientLight();
 };

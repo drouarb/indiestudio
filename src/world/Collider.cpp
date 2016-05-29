@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 29 20:40:50 2016 Alexis Trouve
-// Last update Sun May 29 20:45:06 2016 Alexis Trouve
+// Last update Sun May 29 20:51:25 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -50,6 +50,7 @@ bool	Collider::forceMoveBody(int id, double posx, double posy)
 
 void				Collider::autoShift()
 {
+  std::cout << "autoshift" << std::endl;
   std::list<ABody*>		collideEntity;
   std::list<ABody*>::iterator	it;
   int				orient;
@@ -73,6 +74,7 @@ void				Collider::autoShift()
 	dynamicLayer->forceMoveId((*it)->getId(), (*it)->getPos().first, (*it)->getPos().second + vectY);
       it++;
     }
+  std::cout << "autoshift" << std::endl;
 }
 
 bool				Collider::applyVectorToId(int id, short orient, double speed)
