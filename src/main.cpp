@@ -9,7 +9,7 @@
 
 int main()
 {
-  StackTrace::init();
+//  StackTrace::init();
   gauntlet::core::Core();
   return (0);
 }
