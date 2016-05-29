@@ -32,7 +32,8 @@ void        GameObject::gather(Player *player)
 {
   if (gatherable)
   {
-  std::cout << "a" << std::endl;
+  std::cout << "MON NOM EST: " << this->name << std::endl;
+    std::cout << this->items->getItemList()->size() << std::endl;
     player->getInventory()->operator+=(this->items);
   std::cout << "b" << std::endl;
     player->getInventory()->useUpgrades(player);
@@ -79,7 +80,12 @@ ABody		*GameObject::clone(int id) const
 
   obj = new GameObject(id, world);
   obj->setItems(this->items);
-  obj->items->clone(this->items);
+  std::cout << "YIPEEEEEEE" << std::endl;
+  obj->items = this->items;
+  std::cout << "TANGUEEEEE" << std::endl;
+  std::cout << this->items->getItemList()->size() << std::endl;
+  std::cout << obj->items->getItemList()->size() << std::endl;
+  std::cout << "LEND LEASE" << std::endl;
   obj->setName(name);
   obj->setCollide(collideActive);
   obj->changePos(coord);
@@ -94,6 +100,7 @@ ABody		*GameObject::clone(int id) const
 
 void GameObject::addItem(Item item) {
   items->getItemList()->push_back(item);
+  std::cout << items->getItemList()->size() << std::endl;
 }
 
 

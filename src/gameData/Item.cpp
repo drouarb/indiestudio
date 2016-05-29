@@ -8,6 +8,7 @@
 // Last update Mon May  9 16:02:21 2016 Alexis Trouve
 //
 
+#include <iostream>
 #include "Item.hh"
 
 using namespace gauntlet;
@@ -49,9 +50,14 @@ bool    gauntlet::Item::operator==(Item item)
     return this->id == item.id;
 }
 
+bool    gauntlet::Item::compare(Item item, Item item2)
+{
+    return (true);
+}
+
 bool    gauntlet::Item::operator<(Item item)
 {
-    return true; //ne modifie pas l'ordre pour merge. sujet à changement.
+    return (item.id < item.id);
 }
 
 bool    gauntlet::Item::isKey() {
@@ -61,6 +67,9 @@ bool    gauntlet::Item::isKey() {
 void Item::setKey(bool _key) {
     key = _key;
 }
+
+
+
 
 
 
