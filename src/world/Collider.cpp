@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 29 20:40:50 2016 Alexis Trouve
-// Last update Sun May 29 20:51:25 2016 Alexis Trouve
+// Last update Sun May 29 21:00:04 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -57,13 +57,20 @@ void				Collider::autoShift()
   double			vectX;
   double			vectY;
 
+  std::cout << "1" << std::endl;
   collideEntity = dynamicLayer->getCollideBody();
+  std::cout << "2" << std::endl;
   it = collideEntity.begin();
+  std::cout << "3" << std::endl;
   while (it != collideEntity.end())
     {
+  std::cout << "4" << std::endl;
       orient = Rand::generate() % 628;
+  std::cout << "5" << std::endl;
       vectY = (Math::sin(orient) * (*it)->getSize().second / 2.0);
+  std::cout << "6" << std::endl;
       vectX = (Math::cos(orient) * (*it)->getSize().first / 2.0);
+  std::cout << "7" << std::endl;
       if (physicLayer->checkCoordSizeCanPass((*it)->getPos(),
 					     std::make_pair((*it)->getPos().first + vectX, (*it)->getPos().second),
 					     (*it)->getSize()) != false)
@@ -74,7 +81,7 @@ void				Collider::autoShift()
 	dynamicLayer->forceMoveId((*it)->getId(), (*it)->getPos().first, (*it)->getPos().second + vectY);
       it++;
     }
-  std::cout << "autoshift" << std::endl;
+  std::cout << "autoshift end" << std::endl;
 }
 
 bool				Collider::applyVectorToId(int id, short orient, double speed)

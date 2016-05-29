@@ -48,7 +48,10 @@ std::list<ABody*>	EntityCollideLayer::getCollideBody()
       while (it2 != resCircle.end())
 	{
 	  if ((*it2)->getId() == (*it1)->getId())
-	    resCircle.erase(it2);
+	    {
+	      resCircle.erase(it2);
+	      break;
+	    }
 	  it2++;
 	}
       it2 = resCircle.begin();
