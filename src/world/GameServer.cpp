@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Sun May 29 15:15:35 2016 Esteban Lewis
+// Last update Sun May 29 15:28:24 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -29,8 +29,9 @@ GameServer::GameServer(const std::string& filePath, in_port_t port)
   world = new World(this);
   try {
     world->loadGame(filePath);
-  } catch (std::runtime_error & e) {
+  } catch (std::exception & e) {
     std::cout << "errorMap " << e.what() << std::endl;
+    return ;
   }
   try {
     packetFact = new PacketFactory(port);
