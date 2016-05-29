@@ -38,7 +38,6 @@ namespace gauntlet
       void setBasicParameters(std::string _name, bool _gatherable, bool _openable);
       void addItem(Item item);
       void gather(Player *player);
-
       void setItems(ItemContainer *itemContainer);
   };
 };

@@ -33,26 +33,29 @@ void        GameObject::gather(Player *player)
   if (gatherable)
   {
   std::cout << "MON NOM EST: " << this->name << std::endl;
-    std::cout << this->items->getItemList()->size() << std::endl;
+    std::cout << this->name << this->items->getItemList()->size() << std::endl;
+    std::cout << player->getName() << player->getInventory()->getItemList()->size() << std::endl;
     player->getInventory()->operator+=(this->items);
-  std::cout << "b" << std::endl;
+    std::cout << this->name << this->items->getItemList()->size() << std::endl;
+    std::cout << player->getName() << player->getInventory()->getItemList()->size() << std::endl;
     player->getInventory()->useUpgrades(player);
-  std::cout << "c" << std::endl;
     world->notifyDeath(this);
-  std::cout << "d" << std::endl;
   }
 }
 
 void        GameObject::open(ItemContainer *curInventory) //unfinished
 {
   if (openable) {
+    std::cerr << "j'essaye d'ouvrir la " << this->name << std::endl;
     std::list<Item> *inv = curInventory->getItemList();
     for (auto item: *inv) {
       if (item.isKey())
       {
+        std::cerr << "j'ai la clé, sort! " << std::endl;
         inv->remove(item);
         world->playSound(SoundName::DOOR_STONE, false, this->getPos());
         world->notifyDeath(this);
+        this->collideActive = false;
         break;
       }
     }
@@ -80,12 +83,7 @@ ABody		*GameObject::clone(int id) const
 
   obj = new GameObject(id, world);
   obj->setItems(this->items);
-  std::cout << "YIPEEEEEEE" << std::endl;
   obj->items = this->items;
-  std::cout << "TANGUEEEEE" << std::endl;
-  std::cout << this->items->getItemList()->size() << std::endl;
-  std::cout << obj->items->getItemList()->size() << std::endl;
-  std::cout << "LEND LEASE" << std::endl;
   obj->setName(name);
   obj->setCollide(collideActive);
   obj->changePos(coord);

@@ -22,14 +22,11 @@ void ItemContainer::operator+=(ItemContainer *items)
 {
     if (itemList.size() == 0)
     {
-        std::cout << itemList.size() << std::endl;
-        std::cout << items->itemList.size() << std::endl;
         if (items->itemList.size() != 0)
             itemList = items->itemList;
         return ;
     }
     itemList.merge(items->itemList, Item::compare);
-    std::cout << "oky" << std::endl;
 }
 
 void ItemContainer::remove(gauntlet::Item item) {
