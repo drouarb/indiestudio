@@ -1,5 +1,11 @@
 //
-// Last update Sun May 29 14:20:23 2016 Alexis Trouve
+// GameServer.cpp for GameServer in /home/trouve_b/Desktop/CPP_project/cpp_indie_studio
+// 
+// Made by Alexis Trouve
+// Login   <trouve_b@epitech.net>
+// 
+// Started on  Sun May 22 21:29:03 2016 Alexis Trouve
+// Last update Sun May 29 14:25:39 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -146,6 +152,7 @@ void			GameServer::sendDatas(int socketId)
   it1 = bodys.begin();
   std::cout << packetMap.getFilename() << std::endl;
   packetFact->send(packetMap, socketId);
+  std::cout << "# map packet sent" << std::endl;
   while (it1 != bodys.end())
     {
       std::cout << "datasendEntity " << (*it1)->getId() << " pos:" << (*it1)->getPos().first << ":" << (*it1)->getPos().second << std::endl;

@@ -530,7 +530,7 @@ void OgreUI::createScene(void)
   mTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT, true);
   Ogre::Light *pointLight = this->mSceneMgr->createLight("PointLight");
   pointLight->setSpotlightInnerAngle(Ogre::Radian(0));
-  mSceneMgr->setAmbientLight(Ogre::ColourValue(Ogre::ColourValue::Blue));
+  mSceneMgr->setAmbientLight(Ogre::ColourValue(Ogre::ColourValue::White));
   pointLight->setSpotlightOuterAngle(Ogre::Radian(Ogre::Degree(180)));
   pointLight->setDiffuseColour(Ogre::ColourValue::White);
   pointLight->setSpecularColour(Ogre::ColourValue::White);
