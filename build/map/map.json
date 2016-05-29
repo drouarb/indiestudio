@@ -1,16 +1,40 @@
 {
     name : "Default map",
-    length : "10000",
-    width : "10000",
+    asset_map : "../media/models/map_of_doom.mesh",
+    height_map : "mapHeight/map_of_doom.pgm",
+    endZone :
+    {
+	posX : "1000"
+	posY : "1000"
+	sizeX : "100"
+	sizeY : "100"
+    },
     spawn :
     {
-	x : "100",
-	y : "100"
+	x : "300",
+	y : "300"
     },
-    map : "une_vraie_map.obj",
-    height_map : "maps/map.pgm",
     dynamic :
-    [ ],
+    [
+	{
+	    name : "Door",
+	    x : "600",
+	    y : "600",
+	    angle : "0"
+	},
+	{
+	    name : "Skeleton",
+	    x : "900",
+	    y : "900",
+	    angle : "0"
+	},
+	{
+	    name : "Key",
+	    x : "1200",
+	    y : "1200",
+	    angle : "0"
+	}
+    ],
     sounds:
     [
 	{

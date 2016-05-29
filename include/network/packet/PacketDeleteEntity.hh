@@ -15,7 +15,7 @@ namespace gauntlet {
             struct s_packetDeleteEntityData {
                 unsigned char packetId;
                 unsigned int entityId;
-            };
+            }__attribute__((packed));
 
         public:
             PacketDeleteEntity(unsigned int entityId);

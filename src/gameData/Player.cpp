@@ -73,3 +73,9 @@ ABody			*Player::clone(int id) const
   player->setIdAI(idAI);
   return (player);
 }
+
+ItemContainer *Player::getInventory() {
+  return (&this->inventory);
+}
+
+

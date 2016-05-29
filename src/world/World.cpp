@@ -46,8 +46,20 @@ void	World::loadGame(std::string const & file)
 
   try
     {
-      //sizeX = stoi(dynamic_cast<JSON::JsonStr &>(json.GetObj("length")).Get());
-      //sizeY = stoi(dynamic_cast<JSON::JsonStr &>(json.GetObj("width")).Get());
+      mapAssetName = dynamic_cast<JSON::JsonStr &>(json.GetObj("asset_map")).Get();
+
+      mapHeightName = dynamic_cast<JSON::JsonStr &>(json.GetObj("height_map")).Get();
+
+      collider = new Collider(mapHeightName);
+
+      std::cout << "x:" << (sizeX = collider->getSizeMap().first) << std::endl;
+      std::cout << "y:" << (sizeY = collider->getSizeMap().second) << std::endl;
+
+      JSON::JsonObj & endZone = dynamic_cast<JSON::JsonObj &>(json.GetObj("endZone"));
+      endPos.first = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("posX")).Get());
+      endPos.second = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("posY")).Get());
+      endSize.first = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("sizeX")).Get());
+      endSize.second = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("sizeX")).Get());
       
       JSON::JsonObj & spawn = dynamic_cast<JSON::JsonObj &>(json.GetObj("spawn"));
       spawnPoint.first = stod(dynamic_cast<JSON::JsonStr &>(spawn.GetObj("x")).Get());
@@ -55,15 +67,6 @@ void	World::loadGame(std::string const & file)
       if (spawnPoint.first < 0 || spawnPoint.first >= sizeX ||
 	  spawnPoint.second < 0 || spawnPoint.second >= sizeY)
 	throw (std::runtime_error("Spawn point coordinates are out of bounds"));
-
-      std::cout << "map: " << dynamic_cast<JSON::JsonStr &>(json.GetObj("map")).Get()
-		<< std::endl;
-      //TODO map
-
-      std::cout << "height map: "
-		<< dynamic_cast<JSON::JsonStr &>(json.GetObj("height_map")).Get()
-		<< std::endl;
-      //TODO height map
 
       JSON::JsonArr & arr = dynamic_cast<JSON::JsonArr &>(json.GetObj("dynamic"));
       for (unsigned int i = 0; i < arr.Size(); ++i)
@@ -101,6 +104,7 @@ void	World::loadGame(std::string const & file)
     }
   catch (std::runtime_error & e)
     {
+      std::cout << "error loader" << std::endl;
       if (collider)
 	delete collider;
       collider = NULL;
@@ -137,23 +141,36 @@ void		World::applyAI()
   Player		*nplay;
 
   it1 = bodys.begin();
+  //std::cout << "1" << std::endl;
   while (it1 != bodys.end())
     {
+      //std::cout << "2" << std::endl;
       if ((nplay = dynamic_cast<Player*>(*it1)) != NULL)
-	players.push_back(nplay);
+	{
+	  //std::cout << "3" << std::endl;
+	  players.push_back(nplay);
+	}
+      //std::cout << "4" << std::endl;
       it1++;
     }
+  //std::cout << "5" << std::endl;
   j = 0;
+  //std::cout << "6" << std::endl;
   while (j < players.size())
     {
+      //std::cout << "7" << std::endl;
       i = 0;
+      //std::cout << "8" << std::endl;
       while (i < AIs.size())
 	{
+	  //std::cout << "9" << std::endl;
 	  AIs[i]->launchAI(players[j]->getPos());
 	  ++i;
 	}
+      //std::cout << "10" << std::endl;
       ++j;
     }
+  //std::cout << "11" << std::endl;
 }
 
 void		World::gameLoop()
@@ -161,7 +178,7 @@ void		World::gameLoop()
   std::cout << "world gameLoop" << std::endl;
   stopwatch.set();
   turn = 0;
-  while (42 == 42)
+  while (42)
     {
       if (stopwatch.ellapsedMs() < ROUND_DURATION)
 	usleep(ROUND_DURATION * 1000 - stopwatch.ellapsedMs());
@@ -170,10 +187,61 @@ void		World::gameLoop()
 	applyAI();
       applyMoveActor();
       if (turn % GATHERING_PRIORITY == 0)
-	applyGatheringAndOpening();
+      applyGatheringAndOpening();
+      if (turn % WIN_PRIORITY == 0)
+	checkWin();
+      if (turn % RESPAWN_PRIORITY == 0)
+	checkRespawn();
       ++turn;
     }
   std::cout << "world gameLoop end" << std::endl;
+}
+
+void	World::checkRespawn()
+{
+  unsigned int		i;
+  Player		*player;
+
+  i = 0;
+  while (i < deathPlayers.size())
+    {
+      deathPlayers[i].coolDownRespawn -= RESPAWN_PRIORITY;
+      if (deathPlayers[i].coolDownRespawn)
+	{
+	  player = deathPlayers[i].player;
+	  player->stats.HP = player->stats.normalHP;
+	}
+      ++i;
+    }
+}
+
+void	World::checkWin()
+{
+  std::list<ABody*>::iterator	it;
+  ABody				*body;
+  Player			*player;
+  bool				pass;
+
+  it = bodys.begin();
+  pass = false;
+  while (it != bodys.end())
+    {
+      body = (*it);
+      if ((player = dynamic_cast<Player*>(body)) != NULL)
+	{
+	  pass = true;
+	  if (player->getPos().first < endPos.first
+	      || player->getPos().first + player->getSize().first > endPos.first + endSize.first
+	      || player->getPos().second < endPos.second
+	      || player->getPos().second + player->getSize().second > endPos.second + endSize.second)
+	    return ;
+	}
+      it++;
+    }
+  if (pass == false)
+    return ;
+  gameServer->decoAll("Good game, you win.");
+  exit(0);
 }
 
 void	World::applyGatheringAndOpening()
@@ -202,7 +270,8 @@ void	World::applyGatheringAndOpening()
 		  if ((gameobject = dynamic_cast<GameObject*>(body)) != NULL)
 		    {
 		      gameobject->open(&player->inventory);
-		      gameobject->gather(&player->inventory);
+		      gameobject->gather(player);
+                std::cerr << "Que se passe-t-il " << player->inventory.getItemList()->size() << std::endl;
 		    }
 		  it2++;
 		}
@@ -218,12 +287,20 @@ int	World::addNewBody(double xpos, double ypos, const std::string& name, short o
   ABody	*body;
   std::pair<unsigned int, unsigned int>	sizeMap;
 
-  body = Factory->giveBody(name);
+  if ((body = Factory->giveBody(name)) == NULL)
+    throw (std::runtime_error(name + " does not exist"));
   if ((xpos - (body->getSize().first / 2.0)) < 0 || (xpos + (body->getSize().first / 2.0)) >= sizeX
       || (ypos - (body->getSize().second / 2.0)) < 0 || (ypos + (body->getSize().second / 2.0)) >= sizeY)
-    throw (std::runtime_error(name + " is out of bounds"));
+    {
+      std::cout << "error" << std::endl;
+      throw (std::runtime_error(name + " is out of bounds"));
+      exit(0);
+    }
   if (body == NULL)
-    throw (std::runtime_error("'" + name + "': wrong name"));
+    {
+      throw (std::runtime_error("'" + name + "': wrong name"));
+      exit(0);
+    }
   body->changePos(std::make_pair(xpos, ypos));
   body->changeOrientation(orientation);
   gameServer->sendAddEntity(body);
@@ -237,7 +314,9 @@ void		World::notifyDeath(ABody *body)
 {
   std::cout << "world notify Death" << std::endl;
   unsigned int	i;
+  Player	*player;
 
+  std::cout << "on notify une mort OMG id : " << body->getId() << std::endl;
   collider->suprBody(body->getId());
   i = 0;
   while (i < AIs.size())
@@ -245,6 +324,8 @@ void		World::notifyDeath(ABody *body)
       AIs[i]->suprActor(body->getId());
       ++i;
     }
+  if ((player = dynamic_cast<Player*>(body)) != NULL)
+    deathPlayers.push_back({450, player});
   std::cout << "world notify Death end" << std::endl;
 }
 
@@ -253,13 +334,18 @@ void		World::deleteId(int id)
   std::cout << "world deleteId" << std::endl;
   unsigned int	i;
   std::list<ABody*>::iterator it1;
+  ABody				*body;
 
   collider->suprBody(id);
   it1 = bodys.begin();
   while (it1 != bodys.end())
     {
       if (id == (*it1)->getId())
-	bodys.erase(it1);
+	{
+	  body = (*it1);
+	  bodys.erase(it1);
+	  break;
+	}
       it1++;
     }
   i = 0;
@@ -268,6 +354,8 @@ void		World::deleteId(int id)
       AIs[i]->suprActor(id);
       ++i;
     }
+  gameServer->sendDeleteEntity(body);
+  delete (body);
   std::cout << "world deleteId end" << std::endl;
 }
 
@@ -488,4 +576,14 @@ void				World::animeEntity(int id, unsigned int animeId)
 unsigned long			World::getTurn() const
 {
   return (turn);
+}
+
+std::string		World::getMapNames() const
+{
+  return (mapAssetName + ";" + mapHeightName);
+}
+
+std::pair<double, double>	World::getSize() const
+{
+  return (std::make_pair(sizeX, sizeY));
 }

@@ -35,9 +35,10 @@ namespace gauntlet
 
       virtual ABody		*clone(int id) const;
       void open(ItemContainer *curInventory);
-      void gather(ItemContainer *curInventory);
       void setBasicParameters(std::string _name, bool _gatherable, bool _openable);
       void addItem(Item item);
+      void gather(Player *player);
+      void setItems(ItemContainer *itemContainer);
   };
 };
 

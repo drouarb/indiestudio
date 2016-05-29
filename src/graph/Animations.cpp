@@ -29,9 +29,9 @@ bool animations::JSONAnimation::update(double elapsedTime)
 }
 
 animations::JSONAnimation::JSONAnimation(const std::string &filename,
-		       const std::string &animationName,
-		       Ogre::AnimationState *animationState,
-		       bool loop) : filename(
+					 const std::string &animationName,
+					 Ogre::AnimationState *animationState,
+					 bool loop) : filename(
 	filename), animationState(animationState)
 {
   this->jsonObj.ParseFrom(filename);
@@ -44,31 +44,35 @@ animations::JSONAnimation::JSONAnimation(const std::string &filename,
 void gauntlet::animations::JSONAnimation::findProprerties(
 	const std::string &animationName)
 {
-  ::JSON::JsonArr &arr = dynamic_cast<::JSON::JsonArr &>(this->jsonObj.GetObj(
-	  "Animation"));
+  std::string an = animationName;
+  std::transform(an.begin(), an.end(), an.begin(), ::toupper);
+  ::JSON::JsonArr &
+	  arr = dynamic_cast<::JSON::JsonArr &>(this->jsonObj.GetObj(
+		  "Animation"));
   for (size_t i = 0; i < arr.Size(); ++i)
     {
       ::JSON::JsonObj &json = dynamic_cast<::JSON::JsonObj &>(arr[i]);
-      const std::string &name = dynamic_cast<::JSON::JsonStr &>(json.GetObj(
+      std::string name = dynamic_cast<::JSON::JsonStr &>(json.GetObj(
 	      "name")).Get();
-      if (name == animationName)
-	{
-	  this->name = name;
-	  try
-	    {
-	      this->begin = stod(
-		      dynamic_cast<::JSON::JsonStr &>(json.GetObj(
-			      "begin")).Get());
-	      this->end = stod(
-		      dynamic_cast<::JSON::JsonStr &>(json.GetObj(
-			      "end")).Get());
-	    } catch (std::invalid_argument)
-	    {
-	      throw std::runtime_error("Invalid number");
-	    }
-	  this->currentTimePosition = 0;
-	  return;
-	}
+      std::transform(name.begin(), name.end(), name.begin(), ::toupper);
+      if (an == name)
+      {
+	this->name = name;
+	try
+	  {
+	    this->begin = stod(
+		    dynamic_cast<::JSON::JsonStr &>(json.GetObj(
+			    "begin")).Get());
+	    this->end = stod(
+		    dynamic_cast<::JSON::JsonStr &>(json.GetObj(
+			    "end")).Get());
+	  } catch (std::invalid_argument)
+	  {
+	    throw std::runtime_error("Invalid number");
+	  }
+	this->currentTimePosition = 0;
+	return;
+      }
     }
   throw std::logic_error("Cannot find " + animationName);
 }

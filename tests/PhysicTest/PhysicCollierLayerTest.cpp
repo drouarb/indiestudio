@@ -7,7 +7,7 @@
 #include "world/PhysicCollideLayer.hh"
 
 int main() {
-    std::cout << "" << std::endl;
+  /*    std::cout << "" << std::endl;
     gauntlet::world::PhysicCollideLayer physicCollideLayer(10, 10);
 
     assert(physicCollideLayer.isWall(0, 0) == false);
@@ -16,7 +16,7 @@ int main() {
 
     assert(physicCollideLayer.isWall(0, 0) == true);
 
-    physicCollideLayer.setWall(5, 5, 2, 2);
+    physicCollideLayer.setWall(5, 5, 2, 2);*/
 //
 //    assert(physicCollideLayer.checkCoordSize(5, 5, 2, 2) == true);
 

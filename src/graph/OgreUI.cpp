@@ -553,7 +553,7 @@ void OgreUI::createScene(void)
   mTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT, true);
   Ogre::Light *pointLight = this->mSceneMgr->createLight("PointLight");
   pointLight->setSpotlightInnerAngle(Ogre::Radian(0));
-  mSceneMgr->setAmbientLight(Ogre::ColourValue(Ogre::ColourValue::Blue));
+  mSceneMgr->setAmbientLight(Ogre::ColourValue(Ogre::ColourValue::White));
   pointLight->setSpotlightOuterAngle(Ogre::Radian(Ogre::Degree(180)));
   pointLight->setDiffuseColour(Ogre::ColourValue::White);
   pointLight->setSpecularColour(Ogre::ColourValue::White);
@@ -566,7 +566,7 @@ void OgreUI::createScene(void)
   pointLight3->setPosition(0, 200, -200);
   pointLight3->setPowerScale(8900000);
   mSceneMgr->setSkyBox(true, "Examples/SceneSkyBox");
-  addMapEntity(9000, MAP_TEST, 0, 0, 0, TEXTURE_NONE);
+  //addMapEntity(9000, MAP_TEST, 0, 0, 0, TEXTURE_NONE);
 }
 
 
@@ -725,12 +725,15 @@ bool __attribute_deprecated__ OgreUI::addWorldEntity(int entityId,
 						     EntityName meshid, int x,
 						     int y,
 						     short angle,
+
 						     TextureName texture_id)
 {
   std::stringstream ss;
   ss << entityId;
   Ogre::Entity *e;
-
+  int z = 0;
+  if (this->heightmap.isLoaded())
+    z = this->heightmap.at(x, y);
   if (mSceneMgr->hasEntity(ss.str()))
     {
       this->moveEntity(entityId, x, y, angle);
@@ -739,15 +742,16 @@ bool __attribute_deprecated__ OgreUI::addWorldEntity(int entityId,
   try
     {
       e = mSceneMgr->createEntity(ss.str(), meshmap.at(meshid).c_str());
-      playAnimation(entityId, 1, true);
-    } catch (...)
+    } catch (Ogre::Exception & e)
     {
+      std::cerr << e.what() << std::endl;
       return false;
     }
   if (texture_id != TextureName::TEXTURE_NONE)
     e->setMaterialName(texturemap.at(texture_id));
+
   Ogre::SceneNode *s = worldNode->createChildSceneNode(ss.str());
-  s->setPosition(x, 0, y);
+  s->setPosition(x, z, y);
   s->attachObject(e);
   return (true);
 }
@@ -880,17 +884,30 @@ void OgreUI::stopEffect(int id)
 
 void OgreUI::moveEntity(int id, int x, int y, short degres)
 {
+  int z = 0;
+  int diff = 0;
   std::stringstream ss;
   ss << id;
+  if (this->heightmap.isLoaded())
+    {
+      z = this->heightmap.at(x, y);
+    }
   Ogre::SceneNode *s = mSceneMgr->getSceneNode(ss.str());
-  Ogre::Vector3 des(x, 0, y);
+  Ogre::Vector3 des(x, z, y);
+  if (des != s->getPosition())
+    diff = 1;
   Ogre::Vector3 direction;
   direction = des - s->getPosition();
   direction.normalise();
-  s->translate(direction);
+  s->setPosition(x, z, y);
   if (rootNode != NULL && s == rootNode)
     {
-      this->mCamera->move(direction);
+      if (diff == 1)
+	{
+	  mCamera->setPosition(s->getPosition().x, mCamera->getPosition().y,
+			       s->getPosition().z - 700);
+	  this->mCamera->lookAt(s->getPosition());
+	}
     }
   s->yaw(Ogre::Radian(world::Math::toRad(degres)) -
 	 s->getOrientation().getYaw());
@@ -902,7 +919,7 @@ void OgreUI::addCameraTracker(int id)
   ss << id;
   Ogre::SceneNode *s = mSceneMgr->getSceneNode(ss.str());
   rootNode = s;
-  mCamera->setPosition(s->getPosition().x, mCamera->getPosition().y + 550,
+  mCamera->setPosition(s->getPosition().x, mCamera->getPosition().y + 650,
 		       s->getPosition().z - 700);
   mCamera->lookAt(s->getPosition());
   mCamera->pitch(Ogre::Degree(0));
@@ -920,7 +937,12 @@ bool OgreUI::addMapEntity(int entityId, gauntlet::EntityName meshid, int x,
 {
   std::stringstream ss;
   ss << entityId;
+  int z = 0;
   Ogre::Entity *e;
+  if (this->heightmap.isLoaded())
+    {
+      z = this->heightmap.at(x, y);
+    }
   if (mSceneMgr->hasEntity(ss.str()) == true)
     {
       this->moveEntity(entityId, x, y, angle);
@@ -938,8 +960,7 @@ bool OgreUI::addMapEntity(int entityId, gauntlet::EntityName meshid, int x,
   if (texture_id != TextureName::TEXTURE_NONE)
     e->setMaterialName(texturemap.at(texture_id));
   Ogre::SceneNode *s = planNode->createChildSceneNode(ss.str());
-  s->setPosition(x, 0, y);
-//  s->setScale(1, 1, 1);
+  s->setPosition(x, z, y);
   s->yaw(Ogre::Radian(world::Math::toRad(angle)));
   s->attachObject(e);
   return (true);
@@ -987,9 +1008,47 @@ void OgreUI::load3dSound(int id, SoundName name, int x, int y)
   if (name != SOUND_NONE)
     if ((sound = mSoundManager->createSound(ss.str(), soundmap.at(name))))
       {
-//        addWorldEntity(1000, BERSERK, 0, 0, 0, NINjA_M);
 	mSceneMgr->getSceneNode("1000")->attachObject(sound);
 	mCamera->getParentSceneNode()->attachObject(
 		this->mSoundManager->getListener());
       }
 }
+
+bool OgreUI::loadMap(const std::string &map)
+{
+  return (this->heightmap.load(map));
+}
+
+bool OgreUI::addMapEntity(int entityId, const std::string &path, int x, int y,
+			  short angle, gauntlet::TextureName texture_id)
+{
+  std::stringstream ss;
+  ss << entityId;
+  int z = 0;
+  Ogre::Entity *e;
+  if (this->heightmap.isLoaded())
+    {
+      z = this->heightmap.at(x, y);
+    }
+  try
+    {
+      e = mSceneMgr->createEntity(ss.str(), path);
+    }
+  catch (Ogre::Exception &e)
+    {
+      std::cerr << e.what() << std::endl;
+      return false;
+    }
+  if (texture_id != TextureName::TEXTURE_NONE)
+    e->setMaterialName(texturemap.at(texture_id));
+  Ogre::SceneNode *s = planNode->createChildSceneNode(ss.str());
+  s->setPosition(x, z, y);
+  s->scale(SCALE_MAP, SCALE_MAP, SCALE_MAP);
+  s->yaw(Ogre::Radian(world::Math::toRad(angle)));
+  s->attachObject(e);
+  return (true);
+}
+
+
+
+

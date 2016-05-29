@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:51:22 2016 Alexis Trouve
-// Last update Sat May 28 15:19:29 2016 Alexis Trouve
+// Last update Sun May 29 13:44:46 2016 Alexis Trouve
 //
 
 #ifndef WORLD_HH_
@@ -30,6 +30,8 @@
 # define ROUND_DURATION 33
 # define AI_PRIORITY 15
 # define GATHERING_PRIORITY 5
+# define WIN_PRIORITY 30
+# define RESPAWN_PRIORITY 60
 
 namespace			gauntlet
 {
@@ -52,6 +54,12 @@ namespace			gauntlet
       int			decayTime;
     };
 
+    struct			playerDeath
+    {
+      int			coolDownRespawn;
+      Player			*player;
+    };
+
     class			GameServer;
     
     class			World
@@ -69,8 +77,11 @@ namespace			gauntlet
       std::vector<soundGlobal*>	soundTab;
       Stopwatch			stopwatch;
       unsigned long		turn;
-      
-      //network::PacketFactory	packetFactory;
+      std::pair<double, double>	endPos;
+      std::pair<double, double>	endSize;
+      std::vector<playerDeath>	deathPlayers;
+      std::string		mapAssetName;
+      std::string		mapHeightName;
     private:
       int			getUniqueEffectId();
     public:
@@ -106,6 +117,10 @@ namespace			gauntlet
       void			animeEntity(int id, unsigned int animeId);
       unsigned long		getTurn() const;
       void			applyGatheringAndOpening();
+      void			checkWin();
+      void			checkRespawn();
+      std::string		getMapNames() const;
+      std::pair<double, double>	getSize() const;
     };
   };
 };

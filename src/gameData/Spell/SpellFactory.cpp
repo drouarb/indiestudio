@@ -123,4 +123,3 @@ gauntlet::Spell *SpellFactory::simpleAttack() {
   spell->setConeAngle(60);
   return spell;
 }
-

@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 25 18:33:27 2016 Alexis Trouve
-// Last update Thu May 26 13:07:35 2016 Alexis Trouve
+// Last update Sun May 29 15:09:57 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -79,7 +79,10 @@ bool		EntityCollideLayer::canMovePoint(double posx, double posy, int id)
 	  if (posx >= pos.first && posx <= pos.first + size.first
 	      && posy >= pos.second && posy <= pos.second + size.second
 	      && (*it1)->getCollide() == true)
-	    return (false);
+	    {
+	      std::cout << "collide with " << (*it1)->getId() << std::endl;
+	      return (false);
+	    }
 	}
       it1++;
     }

@@ -54,8 +54,9 @@ gauntlet::HeightMap::load(std::string const & filename)
   std::stringstream ss;
   ss.str(content);
   std::string c;
-  while (ss >> c)
+  while (!ss.eof())
     {
+      ss >> c;
       if (c.length() > 0)
 	{
 	  map[i] = (unsigned char)stoi(c);
@@ -72,8 +73,8 @@ gauntlet::HeightMap::at(double x, double y)
   if (!map)
     throw (std::runtime_error("HeightMap not loaded"));
 
-  int hm_x = (int)round(x / HEIGHT_MAP_SCALE);
-  int hm_y = (int)round(y / HEIGHT_MAP_SCALE);
+  int hm_x = (int)floor(x / HEIGHT_MAP_SCALE);
+  int hm_y = (int)floor(y / HEIGHT_MAP_SCALE);
   if (hm_x >= width || hm_x < 0 || hm_y >= height || hm_y < 0)
     throw (std::invalid_argument("HeightMap coordinates"));
   return (map[hm_y * width + hm_x]);
@@ -92,4 +93,20 @@ gauntlet::HeightMap::linelength(std::string const & line)
 	len++;
     }
   return (len);
+}
+
+std::pair<double, double>
+gauntlet::HeightMap::getSize() const
+{
+  if (!map)
+    throw (std::runtime_error("HeightMap not loaded"));
+
+  return (std::pair<double, double>((double)width * HEIGHT_MAP_SCALE,
+				    (double)height * HEIGHT_MAP_SCALE));
+}
+
+bool
+gauntlet::HeightMap::isLoaded() const
+{
+  return (map != NULL);
 }

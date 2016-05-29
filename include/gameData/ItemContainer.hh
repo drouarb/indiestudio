@@ -10,6 +10,7 @@
 
 namespace gauntlet
 {
+    class Player;
     class ItemContainer
     {
       std::list <Item> itemList;
@@ -18,8 +19,10 @@ namespace gauntlet
       ~ItemContainer();
 
         std::list<Item> *getItemList();
-      void    remove(Item item);
-      void    operator+=(ItemContainer *itemContainer);
+        void    remove(Item item);
+        void useUpgrades(Player *player);
+        void clone(ItemContainer *itemContainer);
+        void operator+=(ItemContainer *items);
     };
 };
 

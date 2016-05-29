@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 15:52:38 2016 Esteban Lewis
-// Last update Fri May 27 19:46:03 2016 Esteban Lewis
+// Last update Sun May 29 13:13:19 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -54,8 +54,10 @@ gauntlet::core::PlayerController::setAngle(short newangle)
 {
   angle = newangle;
 
+  core.networkmutex.lock();
   if (core.gameIsRunning() && core.packetf)
     core.packetf->send(network::PacketControl(NONE, angle));
+  core.networkmutex.unlock();
 }
 
 void
@@ -90,6 +92,9 @@ gauntlet::core::PlayerController::doCmd(Command key, bool down)
     }
   if (!ok)
     return;
-  
-  core.packetf->send(network::PacketControl((unsigned char)key, angle));
+
+  core.networkmutex.lock();
+  if (core.packetf)
+    core.packetf->send(network::PacketControl((unsigned char)key, angle));
+  core.networkmutex.unlock();
 }

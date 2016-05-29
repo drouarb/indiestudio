@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include "Core.hh"
+#include "PhysicCollideLayer.hh"
 
 int main()
 {

@@ -16,7 +16,7 @@ namespace gauntlet {
                 unsigned char packetId;
                 unsigned char cmd;
                 short angle;
-            };
+            }__attribute__((packed));
 
         public:
             PacketControl(s_socketData data);

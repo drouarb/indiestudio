@@ -22,7 +22,7 @@ t_rawdata *gauntlet::network::PacketDisconnect::serialize() const {
     data->resize(sizeof(s_packetDisconnectData) + message.length(), 0);
     s_packetDisconnectData *packetDisconnectData = reinterpret_cast<s_packetDisconnectData *>(&data->front());
     packetDisconnectData->packetId = this->getPacketId();
-    packetDisconnectData->stringsize = message.size();
+    packetDisconnectData->stringsize = static_cast<int>(message.size());
     strcpy(&packetDisconnectData->stringstart, message.c_str());
     return data;
 }

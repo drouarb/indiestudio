@@ -16,7 +16,7 @@ namespace gauntlet {
                 unsigned char packetId;
                 unsigned int entityId;
                 unsigned int animationId;
-            };
+            }__attribute__((packed));
 
         public:
             PacketAnimation(s_socketData data);

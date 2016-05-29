@@ -1,13 +1,3 @@
-//
-// GameServer.cpp for GameServer in /home/trouve_b/Desktop/CPP_project/cpp_indie_studio
-// 
-// Made by Alexis Trouve
-// Login   <trouve_b@epitech.net>
-// 
-// Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Fri May 27 22:30:35 2016 Alexis Trouve
-//
-
 #include <iostream>
 #include "PlayerChars.hh"
 #include "ServSelectPlayerListener.hh"
@@ -22,16 +12,23 @@ using namespace network;
 
 GameServer::GameServer(const std::string& filePath, in_port_t port)
 {
+  dataSendThread = NULL;
   std::cout << "GameServer build" << std::endl;
   unsigned int	i;
 
   world = new World(this);
   try {
     world->loadGame(filePath);
-  } catch (...) {
-    std::cout << "errorMap" << std::endl;
+  } catch (std::exception & e) {
+    std::cout << "errorMap " << e.what() << std::endl;
+    return ;
   }
-  packetFact = new PacketFactory(port);
+  try {
+    packetFact = new PacketFactory(port);
+  } catch (std::exception & f) {
+    std::cout << "PacketFactory failed creation" << std::endl;
+    return ;
+  }
   players.push_back({"Barbare", -1, false, -1});
   players.push_back({"Mage", -1, false, -1});
   players.push_back({"Valkyrie", -1, false, -1});
@@ -55,7 +52,8 @@ GameServer::GameServer(const std::string& filePath, in_port_t port)
 
 GameServer::~GameServer()
 {
-  dataSendThread->join();
+  /*if (dataSendThread)
+    dataSendThread->join();*/
 }
 
 void		GameServer::connectAnswer(const network::PacketConnect *packet)
@@ -75,6 +73,7 @@ void		GameServer::selectPlayerAnswer(const network::PacketSelectPlayer *packet)
   unsigned int	i;
   int		id;
 
+  dataSendMutex.lock();
   i = 0;
   nbrChoose = -1;
   while (i < connectTmp.size())
@@ -117,37 +116,49 @@ void		GameServer::selectPlayerAnswer(const network::PacketSelectPlayer *packet)
       players[iTaken].isTake = true;
       players[iTaken].socketId = packet->getSocketId();
       connectTmp.erase(connectTmp.begin() + i);
-      dataSendMutex.lock();
-      PacketStartGame	myPacket((id = world->addNewBody(world->getSpawnPoint().first,
-							 world->getSpawnPoint().second,
-							 players[iTaken].name, 0)));
+      try {
+      id = world->addNewBody(world->getSpawnPoint().first,
+			     world->getSpawnPoint().second,
+			     players[iTaken].name, 0);
+      } catch (std::exception & e) {
+	std::cout << "new Player : " << e.what() << std::endl;
+	exit(0);
+      }
+      PacketStartGame	myPacket(id);
       players[iTaken].idPlayer = id;
       packetFact->send(myPacket, packet->getSocketId());
       dataSendThread = new std::thread(std::bind(&GameServer::sendDatas, std::ref(*this), packet->getSocketId()));
-      dataSendMutex.unlock();
     }
   else
     sendHandShake(packet->getSocketId());
+  dataSendMutex.unlock();
   std::cout << "selectplayerend" << std::endl;
 }
 
 void			GameServer::sendDatas(int socketId)
 {
+  std::cout << "sendData socket:" << socketId << std::endl;
   std::list<ABody*>	bodys;
   std::vector<effectGlobal*>	effectTab;
   std::vector<soundGlobal*>	soundTab;
   std::list<ABody*>::iterator	it1;
   unsigned int			i;
+  PacketMap			packetMap(0, world->getMapNames());
 
   bodys = world->getBodysByCopy();
   soundTab = world->getSoundByCopy();
   effectTab = world->getEffectByCopy();
   it1 = bodys.begin();
+  std::cout << packetMap.getFilename() << std::endl;
+  packetFact->send(packetMap, socketId);
+  std::cout << "# map packet sent" << std::endl;
   while (it1 != bodys.end())
     {
-      network::PacketAddEntity	packet((*it1)->getEntityId(), (*it1)->getTextureId(),
-				       (*it1)->getMeshId(), static_cast<int>((*it1)->getPos().first),
-				       static_cast<int>((*it1)->getPos().second), (*it1)->getOrientation());
+      std::cout << "datasendEntity " << (*it1)->getId() << " pos:" << (*it1)->getPos().first << ":" << (*it1)->getPos().second << std::endl;
+      network::PacketAddEntity	packet((*it1)->getEntityId(), (*it1)->getTextureId(), (*it1)->getMeshId(),
+				       world->getSize().first - static_cast<int>((*it1)->getPos().first),
+				       world->getSize().second - static_cast<int>((*it1)->getPos().second),
+				       (*it1)->getOrientation());
       packetFact->send(packet, socketId);
       it1++;
     }
@@ -165,6 +176,7 @@ void			GameServer::sendDatas(int socketId)
 		 effectTab[i]->pos, effectTab[i]->decayTime);
       ++i;
     }
+  std::cout << "sendData end" << std::endl;
 }
 
 void			GameServer::notifyTake()
@@ -230,7 +242,7 @@ void		GameServer::sendDeco(int socketId, const std::string& msg)
   std::cout << "sendDecoEnd" << std::endl;
 }
 
-void		GameServer::DecoAll()
+void		GameServer::decoAll(const std::string& msg)
 {
   std::cout << "DecoAll" << std::endl;
   unsigned int		i;
@@ -239,29 +251,23 @@ void		GameServer::DecoAll()
   while (i < players.size())
     {
       if (players[i].socketId != -1)
-	sendDeco(players[i].socketId, "You have been disconnected");
+	sendDeco(players[i].socketId, msg);
       ++i;
     }
   i = 0;
   while (i < connectTmp.size())
     {
-      sendDeco(connectTmp[i], "You have been disconnected");
+      sendDeco(connectTmp[i], "You have been disconnected by the server before your total login");
       ++i;
     }
   std::cout << "DecoAllEnd" << std::endl;
-}
-
-void		GameServer::sendMap()
-{
-  std::cout << "sendMap" << std::endl;
-  std::cout << "sendMaEnd" << std::endl;
 }
 
 void		GameServer::sendAddEntity(ABody *body)
 {
   std::cout << "sendAddEntity" << body->getEntityId() << " " << body->getPos().first << ":" << body->getPos().second << ":" << body->getOrientation() << std::endl;
   unsigned int	i;
-  network::PacketAddEntity	packet(body->getEntityId(), body->getTextureId(), body->getMeshId(), static_cast<int>(body->getPos().first), static_cast<int>(body->getPos().second), body->getOrientation());
+  network::PacketAddEntity	packet(body->getEntityId(), body->getTextureId(), body->getMeshId(), world->getSize().first - static_cast<int>(body->getPos().first), world->getSize().second - static_cast<int>(body->getPos().second), body->getOrientation());
   std::cout << packet.getEntityId() << std::endl;
 
   i = 0;
@@ -275,8 +281,8 @@ void		GameServer::sendAddEntity(ABody *body)
 
 void		GameServer::sendMoveId(ABody *body)
 {
-  network::PacketMoveEntity	packet(body->getEntityId(), body->getPos().first,
-				       body->getPos().second, body->getOrientation());
+  network::PacketMoveEntity	packet(body->getEntityId(), world->getSize().first - body->getPos().first,
+				       world->getSize().second - body->getPos().second, body->getOrientation());
   unsigned int	i;
 
   i = 0;
@@ -307,7 +313,7 @@ void		GameServer::controlInput(const network::PacketControl *packet)
 void		GameServer::sendEffect(unsigned int effect, int id, short orient,
 				       const std::pair<double, double>& pos, int decayTime)
 {
-  PacketAddParticle	packet(effect, id, pos.first, pos.second, decayTime);
+  PacketAddParticle	packet(effect, id, world->getSize().first - pos.first, world->getSize().second - pos.second, orient, decayTime);
   unsigned int		i;
 
   i = 0;
@@ -346,7 +352,7 @@ void		GameServer::sendStopSound(int id)
 
 void		GameServer::sendSound(unsigned int soundId, int id, bool loop, const std::pair<double, double>& pos)
 {
-  PacketPlaySound	packet(soundId, id, pos.first, pos.second, loop);
+  PacketPlaySound	packet(soundId, id, world->getSize().first - pos.first, world->getSize().second - pos.second, loop);
   unsigned int		i;
 
   i = 0;
@@ -379,4 +385,22 @@ void		GameServer::listen()
       packetFact->recv();
     }
   std::cout << "listenEnd" << std::endl;
+}
+
+unsigned char	GameServer::getNbrPlayer() const
+{
+  return (coPlayers);
+}
+
+void		GameServer::sendDeleteEntity(ABody *body)
+{
+  PacketDeleteEntity	packet(body->getId());
+  unsigned int		i;
+
+  i = 0;
+  while (i < players.size())
+    {
+      packetFact->send(packet, players[i].socketId);
+      ++i;
+    }
 }

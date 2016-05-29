@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 16:50:32 2016 Alexis Trouve
-// Last update Sat May 28 14:07:26 2016 Alexis Trouve
+// Last update Sat May 28 23:45:31 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -49,6 +49,10 @@ void			BodyFactory::fillPlayerTab()
 void			BodyFactory::fillCreatureTab()
 {
   setDraugr();
+  setSkeleton();
+  setSkeletonArcher();
+  setSkeletonWarlord();
+  setSkeletonWizard();
 }
 
 void			BodyFactory::fillGameObjectTab()
@@ -66,7 +70,7 @@ void			BodyFactory::setBarbare()
   player->setName("Barbare");
   player->stats.HP = 4000;
   player->stats.normalHP = 4000;
-  player->stats.speed = 1.1;
+  player->stats.speed = 10.1;
   player->stats.normalSpeed = 1.1;
   player->stats.attackModifier = 1.0;
   player->setCollide(true);
@@ -183,7 +187,7 @@ void			BodyFactory::setValkyrie()
           SoundName::FEMALE_DEATH,
           SoundName::SOUND_NONE
   };
-  player->setMeshId(EntityName::BERSERK);
+  player->setMeshId(EntityName::VALKYRIE);
   player->setTextureId(TextureName::TEXTURE_NONE);
   player->setIdAI(NOAI);
   bodyTab.push_back(player);
@@ -200,7 +204,7 @@ void			BodyFactory::setSkeleton()
   crea->stats.normalHP = 400;
   crea->stats.speed = 0.6;
   crea->stats.normalSpeed = 0.6;
-  crea->stats.attackModifier = 0.6;
+  crea->stats.attackModifier = 0.4;
   crea->spellBook.addSpell(SpellFactory::SIMPLE_ATTACK, crea);
   crea->setCollide(true);
   crea->changePos(std::make_pair(-1, -1));
@@ -244,7 +248,7 @@ void			BodyFactory::setSkeletonWarlord()
   crea->stats.normalHP = 400;
   crea->stats.speed = 0.6;
   crea->stats.normalSpeed = 0.6;
-  crea->stats.attackModifier = 0.6;
+  crea->stats.attackModifier = 0.8;
   crea->spellBook.addSpell(SpellFactory::SIMPLE_ATTACK, crea);
   crea->setCollide(true);
   crea->changePos(std::make_pair(-1, -1));
@@ -288,8 +292,8 @@ void			BodyFactory::setSkeletonArcher()
   crea->stats.normalHP = 400;
   crea->stats.speed = 0.6;
   crea->stats.normalSpeed = 0.6;
-  crea->stats.attackModifier = 0.6;
-  crea->spellBook.addSpell(SpellFactory::SIMPLE_ATTACK, crea);
+  crea->stats.attackModifier = 0.3;
+  crea->spellBook.addSpell(SpellFactory::RANGER_ATTACK, crea);
   crea->setCollide(true);
   crea->changePos(std::make_pair(-1, -1));
   crea->changeSize(std::make_pair(50.0, 50.0));
@@ -332,8 +336,8 @@ void			BodyFactory::setSkeletonWizard()
   crea->stats.normalHP = 400;
   crea->stats.speed = 0.6;
   crea->stats.normalSpeed = 0.6;
-  crea->stats.attackModifier = 0.6;
-  crea->spellBook.addSpell(SpellFactory::SIMPLE_ATTACK, crea);
+  crea->stats.attackModifier = 0.2;
+  crea->spellBook.addSpell(SpellFactory::ICEBALL, crea);
   crea->setCollide(true);
   crea->changePos(std::make_pair(-1, -1));
   crea->changeSize(std::make_pair(50.0, 50.0));
@@ -405,8 +409,10 @@ void            BodyFactory::setKey()
   obj = new GameObject(-1, world);
   obj->setBasicParameters("Key", true, false);
   obj->setCollide(false);
-  obj->changeSize(std::make_pair(50.0, 50.0));
-  obj->setMeshId(EntityName::CHEST);
+  obj->changeSize(std::make_pair(20.0, 20.0));
+  obj->changePos(std::make_pair(-1, -1));
+  obj->changeOrientation(90);
+  obj->setMeshId(EntityName::BERSERK);
   obj->setTextureId(TextureName::TEXTURE_NONE);
   obj->addItem(*key);
   bodyTab.push_back(obj);
@@ -419,7 +425,9 @@ void            BodyFactory::setDoor()
   obj = new GameObject(-1, world);
   obj->setBasicParameters("Door", false, true);
   obj->setCollide(true);
-  obj->changeSize(std::make_pair(50.0, 50.0));
+  obj->changeSize(std::make_pair(10.0, 10.0));
+  obj->changePos(std::make_pair(-1, -1));
+  obj->changeOrientation(90);
   obj->setMeshId(EntityName::BERSERK);
   obj->setTextureId(TextureName::TEXTURE_NONE);
   bodyTab.push_back(obj);

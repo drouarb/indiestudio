@@ -12,6 +12,7 @@
 #include "ListenerAddParticle.hh"
 #include "ListenerDeleteParticle.hh"
 #include "ListenerAnimation.hh"
+#include "ListenerMap.hh"
 #include "PacketFactory.hh"
 #include "ConnectMenu.hh"
 #include "GameServer.hh"
@@ -29,6 +30,7 @@ gauntlet::core::Core::Core() : actionlists(*this), observer(new CoreUIObserver(*
   serverAddr.second = 0;
   packetf = NULL;
   cpid = -1;
+  stoppingPacketf = NULL;
   world::Math::init();
 
   ogre.setIObserver(observer);
@@ -130,7 +132,7 @@ gauntlet::core::Core::exit()
 {
   ogre.quit();
   if (packetf)
-    disconnect();
+    disconnect("");
   killServer();
 }
 
@@ -147,7 +149,7 @@ gauntlet::core::Core::createServer()
       _exit(0);
     }
   else
-    usleep(1000000); //TODO: server ready msg?
+    usleep(3000000); //TODO: server ready msg?
 }
 
 void
@@ -180,6 +182,7 @@ gauntlet::core::Core::initPacketf()
 	  listeners.push_back(new ListenerAddParticle(*this));
 	  listeners.push_back(new ListenerDeleteParticle(*this));
 	  listeners.push_back(new ListenerAnimation(*this));
+	  listeners.push_back(new ListenerMap(*this));
 	}
       for (std::list<network::PacketListener*>::iterator it = listeners.begin();
 	   it != listeners.end(); ++it)
@@ -191,40 +194,54 @@ gauntlet::core::Core::initPacketf()
 }
 
 void
-gauntlet::core::Core::disconnect()
+gauntlet::core::Core::disconnect(std::string const & msg)
 {
-  if (mutex.try_lock() == false)
-    return ;
-  std::cout << "#core disconnect" << std::endl;
-  if (packetf)
+  destroyPacketf(false);
+  if (stoppingPacketf)
     {
-      packetf->stop();
       listenThread->join();
-
-      delete packetf;
-      packetf = NULL;
       delete listenThread;
       listenThread = NULL;
+      delete stoppingPacketf;
+      stoppingPacketf = NULL;
+    }
 
-      bool sendMsg = menu.getOpen() && gameIsRunning();
-      stop();
-      if (sendMsg)
+  bool sendMsg = !menu.getOpen() && gameIsRunning();
+  stop();
+  ogre.resetMap();
+  if (sendMsg)
+    {
+      if (msg.length() > 0)
+	menu.message(msg);
+      else
 	menu.message("Disconnected from server.");
     }
   killServer();
-  mutex.unlock();
+}
+
+void
+gauntlet::core::Core::destroyPacketf(bool external)
+{
+  if (disconnectMutex.try_lock() == false)
+    return ;
+  networkmutex.lock();
+  if (packetf)
+    {
+      if (!external)
+	{
+	  packetf->stop();
+	}
+  stoppingPacketf = packetf;
+      packetf = NULL;
+    }
+  disconnectMutex.unlock();
+  networkmutex.unlock();
 }
 
 void
 gauntlet::core::Core::load(std::string const & file)
 {
   map = SAVE_DIR + file;
-}
-
-void
-gauntlet::core::Core::save(std::string const & file)
-{
-  std::cout << "CORE save " << file << std::endl;
 }
 
 bool

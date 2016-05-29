@@ -27,6 +27,7 @@
 #include <OIS/OISKeyboard.h>
 #include <OIS/OISMouse.h>
 
+
 #include <SdkTrays.h>
 #include <SdkCameraMan.h>
 #include <core/Position.hh>
@@ -37,6 +38,7 @@
 #include <gameData/SoundName.hh>
 #include "IUIObserver.hh"
 #include "AnimationsList.hh"
+#include "HeightMap.hh"
 
 namespace gauntlet
 {
@@ -99,7 +101,9 @@ class OgreUI
   OIS::Mouse *mMouse;
   OIS::Keyboard *mKeyboard;
 
-  int quality = 100;
+   gauntlet::HeightMap heightmap;
+
+    int quality = 100;
 
  public:
   bool init();
@@ -111,11 +115,15 @@ class OgreUI
 
   bool addWorldEntity(int entityId, gauntlet::EntityName meshid, int x, int y,
 		      short degres, gauntlet::TextureName texture_id);
+  bool loadMap(const std::string & map);
 
   bool addMapEntity(int entityId, gauntlet::EntityName meshid, int x, int y,
 		    short degres, gauntlet::TextureName texture_id);
 
   void initSound();
+  bool addMapEntity(int entityId, const std::string &path, int x, int y,
+		      short angle, gauntlet::TextureName texture_id);
+
 
   bool configure(void);
 

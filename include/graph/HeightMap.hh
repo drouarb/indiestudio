@@ -1,9 +1,10 @@
 #ifndef  HEIGHT_MAP_HH_
 # define HEIGHT_MAP_HH_
 
-# define HEIGHT_MAP_SCALE 1.0
-
 # include <string>
+
+# define SCALE_MAP 90
+# define HEIGHT_MAP_SCALE (40.0 * SCALE_MAP)
 
 namespace			gauntlet
 {
@@ -15,6 +16,8 @@ namespace			gauntlet
 
     bool			load(std::string const & filename);
     unsigned char		at(double x, double y);
+    std::pair<double, double>	getSize() const;
+    bool			isLoaded() const;
 
   private:
     unsigned char		*map;
