@@ -1,6 +1,6 @@
 {
     name : "Default map",
-    asset_map : "../media/models/mapTest.mesh",
+    asset_map : "../media/models/map_of_doom.mesh",
     height_map : "mapHeight/map.pgm",
     endZone :
     {
