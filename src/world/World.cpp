@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sat May 28 16:36:35 2016 Alexis Trouve
-// Last update Sun May 29 17:19:40 2016 Alexis Trouve
+// Last update Sun May 29 17:48:03 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -60,20 +60,20 @@ void	World::loadGame(std::string const & file)
 
   collider = new Collider(mapHeightName);
 
-  std::cout << "x:" << (sizeX = collider->getSizeMap().first) << std::endl;
-  std::cout << "y:" << (sizeY = collider->getSizeMap().second) << std::endl;
+  sizeX = collider->getSizeMap().first;
+  sizeY = collider->getSizeMap().second;
 
   try
     {
       JSON::JsonObj & endZone = dynamic_cast<JSON::JsonObj &>(json.GetObj("endZone"));
       endPos.first = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("posX")).Get());
-      endPos.second = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("posY")).Get());
+      endPos.second = sizeY - stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("posY")).Get());
       endSize.first = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("sizeX")).Get());
-      endSize.second = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("sizeX")).Get());
+      endSize.second = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("sizeY")).Get());
       
       JSON::JsonObj & spawn = dynamic_cast<JSON::JsonObj &>(json.GetObj("spawn"));
       spawnPoint.first = stod(dynamic_cast<JSON::JsonStr &>(spawn.GetObj("x")).Get());
-      spawnPoint.second = stod(dynamic_cast<JSON::JsonStr &>(spawn.GetObj("y")).Get());
+      spawnPoint.second = sizeY - stod(dynamic_cast<JSON::JsonStr &>(spawn.GetObj("y")).Get());
       if (spawnPoint.first < 0 || spawnPoint.first >= sizeX ||
 	  spawnPoint.second < 0 || spawnPoint.second >= sizeY)
 	throw (std::runtime_error("Spawn point coordinates are out of bounds"));
@@ -83,7 +83,7 @@ void	World::loadGame(std::string const & file)
 	{
 	  JSON::JsonObj & obj = dynamic_cast<JSON::JsonObj &>(arr[i]);
 	  addNewBody(stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("x")).Get()),
-		     stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("y")).Get()),
+		     sizeY - stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("y")).Get()),
 		     dynamic_cast<JSON::JsonStr &>(obj.GetObj("name")).Get(),
 		     Math::getAngleFromDegrees
 		     (stoi(dynamic_cast<JSON::JsonStr &>(obj.GetObj("angle")).Get())));
@@ -96,7 +96,7 @@ void	World::loadGame(std::string const & file)
 	  putSound(stoi(dynamic_cast<JSON::JsonStr &>(obj.GetObj("id")).Get()),
 		   std::pair<double, double>
 		   (stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("x")).Get()),
-		    stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("y")).Get())));
+		    sizeY - stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("y")).Get())));
 	}
 
       JSON::JsonArr & particles = dynamic_cast<JSON::JsonArr &>
@@ -109,7 +109,7 @@ void	World::loadGame(std::string const & file)
 		    (stoi(dynamic_cast<JSON::JsonStr &>(obj.GetObj("angle")).Get())),
 		    std::pair<double, double>
 		    (stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("x")).Get()),
-		     stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("y")).Get())));
+		     sizeY - stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("y")).Get())));
 	}
     }
   catch (std::runtime_error & e)
