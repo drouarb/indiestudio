@@ -30,6 +30,7 @@ gauntlet::core::Core::Core() : actionlists(*this), observer(new CoreUIObserver(*
   serverAddr.second = 0;
   packetf = NULL;
   cpid = -1;
+  stoppingPacketf = NULL;
   world::Math::init();
 
   ogre.setIObserver(observer);
@@ -195,8 +196,17 @@ gauntlet::core::Core::initPacketf()
 void
 gauntlet::core::Core::disconnect(std::string const & msg)
 {
-  destroyPacketf();
-  bool sendMsg = menu.getOpen() && gameIsRunning();
+  destroyPacketf(false);
+  if (stoppingPacketf)
+    {
+      listenThread->join();
+      delete listenThread;
+      listenThread = NULL;
+      delete stoppingPacketf;
+      stoppingPacketf = NULL;
+    }
+
+  bool sendMsg = !menu.getOpen() && gameIsRunning();
   stop();
   ogre.resetMap();
   if (sendMsg)
@@ -210,19 +220,21 @@ gauntlet::core::Core::disconnect(std::string const & msg)
 }
 
 void
-gauntlet::core::Core::destroyPacketf()
+gauntlet::core::Core::destroyPacketf(bool external)
 {
+  if (disconnectMutex.try_lock() == false)
+    return ;
   networkmutex.lock();
   if (packetf)
     {
-      packetf->stop();
-      listenThread->join();
-
-      delete packetf;
+      if (!external)
+	{
+	  packetf->stop();
+	}
+  stoppingPacketf = packetf;
       packetf = NULL;
-      delete listenThread;
-      listenThread = NULL;
     }
+  disconnectMutex.unlock();
   networkmutex.unlock();
 }
 
@@ -230,12 +242,6 @@ void
 gauntlet::core::Core::load(std::string const & file)
 {
   map = SAVE_DIR + file;
-}
-
-void
-gauntlet::core::Core::save(std::string const & file)
-{
-  std::cout << "CORE save " << file << std::endl;
 }
 
 bool

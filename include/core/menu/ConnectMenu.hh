@@ -35,6 +35,7 @@ namespace			gauntlet
       void			doCancel(struct t_hitItem &);
 
       void			sendConnect();
+      void			handshake();
     };
   };
 };

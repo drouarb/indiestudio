@@ -75,6 +75,7 @@ void gauntlet::network::PacketFactory::recv() {
     Packet *packet;
 
     runlock.lock();
+    run = true;
     while (run) {
         data = socket->recv();
         while (data.data->size() > 0) {
@@ -116,6 +117,8 @@ void gauntlet::network::PacketFactory::notifyPacket(gauntlet::network::Packet *p
 }
 
 void gauntlet::network::PacketFactory::disconnectionHandler(int fd) {
+    if (socket->getType())
+        run = false;
     PacketDisconnect *packet = new PacketDisconnect("Connection closed", fd);
     this->notifyPacket(packet);
 }

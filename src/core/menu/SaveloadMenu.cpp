@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 14:09:17 2016 Esteban Lewis
-// Last update Mon May 23 22:46:20 2016 Esteban Lewis
+// Last update Sun May 29 13:14:26 2016 Esteban Lewis
 //
 
 #include <dirent.h>
@@ -104,7 +104,7 @@ gauntlet::core::SaveloadMenu::doSave(struct t_hitItem & item)
 {
   (void)item;
   setOpen(false);
-  core.save(selected);
+  //core.save(selected);
 }
 
 void

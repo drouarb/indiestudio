@@ -88,7 +88,7 @@ gauntlet::core::ConnectMenu::draw()
 
 
   if (static_cast<WaitPacket *>(submenus[3])->receivedValue())
-    sendConnect();
+    handshake();
 }
 
 void
@@ -187,6 +187,8 @@ gauntlet::core::ConnectMenu::doConnect(struct t_hitItem & item)
 	}
       else
 	{
+	  if (core.packetf)
+	    core.disconnect("");
 	  core.createServer();
 	}
     }
@@ -198,7 +200,6 @@ gauntlet::core::ConnectMenu::doConnect(struct t_hitItem & item)
       core.packetf = new network::PacketFactory(ip, port);
       core.initPacketf();
       sendConnect();
-      std::cout << "# connect end" << std::endl;
     }
   catch (std::runtime_error e)
     {
@@ -218,45 +219,39 @@ void
 gauntlet::core::ConnectMenu::sendConnect()
 {
   network::PacketConnect pc;
-  bool recursive = static_cast<WaitPacket *>(submenus[3])->receivedValue();
 
-  if (!recursive)
-    core.networkmutex.lock();
+  core.networkmutex.lock();
 
   if (core.packetf == NULL)
     {
       static_cast<MessageBox *>(submenus[0])->setMsg("Connection lost.");
       submenus[0]->setOpen(true);
-      if (!recursive)
-	core.networkmutex.unlock();
+      core.networkmutex.unlock();
       return ;
     }
 
-  if (static_cast<WaitPacket *>(submenus[3])->receivedValue() == false)
+  core.packetf->send((network::Packet&)pc);
+  submenus[3]->setOpen(true);
+  core.networkmutex.unlock();
+}
+
+void
+gauntlet::core::ConnectMenu::handshake()
+{
+  network::PacketHandshake const * packet =
+    dynamic_cast<network::PacketHandshake const *>
+    (static_cast<WaitPacket *>(submenus[3])->getReceived());
+  if (packet != NULL && packet->getConnectedPlayers() < packet->getMaxPlayers())
     {
-      core.packetf->send((network::Packet&)pc);
-      submenus[3]->setOpen(true);
+      static_cast<MessageBox *>(submenus[0])->setMsg("Connection succeeded.");
+      submenus[0]->setOpen(true);
+      justConnected = true;
+      setOpen(false);
     }
   else
     {
-      network::PacketHandshake const * packet =
-	dynamic_cast<network::PacketHandshake const *>
-	(static_cast<WaitPacket *>(submenus[3])->getReceived());
-      if (packet != NULL && packet->getConnectedPlayers() < packet->getMaxPlayers())
-	{
-	  static_cast<MessageBox *>(submenus[0])->setMsg("Connection succeeded.");
-	  submenus[0]->setOpen(true);
-	  justConnected = true;
-	  setOpen(false);
-	}
-      else
-	{
-	  static_cast<MessageBox *>(submenus[0])->setMsg("No response from server.");
-	  submenus[0]->setOpen(true);
-	  core.disconnect("");
-	}
+      static_cast<MessageBox *>(submenus[0])->setMsg("No response from server.");
+      submenus[0]->setOpen(true);
+      core.disconnect("");
     }
-
-  if (!recursive)
-    core.networkmutex.unlock();
 }
