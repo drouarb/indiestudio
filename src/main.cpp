@@ -3,11 +3,13 @@
 //
 
 #include <iostream>
+#include <helpers/StackTrace.h>
 #include "Core.hh"
 #include "PhysicCollideLayer.hh"
 
 int main()
 {
+  StackTrace::init();
   gauntlet::core::Core();
   return (0);
 }

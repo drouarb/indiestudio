@@ -12,7 +12,6 @@ using namespace gauntlet;
 Actor::Actor(int nid, world::World *nworld)
   : ABody(nid)
 {
-  id = nid;
   world = nworld;
   idAI = -1;
 }
@@ -75,7 +74,6 @@ void        Actor::castSpell(int spellEnum)
 {
   if (recharged() && spellEnum < (int)spellBook.spellList.size())
   {
-    std::cerr << "id du actor:" << this->getId() << std::endl;
     spellBook.spellList[spellEnum]->prepare(this);
     spellBook.spellList[spellEnum]->cast(this);
   }
