@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sat May 28 16:36:35 2016 Alexis Trouve
-// Last update Sun May 29 17:48:03 2016 Esteban Lewis
+// Last update Sun May 29 18:23:34 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -282,6 +282,7 @@ void	World::applyGatheringAndOpening()
 int	World::addNewBody(double xpos, double ypos, const std::string& name, short orientation)
 {
   std::cout << "world addnewbody" << std::endl;
+
   ABody	*body;
   std::pair<unsigned int, unsigned int>	sizeMap;
 
