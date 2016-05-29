@@ -200,6 +200,7 @@ namespace gauntlet
 	    {SKELETON_ARCHIER_RUN,                               {"skeleton_archier.json",  "Skeleton_Run"}},
 	    {SKELETON_ARCHIER_JUMP_RUNING,                       {"skeleton_archier.json",  "Skeleton_Jump_runing"}},
 	    {SKELETON_ARCHIER_DYING_B,                           {"skeleton_archier.json",  "Skeleton_Dying_A"}},
+		{SKELETON_ARCHIER_SHOTING, 									  {"skeleton_archier.json", "Skeleton_archer_shoting"}},
 	    {SKELETON_ARCHIER_WALK,                           {"skeleton_archier.json",  "Skeleton_walk"}},
 	    {SKELETON_ARCHIER_DODGE_TO_LEFT,                  {"skeleton_archier.json",  "M_skeleton_dodge_to_left"}},
 	    {SKELETON_ARCHIER_DODGE_TO_RIGHT,                 {"skeleton_archier.json",  "M_skeleton_dodge_to_right"}},
@@ -248,6 +249,7 @@ namespace gauntlet
 	    {SKELETON_FOOTMAN_THRUST,                         {"skeleton_footman.json",  "Skeleton_thrust"}},
 	    {SKELETON_FOOTMAN_BANGING_SHIELD,                 {"skeleton_footman.json",  "Skeleton_banging_shield"}},
 	    {SKELETON_FOOTMAN_CHARGING,                       {"skeleton_footman.json",  "Skeleton_charging"}},
+
 	    {BERSEKER_IDLE,                                               {"berseker.json",          "idle"}},
 	    {BERSEKER_WALK,                                               {"berseker.json",          "walk"}},
 	    {BERSEKER_RUN,                                                {"berseker.json",          "run"}},

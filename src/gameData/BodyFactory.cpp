@@ -365,7 +365,7 @@ void			BodyFactory::setSkeletonArcher()
           SoundName::SOUND_NONE
   };
   crea->animations[ABody::ATTACK] = {
-          animations::AnimationsListJson::SKELETON_ARCHIER_ARCHER_SHOTING
+          animations::AnimationsListJson::SKELETON_ARCHIER_SHOTING
   };
   crea->animations[ABody::DEATH] = {
           animations::AnimationsListJson::SKELETON_ARCHIER_DYING_B

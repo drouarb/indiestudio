@@ -11,6 +11,7 @@ namespace gauntlet
   {
     enum AnimationsListJson
     {
+      SKELETON_ARCHIER_SHOTING,
       SKELETON_ARCHIER_IDLE,
       SKELETON_ARCHIER_USE_OBJECT,
       SKELETON_ARCHIER_ANGER,
