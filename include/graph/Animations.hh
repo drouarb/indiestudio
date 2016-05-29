@@ -115,7 +115,24 @@ namespace gauntlet
 	    {SKELETON_WARLORD_JSON_2H_SKELETON_SWING_MID_LEFT , { "skeleton_warlord.json", "2H_SKELETON_SWING_MID_LEFT" }},
 	    {SKELETON_WARLORD_JSON_2H_SKELETON_SWING_MID_RIGHT , { "skeleton_warlord.json", "2H_SKELETON_SWING_MID_RIGHT" }},
 	    {SKELETON_WARLORD_JSON_2H_SKELETON_SWORD_SWING_HIGH_STRAIGHT_DOWN , { "skeleton_warlord.json", "2H_SKELETON_SWORD_SWING_HIGH_STRAIGHT_DOWN" }},
-	    {SKELETON_WARLORD_JSON_2H_SKELETON_SWORD_THRUST_MID, { "skeleton_warlord.json", "2H_SKELETON_SWORD_THRUST_MID" }}
+	    {SKELETON_WARLORD_JSON_2H_SKELETON_SWORD_THRUST_MID, { "skeleton_warlord.json", "2H_SKELETON_SWORD_THRUST_MID" }},
+	    {BERSEKER_JSON_IDLE , { "berseker.json", "idle" }},
+	    {BERSEKER_JSON_WALK , { "berseker.json", "walk" }},
+	    {BERSEKER_JSON_RUN , { "berseker.json", "run" }},
+	    {BERSEKER_JSON_ATTACK_IDLE , { "berseker.json", "attack_idle" }},
+	    {BERSEKER_JSON_ATTACK_1 , { "berseker.json", "attack_1" }},
+	    {BERSEKER_JSON_ATTACK_2 , { "berseker.json", "attack_2" }},
+	    {BERSEKER_JSON_ATTACK_3 , { "berseker.json", "attack_3" }},
+	    {BERSEKER_JSON_ATTACK_4 , { "berseker.json", "attack_4" }},
+	    {BERSEKER_JSON_ATTACK_5 , { "berseker.json", "attack_5" }},
+	    {BERSEKER_JSON_JUMP, { "berseker.json", "jump" }},
+	    {BERSEKER_JSON_HIT , { "berseker.json", "hit" }},
+	    {BERSEKER_JSON_DEATH , { "berseker.json", "death" }},
+	    {BERSEKER_JSON_RECOVER , { "berseker.json", "recover" }},
+	    {BERSEKER_JSON_TAUNT, { "berseker.json", "taunt" }},
+	    {BERSEKER_JSON_STRAFE_RIGHT , { "berseker.json", "strafe_right" }},
+	    {BERSEKER_JSON_STRAFE_LEFT , { "berseker.json", "strafe_left" }},
+	    {BERSEKER_JSON_DODGE_RIGHT , { "berseker.json", "dodge_right" }},
     };
   }
 }
