@@ -128,7 +128,8 @@ gauntlet::core::ActionLists::doActions()
 	     it = packetsAnimation.begin(); it != packetsAnimation.end(); ++it)
 	{
 	  if (core.ogre.entityExist((*it)->getEntityId()))
-	    core.ogre.playAnimation((*it)->getEntityId(), (*it)->getAnimationId(), true);
+//	    core.ogre.playAnimation((*it)->getEntityId(), (*it)->getAnimationId(), true);
+		core.ogre.playAnimation((*it)->getEntityId(), static_cast<animations::AnimationsListJson>((*it)->getAnimationId()), true);
 	}
     }
   clearActions();

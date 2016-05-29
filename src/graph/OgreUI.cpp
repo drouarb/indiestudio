@@ -238,6 +238,7 @@ void OgreUI::applyAnimation(const Ogre::FrameEvent &evt)
   for (auto animation : this->animationsMap)
     {
       animations::Animation *t2 = animation.second;
+        std::cerr << "application d'une nouvelle animation: " << t2->getName()  << std::endl;
       if (!t2)
 	continue;
       if (!t2->update(evt.timeSinceLastFrame))

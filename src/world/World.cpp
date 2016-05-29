@@ -569,7 +569,8 @@ ABody				*World::getBodyById(int id)
 
 void				World::animeEntity(int id, unsigned int animeId)
 {
-  /*gameServer->animeEntity(id, animeId);*/
+    std::cerr << "anime id : " << animeId << std::endl;
+  gameServer->animeEntity(id, animeId);
 }
 
 unsigned long			World::getTurn() const

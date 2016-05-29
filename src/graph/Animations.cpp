@@ -34,6 +34,7 @@ animations::JSONAnimation::JSONAnimation(const std::string &filename,
 					 bool loop) : filename(
 	filename), animationState(animationState)
 {
+	std::cerr << "Création d'une animation" << std::endl;
   this->jsonObj.ParseFrom(filename);
   this->type = animationSource::JSON;
   this->loop = loop;
