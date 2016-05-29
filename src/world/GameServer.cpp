@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Sun May 29 15:30:56 2016 Alexis Trouve
+// Last update Sun May 29 15:35:54 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -61,8 +61,8 @@ GameServer::GameServer(const std::string& filePath, in_port_t port)
 
 GameServer::~GameServer()
 {
-  /*if (dataSendThread)
-    dataSendThread->join();*/
+  if (dataSendThread)
+    dataSendThread->join();
 }
 
 void		GameServer::connectAnswer(const network::PacketConnect *packet)

@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sat May 28 16:36:35 2016 Alexis Trouve
-// Last update Sun May 29 15:25:37 2016 Alexis Trouve
+// Last update Sun May 29 15:51:05 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -54,17 +54,17 @@ void	World::loadGame(std::string const & file)
   JSON::JsonObj json;
   json.ParseFrom(content);
 
+  mapAssetName = dynamic_cast<JSON::JsonStr &>(json.GetObj("asset_map")).Get();
+  
+  mapHeightName = dynamic_cast<JSON::JsonStr &>(json.GetObj("height_map")).Get();
+
+  collider = new Collider(mapHeightName);
+
+  std::cout << "x:" << (sizeX = collider->getSizeMap().first) << std::endl;
+  std::cout << "y:" << (sizeY = collider->getSizeMap().second) << std::endl;
+
   try
     {
-      mapAssetName = dynamic_cast<JSON::JsonStr &>(json.GetObj("asset_map")).Get();
-
-      mapHeightName = dynamic_cast<JSON::JsonStr &>(json.GetObj("height_map")).Get();
-
-      collider = new Collider(mapHeightName);
-
-      std::cout << "x:" << (sizeX = collider->getSizeMap().first) << std::endl;
-      std::cout << "y:" << (sizeY = collider->getSizeMap().second) << std::endl;
-
       JSON::JsonObj & endZone = dynamic_cast<JSON::JsonObj &>(json.GetObj("endZone"));
       endPos.first = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("posX")).Get());
       endPos.second = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("posY")).Get());
