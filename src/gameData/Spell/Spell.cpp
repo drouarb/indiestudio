@@ -58,7 +58,7 @@ void gauntlet::Spell::prepare()
         openingId = caster->getWorld()->triggerEffect((EffectName) openingEffect, caster->getOrientation(), caster->getPos(), 1000);
     unsigned int sound = caster->soundEffect[ABody::ATTACK_SOUND].at(rand() % caster->soundEffect[ABody::ATTACK_SOUND].size());
     caster->getWorld()->playSound(sound, false, caster->getPos());
-    //lancer animation sur caster
+    //lancer Animation sur caster
     targetedArea = caster->pointInFront(range);
 }
 
