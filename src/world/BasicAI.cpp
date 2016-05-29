@@ -5,12 +5,13 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 11:46:42 2016 Alexis Trouve
-// Last update Sun May 29 00:51:58 2016 Alexis Trouve
+// Last update Sun May 29 17:38:08 2016 Esteban Lewis
 //
 
 #include <iostream>
 #include "BasicAI.hh"
 #include "World.hh"
+#include "Spell.hh"
 
 using namespace gauntlet;
 using namespace world;
@@ -33,10 +34,16 @@ int		BasicAI::launchAI(std::pair<double, double> pos)
   nbrPlayed = 0;
   while (i < actors.size())
     {
+      std::cout << "launchai found actor in radius" << std::endl;
       if (Math::distBetween(pos, actors[i]->getPos()) < AI_LAUNCH_DIST)
 	{
 	  launchAI(actors[i]);
 	  nbrPlayed += 1;
+	}
+      else
+	{
+	  if (actors[i]->getMove())
+	    actors[i]->setMove();
 	}
       ++i;
     }
@@ -51,7 +58,9 @@ void			BasicAI::launchAI(gauntlet::Actor *actor)
   Player			*tmpPlayer;
   int				idAttack;
 
-  bodys = world->getCollider().giveBodyInAreaCircle(actor->getPos().first, actor->getPos().second, CHECK_DIST, 0, 0);
+  std::cout << "- launchai" << std::endl;
+  bodys = world->getCollider().giveBodyInAreaCircle(actor->getPos().first, actor->getPos().second, 0, CHECK_DIST, 0);
+  std::cout << "in ai radius: " << bodys.size() << std::endl;
   it1 = bodys.begin();
   savedPlayer = NULL;
   while (it1 != bodys.end())
@@ -66,7 +75,19 @@ void			BasicAI::launchAI(gauntlet::Actor *actor)
     return ;
   actor->changeOrientation(Math::getAngle(-atan2(savedPlayer->getPos().first - actor->getPos().first,
 						 savedPlayer->getPos().second - actor->getPos().second)));
+
   idAttack = actor->spellBook.giveSpell(30, 30, true, NOAREA, 0, 100);
-  std::cout << "ia" << std::endl;
-  actor->castSpell(idAttack);
+
+  double dist = world->getCollider().getDist(actor->getPos().first, actor->getPos().second,
+					     *savedPlayer);
+  std::cout << "ai found player at dist " << dist << std::endl;
+  if (actor->spellBook.spellNb(idAttack)->getRange() + actor->spellBook.spellNb(idAttack)->getRadius() > dist)
+    {
+      actor->castSpell(idAttack);
+    }
+  else
+    {
+      if (!actor->getMove())
+	actor->setMove();
+    }
 }

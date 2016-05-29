@@ -24,6 +24,7 @@ namespace gauntlet
 
       int		giveSpell(double desireRange, double minRange, bool mustDamage,
 				  Area desireArea, double desireRadius, short desireAngle);
+      const Spell *	spellNb(int nb);
     };
 };
 
