@@ -680,6 +680,7 @@ bool __attribute_deprecated__ OgreUI::addWorldEntity(int entityId,
 
   Ogre::SceneNode *s = worldNode->createChildSceneNode(ss.str());
   s->setPosition(x, z, y);
+  std::cerr << e << "x  = " << x << "y << " << y << "z " << z;
   s->attachObject(e);
   return (true);
 }
