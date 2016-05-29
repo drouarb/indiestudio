@@ -32,13 +32,9 @@ void        GameObject::gather(Player *player)
 {
   if (gatherable)
   {
-  std::cout << "MON NOM EST: " << this->name << std::endl;
-    std::cout << this->name << this->items->getItemList()->size() << std::endl;
-    std::cout << player->getName() << player->getInventory()->getItemList()->size() << std::endl;
     player->getInventory()->operator+=(this->items);
-    std::cout << this->name << this->items->getItemList()->size() << std::endl;
-    std::cout << player->getName() << player->getInventory()->getItemList()->size() << std::endl;
     player->getInventory()->useUpgrades(player);
+    world->playSound(SoundName::COINS, false, this->getPos());
     world->notifyDeath(this);
   }
 }
@@ -46,12 +42,10 @@ void        GameObject::gather(Player *player)
 void        GameObject::open(ItemContainer *curInventory) //unfinished
 {
   if (openable) {
-    std::cerr << "j'essaye d'ouvrir la " << this->name << std::endl;
     std::list<Item> *inv = curInventory->getItemList();
     for (auto item: *inv) {
       if (item.isKey())
       {
-        std::cerr << "j'ai la clé, sort! " << std::endl;
         inv->remove(item);
         world->playSound(SoundName::DOOR_STONE, false, this->getPos());
         world->notifyDeath(this);

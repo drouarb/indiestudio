@@ -16,6 +16,7 @@ using namespace gauntlet;
 gauntlet::Item::Item()
 {
     consumable = false;
+    upgrade = false;
     id = getNewId();
 }
 
@@ -35,6 +36,10 @@ int     gauntlet::Item::getNewId() {
 
 bool    gauntlet::Item::isUpgrade() {
     return upgrade;
+}
+
+std::string gauntlet::Item::getName() {
+    return this->name;
 }
 
 Stats   gauntlet::Item::getStats() {

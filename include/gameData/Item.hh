@@ -40,6 +40,7 @@ namespace gauntlet {
         void    generateItem(int pf);
         bool    isUpgrade();
         static bool compare(Item item, Item item2);
+        std::string getName();
     };
 };
 

@@ -280,6 +280,7 @@ void	World::applyGatheringAndOpening()
 		    {
 		      gameobject->open(&player->inventory);
 		      gameobject->gather(player);
+                std::cerr << "Que se passe-t-il " << player->inventory.getItemList()->size() << std::endl;
 		    }
 		  it2++;
 		}
