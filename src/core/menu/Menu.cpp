@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 13:17:57 2016 Esteban Lewis
-// Last update Thu May 26 14:46:01 2016 Esteban Lewis
+// Last update Sun May 29 20:40:37 2016 Esteban Lewis
 //
 
 #include "Menu.hh"
@@ -60,7 +60,7 @@ void
 gauntlet::core::Menu::setOpen(bool open)
 {
   isOpen = open;
-  if (isOpen)
+  if (open)
     {
       if (parent)
 	parent->undraw();

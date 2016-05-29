@@ -367,6 +367,7 @@ bool OgreUI::loadSound(int id, SoundName name)
       else
 	return (false);
     }
+  return (true);
 }
 
 bool OgreUI::playSound(int id, gauntlet::SoundName name, bool loop)

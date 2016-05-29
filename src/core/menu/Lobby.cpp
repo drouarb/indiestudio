@@ -57,6 +57,7 @@ gauntlet::core::Lobby::draw()
       ss << core.serverAddr.second;
       buttons[0].setStr("Connected to " + core.serverAddr.first + ":" + ss.str());
     }
+
   if (core.pc == NULL)
     buttons[2].setStr("No character.");
   else
@@ -113,12 +114,14 @@ gauntlet::core::Lobby::doPlay(struct t_hitItem & item)
   core.networkmutex.lock();
   if (core.pc == NULL)
     {
+  core.networkmutex.unlock();
       static_cast<MessageBox *>(submenus[0])->setMsg
 	("You must first create your character.");
       submenus[0]->setOpen(true);
     }
   else if (core.packetf == NULL)
     {
+  core.networkmutex.unlock();
       static_cast<MessageBox *>(submenus[0])->setMsg
 	("You must first connect to a server.");
       submenus[0]->setOpen(true);
@@ -132,9 +135,9 @@ gauntlet::core::Lobby::doPlay(struct t_hitItem & item)
 				      core.pc->getChar() == world::RANGER,
 				      core.pc->getName());
       core.packetf->send(psp);
+      core.networkmutex.unlock();
       submenus[3]->setOpen(true);
     }
-  core.networkmutex.unlock();
 }
 
 void
@@ -155,7 +158,6 @@ gauntlet::core::Lobby::receivedStartgame()
     {
       static_cast<MessageBox *>(submenus[0])->setMsg("No response from server.");
       submenus[0]->setOpen(true);
-      core.disconnect("");
     }
 }
 

@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 11:42:26 2016 Alexis Trouve
-// Last update Sun May 29 16:56:39 2016 Esteban Lewis
+// Last update Sun May 29 18:50:52 2016 Esteban Lewis
 //
 
 #ifndef ABSTRACTAI_HH_
@@ -15,7 +15,7 @@
 #include "Actor.hh"
 
 #define AI_LAUNCH_DIST 1000.0
-#define CHECK_DIST 10000.0
+#define CHECK_DIST 1000.0
 
 
 namespace gauntlet
