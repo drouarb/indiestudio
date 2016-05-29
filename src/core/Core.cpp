@@ -149,7 +149,7 @@ gauntlet::core::Core::createServer()
       _exit(0);
     }
   else
-    usleep(2000000); //TODO: server ready msg?
+    usleep(3000000); //TODO: server ready msg?
 }
 
 void

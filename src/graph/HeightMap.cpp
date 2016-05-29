@@ -54,13 +54,16 @@ gauntlet::HeightMap::load(std::string const & filename)
   std::stringstream ss;
   ss.str(content);
   std::string c;
-  while (ss >> c)
+  while (!ss.eof())
     {
+      ss >> c;
       if (c.length() > 0)
 	{
 	  map[i] = (unsigned char)stoi(c);
 	  i++;
 	}
+      if (i % 10000 == 0)
+	std::cout << i << " " << width * height << std::endl;
     }
 
   return (true);
