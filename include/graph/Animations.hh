@@ -60,7 +60,9 @@ namespace gauntlet
 
       virtual std::string const &getName() const final;
 
-      virtual void reset() final;
+	std::string readJson(const std::string &filename);
+
+		virtual void reset() final;
     };
 
     /*

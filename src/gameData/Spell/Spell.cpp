@@ -3,6 +3,7 @@
 //
 
 #include <gameData/SoundName.hh>
+#include <iostream>
 #include "Spell.hh"
 #include "World.hh"
 
@@ -52,28 +53,28 @@ void gauntlet::Spell::ApplyDamage(std::list<gauntlet::ABody*> targets, Actor *ca
     }
 }
 
-void gauntlet::Spell::prepare()
+void gauntlet::Spell::prepare(Actor *actor)
 {
     if (openingEffect > -1)
-        openingId = caster->getWorld()->triggerEffect((EffectName) openingEffect, caster->getOrientation(), caster->getPos(), 1000);
+        openingId = caster->getWorld()->triggerEffect((EffectName) openingEffect, actor->getOrientation(), actor->getPos(), 1000);
     unsigned int sound = caster->soundEffect[ABody::ATTACK].at(rand() % caster->soundEffect[ABody::ATTACK].size());
-    caster->getWorld()->playSound(sound, false, caster->getPos());
+    caster->getWorld()->playSound(sound, false, actor->getPos());
     //lancer Animation sur caster
-    //    caster->getWorld()->animeEntity(caster->getId(), caster->animations[ABody::ATTACK].at(rand() % caster->animations[ABody::ATTACK].size()));
-    targetedArea = caster->pointInFront(range);
+    caster->getWorld()->animeEntity(actor->getId(), caster->animations[ABody::ATTACK].at(rand() % caster->animations[ABody::ATTACK].size()));
+    targetedArea = actor->pointInFront(range);
 }
 
-void gauntlet::Spell::cast(Actor *caster)
+void gauntlet::Spell::cast(Actor *actor)
 {
     std::list<gauntlet::ABody*> targets;
     if (endingEffect > -1)
-        endingId = caster->getWorld()->triggerEffect((EffectName) endingEffect, caster->getOrientation(), caster->getPos(), 1000);
-    targets = (caster->getWorld()->getCollider().*patternTypes.at(pattern))(targetedArea.first, targetedArea.second, caster->getOrientation(), radius, angle); //remplacer les 0 par des variables setées à 0 dans le constructy kthxbye
+        endingId = caster->getWorld()->triggerEffect((EffectName) endingEffect, actor->getOrientation(), actor->getPos(), 1000);
+    targets = (caster->getWorld()->getCollider().*patternTypes.at(pattern))(targetedArea.first, targetedArea.second, actor->getOrientation(), radius, angle); //remplacer les 0 par des variables setées à 0 dans le constructy kthxbye
     if (targets.size() > 0) {
         caster->getWorld()->playSound(soundEffect, false, targetedArea);
     }
-    if ((rand() % 100) < (100 * caster->stats.attackModifier))
-        ApplyDamage(targets, caster);
+    if ((rand() % 100) < (100 * actor->stats.attackModifier))
+        ApplyDamage(targets, actor);
     caster->setCooldown(castTime);
 }
 

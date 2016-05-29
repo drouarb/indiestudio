@@ -35,7 +35,7 @@ animations::JSONAnimation::JSONAnimation(const std::string &filename,
 	filename), animationState(animationState)
 {
 	std::cerr << "Création d'une animation" << std::endl;
-  this->jsonObj.ParseFrom(filename);
+  this->jsonObj.ParseFrom(this->readJson(filename));
   this->type = animationSource::JSON;
   this->loop = loop;
 
@@ -47,43 +47,38 @@ void gauntlet::animations::JSONAnimation::findProprerties(
 {
   std::string an = animationName;
   std::transform(an.begin(), an.end(), an.begin(), ::toupper);
-  ::JSON::JsonArr &
-	  arr = dynamic_cast<::JSON::JsonArr &>(this->jsonObj.GetObj(
-		  "animation"));
+    ::JSON::JsonArr arr = JSON::JsonArr();
+    try {
+        arr = dynamic_cast<::JSON::JsonArr &>(this->jsonObj.GetObj(
+                "animation"));
+    } catch (...) {
+        std::cerr << "ICIIIIIIIIIIIIIII" << std::endl;
+    }
   for (size_t i = 0; i < arr.Size(); ++i)
     {
-		try {
-			::JSON::JsonObj &json = dynamic_cast<::JSON::JsonObj &>(arr[i]);
-			try {
-				std::string name = dynamic_cast<::JSON::JsonStr &>(json.GetObj(
-						"name")).Get();
-				std::transform(name.begin(), name.end(), name.begin(), ::toupper);
-				if (an == name)
-				{
-					this->name = name;
-					try
-					{
-						this->begin = stod(
-								dynamic_cast<::JSON::JsonStr &>(json.GetObj(
-										"begin")).Get());
-						this->end = stod(
-								dynamic_cast<::JSON::JsonStr &>(json.GetObj(
-										"end")).Get());
-					} catch (std::invalid_argument)
-					{
-						throw std::runtime_error("Invalid number");
-					}
-					this->currentTimePosition = 0;
-					return;
-				}
-			} catch (...)
-			{
-				std::cerr << "222222222" << std::endl;
-			}
-		} catch (...)
-			{
-				std::cerr << "111111111" << std::endl;
-			}
+      ::JSON::JsonObj &json = dynamic_cast<::JSON::JsonObj &>(arr[i]);
+      std::string name = dynamic_cast<::JSON::JsonStr &>(json.GetObj(
+	      "name")).Get();
+      std::transform(name.begin(), name.end(), name.begin(), ::toupper);
+      if (an == name)
+      {
+	this->name = name;
+	try
+
+	  {
+	    this->begin = stod(
+		    dynamic_cast<::JSON::JsonStr &>(json.GetObj(
+			    "begin")).Get());
+	    this->end = stod(
+		    dynamic_cast<::JSON::JsonStr &>(json.GetObj(
+			    "end")).Get());
+	  } catch (std::invalid_argument)
+	  {
+	    throw std::runtime_error("Invalid number");
+	  }
+	this->currentTimePosition = 0;
+	return;
+      }
     }
   throw std::logic_error("Cannot find " + animationName);
 }
@@ -97,3 +92,24 @@ void animations::JSONAnimation::reset()
 {
   this->animationState->setTimePosition(0);
 }
+
+std::string animations::JSONAnimation::readJson(const std::string &filename) {
+    std::string line;
+    std::string dest;
+    std::ifstream file("./json/" + filename);
+
+    std::cout << "fichier: " << "./json/" + filename << std::endl;
+
+    if (!file.is_open()) {
+        return "";
+    }
+
+    while (getline(file, line)) {
+        dest += line;
+    }
+
+    std::cerr << "RES: " << dest << std::endl;
+
+    return dest;
+}
+
