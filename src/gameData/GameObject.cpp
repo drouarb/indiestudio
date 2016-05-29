@@ -32,13 +32,10 @@ void        GameObject::gather(Player *player)
 {
   if (gatherable)
   {
-  std::cout << "a" << std::endl;
     player->getInventory()->operator+=(this->items);
-  std::cout << "b" << std::endl;
     player->getInventory()->useUpgrades(player);
-  std::cout << "c" << std::endl;
+    world->playSound(SoundName::COINS, false, this->getPos());
     world->notifyDeath(this);
-  std::cout << "d" << std::endl;
   }
 }
 
@@ -52,6 +49,7 @@ void        GameObject::open(ItemContainer *curInventory) //unfinished
         inv->remove(item);
         world->playSound(SoundName::DOOR_STONE, false, this->getPos());
         world->notifyDeath(this);
+        this->collideActive = false;
         break;
       }
     }
@@ -79,7 +77,7 @@ ABody		*GameObject::clone(int id) const
 
   obj = new GameObject(id, world);
   obj->setItems(this->items);
-  obj->items->clone(this->items);
+  obj->items = this->items;
   obj->setName(name);
   obj->setCollide(collideActive);
   obj->changePos(coord);
@@ -94,6 +92,7 @@ ABody		*GameObject::clone(int id) const
 
 void GameObject::addItem(Item item) {
   items->getItemList()->push_back(item);
+  std::cout << items->getItemList()->size() << std::endl;
 }
 
 

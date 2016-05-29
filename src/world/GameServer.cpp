@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Sun May 29 14:25:39 2016 Alexis Trouve
+// Last update Sun May 29 15:15:35 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -22,6 +22,7 @@ using namespace network;
 
 GameServer::GameServer(const std::string& filePath, in_port_t port)
 {
+  dataSendThread = NULL;
   std::cout << "GameServer build" << std::endl;
   unsigned int	i;
 
@@ -35,6 +36,7 @@ GameServer::GameServer(const std::string& filePath, in_port_t port)
     packetFact = new PacketFactory(port);
   } catch (std::exception & f) {
     std::cout << "PacketFactory failed creation" << std::endl;
+    return ;
   }
   players.push_back({"Barbare", -1, false, -1});
   players.push_back({"Mage", -1, false, -1});
@@ -59,7 +61,8 @@ GameServer::GameServer(const std::string& filePath, in_port_t port)
 
 GameServer::~GameServer()
 {
-  dataSendThread->join();
+  if (dataSendThread)
+    dataSendThread->join();
 }
 
 void		GameServer::connectAnswer(const network::PacketConnect *packet)

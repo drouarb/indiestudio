@@ -2,6 +2,7 @@
 // Created by jonas_e on 5/9/16.
 //
 
+#include <iostream>
 #include "Player.hh"
 #include "ItemContainer.hh"
 
@@ -9,7 +10,7 @@ using namespace gauntlet;
 
 ItemContainer::ItemContainer()
 {
-
+    itemList = std::list<Item>();
 }
 
 ItemContainer::~ItemContainer()
@@ -19,7 +20,13 @@ ItemContainer::~ItemContainer()
 
 void ItemContainer::operator+=(ItemContainer *items)
 {
-    itemList.merge(items->itemList);
+    if (itemList.size() == 0)
+    {
+        if (items->itemList.size() != 0)
+            itemList = items->itemList;
+        return ;
+    }
+    itemList.merge(items->itemList, Item::compare);
 }
 
 void ItemContainer::remove(gauntlet::Item item) {
@@ -42,12 +49,9 @@ void ItemContainer::useUpgrades(Player *player) {
     }
 }
 
-ItemContainer *ItemContainer::clone(ItemContainer *itemContainer) {
-    ItemContainer *newItemContainer;
+void        ItemContainer::clone(ItemContainer *itemContainer) {
 
-    newItemContainer = new ItemContainer();
-    newItemContainer->itemList = itemContainer->itemList;
-    return newItemContainer;
+    this->itemList = itemContainer->itemList;
 }
 
 

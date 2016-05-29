@@ -195,8 +195,8 @@ void		World::gameLoop()
       if (turn % AI_PRIORITY == 0)
 	applyAI();
       applyMoveActor();
-      //if (turn % GATHERING_PRIORITY == 0)
-      //applyGatheringAndOpening();
+      if (turn % GATHERING_PRIORITY == 0)
+      applyGatheringAndOpening();
       if (turn % WIN_PRIORITY == 0)
 	checkWin();
       if (turn % RESPAWN_PRIORITY == 0)
@@ -255,7 +255,6 @@ void	World::checkWin()
 
 void	World::applyGatheringAndOpening()
 {
-  std::cout << "checkGather" << std::endl;
   std::list<ABody*>::iterator	it;
   std::list<ABody*>::iterator	it2;
   Player			*player;
@@ -264,48 +263,31 @@ void	World::applyGatheringAndOpening()
   std::list<ABody*>		list;
 
   it = bodys.begin();
-  std::cout << "1" << std::endl;
   while (it != bodys.end())
     {
-  std::cout << "2" << std::endl;
       body = (*it);
-  std::cout << "3" << std::endl;
       if ((player = dynamic_cast<Player*>(body)) != NULL)
 	{
-  std::cout << "4" << std::endl;
 	  list = collider->giveBodyInAreaCircle(player->getPos().first, player->getPos().second, 0,
 						(player->getSize().first + player->getSize().second) / 2.0, 0);
-  std::cout << "5" << std::endl;
 	  if (list.size() > 0)
 	    {
-  std::cout << "6" << std::endl;
 	      it2 = list.begin();
-  std::cout << "7" << std::endl;
 	      while (it2 != list.end())
 		{
-  std::cout << "8" << std::endl;
 		  body = (*it2);
-  std::cout << "9" << std::endl;
 		  if ((gameobject = dynamic_cast<GameObject*>(body)) != NULL)
 		    {
-  std::cout << "10" << std::endl;
 		      gameobject->open(&player->inventory);
-  std::cout << "11" << std::endl;
 		      gameobject->gather(player);
-  std::cout << "12" << std::endl;
+                std::cerr << "Que se passe-t-il " << player->inventory.getItemList()->size() << std::endl;
 		    }
-  std::cout << "13" << std::endl;
 		  it2++;
-  std::cout << "14" << std::endl;
 		}
-  std::cout << "15" << std::endl;
 	    }
-  std::cout << "16" << std::endl;
 	}
-  std::cout << "17" << std::endl;
       it++;
     }
-  std::cout << "checkGather end" << std::endl;
 }
 
 int	World::addNewBody(double xpos, double ypos, const std::string& name, short orientation)
