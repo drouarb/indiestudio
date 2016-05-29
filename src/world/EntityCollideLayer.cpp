@@ -12,13 +12,13 @@ EntityCollideLayer::EntityCollideLayer(gauntlet::world::PhysicCollideLayer *phys
 
   size = physicLayer->getSize();
   i = 0;
-  if ((map = new CollidingArea*[static_cast<int>(size.second / SIZE_CASE)]) == NULL)
+  sizeX = static_cast<int>(size.first / SIZE_CASE + 1);
+  sizeY = static_cast<int>(size.second / SIZE_CASE + 1);
+  if ((map = new CollidingArea*[static_cast<int>(sizeY)]) == NULL)
     errx(1, "Error : out of memory");
-  sizeX = static_cast<int>(size.first / SIZE_CASE);
-  sizeY = static_cast<int>(size.second / SIZE_CASE);
   while (i < sizeY)
     {
-      if ((map[i] = new CollidingArea[static_cast<int>(size.first / SIZE_CASE)]) == NULL)
+      if ((map[i] = new CollidingArea[static_cast<int>(sizeX)]) == NULL)
 	errx(1, "Error : out of memory");
       ++i;
     }
@@ -173,13 +173,19 @@ void		EntityCollideLayer::forceSetBody(gauntlet::ABody *newBody)
   std::pair<double, double>	size;
   int				x;
   int				y;
-
+  std::cout << "set" << std::endl;
   pos = newBody->getPos();
   size = newBody->getSize();
+  std::cout << "setok" << std::endl;
   x = static_cast<int>(pos.first / SIZE_CASE);
+  std::cout << "xok" << std::endl;
   y = static_cast<int>(pos.second / SIZE_CASE);
+  std::cout << "yok" << std::endl;
+  std::cout << "force " << pos.first << " " << pos.second << " to " << x << " " << y << std::endl << "size map :" << sizeX << ":" << sizeY << std::endl;
   Entity.push_front(newBody);
+  std::cout << "pushok1" << std::endl;
   map[y][x].Entity.push_front(newBody);
+  std::cout << "pushok2" << std::endl;
 }
 
 double		EntityCollideLayer::getDist(double refx, double refy,

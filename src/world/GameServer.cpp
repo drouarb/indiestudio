@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Sun May 29 20:55:42 2016 Esteban Lewis
+// Last update Mon May 30 01:20:48 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -179,16 +179,11 @@ void                        GameServer::sendDatas(int socketId)
   std::cout << "# map packet sent" << std::endl;
   while (it1 != bodys.end())
     {
-      std::cout << "datasendEntity " << (*it1)->getId() << " pos:" <<
-      (*it1)->getPos().first << ":" << (*it1)->getPos().second << std::endl;
-      network::PacketAddEntity packet((*it1)->getEntityId(),
-				      (*it1)->getTextureId(),
-				      (*it1)->getMeshId(),
-				      world->getSize().first -
-				      static_cast<int>((*it1)->getPos().first),
-				      world->getSize().second -
-				      static_cast<int>((*it1)->getPos().second),
-				      (*it1)->getOrientation());
+      std::cout << "datasendEntity " << (*it1)->getId() << " pos:" << (*it1)->getPos().first << ":" << (*it1)->getPos().second << std::endl;
+      network::PacketAddEntity	packet((*it1)->getEntityId(), (*it1)->getTextureId(), (*it1)->getMeshId(),
+				       world->getSize().first - 1 - static_cast<int>((*it1)->getPos().first),
+				       world->getSize().second - 1 - static_cast<int>((*it1)->getPos().second),
+				       (*it1)->getOrientation());
       packetFact->send(packet, socketId);
       it1++;
     }
@@ -304,16 +299,9 @@ void                GameServer::decoAll(const std::string &msg)
 
 void                GameServer::sendAddEntity(ABody *body)
 {
-  std::cout << "sendAddEntity" << body->getEntityId() << " " <<
-  body->getPos().first << ":" << body->getPos().second << ":" <<
-  body->getOrientation() << std::endl;
-  unsigned int i;
-  network::PacketAddEntity packet(body->getEntityId(), body->getTextureId(),
-				  body->getMeshId(), world->getSize().first -
-						     static_cast<int>(body->getPos().first),
-				  world->getSize().second -
-				  static_cast<int>(body->getPos().second),
-				  body->getOrientation());
+  std::cout << "sendAddEntity" << body->getEntityId() << " " << body->getPos().first << ":" << body->getPos().second << ":" << body->getOrientation() << std::endl;
+  unsigned int	i;
+  network::PacketAddEntity	packet(body->getEntityId(), body->getTextureId(), body->getMeshId(), world->getSize().first - 1 - static_cast<int>(body->getPos().first), world->getSize().second - 1 - static_cast<int>(body->getPos().second), body->getOrientation());
   std::cout << packet.getEntityId() << std::endl;
 
   i = 0;
@@ -327,12 +315,9 @@ void                GameServer::sendAddEntity(ABody *body)
 
 void                GameServer::sendMoveId(ABody *body)
 {
-  network::PacketMoveEntity packet(body->getEntityId(), world->getSize().first -
-							body->getPos().first,
-				   world->getSize().second -
-				   body->getPos().second,
-				   body->getOrientation());
-  unsigned int i;
+  network::PacketMoveEntity	packet(body->getEntityId(), world->getSize().first - 1 - body->getPos().first,
+				       world->getSize().second - 1 - body->getPos().second, body->getOrientation());
+  unsigned int	i;
 
   i = 0;
   while (i < players.size())
@@ -366,10 +351,8 @@ void                GameServer::sendEffect(unsigned int effect, int id,
 					   const std::pair<double, double> &pos,
 					   int decayTime)
 {
-  PacketAddParticle packet(effect, id, world->getSize().first - pos.first,
-			   world->getSize().second - pos.second, orient,
-			   decayTime);
-  unsigned int i;
+  PacketAddParticle	packet(effect, id, world->getSize().first - 1 - pos.first, world->getSize().second - 1 - pos.second, orient, decayTime);
+  unsigned int		i;
 
   i = 0;
   while (i < players.size())
@@ -409,9 +392,8 @@ void                GameServer::sendSound(unsigned int soundId, int id,
 					  bool loop,
 					  const std::pair<double, double> &pos)
 {
-  PacketPlaySound packet(soundId, id, world->getSize().first - pos.first,
-			 world->getSize().second - pos.second, loop);
-  unsigned int i;
+  PacketPlaySound	packet(soundId, id, world->getSize().first - 1 - pos.first, world->getSize().second - 1 - pos.second, loop);
+  unsigned int		i;
 
   i = 0;
   while (i < players.size())
