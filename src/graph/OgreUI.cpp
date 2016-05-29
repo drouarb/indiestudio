@@ -2,10 +2,23 @@
 #include <iostream>
 #include "graph/OgreUI.hh"
 #include "Math.hh"
+#include "Animations.hh"
 
 using namespace gauntlet;
 using namespace core;
 
+namespace gauntlet
+{
+  enum EffectName : int;
+
+  class Effect;
+
+  namespace animations
+  {
+    class Animation;
+    class JSONAnimation;
+  }
+}
 
 OgreUI::OgreUI(void)
 	: obs(NULL),
@@ -215,12 +228,22 @@ bool OgreUI::frameRenderingQueued(const Ogre::FrameEvent &evt)
   return true;
 }
 
-void OgreUI::applyAnimation(const Ogre::FrameEvent &evt) const
+void OgreUI::applyAnimation(const Ogre::FrameEvent &evt)
 {
   for (auto animation : animationsArray)
     {
       Ogre::AnimationState *t2 = animation.second;
       t2->addTime(evt.timeSinceLastFrame);
+    }
+  for (auto animation : this->animationsMap)
+    {
+      animations::Animation *t2 = animation.second;
+      if (!t2)
+	continue;
+      if (!t2->update(evt.timeSinceLastFrame))
+	{
+	  this->animationsMap[animation.first] = NULL;
+	}
     }
 }
 
@@ -600,6 +623,55 @@ void OgreUI::playAnimation(int entityId, int animationId, bool loop)
 }
 
 
+void OgreUI::playAnimation(int entityId,
+			   gauntlet::animations::AnimationsListJson animation,
+			   bool loop)
+{
+  const std::pair<std::string, std::string> &pair = animations::jsonMap.at(
+	  animation);
+
+  std::stringstream ss;
+
+  ss << entityId;
+  Ogre::Entity *pEntity = this->mSceneMgr->getEntity(ss.str());
+  Ogre::AnimationState *pState = pEntity->getAnimationState(
+	  getAnimationName(0, pEntity));
+
+  pState->setLoop(loop);
+  pState->setEnabled(true);
+  animations::Animation *a = new animations::JSONAnimation(pair.first, pair.second,
+						  pState, loop);
+  animations::Animation *&type = this->animationsMap[pEntity->getName()];
+  if (type)
+    {
+      type->reset();
+      delete (type);
+    }
+  type = a;
+  a->update(0);
+}
+
+const std::string &OgreUI::getAnimationName(int animationId,
+					    const Ogre::Entity *pEntity) const
+{
+  int nb = 0;
+  Ogre::AnimationStateSet *allAnims;
+  if ((allAnims = pEntity->getAllAnimationStates()) == NULL)
+    throw std::logic_error("Unknow Animation id");
+  Ogre::AnimationStateIterator mapIterator = allAnims->getAnimationStateIterator();
+  auto it = mapIterator.begin();
+  while (it != mapIterator.end())
+    {
+      if (nb == animationId)
+	{
+	  return it->first;
+	}
+      it++;
+      ++nb;
+    }
+  throw std::logic_error("Unknow Animation id");
+}
+
 void OgreUI::playAnimation(int entityId, std::string const &animationName,
 			   bool loop)
 {
@@ -977,14 +1049,6 @@ bool OgreUI::addMapEntity(int entityId, const std::string &path, int x, int y,
   s->attachObject(e);
   return (true);
 }
-
-
-
-
-
-
-
-
 
 
 

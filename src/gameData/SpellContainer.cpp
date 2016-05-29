@@ -62,3 +62,8 @@ int		SpellContainer::giveSpell(double Range, double minRange, bool mustDamage,
     }
   return (highterI);
 }
+
+const Spell *	SpellContainer::spellNb(int nb)
+{
+  return (spellList[nb]);
+}
