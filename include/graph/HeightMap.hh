@@ -4,7 +4,7 @@
 # include <string>
 
 # define SCALE_MAP 90
-# define HEIGHT_MAP_SCALE (20.0 * SCALE_MAP)
+# define HEIGHT_MAP_SCALE (40.0 * SCALE_MAP)
 
 namespace			gauntlet
 {

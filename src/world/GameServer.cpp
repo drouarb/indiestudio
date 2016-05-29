@@ -1,13 +1,3 @@
-//
-// GameServer.cpp for GameServer in /home/trouve_b/Desktop/CPP_project/cpp_indie_studio
-// 
-// Made by Alexis Trouve
-// Login   <trouve_b@epitech.net>
-// 
-// Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Sun May 29 15:30:56 2016 Alexis Trouve
-//
-
 #include <iostream>
 #include "PlayerChars.hh"
 #include "ServSelectPlayerListener.hh"
@@ -29,8 +19,9 @@ GameServer::GameServer(const std::string& filePath, in_port_t port)
   world = new World(this);
   try {
     world->loadGame(filePath);
-  } catch (std::runtime_error & e) {
+  } catch (std::exception & e) {
     std::cout << "errorMap " << e.what() << std::endl;
+    return ;
   }
   try {
     packetFact = new PacketFactory(port);
