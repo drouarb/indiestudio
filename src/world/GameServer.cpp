@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Sun May 29 14:25:39 2016 Alexis Trouve
+// Last update Sun May 29 15:02:09 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -127,7 +127,6 @@ void		GameServer::selectPlayerAnswer(const network::PacketSelectPlayer *packet)
 							 players[iTaken].name, 0)));
       players[iTaken].idPlayer = id;
       packetFact->send(myPacket, packet->getSocketId());
-      sendDatas(packet->getSocketId());
       dataSendThread = new std::thread(std::bind(&GameServer::sendDatas, std::ref(*this), packet->getSocketId()));
     }
   else
@@ -138,7 +137,7 @@ void		GameServer::selectPlayerAnswer(const network::PacketSelectPlayer *packet)
 
 void			GameServer::sendDatas(int socketId)
 {
-  std::cout << "sendData" << std::endl;
+  std::cout << "sendData socket:" << socketId << std::endl;
   std::list<ABody*>	bodys;
   std::vector<effectGlobal*>	effectTab;
   std::vector<soundGlobal*>	soundTab;
