@@ -14,7 +14,7 @@
 #include "Math.hh"
 #include "EntityName.hh"
 #include "SoundName.hh"
-#include <tuple>
+#include "AnimationsList.hh"
 #include <vector>
 
 namespace gauntlet
@@ -35,14 +35,19 @@ namespace gauntlet
     int                         model;
     int                         texture;
     unsigned long               cooldown;
+    animations::AnimationsListJson idle;
+    animations::AnimationsListJson running;
+
   public:
     enum    soundType {
-            ATTACK_SOUND = 0,
-            WOUND_SOUND = 1,
-            DEATH_SOUND = 2,
+            ATTACK = 0,
+            WOUND = 1,
+            DEATH = 2,
             SIZE = 3
     };
-    std::vector<SoundName>                   soundEffect[SIZE];
+
+    std::vector<animations::AnimationsListJson>     animations[SIZE];
+    std::vector<SoundName>   soundEffect[SIZE];
 
   public:
     ABody(int nid);
@@ -70,6 +75,8 @@ namespace gauntlet
     virtual void			setTextureId(int text);
     virtual void			setMeshId(int model);
     virtual void            setCooldown(unsigned long _cooldown);
+    virtual void            setIdle(animations::AnimationsListJson);
+    virtual void            setRunning(animations::AnimationsListJson);
   };
 
 };

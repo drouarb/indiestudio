@@ -22,8 +22,13 @@ Actor::~Actor()
 
 void		Actor::move()
 {
-  if (ismoving == true)
+  if (ismoving)
+  {
+    this->getWorld()->animeEntity(this->id, running);
     world->getCollider().applyVectorToId(id, orientation, stats.speed);
+  }
+  else
+    this->getWorld()->animeEntity(this->id, idle);
 }
 
 bool		Actor::getMove() const
@@ -52,6 +57,8 @@ ABody		*Actor::clone(int id) const
   actor->setCollide(collideActive);
   actor->setTextureId(texture);
   actor->setMeshId(model);
+  actor->setIdle(idle);
+  actor->setRunning(running);
   actor->changePos(coord);
   actor->changeSize(size);
   actor->changeOrientation(orientation);
