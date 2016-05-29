@@ -637,6 +637,8 @@ void OgreUI::playAnimation(int entityId,
   const std::pair<std::string, std::string> &pair = animations::jsonMap.at(
 	  animation);
 
+    std::cerr << "OgreUI::playAnimation(entityId: " << entityId << ", animation: " << static_cast<int>(animation) << std::endl;
+
   std::stringstream ss;
 
   ss << entityId;

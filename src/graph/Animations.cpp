@@ -52,28 +52,38 @@ void gauntlet::animations::JSONAnimation::findProprerties(
 		  "Animation"));
   for (size_t i = 0; i < arr.Size(); ++i)
     {
-      ::JSON::JsonObj &json = dynamic_cast<::JSON::JsonObj &>(arr[i]);
-      std::string name = dynamic_cast<::JSON::JsonStr &>(json.GetObj(
-	      "name")).Get();
-      std::transform(name.begin(), name.end(), name.begin(), ::toupper);
-      if (an == name)
-      {
-	this->name = name;
-	try
-	  {
-	    this->begin = stod(
-		    dynamic_cast<::JSON::JsonStr &>(json.GetObj(
-			    "begin")).Get());
-	    this->end = stod(
-		    dynamic_cast<::JSON::JsonStr &>(json.GetObj(
-			    "end")).Get());
-	  } catch (std::invalid_argument)
-	  {
-	    throw std::runtime_error("Invalid number");
-	  }
-	this->currentTimePosition = 0;
-	return;
-      }
+		try {
+			::JSON::JsonObj &json = dynamic_cast<::JSON::JsonObj &>(arr[i]);
+			try {
+				std::string name = dynamic_cast<::JSON::JsonStr &>(json.GetObj(
+						"name")).Get();
+				std::transform(name.begin(), name.end(), name.begin(), ::toupper);
+				if (an == name)
+				{
+					this->name = name;
+					try
+					{
+						this->begin = stod(
+								dynamic_cast<::JSON::JsonStr &>(json.GetObj(
+										"begin")).Get());
+						this->end = stod(
+								dynamic_cast<::JSON::JsonStr &>(json.GetObj(
+										"end")).Get());
+					} catch (std::invalid_argument)
+					{
+						throw std::runtime_error("Invalid number");
+					}
+					this->currentTimePosition = 0;
+					return;
+				}
+			} catch (...)
+			{
+				std::cerr << "222222222" << std::endl;
+			}
+		} catch (...)
+			{
+				std::cerr << "111111111" << std::endl;
+			}
     }
   throw std::logic_error("Cannot find " + animationName);
 }

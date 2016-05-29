@@ -205,8 +205,6 @@ namespace gauntlet
       BERSEKER_DODGE_RIGHT
     };
   }
-
-
 }
 
 #endif //GAUNTLET_ANIMATIONSLIST_HH
