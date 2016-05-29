@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 11:46:42 2016 Alexis Trouve
-// Last update Sun May 29 17:05:28 2016 Esteban Lewis
+// Last update Sun May 29 17:38:08 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -59,7 +59,7 @@ void			BasicAI::launchAI(gauntlet::Actor *actor)
   int				idAttack;
 
   std::cout << "- launchai" << std::endl;
-  bodys = world->getCollider().giveBodyInAreaCircle(actor->getPos().first, actor->getPos().second, CHECK_DIST, 0, 0);
+  bodys = world->getCollider().giveBodyInAreaCircle(actor->getPos().first, actor->getPos().second, 0, CHECK_DIST, 0);
   std::cout << "in ai radius: " << bodys.size() << std::endl;
   it1 = bodys.begin();
   savedPlayer = NULL;

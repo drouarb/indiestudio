@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 25 18:33:15 2016 Alexis Trouve
-// Last update Thu May 26 13:07:39 2016 Alexis Trouve
+// Last update Sun May 29 17:11:09 2016 Alexis Trouve
 //
 
 #ifndef ENTITYCOLLIDELAYER_HH_
@@ -53,7 +53,6 @@ namespace gauntlet
       EntityCollideLayer(gauntlet::world::PhysicCollideLayer *physicLayer);
       ~EntityCollideLayer();
 
-      bool				canMovePoint(double posx, double posy, int id);
       void				forceMoveId(int id, double posx, double posy);
       bool				tryMoveId(int id, double posx, double posy);
       void				applyVectorToId(int id, short orient, double speed);
