@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sat May 28 16:36:35 2016 Alexis Trouve
-// Last update Sun May 29 00:44:51 2016 Alexis Trouve
+// Last update Sun May 29 01:01:16 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -150,23 +150,36 @@ void		World::applyAI()
   Player		*nplay;
 
   it1 = bodys.begin();
+  //std::cout << "1" << std::endl;
   while (it1 != bodys.end())
     {
+      //std::cout << "2" << std::endl;
       if ((nplay = dynamic_cast<Player*>(*it1)) != NULL)
-	players.push_back(nplay);
+	{
+	  //std::cout << "3" << std::endl;
+	  players.push_back(nplay);
+	}
+      //std::cout << "4" << std::endl;
       it1++;
     }
+  //std::cout << "5" << std::endl;
   j = 0;
+  //std::cout << "6" << std::endl;
   while (j < players.size())
     {
+      //std::cout << "7" << std::endl;
       i = 0;
+      //std::cout << "8" << std::endl;
       while (i < AIs.size())
 	{
+	  //std::cout << "9" << std::endl;
 	  AIs[i]->launchAI(players[j]->getPos());
 	  ++i;
 	}
+      //std::cout << "10" << std::endl;
       ++j;
     }
+  //std::cout << "11" << std::endl;
 }
 
 void		World::gameLoop()
@@ -195,7 +208,6 @@ void		World::gameLoop()
 
 void	World::checkRespawn()
 {
-  std::cout << "checkSpawn" << std::endl;
   unsigned int		i;
   Player		*player;
 
@@ -210,12 +222,10 @@ void	World::checkRespawn()
 	}
       ++i;
     }
-  std::cout << "checkSpawn end" << std::endl;
 }
 
 void	World::checkWin()
 {
-  std::cout << "checkWin" << std::endl;
   std::list<ABody*>::iterator	it;
   ABody				*body;
   Player			*player;
@@ -241,7 +251,6 @@ void	World::checkWin()
     return ;
   gameServer->decoAll("Good game, you win.");
   exit(0);
-  std::cout << "checkWin end" << std::endl;
 }
 
 void	World::applyGatheringAndOpening()
@@ -330,6 +339,7 @@ void		World::notifyDeath(ABody *body)
   unsigned int	i;
   Player	*player;
 
+  std::cout << "on notify une mort OMG id : " << body->getId() << std::endl;
   collider->suprBody(body->getId());
   i = 0;
   while (i < AIs.size())
