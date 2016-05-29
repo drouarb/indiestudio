@@ -48,7 +48,6 @@ gauntlet::HeightMap::load(std::string const & filename)
 	  height++;
 	}
     }
-
   map = new unsigned char [height * width];
   int i = 0;
   std::stringstream ss;
@@ -100,7 +99,6 @@ gauntlet::HeightMap::getSize() const
 {
   if (!map)
     throw (std::runtime_error("HeightMap not loaded"));
-
   return (std::pair<double, double>((double)width * HEIGHT_MAP_SCALE,
 				    (double)height * HEIGHT_MAP_SCALE));
 }
