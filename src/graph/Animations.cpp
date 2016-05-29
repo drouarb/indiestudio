@@ -49,7 +49,7 @@ void gauntlet::animations::JSONAnimation::findProprerties(
   std::transform(an.begin(), an.end(), an.begin(), ::toupper);
   ::JSON::JsonArr &
 	  arr = dynamic_cast<::JSON::JsonArr &>(this->jsonObj.GetObj(
-		  "Animation"));
+		  "animation"));
   for (size_t i = 0; i < arr.Size(); ++i)
     {
 		try {
