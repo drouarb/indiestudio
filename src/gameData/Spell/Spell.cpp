@@ -71,7 +71,8 @@ void gauntlet::Spell::cast(Actor *caster)
     if (targets.size() > 0) {
         caster->getWorld()->playSound(soundEffect, false, targetedArea);
     }
-    ApplyDamage(targets, caster);
+    if ((rand() % 100) < (100 * caster->stats.attackModifier))
+        ApplyDamage(targets, caster);
     caster->setCooldown(castTime);
 }
 
