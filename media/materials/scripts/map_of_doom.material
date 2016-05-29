@@ -20,10 +20,7 @@ material Nature2
         pass
         {
             diffuse 1.000000 1.000000 1.000000
-	    scene_blend alpha_blend
-	    depth_write off
-
-	    texture_unit
+            texture_unit
             {
                 texture nature2.png
             }
@@ -53,27 +50,9 @@ material Spiderweb
         pass
         {
             diffuse 0.611940 0.611940 0.611940
-	    scene_blend alpha_blend
-	    depth_write off
-
-	    texture_unit
-            {
-                texture spiderweb.png
-            }
-        }
-    }
-}
-
-material Wall3
-{
-    technique
-    {
-        pass
-        {
-            diffuse 1.000000 1.000000 1.000000
             texture_unit
             {
-                texture Wall3.png
+                texture spiderweb.png
             }
         }
     }
@@ -89,6 +68,21 @@ material Wood1
             texture_unit
             {
                 texture Wood_elements1.png
+            }
+        }
+    }
+}
+
+material Wall3
+{
+    technique
+    {
+        pass
+        {
+            diffuse 1.000000 1.000000 1.000000
+            texture_unit
+            {
+                texture Wall3.png
             }
         }
     }
@@ -119,21 +113,6 @@ material Roots
             texture_unit
             {
                 texture Roots1.png
-            }
-        }
-    }
-}
-
-material Ground1
-{
-    technique
-    {
-        pass
-        {
-            diffuse 1.000000 1.000000 1.000000
-            texture_unit
-            {
-                texture Ground1.png
             }
         }
     }
@@ -184,6 +163,21 @@ material Bricks1
     }
 }
 
+material Ground1
+{
+    technique
+    {
+        pass
+        {
+            diffuse 1.000000 1.000000 1.000000
+            texture_unit
+            {
+                texture Ground1.png
+            }
+        }
+    }
+}
+
 material Addons
 {
     technique
@@ -194,36 +188,6 @@ material Addons
             texture_unit
             {
                 texture Addons.png
-            }
-        }
-    }
-}
-
-material Pavement
-{
-    technique
-    {
-        pass
-        {
-            diffuse 1.000000 1.000000 1.000000
-            texture_unit
-            {
-                texture Pavement1.png
-            }
-        }
-    }
-}
-
-material Up
-{
-    technique
-    {
-        pass
-        {
-            diffuse 1.000000 1.000000 1.000000
-            texture_unit
-            {
-                texture Up_elements1.png
             }
         }
     }
@@ -259,6 +223,21 @@ material Ground2_alpha
     }
 }
 
+material Pavement
+{
+    technique
+    {
+        pass
+        {
+            diffuse 1.000000 1.000000 1.000000
+            texture_unit
+            {
+                texture Pavement1.png
+            }
+        }
+    }
+}
+
 material Nature
 {
     technique
@@ -266,10 +245,7 @@ material Nature
         pass
         {
             diffuse 1.000000 1.000000 1.000000
-	    scene_blend alpha_blend
-	    depth_write off
-
-	    texture_unit
+            texture_unit
             {
                 texture nature.png
             }
@@ -277,13 +253,17 @@ material Nature
     }
 }
 
-material black
+material Up
 {
     technique
     {
         pass
         {
-            diffuse 0.000000 0.000000 0.000000
+            diffuse 1.000000 1.000000 1.000000
+            texture_unit
+            {
+                texture Up_elements1.png
+            }
         }
     }
 }
@@ -295,6 +275,17 @@ material Default-Diffuse
         pass
         {
             diffuse 1.000000 1.000000 1.000000
+        }
+    }
+}
+
+material black
+{
+    technique
+    {
+        pass
+        {
+            diffuse 0.000000 0.000000 0.000000
         }
     }
 }
