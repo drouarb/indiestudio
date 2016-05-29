@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:51:22 2016 Alexis Trouve
-// Last update Sat May 28 20:53:29 2016 Alexis Trouve
+// Last update Sun May 29 13:44:46 2016 Alexis Trouve
 //
 
 #ifndef WORLD_HH_
@@ -120,6 +120,7 @@ namespace			gauntlet
       void			checkWin();
       void			checkRespawn();
       std::string		getMapNames() const;
+      std::pair<double, double>	getSize() const;
     };
   };
 };

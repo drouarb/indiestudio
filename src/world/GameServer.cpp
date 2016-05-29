@@ -1,11 +1,5 @@
 //
-// GameServer.cpp for GameServer in /home/trouve_b/Desktop/CPP_project/cpp_indie_studio
-// 
-// Made by Alexis Trouve
-// Login   <trouve_b@epitech.net>
-// 
-// Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Sun May 29 01:00:05 2016 Alexis Trouve
+// Last update Sun May 29 14:20:23 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -31,13 +25,11 @@ GameServer::GameServer(const std::string& filePath, in_port_t port)
   } catch (std::runtime_error & e) {
     std::cout << "errorMap " << e.what() << std::endl;
   }
-  std::cout << "# world new packetf" << std::endl;
   try {
     packetFact = new PacketFactory(port);
   } catch (std::exception & f) {
     std::cout << "PacketFactory failed creation" << std::endl;
   }
-  std::cout << "# world packetf ok" << std::endl;
   players.push_back({"Barbare", -1, false, -1});
   players.push_back({"Mage", -1, false, -1});
   players.push_back({"Valkyrie", -1, false, -1});
@@ -61,7 +53,7 @@ GameServer::GameServer(const std::string& filePath, in_port_t port)
 
 GameServer::~GameServer()
 {
-  //dataSendThread->join();
+  dataSendThread->join();
 }
 
 void		GameServer::connectAnswer(const network::PacketConnect *packet)
@@ -81,6 +73,7 @@ void		GameServer::selectPlayerAnswer(const network::PacketSelectPlayer *packet)
   unsigned int	i;
   int		id;
 
+  dataSendMutex.lock();
   i = 0;
   nbrChoose = -1;
   while (i < connectTmp.size())
@@ -123,18 +116,17 @@ void		GameServer::selectPlayerAnswer(const network::PacketSelectPlayer *packet)
       players[iTaken].isTake = true;
       players[iTaken].socketId = packet->getSocketId();
       connectTmp.erase(connectTmp.begin() + i);
-      //dataSendMutex.lock();
       PacketStartGame	myPacket((id = world->addNewBody(world->getSpawnPoint().first,
 							 world->getSpawnPoint().second,
 							 players[iTaken].name, 0)));
       players[iTaken].idPlayer = id;
       packetFact->send(myPacket, packet->getSocketId());
       sendDatas(packet->getSocketId());
-      //dataSendThread = new std::thread(std::bind(&GameServer::sendDatas, std::ref(*this), packet->getSocketId()));
-      //dataSendMutex.unlock();
+      dataSendThread = new std::thread(std::bind(&GameServer::sendDatas, std::ref(*this), packet->getSocketId()));
     }
   else
     sendHandShake(packet->getSocketId());
+  dataSendMutex.unlock();
   std::cout << "selectplayerend" << std::endl;
 }
 
@@ -156,9 +148,11 @@ void			GameServer::sendDatas(int socketId)
   packetFact->send(packetMap, socketId);
   while (it1 != bodys.end())
     {
-      network::PacketAddEntity	packet((*it1)->getEntityId(), (*it1)->getTextureId(),
-				       (*it1)->getMeshId(), static_cast<int>((*it1)->getPos().first),
-				       static_cast<int>((*it1)->getPos().second), (*it1)->getOrientation());
+      std::cout << "datasendEntity " << (*it1)->getId() << " pos:" << (*it1)->getPos().first << ":" << (*it1)->getPos().second << std::endl;
+      network::PacketAddEntity	packet((*it1)->getEntityId(), (*it1)->getTextureId(), (*it1)->getMeshId(),
+				       world->getSize().first - static_cast<int>((*it1)->getPos().first),
+				       world->getSize().second - static_cast<int>((*it1)->getPos().second),
+				       (*it1)->getOrientation());
       packetFact->send(packet, socketId);
       it1++;
     }
@@ -267,7 +261,7 @@ void		GameServer::sendAddEntity(ABody *body)
 {
   std::cout << "sendAddEntity" << body->getEntityId() << " " << body->getPos().first << ":" << body->getPos().second << ":" << body->getOrientation() << std::endl;
   unsigned int	i;
-  network::PacketAddEntity	packet(body->getEntityId(), body->getTextureId(), body->getMeshId(), static_cast<int>(body->getPos().first), static_cast<int>(body->getPos().second), body->getOrientation());
+  network::PacketAddEntity	packet(body->getEntityId(), body->getTextureId(), body->getMeshId(), world->getSize().first - static_cast<int>(body->getPos().first), world->getSize().second - static_cast<int>(body->getPos().second), body->getOrientation());
   std::cout << packet.getEntityId() << std::endl;
 
   i = 0;
@@ -281,8 +275,8 @@ void		GameServer::sendAddEntity(ABody *body)
 
 void		GameServer::sendMoveId(ABody *body)
 {
-  network::PacketMoveEntity	packet(body->getEntityId(), body->getPos().first,
-				       body->getPos().second, body->getOrientation());
+  network::PacketMoveEntity	packet(body->getEntityId(), world->getSize().first - body->getPos().first,
+				       world->getSize().second - body->getPos().second, body->getOrientation());
   unsigned int	i;
 
   i = 0;
@@ -313,7 +307,7 @@ void		GameServer::controlInput(const network::PacketControl *packet)
 void		GameServer::sendEffect(unsigned int effect, int id, short orient,
 				       const std::pair<double, double>& pos, int decayTime)
 {
-  PacketAddParticle	packet(effect, id, pos.first, pos.second, orient, decayTime);
+  PacketAddParticle	packet(effect, id, world->getSize().first - pos.first, world->getSize().second - pos.second, orient, decayTime);
   unsigned int		i;
 
   i = 0;
@@ -352,7 +346,7 @@ void		GameServer::sendStopSound(int id)
 
 void		GameServer::sendSound(unsigned int soundId, int id, bool loop, const std::pair<double, double>& pos)
 {
-  PacketPlaySound	packet(soundId, id, pos.first, pos.second, loop);
+  PacketPlaySound	packet(soundId, id, world->getSize().first - pos.first, world->getSize().second - pos.second, loop);
   unsigned int		i;
 
   i = 0;

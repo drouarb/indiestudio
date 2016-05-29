@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 14:44:15 2016 Alexis Trouve
-// Last update Sat May 28 22:45:57 2016 Alexis Trouve
+// Last update Sun May 29 13:40:54 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -57,15 +57,24 @@ bool				Collider::applyVectorToId(int id, short orient, double speed)
 
   if ((body = dynamicLayer->getBodyId(id)) == NULL)
     return (false);
-  vectY = -(Math::sin(orient) * speed);
-  vectX = -(Math::cos(orient) * speed);
+  vectY = (Math::sin(orient) * speed);
+  vectX = (Math::cos(orient) * speed);
   sizeB = body->getSize();
   posB = body->getPos();
+  std::cout << "vect:" << vectY << ":" << vectX << " size:" << sizeB.first << ":" << sizeB.second << " pos:" << posB.first << ":" << posB.second << std::endl;
   if (physicLayer->checkCoordSizeCanPass(posB, std::make_pair(posB.first + vectX, posB.second), sizeB) == true)
-    dynamicLayer->tryMoveId(id, posB.first + vectX, posB.second);
+    {
+      std::cout << "X physic ok" << std::endl;
+      if (dynamicLayer->tryMoveId(id, posB.first + vectX, posB.second) == true)
+	std::cout << "X entity ok" << std::endl;
+    }
   posB = body->getPos();
   if (physicLayer->checkCoordSizeCanPass(posB, std::make_pair(posB.first, posB.second + vectY), sizeB) == true)
-    dynamicLayer->tryMoveId(id, posB.first, posB.second + vectY);
+    {
+      std::cout << "Y physic ok" << std::endl;
+      if (dynamicLayer->tryMoveId(id, posB.first, posB.second + vectY) == true)
+	std::cout << "Y entity ok" << std::endl;
+    }
   return (true);
 }
 

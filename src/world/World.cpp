@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sat May 28 16:36:35 2016 Alexis Trouve
-// Last update Sun May 29 01:01:16 2016 Alexis Trouve
+// Last update Sun May 29 14:01:42 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -62,8 +62,8 @@ void	World::loadGame(std::string const & file)
 
       collider = new Collider(mapHeightName);
 
-      sizeX = collider->getSizeMap().first;
-      sizeY = collider->getSizeMap().second;
+      std::cout << "x:" << (sizeX = collider->getSizeMap().first) << std::endl;
+      std::cout << "y:" << (sizeY = collider->getSizeMap().second) << std::endl;
 
       JSON::JsonObj & endZone = dynamic_cast<JSON::JsonObj &>(json.GetObj("endZone"));
       endPos.first = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("posX")).Get());
@@ -604,4 +604,9 @@ unsigned long			World::getTurn() const
 std::string		World::getMapNames() const
 {
   return (mapAssetName + ";" + mapHeightName);
+}
+
+std::pair<double, double>	World::getSize() const
+{
+  return (std::make_pair(sizeX, sizeY));
 }
