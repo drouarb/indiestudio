@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 14:41:17 2016 Alexis Trouve
-// Last update Sat May 28 22:08:24 2016 Alexis Trouve
+// Last update Sun May 29 16:41:22 2016 Esteban Lewis
 //
 
 #ifndef COLLIDER_HH_
@@ -46,6 +46,8 @@ namespace gauntlet
 					   double size, short cone_angle);
         std::list<ABody *> giveBodyInAreaflightPath(double posx, double posy, short ref_angle,
 						    double size, short cone_angle);
+      double				getDist(double x_ref, double y_ref,
+						const ABody & target);
     };
   };
 };

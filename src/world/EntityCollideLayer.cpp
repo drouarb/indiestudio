@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 25 18:33:27 2016 Alexis Trouve
-// Last update Sun May 29 15:09:57 2016 Alexis Trouve
+// Last update Sun May 29 17:19:41 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -314,6 +314,27 @@ bool				EntityCollideLayer::bodyLineIntersection(double refX,
 
 std::list<gauntlet::ABody*>	EntityCollideLayer::giveBodyInAreaCircle(double posx, double posy, double rayon)
 {
+  for (unsigned int x = 0; x < 20; ++x)
+    {
+      for (unsigned int y = 0; y < 20; ++y)
+	{
+	  if (map[x][y].Entity.size() > 0)
+	    {
+	      std::cout << "case " << x << " " << y << std::endl;
+	      for (std::list<ABody *>::iterator it = map[x][y].Entity.begin();
+		   it != map[x][y].Entity.end(); ++it)
+		{
+		  std::cout << "\t"
+			    << (*it)->getPos().first << " "
+			    << (*it)->getPos().second
+			    << std::endl;
+		}
+	    }
+	}
+    }
+  std::cout << std::endl;
+
+
   std::list<ABody*>		list;
 
   long max_x = (int)((posx + rayon) / SIZE_CASE);

@@ -142,3 +142,9 @@ std::pair<unsigned int, unsigned int>	Collider::getSizeMap() const
 {
   return (std::make_pair(sizeX, sizeY));
 }
+
+double					Collider::getDist(double ref_x, double ref_y,
+							  const ABody &target)
+{
+  return (dynamicLayer->getDist(ref_x, ref_y, target));
+}
