@@ -2,10 +2,23 @@
 #include <iostream>
 #include "graph/OgreUI.hh"
 #include "Math.hh"
+#include "Animations.hh"
 
 using namespace gauntlet;
 using namespace core;
 
+namespace gauntlet
+{
+  enum EffectName : int;
+
+  class Effect;
+
+  namespace animations
+  {
+    class Animation;
+    class JSON;
+  }
+}
 
 OgreUI::OgreUI(void)
 	: obs(NULL),
@@ -215,12 +228,22 @@ bool OgreUI::frameRenderingQueued(const Ogre::FrameEvent &evt)
   return true;
 }
 
-void OgreUI::applyAnimation(const Ogre::FrameEvent &evt) const
+void OgreUI::applyAnimation(const Ogre::FrameEvent &evt)
 {
   for (auto animation : animationsArray)
     {
       Ogre::AnimationState *t2 = animation.second;
       t2->addTime(evt.timeSinceLastFrame);
+    }
+  for (auto animation : this->animationsMap)
+    {
+      animations::Animation *t2 = animation.second;
+      if (!t2)
+	continue;
+      if (!t2->update(evt.timeSinceLastFrame))
+	{
+	  this->animationsMap[animation.first] = NULL;
+	}
     }
 }
 
@@ -597,6 +620,35 @@ void OgreUI::playAnimation(int entityId, int animationId, bool loop)
       it++;
       ++nb;
     }
+}
+
+
+void OgreUI::playAnimation(int entityId,
+			   gauntlet::animations::AnimationsListJson animation,
+			   bool loop)
+{
+  const std::pair<std::string, std::string> &pair = animations::jsonMap.at(
+	  animation);
+
+  std::stringstream ss;
+
+  ss << entityId;
+  Ogre::Entity *pEntity = this->mSceneMgr->getEntity(ss.str());
+  Ogre::AnimationState *pState = pEntity->getAnimationState(
+	  getAnimationName(0, pEntity));
+
+  pState->setLoop(loop);
+  pState->setEnabled(true);
+  animations::Animation *a = new animations::JSON(pair.first, pair.second,
+						  pState, loop);
+  animations::Animation *&type = this->animationsMap[pEntity->getName()];
+  if (type)
+    {
+      type->reset();
+      delete (type);
+    }
+  type = a;
+  a->update(0);
 }
 
 const std::string &OgreUI::getAnimationName(int animationId,

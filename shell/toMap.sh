@@ -6,8 +6,8 @@ do
 	line=`echo -n ${line} | tr ',\n' ' '`
 	echo -n "$line, "
 	A=`echo ${line} | sed 's/_JSON_/\|/g'| cut -d '|' -f 1`
-	A=`echo ${line} | tr '[:upper:]' '[:lower:]'`
+	A=`echo ${A} | tr '[:upper:]' '[:lower:]'`
 	B=`echo ${line} | sed 's/_JSON_/\|/g' | cut -d '|' -f 2`
-	echo -n "{ $A, $B }"
+	echo -n "{ \"$A.json\", \"$B\" }"
 	echo "},"
 done <./.tmp

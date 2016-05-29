@@ -7,25 +7,36 @@
 
 using namespace gauntlet;
 
-void animations::JSON::update(double elapsedTime)
+//std::map<animations::AnimationsListJson, std::pair<std::string, std::string>> gauntlet::animations::jsonMap =
+//;
+
+
+bool animations::JSON::update(double elapsedTime)
 {
   this->currentTimePosition += elapsedTime;
   if (currentTimePosition > (this->end - this->begin))
     {
+      if (loop)
+	{
+	  return false;
+	}
       currentTimePosition =
 	      this->begin + (currentTimePosition - (this->end - this->begin));
     }
   this->animationState->setTimePosition(
 	  static_cast<float>(currentTimePosition));
+  return true;
 }
 
 animations::JSON::JSON(const std::string &filename,
 		       const std::string &animationName,
-		       Ogre::AnimationState *animationState) : filename(
+		       Ogre::AnimationState *animationState,
+		       bool loop) : filename(
 	filename), animationState(animationState)
 {
   this->jsonObj.ParseFrom(filename);
   this->type = animationSource::JSON;
+  this->loop = loop;
 
   findProprerties(animationName);
 }
@@ -34,7 +45,7 @@ void gauntlet::animations::JSON::findProprerties(
 	const std::string &animationName)
 {
   ::JSON::JsonArr &arr = dynamic_cast<::JSON::JsonArr &>(this->jsonObj.GetObj(
-	  "animation"));
+	  "Animation"));
   for (size_t i = 0; i < arr.Size(); ++i)
     {
       ::JSON::JsonObj &json = dynamic_cast<::JSON::JsonObj &>(arr[i]);
@@ -67,7 +78,7 @@ std::string const &animations::JSON::getName() const
   return this->name;
 }
 
-const static std::map<animations::AnimationsListJson, std::pair<std::string, std::string>> animations::jsonMap =
-	{
-
-	};
+void animations::JSON::reset()
+{
+  this->animationState->setTimePosition(0);
+}

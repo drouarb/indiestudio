@@ -36,13 +36,19 @@
 #include <gameData/TextureName.hh>
 #include <gameData/SoundName.hh>
 #include "IUIObserver.hh"
-#include "Animations.hh"
+#include "AnimationsList.hh"
 
 namespace gauntlet
 {
   enum EffectName : int;
 
   class Effect;
+
+  namespace animations
+  {
+	class Animation;
+    	class JSON;
+  }
 }
 
 class OgreUI
@@ -59,10 +65,10 @@ class OgreUI
   static const std::map<gauntlet::TextureName, std::string> texturemap;
   static const std::map<gauntlet::EntityName, std::string> meshmap;
   static const std::map<gauntlet::SoundName, std::string> soundmap;
-//  static const std::map<gauntlet::animations::animation *, > ;
   Ogre::LightList lightList;
 
   std::map<std::string, Ogre::AnimationState *> animationsArray;
+  std::map<std::string, gauntlet::animations::Animation *> animationsMap;
   std::map<int, gauntlet::Effect *> effectMap;
 
   gauntlet::core::IUIObserver *obs;
@@ -209,6 +215,10 @@ class OgreUI
 
   void playAnimation(int entityId, int animationId, bool loop);
 
+  void playAnimation(int entityId,
+		     gauntlet::animations::AnimationsListJson animationId,
+		     bool loop);
+
   void showBackground();
 
   void hideBackground();
@@ -263,7 +273,7 @@ class OgreUI
 
  private:
 
-  void applyAnimation(const Ogre::FrameEvent &evt) const;
+  void applyAnimation(const Ogre::FrameEvent &evt);
 
   void createLight(unsigned int height, unsigned int width,
 		   unsigned int interval);
