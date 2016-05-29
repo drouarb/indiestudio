@@ -1,7 +1,7 @@
 {
     name : "Default map",
     asset_map : "../media/models/map_of_doom.mesh",
-    height_map : "../mapHeight/map_of_doom.pgm",
+    height_map : "mapHeight/map_of_doom.pgm",
     endZone :
     {
 	posX : "1000"
