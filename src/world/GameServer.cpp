@@ -1,13 +1,3 @@
-//
-// GameServer.cpp for GameServer in /home/trouve_b/Desktop/CPP_project/cpp_indie_studio
-// 
-// Made by Alexis Trouve
-// Login   <trouve_b@epitech.net>
-// 
-// Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Sun May 29 15:28:24 2016 Esteban Lewis
-//
-
 #include <iostream>
 #include "PlayerChars.hh"
 #include "ServSelectPlayerListener.hh"
@@ -62,8 +52,8 @@ GameServer::GameServer(const std::string& filePath, in_port_t port)
 
 GameServer::~GameServer()
 {
-  if (dataSendThread)
-    dataSendThread->join();
+  /*if (dataSendThread)
+    dataSendThread->join();*/
 }
 
 void		GameServer::connectAnswer(const network::PacketConnect *packet)
@@ -126,12 +116,17 @@ void		GameServer::selectPlayerAnswer(const network::PacketSelectPlayer *packet)
       players[iTaken].isTake = true;
       players[iTaken].socketId = packet->getSocketId();
       connectTmp.erase(connectTmp.begin() + i);
-      PacketStartGame	myPacket((id = world->addNewBody(world->getSpawnPoint().first,
-							 world->getSpawnPoint().second,
-							 players[iTaken].name, 0)));
+      try {
+      id = world->addNewBody(world->getSpawnPoint().first,
+			     world->getSpawnPoint().second,
+			     players[iTaken].name, 0);
+      } catch (std::exception & e) {
+	std::cout << "new Player : " << e.what() << std::endl;
+	exit(0);
+      }
+      PacketStartGame	myPacket(id);
       players[iTaken].idPlayer = id;
       packetFact->send(myPacket, packet->getSocketId());
-      sendDatas(packet->getSocketId());
       dataSendThread = new std::thread(std::bind(&GameServer::sendDatas, std::ref(*this), packet->getSocketId()));
     }
   else
@@ -142,7 +137,7 @@ void		GameServer::selectPlayerAnswer(const network::PacketSelectPlayer *packet)
 
 void			GameServer::sendDatas(int socketId)
 {
-  std::cout << "sendData" << std::endl;
+  std::cout << "sendData socket:" << socketId << std::endl;
   std::list<ABody*>	bodys;
   std::vector<effectGlobal*>	effectTab;
   std::vector<soundGlobal*>	soundTab;

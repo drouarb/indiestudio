@@ -1,13 +1,3 @@
-//
-// World.cpp for indie in /home/trouve_b/Desktop/CPP_project/cpp_indie_studio
-// 
-// Made by Alexis Trouve
-// Login   <trouve_b@epitech.net>
-// 
-// Started on  Sat May 28 16:36:35 2016 Alexis Trouve
-// Last update Sun May 29 15:32:24 2016 Esteban Lewis
-//
-
 #include <iostream>
 #include <fstream>
 #include <stdexcept>
@@ -114,6 +104,7 @@ void	World::loadGame(std::string const & file)
     }
   catch (std::runtime_error & e)
     {
+      std::cout << "error loader" << std::endl;
       if (collider)
 	delete collider;
       collider = NULL;
@@ -303,9 +294,13 @@ int	World::addNewBody(double xpos, double ypos, const std::string& name, short o
     {
       std::cout << "error" << std::endl;
       throw (std::runtime_error(name + " is out of bounds"));
+      exit(0);
     }
   if (body == NULL)
-    throw (std::runtime_error("'" + name + "': wrong name"));
+    {
+      throw (std::runtime_error("'" + name + "': wrong name"));
+      exit(0);
+    }
   body->changePos(std::make_pair(xpos, ypos));
   body->changeOrientation(orientation);
   gameServer->sendAddEntity(body);
