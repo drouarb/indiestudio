@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sat May 28 16:36:35 2016 Alexis Trouve
-// Last update Mon May 30 00:42:36 2016 Esteban Lewis
+// Last update Mon May 30 01:19:47 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -16,7 +16,7 @@
 #include "IJson.hpp"
 #include "Rand.hh"
 
-using namespace	gauntlet;
+using namespace gauntlet;
 using namespace world;
 
 World::World(GameServer *ngameserver)
@@ -35,7 +35,7 @@ World::World(GameServer *ngameserver)
 World::~World()
 { }
 
-void	World::loadGame(std::string const & file)
+void    World::loadGame(std::string const &file)
 {
   std::cout << "world loadGame" << std::endl;
   std::ifstream is(file.c_str());
@@ -57,7 +57,7 @@ void	World::loadGame(std::string const & file)
   mapAssetName = dynamic_cast<JSON::JsonStr &>(json.GetObj("asset_map")).Get();
   
   mapHeightName = dynamic_cast<JSON::JsonStr &>(json.GetObj("height_map")).Get();
-  std::cout << "world loadGame coll3" << std::endl;
+
   collider = new Collider(mapHeightName);
   std::cout << "world loadGame coll4" << std::endl;
   sizeX = collider->getSizeMap().first;
@@ -95,7 +95,7 @@ void	World::loadGame(std::string const & file)
       JSON::JsonArr & sounds = dynamic_cast<JSON::JsonArr &>(json.GetObj("sounds"));
       for (unsigned int i = 0; i < sounds.Size(); ++i)
 	{
-	  JSON::JsonObj & obj = dynamic_cast<JSON::JsonObj &>(sounds[i]);
+	  JSON::JsonObj &obj = dynamic_cast<JSON::JsonObj &>(sounds[i]);
 	  putSound(stoi(dynamic_cast<JSON::JsonStr &>(obj.GetObj("id")).Get()),
 		   std::pair<double, double>
 		   (stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("x")).Get()),
@@ -106,17 +106,18 @@ void	World::loadGame(std::string const & file)
 	(json.GetObj("particles"));
       for (unsigned int i = 0; i < particles.Size(); ++i)
 	{
-	  JSON::JsonObj & obj = dynamic_cast<JSON::JsonObj &>(particles[i]);
+	  JSON::JsonObj &obj = dynamic_cast<JSON::JsonObj &>(particles[i]);
 	  putEffect(stoi(dynamic_cast<JSON::JsonStr &>(obj.GetObj("id")).Get()),
 		    Math::getAngleFromDegrees
-		    (stoi(dynamic_cast<JSON::JsonStr &>(obj.GetObj("angle")).Get())),
+			    (stoi(dynamic_cast<JSON::JsonStr &>(obj.GetObj(
+				    "angle")).Get())),
 		    std::pair<double, double>
 		    (stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("x")).Get()),
 		     (sizeY - 1) - stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("y")).Get())));
 	}
   std::cout << "world loadGame11" << std::endl;
     }
-  catch (std::runtime_error & e)
+  catch (std::runtime_error &e)
     {
       std::cout << "error loader" << std::endl;
       if (collider)
@@ -127,17 +128,17 @@ void	World::loadGame(std::string const & file)
   std::cout << "world loadGame end" << std::endl;
 }
 
-void	World::applyMoveActor()
+void    World::applyMoveActor()
 {
-  std::list<ABody*>::iterator	it1;
-  ABody				*body;
-  Actor				*actor;
+  std::list<ABody *>::iterator it1;
+  ABody *body;
+  Actor *actor;
 
   it1 = bodys.begin();
   while (it1 != bodys.end())
     {
       body = (*it1);
-      if ((actor = dynamic_cast<Actor*>(body)) != NULL)
+      if ((actor = dynamic_cast<Actor *>(body)) != NULL)
 	{
 	  actor->move();
 	  gameServer->sendMoveId(actor);
@@ -146,18 +147,18 @@ void	World::applyMoveActor()
     }
 }
 
-void		World::applyAI()
+void        World::applyAI()
 {
-  std::list<ABody*>::iterator	it1;
-  unsigned int	i;
-  unsigned int	j;
-  std::vector<Player*>	players;
-  Player		*nplay;
+  std::list<ABody *>::iterator it1;
+  unsigned int i;
+  unsigned int j;
+  std::vector<Player *> players;
+  Player *nplay;
 
   it1 = bodys.begin();
   while (it1 != bodys.end())
     {
-      if ((nplay = dynamic_cast<Player*>(*it1)) != NULL)
+      if ((nplay = dynamic_cast<Player *>(*it1)) != NULL)
 	{
 	  players.push_back(nplay);
 	}
@@ -176,7 +177,7 @@ void		World::applyAI()
     }
 }
 
-void		World::gameLoop()
+void        World::gameLoop()
 {
   std::cout << "world gameLoop" << std::endl;
   stopwatch.set();
@@ -190,7 +191,7 @@ void		World::gameLoop()
 	applyAI();
       applyMoveActor();
       if (turn % GATHERING_PRIORITY == 0)
-      applyGatheringAndOpening();
+	applyGatheringAndOpening();
       if (turn % WIN_PRIORITY == 0)
 	checkWin();
       if (turn % RESPAWN_PRIORITY == 0)
@@ -200,10 +201,10 @@ void		World::gameLoop()
   std::cout << "world gameLoop end" << std::endl;
 }
 
-void	World::checkRespawn()
+void    World::checkRespawn()
 {
-  unsigned int		i;
-  Player		*player;
+  unsigned int i;
+  Player *player;
 
   i = 0;
   while (i < deathPlayers.size())
@@ -218,59 +219,64 @@ void	World::checkRespawn()
     }
 }
 
-void	World::checkWin()
+void    World::checkWin()
 {
-  std::list<ABody*>::iterator	it;
-  ABody				*body;
-  Player			*player;
-  bool				pass;
+  std::list<ABody *>::iterator it;
+  ABody *body;
+  Player *player;
+  bool pass;
 
   it = bodys.begin();
   pass = false;
   while (it != bodys.end())
     {
       body = (*it);
-      if ((player = dynamic_cast<Player*>(body)) != NULL)
+      if ((player = dynamic_cast<Player *>(body)) != NULL)
 	{
 	  pass = true;
 	  if (player->getPos().first < endPos.first
-	      || player->getPos().first + player->getSize().first > endPos.first + endSize.first
+	      || player->getPos().first + player->getSize().first >
+		 endPos.first + endSize.first
 	      || player->getPos().second < endPos.second
-	      || player->getPos().second + player->getSize().second > endPos.second + endSize.second)
-	    return ;
+	      || player->getPos().second + player->getSize().second >
+		 endPos.second + endSize.second)
+	    return;
 	}
       it++;
     }
   if (pass == false)
-    return ;
+    return;
   gameServer->decoAll("Good game, you win.");
   exit(0);
 }
 
-void	World::applyGatheringAndOpening()
+void    World::applyGatheringAndOpening()
 {
-  std::list<ABody*>::iterator	it;
-  std::list<ABody*>::iterator	it2;
-  Player			*player;
-  GameObject			*gameobject;
-  ABody				*body;
-  std::list<ABody*>		list;
+  std::list<ABody *>::iterator it;
+  std::list<ABody *>::iterator it2;
+  Player *player;
+  GameObject *gameobject;
+  ABody *body;
+  std::list<ABody *> list;
 
   it = bodys.begin();
   while (it != bodys.end())
     {
       body = (*it);
-      if ((player = dynamic_cast<Player*>(body)) != NULL)
+      if ((player = dynamic_cast<Player *>(body)) != NULL)
 	{
-	  list = collider->giveBodyInAreaCircle(player->getPos().first, player->getPos().second, 0,
-						(player->getSize().first + player->getSize().second) / 2.0, 0);
+	  list = collider->giveBodyInAreaCircle(player->getPos().first,
+						player->getPos().second, 0,
+						(player->getSize().first +
+						 player->getSize().second) /
+						2.0, 0);
 	  if (list.size() > 0)
 	    {
 	      it2 = list.begin();
 	      while (it2 != list.end())
 		{
 		  body = (*it2);
-		  if ((gameobject = dynamic_cast<GameObject*>(body)) != NULL)
+		  if ((gameobject = dynamic_cast<GameObject *>(body)) != NULL)
 		    {
 		      gameobject->open(&player->inventory);
 		      gameobject->gather(player);
@@ -283,17 +289,20 @@ void	World::applyGatheringAndOpening()
     }
 }
 
-int	World::addNewBody(double xpos, double ypos, const std::string& name, short orientation)
+int    World::addNewBody(double xpos, double ypos, const std::string &name,
+			 short orientation)
 {
   std::cout << "world addnewbody pos:" << xpos << ":" << ypos << " name:" << name << std::endl;
 
-  ABody	*body;
-  std::pair<unsigned int, unsigned int>	sizeMap;
+  ABody *body;
+  std::pair<unsigned int, unsigned int> sizeMap;
 
   if ((body = Factory->giveBody(name)) == NULL)
     throw (std::runtime_error(name + " does not exist"));
-  if ((xpos - (body->getSize().first / 2.0)) < 0 || (xpos + (body->getSize().first / 2.0)) >= sizeX
-      || (ypos - (body->getSize().second / 2.0)) < 0 || (ypos + (body->getSize().second / 2.0)) >= sizeY)
+  if ((xpos - (body->getSize().first / 2.0)) < 0 ||
+      (xpos + (body->getSize().first / 2.0)) >= sizeX
+      || (ypos - (body->getSize().second / 2.0)) < 0 ||
+      (ypos + (body->getSize().second / 2.0)) >= sizeY)
     {
       std::cout << "error" << std::endl;
       throw (std::runtime_error(name + " is out of bounds"));
@@ -317,11 +326,11 @@ int	World::addNewBody(double xpos, double ypos, const std::string& name, short o
   return (body->getId());
 }
 
-void		World::notifyDeath(ABody *body)
+void        World::notifyDeath(ABody *body)
 {
   std::cout << "world notify Death" << std::endl;
-  unsigned int	i;
-  Player	*player;
+  unsigned int i;
+  Player *player;
 
   std::cout << "on notify une mort OMG id : " << body->getId() << std::endl;
   collider->suprBody(body->getId());
@@ -331,17 +340,17 @@ void		World::notifyDeath(ABody *body)
       AIs[i]->suprActor(body->getId());
       ++i;
     }
-  if ((player = dynamic_cast<Player*>(body)) != NULL)
+  if ((player = dynamic_cast<Player *>(body)) != NULL)
     deathPlayers.push_back({450, player});
   std::cout << "world notify Death end" << std::endl;
 }
 
-void		World::deleteId(int id)
+void        World::deleteId(int id)
 {
   std::cout << "world deleteId" << std::endl;
-  unsigned int	i;
-  std::list<ABody*>::iterator it1;
-  ABody				*body;
+  unsigned int i;
+  std::list<ABody *>::iterator it1;
+  ABody *body;
 
   collider->suprBody(id);
   it1 = bodys.begin();
@@ -366,33 +375,33 @@ void		World::deleteId(int id)
   std::cout << "world deleteId end" << std::endl;
 }
 
-Collider&	World::getCollider()
+Collider &World::getCollider()
 {
   return (*collider);
 }
 
-const std::pair<double, double>&	World::getSpawnPoint()
+const std::pair<double, double> &World::getSpawnPoint()
 {
   return (spawnPoint);
 }
 
-std::list<ABody*>		World::getBodysByCopy() const
+std::list<ABody *>        World::getBodysByCopy() const
 {
   return (bodys);
 }
 
-int				World::getUniqueEffectId()
+int                World::getUniqueEffectId()
 {
-  static int			i = -1;
+  static int i = -1;
 
   return (++i);
 }
 
-void				World::putEffect(unsigned int effectId, short orient,
-						 const std::pair<double, double>& pos)
+void                World::putEffect(unsigned int effectId, short orient,
+				     const std::pair<double, double> &pos)
 {
-  int				id;
-  effectGlobal			*eff;
+  int id;
+  effectGlobal *eff;
 
   id = getUniqueEffectId();
   gameServer->sendEffect(effectId, id, orient, pos, -1);
@@ -405,12 +414,14 @@ void				World::putEffect(unsigned int effectId, short orient,
   effectTab.push_back(eff);
 }
 
-int				World::triggerEffect(gauntlet::EffectName effect, short orient,
-						     const std::pair<double, double>& pos, int decayTime)
+int                World::triggerEffect(gauntlet::EffectName effect,
+					short orient,
+					const std::pair<double, double> &pos,
+					int decayTime)
 {
-  int				id;
-  unsigned int			effectId;
-  effectGlobal			*eff;
+  int id;
+  unsigned int effectId;
+  effectGlobal *eff;
 
   id = getUniqueEffectId();
   effectId = static_cast<unsigned int>(effect);
@@ -425,12 +436,13 @@ int				World::triggerEffect(gauntlet::EffectName effect, short orient,
   return (id);
 }
 
-int				World::triggerEffect(gauntlet::EffectName effect,
-						     const std::pair<double, double>& pos, int decayTime)
+int                World::triggerEffect(gauntlet::EffectName effect,
+					const std::pair<double, double> &pos,
+					int decayTime)
 {
-  int				id;
-  unsigned int			effectId;
-  effectGlobal			*eff;
+  int id;
+  unsigned int effectId;
+  effectGlobal *eff;
 
   id = getUniqueEffectId();
   effectId = static_cast<unsigned int>(effect);
@@ -445,10 +457,10 @@ int				World::triggerEffect(gauntlet::EffectName effect,
   return (id);
 }
 
-void				World::stopEffect(int id)
+void                World::stopEffect(int id)
 {
-  unsigned int			i;
-  effectGlobal			*effect;
+  unsigned int i;
+  effectGlobal *effect;
 
   i = 0;
   while (i < effectTab.size())
@@ -466,17 +478,18 @@ void				World::stopEffect(int id)
     }
 }
 
-int				World::getUniqueSoundId()
+int                World::getUniqueSoundId()
 {
-  static int			id = -1;
+  static int id = -1;
 
   return (++id);
 }
 
-void				World::putSound(unsigned int soundId, const std::pair<double, double>& pos)
+void                World::putSound(unsigned int soundId,
+				    const std::pair<double, double> &pos)
 {
-  int				id;
-  soundGlobal			*sound;
+  int id;
+  soundGlobal *sound;
 
   id = getUniqueEffectId();
   gameServer->sendSound(soundId, id, true, pos);
@@ -488,11 +501,11 @@ void				World::putSound(unsigned int soundId, const std::pair<double, double>& p
   soundTab.push_back(sound);
 }
 
-int				World::playSound(unsigned int soundId, bool loop,
-						 const std::pair<double, double>& pos)
+int                World::playSound(unsigned int soundId, bool loop,
+				    const std::pair<double, double> &pos)
 {
-  int				id;
-  soundGlobal			*sound;
+  int id;
+  soundGlobal *sound;
 
   id = getUniqueEffectId();
   gameServer->sendSound(soundId, id, loop, pos);
@@ -505,10 +518,10 @@ int				World::playSound(unsigned int soundId, bool loop,
   return (id);
 }
 
-void				World::stopSound(int idToStop)
+void                World::stopSound(int idToStop)
 {
-  unsigned int			i;
-  soundGlobal			*sound;
+  unsigned int i;
+  soundGlobal *sound;
 
   i = 0;
   while (i < soundTab.size())
@@ -526,44 +539,46 @@ void				World::stopSound(int idToStop)
     }
 }
 
-std::vector<effectGlobal*>	World::getEffectByCopy() const
+std::vector<effectGlobal *>    World::getEffectByCopy() const
 {
   return (effectTab);
 }
 
-std::vector<soundGlobal*>	World::getSoundByCopy() const
+std::vector<soundGlobal *>    World::getSoundByCopy() const
 {
   return (soundTab);
 }
 
-void				World::applyCommand(int id, core::Command command)
+void                World::applyCommand(int id, core::Command command)
 {
-  Player			*player;
-  ABody				*body;
+  Player *player;
+  ABody *body;
 
   body = getBodyById(id);
-  if ((player = dynamic_cast<Player*>(body)) == NULL)
-    return ;
+  if ((player = dynamic_cast<Player *>(body)) == NULL)
+    return;
   if (command == core::UP)
     {
       if (!player->getMove())
 	player->setMove();
     }
-  else if (command == core::UP_STOP)
-    {
-      if (player->getMove())
-	player->setMove();
-    }
-  else if (command >= core::ATTACK1 && command <= core::ATTACK4)
-    {
-      applyCommand(id, core::UP_STOP);
-      player->castSpell(command - core::ATTACK1);
-    }
+  else
+    if (command == core::UP_STOP)
+      {
+	if (player->getMove())
+	  player->setMove();
+      }
+    else
+      if (command >= core::ATTACK1 && command <= core::ATTACK4)
+	{
+	  applyCommand(id, core::UP_STOP);
+	  player->castSpell(command - core::ATTACK1);
+	}
 }
 
-ABody				*World::getBodyById(int id)
+ABody *World::getBodyById(int id)
 {
-  std::list<ABody*>::iterator	it;
+  std::list<ABody *>::iterator it;
 
   it = bodys.begin();
   while (it != bodys.end())
@@ -575,22 +590,28 @@ ABody				*World::getBodyById(int id)
   return (NULL);
 }
 
-void				World::animeEntity(int id, unsigned int animeId)
+void                World::animeEntity(int id, unsigned int animeId)
 {
+  for (auto body : bodys)
+    {
+      std::cerr << "id:" << body->getId() << " name:" << body->getName() <<
+      std::endl;
+    }
+  std::cerr << "anime id : " << animeId << ", id:" << id << std::endl;
   gameServer->animeEntity(id, animeId);
 }
 
-unsigned long			World::getTurn() const
+unsigned long            World::getTurn() const
 {
   return (turn);
 }
 
-std::string		World::getMapNames() const
+std::string        World::getMapNames() const
 {
   return (mapAssetName + ";" + mapHeightName);
 }
 
-std::pair<double, double>	World::getSize() const
+std::pair<double, double>    World::getSize() const
 {
   return (std::make_pair(sizeX, sizeY));
 }

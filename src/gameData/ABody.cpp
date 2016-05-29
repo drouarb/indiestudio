@@ -101,17 +101,17 @@ world::World *ABody::getWorld() {
 
 unsigned int			ABody::getEntityId() const
 {
-  return (id);
+  return (unsigned int) (id);
 }
 
 unsigned int			ABody::getTextureId() const
 {
-  return (texture);
+  return (unsigned int) (texture);
 }
 
 unsigned int			ABody::getMeshId() const
 {
-  return (model);
+  return (unsigned int) (model);
 }
 
 void                    ABody::setMeshId(int _model)

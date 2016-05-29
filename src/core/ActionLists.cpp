@@ -46,6 +46,11 @@ gauntlet::core::ActionLists::doActions()
       for (std::list<network::PacketMap*>::iterator
 	     it = packetsMap.begin(); it != packetsMap.end(); ++it)
 	{
+	  if ((*it) == NULL)
+	    {
+	      std::cerr << "J'ai raison" << std::endl;
+	      continue;
+	    }
 	  std::size_t index = (*it)->getFilename().find(';');
 	  if (index != std::string::npos)
 	    {
@@ -128,7 +133,8 @@ gauntlet::core::ActionLists::doActions()
 	     it = packetsAnimation.begin(); it != packetsAnimation.end(); ++it)
 	{
 	  if (core.ogre.entityExist((*it)->getEntityId()))
-	    core.ogre.playAnimation((*it)->getEntityId(), (*it)->getAnimationId(), true);
+//	    core.ogre.playAnimation((*it)->getEntityId(), (*it)->getAnimationId(), true);
+		core.ogre.playAnimation((*it)->getEntityId(), static_cast<animations::AnimationsListJson>((*it)->getAnimationId()), true);
 	}
     }
   clearActions();

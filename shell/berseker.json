@@ -1,86 +1,90 @@
-idle:0-48
-
 {
-name:"idle", 
-begin:"0", end: "48"
-}walk:48-44
-,
-{
-name:"walk", 
-begin:"48", end: "92"
-}run:92-25
-,
-{
-name:"run", 
-begin:"92", end: "117"
-}attack_idle:117-33
-,
-{
-name:"attack_idle", 
-begin:"117", end: "150"
-}attack_1:150-42
-,
-{
-name:"attack_1", 
-begin:"150", end: "192"
-}attack_2:192-40
-,
-{
-name:"attack_2", 
-begin:"192", end: "232"
-}attack_3:232-46
-,
-{
-name:"attack_3", 
-begin:"232", end: "278"
-}attack_4:278-69
-,
-{
-name:"attack_4", 
-begin:"278", end: "347"
-}attack_5:347-103
-,
-{
-name:"attack_5", 
-begin:"347", end: "450"
-}jump:450-60
-,
-{
-name:"jump", 
-begin:"450", end: "510"
-}hit:510-16
-,
-{
-name:"hit", 
-begin:"510", end: "526"
-}death:526-74
-,
-{
-name:"death", 
-begin:"526", end: "600"
-}recover:600-140
-,
-{
-name:"recover", 
-begin:"600", end: "740"
-}taunt:740-50
-,
-{
-name:"taunt", 
-begin:"740", end: "790"
-}strafe_right:790-25
-,
-{
-name:"strafe_right", 
-begin:"790", end: "815"
-}strafe_left:815-25
-,
-{
-name:"strafe_left", 
-begin:"815", end: "840"
-}dodge_right:840-25
-,
-{
-name:"dodge_right", 
-begin:"840", end: "865"
+  name: "berseker",
+  animation: [
+    {
+      name: "idle",
+      begin: "0",
+      end: "48"
+    },
+    {
+      name: "walk",
+      begin: "48",
+      end: "92"
+    },
+    {
+      name: "run",
+      begin: "92",
+      end: "117"
+    },
+    {
+      name: "attack_idle",
+      begin: "117",
+      end: "150"
+    },
+    {
+      name: "attack_1",
+      begin: "150",
+      end: "192"
+    },
+    {
+      name: "attack_2",
+      begin: "192",
+      end: "232"
+    },
+    {
+      name: "attack_3",
+      begin: "232",
+      end: "278"
+    },
+    {
+      name: "attack_4",
+      begin: "278",
+      end: "347"
+    },
+    {
+      name: "attack_5",
+      begin: "347",
+      end: "450"
+    },
+    {
+      name: "jump",
+      begin: "450",
+      end: "510"
+    },
+    {
+      name: "hit",
+      begin: "510",
+      end: "526"
+    },
+    {
+      name: "death",
+      begin: "526",
+      end: "600"
+    },
+    {
+      name: "recover",
+      begin: "600",
+      end: "740"
+    },
+    {
+      name: "taunt",
+      begin: "740",
+      end: "790"
+    },
+    {
+      name: "strafe_right",
+      begin: "790",
+      end: "815"
+    },
+    {
+      name: "strafe_left",
+      begin: "815",
+      end: "840"
+    },
+    {
+      name: "dodge_right",
+      begin: "840",
+      end: "865"
+    }
+  ]
 }

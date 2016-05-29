@@ -22,10 +22,10 @@ Actor::~Actor()
 
 void        Actor::setStance()
 {
-  /*    if (ismoving)
+  /*  if (ismoving)
       this->getWorld()->animeEntity(this->id, running);
     else
-    this->getWorld()->animeEntity(this->id, idle);*/
+      this->getWorld()->animeEntity(this->id, idle);*/
 }
 
 void		Actor::move()
@@ -74,7 +74,7 @@ void        Actor::castSpell(int spellEnum)
 {
   if (recharged() && spellEnum < (int)spellBook.spellList.size())
   {
-    spellBook.spellList[spellEnum]->prepare();
+    spellBook.spellList[spellEnum]->prepare(this);
     spellBook.spellList[spellEnum]->cast(this);
   }
 }

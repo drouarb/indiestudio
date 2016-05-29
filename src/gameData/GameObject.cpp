@@ -17,6 +17,7 @@ using namespace gauntlet;
 GameObject::GameObject(int nid, world::World *nworld)
   : ABody(nid)
 {
+  id = nid;
   world = nworld;
   gatherable = false;
   openable = false;

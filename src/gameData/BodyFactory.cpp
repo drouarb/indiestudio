@@ -284,8 +284,8 @@ void			BodyFactory::setSkeletonWarlord()
   crea->setName("SkeletonWarlord");
   crea->stats.HP = 400;
   crea->stats.normalHP = 400;
-  crea->stats.speed = 0.6;
-  crea->stats.normalSpeed = 0.6;
+  crea->stats.speed = 10.6;
+  crea->stats.normalSpeed = 10.6;
   crea->stats.attackModifier = 0.8;
   crea->spellBook.addSpell(SpellFactory::SIMPLE_ATTACK, crea);
   crea->setCollide(true);
@@ -342,8 +342,8 @@ void			BodyFactory::setSkeletonArcher()
   crea->setName("SkeletonArcher");
   crea->stats.HP = 400;
   crea->stats.normalHP = 400;
-  crea->stats.speed = 0.6;
-  crea->stats.normalSpeed = 0.6;
+  crea->stats.speed = 10.6;
+  crea->stats.normalSpeed = 10.6;
   crea->stats.attackModifier = 0.3;
   crea->spellBook.addSpell(SpellFactory::RANGER_ATTACK, crea);
   crea->setCollide(true);
@@ -365,7 +365,7 @@ void			BodyFactory::setSkeletonArcher()
           SoundName::SOUND_NONE
   };
   crea->animations[ABody::ATTACK] = {
-          animations::AnimationsListJson::SKELETON_ARCHIER_ARCHER_SHOTING
+          animations::AnimationsListJson::SKELETON_ARCHIER_SHOTING
   };
   crea->animations[ABody::DEATH] = {
           animations::AnimationsListJson::SKELETON_ARCHIER_DYING_B
@@ -394,8 +394,8 @@ void			BodyFactory::setSkeletonWizard()
   crea->setName("SkeletonWizard");
   crea->stats.HP = 400;
   crea->stats.normalHP = 400;
-  crea->stats.speed = 0.6;
-  crea->stats.normalSpeed = 0.6;
+  crea->stats.speed = 10.6;
+  crea->stats.normalSpeed = 10.6;
   crea->stats.attackModifier = 0.2;
   crea->spellBook.addSpell(SpellFactory::ICEBALL, crea);
   crea->setCollide(true);
@@ -451,8 +451,8 @@ void			BodyFactory::setDraugr()
   crea->setName("Draugr");
   crea->stats.HP = 400;
   crea->stats.normalHP = 400;
-  crea->stats.speed = 0.6;
-  crea->stats.normalSpeed = 0.6;
+  crea->stats.speed = 10.6;
+  crea->stats.normalSpeed = 10.6;
   crea->stats.attackModifier = 0.6;
   crea->spellBook.addSpell(SpellFactory::SIMPLE_ATTACK, crea);
   crea->setCollide(true);

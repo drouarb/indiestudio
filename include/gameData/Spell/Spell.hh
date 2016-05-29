@@ -45,8 +45,6 @@ namespace gauntlet {
   public:
     void                        cast(Actor *caster);
     void                        ApplyDamage(std::list<ABody *> targets, Actor *caster);
-    void                        prepare();
-
     void                        setCaster(Actor *caster);
     void                        setConeAngle(short id);
 
@@ -60,6 +58,8 @@ namespace gauntlet {
     const std::string&		getName() const;
     void setBasicStats(int id, const std::string &name, double range, double radius, long damage, Area pattern,
                        unsigned int effect, unsigned long castTime);
+
+      void prepare(Actor *actor);
   };
 };
 

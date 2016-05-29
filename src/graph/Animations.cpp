@@ -34,7 +34,8 @@ animations::JSONAnimation::JSONAnimation(const std::string &filename,
 					 bool loop) : filename(
 	filename), animationState(animationState)
 {
-  this->jsonObj.ParseFrom(filename);
+	std::cerr << "Création d'une animation" << std::endl;
+  this->jsonObj.ParseFrom(this->readJson(filename));
   this->type = animationSource::JSON;
   this->loop = loop;
 
@@ -46,9 +47,13 @@ void gauntlet::animations::JSONAnimation::findProprerties(
 {
   std::string an = animationName;
   std::transform(an.begin(), an.end(), an.begin(), ::toupper);
-  ::JSON::JsonArr &
-	  arr = dynamic_cast<::JSON::JsonArr &>(this->jsonObj.GetObj(
-		  "Animation"));
+    ::JSON::JsonArr arr ;
+    try {
+        arr = dynamic_cast<::JSON::JsonArr &>(this->jsonObj.GetObj(
+                "animation"));
+    } catch (...) {
+        std::cerr << "ICIIIIIIIIIIIIIII" << std::endl;
+    }
   for (size_t i = 0; i < arr.Size(); ++i)
     {
       ::JSON::JsonObj &json = dynamic_cast<::JSON::JsonObj &>(arr[i]);
@@ -59,6 +64,7 @@ void gauntlet::animations::JSONAnimation::findProprerties(
       {
 	this->name = name;
 	try
+
 	  {
 	    this->begin = stod(
 		    dynamic_cast<::JSON::JsonStr &>(json.GetObj(
@@ -86,3 +92,24 @@ void animations::JSONAnimation::reset()
 {
   this->animationState->setTimePosition(0);
 }
+
+std::string animations::JSONAnimation::readJson(const std::string &filename) {
+    std::string line;
+    std::string dest;
+    std::ifstream file("./json/" + filename);
+
+    std::cout << "fichier: " << "./json/" + filename << std::endl;
+
+    if (!file.is_open()) {
+        return "";
+    }
+
+    while (getline(file, line)) {
+        dest += line;
+    }
+
+    std::cerr << "RES: " << dest << std::endl;
+
+    return dest;
+}
+
