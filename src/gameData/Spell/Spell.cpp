@@ -59,7 +59,7 @@ void gauntlet::Spell::prepare()
     unsigned int sound = caster->soundEffect[ABody::ATTACK].at(rand() % caster->soundEffect[ABody::ATTACK].size());
     caster->getWorld()->playSound(sound, false, caster->getPos());
     //lancer Animation sur caster
-    caster->getWorld()->animeEntity(caster->getId(), caster->animations[ABody::ATTACK].at(rand() % caster->animations[ABody::ATTACK].size()));
+    //    caster->getWorld()->animeEntity(caster->getId(), caster->animations[ABody::ATTACK].at(rand() % caster->animations[ABody::ATTACK].size()));
     targetedArea = caster->pointInFront(range);
 }
 

@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 11:46:42 2016 Alexis Trouve
-// Last update Sun May 29 17:56:45 2016 Esteban Lewis
+// Last update Sun May 29 18:52:31 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -34,7 +34,6 @@ int		BasicAI::launchAI(std::pair<double, double> pos)
   nbrPlayed = 0;
   while (i < actors.size())
     {
-      std::cout << "launchai found actor in radius" << std::endl;
       if (Math::distBetween(pos, actors[i]->getPos()) < AI_LAUNCH_DIST)
 	{
 	  launchAI(actors[i]);
@@ -58,9 +57,7 @@ void			BasicAI::launchAI(gauntlet::Actor *actor)
   Player			*tmpPlayer;
   int				idAttack;
 
-  std::cout << "- launchai" << std::endl;
   bodys = world->getCollider().giveBodyInAreaCircle(actor->getPos().first, actor->getPos().second, 0, CHECK_DIST, 0);
-  std::cout << "in ai radius: " << bodys.size() << std::endl;
   it1 = bodys.begin();
   savedPlayer = NULL;
   while (it1 != bodys.end())
@@ -80,7 +77,6 @@ void			BasicAI::launchAI(gauntlet::Actor *actor)
 
   double dist = world->getCollider().getDist(actor->getPos().first, actor->getPos().second,
 					     *savedPlayer);
-  std::cout << "ai found player at dist " << dist << std::endl;
   if (actor->spellBook.spellNb(idAttack)->getRange() + actor->spellBook.spellNb(idAttack)->getRadius() > dist)
     {
       actor->castSpell(idAttack);

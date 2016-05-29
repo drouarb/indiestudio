@@ -22,10 +22,10 @@ Actor::~Actor()
 
 void        Actor::setStance()
 {
-    if (ismoving)
+  /*    if (ismoving)
       this->getWorld()->animeEntity(this->id, running);
     else
-      this->getWorld()->animeEntity(this->id, idle);
+    this->getWorld()->animeEntity(this->id, idle);*/
 }
 
 void		Actor::move()
