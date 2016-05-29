@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Tue May 24 12:09:30 2016 Alexis Trouve
-// Last update Sat May 28 14:28:01 2016 Alexis Trouve
+// Last update Sun May 29 23:50:20 2016 Esteban Lewis
 //
 
 #include "DistAI.hh"
@@ -70,7 +70,7 @@ void		DistAI::launchAI(gauntlet::Actor *actor)
 	      smallestDist = Math::distBetween(tmpPlayer->getPos(), actor->getPos());
 	      savedPlayer = tmpPlayer;
 	    }
-	  ttRad += Math::getAngle(atan2(tmpPlayer->getPos().first - actor->getPos().first,
+	  ttRad += Math::getAngle(-atan2(tmpPlayer->getPos().first - actor->getPos().first,
 					 tmpPlayer->getPos().second - actor->getPos().second));
 	  nbrPlayer++;
 	}
@@ -83,7 +83,7 @@ void		DistAI::launchAI(gauntlet::Actor *actor)
       actor->changeOrientation(Math::getAngle(ttRad / nbrPlayer));
     }
   else
-    actor->changeOrientation(Math::getAngle(atan2(savedPlayer->getPos().first - actor->getPos().first,
+    actor->changeOrientation(Math::getAngle(-atan2(savedPlayer->getPos().first - actor->getPos().first,
 						  savedPlayer->getPos().second - actor->getPos().second)));
   idSpell = actor->spellBook.giveSpell(600.0, DIST_BATTLE, true, NOAREA, 0, 100);
   actor->castSpell(idSpell);
