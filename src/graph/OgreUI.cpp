@@ -368,6 +368,7 @@ bool OgreUI::loadSound(int id, SoundName name)
       else
 	return (false);
     }
+  return true;
 }
 
 bool OgreUI::playSound(int id, gauntlet::SoundName name, bool loop)
@@ -555,6 +556,7 @@ void OgreUI::createScene(void)
   showBackground();
   mTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT, true);
   mSceneMgr->setSkyBox(true, "Examples/SceneSkyBox");
+  createAmbientLight();
   //addMapEntity(9000, MAP_TEST, 0, 0, 0, TEXTURE_NONE);
 }
 
@@ -566,13 +568,13 @@ void OgreUI::createAmbientLight()
   pointLight->setSpotlightOuterAngle((Ogre::Degree(180)));
   pointLight->setDiffuseColour(Ogre::ColourValue::White);
   pointLight->setSpecularColour(Ogre::ColourValue::White);
-  this->createLight(200 + this->heightmap.getSize().first, 200, 50);
+  this->createLight(200, 200, 50);
   pointLight->setPowerScale(8900000);
   Ogre::Light *pointLight2 = mSceneMgr->createLight("PointLight2");
-  pointLight2->setPosition(this->heightmap.getSize().first, 200, 200);
+  pointLight2->setPosition(0, 200, 200);
   pointLight2->setPowerScale(8900000);
   Ogre::Light *pointLight3 = mSceneMgr->createLight("PointLight3");
-  pointLight3->setPosition(this->heightmap.getSize().first, 200, -200);
+  pointLight3->setPosition(0, 200, -200);
   pointLight3->setPowerScale(8900000);
 }
 
@@ -1046,9 +1048,8 @@ bool OgreUI::addMapEntity(int entityId, const std::string &path, int x, int y,
   if (heightmap.isLoaded())
     {
       size = heightmap.getSize();
-      createAmbientLight();
     }
-  s->setPosition(size.first + x, z, y);
+  s->setPosition(x, z, y);
   s->scale(SCALE_MAP, SCALE_MAP, SCALE_MAP);
   s->yaw(Ogre::Radian(world::Math::toRad(angle)));
   s->attachObject(e);
