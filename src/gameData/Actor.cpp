@@ -20,15 +20,19 @@ Actor::~Actor()
 {
 }
 
+void        Actor::setStance()
+{
+    if (ismoving)
+      this->getWorld()->animeEntity(this->id, running);
+    else
+      this->getWorld()->animeEntity(this->id, idle);
+}
+
 void		Actor::move()
 {
+  setStance();
   if (ismoving)
-  {
-    this->getWorld()->animeEntity(this->id, running);
     world->getCollider().applyVectorToId(id, orientation, stats.speed);
-  }
-  else
-    this->getWorld()->animeEntity(this->id, idle);
 }
 
 bool		Actor::getMove() const

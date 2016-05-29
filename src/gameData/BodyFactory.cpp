@@ -94,8 +94,20 @@ void			BodyFactory::setBarbare()
           SoundName::MALE_DEATH,
           SoundName::SOUND_NONE
   };
+  player->animations[ABody::ATTACK] = {
+          animations::AnimationsListJson::BERSEKER_ATTACK_1,
+          animations::AnimationsListJson::BERSEKER_ATTACK_2,
+          animations::AnimationsListJson::BERSEKER_ATTACK_3,
+          animations::AnimationsListJson::BERSEKER_ATTACK_4,
+          animations::AnimationsListJson::BERSEKER_ATTACK_5,
+  };
+  player->animations[ABody::DEATH] = {
+          animations::AnimationsListJson::BERSEKER_DEATH
+  };
   player->setMeshId(EntityName::BERSERK);
   player->setTextureId(TextureName::TEXTURE_NONE);
+  player->setIdle(animations::AnimationsListJson::BERSEKER_IDLE);
+  player->setRunning(animations::AnimationsListJson::BERSEKER_RUN);
   player->setIdAI(NOAI);
   bodyTab.push_back(player);
 }

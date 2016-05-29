@@ -39,6 +39,8 @@ namespace gauntlet
     void			setIdAI(int ia);
     int				getIdAI() const;
     void			castSpell(int spellEnum);
+
+      void setStance();
   };
 };
 
