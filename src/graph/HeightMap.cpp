@@ -72,8 +72,8 @@ gauntlet::HeightMap::at(double x, double y)
   if (!map)
     throw (std::runtime_error("HeightMap not loaded"));
 
-  int hm_x = (int)round(x / HEIGHT_MAP_SCALE);
-  int hm_y = (int)round(y / HEIGHT_MAP_SCALE);
+  int hm_x = (int)floor(x / HEIGHT_MAP_SCALE);
+  int hm_y = (int)floor(y / HEIGHT_MAP_SCALE);
   if (hm_x >= width || hm_x < 0 || hm_y >= height || hm_y < 0)
     throw (std::invalid_argument("HeightMap coordinates"));
   return (map[hm_y * width + hm_x]);

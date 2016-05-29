@@ -1,7 +1,7 @@
 #ifndef  HEIGHT_MAP_HH_
 # define HEIGHT_MAP_HH_
 
-# define HEIGHT_MAP_SCALE 20.0
+# define HEIGHT_MAP_SCALE (20.0 * SCALE_MAP)
 
 # include <string>
 
