@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sat May 28 16:36:35 2016 Alexis Trouve
-// Last update Sun May 29 16:09:53 2016 Alexis Trouve
+// Last update Sun May 29 17:19:40 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -151,36 +151,25 @@ void		World::applyAI()
   Player		*nplay;
 
   it1 = bodys.begin();
-  //std::cout << "1" << std::endl;
   while (it1 != bodys.end())
     {
-      //std::cout << "2" << std::endl;
       if ((nplay = dynamic_cast<Player*>(*it1)) != NULL)
 	{
-	  //std::cout << "3" << std::endl;
 	  players.push_back(nplay);
 	}
-      //std::cout << "4" << std::endl;
       it1++;
     }
-  //std::cout << "5" << std::endl;
   j = 0;
-  //std::cout << "6" << std::endl;
   while (j < players.size())
     {
-      //std::cout << "7" << std::endl;
       i = 0;
-      //std::cout << "8" << std::endl;
       while (i < AIs.size())
 	{
-	  //std::cout << "9" << std::endl;
 	  AIs[i]->launchAI(players[j]->getPos());
 	  ++i;
 	}
-      //std::cout << "10" << std::endl;
       ++j;
     }
-  //std::cout << "11" << std::endl;
 }
 
 void		World::gameLoop()
@@ -281,7 +270,6 @@ void	World::applyGatheringAndOpening()
 		    {
 		      gameobject->open(&player->inventory);
 		      gameobject->gather(player);
-                std::cerr << "Que se passe-t-il " << player->inventory.getItemList()->size() << std::endl;
 		    }
 		  it2++;
 		}
