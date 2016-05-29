@@ -46,6 +46,11 @@ gauntlet::core::ActionLists::doActions()
       for (std::list<network::PacketMap*>::iterator
 	     it = packetsMap.begin(); it != packetsMap.end(); ++it)
 	{
+	  if ((*it) == NULL)
+	    {
+	      std::cerr << "J'ai raison" << std::endl;
+	      continue;
+	    }
 	  std::size_t index = (*it)->getFilename().find(';');
 	  if (index != std::string::npos)
 	    {
