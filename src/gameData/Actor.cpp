@@ -20,9 +20,18 @@ Actor::~Actor()
 {
 }
 
+void        Actor::setStance()
+{
+    if (ismoving)
+      this->getWorld()->animeEntity(this->id, running);
+    else
+      this->getWorld()->animeEntity(this->id, idle);
+}
+
 void		Actor::move()
 {
-  if (ismoving == true)
+  setStance();
+  if (ismoving)
     world->getCollider().applyVectorToId(id, orientation, stats.speed);
 }
 
@@ -52,6 +61,8 @@ ABody		*Actor::clone(int id) const
   actor->setCollide(collideActive);
   actor->setTextureId(texture);
   actor->setMeshId(model);
+  actor->setIdle(idle);
+  actor->setRunning(running);
   actor->changePos(coord);
   actor->changeSize(size);
   actor->changeOrientation(orientation);

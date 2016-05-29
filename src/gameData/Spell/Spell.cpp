@@ -56,9 +56,10 @@ void gauntlet::Spell::prepare()
 {
     if (openingEffect > -1)
         openingId = caster->getWorld()->triggerEffect((EffectName) openingEffect, caster->getOrientation(), caster->getPos(), 1000);
-    unsigned int sound = caster->soundEffect[ABody::ATTACK_SOUND].at(rand() % caster->soundEffect[ABody::ATTACK_SOUND].size());
+    unsigned int sound = caster->soundEffect[ABody::ATTACK].at(rand() % caster->soundEffect[ABody::ATTACK].size());
     caster->getWorld()->playSound(sound, false, caster->getPos());
     //lancer Animation sur caster
+    caster->getWorld()->animeEntity(caster->getId(), caster->animations[ABody::ATTACK].at(rand() % caster->animations[ABody::ATTACK].size()));
     targetedArea = caster->pointInFront(range);
 }
 
@@ -71,7 +72,8 @@ void gauntlet::Spell::cast(Actor *caster)
     if (targets.size() > 0) {
         caster->getWorld()->playSound(soundEffect, false, targetedArea);
     }
-    ApplyDamage(targets, caster);
+    if ((rand() % 100) < (100 * caster->stats.attackModifier))
+        ApplyDamage(targets, caster);
     caster->setCooldown(castTime);
 }
 

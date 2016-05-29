@@ -79,23 +79,35 @@ void			BodyFactory::setBarbare()
   player->changePos(std::make_pair(-1, -1));
   player->changeSize(std::make_pair(20.0, 20.0));
   player->changeOrientation(90);
-  player->soundEffect[ABody::ATTACK_SOUND] = {
+  player->soundEffect[ABody::ATTACK] = {
           SoundName::MALE_ATTACK_1,
           SoundName::MALE_ATTACK_2,
           SoundName::MALE_HEAVY_ATTACK,
           SoundName::MALE_HEAVY_ATTACK_2,
           SoundName::SOUND_NONE
   };
-  player->soundEffect[ABody::WOUND_SOUND] = {
+  player->soundEffect[ABody::WOUND] = {
           SoundName::MALE_WOUNDED,
           SoundName::SOUND_NONE
   };
-  player->soundEffect[ABody::DEATH_SOUND] = {
+  player->soundEffect[ABody::DEATH] = {
           SoundName::MALE_DEATH,
           SoundName::SOUND_NONE
   };
+  player->animations[ABody::ATTACK] = {
+          animations::AnimationsListJson::BERSEKER_ATTACK_1,
+          animations::AnimationsListJson::BERSEKER_ATTACK_2,
+          animations::AnimationsListJson::BERSEKER_ATTACK_3,
+          animations::AnimationsListJson::BERSEKER_ATTACK_4,
+          animations::AnimationsListJson::BERSEKER_ATTACK_5,
+  };
+  player->animations[ABody::DEATH] = {
+          animations::AnimationsListJson::BERSEKER_DEATH
+  };
   player->setMeshId(EntityName::BERSERK);
   player->setTextureId(TextureName::TEXTURE_NONE);
+  player->setIdle(animations::AnimationsListJson::BERSEKER_IDLE);
+  player->setRunning(animations::AnimationsListJson::BERSEKER_RUN);
   player->setIdAI(NOAI);
   bodyTab.push_back(player);
 }
@@ -136,21 +148,34 @@ void			BodyFactory::setWizard()
   player->changePos(std::make_pair(-1, -1));
   player->changeSize(std::make_pair(20.0, 20.0));
   player->changeOrientation(0);
-  player->setMeshId(EntityName::BERSERK);
+  player->setMeshId(EntityName::SKELETON_FOOTMAN);
   player->setTextureId(TextureName::TEXTURE_NONE);
-  player->soundEffect[ABody::ATTACK_SOUND] = {
+  player->soundEffect[ABody::ATTACK] = {
           SoundName::MALE_2_HEAVY_ATTACK,
           SoundName::MALE_2_HEAVY_ATTACK_2,
           SoundName::SOUND_NONE
   };
-  player->soundEffect[ABody::WOUND_SOUND] = {
+  player->soundEffect[ABody::WOUND] = {
           SoundName::MALE_2_WOUNDED,
           SoundName::SOUND_NONE
   };
-  player->soundEffect[ABody::DEATH_SOUND] = {
+  player->soundEffect[ABody::DEATH] = {
           SoundName::MALE_2_DEATH,
           SoundName::SOUND_NONE
   };
+  player->animations[ABody::ATTACK] = {
+          animations::AnimationsListJson::SKELETON_FOOTMAN_SWING_LEFT,
+          animations::AnimationsListJson::SKELETON_FOOTMAN_SWING_RIGHT,
+          animations::AnimationsListJson::SKELETON_FOOTMAN_SWING_HIGH_STRAIGHT_DOWN,
+          animations::AnimationsListJson::SKELETON_FOOTMAN_HIT_FROM_BACK,
+          animations::AnimationsListJson::SKELETON_FOOTMAN_HIT_FROM_FRONT
+  };
+  player->animations[ABody::DEATH] = {
+          animations::AnimationsListJson::SKELETON_FOOTMAN_DYING_A,
+          animations::AnimationsListJson::SKELETON_FOOTMAN_DYING_B
+  };
+  player->setIdle(animations::AnimationsListJson::SKELETON_FOOTMAN_IDLE);
+  player->setRunning(animations::AnimationsListJson::SKELETON_FOOTMAN_RUN);
   player->setIdAI(NOAI);
   bodyTab.push_back(player);
 }
@@ -172,18 +197,18 @@ void			BodyFactory::setValkyrie()
   player->changePos(std::make_pair(-1, -1));
   player->changeSize(std::make_pair(25.0, 25.0));
   player->changeOrientation(0);
-  player->soundEffect[ABody::ATTACK_SOUND] = {
+  player->soundEffect[ABody::ATTACK] = {
           SoundName::FEMALE_ATTACK,
           SoundName::FEMALE_HEAVY_ATTACK_2,
           SoundName::FEMALE_HEAVY_ATTACK_3,
           SoundName::FEMALE_HEAVY_ATTACK_4,
           SoundName::SOUND_NONE
   };
-  player->soundEffect[ABody::WOUND_SOUND] = {
+  player->soundEffect[ABody::WOUND] = {
           SoundName::FEMALE_HEAVY_ATTACK,
           SoundName::SOUND_NONE
   };
-  player->soundEffect[ABody::DEATH_SOUND] = {
+  player->soundEffect[ABody::DEATH] = {
           SoundName::FEMALE_DEATH,
           SoundName::SOUND_NONE
   };
@@ -210,20 +235,33 @@ void			BodyFactory::setSkeleton()
   crea->changePos(std::make_pair(-1, -1));
   crea->changeSize(std::make_pair(50.0, 50.0));
   crea->changeOrientation(0);
-  crea->soundEffect[ABody::ATTACK_SOUND] = {
+  crea->soundEffect[ABody::ATTACK] = {
           SoundName::ZOMBIE_1,
           SoundName::ZOMBIE_2,
           SoundName::ZOMBIE_3,
           SoundName::SOUND_NONE
   };
-  crea->soundEffect[ABody::WOUND_SOUND] = {
+  crea->soundEffect[ABody::WOUND] = {
           SoundName::GHOST_1,
           SoundName::SOUND_NONE
   };
-  crea->soundEffect[ABody::DEATH_SOUND] = {
+  crea->soundEffect[ABody::DEATH] = {
           SoundName::GHOST_6,
           SoundName::SOUND_NONE
   };
+  crea->animations[ABody::ATTACK] = {
+          animations::AnimationsListJson::SKELETON_FOOTMAN_SWING_LEFT,
+          animations::AnimationsListJson::SKELETON_FOOTMAN_SWING_RIGHT,
+          animations::AnimationsListJson::SKELETON_FOOTMAN_SWING_HIGH_STRAIGHT_DOWN,
+          animations::AnimationsListJson::SKELETON_FOOTMAN_HIT_FROM_BACK,
+          animations::AnimationsListJson::SKELETON_FOOTMAN_HIT_FROM_FRONT
+  };
+  crea->animations[ABody::DEATH] = {
+          animations::AnimationsListJson::SKELETON_FOOTMAN_DYING_A,
+          animations::AnimationsListJson::SKELETON_FOOTMAN_DYING_B
+  };
+  crea->setIdle(animations::AnimationsListJson::SKELETON_FOOTMAN_IDLE);
+  crea->setRunning(animations::AnimationsListJson::SKELETON_FOOTMAN_RUN);
   crea->setMeshId(EntityName::SKELETON_FOOTMAN);
   crea->setTextureId(TextureName::TEXTURE_NONE);
   crea->setIdAI(MELEEBASICAI);
@@ -254,20 +292,34 @@ void			BodyFactory::setSkeletonWarlord()
   crea->changePos(std::make_pair(-1, -1));
   crea->changeSize(std::make_pair(50.0, 50.0));
   crea->changeOrientation(0);
-  crea->soundEffect[ABody::ATTACK_SOUND] = {
+  crea->soundEffect[ABody::ATTACK] = {
           SoundName::ZOMBIE_1,
           SoundName::ZOMBIE_2,
           SoundName::ZOMBIE_3,
           SoundName::SOUND_NONE
   };
-  crea->soundEffect[ABody::WOUND_SOUND] = {
+  crea->soundEffect[ABody::WOUND] = {
           SoundName::GHOST_1,
           SoundName::SOUND_NONE
   };
-  crea->soundEffect[ABody::DEATH_SOUND] = {
+  crea->soundEffect[ABody::DEATH] = {
           SoundName::GHOST_6,
           SoundName::SOUND_NONE
   };
+  crea->animations[ABody::ATTACK] = {
+          animations::AnimationsListJson::SKELETON_WARLORD_SPECAL_ATTACK_A,
+          animations::AnimationsListJson::SKELETON_WARLORD_SPECAL_ATTACK_B,
+          animations::AnimationsListJson::SKELETON_WARLORD_SWING_MID_LEFT,
+          animations::AnimationsListJson::SKELETON_WARLORD_SWING_MID_RIGHT,
+          animations::AnimationsListJson::SKELETON_WARLORD_SWORD_SWING_HIGH_STRAIGHT_DOWN,
+          animations::AnimationsListJson::SKELETON_WARLORD_HIT_FROM_BACK,
+          animations::AnimationsListJson::SKELETON_WARLORD_HIT_FROM_FRONT
+  };
+  crea->animations[ABody::DEATH] = {
+          animations::AnimationsListJson::SKELETON_WARLORD_DYING_A,
+  };
+  crea->setIdle(animations::AnimationsListJson::SKELETON_WARLORD_IDLE);
+  crea->setRunning(animations::AnimationsListJson::SKELETON_WARLORD_RUN);
   crea->setMeshId(EntityName::SKELETON_WARLORD);
   crea->setTextureId(TextureName::TEXTURE_NONE);
   crea->setIdAI(MELEEBASICAI);
@@ -298,20 +350,28 @@ void			BodyFactory::setSkeletonArcher()
   crea->changePos(std::make_pair(-1, -1));
   crea->changeSize(std::make_pair(50.0, 50.0));
   crea->changeOrientation(0);
-  crea->soundEffect[ABody::ATTACK_SOUND] = {
+  crea->soundEffect[ABody::ATTACK] = {
           SoundName::ZOMBIE_1,
           SoundName::ZOMBIE_2,
           SoundName::ZOMBIE_3,
           SoundName::SOUND_NONE
   };
-  crea->soundEffect[ABody::WOUND_SOUND] = {
+  crea->soundEffect[ABody::WOUND] = {
           SoundName::GHOST_1,
           SoundName::SOUND_NONE
   };
-  crea->soundEffect[ABody::DEATH_SOUND] = {
+  crea->soundEffect[ABody::DEATH] = {
           SoundName::GHOST_6,
           SoundName::SOUND_NONE
   };
+  crea->animations[ABody::ATTACK] = {
+          animations::AnimationsListJson::SKELETON_ARCHIER_ARCHER_SHOTING
+  };
+  crea->animations[ABody::DEATH] = {
+          animations::AnimationsListJson::SKELETON_ARCHIER_DYING_B
+  };
+  crea->setIdle(animations::AnimationsListJson::SKELETON_ARCHIER_IDLE);
+  crea->setRunning(animations::AnimationsListJson::SKELETON_ARCHIER_RUN);
   crea->setMeshId(EntityName::SKELETON_FOOTMAN);
   crea->setTextureId(TextureName::TEXTURE_NONE);
   crea->setIdAI(MELEEBASICAI);
@@ -342,20 +402,33 @@ void			BodyFactory::setSkeletonWizard()
   crea->changePos(std::make_pair(-1, -1));
   crea->changeSize(std::make_pair(50.0, 50.0));
   crea->changeOrientation(0);
-  crea->soundEffect[ABody::ATTACK_SOUND] = {
+  crea->soundEffect[ABody::ATTACK] = {
           SoundName::ZOMBIE_1,
           SoundName::ZOMBIE_2,
           SoundName::ZOMBIE_3,
           SoundName::SOUND_NONE
   };
-  crea->soundEffect[ABody::WOUND_SOUND] = {
+  crea->soundEffect[ABody::WOUND] = {
           SoundName::GHOST_1,
           SoundName::SOUND_NONE
   };
-  crea->soundEffect[ABody::DEATH_SOUND] = {
+  crea->soundEffect[ABody::DEATH] = {
           SoundName::GHOST_6,
           SoundName::SOUND_NONE
   };
+  crea->animations[ABody::ATTACK] = {
+          animations::AnimationsListJson::SKELETON_SORCERER_BUFF_SPELL_A,
+          animations::AnimationsListJson::SKELETON_SORCERER_BUFF_SPELL_B,
+          animations::AnimationsListJson::SKELETON_SORCERER_FIRE_BALL_SPELL,
+          animations::AnimationsListJson::SKELETON_SORCERER_MAGIC_LIGHT_SPELL,
+          animations::AnimationsListJson::SKELETON_SORCERER_SPELL_CAST_A,
+          animations::AnimationsListJson::SKELETON_SORCERER_STAFF_EARTHQUAKE_SPELL
+  };
+  crea->animations[ABody::DEATH] = {
+          animations::AnimationsListJson::SKELETON_SORCERER_DYING_A
+  };
+  crea->setIdle(animations::AnimationsListJson::SKELETON_SORCERER_IDLE);
+  crea->setRunning(animations::AnimationsListJson::SKELETON_SORCERER_RUN);
   crea->setMeshId(EntityName::SKELETON_SORCERER);
   crea->setTextureId(TextureName::TEXTURE_NONE);
   crea->setIdAI(MELEEBASICAI);
