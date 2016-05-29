@@ -670,13 +670,14 @@ bool __attribute_deprecated__ OgreUI::addWorldEntity(int entityId,
   try
     {
       e = mSceneMgr->createEntity(ss.str(), meshmap.at(meshid).c_str());
-      playAnimation(entityId, 1, true);
-    } catch (...)
+    } catch (Ogre::Exception & e)
     {
+      std::cerr << e.what() << std::endl;
       return false;
     }
   if (texture_id != TextureName::TEXTURE_NONE)
     e->setMaterialName(texturemap.at(texture_id));
+
   Ogre::SceneNode *s = worldNode->createChildSceneNode(ss.str());
   s->setPosition(x, z, y);
   s->attachObject(e);
@@ -846,7 +847,7 @@ void OgreUI::addCameraTracker(int id)
   ss << id;
   Ogre::SceneNode *s = mSceneMgr->getSceneNode(ss.str());
   rootNode = s;
-  mCamera->setPosition(s->getPosition().x, mCamera->getPosition().y + 550,
+  mCamera->setPosition(s->getPosition().x, mCamera->getPosition().y + 650,
 		       s->getPosition().z - 700);
   mCamera->lookAt(s->getPosition());
   mCamera->pitch(Ogre::Degree(0));
@@ -970,6 +971,7 @@ bool OgreUI::addMapEntity(int entityId, const std::string &path, int x, int y,
     e->setMaterialName(texturemap.at(texture_id));
   Ogre::SceneNode *s = planNode->createChildSceneNode(ss.str());
   s->setPosition(x, z, y);
+  s->scale(SCALE_MAP, SCALE_MAP, SCALE_MAP);
   s->yaw(Ogre::Radian(world::Math::toRad(angle)));
   s->attachObject(e);
   return (true);

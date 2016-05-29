@@ -412,7 +412,7 @@ void            BodyFactory::setKey()
   obj->changeSize(std::make_pair(20.0, 20.0));
   obj->changePos(std::make_pair(-1, -1));
   obj->changeOrientation(90);
-  obj->setMeshId(EntityName::CHEST);
+  obj->setMeshId(EntityName::BERSERK);
   obj->setTextureId(TextureName::TEXTURE_NONE);
   obj->addItem(*key);
   bodyTab.push_back(obj);

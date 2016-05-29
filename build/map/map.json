@@ -1,7 +1,7 @@
 {
     name : "Default map",
     asset_map : "../media/models/map_of_doom.mesh",
-    height_map : "mapHeight/map.pgm",
+    height_map : "../mapHeight/map_of_doom.pgm",
     endZone :
     {
 	posX : "1000"
@@ -18,8 +18,8 @@
     [
 	{
 	    name : "Door",
-	    x : "80",
-	    y : "80",
+	    x : "200",
+	    y : "200",
 	    angle : "0"
 	},
 	{

@@ -1,9 +1,10 @@
 #ifndef  HEIGHT_MAP_HH_
 # define HEIGHT_MAP_HH_
 
-# define HEIGHT_MAP_SCALE 20.0
-
 # include <string>
+
+# define SCALE_MAP 90
+# define HEIGHT_MAP_SCALE (20.0 * SCALE_MAP)
 
 namespace			gauntlet
 {

@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Sun May 29 15:02:09 2016 Alexis Trouve
+// Last update Sun May 29 15:30:56 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -22,6 +22,7 @@ using namespace network;
 
 GameServer::GameServer(const std::string& filePath, in_port_t port)
 {
+  dataSendThread = NULL;
   std::cout << "GameServer build" << std::endl;
   unsigned int	i;
 
@@ -35,6 +36,7 @@ GameServer::GameServer(const std::string& filePath, in_port_t port)
     packetFact = new PacketFactory(port);
   } catch (std::exception & f) {
     std::cout << "PacketFactory failed creation" << std::endl;
+    return ;
   }
   players.push_back({"Barbare", -1, false, -1});
   players.push_back({"Mage", -1, false, -1});
@@ -59,7 +61,8 @@ GameServer::GameServer(const std::string& filePath, in_port_t port)
 
 GameServer::~GameServer()
 {
-  dataSendThread->join();
+  /*if (dataSendThread)
+    dataSendThread->join();*/
 }
 
 void		GameServer::connectAnswer(const network::PacketConnect *packet)
@@ -122,9 +125,15 @@ void		GameServer::selectPlayerAnswer(const network::PacketSelectPlayer *packet)
       players[iTaken].isTake = true;
       players[iTaken].socketId = packet->getSocketId();
       connectTmp.erase(connectTmp.begin() + i);
-      PacketStartGame	myPacket((id = world->addNewBody(world->getSpawnPoint().first,
-							 world->getSpawnPoint().second,
-							 players[iTaken].name, 0)));
+      try {
+      id = world->addNewBody(world->getSpawnPoint().first,
+			     world->getSpawnPoint().second,
+			     players[iTaken].name, 0);
+      } catch (std::exception & e) {
+	std::cout << "new Player : " << e.what() << std::endl;
+	exit(0);
+      }
+      PacketStartGame	myPacket(id);
       players[iTaken].idPlayer = id;
       packetFact->send(myPacket, packet->getSocketId());
       dataSendThread = new std::thread(std::bind(&GameServer::sendDatas, std::ref(*this), packet->getSocketId()));
