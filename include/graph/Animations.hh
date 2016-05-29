@@ -34,7 +34,7 @@ namespace gauntlet
       virtual std::string const & getName() const = 0;
     };
 
-    class JSON : public Animation
+    class JSONAnimation : public Animation
     {
      private:
       ::JSON::JsonObj jsonObj;
@@ -48,7 +48,7 @@ namespace gauntlet
       void findProprerties(const std::string &animationName);
 
      public:
-      JSON(const std::string &filename, const std::string &animationName, Ogre::AnimationState *, bool loop);
+      JSONAnimation(const std::string &filename, const std::string &animationName, Ogre::AnimationState *, bool loop);
       virtual bool update(double elapsedTime) final;
       virtual std::string const & getName() const final;
       virtual void reset() final;

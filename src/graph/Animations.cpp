@@ -11,7 +11,7 @@ using namespace gauntlet;
 //;
 
 
-bool animations::JSON::update(double elapsedTime)
+bool animations::JSONAnimation::update(double elapsedTime)
 {
   this->currentTimePosition += elapsedTime;
   if (currentTimePosition > (this->end - this->begin))
@@ -28,7 +28,7 @@ bool animations::JSON::update(double elapsedTime)
   return true;
 }
 
-animations::JSON::JSON(const std::string &filename,
+animations::JSONAnimation::JSONAnimation(const std::string &filename,
 		       const std::string &animationName,
 		       Ogre::AnimationState *animationState,
 		       bool loop) : filename(
@@ -41,7 +41,7 @@ animations::JSON::JSON(const std::string &filename,
   findProprerties(animationName);
 }
 
-void gauntlet::animations::JSON::findProprerties(
+void gauntlet::animations::JSONAnimation::findProprerties(
 	const std::string &animationName)
 {
   ::JSON::JsonArr &arr = dynamic_cast<::JSON::JsonArr &>(this->jsonObj.GetObj(
@@ -73,12 +73,12 @@ void gauntlet::animations::JSON::findProprerties(
   throw std::logic_error("Cannot find " + animationName);
 }
 
-std::string const &animations::JSON::getName() const
+std::string const &animations::JSONAnimation::getName() const
 {
   return this->name;
 }
 
-void animations::JSON::reset()
+void animations::JSONAnimation::reset()
 {
   this->animationState->setTimePosition(0);
 }

@@ -47,7 +47,7 @@ namespace gauntlet
   namespace animations
   {
 	class Animation;
-    	class JSON;
+    	class JSONAnimation;
   }
 }
 

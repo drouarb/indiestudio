@@ -16,7 +16,7 @@ namespace gauntlet
   namespace animations
   {
     class Animation;
-    class JSON;
+    class JSONAnimation;
   }
 }
 
@@ -639,7 +639,7 @@ void OgreUI::playAnimation(int entityId,
 
   pState->setLoop(loop);
   pState->setEnabled(true);
-  animations::Animation *a = new animations::JSON(pair.first, pair.second,
+  animations::Animation *a = new animations::JSONAnimation(pair.first, pair.second,
 						  pState, loop);
   animations::Animation *&type = this->animationsMap[pEntity->getName()];
   if (type)
