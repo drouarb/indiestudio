@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:51:22 2016 Alexis Trouve
-// Last update Sun May 29 13:44:46 2016 Alexis Trouve
+// Last update Sun May 29 20:40:11 2016 Alexis Trouve
 //
 
 #ifndef WORLD_HH_
@@ -32,6 +32,7 @@
 # define GATHERING_PRIORITY 5
 # define WIN_PRIORITY 30
 # define RESPAWN_PRIORITY 60
+# define AUTOSHIFT_PRIORITY 15
 
 namespace			gauntlet
 {

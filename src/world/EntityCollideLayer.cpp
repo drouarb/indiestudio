@@ -1,3 +1,5 @@
+// le header de la famille garcia
+
 #include <iostream>
 #include <err.h>
 #include "EntityCollideLayer.hh"
@@ -26,6 +28,47 @@ EntityCollideLayer::EntityCollideLayer(gauntlet::world::PhysicCollideLayer *phys
 
 EntityCollideLayer::~EntityCollideLayer()
 {
+}
+
+std::list<ABody*>	EntityCollideLayer::getCollideBody()
+{
+  std::list<ABody*>		listend;
+  std::list<ABody*>		resCircle;
+  std::list<ABody*>::iterator	it1;
+  std::list<ABody*>::iterator	it2;
+  std::list<ABody*>::iterator	it3;
+  int				x;
+  int				y;
+
+  it1 = Entity.begin();
+  while (it1 != Entity.end())
+    {
+      resCircle = giveBodyInAreaCircle((*it1)->getPos().first, (*it1)->getPos().second, (*it1)->getSize().first);
+      it2 = resCircle.begin();
+      while (it2 != resCircle.end())
+	{
+	  if ((*it2)->getId() == (*it1)->getId())
+	    resCircle.erase(it2);
+	  it2++;
+	}
+      it2 = resCircle.begin();
+      if (resCircle.size() > 1)
+	while (it2 != resCircle.end())
+	  {
+	    it3 = listend.begin();
+	    while (it3 != listend.end())
+	      {
+		if ((*it3)->getId() == (*it2)->getId())
+		  break;
+		it3++;
+	      }
+	    if ((*it2)->getId() != (*it3)->getId())
+	      listend.push_back((*it2));
+	    it2++;
+	  }
+      it1++;
+    }
+  return (listend);
 }
 
 void		EntityCollideLayer::setCollidingAreaData()

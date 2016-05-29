@@ -1,6 +1,17 @@
+//
+// Collider.cpp for indie in /home/trouve_b/Desktop/CPP_project/cpp_indie_studio
+// 
+// Made by Alexis Trouve
+// Login   <trouve_b@epitech.net>
+// 
+// Started on  Sun May 29 20:40:50 2016 Alexis Trouve
+// Last update Sun May 29 20:45:06 2016 Alexis Trouve
+//
+
 #include <iostream>
 #include <stdexcept>
 #include "Collider.hh"
+#include "Rand.hh"
 
 using namespace gauntlet;
 using namespace world;
@@ -35,6 +46,33 @@ bool	Collider::forceMoveBody(int id, double posx, double posy)
 {
   dynamicLayer->forceMoveId(id, posx, posy);
   return (true);
+}
+
+void				Collider::autoShift()
+{
+  std::list<ABody*>		collideEntity;
+  std::list<ABody*>::iterator	it;
+  int				orient;
+  double			vectX;
+  double			vectY;
+
+  collideEntity = dynamicLayer->getCollideBody();
+  it = collideEntity.begin();
+  while (it != collideEntity.end())
+    {
+      orient = Rand::generate() % 628;
+      vectY = (Math::sin(orient) * (*it)->getSize().second / 2.0);
+      vectX = (Math::cos(orient) * (*it)->getSize().first / 2.0);
+      if (physicLayer->checkCoordSizeCanPass((*it)->getPos(),
+					     std::make_pair((*it)->getPos().first + vectX, (*it)->getPos().second),
+					     (*it)->getSize()) != false)
+	dynamicLayer->forceMoveId((*it)->getId(), (*it)->getPos().first + vectX, (*it)->getPos().second);
+      if (physicLayer->checkCoordSizeCanPass((*it)->getPos(),
+					     std::make_pair((*it)->getPos().first, (*it)->getPos().second + vectY),
+					     (*it)->getSize()) != false)
+	dynamicLayer->forceMoveId((*it)->getId(), (*it)->getPos().first, (*it)->getPos().second + vectY);
+      it++;
+    }
 }
 
 bool				Collider::applyVectorToId(int id, short orient, double speed)

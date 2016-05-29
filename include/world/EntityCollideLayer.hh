@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 25 18:33:15 2016 Alexis Trouve
-// Last update Sun May 29 17:11:09 2016 Alexis Trouve
+// Last update Sun May 29 20:24:08 2016 Alexis Trouve
 //
 
 #ifndef ENTITYCOLLIDELAYER_HH_
@@ -57,6 +57,7 @@ namespace gauntlet
       bool				tryMoveId(int id, double posx, double posy);
       void				applyVectorToId(int id, short orient, double speed);
       void				suprId(int id);
+      std::list<gauntlet::ABody*>	getCollideBody();
       bool				setNewBody(gauntlet::ABody *newBody);
       void				forceSetBody(gauntlet::ABody *newBody);
       double				getDist(double ref_x, double ref_y, const ABody &target);
