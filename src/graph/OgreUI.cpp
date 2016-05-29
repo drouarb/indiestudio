@@ -368,6 +368,7 @@ bool OgreUI::loadSound(int id, SoundName name)
       else
 	return (false);
     }
+  return (true);
 }
 
 bool OgreUI::playSound(int id, gauntlet::SoundName name, bool loop)
@@ -1026,10 +1027,12 @@ bool OgreUI::loadMap(const std::string &map)
 bool OgreUI::addMapEntity(int entityId, const std::string &path, int x, int y,
 			  short angle, gauntlet::TextureName texture_id)
 {
+  std::cout << "addMapEntity a" << std::endl;
   std::stringstream ss;
   ss << entityId;
   int z = 0;
   Ogre::Entity *e;
+  std::cout << "addMapEntity b" << std::endl;
   try
     {
       e = mSceneMgr->createEntity(ss.str(), path);
@@ -1039,19 +1042,24 @@ bool OgreUI::addMapEntity(int entityId, const std::string &path, int x, int y,
       std::cerr << e.what() << std::endl;
       return false;
     }
+  std::cout << "addMapEntity c" << std::endl;
   if (texture_id != TextureName::TEXTURE_NONE)
     e->setMaterialName(texturemap.at(texture_id));
+  std::cout << "addMapEntity d" << std::endl;
   Ogre::SceneNode *s = planNode->createChildSceneNode(ss.str());
+  std::cout << "addMapEntity e" << std::endl;
   std::pair<double , double > size = {0, 0};
   if (heightmap.isLoaded())
     {
       size = heightmap.getSize();
       createAmbientLight();
     }
+  std::cout << "addMapEntity f" << std::endl;
   s->setPosition(size.first + x, z, y);
   s->scale(SCALE_MAP, SCALE_MAP, SCALE_MAP);
   s->yaw(Ogre::Radian(world::Math::toRad(angle)));
   s->attachObject(e);
+  std::cout << "addMapEntity end" << std::endl;
   return (true);
 }
 

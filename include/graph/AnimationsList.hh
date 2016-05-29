@@ -204,6 +204,9 @@ namespace gauntlet
       BERSEKER_STRAFE_LEFT,
       BERSEKER_DODGE_RIGHT
     };
+
+
+
   }
 }
 

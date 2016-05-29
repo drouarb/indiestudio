@@ -1,5 +1,4 @@
 idle:0-48
-
 {
 name:"idle", 
 begin:"0", end: "48"

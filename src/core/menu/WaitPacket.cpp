@@ -4,6 +4,7 @@
 gauntlet::core::WaitPacket::WaitPacket(Core & core, int idStart, Menu * parent) :
   Menu(core, idStart, parent)
 {
+  mustClose(true, false);
   packet(NULL, true);
   buttons.push_back(Control(LABEL, "Waiting for server...", NULL, PCENTER,
 			    idStart + buttons.size(), core.ogre));
@@ -98,12 +99,13 @@ void
 gauntlet::core::WaitPacket::timer()
 {
   int counter = 0;
-  while (mustClose(false, false) == false && counter < 100)
+  while (mustClose(false, false) == false && counter < 5000)
     {
-      usleep(10000);
+      usleep(1000);
       counter++;
     }
   mustClose(true, false);
+
   receivedSomething(true, true);
   setOpen(false);
 }

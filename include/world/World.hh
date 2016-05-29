@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:51:22 2016 Alexis Trouve
-// Last update Sun May 29 13:44:46 2016 Alexis Trouve
+// Last update Sun May 29 19:02:33 2016 Esteban Lewis
 //
 
 #ifndef WORLD_HH_
@@ -28,7 +28,7 @@
 #include "Stopwatch.hh"
 
 # define ROUND_DURATION 33
-# define AI_PRIORITY 15
+# define AI_PRIORITY 1
 # define GATHERING_PRIORITY 5
 # define WIN_PRIORITY 30
 # define RESPAWN_PRIORITY 60
