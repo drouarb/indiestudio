@@ -939,7 +939,7 @@ void OgreUI::addCameraTracker(int id)
   ss << id;
   Ogre::SceneNode *s = mSceneMgr->getSceneNode(ss.str());
   rootNode = s;
-  mCamera->setPosition(s->getPosition().x, mCamera->getPosition().y + 650,
+  mCamera->setPosition(s->getPosition().x, s->getPosition().y + 650,
 		       s->getPosition().z - 700);
   mCamera->lookAt(s->getPosition());
   mCamera->pitch(Ogre::Degree(0));
