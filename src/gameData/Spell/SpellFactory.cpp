@@ -66,7 +66,7 @@ gauntlet::Spell *SpellFactory::getWizardFireBall() {
   Spell *spell = new Spell;
 
   spell->setBasicStats(giveNextId(), "Wizard Fire Ball", 1500, 200, 50, Area::COLUMN, SoundName::MAGIC_EXPLOSION_2, 100);
-  spell->setEffect(EffectName::PLASMA, EffectName::EXPLOSION);
+  spell->setEffect(EffectName::ATOMIC, EffectName::EXPLOSION);
   return spell;
 }
 
@@ -75,7 +75,7 @@ gauntlet::Spell *SpellFactory::getWizardFireCone() {
 
   spell->setBasicStats(giveNextId(), "Wizard Fire Cone", 500, 100, 50, Area::CIRCLE, SoundName::FIRE_BIG, 200);
   spell->setConeAngle(80);
-  spell->setEffect(EffectName::PLASMA, EffectName::EXPLOSION);
+  spell->setEffect(EffectName::GALAXY, EffectName::SUPERNOVA);
   return spell;
 }
 
@@ -96,7 +96,7 @@ gauntlet::Spell *SpellFactory::getValkyriaDash() {
 gauntlet::Spell *SpellFactory::getBarbarianAttack() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Barbarian Primary Attack", 100, 10, 10, Area::CONE, SoundName::HAMMER_HIT_SOFT, 100);
+  spell->setBasicStats(giveNextId(), "Barbarian Primary Attack", 400, 10, 10, Area::CONE, SoundName::HAMMER_HIT_SOFT, 100);
   spell->setConeAngle(200);
   return spell;
 }
@@ -104,7 +104,7 @@ gauntlet::Spell *SpellFactory::getBarbarianAttack() {
 gauntlet::Spell *SpellFactory::getBarbarianTornado() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Barbarian Tornado", 100, 10, 10, Area::CIRCLE, SoundName::MAGIC_BATTLECRY, 300);
+  spell->setBasicStats(giveNextId(), "Barbarian Tornado", 200, 10, 10, Area::CIRCLE, SoundName::MAGIC_BATTLECRY, 300);
   return spell;
 }
 

@@ -148,6 +148,8 @@ void			BodyFactory::setWizard()
   player->changePos(std::make_pair(-1, -1));
   player->changeSize(std::make_pair(20.0, 20.0));
   player->changeOrientation(0);
+  player->spellBook.addSpell(SpellFactory::WIZARD_FIREBALL, player);
+  player->spellBook.addSpell(SpellFactory::WIZARD_FIRECONE, player);
   player->setMeshId(EntityName::SKELETON_FOOTMAN);
   player->setTextureId(TextureName::TEXTURE_NONE);
   player->soundEffect[ABody::ATTACK] = {
