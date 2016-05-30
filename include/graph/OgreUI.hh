@@ -135,6 +135,7 @@ class OgreUI
 
   void createFrameListener(void);
 
+  void scaleEntity(Ogre::SceneNode *s, gauntlet::EntityName id);
   void addCameraTracker(int id);
 
   bool frameStarted(const Ogre::FrameEvent &evt);
