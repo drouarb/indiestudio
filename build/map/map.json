@@ -15,7 +15,14 @@
 	y : "61"
     },
     dynamic :
-    [ ],
+    [
+	{
+	    name : "Skeleton",
+	    angle : "0",
+	    x : "60",
+	    y : "55"
+	}
+    ],
     sounds:
     [
 	{
