@@ -739,7 +739,7 @@ std::pair<int, int> OgreUI::getSizeWindow()
 
 void OgreUI::showBackground()
 {
-  mTrayMgr->showBackdrop("Ogre/Background");
+  mTrayMgr->showBackdrop("Ogre/BackgroundHell");
 }
 
 void OgreUI::hideBackground()
@@ -951,7 +951,7 @@ void OgreUI::moveEntity(int id, int x, int y, short degres)
       if (diff == 1)
 	{
 	  mCamera->setPosition(s->getPosition().x, mCamera->getPosition().y,
-			       s->getPosition().z - 700);
+			       s->getPosition().z - 500);
 	  this->mCamera->lookAt(s->getPosition());
 	}
     }
@@ -965,10 +965,10 @@ void OgreUI::addCameraTracker(int id)
   ss << id;
   Ogre::SceneNode *s = mSceneMgr->getSceneNode(ss.str());
   rootNode = s;
-  mCamera->setPosition(s->getPosition().x, s->getPosition().y + 650,
-		       s->getPosition().z - 700);
+  mCamera->setPosition(s->getPosition().x, s->getPosition().y + 800,
+		       s->getPosition().z - 500);
   mCamera->lookAt(s->getPosition());
-  mCamera->pitch(Ogre::Degree(0));
+  mCamera->pitch(Ogre::Degree(-40));
 }
 
 bool OgreUI::frameStarted(const Ogre::FrameEvent &evt)
@@ -1115,6 +1115,35 @@ void OgreUI::scaleEntity(Ogre::SceneNode *s, gauntlet::EntityName id)
 	      break;
 	  }
 }
+
+void OgreUI::muetAllSound()
+{
+  mSoundManager->muteAllSounds();
+}
+
+void OgreUI::pauseSound(int id)
+{
+  std::stringstream ss;
+  ss << id;
+  mSoundManager->getSound(ss.str())->pause();
+}
+
+void OgreUI::showBackground(gauntlet::BackgroundName background)
+{
+  try {
+      mTrayMgr->showBackdrop(backgroundmap.at(background));
+    }
+  catch (std::exception & e)
+    {
+      std::cerr << e.what() << std::endl;
+    }
+}
+
+
+
+
+
+
 
 
 

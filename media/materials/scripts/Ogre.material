@@ -67,6 +67,90 @@ material Ogre/Background
 	}
 }
 
+material Ogre/BackgroundHell
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.8 0.3
+
+			texture_unit
+			{
+				texture hell_gauntlet.jpg
+				tex_address_mode mirror
+			}
+		}
+	}
+}
+
+material Ogre/BackgroundCave
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.8 0.3
+
+			texture_unit
+			{
+				texture cave.jpg
+				tex_address_mode mirror
+			}
+		}
+	}
+}
+
+material Ogre/BackgroundDoor
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.8 0.3
+
+			texture_unit
+			{
+				texture BackgroundDoor.jpg
+				tex_address_mode mirror
+			}
+		}
+	}
+}
+
+material Ogre/BackgroundRoom
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.8 0.3
+
+			texture_unit
+			{
+				texture BackgroundRoom.jpg
+				tex_address_mode mirror
+			}
+		}
+	}
+}
+
+material Ogre/BackgroundPlayers
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.8 0.3
+
+			texture_unit
+			{
+				texture BackgroundPlayers.jpg
+				tex_address_mode mirror
+			}
+		}
+	}
+}
 material Ogre/Tusks
 {
 	technique
