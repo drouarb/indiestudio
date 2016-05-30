@@ -1,13 +1,3 @@
-//
-// World.cpp for indie in /home/trouve_b/Desktop/CPP_project/cpp_indie_studio
-// 
-// Made by Alexis Trouve
-// Login   <trouve_b@epitech.net>
-// 
-// Started on  Sat May 28 16:36:35 2016 Alexis Trouve
-// Last update Mon May 30 15:50:13 2016 Esteban Lewis
-//
-
 #include <iostream>
 #include <fstream>
 #include <stdexcept>
@@ -188,6 +178,8 @@ void        World::gameLoop()
 	checkWin();
       if (turn % RESPAWN_PRIORITY == 0)
 	checkRespawn();
+      //if (turn % AUTOSHIFT_PRIORITY == 0)
+      //collider->autoShift();
       ++turn;
     }
 }
@@ -260,8 +252,7 @@ void    World::applyGatheringAndOpening()
 	  list = collider->giveBodyInAreaCircle(player->getPos().first,
 						player->getPos().second, 0,
 						(player->getSize().first +
-						 player->getSize().second) /
-						2.0, 0);
+						 player->getSize().second), 0);
 	  if (list.size() > 0)
 	    {
 	      it2 = list.begin();

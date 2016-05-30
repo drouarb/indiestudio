@@ -261,7 +261,7 @@ bool OgreUI::keyPressed(const OIS::KeyEvent &arg)
 
 bool OgreUI::keyReleased(const OIS::KeyEvent &arg)
 {
-  //mCameraMan->injectKeyUp(arg);
+//  mCameraMan->injectKeyUp(arg);
   if (obs != NULL)
     if (keymap.count(arg.key) > 0)
       obs->keyUp(keymap.at(arg.key));
@@ -357,12 +357,13 @@ bool OgreUI::loadSound(int id, SoundName name)
 {
   std::stringstream ss;
   ss << id;
+
   if (name != SOUND_NONE)
     {
       if (access(("../media/sounds/" + soundmap.at(name)).c_str(), F_OK) == 0)
 	{
 	  mSoundManager->createSound(ss.str(), soundmap.at(name), true, false,
-				     false, mSceneMgr);
+				     false);
 	  return (true);
 	}
       else
@@ -380,18 +381,26 @@ bool OgreUI::playSound(int id, gauntlet::SoundName name, bool loop)
     {
       return (true);
     }
-  if (!mSoundManager->hasSound(ss.str()))
-    if (loadSound(id, name) == false)
-      {
-	std::cerr << "sound " << name << "doesn t exit" << std::endl;
-	return false;
-      }
-  if (mSoundManager->hasSound(ss.str()))
+  try
     {
+      if (!mSoundManager->hasSound(ss.str()))
+	if (loadSound(id, name) == false)
+	  {
+	    std::cerr << "sound " << name << "doesn t exit" << std::endl;
+	    return false;
+	  }
+      if (mSoundManager->hasSound(ss.str()))
+	{
 
-      mSoundManager->getSound(ss.str())->play();
-      mSoundManager->getSound(ss.str())->loop(loop);
-      return (true);
+	  mSoundManager->getSound(ss.str())->play();
+	  mSoundManager->getSound(ss.str())->loop(loop);
+	  return (true);
+	}
+    }
+  catch (...)
+    {
+      std::cerr << " ca a pété sur " << soundmap.at(name) << std::endl;
+//      std::cerr << e.what() << std::endl;
     }
   return (false);
 }
@@ -722,6 +731,7 @@ void OgreUI::stopSound(int id)
 {
   std::stringstream ss;
   ss << id;
+  std::cerr << "ici  " << id <<  std::endl;
   mSoundManager->getSound(ss.str())->stop();
 }
 
@@ -735,7 +745,6 @@ bool __attribute_deprecated__ OgreUI::addWorldEntity(int entityId,
 						     EntityName meshid, int x,
 						     int y,
 						     short angle,
-
 						     TextureName texture_id)
 {
   std::stringstream ss;
@@ -761,6 +770,7 @@ bool __attribute_deprecated__ OgreUI::addWorldEntity(int entityId,
   if (this->heightmap.isLoaded())
     z = this->heightmap.at(x, y);
   s->setPosition(x, z, y);
+  scaleEntity(s, meshid);
   s->attachObject(e);
   return (true);
 }
@@ -939,6 +949,7 @@ void OgreUI::addCameraTracker(int id)
 
 bool OgreUI::frameStarted(const Ogre::FrameEvent &evt)
 {
+
   if (obs != NULL)
     obs->frameStarted();
   return true;
@@ -1015,9 +1026,13 @@ void OgreUI::load3dSound(int id, SoundName name, int x, int y)
   if (name != SOUND_NONE)
     if ((sound = mSoundManager->createSound(ss.str(), soundmap.at(name))))
       {
-	mSceneMgr->getSceneNode("1000")->attachObject(sound);
-	mCamera->getParentSceneNode()->attachObject(
-		this->mSoundManager->getListener());
+	mSceneMgr->getSceneNode("9000")->attachObject(sound);
+	sound->setMaxDistance(1000);
+	sound->setMaxVolume(100);
+	sound->play();
+	if (sound->isMono())
+	  std::cout << "mono" << std::endl;
+	mCamera->getParentSceneNode()->attachObject(OgreOggSound::OgreOggSoundManager::getSingletonPtr()->getListener());
       }
 }
 
@@ -1055,6 +1070,29 @@ bool OgreUI::addMapEntity(int entityId, const std::string &path, int x, int y,
   s->attachObject(e);
   return (true);
 }
+
+void OgreUI::scaleEntity(Ogre::SceneNode *s, gauntlet::EntityName id)
+{
+	switch (id)
+	  {
+	    case EntityName::SKELETON_WARLORD:
+	      s->scale(0.4 , 0.4, 0.4);
+	    break;
+	    case EntityName::SKELETON_FOOTMAN:
+	      s->scale(0.4, 0.4, 0.4);
+	    break;
+	    case EntityName::SKELETON_ARCHER:
+		  s->scale(0.4, 0.4, 0.4);
+	    break;
+	    case EntityName::SKELETON_SORCERER:
+	      s->scale(0.4, 0.4, 0.4);
+	    break;
+	    default:
+	      break;
+	  }
+}
+
+
 
 
 
