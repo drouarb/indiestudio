@@ -104,6 +104,7 @@ gauntlet::core::Core::play()
   playing = true;
   ogre.hideBackground(); 
   ogre.stopSound(0);
+  std::cout << "play ok" << std::endl;
 }
 
 void
@@ -188,19 +189,26 @@ gauntlet::core::Core::initPacketf()
 void
 gauntlet::core::Core::disconnect(std::string const & msg)
 {
+  std::cout << "o" << std::endl;
   destroyPacketf(false);
+  std::cout << "p" << std::endl;
   if (stoppingPacketf)
     {
+  std::cout << "q" << std::endl;
       listenThread->join();
+  std::cout << "r" << std::endl;
       delete listenThread;
       listenThread = NULL;
       delete stoppingPacketf;
       stoppingPacketf = NULL;
     }
 
+  std::cout << "s" << std::endl;
   bool sendMsg = !menu.getOpen() && gameIsRunning();
   stop();
+  std::cout << "t" << std::endl;
   ogre.resetMap();
+  std::cout << "u" << std::endl;
   if (sendMsg)
     {
       if (msg.length() > 0)
@@ -208,7 +216,9 @@ gauntlet::core::Core::disconnect(std::string const & msg)
       else
 	menu.message("Disconnected from server.");
     }
+  std::cout << "v" << std::endl;
   killServer();
+  std::cout << "w" << std::endl;
 }
 
 void
@@ -223,7 +233,7 @@ gauntlet::core::Core::destroyPacketf(bool external)
 	{
 	  packetf->stop();
 	}
-  stoppingPacketf = packetf;
+      stoppingPacketf = packetf;
       packetf = NULL;
     }
   disconnectMutex.unlock();

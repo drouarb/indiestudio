@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 // 
 // Started on  Mon May  9 10:59:47 2016 Esteban Lewis
-// Last update Sun May 29 13:13:04 2016 Esteban Lewis
+// Last update Mon May 30 10:49:25 2016 Esteban Lewis
 //
 
 #ifndef  CORE_HH_
