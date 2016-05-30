@@ -16,6 +16,7 @@ namespace gauntlet
   namespace animations
   {
     class Animation;
+
     class JSONAnimation;
   }
 }
@@ -238,7 +239,6 @@ void OgreUI::applyAnimation(const Ogre::FrameEvent &evt)
   for (auto animation : this->animationsMap)
     {
       animations::Animation *t2 = animation.second;
-        std::cerr << "application d'une nouvelle animation: " << t2->getName()  << std::endl;
       if (!t2)
 	continue;
       if (!t2->update(evt.timeSinceLastFrame))
@@ -377,7 +377,7 @@ bool OgreUI::playSound(int id, gauntlet::SoundName name, bool loop)
   std::stringstream ss;
   ss << id;
 
-  if(name == SOUND_NONE)
+  if (name == SOUND_NONE)
     {
       return (true);
     }
@@ -646,27 +646,53 @@ void OgreUI::playAnimation(int entityId,
 {
   const std::pair<std::string, std::string> &pair = animations::jsonMap.at(
 	  animation);
+  Ogre::Entity *pEntity;
+  Ogre::AnimationState *pState;
 
-    std::cerr << "OgreUI::playAnimation(entityId: " << entityId << ", animation: " << static_cast<int>(animation) << std::endl;
+  std::cerr << "OgreUI::playAnimation(entityId: " << entityId <<
+  ", animation: " << static_cast<int>(animation) << ", loop:" << loop <<
+  std::endl;
 
   std::stringstream ss;
 
-  ss << entityId;
-  Ogre::Entity *pEntity = this->mSceneMgr->getEntity(ss.str());
-  Ogre::AnimationState *pState = pEntity->getAnimationState(
-	  getAnimationName(0, pEntity));
-
+  try
+    {
+      ss << entityId;
+      pEntity = this->mSceneMgr->getEntity(ss.str());
+      if (pEntity == NULL)
+	{
+	  std::cerr << "Entité pas trouvée : " << ss.str() << std::endl;
+	  return;
+	}
+      pState = pEntity->getAnimationState(
+	      getAnimationName(0, pEntity));
+    } catch (std::exception &e)
+    {
+      return;
+    }
   pState->setLoop(loop);
   pState->setEnabled(true);
-  animations::Animation *a = new animations::JSONAnimation(pair.first, pair.second,
-						  pState, loop);
-  animations::Animation *&type = this->animationsMap[pEntity->getName()];
-  if (type)
+  animations::Animation *a = NULL;
+  try
     {
-      type->reset();
-      delete (type);
+      a = new animations::JSONAnimation(pair.first,
+					pair.second,
+					pState, loop);
+    } catch (std::logic_error &e)
+    {
+      std::cerr << "not found :" << e.what() << std::endl;
+    } catch (std::exception &e)
+    {
+      std::cerr << e.what() << std::endl;
     }
-  type = a;
+  animations::Animation **type = &this->animationsMap[pEntity->getName()];
+  if (*type)
+    {
+      (*type)->reset();
+      std::cerr << "Reset OK, calling destructor" << std::endl;
+      delete (*type);
+    }
+  (*type) = a;
   a->update(0);
 }
 
@@ -759,7 +785,7 @@ bool __attribute_deprecated__ OgreUI::addWorldEntity(int entityId,
   try
     {
       e = mSceneMgr->createEntity(ss.str(), meshmap.at(meshid).c_str());
-    } catch (Ogre::Exception & e)
+    } catch (Ogre::Exception &e)
     {
       std::cerr << e.what() << std::endl;
       return false;
@@ -904,8 +930,6 @@ void OgreUI::stopEffect(int id)
 
 void OgreUI::moveEntity(int id, int x, int y, short degres)
 {
-  std::cout << "moveEntity " << x << " " << y << std::endl;
-
   int z = 0;
   int diff = 0;
   std::stringstream ss;
@@ -1060,7 +1084,7 @@ bool OgreUI::addMapEntity(int entityId, const std::string &path, int x, int y,
   if (texture_id != TextureName::TEXTURE_NONE)
     e->setMaterialName(texturemap.at(texture_id));
   Ogre::SceneNode *s = planNode->createChildSceneNode(ss.str());
-  std::pair<double , double > size = {0, 0};
+  std::pair<double, double> size = {0, 0};
   if (heightmap.isLoaded())
     {
       size = heightmap.getSize();

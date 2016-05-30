@@ -4,6 +4,7 @@
 
 #include <gameData/SoundName.hh>
 #include <iostream>
+#include <stdlib.h>
 #include "Spell.hh"
 #include "World.hh"
 
@@ -67,7 +68,7 @@ void gauntlet::Spell::prepare(Actor *actor)
     if (actor->getMove())
         actor->setMove();
     //lancer Animation sur caster
-//    caster->getWorld()->animeEntity(actor->getId(), caster->animations[ABody::ATTACK].at(rand() % caster->animations[ABody::ATTACK].size()));
+    caster->getWorld()->animeEntity(actor->getId(), caster->animations[ABody::ATTACK].at(rand() % caster->animations[ABody::ATTACK].size()));
     targetedArea = actor->pointInFront(range);
     if (targetedArea.first > caster->getWorld()->getSize().first)
         targetedArea.first = caster->getWorld()->getSize().first - 1;
@@ -82,6 +83,7 @@ void gauntlet::Spell::prepare(Actor *actor)
 void gauntlet::Spell::cast(Actor *actor)
 {
     std::list<gauntlet::ABody*> targets;
+
     if (endingEffect > -1)
     {
         std::cerr << " and some more beautifull explosions in " << actor->pointInFront(range).first << ";" << actor->pointInFront(range).second << std::endl;

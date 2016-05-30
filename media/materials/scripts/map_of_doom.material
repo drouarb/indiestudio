@@ -20,6 +20,8 @@ material Nature2
         pass
         {
             diffuse 1.000000 1.000000 1.000000
+	    scene_blend alpha_blend
+	    depth_write off
             texture_unit
             {
                 texture nature2.png
@@ -50,6 +52,8 @@ material Spiderweb
         pass
         {
             diffuse 0.611940 0.611940 0.611940
+	    scene_blend alpha_blend
+	    depth_write off
             texture_unit
             {
                 texture spiderweb.png
@@ -245,6 +249,8 @@ material Nature
         pass
         {
             diffuse 1.000000 1.000000 1.000000
+	    scene_blend alpha_blend
+	    depth_write off
             texture_unit
             {
                 texture nature.png

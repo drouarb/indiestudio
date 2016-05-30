@@ -65,7 +65,6 @@ void    World::loadGame(std::string const &file)
 	  spawnPoint.second < 0 || spawnPoint.second >= sizeY)
 	throw (std::runtime_error("Spawn point coordinates are out of bounds"));
       JSON::JsonArr & arr = dynamic_cast<JSON::JsonArr &>(json.GetObj("dynamic"));
-      std::cout << "c spawnpoint " << spawnPoint.first << " " << spawnPoint.second << std::endl;
 
       for (unsigned int i = 0; i < arr.Size(); ++i)
 	{
@@ -575,12 +574,12 @@ ABody *World::getBodyById(int id)
 
 void                World::animeEntity(int id, unsigned int animeId)
 {
-  for (auto body : bodys)
-    {
-      std::cerr << "id:" << body->getId() << " name:" << body->getName() <<
-      std::endl;
-    }
-  std::cerr << "anime id : " << animeId << ", id:" << id << std::endl;
+//  for (auto body : bodys)
+//    {
+//      std::cerr << "id:" << body->getId() << " name:" << body->getName() <<
+//      std::endl;
+//    }
+//  std::cerr << "anime id : " << animeId << ", id:" << id << std::endl;
   gameServer->animeEntity(id, animeId);
 }
 

@@ -41,7 +41,7 @@ namespace gauntlet
     class JSONAnimation : public Animation
     {
      private:
-      ::JSON::JsonObj jsonObj;
+      JSON::JsonObj *jsonObj;
       const std::string &filename;
       Ogre::AnimationState *animationState;
       double begin = -1;
@@ -55,6 +55,9 @@ namespace gauntlet
       JSONAnimation(const std::string &filename,
 		    const std::string &animationName, Ogre::AnimationState *,
 		    bool loop);
+
+      ~JSONAnimation();
+
 
       virtual bool update(double elapsedTime) final;
 
@@ -245,7 +248,7 @@ namespace gauntlet
 	    {SKELETON_FOOTMAN_PARRY_FROM_STRIGHT_DOWN,        {"skeleton_footman.json",  "Skeleton_parry_from_stright_down"}},
 	    {SKELETON_FOOTMAN_SHIELD_BLOCK,                   {"skeleton_footman.json",  "Skeleton_shield_block"}},
 	    {SKELETON_FOOTMAN_SHIELD_BLOW,                    {"skeleton_footman.json",  "Skeleton_shield_blow"}},
-	    {SKELETON_FOOTMAN_SWING_HIGH_STRAIGHT_DOWN,       {"skeleton_footman.json",  "Skeleton_swing_high_straight_down"}},
+	    {SKELETON_FOOTMAN_SWING_HIGH_STRAIGHT_DOWN,       {"skeleton_footman.json",  "Skeleton_1H_swing_high_straight_down"}},
 	    {SKELETON_FOOTMAN_SWING_LEFT,                     {"skeleton_footman.json",  "Skeleton_swing_left"}},
 	    {SKELETON_FOOTMAN_SWING_RIGHT,                    {"skeleton_footman.json",  "Skeleton_swing_right"}},
 	    {SKELETON_FOOTMAN_THRUST,                         {"skeleton_footman.json",  "Skeleton_thrust"}},

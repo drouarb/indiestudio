@@ -1,0 +1,229 @@
+{
+  name: "Skeleton_Warlord",
+  animation: [
+    {
+      name: "Skeleton_Idle",
+      begin: "0",
+      end: "100"
+    },
+    {
+      name: "Skeleton_Use_object",
+      begin: "101",
+      end: "141"
+    },
+    {
+      name: "Skeleton_anger",
+      begin: "142",
+      end: "192"
+    },
+    {
+      name: "Skeleton_Drinking",
+      begin: "193",
+      end: "293"
+    },
+    {
+      name: "Skeleton_Hit_from_back",
+      begin: "296",
+      end: "331"
+    },
+    {
+      name: "Skeleton_Hit_from_front",
+      begin: "332",
+      end: "367"
+    },
+    {
+      name: "Skeleton_Looking_around",
+      begin: "370",
+      end: "546"
+    },
+    {
+      name: "Skeleton_pointing_A",
+      begin: "547",
+      end: "607"
+    },
+    {
+      name: "Skeleton_salute",
+      begin: "608",
+      end: "668"
+    },
+    {
+      name: "Skeleton_Talking",
+      begin: "669",
+      end: "714"
+    },
+    {
+      name: "Skeleton_thinking",
+      begin: "715",
+      end: "790"
+    },
+    {
+      name: "Skeleton_Tracking",
+      begin: "791",
+      end: "966"
+    },
+    {
+      name: "Skeleton_sit_down",
+      begin: "967",
+      end: "993"
+    },
+    {
+      name: "Skeleton_sitting",
+      begin: "994",
+      end: "1094"
+    },
+    {
+      name: "Skeleton_came_up",
+      begin: "1095",
+      end: "1121"
+    },
+    {
+      name: "Skeleton_Going_asleep",
+      begin: "1122",
+      end: "1192"
+    },
+    {
+      name: "Skeleton_sleeping",
+      begin: "1193",
+      end: "1268"
+    },
+    {
+      name: "Skeleton_waking_up",
+      begin: "1269",
+      end: "1334"
+    },
+    {
+      name: "Skeleton_walking_back",
+      begin: "1337",
+      end: "1372"
+    },
+    {
+      name: "Skeleton_Climbing_ladder",
+      begin: "1375",
+      end: "1405"
+    },
+    {
+      name: "Skeleton_Crouching",
+      begin: "1408",
+      end: "1508"
+    },
+    {
+      name: "Skeleton_falling_down",
+      begin: "1511",
+      end: "1551"
+    },
+    {
+      name: "Skeleton_Moving_left",
+      begin: "1554",
+      end: "1574"
+    },
+    {
+      name: "Skeleton_Moving_right",
+      begin: "1575",
+      end: "1595"
+    },
+    {
+      name: "Skeleton_Sneaking",
+      begin: "1598",
+      end: "1648"
+    },
+    {
+      name: "Skeleton_Run",
+      begin: "1651",
+      end: "1673"
+    },
+    {
+      name: "Skeleton_Jump_runing",
+      begin: "1676",
+      end: "1716"
+    },
+    {
+      name: "Skeleton_Dying_A",
+      begin: "1719",
+      end: "1784"
+    },
+    {
+      name: "Skeleton_walk",
+      begin: "1787",
+      end: "1822"
+    },
+    {
+      name: "2H_skeleton_with_weapon_walk",
+      begin: "1825",
+      end: "1860"
+    },
+    {
+      name: "2H_skeleton_charging",
+      begin: "1863",
+      end: "1885"
+    },
+    {
+      name: "2H_skeleton_combat_mode",
+      begin: "1888",
+      end: "1938"
+    },
+    {
+      name: "2H_skeleton_dodge_backwards",
+      begin: "1939",
+      end: "1974"
+    },
+    {
+      name: "2H_skeleton_dodge_to_left",
+      begin: "1975",
+      end: "2010"
+    },
+    {
+      name: "2H_skeleton_dodge_to_righ",
+      begin: "2011",
+      end: "2046"
+    },
+    {
+      name: "2H_skeleton_duck_below_high_swing",
+      begin: "2047",
+      end: "2082"
+    },
+    {
+      name: "2H_skeleton_parry_from_stright_down",
+      begin: "2083",
+      end: "2118"
+    },
+    {
+      name: "2H_skeleton_parry_low_front",
+      begin: "2119",
+      end: "2154"
+    },
+    {
+      name: "2H_skeleton_parry_mid_left",
+      begin: "2155",
+      end: "2190"
+    },
+    {
+      name: "2H_skeleton_specal_attack_A",
+      begin: "2191",
+      end: "2226"
+    },
+    {
+      name: "2H_skeleton_specal_attack_B",
+      begin: "2227",
+      end: "2272"
+    },
+    {
+      name: "2H_skeleton_swing_mid_left",
+      begin: "2273",
+      end: "2308"
+    },
+    {
+      name: "2H_skeleton_swing_mid_right",
+      begin: "2309",
+      end: "2344"
+    },
+    {
+      name: "2H_skeleton_sword_swing_high_straight_down",
+      begin: "2345",
+      end: "2380"
+    },
+    {
+      name: "2H_skeleton_sword_thrust_mid",
+      begin: "2381",
+      end: "2416"
+    }
+  ]
