@@ -50,7 +50,7 @@ void bt_sighandler(int sig, struct sigcontext ctx)
   std::cerr << "[bt] Execution path:" << std::endl;
   for (i = 1; i < trace_size; ++i)
     {
-      std::cerr << "[bt] #" << i << ", " << messages[i] << "\t\t -";
+      std::cerr << "[bt] #" << i << ", " << messages[i] << "\t\t -" << std::endl;
 
       /* find first occurence of '(' or ' ' in message[i] and assume
        * everything before that is the file name. (Don't go beyond 0 though
