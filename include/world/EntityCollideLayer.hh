@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 25 18:33:15 2016 Alexis Trouve
-// Last update Sun May 29 20:24:08 2016 Alexis Trouve
+// Last update Mon May 30 14:27:02 2016 Alexis Trouve
 //
 
 #ifndef ENTITYCOLLIDELAYER_HH_
@@ -14,6 +14,7 @@
 #include <list>
 #include <vector>
 #include <math.h>
+#include <mutex>
 #include "PhysicCollideLayer.hh"
 #include "ABody.hh"
 #include "Math.hh"
@@ -42,6 +43,7 @@ namespace gauntlet
       std::list<gauntlet::ABody*>	Entity;
       unsigned int			sizeX;
       unsigned int			sizeY;
+      std::mutex			mutex;
     private:
       void				setCollidingAreaData();
       void				suprMapId(int id, int posx, int posy);

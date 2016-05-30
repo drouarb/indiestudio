@@ -19,85 +19,49 @@
 	{
 	    name : "Door",
 	    x : "200",
-	    y : "100",
+	    y : "200",
 	    angle : "0"
 	},
 	{
 	    name : "Skeleton",
 	    x : "1500",
-	    y : "1000",
+	    y : "1100",
 	    angle : "0"
 	},
 	{
 	    name : "Skeleton",
 	    x : "1500",
+	    y : "1200",
+	    angle : "0"
+	},
+	{
+	    name : "Skeleton",
+	    x : "1600",
 	    y : "1000",
 	    angle : "0"
 	},
 	{
 	    name : "Skeleton",
-	    x : "1500",
+	    x : "1700",
 	    y : "1000",
 	    angle : "0"
 	},
 	{
 	    name : "Skeleton",
-	    x : "1500",
-	    y : "1000",
+	    x : "1600",
+	    y : "1100",
 	    angle : "0"
 	},
 	{
 	    name : "Skeleton",
-	    x : "1500",
-	    y : "1000",
-	    angle : "0"
-	},
-	{
-	    name : "Skeleton",
-	    x : "1500",
-	    y : "1000",
-	    angle : "0"
-	},
-	{
-	    name : "Skeleton",
-	    x : "1500",
-	    y : "1000",
-	    angle : "0"
-	},
-	{
-	    name : "Skeleton",
-	    x : "1500",
-	    y : "1000",
-	    angle : "0"
-	},
-	{
-	    name : "Skeleton",
-	    x : "1500",
-	    y : "1000",
-	    angle : "0"
-	},
-	{
-	    name : "Skeleton",
-	    x : "1500",
-	    y : "1000",
-	    angle : "0"
-	},
-	{
-	    name : "Skeleton",
-	    x : "1500",
-	    y : "1000",
-	    angle : "0"
-	},
-	{
-	    name : "Skeleton",
-	    x : "1500",
-	    y : "1000",
+	    x : "1700",
+	    y : "1200",
 	    angle : "0"
 	},
 	{
 	    name : "Key",
-	    x : "100",
-	    y : "150",
+	    x : "400",
+	    y : "400",
 	    angle : "0"
 	}
     ],

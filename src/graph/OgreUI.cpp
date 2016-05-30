@@ -238,6 +238,7 @@ void OgreUI::applyAnimation(const Ogre::FrameEvent &evt)
   for (auto animation : this->animationsMap)
     {
       animations::Animation *t2 = animation.second;
+        std::cerr << "application d'une nouvelle animation: " << t2->getName()  << std::endl;
       if (!t2)
 	continue;
       if (!t2->update(evt.timeSinceLastFrame))
@@ -637,6 +638,8 @@ void OgreUI::playAnimation(int entityId,
 {
   const std::pair<std::string, std::string> &pair = animations::jsonMap.at(
 	  animation);
+
+    std::cerr << "OgreUI::playAnimation(entityId: " << entityId << ", animation: " << static_cast<int>(animation) << std::endl;
 
   std::stringstream ss;
 

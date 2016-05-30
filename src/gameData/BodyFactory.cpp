@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 16:50:32 2016 Alexis Trouve
-// Last update Sat May 28 23:45:31 2016 Alexis Trouve
+// Last update Mon May 30 16:25:22 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -70,8 +70,8 @@ void			BodyFactory::setBarbare()
   player->setName("Barbare");
   player->stats.HP = 4000;
   player->stats.normalHP = 4000;
-  player->stats.speed = 10.1;
-  player->stats.normalSpeed = 1.1;
+  player->stats.speed = 11.0;
+  player->stats.normalSpeed = 11.0;
   player->stats.attackModifier = 1.0;
   player->setCollide(true);
   player->spellBook.addSpell(SpellFactory::BARBARIAN_ATTACK, player);
@@ -120,8 +120,8 @@ void			BodyFactory::setElf()
   player->setName("Elf");
   player->stats.HP = 3000;
   player->stats.normalHP = 3000;
-  player->stats.speed = 1.4;
-  player->stats.normalSpeed = 1.4;
+  player->stats.speed = 14.0;
+  player->stats.normalSpeed = 14.0;
   player->stats.attackModifier = 1.0;
   player->setCollide(true);
   player->changePos(std::make_pair(-1, -1));
@@ -141,8 +141,8 @@ void			BodyFactory::setWizard()
   player->setName("Mage");
   player->stats.HP = 1000;
   player->stats.normalHP = 1000;
-  player->stats.speed = 1.2;
-  player->stats.normalSpeed = 1.2;
+  player->stats.speed = 12.0;
+  player->stats.normalSpeed = 12.0;
   player->stats.attackModifier = 1.2;
   player->setCollide(true);
   player->changePos(std::make_pair(-1, -1));
@@ -188,8 +188,8 @@ void			BodyFactory::setValkyrie()
   player->setName("Valkyrie");
   player->stats.HP = 5000;
   player->stats.normalHP = 5000;
-  player->stats.speed = 0.9;
-  player->stats.normalSpeed = 0.9;
+  player->stats.speed = 9.0;
+  player->stats.normalSpeed = 9.0;
   player->stats.attackModifier = 1.0;
   player->spellBook.addSpell(SpellFactory::VALKYRIA_ATTACK, player);
   player->spellBook.addSpell(SpellFactory::VALKYRIA_DASH, player);
@@ -227,8 +227,8 @@ void			BodyFactory::setSkeleton()
   crea->setName("Skeleton");
   crea->stats.HP = 400;
   crea->stats.normalHP = 400;
-  crea->stats.speed = 0.6;
-  crea->stats.normalSpeed = 0.6;
+  crea->stats.speed = 6.0;
+  crea->stats.normalSpeed = 6.0;
   crea->stats.attackModifier = 0.4;
   crea->spellBook.addSpell(SpellFactory::SIMPLE_ATTACK, crea);
   crea->setCollide(true);
@@ -284,8 +284,8 @@ void			BodyFactory::setSkeletonWarlord()
   crea->setName("SkeletonWarlord");
   crea->stats.HP = 400;
   crea->stats.normalHP = 400;
-  crea->stats.speed = 0.6;
-  crea->stats.normalSpeed = 0.6;
+  crea->stats.speed = 6.0;
+  crea->stats.normalSpeed = 6.0;
   crea->stats.attackModifier = 0.8;
   crea->spellBook.addSpell(SpellFactory::SIMPLE_ATTACK, crea);
   crea->setCollide(true);
@@ -342,8 +342,8 @@ void			BodyFactory::setSkeletonArcher()
   crea->setName("SkeletonArcher");
   crea->stats.HP = 400;
   crea->stats.normalHP = 400;
-  crea->stats.speed = 0.6;
-  crea->stats.normalSpeed = 0.6;
+  crea->stats.speed = 6.0;
+  crea->stats.normalSpeed = 6.0;
   crea->stats.attackModifier = 0.3;
   crea->spellBook.addSpell(SpellFactory::RANGER_ATTACK, crea);
   crea->setCollide(true);
@@ -365,7 +365,7 @@ void			BodyFactory::setSkeletonArcher()
           SoundName::SOUND_NONE
   };
   crea->animations[ABody::ATTACK] = {
-          animations::AnimationsListJson::SKELETON_ARCHIER_ARCHER_SHOTING
+          animations::AnimationsListJson::SKELETON_ARCHIER_SHOTING
   };
   crea->animations[ABody::DEATH] = {
           animations::AnimationsListJson::SKELETON_ARCHIER_DYING_B
@@ -394,8 +394,8 @@ void			BodyFactory::setSkeletonWizard()
   crea->setName("SkeletonWizard");
   crea->stats.HP = 400;
   crea->stats.normalHP = 400;
-  crea->stats.speed = 0.6;
-  crea->stats.normalSpeed = 0.6;
+  crea->stats.speed = 6.0;
+  crea->stats.normalSpeed = 6.0;
   crea->stats.attackModifier = 0.2;
   crea->spellBook.addSpell(SpellFactory::ICEBALL, crea);
   crea->setCollide(true);
@@ -451,8 +451,8 @@ void			BodyFactory::setDraugr()
   crea->setName("Draugr");
   crea->stats.HP = 400;
   crea->stats.normalHP = 400;
-  crea->stats.speed = 0.6;
-  crea->stats.normalSpeed = 0.6;
+  crea->stats.speed = 6.0;
+  crea->stats.normalSpeed = 6.0;
   crea->stats.attackModifier = 0.6;
   crea->spellBook.addSpell(SpellFactory::SIMPLE_ATTACK, crea);
   crea->setCollide(true);

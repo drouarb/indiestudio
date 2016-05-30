@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 29 20:40:50 2016 Alexis Trouve
-// Last update Sun May 29 21:00:04 2016 Alexis Trouve
+// Last update Mon May 30 16:45:48 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -42,6 +42,14 @@ bool	Collider::tryMoveBody(int id, double posx, double posy)
   return (dynamicLayer->tryMoveId(id, posx, posy));
 }
 
+bool	Collider::tryMoveBodyNoCheckEntity(ABody *body, double posx, double posy)
+{
+  if (physicLayer->checkCoordSizeCanPass(body->getPos(), std::make_pair(posx, posy), body->getSize()) == false)
+    return (false);
+  dynamicLayer->forceMoveId(body->getId(), posx, posy);
+  return (true);
+}
+
 bool	Collider::forceMoveBody(int id, double posx, double posy)
 {
   dynamicLayer->forceMoveId(id, posx, posy);
@@ -50,38 +58,23 @@ bool	Collider::forceMoveBody(int id, double posx, double posy)
 
 void				Collider::autoShift()
 {
-  std::cout << "autoshift" << std::endl;
   std::list<ABody*>		collideEntity;
   std::list<ABody*>::iterator	it;
   int				orient;
   double			vectX;
   double			vectY;
 
-  std::cout << "1" << std::endl;
   collideEntity = dynamicLayer->getCollideBody();
-  std::cout << "2" << std::endl;
   it = collideEntity.begin();
-  std::cout << "3" << std::endl;
   while (it != collideEntity.end())
     {
-  std::cout << "4" << std::endl;
       orient = Rand::generate() % 628;
-  std::cout << "5" << std::endl;
-      vectY = (Math::sin(orient) * (*it)->getSize().second / 2.0);
-  std::cout << "6" << std::endl;
-      vectX = (Math::cos(orient) * (*it)->getSize().first / 2.0);
-  std::cout << "7" << std::endl;
-      if (physicLayer->checkCoordSizeCanPass((*it)->getPos(),
-					     std::make_pair((*it)->getPos().first + vectX, (*it)->getPos().second),
-					     (*it)->getSize()) != false)
-	dynamicLayer->forceMoveId((*it)->getId(), (*it)->getPos().first + vectX, (*it)->getPos().second);
-      if (physicLayer->checkCoordSizeCanPass((*it)->getPos(),
-					     std::make_pair((*it)->getPos().first, (*it)->getPos().second + vectY),
-					     (*it)->getSize()) != false)
-	dynamicLayer->forceMoveId((*it)->getId(), (*it)->getPos().first, (*it)->getPos().second + vectY);
+      vectY = (Math::sin(orient) * 3.0);
+      vectX = (Math::cos(orient) * 3.0);
+      tryMoveBodyNoCheckEntity((*it), (*it)->getPos().first + vectX, (*it)->getPos().second);
+      tryMoveBodyNoCheckEntity((*it), (*it)->getPos().first, (*it)->getPos().second + vectY);
       it++;
     }
-  std::cout << "autoshift end" << std::endl;
 }
 
 bool				Collider::applyVectorToId(int id, short orient, double speed)

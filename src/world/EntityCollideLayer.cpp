@@ -1,8 +1,7 @@
-B1;2802;0c// le header de la famille garcia
-
 #include <iostream>
 #include <err.h>
 #include "EntityCollideLayer.hh"
+#include "ScopedLock.hpp"
 
 using namespace gauntlet;
 using namespace world;
@@ -14,13 +13,13 @@ EntityCollideLayer::EntityCollideLayer(gauntlet::world::PhysicCollideLayer *phys
 
   size = physicLayer->getSize();
   i = 0;
-  if ((map = new CollidingArea*[static_cast<int>(size.second / SIZE_CASE)]) == NULL)
+  sizeX = static_cast<int>(size.first / SIZE_CASE + 1);
+  sizeY = static_cast<int>(size.second / SIZE_CASE + 1);
+  if ((map = new CollidingArea*[static_cast<int>(sizeY)]) == NULL)
     errx(1, "Error : out of memory");
-  sizeX = static_cast<int>(size.first / SIZE_CASE);
-  sizeY = static_cast<int>(size.second / SIZE_CASE);
   while (i < sizeY)
     {
-      if ((map[i] = new CollidingArea[static_cast<int>(size.first / SIZE_CASE)]) == NULL)
+      if ((map[i] = new CollidingArea[static_cast<int>(sizeX)]) == NULL)
 	errx(1, "Error : out of memory");
       ++i;
     }
@@ -39,53 +38,42 @@ std::list<ABody*>	EntityCollideLayer::getCollideBody()
   std::list<ABody*>::iterator	it3;
   int				x;
   int				y;
+  ScopedLock				lock(&mutex);
 
   it1 = Entity.begin();
-  std::cout << "a" << std::endl;
   while (it1 != Entity.end())
     {
-  std::cout << "b" << std::endl;
       resCircle = giveBodyInAreaCircle((*it1)->getPos().first, (*it1)->getPos().second, (*it1)->getSize().first);
-  std::cout << "c" << std::endl;
       it2 = resCircle.begin();
-  std::cout << "d" << std::endl;
       while (it2 != resCircle.end())
 	{
-  std::cout << "e" << std::endl;
 	  if ((*it2)->getId() == (*it1)->getId())
 	    {
-  std::cout << "f" << std::endl;
 	      resCircle.erase(it2);
-  std::cout << "g" << std::endl;
 	      break;
 	    }
-  std::cout << "h" << std::endl;
 	  it2++;
 	}
-  std::cout << "i" << std::endl;
       it2 = resCircle.begin();
-  std::cout << "j" << std::endl;
-      if (resCircle.size() > 1)
+      if (resCircle.size() > 0)
 	while (it2 != resCircle.end())
 	  {
-  std::cout << "k" << std::endl;
-	    it3 = listend.begin();
-  std::cout << "l" << std::endl;
-	    while (it3 != listend.end())
+	    if (listend.size() > 0)
 	      {
-  std::cout << "m" << std::endl;
-		if ((*it3)->getId() == (*it2)->getId())
-		  break;
-  std::cout << "n" << std::endl;
-		it3++;
+		it3 = listend.begin();
+		while (it3 != listend.end())
+		  {
+		    if ((*it3)->getId() == (*it2)->getId())
+		      break;
+		    it3++;
+		  }
+		if (it3 == listend.end())
+		  listend.push_back((*it2));
 	      }
-  std::cout << "o" << std::endl;
-	    if ((*it2)->getId() != (*it3)->getId())
+	    else
 	      listend.push_back((*it2));
-  std::cout << "p" << std::endl;
 	    it2++;
 	  }
-  std::cout << "q" << std::endl;
       it1++;
     }
   return (listend);
@@ -95,6 +83,7 @@ void		EntityCollideLayer::setCollidingAreaData()
 {
   unsigned int	x;
   unsigned int	y;
+  ScopedLock				lock(&mutex);
 
   y = 0;
   while (y < sizeY)
@@ -119,6 +108,7 @@ bool		EntityCollideLayer::tryMoveId(int id, double posx, double posy)
   std::list<gauntlet::ABody*>::iterator	it1;
   std::pair<double, double>		pos;
   std::pair<double, double>		size;
+  ScopedLock				lock(&mutex);
 
   it1 = Entity.begin();
   while (it1 != Entity.end())
@@ -127,7 +117,7 @@ bool		EntityCollideLayer::tryMoveId(int id, double posx, double posy)
 	{
 	  pos = (*it1)->getPos();
 	  size = (*it1)->getSize();
-	  if (giveBodyInAreaCircle(posx, posy, (*it1)->getSize().first).size() <= 1)
+	  if (giveBodyInAreaCircle(posx, posy, (*it1)->getSize().first + 2.0).size() <= 1)
 	      {
 		x = static_cast<int>(pos.first / SIZE_CASE);
 		y = static_cast<int>(pos.second / SIZE_CASE);
@@ -155,6 +145,7 @@ void		EntityCollideLayer::forceMoveId(int id, double posx, double posy)
   std::list<gauntlet::ABody*>::iterator	it1;
   std::pair<double, double>		pos;
   std::pair<double, double>		size;
+  ScopedLock				lock(&mutex);
 
   it1 = Entity.begin();
   while (it1 != Entity.end())
@@ -165,9 +156,15 @@ void		EntityCollideLayer::forceMoveId(int id, double posx, double posy)
 	  size = (*it1)->getSize();
 	  x = static_cast<int>(pos.first / SIZE_CASE);
 	  y = static_cast<int>(pos.second / SIZE_CASE);
-	  map[static_cast<int>(posy / SIZE_CASE)][static_cast<int>(posy / SIZE_CASE)]
-	    .Entity.push_front(*it1);
-	  suprMapId(id, x, y);
+	  if (x != static_cast<int>(posx / SIZE_CASE) || y != static_cast<int>(posy / SIZE_CASE))
+	    {
+	      map[static_cast<int>(posy / SIZE_CASE)]
+		[static_cast<int>(posx / SIZE_CASE)]
+		.Entity.push_front(*it1);
+	      suprMapId(id, x, y);
+	    }
+	  (*it1)->changePos(std::make_pair(posx, posy));
+	  break;
 	}
       it1++;
     }
@@ -194,6 +191,7 @@ void		EntityCollideLayer::suprId(int id)
   std::list<gauntlet::ABody*>::iterator	it1;
   int				x;
   int				y;
+  ScopedLock				lock(&mutex);
 
   it1 = Entity.begin();
   while (it1 != Entity.end())
@@ -216,12 +214,13 @@ bool		EntityCollideLayer::setNewBody(gauntlet::ABody *newBody)
   std::pair<double, double>	size;
   int				x;
   int				y;
+  ScopedLock				lock(&mutex);
 
   pos = newBody->getPos();
   size = newBody->getSize();
   x = static_cast<int>(pos.first / SIZE_CASE);
   y = static_cast<int>(pos.second / SIZE_CASE);
-  if (giveBodyInAreaCircle(newBody->getPos().second, newBody->getPos().second, newBody->getSize().first).size() <= 1)
+  if (giveBodyInAreaCircle(newBody->getPos().second, newBody->getPos().second, newBody->getSize().first + 2.0).size() <= 1)
     {
       Entity.push_front(newBody);
       map[y][x].Entity.push_front(newBody);
@@ -236,6 +235,7 @@ void		EntityCollideLayer::forceSetBody(gauntlet::ABody *newBody)
   std::pair<double, double>	size;
   int				x;
   int				y;
+  ScopedLock				lock(&mutex);
 
   pos = newBody->getPos();
   size = newBody->getSize();
@@ -357,7 +357,7 @@ std::list<gauntlet::ABody*>	EntityCollideLayer::giveBodyInAreaCircle(double posx
 	  for (std::list<ABody*>::const_iterator it = map[it_y][it_x].Entity.begin();
 	       it != map[it_y][it_x].Entity.end(); ++it)
 	    {
-	      if (getDist(posx, posy, **it) < rayon)
+	      if (getDist(posx, posy, **it) <= rayon)
 		list.push_back(*it);
 	    }
 	  it_y++;

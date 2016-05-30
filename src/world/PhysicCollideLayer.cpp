@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Thu May 12 16:17:25 2016 Alexis Trouve
-// Last update Sun May 29 15:58:52 2016 Esteban Lewis
+// Last update Mon May 30 00:34:20 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -18,7 +18,10 @@ using namespace world;
 PhysicCollideLayer::PhysicCollideLayer(const std::string& filePath)
 {
   if (!heightmap.load(filePath))
-    throw (std::runtime_error("Wrong height map"));
+    {
+      std::cout << "LA GROSSE ERROR de la muerte!" << std::endl;
+      throw (std::runtime_error("Wrong height map"));
+    }
   sizeX = heightmap.getSize().first;
   sizeY = heightmap.getSize().second;
 }

@@ -31,7 +31,7 @@
 # define GATHERING_PRIORITY 5
 # define WIN_PRIORITY 30
 # define RESPAWN_PRIORITY 60
-# define AUTOSHIFT_PRIORITY 15
+# define AUTOSHIFT_PRIORITY 3
 
 namespace			gauntlet
 {

@@ -35,6 +35,7 @@ gauntlet::core::ActionLists::particlesDecay()
 void
 gauntlet::core::ActionLists::doActions()
 {
+  mutex.lock();
   if (packetsDisconnect.size() > 0 && core.gameIsRunning())
     {
       core.disconnect(packetsDisconnect.front()->getMessage());
@@ -46,6 +47,10 @@ gauntlet::core::ActionLists::doActions()
       for (std::list<network::PacketMap*>::iterator
 	     it = packetsMap.begin(); it != packetsMap.end(); ++it)
 	{
+	  if ((*it) == NULL)
+	    {
+	      continue;
+	    }
 	  std::size_t index = (*it)->getFilename().find(';');
 	  if (index != std::string::npos)
 	    {
@@ -128,65 +133,80 @@ gauntlet::core::ActionLists::doActions()
 	     it = packetsAnimation.begin(); it != packetsAnimation.end(); ++it)
 	{
 	  if (core.ogre.entityExist((*it)->getEntityId()))
-	    core.ogre.playAnimation((*it)->getEntityId(), (*it)->getAnimationId(), true);
+//	    core.ogre.playAnimation((*it)->getEntityId(), (*it)->getAnimationId(), true);
+		core.ogre.playAnimation((*it)->getEntityId(), static_cast<animations::AnimationsListJson>((*it)->getAnimationId()), true);
 	}
     }
   clearActions();
+  mutex.unlock();
 }
 
 void
 gauntlet::core::ActionLists::pushAddEntity(const network::PacketAddEntity * packet)
 {
+  mutex.lock();
   packetsAddEntity.push_back(new network::PacketAddEntity
 			     (packet->getEntityId(), packet->getTextureId(),
 			      packet->getMeshId(), packet->getX(), packet->getY(),
 			      packet->getAngle()));
   allPackets.push_back(packetsAddEntity.back());
+  mutex.unlock();
 }
 
 void
 gauntlet::core::ActionLists::pushDisconnect(const network::PacketDisconnect * packet)
 {
+  mutex.lock();
   packetsDisconnect.push_back(new network::PacketDisconnect(packet->getMessage()));
   allPackets.push_back(packetsDisconnect.back());
+  mutex.unlock();
 }
 
 void
 gauntlet::core::ActionLists::pushMoveEntity(const network::PacketMoveEntity * packet)
 {
+  mutex.lock();
   packetsMoveEntity.push_back(new network::PacketMoveEntity
 			      (packet->getEntityId(),
 			       packet->getX(), packet->getY(),
 			       packet->getAngle()));
   allPackets.push_back(packetsMoveEntity.back());
+  mutex.unlock();
 }
 
 void
 gauntlet::core::ActionLists::pushDeleteEntity(const network::PacketDeleteEntity * packet)
 {
+  mutex.lock();
   packetsDeleteEntity.push_back(new network::PacketDeleteEntity(packet->getEntityId()));
   allPackets.push_back(packetsDeleteEntity.back());
+  mutex.unlock();
 }
 
 void
 gauntlet::core::ActionLists::pushStopSound(const network::PacketStopSound * packet)
 {
+  mutex.lock();
   packetsStopSound.push_back(new network::PacketStopSound(packet->getSoundId()));
   allPackets.push_back(packetsStopSound.back());
+  mutex.unlock();
 }
 
 void
 gauntlet::core::ActionLists::pushPlaySound(const network::PacketPlaySound * packet)
 {
+  mutex.lock();
   packetsPlaySound.push_back(new network::PacketPlaySound(packet->getSoundId(),
 							  packet->getRefId(), packet->getX(), packet->getY(),
 							  packet->getLoop()));
   allPackets.push_back(packetsPlaySound.back());
+  mutex.unlock();
 }
 
 void
 gauntlet::core::ActionLists::pushAddParticle(const network::PacketAddParticle * packet)
 {
+  mutex.lock();
   packetsAddParticle.push_back(new network::PacketAddParticle
 			       (packet->getParticleId(), packet->getRefId(),
 				packet->getX(), packet->getY(), packet->getAngle(),
@@ -194,29 +214,36 @@ gauntlet::core::ActionLists::pushAddParticle(const network::PacketAddParticle * 
   allPackets.push_back(packetsAddParticle.back());
   if (packet->getDecayTime() > 0)
     particles.push_back(new particle(packet->getRefId(), packet->getDecayTime()));
+  mutex.unlock();
 }
 
 void
 gauntlet::core::ActionLists::pushDeleteParticle(const network::PacketDeleteParticle * packet)
 {
+  mutex.lock();
   packetsDeleteParticle.push_back(new network::PacketDeleteParticle
 				  (packet->getParticleId()));
   allPackets.push_back(packetsDeleteParticle.back());
+  mutex.unlock();
 }
 
 void
 gauntlet::core::ActionLists::pushAnimation(const network::PacketAnimation * packet)
 {
+  mutex.lock();
   packetsAnimation.push_back(new network::PacketAnimation
 			     (packet->getEntityId(), packet->getAnimationId()));
   allPackets.push_back(packetsAnimation.back());
+  mutex.unlock();
 }
 
 void
 gauntlet::core::ActionLists::pushMap(const network::PacketMap * packet)
 {
+  mutex.lock();
   packetsMap.push_back(new network::PacketMap(packet->getMapId(), packet->getFilename()));
   allPackets.push_back(packetsMap.back());
+  mutex.unlock();
 }
 
 void
@@ -237,6 +264,8 @@ gauntlet::core::ActionLists::clearActions()
   packetsPlaySound.clear();
   packetsAddParticle.clear();
   packetsDeleteParticle.clear();
+  packetsAnimation.clear();
+  packetsMap.clear();
 }
 
 void gauntlet::core::ActionLists::setCameraTrackerId(int id)
