@@ -4,7 +4,8 @@
 # include <string>
 
 # define SCALE_MAP 90
-# define HEIGHT_MAP_SCALE (4.0 * SCALE_MAP)
+# define HEIGHT_MAP_SCALE (SCALE_MAP / 4)
+# define HEIGHT_SCALE (SCALE_MAP / 20)
 
 namespace			gauntlet
 {
@@ -15,7 +16,7 @@ namespace			gauntlet
     ~HeightMap();
 
     bool			load(std::string const & filename);
-    unsigned char		at(double x, double y);
+    int				at(double x, double y);
     std::pair<double, double>	getSize() const;
     bool			isLoaded() const;
 

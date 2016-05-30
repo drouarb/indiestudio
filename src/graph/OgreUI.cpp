@@ -250,7 +250,7 @@ void OgreUI::applyAnimation(const Ogre::FrameEvent &evt)
 
 bool OgreUI::keyPressed(const OIS::KeyEvent &arg)
 {
-//  mCameraMan->injectKeyDown(arg);
+  //mCameraMan->injectKeyDown(arg);
   if (obs != NULL)
     if (keymap.count(arg.key) > 0)
       {
@@ -270,7 +270,7 @@ bool OgreUI::keyReleased(const OIS::KeyEvent &arg)
 
 bool OgreUI::mouseMoved(const OIS::MouseEvent &arg)
 {
-//  mCameraMan->injectMouseMove(arg);
+  //mCameraMan->injectMouseMove(arg);
   mTrayMgr->injectMouseMove(arg);
   if (obs != NULL)
     obs->mouseMove(arg.state.X.abs, arg.state.Y.abs);
@@ -557,7 +557,6 @@ void OgreUI::createScene(void)
   mTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT, true);
   mSceneMgr->setSkyBox(true, "Examples/SceneSkyBox");
   createAmbientLight();
-  //addMapEntity(9000, MAP_TEST, 0, 0, 0, TEXTURE_NONE);
 }
 
 void OgreUI::createAmbientLight()
@@ -739,14 +738,10 @@ bool __attribute_deprecated__ OgreUI::addWorldEntity(int entityId,
 
 						     TextureName texture_id)
 {
-  std::cout << "ogre addworldentity " << x << " " << y << std::endl;
-
   std::stringstream ss;
   ss << entityId;
   Ogre::Entity *e;
   int z = 0;
-  if (this->heightmap.isLoaded())
-    z = this->heightmap.at(x, y);
   if (mSceneMgr->hasEntity(ss.str()))
     {
       this->moveEntity(entityId, x, y, angle);
@@ -763,6 +758,8 @@ bool __attribute_deprecated__ OgreUI::addWorldEntity(int entityId,
   if (texture_id != TextureName::TEXTURE_NONE)
     e->setMaterialName(texturemap.at(texture_id));
   Ogre::SceneNode *s = worldNode->createChildSceneNode(ss.str());
+  if (this->heightmap.isLoaded())
+    z = this->heightmap.at(x, y);
   s->setPosition(x, z, y);
   s->attachObject(e);
   return (true);
@@ -897,6 +894,8 @@ void OgreUI::stopEffect(int id)
 
 void OgreUI::moveEntity(int id, int x, int y, short degres)
 {
+  std::cout << "moveEntity " << x << " " << y << std::endl;
+
   int z = 0;
   int diff = 0;
   std::stringstream ss;
@@ -932,7 +931,7 @@ void OgreUI::addCameraTracker(int id)
   ss << id;
   Ogre::SceneNode *s = mSceneMgr->getSceneNode(ss.str());
   rootNode = s;
-  mCamera->setPosition(s->getPosition().x, mCamera->getPosition().y + 650,
+  mCamera->setPosition(s->getPosition().x, s->getPosition().y + 650,
 		       s->getPosition().z - 700);
   mCamera->lookAt(s->getPosition());
   mCamera->pitch(Ogre::Degree(0));
@@ -1051,7 +1050,6 @@ bool OgreUI::addMapEntity(int entityId, const std::string &path, int x, int y,
     {
       size = heightmap.getSize();
     }
-  s->setPosition(x, z, y);
   s->scale(SCALE_MAP, SCALE_MAP, SCALE_MAP);
   s->yaw(Ogre::Radian(world::Math::toRad(angle)));
   s->attachObject(e);

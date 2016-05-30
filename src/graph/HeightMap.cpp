@@ -42,7 +42,7 @@ gauntlet::HeightMap::load(std::string const & filename)
   return (true);
 }
 
-unsigned char
+int
 gauntlet::HeightMap::at(double x, double y)
 {
   if (!map)
@@ -50,9 +50,10 @@ gauntlet::HeightMap::at(double x, double y)
 
   int hm_x = (int)floor(x / HEIGHT_MAP_SCALE);
   int hm_y = (int)floor(y / HEIGHT_MAP_SCALE);
+  std::cout << "heightmap at " << x << " " << y << " -> " << hm_x << " " << hm_y << " height=" << (int)map[hm_y * width + hm_x] << std::endl;
   if (hm_x >= width || hm_x < 0 || hm_y >= height || hm_y < 0)
     throw (std::invalid_argument("HeightMap coordinates"));
-  return (map[hm_y * width + hm_x]);
+  return ((int)map[hm_y * width + hm_x] / HEIGHT_SCALE);
 }
 
 std::pair<double, double>
