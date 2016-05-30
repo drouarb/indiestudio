@@ -1,6 +1,17 @@
+//
+// Collider.cpp for indie in /home/trouve_b/Desktop/CPP_project/cpp_indie_studio
+// 
+// Made by Alexis Trouve
+// Login   <trouve_b@epitech.net>
+// 
+// Started on  Sun May 29 20:40:50 2016 Alexis Trouve
+// Last update Mon May 30 16:45:48 2016 Alexis Trouve
+//
+
 #include <iostream>
 #include <stdexcept>
 #include "Collider.hh"
+#include "Rand.hh"
 
 using namespace gauntlet;
 using namespace world;
@@ -31,10 +42,39 @@ bool	Collider::tryMoveBody(int id, double posx, double posy)
   return (dynamicLayer->tryMoveId(id, posx, posy));
 }
 
+bool	Collider::tryMoveBodyNoCheckEntity(ABody *body, double posx, double posy)
+{
+  if (physicLayer->checkCoordSizeCanPass(body->getPos(), std::make_pair(posx, posy), body->getSize()) == false)
+    return (false);
+  dynamicLayer->forceMoveId(body->getId(), posx, posy);
+  return (true);
+}
+
 bool	Collider::forceMoveBody(int id, double posx, double posy)
 {
   dynamicLayer->forceMoveId(id, posx, posy);
   return (true);
+}
+
+void				Collider::autoShift()
+{
+  std::list<ABody*>		collideEntity;
+  std::list<ABody*>::iterator	it;
+  int				orient;
+  double			vectX;
+  double			vectY;
+
+  collideEntity = dynamicLayer->getCollideBody();
+  it = collideEntity.begin();
+  while (it != collideEntity.end())
+    {
+      orient = Rand::generate() % 628;
+      vectY = (Math::sin(orient) * 3.0);
+      vectX = (Math::cos(orient) * 3.0);
+      tryMoveBodyNoCheckEntity((*it), (*it)->getPos().first + vectX, (*it)->getPos().second);
+      tryMoveBodyNoCheckEntity((*it), (*it)->getPos().first, (*it)->getPos().second + vectY);
+      it++;
+    }
 }
 
 bool				Collider::applyVectorToId(int id, short orient, double speed)

@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Thu May 12 16:15:29 2016 Alexis Trouve
-// Last update Sat May 28 20:58:18 2016 Alexis Trouve
+// Last update Mon May 30 15:17:55 2016 Esteban Lewis
 //
 
 #pragma once
@@ -13,7 +13,7 @@
 #include <tuple>
 #include "HeightMap.hh"
 
-# define WALL_MIN_HEIGHT 10
+# define WALL_MIN_HEIGHT 10000
 # define POINTNBDIVIDER 6
 # define ABS(x) ((x) < 0 ? -(x) : (x))
 

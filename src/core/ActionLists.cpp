@@ -54,6 +54,7 @@ gauntlet::core::ActionLists::doActions()
 	  std::size_t index = (*it)->getFilename().find(';');
 	  if (index != std::string::npos)
 	    {
+	      std::cerr << (*it)->getFilename() << std::endl;
 	      core.ogre.loadMap((*it)->getFilename().substr(index + 1));
 	      core.ogre.addMapEntity(-1, (*it)->getFilename().substr(0, index),
 				     0, 0, 0, TEXTURE_NONE);

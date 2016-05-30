@@ -1,6 +1,7 @@
 #include <iostream>
 #include <err.h>
 #include "EntityCollideLayer.hh"
+#include "ScopedLock.hpp"
 
 using namespace gauntlet;
 using namespace world;
@@ -28,10 +29,61 @@ EntityCollideLayer::~EntityCollideLayer()
 {
 }
 
+std::list<ABody*>	EntityCollideLayer::getCollideBody()
+{
+  std::list<ABody*>		listend;
+  std::list<ABody*>		resCircle;
+  std::list<ABody*>::iterator	it1;
+  std::list<ABody*>::iterator	it2;
+  std::list<ABody*>::iterator	it3;
+  int				x;
+  int				y;
+  ScopedLock				lock(&mutex);
+
+  it1 = Entity.begin();
+  while (it1 != Entity.end())
+    {
+      resCircle = giveBodyInAreaCircle((*it1)->getPos().first, (*it1)->getPos().second, (*it1)->getSize().first);
+      it2 = resCircle.begin();
+      while (it2 != resCircle.end())
+	{
+	  if ((*it2)->getId() == (*it1)->getId())
+	    {
+	      resCircle.erase(it2);
+	      break;
+	    }
+	  it2++;
+	}
+      it2 = resCircle.begin();
+      if (resCircle.size() > 0)
+	while (it2 != resCircle.end())
+	  {
+	    if (listend.size() > 0)
+	      {
+		it3 = listend.begin();
+		while (it3 != listend.end())
+		  {
+		    if ((*it3)->getId() == (*it2)->getId())
+		      break;
+		    it3++;
+		  }
+		if (it3 == listend.end())
+		  listend.push_back((*it2));
+	      }
+	    else
+	      listend.push_back((*it2));
+	    it2++;
+	  }
+      it1++;
+    }
+  return (listend);
+}
+
 void		EntityCollideLayer::setCollidingAreaData()
 {
   unsigned int	x;
   unsigned int	y;
+  ScopedLock				lock(&mutex);
 
   y = 0;
   while (y < sizeY)
@@ -56,6 +108,7 @@ bool		EntityCollideLayer::tryMoveId(int id, double posx, double posy)
   std::list<gauntlet::ABody*>::iterator	it1;
   std::pair<double, double>		pos;
   std::pair<double, double>		size;
+  ScopedLock				lock(&mutex);
 
   it1 = Entity.begin();
   while (it1 != Entity.end())
@@ -64,7 +117,7 @@ bool		EntityCollideLayer::tryMoveId(int id, double posx, double posy)
 	{
 	  pos = (*it1)->getPos();
 	  size = (*it1)->getSize();
-	  if (giveBodyInAreaCircle(posx, posy, (*it1)->getSize().first).size() <= 1)
+	  if (giveBodyInAreaCircle(posx, posy, (*it1)->getSize().first + 2.0).size() <= 1)
 	      {
 		x = static_cast<int>(pos.first / SIZE_CASE);
 		y = static_cast<int>(pos.second / SIZE_CASE);
@@ -92,6 +145,7 @@ void		EntityCollideLayer::forceMoveId(int id, double posx, double posy)
   std::list<gauntlet::ABody*>::iterator	it1;
   std::pair<double, double>		pos;
   std::pair<double, double>		size;
+  ScopedLock				lock(&mutex);
 
   it1 = Entity.begin();
   while (it1 != Entity.end())
@@ -102,9 +156,15 @@ void		EntityCollideLayer::forceMoveId(int id, double posx, double posy)
 	  size = (*it1)->getSize();
 	  x = static_cast<int>(pos.first / SIZE_CASE);
 	  y = static_cast<int>(pos.second / SIZE_CASE);
-	  map[static_cast<int>(posy / SIZE_CASE)][static_cast<int>(posy / SIZE_CASE)]
-	    .Entity.push_front(*it1);
-	  suprMapId(id, x, y);
+	  if (x != static_cast<int>(posx / SIZE_CASE) || y != static_cast<int>(posy / SIZE_CASE))
+	    {
+	      map[static_cast<int>(posy / SIZE_CASE)]
+		[static_cast<int>(posx / SIZE_CASE)]
+		.Entity.push_front(*it1);
+	      suprMapId(id, x, y);
+	    }
+	  (*it1)->changePos(std::make_pair(posx, posy));
+	  break;
 	}
       it1++;
     }
@@ -131,6 +191,7 @@ void		EntityCollideLayer::suprId(int id)
   std::list<gauntlet::ABody*>::iterator	it1;
   int				x;
   int				y;
+  ScopedLock				lock(&mutex);
 
   it1 = Entity.begin();
   while (it1 != Entity.end())
@@ -153,12 +214,13 @@ bool		EntityCollideLayer::setNewBody(gauntlet::ABody *newBody)
   std::pair<double, double>	size;
   int				x;
   int				y;
+  ScopedLock				lock(&mutex);
 
   pos = newBody->getPos();
   size = newBody->getSize();
   x = static_cast<int>(pos.first / SIZE_CASE);
   y = static_cast<int>(pos.second / SIZE_CASE);
-  if (giveBodyInAreaCircle(newBody->getPos().second, newBody->getPos().second, newBody->getSize().first).size() <= 1)
+  if (giveBodyInAreaCircle(newBody->getPos().second, newBody->getPos().second, newBody->getSize().first + 2.0).size() <= 1)
     {
       Entity.push_front(newBody);
       map[y][x].Entity.push_front(newBody);
@@ -173,19 +235,14 @@ void		EntityCollideLayer::forceSetBody(gauntlet::ABody *newBody)
   std::pair<double, double>	size;
   int				x;
   int				y;
-  std::cout << "set" << std::endl;
+  ScopedLock				lock(&mutex);
+
   pos = newBody->getPos();
   size = newBody->getSize();
-  std::cout << "setok" << std::endl;
   x = static_cast<int>(pos.first / SIZE_CASE);
-  std::cout << "xok" << std::endl;
   y = static_cast<int>(pos.second / SIZE_CASE);
-  std::cout << "yok" << std::endl;
-  std::cout << "force " << pos.first << " " << pos.second << " to " << x << " " << y << std::endl << "size map :" << sizeX << ":" << sizeY << std::endl;
   Entity.push_front(newBody);
-  std::cout << "pushok1" << std::endl;
   map[y][x].Entity.push_front(newBody);
-  std::cout << "pushok2" << std::endl;
 }
 
 double		EntityCollideLayer::getDist(double refx, double refy,
@@ -300,7 +357,7 @@ std::list<gauntlet::ABody*>	EntityCollideLayer::giveBodyInAreaCircle(double posx
 	  for (std::list<ABody*>::const_iterator it = map[it_y][it_x].Entity.begin();
 	       it != map[it_y][it_x].Entity.end(); ++it)
 	    {
-	      if (getDist(posx, posy, **it) < rayon)
+	      if (getDist(posx, posy, **it) <= rayon)
 		list.push_back(*it);
 	    }
 	  it_y++;

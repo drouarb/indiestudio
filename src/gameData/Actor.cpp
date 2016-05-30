@@ -81,7 +81,8 @@ void        Actor::castSpell(int spellEnum)
 
 void		Actor::setMove()
 {
-  ismoving = !ismoving;
+  if (recharged())
+    ismoving = !ismoving;
 }
 
 void Actor::addSpell(int spellEnum) {
