@@ -72,6 +72,14 @@ const std::map<OIS::MouseButtonID, gauntlet::core::IUIObserver::Key> OgreUI::mou
         {OIS::MB_Right, gauntlet::core::IUIObserver::KEY_MOUSE2}
 };
 
+const std::map<gauntlet::BackgroundName , std::string> OgreUI::backgroundmap = {
+	{gauntlet::BackgroundName::BACKGROUND_DOOR, "Ogre/BackgroundDoor"},
+	{gauntlet::BackgroundName::BACKGROUND_PLAYERS, "Ogre/BackgroundPlayers"},
+	{gauntlet::BackgroundName::BACKGROUND_ROOM, "Ogre/BackgroundRoom"},
+	{gauntlet::BackgroundName::BACKGROUND_CAVE, "Ogre/BackgroundCave"},
+	{gauntlet::BackgroundName::BACKGROUND_HELL, "Ogre/BackgroundHell"},
+	{gauntlet::BackgroundName::BACKGROUND_BASIC, "Ogre/Background"}
+};
 const std::map<gauntlet::core::Position, OgreBites::TrayLocation> OgreUI::posmap = {
         {gauntlet::core::PCENTER,      OgreBites::TL_CENTER},
         {gauntlet::core::PTOPRIGHT,    OgreBites::TL_TOPRIGHT},

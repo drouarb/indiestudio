@@ -39,6 +39,7 @@
 #include "IUIObserver.hh"
 #include "AnimationsList.hh"
 #include "HeightMap.hh"
+#include "BackgroundName.hh"
 
 namespace gauntlet
 {
@@ -48,8 +49,9 @@ namespace gauntlet
 
   namespace animations
   {
-	class Animation;
-    	class JSONAnimation;
+    class Animation;
+
+    class JSONAnimation;
   }
 }
 
@@ -67,6 +69,8 @@ class OgreUI
   static const std::map<gauntlet::TextureName, std::string> texturemap;
   static const std::map<gauntlet::EntityName, std::string> meshmap;
   static const std::map<gauntlet::SoundName, std::string> soundmap;
+  static const std::map<gauntlet::BackgroundName, std::string> backgroundmap;
+
   Ogre::LightList lightList;
 
   std::map<std::string, Ogre::AnimationState *> animationsArray;
@@ -101,9 +105,9 @@ class OgreUI
   OIS::Mouse *mMouse;
   OIS::Keyboard *mKeyboard;
 
-   gauntlet::HeightMap heightmap;
+  gauntlet::HeightMap heightmap;
 
-    int quality = 100;
+  int quality = 100;
 
  public:
   bool init();
@@ -115,14 +119,16 @@ class OgreUI
 
   bool addWorldEntity(int entityId, gauntlet::EntityName meshid, int x, int y,
 		      short degres, gauntlet::TextureName texture_id);
-  bool loadMap(const std::string & map);
+
+  bool loadMap(const std::string &map);
 
   bool addMapEntity(int entityId, gauntlet::EntityName meshid, int x, int y,
 		    short degres, gauntlet::TextureName texture_id);
 
   void initSound();
+
   bool addMapEntity(int entityId, const std::string &path, int x, int y,
-		      short angle, gauntlet::TextureName texture_id);
+		    short angle, gauntlet::TextureName texture_id);
 
 
   bool configure(void);
@@ -136,6 +142,7 @@ class OgreUI
   void createFrameListener(void);
 
   void scaleEntity(Ogre::SceneNode *s, gauntlet::EntityName id);
+
   void addCameraTracker(int id);
 
   bool frameStarted(const Ogre::FrameEvent &evt);
@@ -143,6 +150,10 @@ class OgreUI
   void createScene(void);
 
   void removeEntity(int id);
+
+  void muetAllSound();
+
+  void pauseSound(int id);
 
   OgreUI(void);
 
@@ -229,6 +240,8 @@ class OgreUI
 		     bool loop);
 
   void showBackground();
+
+  void showBackground(gauntlet::BackgroundName background);
 
   void hideBackground();
 
