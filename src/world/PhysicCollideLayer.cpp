@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Thu May 12 16:17:25 2016 Alexis Trouve
-// Last update Mon May 30 00:34:20 2016 Esteban Lewis
+// Last update Mon May 30 23:51:33 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -19,7 +19,6 @@ PhysicCollideLayer::PhysicCollideLayer(const std::string& filePath)
 {
   if (!heightmap.load(filePath))
     {
-      std::cout << "LA GROSSE ERROR de la muerte!" << std::endl;
       throw (std::runtime_error("Wrong height map"));
     }
   sizeX = heightmap.getSize().first;
@@ -37,8 +36,13 @@ std::pair<double, double>    PhysicCollideLayer::getSize() const
 bool PhysicCollideLayer::isWall(const std::pair<double, double>& oldPos,
 				const std::pair<double, double>& wantedPos)
 {
-  return (ABS(heightmap.at(oldPos.first, oldPos.second) -
-	      heightmap.at(wantedPos.first, wantedPos.second)) >= WALL_MIN_HEIGHT);
+  std::cout << "checking " << oldPos.first << " " << oldPos.second
+	    << " with " << wantedPos.first << " " << wantedPos.second << std::endl;
+  return (ABS(heightmap.at(heightmap.getSize().first - 1 - oldPos.first,
+			   heightmap.getSize().second - 1 - oldPos.second) -
+	      heightmap.at(heightmap.getSize().first - 1 - wantedPos.first,
+			   heightmap.getSize().second - 1 - wantedPos.second))
+	  >= WALL_MIN_HEIGHT);
 }
 
 bool    PhysicCollideLayer::checkCoordSizeCanPass(const std::pair<double, double>& oldPos,
