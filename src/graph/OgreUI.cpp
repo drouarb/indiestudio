@@ -642,7 +642,8 @@ void OgreUI::playAnimation(int entityId,
   Ogre::AnimationState *pState;
 
   std::cerr << "OgreUI::playAnimation(entityId: " << entityId <<
-  ", animation: " << static_cast<int>(animation) << ", loop:" << loop << std::endl;
+  ", animation: " << static_cast<int>(animation) << ", loop:" << loop <<
+  std::endl;
 
   std::stringstream ss;
 
@@ -650,6 +651,11 @@ void OgreUI::playAnimation(int entityId,
     {
       ss << entityId;
       pEntity = this->mSceneMgr->getEntity(ss.str());
+      if (pEntity == NULL)
+	{
+	  std::cerr << "Entité pas trouvée : " << ss.str() << std::endl;
+	  return;
+	}
       pState = pEntity->getAnimationState(
 	      getAnimationName(0, pEntity));
     } catch (std::exception &e)

@@ -23,28 +23,28 @@
     },
     {
       name: "attack_1",
-      begin: "150",
-      end: "192"
+      begin: "195",
+      end: "197"
     },
     {
       name: "attack_2",
       begin: "192",
-      end: "232"
+      end: "195"
     },
     {
       name: "attack_3",
       begin: "232",
-      end: "278"
+      end: "237"
     },
     {
       name: "attack_4",
       begin: "278",
-      end: "347"
+      end: "282"
     },
     {
       name: "attack_5",
-      begin: "347",
-      end: "450"
+      begin: "348",
+      end: "352"
     },
     {
       name: "jump",

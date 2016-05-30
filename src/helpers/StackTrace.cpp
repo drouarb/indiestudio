@@ -8,6 +8,7 @@
 #include <csignal>
 #include <string.h>
 #include <iostream>
+#include <stdlib.h>
 #include "StackTrace.h"
 
 void StackTrace::displayStackTrace()
@@ -27,6 +28,11 @@ void StackTrace::init()
 
 void StackTrace::handler(int signal)
 {
+  static int i = 0;
+
+  if (i)
+    std::exit(-1);
+  i++;
   std::cerr << "RECV signal: " << strsignal(signal) << std::endl;
   std::cerr << "STACKTRACE" << std::endl;
   displayStackTrace();

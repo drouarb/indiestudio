@@ -589,11 +589,11 @@ ABody *World::getBodyById(int id)
 
 void                World::animeEntity(int id, unsigned int animeId)
 {
-  for (auto body : bodys)
-    {
+//  for (auto body : bodys)
+//    {
 //      std::cerr << "id:" << body->getId() << " name:" << body->getName() <<
 //      std::endl;
-    }
+//    }
 //  std::cerr << "anime id : " << animeId << ", id:" << id << std::endl;
   gameServer->animeEntity(id, animeId);
 }
