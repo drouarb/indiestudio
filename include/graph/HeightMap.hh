@@ -3,9 +3,9 @@
 
 # include <string>
 
-# define SCALE_MAP 90
-# define HEIGHT_MAP_SCALE (SCALE_MAP / 4)
-# define HEIGHT_SCALE (SCALE_MAP / 20)
+# define SCALE_MAP 90.0
+# define HEIGHT_MAP_SCALE (SCALE_MAP / 4.0)
+# define HEIGHT_SCALE (SCALE_MAP / 20.0)
 
 namespace			gauntlet
 {
@@ -21,7 +21,7 @@ namespace			gauntlet
     bool			isLoaded() const;
 
   private:
-    unsigned char		*map;
+    int				*map;
     int				width;
     int				height;
 
