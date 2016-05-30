@@ -27,9 +27,9 @@ gauntlet::HeightMap::load(std::string const & filename)
   if (!getline(is, tmp))
     return (false);
   is >> tmp;
-  width = stoi(tmp);
-  is >> tmp;
   height = stoi(tmp);
+  is >> tmp;
+  width = stoi(tmp);
   is >> tmp;
 
   map = new int [width * height];
@@ -50,10 +50,9 @@ gauntlet::HeightMap::at(double x, double y)
 
   int hm_x = (int)floor(x / HEIGHT_MAP_SCALE);
   int hm_y = (int)floor(y / HEIGHT_MAP_SCALE);
-  std::cout << "heightmap at " << x << " " << y << " -> " << hm_x << " " << hm_y << " height=" << (int)map[hm_y * width + hm_x] << " = " << (int)((double)map[hm_y * width + hm_x] * HEIGHT_SCALE) << std::endl;
   if (hm_x >= width || hm_x < 0 || hm_y >= height || hm_y < 0)
     throw (std::invalid_argument("HeightMap coordinates"));
-  return ((int)((double)map[hm_y * width + hm_x] * HEIGHT_SCALE));
+  return (map[hm_x * height + hm_y]);
 }
 
 std::pair<double, double>
