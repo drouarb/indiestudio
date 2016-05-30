@@ -174,8 +174,8 @@ void        World::gameLoop()
 	checkWin();
       if (turn % RESPAWN_PRIORITY == 0)
 	checkRespawn();
-      //if (turn % AUTOSHIFT_PRIORITY == 0)
-      //collider->autoShift();
+      if (turn % AUTOSHIFT_PRIORITY == 0)
+	collider->autoShift();
       ++turn;
     }
   std::cout << "world gameLoop end" << std::endl;
