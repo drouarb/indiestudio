@@ -8,6 +8,7 @@
 // Last update Sun May 22 15:55:54 2016 Esteban Lewis
 //
 
+#include <iostream>
 #include "JsonObj.hpp"
 #include "JsonStr.hpp"
 #include "JsonArr.hpp"
@@ -26,11 +27,14 @@ JSON::JsonObj::JsonObj(JsonObj const & other)
 
 JSON::JsonObj::~JsonObj()
 {
+//  std::cerr << "JsonObj destructor BEGIN" << std::endl;
   for (std::map<std::string, IJson *>::iterator it = objs.begin();
        it != objs.end(); ++it)
     {
+//      std::cerr << "JsonObj destructor MID" << std::endl;
       delete (it->second);
     }
+//  std::cerr << "JsonObj destructor END" << std::endl;
 }
 
 void
