@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 16:50:32 2016 Alexis Trouve
-// Last update Mon May 30 16:25:22 2016 Alexis Trouve
+// Last update Mon May 30 22:25:00 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -77,7 +77,7 @@ void			BodyFactory::setBarbare()
   player->spellBook.addSpell(SpellFactory::BARBARIAN_ATTACK, player);
   player->spellBook.addSpell(SpellFactory::BARBARIAN_TORNADO, player);
   player->changePos(std::make_pair(-1, -1));
-  player->changeSize(std::make_pair(20.0, 20.0));
+  player->changeSize(std::make_pair(PLAYER_SIZE, PLAYER_SIZE));
   player->changeOrientation(90);
   player->soundEffect[ABody::ATTACK] = {
           SoundName::MALE_ATTACK_1,
@@ -125,7 +125,7 @@ void			BodyFactory::setElf()
   player->stats.attackModifier = 1.0;
   player->setCollide(true);
   player->changePos(std::make_pair(-1, -1));
-  player->changeSize(std::make_pair(20.0, 20.0));
+  player->changeSize(std::make_pair(PLAYER_SIZE, PLAYER_SIZE));
   player->changeOrientation(0);
   player->setMeshId(EntityName::BERSERK);
   player->setTextureId(TextureName::TEXTURE_NONE);
@@ -146,7 +146,7 @@ void			BodyFactory::setWizard()
   player->stats.attackModifier = 1.2;
   player->setCollide(true);
   player->changePos(std::make_pair(-1, -1));
-  player->changeSize(std::make_pair(20.0, 20.0));
+  player->changeSize(std::make_pair(PLAYER_SIZE, PLAYER_SIZE));
   player->changeOrientation(0);
   player->spellBook.addSpell(SpellFactory::WIZARD_FIREBALL, player);
   player->spellBook.addSpell(SpellFactory::WIZARD_FIRECONE, player);
@@ -484,7 +484,7 @@ void            BodyFactory::setKey()
   obj = new GameObject(-1, world);
   obj->setBasicParameters("Key", true, false);
   obj->setCollide(false);
-  obj->changeSize(std::make_pair(20.0, 20.0));
+  obj->changeSize(std::make_pair(PLAYER_SIZE, PLAYER_SIZE));
   obj->changePos(std::make_pair(-1, -1));
   obj->changeOrientation(90);
   obj->setMeshId(EntityName::BERSERK);
