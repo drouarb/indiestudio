@@ -44,7 +44,8 @@
     {
       name: "attack_5",
       begin: "347",
-      end: "450"
+      end: "450",
+      speed: "20"
     },
     {
       name: "jump",

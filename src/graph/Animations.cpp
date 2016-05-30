@@ -13,7 +13,7 @@ using namespace gauntlet;
 
 bool animations::JSONAnimation::update(double elapsedTime)
 {
-  this->currentTimePosition += elapsedTime;
+  this->currentTimePosition += elapsedTime * this->speed;
   if (currentTimePosition > this->end)
     {
       std::cerr << "loop" << std::endl;
@@ -76,6 +76,13 @@ void gauntlet::animations::JSONAnimation::findProprerties(
 	      this->end = stod(
 		      dynamic_cast<::JSON::JsonStr &>(json.GetObj(
 			      "end")).Get());
+	      try
+		{
+		  this->speed = stod(
+			  dynamic_cast<::JSON::JsonStr &>(json.GetObj(
+				  "speed")).Get());
+		} catch (...) //Speed is not mandatory
+		{}
 	    } catch (std::invalid_argument)
 	    {
 	      throw std::runtime_error("Invalid number");

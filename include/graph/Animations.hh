@@ -46,6 +46,7 @@ namespace gauntlet
       Ogre::AnimationState *animationState;
       double begin = -1;
       double end = -1;
+      double speed = 1;
       double currentTimePosition = 0;
 
      private:
