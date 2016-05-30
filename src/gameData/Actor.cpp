@@ -32,7 +32,9 @@ void		Actor::move()
 {
   setStance();
   if (ismoving)
-    world->getCollider().applyVectorToId(id, orientation, stats.speed);
+    {
+      world->getCollider().applyVectorToId(id, orientation, stats.speed);
+    }
 }
 
 bool		Actor::getMove() const
@@ -81,7 +83,8 @@ void        Actor::castSpell(int spellEnum)
 
 void		Actor::setMove()
 {
-  ismoving = !ismoving;
+  if (recharged())
+    ismoving = !ismoving;
 }
 
 void Actor::addSpell(int spellEnum) {

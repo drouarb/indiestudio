@@ -751,8 +751,6 @@ bool __attribute_deprecated__ OgreUI::addWorldEntity(int entityId,
   ss << entityId;
   Ogre::Entity *e;
   int z = 0;
-  if (this->heightmap.isLoaded())
-    z = this->heightmap.at(x, y);
   if (mSceneMgr->hasEntity(ss.str()))
     {
       this->moveEntity(entityId, x, y, angle);
@@ -769,6 +767,8 @@ bool __attribute_deprecated__ OgreUI::addWorldEntity(int entityId,
   if (texture_id != TextureName::TEXTURE_NONE)
     e->setMaterialName(texturemap.at(texture_id));
   Ogre::SceneNode *s = worldNode->createChildSceneNode(ss.str());
+  if (this->heightmap.isLoaded())
+    z = this->heightmap.at(x, y);
   s->setPosition(x, z, y);
   scaleEntity(s, meshid);
   s->attachObject(e);
@@ -904,6 +904,8 @@ void OgreUI::stopEffect(int id)
 
 void OgreUI::moveEntity(int id, int x, int y, short degres)
 {
+  std::cout << "moveEntity " << x << " " << y << std::endl;
+
   int z = 0;
   int diff = 0;
   std::stringstream ss;
@@ -939,7 +941,7 @@ void OgreUI::addCameraTracker(int id)
   ss << id;
   Ogre::SceneNode *s = mSceneMgr->getSceneNode(ss.str());
   rootNode = s;
-  mCamera->setPosition(s->getPosition().x, mCamera->getPosition().y + 650,
+  mCamera->setPosition(s->getPosition().x, s->getPosition().y + 650,
 		       s->getPosition().z - 700);
   mCamera->lookAt(s->getPosition());
   mCamera->pitch(Ogre::Degree(0));
@@ -1063,7 +1065,6 @@ bool OgreUI::addMapEntity(int entityId, const std::string &path, int x, int y,
     {
       size = heightmap.getSize();
     }
-  s->setPosition(x, z, y);
   s->scale(SCALE_MAP, SCALE_MAP, SCALE_MAP);
   s->yaw(Ogre::Radian(world::Math::toRad(angle)));
   s->attachObject(e);
