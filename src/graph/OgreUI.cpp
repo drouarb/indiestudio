@@ -759,6 +759,8 @@ bool __attribute_deprecated__ OgreUI::addWorldEntity(int entityId,
 
 						     TextureName texture_id)
 {
+  std::cout << "ogre addworldentity " << x << " " << y << std::endl;
+
   std::stringstream ss;
   ss << entityId;
   Ogre::Entity *e;
