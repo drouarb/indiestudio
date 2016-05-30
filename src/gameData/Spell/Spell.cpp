@@ -42,6 +42,7 @@ void gauntlet::Spell::ApplyDamage(std::list<gauntlet::ABody*> targets, Actor *ca
         if (actor != NULL)
         {
             actor->stats.HP -= damage * caster->stats.attackModifier;
+            std::cerr << caster->getName() << " just hit " << actor->getName() << " inflicting " << damage * caster->stats.attackModifier << " leaving him with " << actor->stats.HP << " on " << actor->stats.normalHP;
             if (actor->stats.HP <= 0)
             {
                 actor->setCollide(false);
@@ -59,6 +60,8 @@ void gauntlet::Spell::prepare(Actor *actor)
         openingId = caster->getWorld()->triggerEffect((EffectName) openingEffect, actor->getOrientation(), actor->getPos(), 1000);
     unsigned int sound = caster->soundEffect[ABody::ATTACK].at(rand() % caster->soundEffect[ABody::ATTACK].size());
     caster->getWorld()->playSound(sound, false, actor->getPos());
+    if (actor->getMove())
+        actor->setMove();
     //lancer Animation sur caster
 //    caster->getWorld()->animeEntity(actor->getId(), caster->animations[ABody::ATTACK].at(rand() % caster->animations[ABody::ATTACK].size()));
     targetedArea = actor->pointInFront(range);
@@ -68,14 +71,14 @@ void gauntlet::Spell::cast(Actor *actor)
 {
     std::list<gauntlet::ABody*> targets;
     if (endingEffect > -1)
-        endingId = caster->getWorld()->triggerEffect((EffectName) endingEffect, actor->getOrientation(), actor->getPos(), 1000);
-    targets = (caster->getWorld()->getCollider().*patternTypes.at(pattern))(targetedArea.first, targetedArea.second, actor->getOrientation(), radius, angle); //remplacer les 0 par des variables setées à 0 dans le constructy kthxbye
+        endingId = actor->getWorld()->triggerEffect((EffectName) endingEffect, actor->getOrientation(), actor->getPos(), 1000);
+    targets = (actor->getWorld()->getCollider().*patternTypes.at(pattern))(targetedArea.first, targetedArea.second, actor->getOrientation(), radius, angle); //remplacer les 0 par des variables setées à 0 dans le constructy kthxbye
     if (targets.size() > 0) {
-        caster->getWorld()->playSound(soundEffect, false, targetedArea);
+        actor->getWorld()->playSound(soundEffect, false, targetedArea);
     }
     if ((rand() % 100) < (100 * actor->stats.attackModifier))
         ApplyDamage(targets, actor);
-    caster->setCooldown(castTime);
+    actor->setCooldown(castTime);
 }
 
 void gauntlet::Spell::setCaster(Actor* caster)
