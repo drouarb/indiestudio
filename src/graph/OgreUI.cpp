@@ -638,17 +638,24 @@ void OgreUI::playAnimation(int entityId,
 {
   const std::pair<std::string, std::string> &pair = animations::jsonMap.at(
 	  animation);
+  Ogre::Entity *pEntity;
+  Ogre::AnimationState *pState;
 
   std::cerr << "OgreUI::playAnimation(entityId: " << entityId <<
-  ", animation: " << static_cast<int>(animation) << std::endl;
+  ", animation: " << static_cast<int>(animation) << ", loop:" << loop << std::endl;
 
   std::stringstream ss;
 
-  ss << entityId;
-  Ogre::Entity *pEntity = this->mSceneMgr->getEntity(ss.str());
-  Ogre::AnimationState *pState = pEntity->getAnimationState(
-	  getAnimationName(0, pEntity));
-
+  try
+    {
+      ss << entityId;
+      pEntity = this->mSceneMgr->getEntity(ss.str());
+      pState = pEntity->getAnimationState(
+	      getAnimationName(0, pEntity));
+    } catch (std::exception &e)
+    {
+      return;
+    }
   pState->setLoop(loop);
   pState->setEnabled(true);
   animations::Animation *a = NULL;
