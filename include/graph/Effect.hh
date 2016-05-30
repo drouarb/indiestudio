@@ -11,6 +11,8 @@
 
 class OgreUI;
 
+#define _EFFECT_DIVIDE_SIZE 10
+
 namespace gauntlet
 {
   class Effect
@@ -21,7 +23,7 @@ namespace gauntlet
 	    {BLIND, "Blind"},
 	    {BLINK, "Blink"},
 	    {BUBBLES, "Bubbles"},
-	    {BUMPY, "0BumpyShader"},
+//	    {BUMPY, "0BumpyShader"},
 	    {CLASSIC, "Classic"},
 	    {CELLS, "Cells"},
 	    {CROSS, "Cross"},
@@ -31,7 +33,7 @@ namespace gauntlet
 	    {GALAXY, "Galaxy"},
 	    {LINES, "Lines"},
 	    {MULTI_EMITTERS, "MultiEmitters"},
-	    {PLASMA, "Plasma"},
+//	    {PLASMA, "Plasma"},
 	    {RAIN, "Rain"},
 	    {SNOW, "Snow"},
 	    {SPIRAL, "Spiral"},

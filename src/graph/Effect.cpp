@@ -21,7 +21,14 @@ gauntlet::Effect::Effect(OgreUI *ogreUI, gauntlet::EffectName type, std::string 
       throw std::runtime_error("Template " + name + " not found");
     }
   Ogre::SceneNode* particleNode = ogreUI->getSceneManager()->getRootSceneNode()->createChildSceneNode(name + "scene");
-  this->_particleSystem->getEmitter(0)->setPosition(Ogre::Vector3(static_cast<int>(coord.first), static_cast<int>(coord.second), 0));
+  Ogre::ParticleEmitter *pEmitter = this->_particleSystem->getEmitter(0);
+  if (pEmitter == NULL)
+    {
+      particleNode->attachObject(this->_particleSystem);
+      return;
+    }
+  pEmitter->setPosition(Ogre::Vector3(static_cast<int>(coord.first), static_cast<int>(coord.second), 0));
+  pEmitter->setEmissionRate(pEmitter->getEmissionRate() / _EFFECT_DIVIDE_SIZE);
   particleNode->attachObject(this->_particleSystem);
 }
 
