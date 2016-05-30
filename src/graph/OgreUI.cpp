@@ -930,8 +930,6 @@ void OgreUI::stopEffect(int id)
 
 void OgreUI::moveEntity(int id, int x, int y, short degres)
 {
-  std::cout << "moveEntity " << x << " " << y << std::endl;
-
   int z = 0;
   int diff = 0;
   std::stringstream ss;
