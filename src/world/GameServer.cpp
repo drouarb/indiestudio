@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 21:29:03 2016 Alexis Trouve
-// Last update Sun May 29 20:55:42 2016 Esteban Lewis
+// Last update Sun May 29 23:10:35 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -163,10 +163,8 @@ void			GameServer::sendDatas(int socketId)
   it1 = bodys.begin();
   std::cout << packetMap.getFilename() << std::endl;
   packetFact->send(packetMap, socketId);
-  std::cout << "# map packet sent" << std::endl;
   while (it1 != bodys.end())
     {
-      std::cout << "datasendEntity " << (*it1)->getId() << " pos:" << (*it1)->getPos().first << ":" << (*it1)->getPos().second << std::endl;
       network::PacketAddEntity	packet((*it1)->getEntityId(), (*it1)->getTextureId(), (*it1)->getMeshId(),
 				       world->getSize().first - static_cast<int>((*it1)->getPos().first),
 				       world->getSize().second - static_cast<int>((*it1)->getPos().second),

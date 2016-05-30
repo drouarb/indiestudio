@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sat May 28 16:36:35 2016 Alexis Trouve
-// Last update Sun May 29 20:46:34 2016 Alexis Trouve
+// Last update Sun May 29 23:13:54 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -191,8 +191,8 @@ void		World::gameLoop()
 	checkWin();
       if (turn % RESPAWN_PRIORITY == 0)
 	checkRespawn();
-      if (turn % AUTOSHIFT_PRIORITY == 0)
-	collider->autoShift();
+      //      if (turn % AUTOSHIFT_PRIORITY == 0)
+      //collider->autoShift();
       ++turn;
     }
   std::cout << "world gameLoop end" << std::endl;

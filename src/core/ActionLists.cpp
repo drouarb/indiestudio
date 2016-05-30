@@ -131,7 +131,6 @@ gauntlet::core::ActionLists::doActions()
 	    core.ogre.playAnimation((*it)->getEntityId(), (*it)->getAnimationId(), true);
 	}
     }
-
   clearActions();
 }
 

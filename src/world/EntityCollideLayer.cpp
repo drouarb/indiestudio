@@ -1,4 +1,4 @@
-// le header de la famille garcia
+B1;2802;0c// le header de la famille garcia
 
 #include <iostream>
 #include <err.h>
@@ -41,34 +41,51 @@ std::list<ABody*>	EntityCollideLayer::getCollideBody()
   int				y;
 
   it1 = Entity.begin();
+  std::cout << "a" << std::endl;
   while (it1 != Entity.end())
     {
+  std::cout << "b" << std::endl;
       resCircle = giveBodyInAreaCircle((*it1)->getPos().first, (*it1)->getPos().second, (*it1)->getSize().first);
+  std::cout << "c" << std::endl;
       it2 = resCircle.begin();
+  std::cout << "d" << std::endl;
       while (it2 != resCircle.end())
 	{
+  std::cout << "e" << std::endl;
 	  if ((*it2)->getId() == (*it1)->getId())
 	    {
+  std::cout << "f" << std::endl;
 	      resCircle.erase(it2);
+  std::cout << "g" << std::endl;
 	      break;
 	    }
+  std::cout << "h" << std::endl;
 	  it2++;
 	}
+  std::cout << "i" << std::endl;
       it2 = resCircle.begin();
+  std::cout << "j" << std::endl;
       if (resCircle.size() > 1)
 	while (it2 != resCircle.end())
 	  {
+  std::cout << "k" << std::endl;
 	    it3 = listend.begin();
+  std::cout << "l" << std::endl;
 	    while (it3 != listend.end())
 	      {
+  std::cout << "m" << std::endl;
 		if ((*it3)->getId() == (*it2)->getId())
 		  break;
+  std::cout << "n" << std::endl;
 		it3++;
 	      }
+  std::cout << "o" << std::endl;
 	    if ((*it2)->getId() != (*it3)->getId())
 	      listend.push_back((*it2));
+  std::cout << "p" << std::endl;
 	    it2++;
 	  }
+  std::cout << "q" << std::endl;
       it1++;
     }
   return (listend);

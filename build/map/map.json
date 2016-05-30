@@ -4,15 +4,15 @@
     height_map : "mapHeight/map_of_doom.pgm",
     endZone :
     {
-	posX : "1000"
-	posY : "1000"
+	posX : "4000"
+	posY : "4000"
 	sizeX : "2205"
 	sizeY : "1080"
     },
     spawn :
     {
-	x : "100",
-	y : "100"
+	x : "1000",
+	y : "1000"
     },
     dynamic :
     [
@@ -24,8 +24,74 @@
 	},
 	{
 	    name : "Skeleton",
-	    x : "300",
-	    y : "100",
+	    x : "1500",
+	    y : "1000",
+	    angle : "0"
+	},
+	{
+	    name : "Skeleton",
+	    x : "1500",
+	    y : "1000",
+	    angle : "0"
+	},
+	{
+	    name : "Skeleton",
+	    x : "1500",
+	    y : "1000",
+	    angle : "0"
+	},
+	{
+	    name : "Skeleton",
+	    x : "1500",
+	    y : "1000",
+	    angle : "0"
+	},
+	{
+	    name : "Skeleton",
+	    x : "1500",
+	    y : "1000",
+	    angle : "0"
+	},
+	{
+	    name : "Skeleton",
+	    x : "1500",
+	    y : "1000",
+	    angle : "0"
+	},
+	{
+	    name : "Skeleton",
+	    x : "1500",
+	    y : "1000",
+	    angle : "0"
+	},
+	{
+	    name : "Skeleton",
+	    x : "1500",
+	    y : "1000",
+	    angle : "0"
+	},
+	{
+	    name : "Skeleton",
+	    x : "1500",
+	    y : "1000",
+	    angle : "0"
+	},
+	{
+	    name : "Skeleton",
+	    x : "1500",
+	    y : "1000",
+	    angle : "0"
+	},
+	{
+	    name : "Skeleton",
+	    x : "1500",
+	    y : "1000",
+	    angle : "0"
+	},
+	{
+	    name : "Skeleton",
+	    x : "1500",
+	    y : "1000",
 	    angle : "0"
 	},
 	{

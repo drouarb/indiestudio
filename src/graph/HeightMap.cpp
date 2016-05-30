@@ -32,33 +32,6 @@ gauntlet::HeightMap::load(std::string const & filename)
   height = stoi(tmp);
   is >> tmp;
 
-  if (map)
-    {
-      delete [] map;
-      map = NULL;
-    }
-
-  height = 0;
-  width = -1;
-  std::string content = "";
-  while (getline(is, line))
-    {
-      if (line != "")
-	{
-	  if (width == -1)
-	    width = linelength(line);
-	  else if (linelength(line) != width)
-	    return (false);
-	  content += line + "\n";
-	  height++;
-	}
-    }
-  map = new unsigned char [height * width];
-  int i = 0;
-  std::stringstream ss;
-  ss.str(content);
-  std::string c;
-  while (!ss.eof())
   map = new unsigned char [width * height];
   for (int i = 0; i < width * height && !is.eof(); ++i)
     {
