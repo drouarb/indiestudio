@@ -295,7 +295,12 @@ class OgreUI
 
   bool entityExist(int id);
 
- private:
+	void showCharacterSelectMenu(gauntlet::CharacterMenuName name);
+
+	void hideCharacterSelectMenu();
+
+
+private:
 
   void applyAnimation(const Ogre::FrameEvent &evt);
 
@@ -307,7 +312,4 @@ class OgreUI
 
   void createAmbientLight();
 
-   void showCharacterSelectMenu(gauntlet::CharacterMenuName name);
-
-  void hideCharacterSelectMenu();
 };
