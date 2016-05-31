@@ -128,8 +128,8 @@ end: "54.5429441616",
 },
 {
 name: "Skeleton_Run",
-begin: "54.6422335017",
-end: "55.3703553291",
+begin: "55.0",
+end: "55.7",
 },
 {
 name: "Skeleton_Jump_runing",
