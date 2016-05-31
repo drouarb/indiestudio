@@ -395,7 +395,7 @@ void                GameServer::sendSound(unsigned int soundId, int id,
 
 void                GameServer::animeEntity(int id, unsigned int idAnime, bool loop)
 {
-  PacketAnimation packet(id, idAnime);
+  PacketAnimation packet(id, idAnime, true);
   unsigned int i;
 
   i = 0;
