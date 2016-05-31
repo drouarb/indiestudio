@@ -257,6 +257,7 @@ void			BodyFactory::setSkeleton()
           animations::AnimationsListJson::SKELETON_FOOTMAN_SWING_LEFT,
           animations::AnimationsListJson::SKELETON_FOOTMAN_SWING_RIGHT,
           animations::AnimationsListJson::SKELETON_FOOTMAN_SWING_HIGH_STRAIGHT_DOWN,
+          animations::AnimationsListJson::SKELETON_FOOTMAN_THRUST,
           animations::AnimationsListJson::SKELETON_FOOTMAN_HIT_FROM_BACK,
           animations::AnimationsListJson::SKELETON_FOOTMAN_HIT_FROM_FRONT
   };
@@ -316,6 +317,7 @@ void			BodyFactory::setSkeletonWarlord()
           animations::AnimationsListJson::SKELETON_WARLORD_SWING_MID_LEFT,
           animations::AnimationsListJson::SKELETON_WARLORD_SWING_MID_RIGHT,
           animations::AnimationsListJson::SKELETON_WARLORD_SWORD_SWING_HIGH_STRAIGHT_DOWN,
+          animations::AnimationsListJson::SKELETON_WARLORD_SWORD_THRUST_MID,
           animations::AnimationsListJson::SKELETON_WARLORD_HIT_FROM_BACK,
           animations::AnimationsListJson::SKELETON_WARLORD_HIT_FROM_FRONT
   };
@@ -477,6 +479,26 @@ void			BodyFactory::setDraugr()
 }
 
 void            BodyFactory::setKey()
+{
+  GameObject		*obj;
+  Item              *key;
+
+  key = new Item();
+  key->setKey(true);
+  obj = new GameObject(-1, world);
+  obj->setBasicParameters("Key", true, false);
+  obj->setCollide(false);
+  obj->changeSize(std::make_pair(PLAYER_SIZE, PLAYER_SIZE));
+  obj->changePos(std::make_pair(-1, -1));
+  obj->changeOrientation(90);
+  obj->setMeshId(EntityName::CHEST);
+  obj->setTextureId(TextureName::TEXTURE_NONE);
+  obj->addItem(*key);
+  bodyTab.push_back(obj);
+}
+
+
+void            BodyFactory::setPotion()
 {
   GameObject		*obj;
   Item              *key;
