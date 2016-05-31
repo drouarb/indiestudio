@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Thu May 12 16:17:25 2016 Alexis Trouve
-// Last update Tue May 31 11:33:14 2016 Esteban Lewis
+// Last update Tue May 31 15:15:45 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -100,6 +100,9 @@ bool    PhysicCollideLayer::checkCoordSizeCanPass(const std::pair<double, double
 		       (oldPos.first - wantedPos.first));
       if (oldPos.second > wantedPos.second)
 	inc.second *= -1;
+      inc.first *= HEIGHT_MAP_SCALE;
+      inc.second *= HEIGHT_MAP_SCALE;
+
       nb_points = ABS((oldPos.first - wantedPos.first) / inc.first);
     }
   else
@@ -109,7 +112,10 @@ bool    PhysicCollideLayer::checkCoordSizeCanPass(const std::pair<double, double
 		      (oldPos.second - wantedPos.second));
       if (oldPos.first > wantedPos.first)
 	inc.first *= -1;
-      nb_points = ABS((oldPos.second - wantedPos.second) / inc.second);
+      inc.first *= HEIGHT_MAP_SCALE;
+      inc.second *= HEIGHT_MAP_SCALE;
+
+      nb_points = (int)(ABS((oldPos.second - wantedPos.second) / inc.second) + 1);
     }
 
   return (doOnLine(start, end, &PhysicCollideLayer::checkLine, true));
@@ -135,6 +141,8 @@ bool PhysicCollideLayer::doOnLine(std::pair<double, double> start,
 	  inc_y *= POINTNBDIVIDER;
 	  inc_x *= POINTNBDIVIDER;
 	}
+      inc_x *= HEIGHT_MAP_SCALE;
+      inc_y *= HEIGHT_MAP_SCALE;
 
       if (start.first < end.first)
         while (start.first <= end.first)
@@ -164,6 +172,8 @@ bool PhysicCollideLayer::doOnLine(std::pair<double, double> start,
 	  inc_y *= POINTNBDIVIDER;
 	  inc_x *= POINTNBDIVIDER;
 	}
+      inc_x *= HEIGHT_MAP_SCALE;
+      inc_y *= HEIGHT_MAP_SCALE;
 
       if (start.second < end.second)
         while (start.second <= end.second)

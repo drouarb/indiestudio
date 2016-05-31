@@ -95,19 +95,19 @@ void			BodyFactory::setBarbare()
           SoundName::SOUND_NONE
   };
   player->animations[ABody::ATTACK] = {
-//          animations::AnimationsListJson::BERSEKER_ATTACK_1,
-//          animations::AnimationsListJson::BERSEKER_ATTACK_2,
-//          animations::AnimationsListJson::BERSEKER_ATTACK_3,
-//          animations::AnimationsListJson::BERSEKER_ATTACK_4,
-          animations::AnimationsListJson::BERSEKER_ATTACK_5,
+          animations::AnimationsListJson::BERSEKER_ATTACK_1,
+          animations::AnimationsListJson::BERSEKER_ATTACK_2,
+          animations::AnimationsListJson::BERSEKER_ATTACK_3,
+          animations::AnimationsListJson::BERSEKER_ATTACK_4,
+          animations::AnimationsListJson::BERSEKER_ATTACK_5
   };
   player->animations[ABody::DEATH] = {
           animations::AnimationsListJson::BERSEKER_DEATH
   };
-  player->setMeshId(EntityName::BERSERK);
-  player->setTextureId(TextureName::TEXTURE_NONE);
   player->setIdle(animations::AnimationsListJson::BERSEKER_IDLE);
   player->setRunning(animations::AnimationsListJson::BERSEKER_RUN);
+  player->setMeshId(EntityName::BERSERK);
+  player->setTextureId(TextureName::TEXTURE_NONE);
   player->setIdAI(NOAI);
   bodyTab.push_back(player);
 }
@@ -153,8 +153,8 @@ void			BodyFactory::setWizard()
   player->setMeshId(EntityName::SKELETON_FOOTMAN);
   player->setTextureId(TextureName::TEXTURE_NONE);
   player->soundEffect[ABody::ATTACK] = {
-          SoundName::MALE_2_HEAVY_ATTACK,
-          SoundName::MALE_2_HEAVY_ATTACK_2,
+          SoundName::FIRE_SMALL,
+          SoundName::FIRE_BIG,
           SoundName::SOUND_NONE
   };
   player->soundEffect[ABody::WOUND] = {
@@ -166,18 +166,20 @@ void			BodyFactory::setWizard()
           SoundName::SOUND_NONE
   };
   player->animations[ABody::ATTACK] = {
-          animations::AnimationsListJson::SKELETON_FOOTMAN_SWING_LEFT,
-          animations::AnimationsListJson::SKELETON_FOOTMAN_SWING_RIGHT,
-          animations::AnimationsListJson::SKELETON_FOOTMAN_SWING_HIGH_STRAIGHT_DOWN,
-          animations::AnimationsListJson::SKELETON_FOOTMAN_HIT_FROM_BACK,
-          animations::AnimationsListJson::SKELETON_FOOTMAN_HIT_FROM_FRONT
+          animations::AnimationsListJson::SKELETON_SORCERER_BUFF_SPELL_A,
+          animations::AnimationsListJson::SKELETON_SORCERER_BUFF_SPELL_B,
+          animations::AnimationsListJson::SKELETON_SORCERER_FIRE_BALL_SPELL,
+          animations::AnimationsListJson::SKELETON_SORCERER_MAGIC_LIGHT_SPELL,
+          animations::AnimationsListJson::SKELETON_SORCERER_SPELL_CAST_A,
+          animations::AnimationsListJson::SKELETON_SORCERER_STAFF_EARTHQUAKE_SPELL
   };
   player->animations[ABody::DEATH] = {
-          animations::AnimationsListJson::SKELETON_FOOTMAN_DYING_A,
-          animations::AnimationsListJson::SKELETON_FOOTMAN_DYING_B
+          animations::AnimationsListJson::SKELETON_SORCERER_DYING_A
   };
-  player->setIdle(animations::AnimationsListJson::SKELETON_FOOTMAN_IDLE);
-  player->setRunning(animations::AnimationsListJson::SKELETON_FOOTMAN_RUN);
+  player->setIdle(animations::AnimationsListJson::SKELETON_SORCERER_IDLE);
+  player->setRunning(animations::AnimationsListJson::SKELETON_SORCERER_RUN);
+  player->setMeshId(EntityName::SKELETON_SORCERER);
+  player->setTextureId(TextureName::TEXTURE_NONE);
   player->setIdAI(NOAI);
   bodyTab.push_back(player);
 }
@@ -231,7 +233,7 @@ void			BodyFactory::setSkeleton()
   crea->stats.normalHP = 400;
   crea->stats.speed = 6.0;
   crea->stats.normalSpeed = 6.0;
-  crea->stats.attackModifier = 0.4;
+  crea->stats.attackModifier = 0.6;
   crea->spellBook.addSpell(SpellFactory::SIMPLE_ATTACK, crea);
   crea->setCollide(true);
   crea->changePos(std::make_pair(-1, -1));
@@ -255,6 +257,7 @@ void			BodyFactory::setSkeleton()
           animations::AnimationsListJson::SKELETON_FOOTMAN_SWING_LEFT,
           animations::AnimationsListJson::SKELETON_FOOTMAN_SWING_RIGHT,
           animations::AnimationsListJson::SKELETON_FOOTMAN_SWING_HIGH_STRAIGHT_DOWN,
+          animations::AnimationsListJson::SKELETON_FOOTMAN_THRUST,
           animations::AnimationsListJson::SKELETON_FOOTMAN_HIT_FROM_BACK,
           animations::AnimationsListJson::SKELETON_FOOTMAN_HIT_FROM_FRONT
   };
@@ -314,6 +317,7 @@ void			BodyFactory::setSkeletonWarlord()
           animations::AnimationsListJson::SKELETON_WARLORD_SWING_MID_LEFT,
           animations::AnimationsListJson::SKELETON_WARLORD_SWING_MID_RIGHT,
           animations::AnimationsListJson::SKELETON_WARLORD_SWORD_SWING_HIGH_STRAIGHT_DOWN,
+          animations::AnimationsListJson::SKELETON_WARLORD_SWORD_THRUST_MID,
           animations::AnimationsListJson::SKELETON_WARLORD_HIT_FROM_BACK,
           animations::AnimationsListJson::SKELETON_WARLORD_HIT_FROM_FRONT
   };
@@ -487,7 +491,27 @@ void            BodyFactory::setKey()
   obj->changeSize(std::make_pair(PLAYER_SIZE, PLAYER_SIZE));
   obj->changePos(std::make_pair(-1, -1));
   obj->changeOrientation(90);
-  obj->setMeshId(EntityName::BERSERK);
+  obj->setMeshId(EntityName::CHEST);
+  obj->setTextureId(TextureName::TEXTURE_NONE);
+  obj->addItem(*key);
+  bodyTab.push_back(obj);
+}
+
+
+void            BodyFactory::setPotion()
+{
+  GameObject		*obj;
+  Item              *key;
+
+  key = new Item();
+  key->setKey(true);
+  obj = new GameObject(-1, world);
+  obj->setBasicParameters("Key", true, false);
+  obj->setCollide(false);
+  obj->changeSize(std::make_pair(PLAYER_SIZE, PLAYER_SIZE));
+  obj->changePos(std::make_pair(-1, -1));
+  obj->changeOrientation(90);
+  obj->setMeshId(EntityName::CHEST);
   obj->setTextureId(TextureName::TEXTURE_NONE);
   obj->addItem(*key);
   bodyTab.push_back(obj);
@@ -503,7 +527,7 @@ void            BodyFactory::setDoor()
   obj->changeSize(std::make_pair(10.0, 10.0));
   obj->changePos(std::make_pair(-1, -1));
   obj->changeOrientation(90);
-  obj->setMeshId(EntityName::BERSERK);
+  obj->setMeshId(EntityName::DOOR);
   obj->setTextureId(TextureName::TEXTURE_NONE);
   bodyTab.push_back(obj);
 }

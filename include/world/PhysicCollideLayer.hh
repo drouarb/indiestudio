@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Thu May 12 16:15:29 2016 Alexis Trouve
-// Last update Tue May 31 10:49:45 2016 Esteban Lewis
+// Last update Tue May 31 14:52:05 2016 Esteban Lewis
 //
 
 #pragma once
@@ -14,7 +14,7 @@
 #include "HeightMap.hh"
 
 # define WALL_MIN_HEIGHT 40
-# define POINTNBDIVIDER 10
+# define POINTNBDIVIDER 1
 # define ABS(x) ((x) < 0 ? -(x) : (x))
 
 namespace gauntlet {

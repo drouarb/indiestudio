@@ -57,6 +57,8 @@ namespace gauntlet
       void setSkeletonArcher();
 
       void setSkeletonWizard();
+
+      void setPotion();
   };
 };
 

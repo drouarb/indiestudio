@@ -1,0 +1,261 @@
+material Ground2
+{
+    technique
+    {
+        pass
+        {
+            diffuse 1.000000 1.000000 1.000000
+	    texture_unit
+            {
+                texture Ground2.png
+            }
+        }
+    }
+}
+
+material Ground2_alpha
+{
+    technique
+    {
+        pass
+        {
+            diffuse 1.000000 1.000000 1.000000
+            texture_unit
+            {
+                texture Ground2.png
+            }
+        }
+    }
+}
+
+material Wall2
+{
+    technique
+    {
+        pass
+        {
+            diffuse 1.000000 1.000000 1.000000
+            texture_unit
+            {
+                texture Wall2.png
+            }
+        }
+    }
+}
+
+material Bricks1
+{
+    technique
+    {
+        pass
+        {
+            diffuse 1.000000 1.000000 1.000000
+            texture_unit
+            {
+                texture Bricks1.png
+            }
+        }
+    }
+}
+
+material Wall3
+{
+    technique
+    {
+        pass
+        {
+            diffuse 1.000000 1.000000 1.000000
+            texture_unit
+            {
+                texture Wall3.png
+            }
+        }
+    }
+}
+
+material Pavement
+{
+    technique
+    {
+        pass
+        {
+            diffuse 1.000000 1.000000 1.000000
+            texture_unit
+            {
+                texture Pavement1.png
+            }
+        }
+    }
+}
+
+material Rocks
+{
+    technique
+    {
+        pass
+        {
+            diffuse 1.000000 1.000000 1.000000
+            texture_unit
+            {
+                texture Rock1.png
+            }
+        }
+    }
+}
+
+material Ground1
+{
+    technique
+    {
+        pass
+        {
+            diffuse 1.000000 1.000000 1.000000
+            texture_unit
+            {
+                texture Ground1.png
+            }
+        }
+    }
+}
+
+material Wall1
+{
+    technique
+    {
+        pass
+        {
+            diffuse 1.000000 1.000000 1.000000
+            texture_unit
+            {
+                texture Wall1.png
+            }
+        }
+    }
+}
+
+material Up
+{
+    technique
+    {
+        pass
+        {
+            diffuse 1.000000 1.000000 1.000000
+            texture_unit
+            {
+                texture Up_elements1.png
+            }
+        }
+    }
+}
+
+material Deco
+{
+    technique
+    {
+        pass
+        {
+            diffuse 1.000000 1.000000 1.000000
+            texture_unit
+            {
+                texture deco1.png
+            }
+        }
+    }
+}
+
+material Addons
+{
+    technique
+    {
+        pass
+        {
+            diffuse 1.000000 1.000000 1.000000
+            texture_unit
+            {
+                texture Addons.png
+            }
+        }
+    }
+}
+
+material Wall4
+{
+    technique
+    {
+        pass
+        {
+            diffuse 1.000000 1.000000 1.000000
+            texture_unit
+            {
+                texture Wall4.png
+            }
+        }
+    }
+}
+
+material Wood1
+{
+    technique
+    {
+        pass
+        {
+            diffuse 1.000000 1.000000 1.000000
+            texture_unit
+            {
+                texture Wood_elements1.png
+            }
+        }
+    }
+}
+
+material Nature
+{
+    technique
+    {
+        pass
+        {
+            diffuse 1.000000 1.000000 1.000000
+	    scene_blend alpha_blend
+            depth_write off
+            texture_unit
+            {
+                texture nature.png
+            }
+        }
+    }
+}
+
+material Spiderweb
+{
+    technique
+    {
+        pass
+        {
+            diffuse 0.611940 0.611940 0.611940
+	    scene_blend alpha_blend
+            depth_write off
+            texture_unit
+            {
+                texture spiderweb.png
+            }
+        }
+    }
+}
+
+material Roots
+{
+    technique
+    {
+        pass
+        {
+            diffuse 0.776119 0.776119 0.776119
+	    scene_blend alpha_blend
+            depth_write off
+            texture_unit
+            {
+                texture Roots1.png
+            }
+        }
+    }
+}
+
