@@ -16,11 +16,10 @@ bool animations::JSONAnimation::update(double elapsedTime)
   this->currentTimePosition += elapsedTime * this->speed;
   if (currentTimePosition > this->end)
     {
+      if (!loop) {
+          return false;
+      }
       std::cerr << "loop" << std::endl;
-      if (loop)
-	{
-	  return false;
-	}
       this->currentTimePosition = this->begin;
     }
   this->animationState->setTimePosition(
@@ -115,14 +114,8 @@ std::string animations::JSONAnimation::readJson(const std::string &filename)
     {
       dest += line;
     }
-
-//    std::cerr << "RES: " << dest << std::endl;
-
   return dest;
 }
 
 animations::JSONAnimation::~JSONAnimation()
 {}
-
-
-
