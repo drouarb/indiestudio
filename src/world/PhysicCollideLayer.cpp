@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Thu May 12 16:17:25 2016 Alexis Trouve
-// Last update Tue May 31 11:12:01 2016 Esteban Lewis
+// Last update Tue May 31 11:33:14 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -36,8 +36,6 @@ std::pair<double, double>    PhysicCollideLayer::getSize() const
 bool PhysicCollideLayer::isWall(const std::pair<double, double>& oldPos,
 				const std::pair<double, double>& wantedPos)
 {
-  std::cout << "checking " << oldPos.first << " " << oldPos.second
-	    << " with " << wantedPos.first << " " << wantedPos.second << std::endl;
   return (ABS(heightmap.at(heightmap.getSize().first - 1 - oldPos.first,
 			   heightmap.getSize().second - 1 - oldPos.second) -
 	      heightmap.at(heightmap.getSize().first - 1 - wantedPos.first,
