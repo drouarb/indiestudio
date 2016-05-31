@@ -43,7 +43,8 @@ std::list<ABody*>	EntityCollideLayer::getCollideBody()
   it1 = Entity.begin();
   while (it1 != Entity.end())
     {
-      resCircle = giveBodyInAreaCircle((*it1)->getPos().first, (*it1)->getPos().second, (*it1)->getSize().first);
+      resCircle = giveBodyInAreaCircle((*it1)->getPos().first, (*it1)->getPos().second,
+				       (*it1)->getSize().first - ((*it1)->getSize().first / 4));
       it2 = resCircle.begin();
       while (it2 != resCircle.end())
 	{
@@ -381,7 +382,6 @@ std::list<gauntlet::ABody*>	EntityCollideLayer::giveBodyInAreaCone(double posx, 
   for (std::list<ABody*>::iterator it = list.begin(); it != list.end(); ++it)
     {
       short res = getAngle(posx, posy, ref_angle, **it);
-      
       if (!(Math::isBetween(res, halfangle, -halfangle) ||
 	    (bodyLineIntersection(posx, posy, ref_angle + halfangle,
 				  (*it)->getSize().first / 2,

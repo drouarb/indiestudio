@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Thu May 12 16:17:25 2016 Alexis Trouve
-// Last update Tue May 31 11:33:14 2016 Esteban Lewis
+// Last update Tue May 31 15:18:32 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -100,6 +100,9 @@ bool    PhysicCollideLayer::checkCoordSizeCanPass(const std::pair<double, double
 		       (oldPos.first - wantedPos.first));
       if (oldPos.second > wantedPos.second)
 	inc.second *= -1;
+      inc.first *= HEIGHT_MAP_SCALE;
+      inc.second *= HEIGHT_MAP_SCALE;
+
       nb_points = ABS((oldPos.first - wantedPos.first) / inc.first);
     }
   else
@@ -109,17 +112,19 @@ bool    PhysicCollideLayer::checkCoordSizeCanPass(const std::pair<double, double
 		      (oldPos.second - wantedPos.second));
       if (oldPos.first > wantedPos.first)
 	inc.first *= -1;
-      nb_points = ABS((oldPos.second - wantedPos.second) / inc.second);
+      inc.first *= HEIGHT_MAP_SCALE;
+      inc.second *= HEIGHT_MAP_SCALE;
+
+      nb_points = (int)(ABS((oldPos.second - wantedPos.second) / inc.second) + 1);
     }
 
-  return (doOnLine(start, end, &PhysicCollideLayer::checkLine, true));
+  return (doOnLine(start, end, &PhysicCollideLayer::checkLine));
 }
 
 bool PhysicCollideLayer::doOnLine(std::pair<double, double> start,
 				  std::pair <double, double> end,
 				  bool (PhysicCollideLayer::*func)
-				  (std::pair<double, double>),
-				  bool divide)
+				  (std::pair<double, double>))
 {
   double inc_y;
   double inc_x;
@@ -130,11 +135,8 @@ bool PhysicCollideLayer::doOnLine(std::pair<double, double> start,
       if (start.second > end.second)
 	inc_y *= -1;
       inc_x = (start.first < end.first ? 1 : -1);
-      if (divide)
-	{
-	  inc_y *= POINTNBDIVIDER;
-	  inc_x *= POINTNBDIVIDER;
-	}
+      inc_x *= HEIGHT_MAP_SCALE;
+      inc_y *= HEIGHT_MAP_SCALE;
 
       if (start.first < end.first)
         while (start.first <= end.first)
@@ -159,11 +161,8 @@ bool PhysicCollideLayer::doOnLine(std::pair<double, double> start,
       inc_x = ABS((end.first - start.first) / (end.second - start.second));
       if (start.first > end.first)
 	inc_x *= -1;
-      if (divide)
-	{
-	  inc_y *= POINTNBDIVIDER;
-	  inc_x *= POINTNBDIVIDER;
-	}
+      inc_x *= HEIGHT_MAP_SCALE;
+      inc_y *= HEIGHT_MAP_SCALE;
 
       if (start.second < end.second)
         while (start.second <= end.second)
@@ -198,7 +197,7 @@ bool PhysicCollideLayer::checkLine(std::pair<double, double> point)
       dest.second < 0 || dest.second >= sizeY)
     return (false);
 
-  return (doOnLine(point, dest, &PhysicCollideLayer::checkPoint, false));
+  return (doOnLine(point, dest, &PhysicCollideLayer::checkPoint));
 }
 
 bool PhysicCollideLayer::checkPoint(std::pair<double, double> point)

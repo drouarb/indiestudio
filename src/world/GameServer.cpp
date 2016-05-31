@@ -140,9 +140,10 @@ void                GameServer::selectPlayerAnswer(
       PacketStartGame myPacket(id);
       players[iTaken].idPlayer = id;
       packetFact->send(myPacket, packet->getSocketId());
-      dataSendThread = new std::thread(
+      sendDatas(packet->getSocketId());
+      /*dataSendThread = new std::thread(
 	      std::bind(&GameServer::sendDatas, std::ref(*this),
-			packet->getSocketId()));
+	      packet->getSocketId()));*/
     }
   else
     sendHandShake(packet->getSocketId());
@@ -321,6 +322,7 @@ void                GameServer::controlInput(
   unsigned int i;
   ABody *body;
 
+  dataSendMutex.lock();
   i = 0;
   while (i < players.size())
     {
@@ -332,6 +334,7 @@ void                GameServer::controlInput(
   body->changeOrientation(packet->getAngle());
   world->applyCommand(players[i].idPlayer,
 		      static_cast<core::Command>(packet->getCmd()));
+  dataSendMutex.unlock();
 }
 
 void                GameServer::sendEffect(unsigned int effect, int id,

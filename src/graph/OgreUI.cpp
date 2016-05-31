@@ -241,14 +241,14 @@ void OgreUI::applyAnimation(const Ogre::FrameEvent &evt)
       animations::Animation *t2 = animation.second;
       if (!t2)
 	continue;
-      std::cout << "AAA Animation: " << animation.first << ", " <<
-      animation.second->getName() << std::endl;
-/*
+//      std::cout << "AAA Animation: " << animation.first << ", " <<
+//      animation.second->getName() << std::endl;
+
       if (!t2->update(evt.timeSinceLastFrame))
 	{
 	  this->animationsMap[animation.first] = NULL;
 	}
-*/
+
     }
 }
 
@@ -956,7 +956,6 @@ void OgreUI::moveEntity(int id, int x, int y, short degres)
 	{
 	  mCamera->setPosition(s->getPosition().x, mCamera->getPosition().y,
 			       s->getPosition().z - 500);
-	  this->mCamera->lookAt(s->getPosition());
 	}
     }
   s->yaw(Ogre::Radian(world::Math::toRad(degres)) -
@@ -972,7 +971,6 @@ void OgreUI::addCameraTracker(int id)
   mCamera->setPosition(s->getPosition().x, s->getPosition().y + 800,
 		       s->getPosition().z - 500);
   mCamera->lookAt(s->getPosition());
-  mCamera->pitch(Ogre::Degree(-40));
 }
 
 bool OgreUI::frameStarted(const Ogre::FrameEvent &evt)
@@ -1115,6 +1113,9 @@ void OgreUI::scaleEntity(Ogre::SceneNode *s, gauntlet::EntityName id)
       break;
       case EntityName::SKELETON_SORCERER:
 	s->scale(0.4, 0.4, 0.4);
+      break;
+      case EntityName::CHEST:
+	s->scale(100, 100, 100);
       break;
       default:
 	break;

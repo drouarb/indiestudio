@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Tue May 24 12:09:30 2016 Alexis Trouve
-// Last update Sun May 29 23:50:20 2016 Esteban Lewis
+// Last update Tue May 31 15:10:41 2016 Esteban Lewis
 //
 
 #include "DistAI.hh"
@@ -54,7 +54,7 @@ void		DistAI::launchAI(gauntlet::Actor *actor)
   int				idSpell;
 
   bodys = world->getCollider().giveBodyInAreaCircle(actor->getPos().first,
-						    actor->getPos().second, CHECK_DIST, 0, 0);
+						    actor->getPos().second, 0, CHECK_DIST, 0);
   it1 = bodys.begin();
   savedPlayer = NULL;
   ttRad = 0;

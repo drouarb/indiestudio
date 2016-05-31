@@ -57,7 +57,6 @@ gauntlet::core::ConnectMenu::draw()
       setOpen(false);
       return ;
     }
-
   drawButtons();
 
   if (portstr != "")
