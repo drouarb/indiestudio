@@ -66,7 +66,7 @@ bool    gauntlet::Item::compare(Item item, Item item2)
 
 bool    gauntlet::Item::operator<(Item item)
 {
-    return (item.id < item.id);
+    return (false);
 }
 
 bool    gauntlet::Item::isKey() {
