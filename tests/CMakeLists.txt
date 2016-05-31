@@ -115,6 +115,13 @@ add_executable(PacketAnimationTest
         ../src/network/packet/PacketAnimation.cpp)
 add_test(PacketAnimationTest PacketAnimationTest)
 
+#Test HUD
+add_executable(PacketHUDTest
+        packet/PacketHUDTest.cpp
+        ../src/network/packet/Packet.cpp
+        ../src/network/packet/PacketHUD.cpp)
+add_test(PacketHUDTest PacketHUDTest)
+
 #Test PacketFactory
 add_executable(PacketFactoryTest
         packet/PacketFactoryTest.cpp
@@ -134,6 +141,7 @@ add_executable(PacketFactoryTest
         ../src/network/packet/PacketStopSound.cpp
         ../src/network/packet/PacketControl.cpp
         ../src/network/packet/PacketAnimation.cpp
+        ../src/network/packet/PacketHUD.cpp
         ../src/network/listener/PacketListener.cpp
         ../src/network/listener/PacketDisconnectListener.cpp
         ../src/network/listener/PacketAddEntityListener.cpp

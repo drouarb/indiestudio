@@ -1,0 +1,69 @@
+
+material Character/Berserker_menu_selection
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.8 0.3
+
+			texture_unit
+			{
+				texture berserker_menu_selection.jpg
+				tex_address_mode mirror
+			}
+		}
+	}
+}
+
+
+material Character/Valkyrie_menu_selection
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.8 0.3
+
+			texture_unit
+			{
+				texture valkyrie_menu_slection.jpg
+				tex_address_mode mirror
+			}
+		}
+	}
+}
+
+material Character/Magus_menu_selection
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.8 0.3
+
+			texture_unit
+			{
+				texture magus_menu_selection.jpg
+				tex_address_mode mirror
+			}
+		}
+	}
+}
+
+material Character/Ranger_menu_selection
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.8 0.3
+
+			texture_unit
+			{
+				texture ranger_menu_selection.jpg
+				tex_address_mode mirror
+			}
+		}
+	}
+}

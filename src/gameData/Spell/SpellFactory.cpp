@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Mon May  9 18:00:14 2016 Alexis Trouve
-// Last update Tue May 31 13:55:19 2016 Esteban Lewis
+// Last update Tue May 31 17:53:33 2016 Esteban Lewis
 //
 
 #include "SpellFactory.hh"
@@ -97,7 +97,7 @@ gauntlet::Spell *SpellFactory::getBarbarianAttack() {
   Spell *spell = new Spell;
 
   spell->setBasicStats(giveNextId(), "Barbarian Primary Attack", 0, 60, 30, Area::CONE, SoundName::HAMMER_HIT_SOFT, 100);
-  spell->setConeAngle(200);
+  spell->setConeAngle(100);
   return spell;
 }
 

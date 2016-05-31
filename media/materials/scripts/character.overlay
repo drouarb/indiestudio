@@ -1,0 +1,35 @@
+template container Panel(Character/Berserker_menu_selection)
+{
+        metrics_mode pixels
+	material Character/Berserker_menu_selection
+	horz_align center
+	width 400
+	height 600
+}
+
+template container Panel(Character/Valkyrie_menu_selection)
+{
+        metrics_mode pixels
+	material Character/Valkyrie_menu_selection
+	horz_align center
+	width 400
+	height 600
+}
+
+template container Panel(Character/Magus_menu_selection)
+{
+        metrics_mode pixels
+	material Character/Magus_menu_selection
+	horz_align center
+	width 400
+	height 600
+}
+
+template container Panel(Character/Ranger_menu_selection)
+{
+        metrics_mode pixels
+	material Character/Ranger_menu_selection
+	horz_align center
+	width 400
+	height 600
+}
