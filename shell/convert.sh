@@ -19,8 +19,8 @@ do
             VALUE=$(echo $line | cut -d ':' -f 2 | cut -d '"' -f 2)
             VALUE=$(echo "$VALUE * $RATIO" | bc)
             echo "$VAR: \"$VALUE\","
-    else
+        else
             echo $line
-    fi
+        fi
     fi
 done < ./skeleton_footman.json
