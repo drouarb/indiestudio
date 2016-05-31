@@ -4,7 +4,7 @@
     {
       name: "Skeleton_Idle",
       begin: "0",
-      end: "100"
+      end: "2"
     },
     {
       name: "Skeleton_Use_object",
@@ -129,7 +129,7 @@
     {
       name: "Skeleton_Run",
       begin: "1651",
-      end: "1673"
+      end: "1653"
     },
     {
       name: "Skeleton_Jump_runing",
@@ -139,7 +139,7 @@
     {
       name: "Skeleton_Dying_A",
       begin: "1719",
-      end: "1784"
+      end: "1723"
     },
     {
       name: "Skeleton_walk",
@@ -169,7 +169,7 @@
     {
       name: "M_skeleton_staff_earthquake_spell",
       begin: "2009",
-      end: "2044"
+      end: "2014"
     },
     {
       name: "M_skeleton_staff_Hit",
@@ -194,7 +194,7 @@
     {
       name: "M_skeleton_duck_below_swing",
       begin: "2231",
-      end: "2266"
+      end: "2233"
     },
     {
       name: "M_skeleton_magic_light_spell",
@@ -204,7 +204,7 @@
     {
       name: "M_skeleton_magic_shot_stright",
       begin: "2318",
-      end: "2353"
+      end: "2320"
     },
     {
       name: "M_skeleton_combat_mode_C",
@@ -214,22 +214,22 @@
     {
       name: "M_skeleton_buff_spell_A",
       begin: "2432",
-      end: "2482"
+      end: "2434"
     },
     {
       name: "M_skeleton_buff_spell_B",
       begin: "2483",
-      end: "2573"
+      end: "2485"
     },
     {
       name: "M_skeleton_fire_ball_spell",
       begin: "2574",
-      end: "2649"
+      end: "2576"
     },
     {
       name: "M_skeleton_spell_cast_A",
       begin: "2650",
-      end: "2725"
+      end: "2652"
     },
     {
       name: "M_skeleton_making_potion",
