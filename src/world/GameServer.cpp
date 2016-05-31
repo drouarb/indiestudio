@@ -213,8 +213,7 @@ void                        GameServer::notifyTake()
   std::cout << "notifyTakeEnd" << std::endl;
 }
 
-void                GameServer::receiveDeco(
-	const network::PacketDisconnect *packet)
+void                GameServer::receiveDeco(const network::PacketDisconnect *packet)
 {
   std::cout << "receiveDeco" << std::endl;
   int socketId;
@@ -237,6 +236,11 @@ void                GameServer::receiveDeco(
       if (connectTmp[i] == socketId)
 	connectTmp.erase(connectTmp.begin() + i);
       ++i;
+    }
+  if (getNbrPlayer() == 0)
+    {
+      packetFact->stop();
+      delete packetFact;
     }
   std::cout << "receiveDecoEnd" << std::endl;
 }
