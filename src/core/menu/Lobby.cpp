@@ -114,16 +114,23 @@ gauntlet::core::Lobby::doPlay(struct t_hitItem & item)
   core.networkmutex.lock();
   if (core.pc == NULL)
     {
-  core.networkmutex.unlock();
+      core.networkmutex.unlock();
       static_cast<MessageBox *>(submenus[0])->setMsg
 	("You must first create your character.");
       submenus[0]->setOpen(true);
     }
   else if (core.packetf == NULL)
     {
-  core.networkmutex.unlock();
+      core.networkmutex.unlock();
       static_cast<MessageBox *>(submenus[0])->setMsg
 	("You must first connect to a server.");
+      submenus[0]->setOpen(true);
+    }
+  else if (core.gameIsRunning())
+    {
+      core.networkmutex.unlock();
+      static_cast<MessageBox *>(submenus[0])->setMsg
+	("You must connect to a new server to start a new game.");
       submenus[0]->setOpen(true);
     }
 

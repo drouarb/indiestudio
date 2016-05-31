@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 20:56:05 2016 Alexis Trouve
-// Last update Tue May 31 16:56:01 2016 Alexis Trouve
+// Last update Tue May 31 18:32:24 2016 Alexis Trouve
 //
 
 #ifndef GAMESERVER_HH_
@@ -82,7 +82,6 @@ namespace gauntlet
       void		sendStopSound(int id);
       void		sendDeleteEntity(ABody *body);
       void		animeEntity(int id, unsigned int idanime, bool loop);
-      void		listen();
       unsigned char	getNbrPlayer() const;
     };
   };

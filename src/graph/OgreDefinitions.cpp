@@ -118,6 +118,13 @@ const std::map<gauntlet::TextureName, std::string> OgreUI::texturemap = {
 	{gauntlet::TextureName::TUDORHOUSE_M, "TudorHouse/house"}
 };
 
+const std::map<gauntlet::CharacterMenuName, std::string> OgreUI::charactermap = {
+	{gauntlet::CharacterMenuName::BERSERKER_MENU_SELECTION, "Character/Berserker_menu_selection"},
+	{gauntlet::CharacterMenuName::MAGUS_MENU_SELECTION,     "Character/Magus_menu_selection"},
+	{gauntlet::CharacterMenuName::RANGER_MENU_SELECTION,    "Character/Ranger_menu_selection"},
+	{gauntlet::CharacterMenuName::VALKYRIE_MENU_SELECTION,  "Character/Valkyrie_menu_selection"}
+};
+
 const std::map<gauntlet::SoundName, std::string>OgreUI::soundmap = {
 	{gauntlet::SoundName::MENU_SOUND,               "menu_theme.ogg"},
 	{gauntlet::SoundName::AMBIENT_DARKCORRIDORS,    "Ambient - dark corridors.ogg"},
