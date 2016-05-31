@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 29 20:40:50 2016 Alexis Trouve
-// Last update Tue May 31 15:34:44 2016 Alexis Trouve
+// Last update Wed Jun  1 00:53:54 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -89,7 +89,9 @@ bool				Collider::applyVectorToId(int id, short orient, double speed)
   vectY = (Math::sin(orient) * speed);
   vectX = (Math::cos(orient) * speed);
   posB = body->getPos();
+  tryMoveBody(id, posB.first + vectX, posB.second);
   posB = body->getPos();
+  tryMoveBody(id, posB.first, posB.second + vectY);
   return (true);
 }
 
