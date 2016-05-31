@@ -69,3 +69,4 @@ gauntlet::HeightMap::isLoaded() const
 {
   return (map != NULL);
 }
+

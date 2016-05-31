@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 20:56:05 2016 Alexis Trouve
-// Last update Sat May 28 22:56:10 2016 Alexis Trouve
+// Last update Tue May 31 16:56:01 2016 Alexis Trouve
 //
 
 #ifndef GAMESERVER_HH_
@@ -81,7 +81,7 @@ namespace gauntlet
       void		sendSound(unsigned int soundId, int id, bool loop, const std::pair<double, double>& pos);
       void		sendStopSound(int id);
       void		sendDeleteEntity(ABody *body);
-      void		animeEntity(int id, unsigned int idanime);
+      void		animeEntity(int id, unsigned int idanime, bool loop);
       void		listen();
       unsigned char	getNbrPlayer() const;
     };

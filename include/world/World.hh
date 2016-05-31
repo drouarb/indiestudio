@@ -114,7 +114,7 @@ namespace			gauntlet
       void			stopSound(int idToStop);
       void			applyCommand(int id, core::Command command);
       ABody			*getBodyById(int id);
-      void			animeEntity(int id, unsigned int animeId);
+      void			animeEntity(int id, unsigned int animeId, bool loop);
       unsigned long		getTurn() const;
       void			applyGatheringAndOpening();
       void			checkWin();

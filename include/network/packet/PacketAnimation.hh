@@ -16,11 +16,12 @@ namespace gauntlet {
                 unsigned char packetId;
                 unsigned int entityId;
                 unsigned int animationId;
+                unsigned char loop;
             }__attribute__((packed));
 
         public:
             PacketAnimation(s_socketData data);
-            PacketAnimation(unsigned int entityId, unsigned int animationId);
+            PacketAnimation(unsigned int entityId, unsigned int animationId, bool loop);
             virtual ~PacketAnimation() { }
 
             virtual t_rawdata *serialize() const;
@@ -29,10 +30,12 @@ namespace gauntlet {
 
             unsigned int getEntityId() const;
             unsigned int getAnimationId() const;
+            bool isLoop() const;
 
         private:
             unsigned int entityId;
             unsigned int animationId;
+            bool loop;
         };
     }
 }

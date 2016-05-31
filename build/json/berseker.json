@@ -4,22 +4,22 @@
     {
       name: "idle",
       begin: "0",
-      end: "48"
+      end: "1"
     },
     {
       name: "walk",
       begin: "48",
-      end: "92"
+      end: "49"
     },
     {
       name: "run",
-      begin: "92",
-      end: "117"
+      begin: "4",
+      end: "5"
     },
     {
       name: "attack_idle",
       begin: "117",
-      end: "150"
+      end: "118"
     },
     {
       name: "attack_1",
@@ -49,27 +49,27 @@
     {
       name: "jump",
       begin: "450",
-      end: "510"
+      end: "451"
     },
     {
       name: "hit",
       begin: "510",
-      end: "526"
+      end: "512"
     },
     {
       name: "death",
-      begin: "526",
-      end: "600"
+      begin: "528",
+      end: "528"
     },
     {
       name: "recover",
       begin: "600",
-      end: "740"
+      end: "602"
     },
     {
       name: "taunt",
       begin: "740",
-      end: "790"
+      end: "742"
     },
     {
       name: "strafe_right",
@@ -84,7 +84,7 @@
     {
       name: "dodge_right",
       begin: "840",
-      end: "865"
+      end: "842"
     }
   ]
 }

@@ -39,8 +39,12 @@ namespace gauntlet {
         int     getNewId();
         void    generateItem(int pf);
         bool    isUpgrade();
+        void    setPrice(int price);
+        void    setId();
         static bool compare(Item item, Item item2);
         std::string getName();
+        void setAsConsummable();
+        Stats *modifyStats();
     };
 };
 

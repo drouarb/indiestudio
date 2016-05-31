@@ -231,20 +231,24 @@ bool OgreUI::frameRenderingQueued(const Ogre::FrameEvent &evt)
 
 void OgreUI::applyAnimation(const Ogre::FrameEvent &evt)
 {
-  for (auto animation : animationsArray)
-    {
-      Ogre::AnimationState *t2 = animation.second;
-      t2->addTime(evt.timeSinceLastFrame);
-    }
+//  for (auto animation : animationsArray)
+//    {
+//      Ogre::AnimationState *t2 = animation.second;
+//      t2->addTime(evt.timeSinceLastFrame);
+//    }
   for (auto animation : this->animationsMap)
     {
       animations::Animation *t2 = animation.second;
       if (!t2)
 	continue;
+//      std::cout << "AAA Animation: " << animation.first << ", " <<
+//      animation.second->getName() << std::endl;
+
       if (!t2->update(evt.timeSinceLastFrame))
 	{
 	  this->animationsMap[animation.first] = NULL;
 	}
+
     }
 }
 
@@ -648,11 +652,6 @@ void OgreUI::playAnimation(int entityId,
 	  animation);
   Ogre::Entity *pEntity;
   Ogre::AnimationState *pState;
-
-  std::cerr << "OgreUI::playAnimation(entityId: " << entityId <<
-  ", animation: " << static_cast<int>(animation) << ", loop:" << loop <<
-  std::endl;
-
   std::stringstream ss;
 
   try
@@ -689,7 +688,6 @@ void OgreUI::playAnimation(int entityId,
   if (*type)
     {
       (*type)->reset();
-      std::cerr << "Reset OK, calling destructor" << std::endl;
       delete (*type);
     }
   (*type) = a;

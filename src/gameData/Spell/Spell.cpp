@@ -68,7 +68,7 @@ void gauntlet::Spell::prepare(Actor *actor)
     if (actor->getMove())
         actor->setMove();
     //lancer Animation sur caster
-    caster->getWorld()->animeEntity(actor->getId(), caster->animations[ABody::ATTACK].at(rand() % caster->animations[ABody::ATTACK].size()));
+    caster->getWorld()->animeEntity(actor->getId(), caster->animations[ABody::ATTACK].at(rand() % caster->animations[ABody::ATTACK].size()), false);
     targetedArea = actor->pointInFront(range);
     if (targetedArea.first > caster->getWorld()->getSize().first)
         targetedArea.first = caster->getWorld()->getSize().first - 1;
@@ -86,7 +86,7 @@ void gauntlet::Spell::cast(Actor *actor)
 
     if (endingEffect > -1)
     {
-        std::cerr << " and some more beautifull explosions in " << actor->pointInFront(range).first << ";" << actor->pointInFront(range).second << std::endl;
+        std::cerr << " and some more beautiful explosions in " << actor->pointInFront(range).first << ";" << actor->pointInFront(range).second << std::endl;
         endingId = actor->getWorld()->triggerEffect((EffectName) endingEffect, actor->getOrientation(), actor->pointInFront(range), 1000);
     }
     std::cerr << "targeted area is:" << targetedArea.first << ";" << targetedArea.second << std::endl;

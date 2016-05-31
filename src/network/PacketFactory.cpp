@@ -17,18 +17,19 @@
 #include <network/packet/PacketControl.hh>
 #include <network/packet/PacketAnimation.hh>
 #include <network/packet/PacketMap.hh>
+#include <iostream>
 #include "network/PacketFactory.hh"
 #include "network/PacketFactorySocketDisconnectionListener.hh"
 
 gauntlet::network::PacketFactory::PacketFactory(in_port_t port) :
-        run(true),
+        connected(true),
         socket(new Socket(port)) {
     disconnectionListener = new PacketFactorySocketDisconnectionListener(this);
     socket->setDisconnectionListener(disconnectionListener);
 }
 
 gauntlet::network::PacketFactory::PacketFactory(const std::string &address, in_port_t port) :
-        run(true),
+        connected(true),
         socket(new Socket(address, port)) {
     disconnectionListener = new PacketFactorySocketDisconnectionListener(this);
     socket->setDisconnectionListener(disconnectionListener);
@@ -77,7 +78,7 @@ void gauntlet::network::PacketFactory::recv() {
 
     runlock.lock();
     run = true;
-    while (run) {
+    while (run && connected) {
         data = socket->recv();
         while (data.data->size() > 0) {
             id = static_cast<PacketId>(data.data->at(0));
@@ -85,6 +86,7 @@ void gauntlet::network::PacketFactory::recv() {
             try {
                 packet = (this->*createMap.at(id))(data);
             } catch (std::exception) {
+                std::cerr << "PacketFactory::Invalid packet " << (int)id << "Received" << std::endl;
                 packet = NULL;
                 data.data->resize(0);
             }
@@ -118,9 +120,9 @@ void gauntlet::network::PacketFactory::notifyPacket(gauntlet::network::Packet *p
 }
 
 void gauntlet::network::PacketFactory::disconnectionHandler(int fd) {
-    if (socket->getType())
-        run = false;
-    PacketDisconnect *packet = new PacketDisconnect("Connection closed", fd);
+    if (socket->getType() == CLIENT)
+        connected = false;
+    PacketDisconnect *packet = new PacketDisconnect("Connection lost", fd);
     this->notifyPacket(packet);
 }
 

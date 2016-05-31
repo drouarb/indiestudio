@@ -42,6 +42,7 @@ namespace gauntlet {
 
         private:
             bool run;
+            bool connected;
             Socket *socket;
             std::mutex runlock;
             std::map<PacketId, std::set<PacketListener *>> listeners;

@@ -137,12 +137,12 @@ void                GameServer::selectPlayerAnswer(
 	  std::cout << "new Player : " << e.what() << std::endl;
 	  exit(0);
 	}
-      PacketStartGame myPacket(id);
       players[iTaken].idPlayer = id;
+      PacketStartGame myPacket(id);
       packetFact->send(myPacket, packet->getSocketId());
-      dataSendThread = new std::thread(
-	      std::bind(&GameServer::sendDatas, std::ref(*this),
-			packet->getSocketId()));
+      //sendDatas(packet->getSocketId());
+      dataSendThread = new std::thread(std::bind(&GameServer::sendDatas, std::ref(*this),
+						 packet->getSocketId()));
     }
   else
     sendHandShake(packet->getSocketId());
@@ -393,9 +393,9 @@ void                GameServer::sendSound(unsigned int soundId, int id,
     }
 }
 
-void                GameServer::animeEntity(int id, unsigned int idAnime)
+void                GameServer::animeEntity(int id, unsigned int idAnime, bool loop)
 {
-  PacketAnimation packet(id, idAnime);
+  PacketAnimation packet(id, idAnime, true);
   unsigned int i;
 
   i = 0;

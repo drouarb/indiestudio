@@ -47,7 +47,7 @@ unsigned int gauntlet::network::PacketMap::getMapId() const {
 }
 
 size_t gauntlet::network::PacketMap::getPacketSize() const {
-    return sizeof(s_packetMapData);
+    return sizeof(s_packetMapData) + filename.size();
 }
 
 const std::string &gauntlet::network::PacketMap::getFilename() const {

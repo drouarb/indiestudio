@@ -69,6 +69,8 @@ ABody			*Player::clone(int id) const
   player->changeSize(size);
   player->setMeshId(model);
   player->setTextureId(texture);
+  player->setIdle(idle);
+  player->setRunning(running);
   player->changeOrientation(orientation);
   player->setIdAI(idAI);
   return (player);
