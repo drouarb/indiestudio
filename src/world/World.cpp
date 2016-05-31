@@ -159,6 +159,26 @@ void        World::applyAI()
     }
 }
 
+void		World::checkHUD()
+{
+  std::vector<playerServerData>		players;
+  unsigned int				i;
+  ABody					*body;
+  Actor					*actor;
+
+  i = 0;
+  while (i < players.size())
+    {
+      body = getBodyById(players[i].idPlayer);
+      if ((actor = dynamic_cast<Actor*>(body)) != NULL)
+	{
+	  gameServer->sendHUD(actor->getId(),
+			      static_cast<unsigned char>(actor->stats.HP / actor->stats.normalHP * 100.0));
+	}
+      ++i;
+    }
+}
+
 void        World::gameLoop()
 {
   stopwatch.set();
@@ -179,6 +199,8 @@ void        World::gameLoop()
 	checkRespawn();
       if (turn % AUTOSHIFT_PRIORITY == 0)
 	collider->autoShift();
+      if (turn % HUD_PRIORITY == 0)
+	checkHUD();
       ++turn;
     }
 }
@@ -557,7 +579,7 @@ void                World::applyCommand(int id, core::Command command)
 
 ABody *World::getBodyById(int id)
 {
-  std::list<ABody *>::iterator it;
+  std::list<ABody*>::iterator it;
 
   it = bodys.begin();
   while (it != bodys.end())

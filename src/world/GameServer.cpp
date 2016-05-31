@@ -399,7 +399,7 @@ void                GameServer::sendSound(unsigned int soundId, int id,
 
 void                GameServer::animeEntity(int id, unsigned int idAnime, bool loop)
 {
-  PacketAnimation packet(id, idAnime, true);
+  PacketAnimation packet(id, idAnime, loop);
   unsigned int i;
 
   i = 0;
@@ -424,6 +424,28 @@ void                GameServer::sendDeleteEntity(ABody *body)
   while (i < players.size())
     {
       packetFact->send(packet, players[i].socketId);
+      ++i;
+    }
+}
+
+const std::vector<playerServerData>&	GameServer::getPlayers() const
+{
+  return (players);
+}
+
+void				GameServer::sendHUD(int playerId, unsigned char health)
+{
+  PacketHUD			packet(health);
+  unsigned int			i;
+
+  i = 0;
+  while (i < players.size())
+    {
+      if (players[i].idPlayer == playerId)
+	{
+	  packetFact->send(packet);
+	  break;
+	}
       ++i;
     }
 }
