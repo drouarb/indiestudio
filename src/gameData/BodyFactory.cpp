@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 16:50:32 2016 Alexis Trouve
-// Last update Mon May 30 22:25:00 2016 Esteban Lewis
+// Last update Tue May 31 22:06:47 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -70,8 +70,8 @@ void			BodyFactory::setBarbare()
 
   player = new Player(-1, world);
   player->setName("Barbare");
-  player->stats.HP = 4000;
-  player->stats.normalHP = 4000;
+  player->stats.HP = 200;
+  player->stats.normalHP = 400;
   player->stats.speed = 11.0;
   player->stats.normalSpeed = 11.0;
   player->stats.attackModifier = 1.0;

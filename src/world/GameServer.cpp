@@ -433,12 +433,13 @@ const std::vector<playerServerData>&	GameServer::getPlayers() const
   return (players);
 }
 
-void				GameServer::sendHUD(int playerId, unsigned char health)
+void				GameServer::sendHUD(int playerId, int  health)
 {
   PacketHUD			packet(health);
   unsigned int			i;
 
   i = 0;
+  std::cout << "send HUD with " << health << " PV to player " << playerId << std::endl;
   while (i < players.size())
     {
       if (players[i].idPlayer == playerId)

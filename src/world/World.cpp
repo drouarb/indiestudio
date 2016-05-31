@@ -167,13 +167,13 @@ void		World::checkHUD()
   Actor					*actor;
 
   i = 0;
+  players = gameServer->getPlayers();
   while (i < players.size())
     {
       body = getBodyById(players[i].idPlayer);
       if ((actor = dynamic_cast<Actor*>(body)) != NULL)
 	{
-	  gameServer->sendHUD(actor->getId(),
-			      static_cast<unsigned char>(actor->stats.HP / actor->stats.normalHP * 100.0));
+	  gameServer->sendHUD(actor->getId(), static_cast<int>((static_cast<double>(actor->stats.HP) / static_cast<double>(actor->stats.normalHP)) * 100));
 	}
       ++i;
     }
