@@ -19,7 +19,7 @@ bool animations::JSONAnimation::update(double elapsedTime)
       if (!loop) {
           return false;
       }
-      std::cerr << "loop" << std::endl;
+        std::cerr << "loop" << std::endl;
       this->currentTimePosition = this->begin;
     }
   this->animationState->setTimePosition(

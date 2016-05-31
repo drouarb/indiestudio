@@ -1,0 +1,238 @@
+{
+name: "Skeleton_Sorcerer",
+animation: [
+{
+name: "Skeleton_Idle",
+begin: "0",
+end: "3.3096446700",
+},
+{
+name: "Skeleton_Use_object",
+begin: "3.3427411167",
+end: "4.6665989847",
+},
+{
+name: "Skeleton_anger",
+begin: "4.6996954314",
+end: "6.3545177664",
+},
+{
+name: "Skeleton_Drinking",
+begin: "6.3876142131",
+end: "9.6972588831",
+},
+{
+name: "Skeleton_Hit_from_back",
+begin: "9.7965482232",
+end: "10.9549238577",
+},
+{
+name: "Skeleton_Hit_from_front",
+begin: "10.9880203044",
+end: "12.1463959389",
+},
+{
+name: "Skeleton_Looking_around",
+begin: "12.2456852790",
+end: "18.0706598982",
+},
+{
+name: "Skeleton_pointing_A",
+begin: "18.1037563449",
+end: "20.0895431469",
+},
+{
+name: "Skeleton_salute",
+begin: "20.1226395936",
+end: "22.1084263956",
+},
+{
+name: "Skeleton_Talking",
+begin: "22.1415228423",
+end: "23.6308629438",
+},
+{
+name: "Skeleton_thinking",
+begin: "23.6639593905",
+end: "26.1461928930",
+},
+{
+name: "Skeleton_Tracking",
+begin: "26.1792893397",
+end: "31.9711675122",
+},
+{
+name: "Skeleton_sit_down",
+begin: "32.0042639589",
+end: "32.8647715731",
+},
+{
+name: "Skeleton_sitting",
+begin: "32.8978680198",
+end: "36.2075126898",
+},
+{
+name: "Skeleton_came_up",
+begin: "36.2406091365",
+end: "37.1011167507",
+},
+{
+name: "Skeleton_Going_asleep",
+begin: "37.1342131974",
+end: "39.4509644664",
+},
+{
+name: "Skeleton_sleeping",
+begin: "39.4840609131",
+end: "41.9662944156",
+},
+{
+name: "Skeleton_waking_up",
+begin: "41.9993908623",
+end: "44.1506598978",
+},
+{
+name: "Skeleton_walking_back",
+begin: "44.2499492379",
+end: "45.4083248724",
+},
+{
+name: "Skeleton_Climbing_ladder",
+begin: "45.5076142125",
+end: "46.5005076135",
+},
+{
+name: "Skeleton_Crouching",
+begin: "46.5997969536",
+end: "49.9094416236",
+},
+{
+name: "Skeleton_falling_down",
+begin: "50.0087309637",
+end: "51.3325888317",
+},
+{
+name: "Skeleton_Moving_left",
+begin: "51.4318781718",
+end: "52.0938071058",
+},
+{
+name: "Skeleton_Moving_right",
+begin: "52.1269035525",
+end: "52.7888324865",
+},
+{
+name: "Skeleton_Sneaking",
+begin: "52.8881218266",
+end: "54.5429441616",
+},
+{
+name: "Skeleton_Run",
+begin: "54.6422335017",
+end: "55.3703553291",
+},
+{
+name: "Skeleton_Jump_runing",
+begin: "55.4696446692",
+end: "56.7935025372",
+},
+{
+name: "Skeleton_Dying_A",
+begin: "56.8927918773",
+end: "59.0440609128",
+},
+{
+name: "Skeleton_walk",
+begin: "59.1433502529",
+end: "60.3017258874",
+},
+{
+name: "M_skeleton_combat_mode_A",
+begin: "60.4010152275",
+end: "62.8832487300",
+},
+{
+name: "M_skeleton_dodge_to_left",
+begin: "62.9163451767",
+end: "64.0747208112",
+},
+{
+name: "M_skeleton_dodge_to_right",
+begin: "64.1078172579",
+end: "65.2661928924",
+},
+{
+name: "M_skeleton_staf_block",
+begin: "65.2992893391",
+end: "66.4576649736",
+},
+{
+name: "M_skeleton_staff_earthquake_spell",
+begin: "66.4907614203",
+end: "67.6491370548",
+},
+{
+name: "M_skeleton_staff_Hit",
+begin: "67.6822335015",
+end: "68.8406091360",
+},
+{
+name: "M_skeleton_straight_down_hit",
+begin: "68.8737055827",
+end: "70.0320812172",
+},
+{
+name: "M_skeleton_swing_right",
+begin: "70.0651776639",
+end: "71.2235532984",
+},
+{
+name: "M_skeleton_combat_mode_B",
+begin: "71.3228426385",
+end: "73.8050761410",
+},
+{
+name: "M_skeleton_duck_below_swing",
+begin: "73.8381725877",
+end: "74.9965482222",
+},
+{
+name: "M_skeleton_magic_light_spell",
+begin: "75.0296446689",
+end: "76.6844670039",
+},
+{
+name: "M_skeleton_magic_shot_stright",
+begin: "76.7175634506",
+end: "77.8759390851",
+},
+{
+name: "M_skeleton_combat_mode_C",
+begin: "77.9752284252",
+end: "80.4574619277",
+},
+{
+name: "M_skeleton_buff_spell_A",
+begin: "80.4905583744",
+end: "82.1453807094",
+},
+{
+name: "M_skeleton_buff_spell_B",
+begin: "82.1784771561",
+end: "85.1571573591",
+},
+{
+name: "M_skeleton_fire_ball_spell",
+begin: "85.1902538058",
+end: "87.6724873083",
+},
+{
+name: "M_skeleton_spell_cast_A",
+begin: "87.7055837550",
+end: "90.1878172575",
+},
+{
+name: "M_skeleton_making_potion",
+begin: "90.2871065976",
+end: "91.2799999986",
+}
