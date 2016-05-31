@@ -23,10 +23,17 @@ Actor::~Actor()
 void        Actor::setStance()
 {
   std::cout << "je:" << running << " et:" << idle << std::endl;
-    if (ismoving)
+  if (!ismoving)
+    {
+      std::cout << "Je marche " << std::endl;
       this->getWorld()->animeEntity(this->id, running);
-    else
+
+    }
+  else
+    {
+      std::cout << "Je idle" << std::endl;
       this->getWorld()->animeEntity(this->id, idle);
+    }
 }
 
 void		Actor::move()

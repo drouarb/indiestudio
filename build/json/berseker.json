@@ -13,8 +13,8 @@
     },
     {
       name: "run",
-      begin: "92",
-      end: "93"
+      begin: "4",
+      end: "5"
     },
     {
       name: "attack_idle",
