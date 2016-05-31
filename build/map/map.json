@@ -1,7 +1,7 @@
 {
     name : "Default map",
     asset_map : "../media/models/map_of_doom.mesh",
-    height_map : "mapHeight/map.pgm",
+    height_map : "mapHeight/map_of_doom.pgm",
     endZone :
     {
 	posX : "100"
@@ -11,181 +11,29 @@
     },
     spawn :
     {
-	x : "1490",
-	y : "990"
+	x : "51",
+	y : "61"
     },
     dynamic :
     [
 	{
-	    {
-		name : "Skeleton",
-		x : "1500",
-		y : "1000",
-		angle : "0"
-	    },
-	    {
-		name : "Skeleton",
-		x : "1510",
-		y : "1000",
-		angle : "0"
-	    },
-	    {
-		name : "Skeleton",
-		x : "1520",
-		y : "1000",
-		angle : "0"
-	    },
-	    {
-		name : "Skeleton",
-		x : "1530",
-		y : "1000",
-		angle : "0"
-	    },
-	    {
-		name : "Skeleton",
-		x : "1540",
-		y : "1000",
-		angle : "0"
-	    },
-	    {
-		name : "Skeleton",
-		x : "1500",
-		y : "1010",
-		angle : "0"
-	    },
-	    {
-		name : "Skeleton",
-		x : "1500",
-		y : "1020",
-		angle : "0"
-	    },
-	    {
-		name : "Skeleton",
-		x : "1500",
-		y : "1030",
-		angle : "0"
-	    },
-	    {
-		name : "Skeleton",
-		x : "1510",
-		y : "1010",
-		angle : "0"
-	    },
-	    {
-		name : "Skeleton",
-		x : "1520",
-		y : "1020",
-		angle : "0"
-	    },
-	    {
-		name : "Skeleton",
-		x : "1520",
-		y : "1010",
-		angle : "0"
-	    },
-	    {
-		name : "Skeleton",
-		x : "1510",
-		y : "1020",
-		angle : "0"
-	    },
-	    {
-		name : "Skeleton",
-		x : "1530",
-		y : "1040",
-		angle : "0"
-	    },
-	    {
-		name : "Skeleton",
-		x : "1520",
-		y : "1030",
-		angle : "0"
-	    },
-	    {
-		name : "Skeleton",
-		x : "1505",
-		y : "1005",
-		angle : "0"
-	    },
-	    {
-		name : "Skeleton",
-		x : "1515",
-		y : "1005",
-		angle : "0"
-	    },
-	    {
-		name : "Skeleton",
-		x : "1525",
-		y : "1005",
-		angle : "0"
-	    },
-	    {
-		name : "Skeleton",
-		x : "1535",
-		y : "1005",
-		angle : "0"
-	    },
-	    {
-		name : "Skeleton",
-		x : "1545",
-		y : "1005",
-		angle : "0"
-	    },
-	    {
-		name : "Skeleton",
-		x : "1505",
-		y : "1015",
-		angle : "0"
-	    },
-	    {
-		name : "Skeleton",
-		x : "1505",
-		y : "1025",
-		angle : "0"
-	    },
-	    {
-		name : "Skeleton",
-		x : "1505",
-		y : "1035",
-		angle : "0"
-	    },
-	    {
-		name : "Skeleton",
-		x : "1515",
-		y : "1015",
-		angle : "0"
-	    },
-	    {
-		name : "Skeleton",
-		x : "1525",
-		y : "1025",
-		angle : "0"
-	    },
-	    {
-		name : "Skeleton",
-		x : "1525",
-		y : "1015",
-		angle : "0"
-	    },
-	    {
-		name : "Skeleton",
-		x : "1515",
-		y : "1025",
-		angle : "0"
-	    },
-	    {
-		name : "Skeleton",
-		x : "1535",
-		y : "1045",
-		angle : "0"
-	    },
-	    {
-		name : "Skeleton",
-		x : "1525",
-		y : "1035",
-		angle : "0"
-	    },
+	    name : "Skeleton",
+	    angle : "0",
+	    x : "61",
+	    y : "61"
 	},
+    {
+      name : "Door",
+      angle : "0",
+      x : "81",
+      y : "61"
+    },
+    {
+      name : "Key",
+      angle : "0",
+      x : "71",
+      y : "61"
+    }
     ],
     sounds:
     [

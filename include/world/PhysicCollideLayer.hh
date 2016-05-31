@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Thu May 12 16:15:29 2016 Alexis Trouve
-// Last update Mon May 30 15:17:55 2016 Esteban Lewis
+// Last update Tue May 31 10:49:45 2016 Esteban Lewis
 //
 
 #pragma once
@@ -13,8 +13,8 @@
 #include <tuple>
 #include "HeightMap.hh"
 
-# define WALL_MIN_HEIGHT 10000
-# define POINTNBDIVIDER 6
+# define WALL_MIN_HEIGHT 40
+# define POINTNBDIVIDER 10
 # define ABS(x) ((x) < 0 ? -(x) : (x))
 
 namespace gauntlet {
@@ -47,6 +47,10 @@ namespace gauntlet {
 	  bool				checkCoordSizeCanPass(const std::pair<double, double>& oldPos,
 							      const std::pair<double, double>& wantedPos,
 							      const std::pair<double, double>& size);
+	  bool				checkDiagonal(std::pair<double, double> start,
+						      std::pair<double, double> end,
+						      std::pair<double, double> oldPos,
+						      std::pair<double, double> wantedPos);
 
 	  const unsigned char		*getLayer() const;
         };

@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 15:00:30 2016 Alexis Trouve
-// Last update Tue May 24 11:36:46 2016 Alexis Trouve
+// Last update Mon May 30 22:24:13 2016 Esteban Lewis
 //
 
 #ifndef BODYFACTORY_HH_
@@ -19,6 +19,8 @@
 #include "GameObject.hh"
 #include "AbstractAI.hh"
 #include "BasicAI.hh"
+
+#define PLAYER_SIZE 30
 
 namespace gauntlet
 {
@@ -55,6 +57,8 @@ namespace gauntlet
       void setSkeletonArcher();
 
       void setSkeletonWizard();
+
+      void setPotion();
   };
 };
 

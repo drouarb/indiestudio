@@ -94,7 +94,7 @@ namespace			gauntlet
       void			applyMoveActor();
       void			applyAI();
       void			notifyDeath(ABody *body);
-      void			deleteId(int id);
+      void			deleteId(int id, bool deleted);
       int			addNewBody(double xpos, double ypos, const std::string& name, short orientation);
       Collider&			getCollider();
       const std::pair<double, double>&	getSpawnPoint();

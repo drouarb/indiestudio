@@ -22,15 +22,14 @@ Actor::~Actor()
 
 void        Actor::setStance()
 {
-  /*  if (ismoving)
+    if (ismoving)
       this->getWorld()->animeEntity(this->id, running);
     else
-      this->getWorld()->animeEntity(this->id, idle);*/
+      this->getWorld()->animeEntity(this->id, idle);
 }
 
 void		Actor::move()
 {
-  setStance();
   if (ismoving)
     {
       world->getCollider().applyVectorToId(id, orientation, stats.speed);
@@ -84,7 +83,10 @@ void        Actor::castSpell(int spellEnum)
 void		Actor::setMove()
 {
   if (recharged())
+  {
+    setStance();
     ismoving = !ismoving;
+  }
 }
 
 void Actor::addSpell(int spellEnum) {
