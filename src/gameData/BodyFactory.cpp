@@ -60,6 +60,8 @@ void			BodyFactory::fillGameObjectTab()
   setPorteLight();
   setDoor();
   setKey();
+  setHealthPotion();
+  setSpeedPotion();
 }
 
 void			BodyFactory::setBarbare()
@@ -497,23 +499,47 @@ void            BodyFactory::setKey()
   bodyTab.push_back(obj);
 }
 
-
-void            BodyFactory::setPotion()
+void             BodyFactory::setSpeedPotion()
 {
   GameObject		*obj;
-  Item              *key;
+  Item              *item;
 
-  key = new Item();
-  key->setKey(true);
+  item = new Item();
+  item->setKey(false);
+  item->setId();
+  item->setPrice(10);
+  item->modifyStats()->speed = 5;
   obj = new GameObject(-1, world);
-  obj->setBasicParameters("Key", true, false);
+  obj->setBasicParameters("SpeedPotion", true, false);
   obj->setCollide(false);
   obj->changeSize(std::make_pair(PLAYER_SIZE, PLAYER_SIZE));
   obj->changePos(std::make_pair(-1, -1));
   obj->changeOrientation(90);
   obj->setMeshId(EntityName::CHEST);
   obj->setTextureId(TextureName::TEXTURE_NONE);
-  obj->addItem(*key);
+  obj->addItem(*item);
+  bodyTab.push_back(obj);
+}
+
+void            BodyFactory::setHealthPotion()
+{
+  GameObject		*obj;
+  Item              *item;
+
+  item = new Item();
+  item->setKey(false);
+  item->setId();
+  item->setPrice(10);
+  item->modifyStats()->HP = 100;
+  obj = new GameObject(-1, world);
+  obj->setBasicParameters("Potion", true, false);
+  obj->setCollide(false);
+  obj->changeSize(std::make_pair(PLAYER_SIZE, PLAYER_SIZE));
+  obj->changePos(std::make_pair(-1, -1));
+  obj->changeOrientation(90);
+  obj->setMeshId(EntityName::CHEST);
+  obj->setTextureId(TextureName::TEXTURE_NONE);
+  obj->addItem(*item);
   bodyTab.push_back(obj);
 }
 
