@@ -32,6 +32,7 @@
 # define WIN_PRIORITY 30
 # define RESPAWN_PRIORITY 60
 # define AUTOSHIFT_PRIORITY 3
+# define HUD_PRIORITY 15
 
 namespace			gauntlet
 {
@@ -119,6 +120,7 @@ namespace			gauntlet
       void			applyGatheringAndOpening();
       void			checkWin();
       void			checkRespawn();
+      void			checkHUD();
       std::string		getMapNames() const;
       std::pair<double, double>	getSize() const;
     };

@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 20:56:05 2016 Alexis Trouve
-// Last update Tue May 31 18:32:24 2016 Alexis Trouve
+// Last update Tue May 31 21:53:41 2016 Alexis Trouve
 //
 
 #ifndef GAMESERVER_HH_
@@ -33,6 +33,7 @@
 #include "PacketAnimation.hh"
 #include "PacketDeleteEntity.hh"
 #include "PacketMap.hh"
+#include "PacketHUD.hh"
 #include "ABody.hh"
 
 namespace gauntlet
@@ -83,6 +84,8 @@ namespace gauntlet
       void		sendDeleteEntity(ABody *body);
       void		animeEntity(int id, unsigned int idanime, bool loop);
       unsigned char	getNbrPlayer() const;
+      const std::vector<playerServerData>&	getPlayers() const;
+      void		sendHUD(int playerId, unsigned char health);
     };
   };
 };
