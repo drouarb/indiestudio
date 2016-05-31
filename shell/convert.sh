@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-RATIO=0.0331788079
+RATIO=0.0338429406
 
 while read line
 do
@@ -23,4 +23,4 @@ do
             echo $line
         fi
     fi
-done
+done < ./skeleton_footman.json

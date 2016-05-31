@@ -168,6 +168,58 @@ void			BodyFactory::setWizard()
           SoundName::SOUND_NONE
   };
   player->animations[ABody::ATTACK] = {
+          animations::AnimationsListJson::SKELETON_FOOTMAN_SWING_LEFT,
+          animations::AnimationsListJson::SKELETON_FOOTMAN_SWING_RIGHT,
+          animations::AnimationsListJson::SKELETON_FOOTMAN_SWING_HIGH_STRAIGHT_DOWN,
+//          animations::AnimationsListJson::SKELETON_FOOTMAN_THRUST,
+//          animations::AnimationsListJson::SKELETON_FOOTMAN_HIT_FROM_BACK,
+//          animations::AnimationsListJson::SKELETON_FOOTMAN_HIT_FROM_FRONT
+  };
+  player->animations[ABody::DEATH] = {
+          animations::AnimationsListJson::SKELETON_FOOTMAN_DYING_A,
+          animations::AnimationsListJson::SKELETON_FOOTMAN_DYING_B
+  };
+  player->setIdle(animations::AnimationsListJson::SKELETON_FOOTMAN_IDLE);
+  player->setRunning(animations::AnimationsListJson::SKELETON_FOOTMAN_RUN);
+  player->setMeshId(EntityName::SKELETON_FOOTMAN);
+  player->setTextureId(TextureName::TEXTURE_NONE);
+  player->setIdAI(NOAI);
+  bodyTab.push_back(player);
+}
+
+/*void			BodyFactory::setWizard()
+{
+  Player		*player;
+
+  player = new Player(-1, world);
+  player->setName("Mage");
+  player->stats.HP = 1000;
+  player->stats.normalHP = 1000;
+  player->stats.speed = 12.0;
+  player->stats.normalSpeed = 12.0;
+  player->stats.attackModifier = 1.2;
+  player->setCollide(true);
+  player->changePos(std::make_pair(-1, -1));
+  player->changeSize(std::make_pair(PLAYER_SIZE, PLAYER_SIZE));
+  player->changeOrientation(0);
+  player->spellBook.addSpell(SpellFactory::WIZARD_FIREBALL, player);
+  player->spellBook.addSpell(SpellFactory::WIZARD_FIRECONE, player);
+  player->setMeshId(EntityName::SKELETON_FOOTMAN);
+  player->setTextureId(TextureName::TEXTURE_NONE);
+  player->soundEffect[ABody::ATTACK] = {
+          SoundName::FIRE_SMALL,
+          SoundName::FIRE_BIG,
+          SoundName::SOUND_NONE
+  };
+  player->soundEffect[ABody::WOUND] = {
+          SoundName::MALE_2_WOUNDED,
+          SoundName::SOUND_NONE
+  };
+  player->soundEffect[ABody::DEATH] = {
+          SoundName::MALE_2_DEATH,
+          SoundName::SOUND_NONE
+  };
+  player->animations[ABody::ATTACK] = {
           animations::AnimationsListJson::SKELETON_SORCERER_BUFF_SPELL_A,
           animations::AnimationsListJson::SKELETON_SORCERER_BUFF_SPELL_B,
           animations::AnimationsListJson::SKELETON_SORCERER_FIRE_BALL_SPELL,
@@ -184,7 +236,7 @@ void			BodyFactory::setWizard()
   player->setTextureId(TextureName::TEXTURE_NONE);
   player->setIdAI(NOAI);
   bodyTab.push_back(player);
-}
+}*/
 
 void			BodyFactory::setValkyrie()
 {
