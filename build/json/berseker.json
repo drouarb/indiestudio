@@ -14,7 +14,7 @@
     {
       name: "run",
       begin: "3.93",
-      end: "5.00597"
+      end: "4.85"
     },
     {
       name: "attack_idle",

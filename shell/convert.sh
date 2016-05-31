@@ -23,4 +23,4 @@ do
             echo $line
         fi
     fi
-done < ./skeleton_footman.json
+done

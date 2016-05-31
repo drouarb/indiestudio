@@ -101,7 +101,7 @@ void			BodyFactory::setBarbare()
           animations::AnimationsListJson::BERSEKER_ATTACK_2,
           animations::AnimationsListJson::BERSEKER_ATTACK_3,
           animations::AnimationsListJson::BERSEKER_ATTACK_4,
-          animations::AnimationsListJson::BERSEKER_ATTACK_5
+          //animations::AnimationsListJson::BERSEKER_ATTACK_5
   };
   player->animations[ABody::DEATH] = {
           animations::AnimationsListJson::BERSEKER_DEATH
