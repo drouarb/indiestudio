@@ -168,20 +168,21 @@ void			BodyFactory::setWizard()
           SoundName::SOUND_NONE
   };
   player->animations[ABody::ATTACK] = {
-          animations::AnimationsListJson::SKELETON_FOOTMAN_SWING_LEFT,
-          animations::AnimationsListJson::SKELETON_FOOTMAN_SWING_RIGHT,
-          animations::AnimationsListJson::SKELETON_FOOTMAN_SWING_HIGH_STRAIGHT_DOWN,
-//          animations::AnimationsListJson::SKELETON_FOOTMAN_THRUST,
-//          animations::AnimationsListJson::SKELETON_FOOTMAN_HIT_FROM_BACK,
-//          animations::AnimationsListJson::SKELETON_FOOTMAN_HIT_FROM_FRONT
+          animations::AnimationsListJson::SKELETON_WARLORD_SPECAL_ATTACK_A,
+          animations::AnimationsListJson::SKELETON_WARLORD_SPECAL_ATTACK_B,
+          animations::AnimationsListJson::SKELETON_WARLORD_SWING_MID_LEFT,
+          animations::AnimationsListJson::SKELETON_WARLORD_SWING_MID_RIGHT,
+          animations::AnimationsListJson::SKELETON_WARLORD_SWORD_SWING_HIGH_STRAIGHT_DOWN,
+          animations::AnimationsListJson::SKELETON_WARLORD_SWORD_THRUST_MID,
+          animations::AnimationsListJson::SKELETON_WARLORD_HIT_FROM_BACK,
+          animations::AnimationsListJson::SKELETON_WARLORD_HIT_FROM_FRONT
   };
   player->animations[ABody::DEATH] = {
-          animations::AnimationsListJson::SKELETON_FOOTMAN_DYING_A,
-          animations::AnimationsListJson::SKELETON_FOOTMAN_DYING_B
+          animations::AnimationsListJson::SKELETON_WARLORD_DYING_A,
   };
-  player->setIdle(animations::AnimationsListJson::SKELETON_FOOTMAN_IDLE);
-  player->setRunning(animations::AnimationsListJson::SKELETON_FOOTMAN_RUN);
-  player->setMeshId(EntityName::SKELETON_FOOTMAN);
+  player->setIdle(animations::AnimationsListJson::SKELETON_WARLORD_IDLE);
+  player->setRunning(animations::AnimationsListJson::SKELETON_WARLORD_RUN);
+  player->setMeshId(EntityName::SKELETON_WARLORD);
   player->setTextureId(TextureName::TEXTURE_NONE);
   player->setIdAI(NOAI);
   bodyTab.push_back(player);
@@ -311,9 +312,9 @@ void			BodyFactory::setSkeleton()
           animations::AnimationsListJson::SKELETON_FOOTMAN_SWING_LEFT,
           animations::AnimationsListJson::SKELETON_FOOTMAN_SWING_RIGHT,
           animations::AnimationsListJson::SKELETON_FOOTMAN_SWING_HIGH_STRAIGHT_DOWN,
-          animations::AnimationsListJson::SKELETON_FOOTMAN_THRUST,
-          animations::AnimationsListJson::SKELETON_FOOTMAN_HIT_FROM_BACK,
-          animations::AnimationsListJson::SKELETON_FOOTMAN_HIT_FROM_FRONT
+//          animations::AnimationsListJson::SKELETON_FOOTMAN_THRUST,
+//          animations::AnimationsListJson::SKELETON_FOOTMAN_HIT_FROM_BACK,
+//          animations::AnimationsListJson::SKELETON_FOOTMAN_HIT_FROM_FRONT
   };
   crea->animations[ABody::DEATH] = {
           animations::AnimationsListJson::SKELETON_FOOTMAN_DYING_A,
@@ -372,8 +373,8 @@ void			BodyFactory::setSkeletonWarlord()
           animations::AnimationsListJson::SKELETON_WARLORD_SWING_MID_RIGHT,
           animations::AnimationsListJson::SKELETON_WARLORD_SWORD_SWING_HIGH_STRAIGHT_DOWN,
           animations::AnimationsListJson::SKELETON_WARLORD_SWORD_THRUST_MID,
-          animations::AnimationsListJson::SKELETON_WARLORD_HIT_FROM_BACK,
-          animations::AnimationsListJson::SKELETON_WARLORD_HIT_FROM_FRONT
+//          animations::AnimationsListJson::SKELETON_WARLORD_HIT_FROM_BACK,
+//          animations::AnimationsListJson::SKELETON_WARLORD_HIT_FROM_FRONT
   };
   crea->animations[ABody::DEATH] = {
           animations::AnimationsListJson::SKELETON_WARLORD_DYING_A,
@@ -432,7 +433,7 @@ void			BodyFactory::setSkeletonArcher()
   };
   crea->setIdle(animations::AnimationsListJson::SKELETON_ARCHIER_IDLE);
   crea->setRunning(animations::AnimationsListJson::SKELETON_ARCHIER_RUN);
-  crea->setMeshId(EntityName::SKELETON_FOOTMAN);
+  crea->setMeshId(EntityName::SKELETON_ARCHER);
   crea->setTextureId(TextureName::TEXTURE_NONE);
   crea->setIdAI(MELEEBASICAI);
   bodyTab.push_back(crea);
