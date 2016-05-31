@@ -364,6 +364,12 @@ std::list<gauntlet::ABody*>	EntityCollideLayer::giveBodyInAreaCircle(double posx
 	}
       it_x++;
     }
+  std::cout << "circle around " << posx << " " << posy << " radius " << rayon << ": "
+	    << list.size() << std::endl;
+  for (std::list<gauntlet::ABody*>::iterator it = list.begin(); it != list.end(); ++it)
+    {
+      std::cout << "\t" << (*it)->getPos().first << "\t" << (*it)->getPos().second << std::endl;
+    }
   return (list);
 }
 
@@ -376,12 +382,13 @@ std::list<gauntlet::ABody*> EntityCollideLayer::giveBodyInAreaRectangle(double p
 
 std::list<gauntlet::ABody*>	EntityCollideLayer::giveBodyInAreaCone(double posx, double posy, short ref_angle, double size, short cone_angle)
 {
+  std::cout << "cone on " << posx << " " << posy << " ref angle " << ref_angle << " angle " << cone_angle << std::endl;
   short halfangle = cone_angle / 2;
   std::list<ABody*>		list = giveBodyInAreaCircle(posx, posy, size);
   for (std::list<ABody*>::iterator it = list.begin(); it != list.end(); ++it)
     {
       short res = getAngle(posx, posy, ref_angle, **it);
-      
+      std::cout << "angle " << posx << " " << posy << " -> " << res << std::endl;
       if (!(Math::isBetween(res, halfangle, -halfangle) ||
 	    (bodyLineIntersection(posx, posy, ref_angle + halfangle,
 				  (*it)->getSize().first / 2,
@@ -399,7 +406,13 @@ std::list<gauntlet::ABody*>	EntityCollideLayer::giveBodyInAreaCone(double posx, 
 	  it = list.erase(it);
 	  --it;
 	}
+      std::cout << "final list" << std::endl;
+      for (std::list<gauntlet::ABody*>::iterator it = list.begin(); it != list.end(); ++it)
+	{
+	  std::cout << "\t" << (*it)->getPos().first << "\t" << (*it)->getPos().second << std::endl;
+	}
     }
+  std::cout << std::endl;
   return (list);
 }
 

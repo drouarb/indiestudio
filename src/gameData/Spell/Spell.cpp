@@ -57,7 +57,7 @@ void gauntlet::Spell::ApplyDamage(std::list<gauntlet::ABody*> targets, Actor *ca
 
 void gauntlet::Spell::prepare(Actor *actor)
 {
-    std::cerr << actor->getName() << actor->getId() << " is attacking from " << actor->getPos().first << ";" << actor->getPos().second  <<  std::endl;
+    std::cout << actor->getName() << actor->getId() << " is attacking from " << actor->getPos().first << ";" << actor->getPos().second  <<  std::endl;
     if (openingEffect > -1)
     {
         std::cerr << "damn, this guy a sorcerer, there is some sparkle that should be visible" << std::endl;
