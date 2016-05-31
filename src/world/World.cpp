@@ -295,14 +295,10 @@ int    World::addNewBody(double xpos, double ypos, const std::string &name,
       throw (std::runtime_error("'" + name + "': wrong name"));
       exit(0);
     }
-  std::cout << "salut" << std::endl;
   body->changePos(std::make_pair(xpos, ypos));
   body->changeOrientation(orientation);
-  std::cout << "iron" << std::endl;
   gameServer->sendAddEntity(body);
-  std::cout << "coal" << std::endl;
   bodys.push_back(body);
-  std::cout << "copper" << std::endl;
   collider->setNewBodyNoCheckEntity(body);
   std::cout << "world addnewbody end" << std::endl;
   return (body->getId());
