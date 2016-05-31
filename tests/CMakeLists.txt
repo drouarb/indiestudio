@@ -144,11 +144,3 @@ add_executable(PacketFactoryTest
 target_link_libraries(PacketFactoryTest pthread)
 add_test(PacketFactoryTest PacketFactoryTest)
 
-
-#Test PhysicCollideLayer
-add_executable(PhysicCollideLayer
-            ../src/world/PhysicCollideLayer.cpp
-            ./PhysicTest/PhysicCollierLayerTest.cpp
-        )
-add_test(PhysicCollideLayer PhysicCollideLayer)
-
