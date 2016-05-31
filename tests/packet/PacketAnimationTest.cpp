@@ -12,10 +12,11 @@ int main() {
 
     std::cout << "->Serialisation/Deserialitation" << std::endl;
     srand(time(NULL));
-    gauntlet::network::PacketAnimation packetAnimation(rand(), rand());
+    gauntlet::network::PacketAnimation packetAnimation(rand(), rand(), rand());
     data.data = packetAnimation.serialize();
     gauntlet::network::PacketAnimation packetAnimation1(data);
     assert(packetAnimation.getPacketId() == packetAnimation1.getPacketId());
     assert(packetAnimation.getEntityId() == packetAnimation1.getEntityId());
     assert(packetAnimation.getAnimationId() == packetAnimation1.getAnimationId());
+    assert(packetAnimation.isLoop() == packetAnimation1.isLoop());
 }

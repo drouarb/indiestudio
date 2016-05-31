@@ -233,7 +233,7 @@ gauntlet::core::ActionLists::pushAnimation(const network::PacketAnimation * pack
 {
   mutex.lock();
   packetsAnimation.push_back(new network::PacketAnimation
-			     (packet->getEntityId(), packet->getAnimationId()));
+			     (packet->getEntityId(), packet->getAnimationId(), packet->isLoop()));
   allPackets.push_back(packetsAnimation.back());
   mutex.unlock();
 }

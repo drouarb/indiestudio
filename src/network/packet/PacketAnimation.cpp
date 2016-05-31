@@ -9,10 +9,11 @@ gauntlet::network::PacketAnimation::PacketAnimation(s_socketData data):
     this->deserialize(data.data);
 }
 
-gauntlet::network::PacketAnimation::PacketAnimation(unsigned int entityId, unsigned int animationId):
+gauntlet::network::PacketAnimation::PacketAnimation(unsigned int entityId, unsigned int animationId, bool loop):
         Packet(gauntlet::network::ANIMATION, -1),
         entityId(entityId),
-        animationId(animationId)
+        animationId(animationId),
+        loop(loop)
 { }
 
 t_rawdata *gauntlet::network::PacketAnimation::serialize() const {
@@ -22,6 +23,7 @@ t_rawdata *gauntlet::network::PacketAnimation::serialize() const {
     packetAnimationData->packetId = this->getPacketId();
     packetAnimationData->entityId = entityId;
     packetAnimationData->animationId = animationId;
+    packetAnimationData->loop = (unsigned char)loop;
     return data;
 }
 
@@ -34,6 +36,7 @@ void gauntlet::network::PacketAnimation::deserialize(t_rawdata *data) {
     s_packetAnimationData *packetAnimationData = reinterpret_cast<s_packetAnimationData*>(&data->front());
     entityId = packetAnimationData->entityId;
     animationId = packetAnimationData->animationId;
+    loop = packetAnimationData->loop;
 }
 
 size_t gauntlet::network::PacketAnimation::getPacketSize() const {
@@ -46,4 +49,8 @@ unsigned int gauntlet::network::PacketAnimation::getEntityId() const {
 
 unsigned int gauntlet::network::PacketAnimation::getAnimationId() const {
     return animationId;
+}
+
+bool gauntlet::network::PacketAnimation::isLoop() const {
+    return loop;
 }
