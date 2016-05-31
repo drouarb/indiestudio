@@ -17,9 +17,10 @@ bool animations::JSONAnimation::update(double elapsedTime)
   if (currentTimePosition > this->end)
     {
       if (!loop) {
+              this->animationState->setTimePosition(
+                      static_cast<float>(0));
           return false;
       }
-      std::cerr << "loop" << std::endl;
       this->currentTimePosition = this->begin;
     }
   this->animationState->setTimePosition(
@@ -33,8 +34,7 @@ animations::JSONAnimation::JSONAnimation(const std::string &filename,
 					 bool loop) : filename(
 	filename), animationState(animationState)
 {
-    std::cout << "loop: " << loop << std::endl;
-  std::cout.flush();
+    std::cout << "animationName: " << animationName << std::endl;
   this->jsonObj = new ::JSON::JsonObj();
   this->jsonObj->ParseFrom(this->readJson(filename));
   this->type = animationSource::JSON;

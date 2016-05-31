@@ -26,6 +26,7 @@ ABody::ABody(int nid)
   name = "default";
   model = 0;
   texture = 0;
+  cooldown = 0;
 }
 
 ABody::~ABody()

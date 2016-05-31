@@ -23,4 +23,4 @@ do
             echo $line
         fi
     fi
-done
+done < ./skeleton_warlord.json

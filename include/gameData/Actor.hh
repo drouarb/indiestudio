@@ -26,6 +26,7 @@ namespace gauntlet
     SpellContainer			spellBook;
     int					i;
     int					idAI;
+  private:
     bool				ismoving = false;
   public:
     Actor(int nid, gauntlet::world::World *newWorld);
