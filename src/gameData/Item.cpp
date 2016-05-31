@@ -42,6 +42,10 @@ std::string gauntlet::Item::getName() {
     return this->name;
 }
 
+Stats   *gauntlet::Item::modifyStats() {
+    return &this->stats;
+}
+
 Stats   gauntlet::Item::getStats() {
     return this->stats;
 }
@@ -69,10 +73,21 @@ bool    gauntlet::Item::isKey() {
     return key;
 }
 
-void Item::setKey(bool _key) {
+void gauntlet::Item::setKey(bool _key) {
     key = _key;
 }
 
+void gauntlet::Item::setId() {
+    this->id = getNewId();
+}
+
+void gauntlet::Item::setPrice(int _price) {
+    price = _price;
+}
+
+void Item::setAsConsummable() {
+    consumable = true;
+}
 
 
 

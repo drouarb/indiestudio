@@ -59,6 +59,10 @@ namespace gauntlet
       void setSkeletonWizard();
 
       void setPotion();
+
+      void setHealthPotion();
+
+      void setSpeedPotion();
   };
 };
 

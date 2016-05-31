@@ -36,7 +36,7 @@ void        GameObject::gather(Player *player)
     player->getInventory()->operator+=(this->items);
     player->getInventory()->useUpgrades(player);
     world->playSound(SoundName::COINS, false, this->getPos());
-    world->notifyDeath(this);
+    world->deleteId(this->id);
   }
 }
 
