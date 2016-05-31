@@ -1,238 +1,239 @@
 {
-name: "skeleton_archier",
-animation: [
-{
-name: "Skeleton_Idle",
-begin: "0",
-end: "3.4084507000",
-},
-{
-name: "Skeleton_Use_object",
-begin: "3.4425352070",
-end: "4.8059154870",
-},
-{
-name: "Skeleton_anger",
-begin: "4.8399999940",
-end: "6.5442253440",
-},
-{
-name: "Skeleton_Drinking",
-begin: "6.5783098510",
-end: "9.9867605510",
-},
-{
-name: "Skeleton_Hit_from_back",
-begin: "10.0208450580",
-end: "11.2138028030",
-},
-{
-name: "Skeleton_Hit_from_front",
-begin: "11.2478873100",
-end: "12.4408450550",
-},
-{
-name: "Skeleton_Looking_around",
-begin: "12.5090140690",
-end: "18.4738027940",
-},
-{
-name: "Skeleton_pointing_A",
-begin: "18.5078873010",
-end: "20.5529577210",
-},
-{
-name: "Skeleton_salute",
-begin: "20.5870422280",
-end: "22.6321126480",
-},
-{
-name: "Skeleton_Talking",
-begin: "22.6661971550",
-end: "24.1999999700",
-},
-{
-name: "Skeleton_thinking",
-begin: "24.2340844770",
-end: "26.7904225020",
-},
-{
-name: "Skeleton_Tracking",
-begin: "26.8245070090",
-end: "32.7892957340",
-},
-{
-name: "Skeleton_sit_down",
-begin: "32.8233802410",
-end: "33.7095774230",
-},
-{
-name: "Skeleton_sitting",
-begin: "33.7436619300",
-end: "37.1521126300",
-},
-{
-name: "Skeleton_came_up",
-begin: "37.1861971370",
-end: "38.0723943190",
-},
-{
-name: "Skeleton_Going_asleep",
-begin: "38.1064788260",
-end: "40.4923943160",
-},
-{
-name: "Skeleton_sleeping",
-begin: "40.5264788230",
-end: "43.0828168480",
-},
-{
-name: "Skeleton_waking_up",
-begin: "43.1169013550",
-end: "45.3323943100",
-},
-{
-name: "Skeleton_walking_back",
-begin: "45.4005633240",
-end: "46.5253520550",
-},
-{
-name: "Skeleton_Climbing_ladder",
-begin: "46.5935210690",
-end: "47.5819717720",
-},
-{
-name: "Skeleton_Crouching",
-begin: "47.7183098000",
-end: "50.9904224720",
-},
-{
-name: "Skeleton_falling_down",
-begin: "51.0926759930",
-end: "52.4560562730",
-},
-{
-name: "Skeleton_Moving_left",
-begin: "52.4901407800",
-end: "53.1718309200",
-},
-{
-name: "Skeleton_Moving_right",
-begin: "53.2059154270",
-end: "53.8876055670",
-},
-{
-name: "Skeleton_Sneaking",
-begin: "53.9898590880",
-end: "55.5918309170",
-},
-{
-name: "Skeleton_Run",
-begin: "55.6599999310",
-end: "56.4098590850",
-},
-{
-name: "Skeleton_Jump_runing",
-begin: "56.4780280990",
-end: "57.8073238720",
-},
-{
-name: "Skeleton_Dying_B",
-begin: "57.8414083790",
-end: "59.1707041520",
-},
-{
-name: "Skeleton_1H_combat_mode",
-begin: "59.2729576730",
-end: "60.9430985160",
-},
-{
-name: "Skeleton_1H_dodge_backwards",
-begin: "60.9771830230",
-end: "62.1701407680",
-},
-{
-name: "Skeleton_1H_dodge_to_left",
-begin: "62.2042252750",
-end: "63.3971830200",
-},
-{
-name: "Skeleton_1H_dodge_to_right",
-begin: "63.4312675270",
-end: "64.6242252720",
-},
-{
-name: "Skeleton_1H_duck_below_high_swing",
-begin: "64.6583097790",
-end: "65.8512675240",
-},
-{
-name: "Skeleton_1H_parry_A",
-begin: "65.8853520310",
-end: "67.0783097760",
-},
-{
-name: "Skeleton_1H_parry_B",
-begin: "67.1123942830",
-end: "68.3053520280",
-},
-{
-name: "Skeleton_1H_parry_from_stright_down",
-begin: "68.3394365350",
-end: "69.5323942800",
-},
-{
-name: "Skeleton_1H_swing_high_straight_down",
-begin: "69.5664787870",
-end: "70.7594365320",
-},
-{
-name: "Skeleton_1H_swing_left",
-begin: "70.7935210390",
-end: "71.9864787840",
-},
-{
-name: "Skeleton_1H_swing_right",
-begin: "72.0205632910",
-end: "73.2135210360",
-},
-{
-name: "Skeleton_1H_thrust",
-begin: "73.2476055430",
-end: "74.4405632880",
-},
-{
-name: "Skeleton_1H_walk",
-begin: "74.5087323020",
-end: "75.5653520190",
-},
-{
-name: "Skeleton_archer_combat_mode",
-begin: "75.7357745540",
-end: "78.2580280720",
-},
-{
-name: "Skeleton_archer_get_arrow_fromBack",
-begin: "78.2921125790",
-end: "79.9963379290",
-},
-{
-name: "Skeleton_archer_charging",
-begin: "80.0304224360",
-end: "81.2233801810",
-},
-{
-name: "Skeleton_archer_aim",
-begin: "81.2574646880",
-end: "84.6659153880",
-},
-{
-name: "Skeleton_archer_shoting",
-begin: "78.2921125790",
-end: "85.8929576400",
-},
-{
-name: "Skeleton_archer_Hit_from_front",
-begin: "85.9270421470",
-end: "87.1199998920",
-}
+    name: "skeleton_archier",
+    animation: [
+	{
+	    name: "Skeleton_Idle",
+	    begin: "0",
+	    end: "3.4084507000",
+	},
+	{
+	    name: "Skeleton_Use_object",
+	    begin: "3.4425352070",
+	    end: "4.8059154870",
+	},
+	{
+	    name: "Skeleton_anger",
+	    begin: "4.8399999940",
+	    end: "6.5442253440",
+	},
+	{
+	    name: "Skeleton_Drinking",
+	    begin: "6.5783098510",
+	    end: "9.9867605510",
+	},
+	{
+	    name: "Skeleton_Hit_from_back",
+	    begin: "10.0208450580",
+	    end: "11.2138028030",
+	},
+	{
+	    name: "Skeleton_Hit_from_front",
+	    begin: "11.2478873100",
+	    end: "12.4408450550",
+	},
+	{
+	    name: "Skeleton_Looking_around",
+	    begin: "12.5090140690",
+	    end: "18.4738027940",
+	},
+	{
+	    name: "Skeleton_pointing_A",
+	    begin: "18.5078873010",
+	    end: "20.5529577210",
+	},
+	{
+	    name: "Skeleton_salute",
+	    begin: "20.5870422280",
+	    end: "22.6321126480",
+	},
+	{
+	    name: "Skeleton_Talking",
+	    begin: "22.6661971550",
+	    end: "24.1999999700",
+	},
+	{
+	    name: "Skeleton_thinking",
+	    begin: "24.2340844770",
+	    end: "26.7904225020",
+	},
+	{
+	    name: "Skeleton_Tracking",
+	    begin: "26.8245070090",
+	    end: "32.7892957340",
+	},
+	{
+	    name: "Skeleton_sit_down",
+	    begin: "32.8233802410",
+	    end: "33.7095774230",
+	},
+	{
+	    name: "Skeleton_sitting",
+	    begin: "33.7436619300",
+	    end: "37.1521126300",
+	},
+	{
+	    name: "Skeleton_came_up",
+	    begin: "37.1861971370",
+	    end: "38.0723943190",
+	},
+	{
+	    name: "Skeleton_Going_asleep",
+	    begin: "38.1064788260",
+	    end: "40.4923943160",
+	},
+	{
+	    name: "Skeleton_sleeping",
+	    begin: "40.5264788230",
+	    end: "43.0828168480",
+	},
+	{
+	    name: "Skeleton_waking_up",
+	    begin: "43.1169013550",
+	    end: "45.3323943100",
+	},
+	{
+	    name: "Skeleton_walking_back",
+	    begin: "45.4005633240",
+	    end: "46.5253520550",
+	},
+	{
+	    name: "Skeleton_Climbing_ladder",
+	    begin: "46.5935210690",
+	    end: "47.5819717720",
+	},
+	{
+	    name: "Skeleton_Crouching",
+	    begin: "47.7183098000",
+	    end: "50.9904224720",
+	},
+	{
+	    name: "Skeleton_falling_down",
+	    begin: "51.0926759930",
+	    end: "52.4560562730",
+	},
+	{
+	    name: "Skeleton_Moving_left",
+	    begin: "52.4901407800",
+	    end: "53.1718309200",
+	},
+	{
+	    name: "Skeleton_Moving_right",
+	    begin: "53.2059154270",
+	    end: "53.8876055670",
+	},
+	{
+	    name: "Skeleton_Sneaking",
+	    begin: "53.9898590880",
+	    end: "55.5918309170",
+	},
+	{
+	    name: "Skeleton_Run",
+	    begin: "54.43",
+	    end: "55.16",
+	    speed: "1"
+	},
+	{
+	    name: "Skeleton_Jump_runing",
+	    begin: "56.4780280990",
+	    end: "57.8073238720",
+	},
+	{
+	    name: "Skeleton_Dying_B",
+	    begin: "57.8414083790",
+	    end: "59.1707041520",
+	},
+	{
+	    name: "Skeleton_1H_combat_mode",
+	    begin: "59.2729576730",
+	    end: "60.9430985160",
+	},
+	{
+	    name: "Skeleton_1H_dodge_backwards",
+	    begin: "60.9771830230",
+	    end: "62.1701407680",
+	},
+	{
+	    name: "Skeleton_1H_dodge_to_left",
+	    begin: "62.2042252750",
+	    end: "63.3971830200",
+	},
+	{
+	    name: "Skeleton_1H_dodge_to_right",
+	    begin: "63.4312675270",
+	    end: "64.6242252720",
+	},
+	{
+	    name: "Skeleton_1H_duck_below_high_swing",
+	    begin: "64.6583097790",
+	    end: "65.8512675240",
+	},
+	{
+	    name: "Skeleton_1H_parry_A",
+	    begin: "65.8853520310",
+	    end: "67.0783097760",
+	},
+	{
+	    name: "Skeleton_1H_parry_B",
+	    begin: "67.1123942830",
+	    end: "68.3053520280",
+	},
+	{
+	    name: "Skeleton_1H_parry_from_stright_down",
+	    begin: "68.3394365350",
+	    end: "69.5323942800",
+	},
+	{
+	    name: "Skeleton_1H_swing_high_straight_down",
+	    begin: "69.5664787870",
+	    end: "70.7594365320",
+	},
+	{
+	    name: "Skeleton_1H_swing_left",
+	    begin: "70.7935210390",
+	    end: "71.9864787840",
+	},
+	{
+	    name: "Skeleton_1H_swing_right",
+	    begin: "72.0205632910",
+	    end: "73.2135210360",
+	},
+	{
+	    name: "Skeleton_1H_thrust",
+	    begin: "73.2476055430",
+	    end: "74.4405632880",
+	},
+	{
+	    name: "Skeleton_1H_walk",
+	    begin: "74.5087323020",
+	    end: "75.5653520190",
+	},
+	{
+	    name: "Skeleton_archer_combat_mode",
+	    begin: "75.7357745540",
+	    end: "78.2580280720",
+	},
+	{
+	    name: "Skeleton_archer_get_arrow_fromBack",
+	    begin: "78.2921125790",
+	    end: "79.9963379290",
+	},
+	{
+	    name: "Skeleton_archer_charging",
+	    begin: "80.0304224360",
+	    end: "81.2233801810",
+	},
+	{
+	    name: "Skeleton_archer_aim",
+	    begin: "81.2574646880",
+	    end: "84.6659153880",
+	},
+	{
+	    name: "Skeleton_archer_shoting",
+	    begin: "78.2921125790",
+	    end: "85.8929576400",
+	},
+	{
+	    name: "Skeleton_archer_Hit_from_front",
+	    begin: "85.9270421470",
+	    end: "87.1199998920",
+	}

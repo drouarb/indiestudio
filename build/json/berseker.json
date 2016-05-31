@@ -23,18 +23,18 @@
     },
     {
       name: "attack_1",
-      begin: "195",
-      end: "197"
+      begin: "6.01",
+      end: "7.29"
     },
     {
       name: "attack_2",
-      begin: "192",
-      end: "195"
+      begin: "8",
+      end: "9.29"
     },
     {
       name: "attack_3",
-      begin: "232",
-      end: "237"
+      begin: "10",
+      end: "11.29"
     },
     {
       name: "attack_4",

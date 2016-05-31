@@ -100,7 +100,7 @@ void			BodyFactory::setBarbare()
           animations::AnimationsListJson::BERSEKER_ATTACK_1,
           animations::AnimationsListJson::BERSEKER_ATTACK_2,
           animations::AnimationsListJson::BERSEKER_ATTACK_3,
-          animations::AnimationsListJson::BERSEKER_ATTACK_4,
+          //animations::AnimationsListJson::BERSEKER_ATTACK_4,
           //animations::AnimationsListJson::BERSEKER_ATTACK_5
   };
   player->animations[ABody::DEATH] = {
@@ -168,21 +168,14 @@ void			BodyFactory::setWizard()
           SoundName::SOUND_NONE
   };
   player->animations[ABody::ATTACK] = {
-          animations::AnimationsListJson::SKELETON_WARLORD_SPECAL_ATTACK_A,
-          animations::AnimationsListJson::SKELETON_WARLORD_SPECAL_ATTACK_B,
-          animations::AnimationsListJson::SKELETON_WARLORD_SWING_MID_LEFT,
-          animations::AnimationsListJson::SKELETON_WARLORD_SWING_MID_RIGHT,
-          animations::AnimationsListJson::SKELETON_WARLORD_SWORD_SWING_HIGH_STRAIGHT_DOWN,
-          animations::AnimationsListJson::SKELETON_WARLORD_SWORD_THRUST_MID,
-          animations::AnimationsListJson::SKELETON_WARLORD_HIT_FROM_BACK,
-          animations::AnimationsListJson::SKELETON_WARLORD_HIT_FROM_FRONT
+          animations::AnimationsListJson::SKELETON_ARCHIER_SHOTING
   };
   player->animations[ABody::DEATH] = {
-          animations::AnimationsListJson::SKELETON_WARLORD_DYING_A,
+          animations::AnimationsListJson::SKELETON_ARCHIER_DYING_B
   };
-  player->setIdle(animations::AnimationsListJson::SKELETON_WARLORD_IDLE);
-  player->setRunning(animations::AnimationsListJson::SKELETON_WARLORD_RUN);
-  player->setMeshId(EntityName::SKELETON_WARLORD);
+  player->setIdle(animations::AnimationsListJson::SKELETON_ARCHIER_IDLE);
+  player->setRunning(animations::AnimationsListJson::SKELETON_ARCHIER_RUN);
+  player->setMeshId(EntityName::SKELETON_ARCHER);
   player->setTextureId(TextureName::TEXTURE_NONE);
   player->setIdAI(NOAI);
   bodyTab.push_back(player);
