@@ -19,8 +19,8 @@
 	{
 	    name : "Skeleton",
 	    angle : "0",
-	    x : "10",
-	    y : "10"
+	    x : "61",
+	    y : "61"
 	}
     ],
     sounds:

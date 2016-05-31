@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Thu May 12 16:17:25 2016 Alexis Trouve
-// Last update Mon May 30 23:51:33 2016 Esteban Lewis
+// Last update Tue May 31 11:33:14 2016 Esteban Lewis
 //
 
 #include <iostream>
@@ -36,8 +36,6 @@ std::pair<double, double>    PhysicCollideLayer::getSize() const
 bool PhysicCollideLayer::isWall(const std::pair<double, double>& oldPos,
 				const std::pair<double, double>& wantedPos)
 {
-  std::cout << "checking " << oldPos.first << " " << oldPos.second
-	    << " with " << wantedPos.first << " " << wantedPos.second << std::endl;
   return (ABS(heightmap.at(heightmap.getSize().first - 1 - oldPos.first,
 			   heightmap.getSize().second - 1 - oldPos.second) -
 	      heightmap.at(heightmap.getSize().first - 1 - wantedPos.first,
@@ -46,14 +44,25 @@ bool PhysicCollideLayer::isWall(const std::pair<double, double>& oldPos,
 }
 
 bool    PhysicCollideLayer::checkCoordSizeCanPass(const std::pair<double, double>& oldPos,
-						  const std::pair<double, double>& wantedPos,
+						  const std::pair<double, double>& wantedPos_real,
 						  const std::pair<double, double>& size)
 {
-  if (oldPos.first == wantedPos.first && oldPos.second == wantedPos.second)
+  if (oldPos.first == wantedPos_real.first && oldPos.second == wantedPos_real.second)
     return (true);
 
   std::pair<double, double> start;
   std::pair<double, double> end;
+
+  //push wantedPos forward so as to check if the body can fit in that place
+  std::pair<double, double> wantedPos = wantedPos_real;
+  if (wantedPos.first < oldPos.first)
+    wantedPos.first -= size.first;
+  else
+    wantedPos.first += size.first;
+  if (wantedPos.second < oldPos.second)
+    wantedPos.second -= size.second;
+  else
+    wantedPos.second += size.second;
 
   start.second = oldPos.second + size.second / 2;
   end.second = oldPos.second - size.second / 2;

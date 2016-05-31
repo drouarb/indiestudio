@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Thu May 12 16:15:29 2016 Alexis Trouve
-// Last update Mon May 30 23:54:06 2016 Esteban Lewis
+// Last update Tue May 31 10:49:45 2016 Esteban Lewis
 //
 
 #pragma once
@@ -47,6 +47,10 @@ namespace gauntlet {
 	  bool				checkCoordSizeCanPass(const std::pair<double, double>& oldPos,
 							      const std::pair<double, double>& wantedPos,
 							      const std::pair<double, double>& size);
+	  bool				checkDiagonal(std::pair<double, double> start,
+						      std::pair<double, double> end,
+						      std::pair<double, double> oldPos,
+						      std::pair<double, double> wantedPos);
 
 	  const unsigned char		*getLayer() const;
         };

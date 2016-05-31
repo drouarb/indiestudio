@@ -50,7 +50,6 @@ gauntlet::HeightMap::at(double x, double y)
 
   int hm_x = (int)floor(x / HEIGHT_MAP_SCALE);
   int hm_y = (int)floor(y / HEIGHT_MAP_SCALE);
-  std::cout << "heightmap: " << hm_x << " " << hm_y << std::endl;
   if (hm_x >= width || hm_x < 0 || hm_y >= height || hm_y < 0)
     throw (std::invalid_argument("HeightMap coordinates"));
   return (map[hm_x * height + hm_y]);
