@@ -140,9 +140,10 @@ void                GameServer::selectPlayerAnswer(
       PacketStartGame myPacket(id);
       players[iTaken].idPlayer = id;
       packetFact->send(myPacket, packet->getSocketId());
-      dataSendThread = new std::thread(
+      sendDatas(packet->getSocketId());
+      /*dataSendThread = new std::thread(
 	      std::bind(&GameServer::sendDatas, std::ref(*this),
-			packet->getSocketId()));
+	      packet->getSocketId()));*/
     }
   else
     sendHandShake(packet->getSocketId());

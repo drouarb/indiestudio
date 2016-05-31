@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 29 20:40:50 2016 Alexis Trouve
-// Last update Mon May 30 16:45:48 2016 Alexis Trouve
+// Last update Tue May 31 15:34:44 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -69,8 +69,8 @@ void				Collider::autoShift()
   while (it != collideEntity.end())
     {
       orient = Rand::generate() % 628;
-      vectY = (Math::sin(orient) * 3.0);
-      vectX = (Math::cos(orient) * 3.0);
+      vectY = (Math::sin(orient) * (*it)->getSize().first);
+      vectX = (Math::cos(orient) * (*it)->getSize().second);
       tryMoveBodyNoCheckEntity((*it), (*it)->getPos().first + vectX, (*it)->getPos().second);
       tryMoveBodyNoCheckEntity((*it), (*it)->getPos().first, (*it)->getPos().second + vectY);
       it++;
