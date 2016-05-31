@@ -21,6 +21,8 @@ namespace gauntlet
   }
 }
 
+#define MAX_DISTANCE 3000
+
 OgreUI::OgreUI(void)
 	: obs(NULL),
 
@@ -566,7 +568,6 @@ void OgreUI::hideItem(int id)
 
 void OgreUI::createScene(void)
 {
-  //showBackground();
   mTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT, true);
  mSceneMgr->setSkyBox(true, "Examples/SceneSkyBox");
   createAmbientLight();
@@ -755,7 +756,6 @@ void OgreUI::stopSound(int id)
 {
   std::stringstream ss;
   ss << id;
-  std::cerr << "ici  " << id << std::endl;
   mSoundManager->getSound(ss.str())->stop();
 }
 
@@ -1035,24 +1035,33 @@ void OgreUI::createLight(unsigned int height, unsigned int width,
     }
 }
 
-void OgreUI::load3dSound(int id, SoundName name, int x, int y)
+void OgreUI::play3dSound(int id, SoundName name, int x, int y)
 {
 
   std::stringstream ss;
   ss << id;
   OgreOggSound::OgreOggISound *sound = 0;
+  int z = 0;
 
+  if (this->heightmap.isLoaded())
+    {
+      z = this->heightmap.at(x, y);
+    }
   if (name != SOUND_NONE)
     if ((sound = mSoundManager->createSound(ss.str(), soundmap.at(name))))
       {
-	mSceneMgr->getSceneNode("9000")->attachObject(sound);
-	sound->setMaxDistance(1000);
-	sound->setMaxVolume(100);
-	sound->play();
-	if (sound->isMono())
-	  std::cout << "mono" << std::endl;
-	mCamera->getParentSceneNode()->attachObject(
-		OgreOggSound::OgreOggSoundManager::getSingletonPtr()->getListener());
+	sound->setVolume(0);
+	Ogre::SceneNode *node = planNode->createChildSceneNode(ss.str());
+	node->setPosition(x, z, y);
+	if (rootNode != NULL)
+	  {
+	    calcNewVolume(id, rootNode->getPosition(), node->getPosition());
+	  }
+	else
+	  {
+	    sound->setVolume(1);
+	    sound->play();
+	  }
       }
 }
 
@@ -1157,6 +1166,55 @@ void OgreUI::hideCharacterSelectMenu()
        mTrayMgr->destroyWidget("MenuCharacterSelection");
       }
 }
+
+void OgreUI::increaseVolume(int id, float value)
+{
+  std::stringstream ss;
+  ss << id;
+ OgreOggSound::OgreOggISound *s = mSoundManager->getSound(ss.str());
+if (s->getVolume() + value < 100)
+  {
+    s->setVolume(s->getVolume() + value);
+  }
+}
+
+void OgreUI::decreaseVolume(int id, float value)
+{
+  std::stringstream ss;
+  ss << id;
+  if (mSoundManager->hasSound(ss.str()))
+    {
+      OgreOggSound::OgreOggISound *s = mSoundManager->getSound(ss.str());
+      if (s->getVolume() - value >= 0)
+	{
+	  s->setVolume(s->getVolume() - value);
+	}
+    }
+}
+
+void OgreUI::calcNewVolume(int id, Ogre::Vector3 player, Ogre::Vector3 obj)
+{
+  std::stringstream ss;
+  ss << id;
+  float res;
+
+  if (mSoundManager->hasSound(ss.str()))
+    {
+      OgreOggSound::OgreOggISound *s = mSoundManager->getSound(
+	      ss.str());
+      if ((res = std::sqrt(pow((obj.x - player.x), 2) + (player.z - obj.z))) <
+	  MAX_DISTANCE)
+	{
+	  s->setVolume((MAX_DISTANCE - res) * 1 / MAX_DISTANCE);
+	  if (!s->isPlaying())
+	    s->play();
+	}
+      else
+	s->setVolume(0);
+    }
+}
+
+
 
 
 

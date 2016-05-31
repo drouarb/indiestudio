@@ -225,7 +225,13 @@ class OgreUI
 
   bool loadSound(int id, gauntlet::SoundName name);
 
-  void load3dSound(int id, gauntlet::SoundName name, int x, int y);
+  void play3dSound(int id, gauntlet::SoundName name, int x, int y);
+
+  void increaseVolume(int id, float value);
+
+  void decreaseVolume(int id , float value);
+
+  void calcNewVolume(int id, Ogre::Vector3 player , Ogre::Vector3 obj);
 
   void hideItem(int id);
 
