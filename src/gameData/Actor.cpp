@@ -24,14 +24,9 @@ void        Actor::setStance()
 {
  //TODO ismoving un peu chelou
   if (!ismoving)
-    {
-      this->getWorld()->animeEntity(this->id, running);
-
-    }
+      this->getWorld()->animeEntity(this->id, running, true);
   else
-    {
-      this->getWorld()->animeEntity(this->id, idle);
-    }
+      this->getWorld()->animeEntity(this->id, idle, true);
 }
 
 void		Actor::move()
