@@ -14,7 +14,7 @@ gauntlet::Effect::Effect(OgreUI *ogreUI, gauntlet::EffectName type, std::string 
     {
       throw std::logic_error("Unrecognized type");
     }
-  std::cout << "\t--------------------\tName: " << name << "*this->name" << *this->name << std::endl;
+//  std::cout << "\t--------------------\tName: " << name << "*this->name" << *this->name << std::endl;
   this->_particleSystem = ogreUI->getSceneManager()->createParticleSystem(name, *this->name);
   if (this->_particleSystem == NULL)
     {
@@ -28,7 +28,8 @@ gauntlet::Effect::Effect(OgreUI *ogreUI, gauntlet::EffectName type, std::string 
       return;
     }
   pEmitter->setPosition(Ogre::Vector3(static_cast<int>(coord.first), static_cast<int>(coord.second), 0));
-  pEmitter->setEmissionRate(pEmitter->getEmissionRate() / _EFFECT_DIVIDE_SIZE);
+  pEmitter->setEmissionRate(((100.0f / (float)pEmitter->getEmissionRate())) * (float)_EFFECT_DIVIDE_SIZE);
+//  pEmitter->set((float)pEmitter->getEmissionRate()) / (float)_EFFECT_DIVIDE_SIZE);
   particleNode->attachObject(this->_particleSystem);
 }
 

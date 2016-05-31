@@ -11,7 +11,7 @@
 
 class OgreUI;
 
-#define _EFFECT_DIVIDE_SIZE 10
+#define _EFFECT_DIVIDE_SIZE 1.0
 
 namespace gauntlet
 {

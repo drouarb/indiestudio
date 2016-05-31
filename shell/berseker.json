@@ -9,7 +9,7 @@
     {
       name: "walk",
       begin: "48",
-      end: "92"
+      end: "50"
     },
     {
       name: "run",
