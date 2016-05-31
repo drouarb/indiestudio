@@ -5,7 +5,6 @@
 #include "Math.hh"
 #include "ListenerHandshake.hh"
 #include "ListenerStartGame.hh"
-#include "ListenerHUD.hh"
 #include "PacketFactory.hh"
 #include "GameServer.hh"
 #include "PlayerController.hh"
