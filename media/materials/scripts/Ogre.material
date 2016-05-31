@@ -202,6 +202,23 @@ material Examples/SceneSkyBox
         }
 }
 
+
+
+material Examples/Scene
+{
+        technique
+        {
+                pass
+                {
+                        texture_unit
+                        {
+                                texture  Skybox.png
+                        }
+                }
+        }
+}
+
+
 material Ogre/Eyes
 {
 	technique

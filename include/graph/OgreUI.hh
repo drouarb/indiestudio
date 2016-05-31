@@ -40,6 +40,7 @@
 #include "AnimationsList.hh"
 #include "HeightMap.hh"
 #include "BackgroundName.hh"
+#include "CharacterMenuName.hh"
 
 namespace gauntlet
 {
@@ -70,6 +71,7 @@ class OgreUI
   static const std::map<gauntlet::EntityName, std::string> meshmap;
   static const std::map<gauntlet::SoundName, std::string> soundmap;
   static const std::map<gauntlet::BackgroundName, std::string> backgroundmap;
+  static const std::map<gauntlet::CharacterMenuName , std::string> charactermap;
 
   Ogre::LightList lightList;
 
@@ -304,4 +306,8 @@ class OgreUI
 				      const Ogre::Entity *pEntity) const;
 
   void createAmbientLight();
+
+   void showCharacterSelectMenu(gauntlet::CharacterMenuName name);
+
+  void hideCharacterSelectMenu();
 };
