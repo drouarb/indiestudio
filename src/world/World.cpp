@@ -177,8 +177,8 @@ void        World::gameLoop()
 	checkWin();
       if (turn % RESPAWN_PRIORITY == 0)
 	checkRespawn();
-      //if (turn % AUTOSHIFT_PRIORITY == 0)
-      //collider->autoShift();
+      if (turn % AUTOSHIFT_PRIORITY == 0)
+	collider->autoShift();
       ++turn;
     }
 }
@@ -327,7 +327,7 @@ void        World::notifyDeath(ABody *body)
   std::cout << "world notify Death end" << std::endl;
 }
 
-void        World::deleteId(int id)
+void        World::deleteId(int id, bool deleted)
 {
   std::cout << "world deleteId" << std::endl;
   unsigned int i;
@@ -353,7 +353,8 @@ void        World::deleteId(int id)
       ++i;
     }
   gameServer->sendDeleteEntity(body);
-  delete (body);
+  if (deleted == true)
+    delete (body);
   std::cout << "world deleteId end" << std::endl;
 }
 

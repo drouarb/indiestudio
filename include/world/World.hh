@@ -27,7 +27,7 @@
 #include "Stopwatch.hh"
 
 # define ROUND_DURATION 33
-# define AI_PRIORITY 1
+# define AI_PRIORITY 3
 # define GATHERING_PRIORITY 5
 # define WIN_PRIORITY 30
 # define RESPAWN_PRIORITY 60
@@ -94,7 +94,7 @@ namespace			gauntlet
       void			applyMoveActor();
       void			applyAI();
       void			notifyDeath(ABody *body);
-      void			deleteId(int id);
+      void			deleteId(int id, bool deleted);
       int			addNewBody(double xpos, double ypos, const std::string& name, short orientation);
       Collider&			getCollider();
       const std::pair<double, double>&	getSpawnPoint();

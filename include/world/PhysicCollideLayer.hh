@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Thu May 12 16:15:29 2016 Alexis Trouve
-// Last update Tue May 31 14:52:05 2016 Esteban Lewis
+// Last update Tue May 31 15:18:57 2016 Esteban Lewis
 //
 
 #pragma once
@@ -14,7 +14,6 @@
 #include "HeightMap.hh"
 
 # define WALL_MIN_HEIGHT 40
-# define POINTNBDIVIDER 1
 # define ABS(x) ((x) < 0 ? -(x) : (x))
 
 namespace gauntlet {
@@ -30,8 +29,7 @@ namespace gauntlet {
 	  std::pair<double, double>	lastPoint;
 	private:
 	  bool				doOnLine(std::pair<double, double> start, std::pair <double, double> end,
-						 bool (PhysicCollideLayer::*func)(std::pair<double, double>),
-						 bool divide);
+						 bool (PhysicCollideLayer::*func)(std::pair<double, double>));
 	  bool				checkLine(std::pair<double, double> point);
 	  bool				checkPoint(std::pair<double, double> point);
         public:

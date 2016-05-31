@@ -31,7 +31,9 @@ void        Actor::setStance()
 void		Actor::move()
 {
   if (ismoving)
-    world->getCollider().applyVectorToId(id, orientation, stats.speed);
+    {
+      world->getCollider().applyVectorToId(id, orientation, stats.speed);
+    }
 }
 
 bool		Actor::getMove() const
