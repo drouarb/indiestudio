@@ -24,9 +24,9 @@ void        Actor::setStance()
 {
   std::cout << "je:" << running << " et:" << idle << std::endl;
     if (ismoving)
-      this->getWorld()->animeEntity(this->id, idle);
-    else
       this->getWorld()->animeEntity(this->id, running);
+    else
+      this->getWorld()->animeEntity(this->id, idle);
 }
 
 void		Actor::move()
