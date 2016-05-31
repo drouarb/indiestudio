@@ -49,7 +49,7 @@ GameServer::GameServer(const std::string &filePath, in_port_t port)
       packetFact->registerListener(listeners[i]);
       ++i;
     }
-  listenThread = new std::thread(&GameServer::listen, std::ref(*this));
+  listenThread = new std::thread(&PacketFactory::recv, std::ref(*packetFact));
   world->gameLoop();
   std::cout << "GameServer build end" << std::endl;
 }
@@ -404,17 +404,6 @@ void                GameServer::animeEntity(int id, unsigned int idAnime, bool l
       packetFact->send(packet, players[i].socketId);
       ++i;
     }
-}
-
-void                GameServer::listen()
-{
-  std::cout << "listen" << std::endl;
-  while (42)
-    {
-      std::cout << "server listen" << std::endl;
-      packetFact->recv();
-    }
-  std::cout << "listenEnd" << std::endl;
 }
 
 unsigned char        GameServer::getNbrPlayer() const
