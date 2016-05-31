@@ -34,8 +34,6 @@ animations::JSONAnimation::JSONAnimation(const std::string &filename,
 					 bool loop) : filename(
 	filename), animationState(animationState)
 {
-  std::cout << "Animation (filename: " << filename <<
-  ", animationName: " << animationName << std::endl;
   std::cout.flush();
   this->jsonObj = new ::JSON::JsonObj();
   this->jsonObj->ParseFrom(this->readJson(filename));
@@ -43,8 +41,6 @@ animations::JSONAnimation::JSONAnimation(const std::string &filename,
   this->loop = loop;
   findProprerties(animationName);
   this->currentTimePosition = this->begin;
-  std::cout << "Animation " << this->getName() << " construite, begin: " <<
-  this->begin << ", end:" << this->end << std::endl;
 }
 
 void gauntlet::animations::JSONAnimation::findProprerties(
@@ -58,9 +54,7 @@ void gauntlet::animations::JSONAnimation::findProprerties(
       arr = dynamic_cast<::JSON::JsonArr &>(this->jsonObj->GetObj(
 	      "animation"));
     } catch (...)
-    {
-      std::cerr << "ICIIIIIIIIIIIIIII" << std::endl;
-    }
+    {}
   for (size_t i = 0; i < arr.Size(); ++i)
     {
       ::JSON::JsonObj &json = dynamic_cast<::JSON::JsonObj &>(arr[i]);
@@ -112,8 +106,6 @@ std::string animations::JSONAnimation::readJson(const std::string &filename)
   std::string dest;
   std::ifstream file("./json/" + filename);
 
-  std::cout << "fichier: " << "./json/" + filename << std::endl;
-
   if (!file.is_open())
     {
       return "";
@@ -130,9 +122,7 @@ std::string animations::JSONAnimation::readJson(const std::string &filename)
 }
 
 animations::JSONAnimation::~JSONAnimation()
-{
-  std::cerr << "JSONAnimation destructor" << std::endl;
-}
+{}
 
 
 
