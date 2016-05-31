@@ -184,7 +184,16 @@ namespace gauntlet
       SKELETON_WARLORD_SWORD_SWING_HIGH_STRAIGHT_DOWN,
       SKELETON_WARLORD_SWORD_THRUST_MID,
 
-      BERSEKER_IDLE,
+        VALKYRIE_IDLE,
+        VALKYRIE_RUN,
+        VALKYRIE_DEATH,
+        VALKYRIE_ATTACK_1,
+        VALKYRIE_ATTACK_2,
+        VALKYRIE_ATTACK_3,
+
+        DOOR_OPEN,
+
+        BERSEKER_IDLE,
       BERSEKER_WALK,
       BERSEKER_RUN,
       BERSEKER_ATTACK_IDLE,
@@ -202,9 +211,6 @@ namespace gauntlet
       BERSEKER_STRAFE_LEFT,
       BERSEKER_DODGE_RIGHT
     };
-
-
-
   }
 }
 

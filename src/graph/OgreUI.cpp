@@ -643,11 +643,17 @@ void OgreUI::playAnimation(int entityId,
                            gauntlet::animations::AnimationsListJson animation,
                            bool loop)
 {
-    const std::pair<std::string, std::string> &pair = animations::jsonMap.at(
-            animation);
-    Ogre::Entity *pEntity;
-    Ogre::AnimationState *pState;
-    std::stringstream ss;
+    std::pair<std::string, std::string> pair;
+    try {
+        pair = animations::jsonMap.at(
+                        animation);
+    } catch (...)
+    {
+        std::cerr << "Not found : " << animation << std::endl;
+    }
+  Ogre::Entity *pEntity;
+  Ogre::AnimationState *pState;
+  std::stringstream ss;
 
     try
         {

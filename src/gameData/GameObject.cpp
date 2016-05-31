@@ -49,6 +49,7 @@ void        GameObject::open(ItemContainer *curInventory) //unfinished
       {
         inv->remove(item);
         world->playSound(SoundName::DOOR_STONE, false, this->getPos());
+        this->world->animeEntity(this->id, this->idle, false);
         world->notifyDeath(this);
         this->collideActive = false;
         break;

@@ -18,7 +18,9 @@ bool animations::JSONAnimation::update(double elapsedTime)
     {
       if (!loop)
 	{
-	  this->animationState->setTimePosition(static_cast<float>(0));
+	  //TODO test this
+	  if (this->animationState->getAnimationName() != "death")
+	    this->animationState->setTimePosition(static_cast<float>(0));
 	  return false;
 	}
       this->currentTimePosition = this->begin;

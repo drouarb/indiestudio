@@ -264,6 +264,18 @@ void			BodyFactory::setValkyrie()
           SoundName::FEMALE_DEATH,
           SoundName::SOUND_NONE
   };
+  player->animations[ABody::ATTACK] = {
+          animations::AnimationsListJson::VALKYRIE_ATTACK_1,
+          animations::AnimationsListJson::VALKYRIE_ATTACK_2,
+          animations::AnimationsListJson::VALKYRIE_ATTACK_3,
+          //animations::AnimationsListJson::VALKYRIE_ATTACK_4,
+          //animations::AnimationsListJson::VALKYRIE_ATTACK_5
+  };
+  player->animations[ABody::DEATH] = {
+          animations::AnimationsListJson::VALKYRIE_DEATH
+  };
+  player->setIdle(animations::AnimationsListJson::VALKYRIE_IDLE);
+  player->setRunning(animations::AnimationsListJson::VALKYRIE_RUN);
   player->setMeshId(EntityName::VALKYRIE);
   player->setTextureId(TextureName::TEXTURE_NONE);
   player->setIdAI(NOAI);
@@ -599,6 +611,7 @@ void            BodyFactory::setDoor()
   obj->changeSize(std::make_pair(10.0, 10.0));
   obj->changePos(std::make_pair(-1, -1));
   obj->changeOrientation(90);
+  obj->setIdle(animations::AnimationsListJson::DOOR_OPEN);
   obj->setMeshId(EntityName::DOOR);
   obj->setTextureId(TextureName::TEXTURE_NONE);
   bodyTab.push_back(obj);

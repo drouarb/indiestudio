@@ -1,0 +1,10 @@
+{
+  name: "door",
+  animation: [
+      {
+	  name: "death",
+	  begin: "0",
+	  end: "4"
+      }
+  ]
+}

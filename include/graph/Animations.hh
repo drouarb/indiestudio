@@ -256,7 +256,15 @@ namespace gauntlet
 	    {SKELETON_FOOTMAN_BANGING_SHIELD,                 {"skeleton_footman.json",  "Skeleton_1H_banging_shield"}},
 	    {SKELETON_FOOTMAN_CHARGING,                       {"skeleton_footman.json",  "Skeleton_1H_charging"}},
 
-	    {BERSEKER_IDLE,                                   {"berseker.json",          "idle"}},
+		{VALKYRIE_IDLE,                                   {"valkyrie.json",          "idle"}},
+		{VALKYRIE_DEATH,                                  {"valkyrie.json",          "death"}},
+		{VALKYRIE_RUN,                                    {"valkyrie.json",          "run"}},
+		{VALKYRIE_ATTACK_1,                               {"valkyrie.json",          "attack_1"}},
+		{VALKYRIE_ATTACK_2,                               {"valkyrie.json",          "attack_2"}},
+		{VALKYRIE_ATTACK_3,                               {"valkyrie.json",          "attack_3"}},
+		{DOOR_OPEN,										  {"door.json",				 "death"}},
+
+		{BERSEKER_IDLE,                                   {"berseker.json",          "idle"}},
 	    {BERSEKER_WALK,                                   {"berseker.json",          "walk"}},
 	    {BERSEKER_RUN,                                    {"berseker.json",          "run"}},
 	    {BERSEKER_ATTACK_IDLE,                            {"berseker.json",          "attack_idle"}},

@@ -1,0 +1,35 @@
+{
+  name: "valkyrie",
+  animation: [
+    {
+      name: "idle",
+      begin: "0",
+      end: "5"
+    },
+    {
+      name: "run",
+      begin: "7.1",
+      end: "8"
+    },
+    {
+      name: "attack_1",
+      begin: "10",
+      end: "12"
+    },
+    {
+      name: "attack_2",
+      begin: "13.2",
+      end: "16.16"
+    },
+    {
+      name: "attack_3",
+      begin: "16.16",
+      end: "18.0"
+    },
+    {
+      name: "death",
+      begin: "27",
+      end: "29"
+    },
+  ]
+}
