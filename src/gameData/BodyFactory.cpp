@@ -233,7 +233,7 @@ void			BodyFactory::setSkeleton()
   crea->stats.normalHP = 400;
   crea->stats.speed = 6.0;
   crea->stats.normalSpeed = 6.0;
-  crea->stats.attackModifier = 0.4;
+  crea->stats.attackModifier = 0.6;
   crea->spellBook.addSpell(SpellFactory::SIMPLE_ATTACK, crea);
   crea->setCollide(true);
   crea->changePos(std::make_pair(-1, -1));
