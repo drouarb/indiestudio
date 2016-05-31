@@ -403,7 +403,7 @@ bool OgreUI::playSound(int id, gauntlet::SoundName name, bool loop)
 	  return (true);
 	}
     }
-  catch (std::exception & e)
+  catch (std::exception &e)
     {
       std::cerr << " ca a pété sur " << soundmap.at(name) << std::endl;
 //      std::cerr << e.what() << std::endl;
@@ -569,7 +569,7 @@ void OgreUI::hideItem(int id)
 void OgreUI::createScene(void)
 {
   mTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT, true);
- mSceneMgr->setSkyBox(true, "Examples/SceneSkyBox");
+  mSceneMgr->setSkyBox(true, "Examples/SceneSkyBox");
   createAmbientLight();
 }
 
@@ -1153,29 +1153,31 @@ void OgreUI::showCharacterSelectMenu(CharacterMenuName name)
   if (mTrayMgr->getWidget("MenuCharacterSelection"))
     {
       mTrayMgr->destroyWidget("MenuCharacterSelection");
-      mTrayMgr->createDecorWidget(OgreBites::TL_RIGHT,"MenuCharacterSelection", charactermap.at(name));
+      mTrayMgr->createDecorWidget(OgreBites::TL_RIGHT, "MenuCharacterSelection",
+				  charactermap.at(name));
     }
   else
-    mTrayMgr->createDecorWidget(OgreBites::TL_RIGHT,"MenuCharacterSelection", charactermap.at(name));
+    mTrayMgr->createDecorWidget(OgreBites::TL_RIGHT, "MenuCharacterSelection",
+				charactermap.at(name));
 }
 
 void OgreUI::hideCharacterSelectMenu()
 {
-   if (mTrayMgr->getWidget("MenuCharacterSelection"))
-      {
-       mTrayMgr->destroyWidget("MenuCharacterSelection");
-      }
+  if (mTrayMgr->getWidget("MenuCharacterSelection"))
+    {
+      mTrayMgr->destroyWidget("MenuCharacterSelection");
+    }
 }
 
 void OgreUI::increaseVolume(int id, float value)
 {
   std::stringstream ss;
   ss << id;
- OgreOggSound::OgreOggISound *s = mSoundManager->getSound(ss.str());
-if (s->getVolume() + value < 100)
-  {
-    s->setVolume(s->getVolume() + value);
-  }
+  OgreOggSound::OgreOggISound *s = mSoundManager->getSound(ss.str());
+  if (s->getVolume() + value < 100)
+    {
+      s->setVolume(s->getVolume() + value);
+    }
 }
 
 void OgreUI::decreaseVolume(int id, float value)
