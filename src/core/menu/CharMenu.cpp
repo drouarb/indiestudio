@@ -2,7 +2,6 @@
 #include "MessageBox.hh"
 #include "Core.hh"
 #include "PlayerController.hh"
-#include "CharacterMenuName.hh"
 
 gauntlet::core::CharMenu::CharMenu(Core &core, int idStart, Menu *parent) :
         TextBox(core, idStart, parent, "Name")
@@ -39,6 +38,8 @@ gauntlet::core::CharMenu::draw()
 {
     drawButtons();
     core.ogre.showCharacterSelectMenu(BERSERKER_MENU_SELECTION);
+    if (!core.gameIsRunning())
+        core.ogre.showBackground(BACKGROUND_HELL);
 }
 
 void

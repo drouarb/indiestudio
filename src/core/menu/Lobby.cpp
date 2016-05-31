@@ -64,6 +64,9 @@ gauntlet::core::Lobby::draw()
     buttons[2].setStr(core.pc->getName());
   drawButtons();
 
+    if (!core.gameIsRunning())
+        core.ogre.showBackground(BACKGROUND_DOOR);
+
   if (static_cast<WaitPacket *>(submenus[3])->receivedValue())
     receivedStartgame();
 }

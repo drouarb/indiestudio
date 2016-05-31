@@ -566,7 +566,7 @@ void OgreUI::hideItem(int id)
 
 void OgreUI::createScene(void)
 {
-  showBackground();
+  //showBackground();
   mTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT, true);
  mSceneMgr->setSkyBox(true, "Examples/SceneSkyBox");
   createAmbientLight();
