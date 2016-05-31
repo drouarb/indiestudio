@@ -86,7 +86,7 @@ void gauntlet::network::PacketFactory::recv() {
             try {
                 packet = (this->*createMap.at(id))(data);
             } catch (std::exception) {
-                std::cerr << "Invalid packet " << (int)id << "Received" << std::endl;
+                std::cerr << "PacketFactory::Invalid packet " << (int)id << "Received" << std::endl;
                 packet = NULL;
                 data.data->resize(0);
             }
