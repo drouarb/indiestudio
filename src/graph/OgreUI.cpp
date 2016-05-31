@@ -231,20 +231,24 @@ bool OgreUI::frameRenderingQueued(const Ogre::FrameEvent &evt)
 
 void OgreUI::applyAnimation(const Ogre::FrameEvent &evt)
 {
-  for (auto animation : animationsArray)
-    {
-      Ogre::AnimationState *t2 = animation.second;
-      t2->addTime(evt.timeSinceLastFrame);
-    }
+//  for (auto animation : animationsArray)
+//    {
+//      Ogre::AnimationState *t2 = animation.second;
+//      t2->addTime(evt.timeSinceLastFrame);
+//    }
   for (auto animation : this->animationsMap)
     {
       animations::Animation *t2 = animation.second;
       if (!t2)
 	continue;
+      std::cout << "AAA Animation: " << animation.first << ", " <<
+      animation.second->getName() << std::endl;
+/*
       if (!t2->update(evt.timeSinceLastFrame))
 	{
 	  this->animationsMap[animation.first] = NULL;
 	}
+*/
     }
 }
 
@@ -757,7 +761,7 @@ void OgreUI::stopSound(int id)
 {
   std::stringstream ss;
   ss << id;
-  std::cerr << "ici  " << id <<  std::endl;
+  std::cerr << "ici  " << id << std::endl;
   mSoundManager->getSound(ss.str())->stop();
 }
 
@@ -1056,7 +1060,8 @@ void OgreUI::load3dSound(int id, SoundName name, int x, int y)
 	sound->play();
 	if (sound->isMono())
 	  std::cout << "mono" << std::endl;
-	mCamera->getParentSceneNode()->attachObject(OgreOggSound::OgreOggSoundManager::getSingletonPtr()->getListener());
+	mCamera->getParentSceneNode()->attachObject(
+		OgreOggSound::OgreOggSoundManager::getSingletonPtr()->getListener());
       }
 }
 
@@ -1097,23 +1102,23 @@ bool OgreUI::addMapEntity(int entityId, const std::string &path, int x, int y,
 
 void OgreUI::scaleEntity(Ogre::SceneNode *s, gauntlet::EntityName id)
 {
-	switch (id)
-	  {
-	    case EntityName::SKELETON_WARLORD:
-	      s->scale(0.4 , 0.4, 0.4);
-	    break;
-	    case EntityName::SKELETON_FOOTMAN:
-	      s->scale(0.4, 0.4, 0.4);
-	    break;
-	    case EntityName::SKELETON_ARCHER:
-		  s->scale(0.4, 0.4, 0.4);
-	    break;
-	    case EntityName::SKELETON_SORCERER:
-	      s->scale(0.4, 0.4, 0.4);
-	    break;
-	    default:
-	      break;
-	  }
+  switch (id)
+    {
+      case EntityName::SKELETON_WARLORD:
+	s->scale(0.4, 0.4, 0.4);
+      break;
+      case EntityName::SKELETON_FOOTMAN:
+	s->scale(0.4, 0.4, 0.4);
+      break;
+      case EntityName::SKELETON_ARCHER:
+	s->scale(0.4, 0.4, 0.4);
+      break;
+      case EntityName::SKELETON_SORCERER:
+	s->scale(0.4, 0.4, 0.4);
+      break;
+      default:
+	break;
+    }
 }
 
 void OgreUI::muetAllSound()
@@ -1130,10 +1135,11 @@ void OgreUI::pauseSound(int id)
 
 void OgreUI::showBackground(gauntlet::BackgroundName background)
 {
-  try {
+  try
+    {
       mTrayMgr->showBackdrop(backgroundmap.at(background));
     }
-  catch (std::exception & e)
+  catch (std::exception &e)
     {
       std::cerr << e.what() << std::endl;
     }

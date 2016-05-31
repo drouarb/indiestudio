@@ -34,7 +34,8 @@ animations::JSONAnimation::JSONAnimation(const std::string &filename,
 					 bool loop) : filename(
 	filename), animationState(animationState)
 {
-  std::cerr << "Création d'une animation" << std::endl;
+  std::cout << "Animation (filename: " << filename <<
+  ", animationName: " << animationName << std::endl;
   this->jsonObj = new ::JSON::JsonObj();
   this->jsonObj->ParseFrom(this->readJson(filename));
   this->type = animationSource::JSON;
@@ -82,7 +83,7 @@ void gauntlet::animations::JSONAnimation::findProprerties(
 			  dynamic_cast<::JSON::JsonStr &>(json.GetObj(
 				  "speed")).Get());
 		} catch (...) //Speed is not mandatory
-		{}
+		{ }
 	    } catch (std::invalid_argument)
 	    {
 	      throw std::runtime_error("Invalid number");
