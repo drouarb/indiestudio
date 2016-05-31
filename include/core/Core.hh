@@ -21,64 +21,78 @@
 # include "MainMenu.hh"
 # include "Hud.hh"
 
-namespace			gauntlet
+namespace gauntlet
 {
-  namespace			network
-  {
-    class			PacketFactory;
-    class			PacketListener;
-  };
-
-  namespace			core
-  {
-    class			PlayerController;
-
-    class			Core
+    namespace network
     {
-    public:
-      Core();
-      ~Core();
+        class PacketFactory;
 
-      void			keyUp(IUIObserver::Key);
-      void			keyDown(IUIObserver::Key);
-      void			buttonClick(int buttonId, struct t_hitItem & item);
-      void			mouseMove(int x, int y);
-
-      void			play();
-      void			stop();
-      void			exit();
-      void			createServer();
-      void			initPacketf();
-      void			disconnect(std::string const & msg);
-      void			destroyPacketf(bool external);
-      void			load(std::string const & file);
-      bool			gameIsRunning();
-      IUIObserver::Key		getLastKey() const;
-
-      OgreUI			ogre;
-      Conf			conf;
-      PlayerController *	pc;
-      std::pair<std::string, int> serverAddr;
-      network::PacketFactory *	packetf;
-      std::string		map;
-      ActionLists		actionlists;
-      pid_t			cpid;
-      std::mutex		networkmutex;
-
-    private:
-      IUIObserver *		observer;
-      std::thread *		listenThread;
-      MainMenu			menu;
-      Hud			hud;
-      IUIObserver::Key		lastKey;
-      std::list<network::PacketListener*> listeners;
-      bool			playing;
-      std::mutex		disconnectMutex;
-      network::PacketFactory *	stoppingPacketf;
-
-      void			killServer();
+        class PacketListener;
     };
-  };
+
+    namespace core
+    {
+        class PlayerController;
+
+        class Core
+        {
+        public:
+            Core();
+
+            ~Core();
+
+            void keyUp(IUIObserver::Key);
+
+            void keyDown(IUIObserver::Key);
+
+            void buttonClick(int buttonId, struct t_hitItem &item);
+
+            void mouseMove(int x, int y);
+
+            void play();
+
+            void stop();
+
+            void exit();
+
+            void createServer();
+
+            void initPacketf();
+
+            void disconnect(std::string const &msg);
+
+            void destroyPacketf(bool external);
+
+            void load(std::string const &file);
+
+            bool gameIsRunning();
+
+            IUIObserver::Key getLastKey() const;
+
+            OgreUI ogre;
+            Conf conf;
+            PlayerController *pc;
+            std::pair<std::string, int> serverAddr;
+            network::PacketFactory *packetf;
+            std::string map;
+            ActionLists actionlists;
+            pid_t cpid;
+            std::mutex networkmutex;
+            Hud hud;
+
+        private:
+            IUIObserver *observer;
+            std::thread *listenThread;
+            MainMenu menu;
+            IUIObserver::Key lastKey;
+            std::list<network::PacketListener *> listeners;
+            bool playing;
+            std::mutex disconnectMutex;
+            network::PacketFactory *stoppingPacketf;
+
+            void killServer();
+        };
+    };
 };
 
 #endif

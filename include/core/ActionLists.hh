@@ -2,6 +2,7 @@
 # define ACTIONLISTS_HH_
 
 # include <list>
+#include <network/packet/PacketHUD.hh>
 # include "Stopwatch.hh"
 # include "ListenerAddEntity.hh"
 # include "ListenerDisconnect.hh"
@@ -13,6 +14,7 @@
 # include "ListenerDeleteParticle.hh"
 # include "ListenerAnimation.hh"
 # include "ListenerMap.hh"
+# include "ListenerHUD.hh"
 
 namespace			gauntlet
 {
@@ -37,6 +39,7 @@ namespace			gauntlet
       void			pushDeleteParticle(const network::PacketDeleteParticle *);
       void			pushAnimation(const network::PacketAnimation *);
       void			pushMap(const network::PacketMap *);
+        void			pushHUD(const network::PacketHUD *);
       void			setCameraTrackerId(int id);
 
     private:
@@ -70,6 +73,7 @@ namespace			gauntlet
       std::list<network::PacketDeleteParticle*> packetsDeleteParticle;
       std::list<network::PacketAnimation*> packetsAnimation;
       std::list<network::PacketMap*> packetsMap;
+        std::list<network::PacketHUD*> packetsHUD;
     };
   };
 };

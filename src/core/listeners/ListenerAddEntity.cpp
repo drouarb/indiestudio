@@ -10,6 +10,5 @@ gauntlet::core::ListenerAddEntity::~ListenerAddEntity()
 void
 gauntlet::core::ListenerAddEntity::notify(const network::PacketAddEntity * packet)
 {
-  std::cout << "notified entity " << packet->getMeshId() << std::endl;
   core.actionlists.pushAddEntity(packet);
 }
