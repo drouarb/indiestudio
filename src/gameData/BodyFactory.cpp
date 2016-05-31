@@ -95,19 +95,18 @@ void			BodyFactory::setBarbare()
           SoundName::SOUND_NONE
   };
   player->animations[ABody::ATTACK] = {
-          animations::AnimationsListJson::SKELETON_FOOTMAN_SWING_LEFT,
-          animations::AnimationsListJson::SKELETON_FOOTMAN_SWING_RIGHT,
-          animations::AnimationsListJson::SKELETON_FOOTMAN_SWING_HIGH_STRAIGHT_DOWN,
-          animations::AnimationsListJson::SKELETON_FOOTMAN_HIT_FROM_BACK,
-          animations::AnimationsListJson::SKELETON_FOOTMAN_HIT_FROM_FRONT
+          animations::AnimationsListJson::BERSEKER_ATTACK_1,
+          animations::AnimationsListJson::BERSEKER_ATTACK_2,
+          animations::AnimationsListJson::BERSEKER_ATTACK_3,
+          animations::AnimationsListJson::BERSEKER_ATTACK_4,
+          animations::AnimationsListJson::BERSEKER_ATTACK_5
   };
   player->animations[ABody::DEATH] = {
-          animations::AnimationsListJson::SKELETON_FOOTMAN_DYING_A,
-          animations::AnimationsListJson::SKELETON_FOOTMAN_DYING_B
+          animations::AnimationsListJson::BERSEKER_DEATH
   };
-  player->setIdle(animations::AnimationsListJson::SKELETON_FOOTMAN_IDLE);
-  player->setRunning(animations::AnimationsListJson::SKELETON_FOOTMAN_RUN);
-  player->setMeshId(EntityName::SKELETON_FOOTMAN);
+  player->setIdle(animations::AnimationsListJson::BERSEKER_IDLE);
+  player->setRunning(animations::AnimationsListJson::BERSEKER_RUN);
+  player->setMeshId(EntityName::BERSERK);
   player->setTextureId(TextureName::TEXTURE_NONE);
   player->setIdAI(NOAI);
   bodyTab.push_back(player);
