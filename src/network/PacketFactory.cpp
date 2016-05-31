@@ -17,6 +17,7 @@
 #include <network/packet/PacketControl.hh>
 #include <network/packet/PacketAnimation.hh>
 #include <network/packet/PacketMap.hh>
+#include <iostream>
 #include "network/PacketFactory.hh"
 #include "network/PacketFactorySocketDisconnectionListener.hh"
 
@@ -85,6 +86,7 @@ void gauntlet::network::PacketFactory::recv() {
             try {
                 packet = (this->*createMap.at(id))(data);
             } catch (std::exception) {
+                std::cerr << "Invalid packet " << (int)id << "Received" << std::endl;
                 packet = NULL;
                 data.data->resize(0);
             }
