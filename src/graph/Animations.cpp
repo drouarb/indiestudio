@@ -16,11 +16,11 @@ bool animations::JSONAnimation::update(double elapsedTime)
   this->currentTimePosition += elapsedTime * this->speed;
   if (currentTimePosition > this->end)
     {
-      if (!loop) {
-              this->animationState->setTimePosition(
-                      static_cast<float>(0));
-          return false;
-      }
+      if (!loop)
+	{
+	  this->animationState->setTimePosition(static_cast<float>(0));
+	  return false;
+	}
       this->currentTimePosition = this->begin;
     }
   this->animationState->setTimePosition(
