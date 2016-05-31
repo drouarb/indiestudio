@@ -119,8 +119,8 @@ gauntlet::core::ActionLists::doActions()
                         core.ogre.playSound((*it)->getRefId() + 1, (SoundName) (*it)->getSoundId(),
                                             (*it)->getLoop());
                     else
-                        core.ogre.playSound((*it)->getRefId() + 1, (SoundName) (*it)->getSoundId(),
-                                            (*it)->getLoop());
+                        core.ogre.play3dSound((*it)->getRefId() + 1, (SoundName) (*it)->getSoundId(), (*it)->getX(),
+                                              (*it)->getY(), false);
                     //TODO else: localized sound
                 }
 

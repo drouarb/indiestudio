@@ -42,6 +42,8 @@
 #include "BackgroundName.hh"
 #include "CharacterMenuName.hh"
 
+#define MAX_DISTANCE 3000
+
 namespace gauntlet
 {
   enum EffectName : int;
@@ -225,7 +227,7 @@ class OgreUI
 
   bool loadSound(int id, gauntlet::SoundName name);
 
-  void play3dSound(int id, gauntlet::SoundName name, int x, int y);
+  void play3dSound(int id, gauntlet::SoundName name, int x, int y, bool loop);
 
   void increaseVolume(int id, float value);
 
