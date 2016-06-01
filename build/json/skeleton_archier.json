@@ -230,7 +230,8 @@
 	{
 	    name: "Skeleton_archer_shoting",
 	    begin: "78.2921125790",
-	    end: "85.8929576400",
+	    end: "85.0",
+	    speed: "2"
 	},
 	{
 	    name: "Skeleton_archer_Hit_from_front",
