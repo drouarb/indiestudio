@@ -36,7 +36,7 @@ animations::JSONAnimation::JSONAnimation(const std::string &filename,
 					 bool loop) : filename(
 	filename), animationState(animationState)
 {
-    std::cout << "animationName: " << animationName << std::endl;
+  std::cout << "animationName: " << animationName << std::endl;
   this->jsonObj = new ::JSON::JsonObj();
   this->jsonObj->ParseFrom(this->readJson(filename));
   this->type = animationSource::JSON;
@@ -56,7 +56,7 @@ void gauntlet::animations::JSONAnimation::findProprerties(
       arr = dynamic_cast<::JSON::JsonArr &>(this->jsonObj->GetObj(
 	      "animation"));
     } catch (...)
-    {}
+    { }
   for (size_t i = 0; i < arr.Size(); ++i)
     {
       ::JSON::JsonObj &json = dynamic_cast<::JSON::JsonObj &>(arr[i]);
@@ -121,4 +121,18 @@ std::string animations::JSONAnimation::readJson(const std::string &filename)
 }
 
 animations::JSONAnimation::~JSONAnimation()
-{}
+{ }
+
+std::ostream &animations::operator<<(std::ostream &stream,
+				     animations::AnimationsListJson const &animation)
+{
+  try
+    {
+      std::pair<std::string, std::string> pair = jsonMap.at(animation);
+      stream << "file: " << pair.first << ", name: " << pair.second << std::endl;
+    } catch (std::exception &e)
+    {
+      stream << "id: " << static_cast<int>(animation) << e.what() << std::endl;
+    }
+  return (stream);
+}

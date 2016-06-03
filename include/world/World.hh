@@ -33,6 +33,7 @@
 # define RESPAWN_PRIORITY 60
 # define AUTOSHIFT_PRIORITY 3
 # define HUD_PRIORITY 15
+# define DEATH_COOLDOWN_NB_TURN 455
 
 namespace			gauntlet
 {
@@ -83,6 +84,7 @@ namespace			gauntlet
       std::vector<playerDeath>	deathPlayers;
       std::string		mapAssetName;
       std::string		mapHeightName;
+      bool			looper;
     private:
       int			getUniqueEffectId();
     public:
@@ -123,6 +125,7 @@ namespace			gauntlet
       void			checkHUD();
       std::string		getMapNames() const;
       std::pair<double, double>	getSize() const;
+      void			setLooper(bool nloop);
     };
   };
 };

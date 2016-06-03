@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Mon May  9 18:00:14 2016 Alexis Trouve
-// Last update Tue May 31 17:53:33 2016 Esteban Lewis
+// Last update Fri Jun  3 17:23:13 2016 Alexis Trouve
 //
 
 #include "SpellFactory.hh"
@@ -96,7 +96,7 @@ gauntlet::Spell *SpellFactory::getValkyriaDash() {
 gauntlet::Spell *SpellFactory::getBarbarianAttack() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Barbarian Primary Attack", 0, 60, 30, Area::CONE, SoundName::HAMMER_HIT_SOFT, 100);
+  spell->setBasicStats(giveNextId(), "Barbarian Primary Attack", 0, 60, 60, Area::CONE, SoundName::HAMMER_HIT_SOFT, 100);
   spell->setConeAngle(100);
   return spell;
 }
