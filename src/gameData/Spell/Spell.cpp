@@ -47,6 +47,7 @@ void gauntlet::Spell::ApplyDamage(std::list<gauntlet::ABody*> targets, Actor *ca
             if (actor->stats.HP <= 0)
             {
                 actor->setCollide(false);
+                actor->stats.HP = 0;
                 actor->getWorld()->notifyDeath(actor);
             }
         }

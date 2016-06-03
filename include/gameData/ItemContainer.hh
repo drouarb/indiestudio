@@ -20,9 +20,9 @@ namespace gauntlet
 
         std::list<Item> *getItemList();
         void    remove(Item item);
-        void useUpgrades(Player *player);
-        void clone(ItemContainer *itemContainer);
-        void operator+=(ItemContainer *items);
+        void    useUpgrades(Player *player);
+        void    clone(ItemContainer *itemContainer);
+        void    operator+=(ItemContainer *items);
     };
 };
 

@@ -41,7 +41,7 @@ bool        GameObject::gather(Player *player)
   return (false);
 }
 
-void        GameObject::open(ItemContainer *curInventory) //unfinished
+void        GameObject::open(ItemContainer *curInventory)
 {
   if (openable) {
     std::list<Item> *inv = curInventory->getItemList();
@@ -51,8 +51,8 @@ void        GameObject::open(ItemContainer *curInventory) //unfinished
         inv->remove(item);
         world->playSound(SoundName::DOOR_STONE, false, this->getPos());
         this->world->animeEntity(this->id, this->idle, false);
-        world->notifyDeath(this);
         this->collideActive = false;
+        this->world->notifyDeath(this);
         break;
       }
     }
@@ -66,21 +66,14 @@ void        GameObject::setBasicParameters(std::string _name, bool _gatherable, 
   openable = _openable;
 }
 
-void        GameObject::setItems(ItemContainer *itemContainer)
-{
-  ItemContainer itemCont;
-
-  itemCont = *itemContainer;
-  this->items = &itemCont;
-}
-
 ABody		*GameObject::clone(int id) const
 {
   GameObject	*obj;
 
   obj = new GameObject(id, world);
-  obj->setItems(this->items);
-  obj->items = this->items;
+  std::cerr << "ids habbeding" << std::endl;
+  obj->items->clone(this->items);
+  std::cerr << "ids do lade" << std::endl;
   obj->setName(name);
   obj->setCollide(collideActive);
   obj->changePos(coord);
@@ -90,6 +83,7 @@ ABody		*GameObject::clone(int id) const
   obj->model = this->model;
   obj->texture = this->texture;
   obj->openable = this->openable;
+  obj->idle = this->idle;
   return (obj);
 }
 

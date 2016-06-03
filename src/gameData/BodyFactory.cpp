@@ -545,6 +545,7 @@ void            BodyFactory::setKey()
 
   key = new Item();
   key->setKey(true);
+  key->setName("Key");
   obj = new GameObject(-1, world);
   obj->setBasicParameters("Key", true, false);
   obj->setCollide(false);

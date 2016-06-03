@@ -33,9 +33,11 @@ namespace gauntlet {
         Stats   getStats();
         bool    isConsumable();
         bool    isKey();
+        int     getId();
         void    setKey(bool key);
         bool    operator==(Item item);
         bool    operator<(Item item);
+        void    operator=(Item item);
         int     getNewId();
         void    generateItem(int pf);
         bool    isUpgrade();
@@ -45,6 +47,8 @@ namespace gauntlet {
         std::string getName();
         void setAsConsummable();
         Stats *modifyStats();
+
+        void setName(std::string _name);
     };
 };
 
