@@ -63,6 +63,8 @@ namespace gauntlet
       void setHealthPotion();
 
       void setSpeedPotion();
+
+      void setPowerPotion();
   };
 };
 
