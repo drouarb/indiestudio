@@ -38,7 +38,21 @@ gauntlet::core::ActionLists::doActions()
     mutex.lock();
     if (packetsDisconnect.size() > 0 && core.gameIsRunning())
         {
-            core.disconnect(packetsDisconnect.front()->getMessage());
+            bool done = false;
+            for (std::list<network::PacketDisconnect *>::iterator it = packetsDisconnect.begin();
+                    it != packetsDisconnect.end(); ++it)
+                {
+                    if ((*it)->getMessage() != "")
+                        {
+                            done = true;
+                            core.disconnect((*it)->getMessage());
+                            break ;
+                        }
+                }
+            if (!done)
+                {
+                    core.disconnect(packetsDisconnect.front()->getMessage());
+                }
         }
     else
         {
@@ -98,7 +112,7 @@ gauntlet::core::ActionLists::doActions()
                 {
                     core.ogre.triggerEffect((*it)->getRefId(), (EffectName) (*it)->getParticleId(),
                                             std::pair<double, double>
-                                                    ((double) (*it)->getX(), (double) (*it)->getY()));
+                                                    ((*it)->getX(), (*it)->getY()));
                 }
 
             for (std::list<network::PacketDeleteParticle *>::iterator
@@ -134,7 +148,6 @@ gauntlet::core::ActionLists::doActions()
                          it = packetsAnimation.begin(); it != packetsAnimation.end(); ++it)
                 {
                     if (core.ogre.entityExist((*it)->getEntityId()))
-//	    core.ogre.playAnimation((*it)->getEntityId(), (*it)->getAnimationId(), true);
                         core.ogre.playAnimation((*it)->getEntityId(),
                                                 static_cast<animations::AnimationsListJson>((*it)->getAnimationId()),
                                                 (*it)->isLoop());

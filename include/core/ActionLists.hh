@@ -16,66 +16,66 @@
 # include "ListenerMap.hh"
 # include "ListenerHUD.hh"
 
-namespace			gauntlet
+namespace gauntlet
 {
-  namespace			core
-  {
-    class			Core;
-
-    class			ActionLists
+    namespace core
     {
-    public:
-      ActionLists(Core &);
-      ~ActionLists();
+        class Core;
 
-      void			doActions();
-      void			pushAddEntity(const network::PacketAddEntity *);
-      void			pushDisconnect(const network::PacketDisconnect *);
-      void			pushMoveEntity(const network::PacketMoveEntity *);
-      void			pushDeleteEntity(const network::PacketDeleteEntity *);
-      void			pushStopSound(const network::PacketStopSound *);
-      void			pushPlaySound(const network::PacketPlaySound *);
-      void			pushAddParticle(const network::PacketAddParticle *);
-      void			pushDeleteParticle(const network::PacketDeleteParticle *);
-      void			pushAnimation(const network::PacketAnimation *);
-      void			pushMap(const network::PacketMap *);
-        void			pushHUD(const network::PacketHUD *);
-      void			setCameraTrackerId(int id);
+        class ActionLists
+        {
+        public:
+            ActionLists(Core &);
+            ~ActionLists();
 
-    private:
-      struct			particle
-      {
-	particle(int, int);
+            void doActions();
+            void pushAddEntity(const network::PacketAddEntity *);
+            void pushDisconnect(const network::PacketDisconnect *);
+            void pushMoveEntity(const network::PacketMoveEntity *);
+            void pushDeleteEntity(const network::PacketDeleteEntity *);
+            void pushStopSound(const network::PacketStopSound *);
+            void pushPlaySound(const network::PacketPlaySound *);
+            void pushAddParticle(const network::PacketAddParticle *);
+            void pushDeleteParticle(const network::PacketDeleteParticle *);
+            void pushAnimation(const network::PacketAnimation *);
+            void pushMap(const network::PacketMap *);
+            void pushHUD(const network::PacketHUD *);
+            void setCameraTrackerId(int id);
 
-	int			id;
-	int			decayTime;
-	Stopwatch		sw;
-      };
+        private:
+            struct particle
+            {
+                particle(int, int);
 
-      Core &			core;
+                int id;
+                int decayTime;
+                Stopwatch sw;
+            };
 
-      void			clearActions();
-      void			particlesDecay();
+            Core &core;
 
-      bool			pendingTracker;
-      unsigned int		entityIdTracker;
-      std::mutex		mutex;
+            void clearActions();
+            void particlesDecay();
 
-      std::list<particle *>	particles;
-      std::list<network::Packet*> allPackets;
-      std::list<network::PacketAddEntity*> packetsAddEntity;
-      std::list<network::PacketDisconnect*> packetsDisconnect;
-      std::list<network::PacketMoveEntity*> packetsMoveEntity;
-      std::list<network::PacketDeleteEntity*> packetsDeleteEntity;
-      std::list<network::PacketStopSound*> packetsStopSound;
-      std::list<network::PacketPlaySound*> packetsPlaySound;
-      std::list<network::PacketAddParticle*> packetsAddParticle;
-      std::list<network::PacketDeleteParticle*> packetsDeleteParticle;
-      std::list<network::PacketAnimation*> packetsAnimation;
-      std::list<network::PacketMap*> packetsMap;
-        std::list<network::PacketHUD*> packetsHUD;
+            bool pendingTracker;
+            unsigned int entityIdTracker;
+            std::mutex mutex;
+
+            std::list<particle *> particles;
+            std::list<network::Packet *> allPackets;
+            std::list<network::PacketAddEntity *> packetsAddEntity;
+            std::list<network::PacketDisconnect *> packetsDisconnect;
+            std::list<network::PacketMoveEntity *> packetsMoveEntity;
+            std::list<network::PacketDeleteEntity *> packetsDeleteEntity;
+            std::list<network::PacketStopSound *> packetsStopSound;
+            std::list<network::PacketPlaySound *> packetsPlaySound;
+            std::list<network::PacketAddParticle *> packetsAddParticle;
+            std::list<network::PacketDeleteParticle *> packetsDeleteParticle;
+            std::list<network::PacketAnimation *> packetsAnimation;
+            std::list<network::PacketMap *> packetsMap;
+            std::list<network::PacketHUD *> packetsHUD;
+        };
     };
-  };
 };
 
 #endif

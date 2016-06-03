@@ -3,33 +3,37 @@
 
 # include "Menu.hh"
 
-namespace			gauntlet
+namespace gauntlet
 {
-  namespace			core
-  {
-    class			Lobby : public Menu
+    namespace network
     {
-    public:
-      Lobby(Core &, int idStart, Menu * parent);
-      ~Lobby();
+        class PacketHandshake;
+    }
 
-      void			draw();
-      void			undraw();
+    namespace core
+    {
+        class Lobby : public Menu
+        {
+        public:
+            Lobby(Core &, int idStart, Menu *parent);
+            ~Lobby();
 
-    protected:
-      std::map<int, void (Lobby::*)(struct t_hitItem &)> funs;
-      int			connectLbl;
+            void draw();
+            void undraw();
 
-      void			doButton(int, struct t_hitItem &);
+            void setChars(network::PacketHandshake const *);
 
-      void			doServer(struct t_hitItem &);
-      void			doCharacter(struct t_hitItem &);
-      void			doPlay(struct t_hitItem &);
-      void			doCancel(struct t_hitItem &);
+        protected:
+            std::map<int, void (Lobby::*)(struct t_hitItem &)> funs;
 
-      void			receivedStartgame();
+            void doButton(int, struct t_hitItem &);
+            void doServer(struct t_hitItem &);
+            void doCharacter(struct t_hitItem &);
+            void doPlay(struct t_hitItem &);
+            void doCancel(struct t_hitItem &);
+            void receivedStartgame();
+        };
     };
-  };
 };
 
 #endif
