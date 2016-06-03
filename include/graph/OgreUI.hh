@@ -307,6 +307,8 @@ class OgreUI
 
 	void hideCharacterSelectMenu();
 
+  int getHeightAt(double x, double y);
+
 
 private:
 
