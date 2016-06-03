@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 16:50:32 2016 Alexis Trouve
-// Last update Tue May 31 23:14:16 2016 Esteban Lewis
+// Last update Fri Jun  3 18:32:29 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -62,6 +62,7 @@ void			BodyFactory::fillGameObjectTab()
   setKey();
   setHealthPotion();
   setSpeedPotion();
+  setPowerPotion();
 }
 
 void			BodyFactory::setBarbare()
@@ -70,7 +71,7 @@ void			BodyFactory::setBarbare()
 
   player = new Player(-1, world);
   player->setName("Barbare");
-  player->stats.HP = 200;
+  player->stats.HP = 100;
   player->stats.normalHP = 400;
   player->stats.speed = 11.0;
   player->stats.normalSpeed = 11.0;
@@ -289,15 +290,15 @@ void			BodyFactory::setSkeleton()
 
   crea = new Creature(-1, world);
   crea->setName("Skeleton");
-  crea->stats.HP = 400;
-  crea->stats.normalHP = 400;
+  crea->stats.HP = 100;
+  crea->stats.normalHP = 100;
   crea->stats.speed = 6.0;
   crea->stats.normalSpeed = 6.0;
   crea->stats.attackModifier = 0.6;
   crea->spellBook.addSpell(SpellFactory::SIMPLE_ATTACK, crea);
   crea->setCollide(true);
   crea->changePos(std::make_pair(-1, -1));
-  crea->changeSize(std::make_pair(50.0, 50.0));
+  crea->changeSize(std::make_pair(22.0, 22.0));
   crea->changeOrientation(0);
   crea->soundEffect[ABody::ATTACK] = {
           SoundName::ZOMBIE_1,
@@ -347,8 +348,8 @@ void			BodyFactory::setSkeletonWarlord()
 
   crea = new Creature(-1, world);
   crea->setName("SkeletonWarlord");
-  crea->stats.HP = 400;
-  crea->stats.normalHP = 400;
+  crea->stats.HP = 100;
+  crea->stats.normalHP = 100;
   crea->stats.speed = 6.0;
   crea->stats.normalSpeed = 6.0;
   crea->stats.attackModifier = 0.8;
@@ -458,8 +459,8 @@ void			BodyFactory::setSkeletonWizard()
 
   crea = new Creature(-1, world);
   crea->setName("SkeletonWizard");
-  crea->stats.HP = 400;
-  crea->stats.normalHP = 400;
+  crea->stats.HP = 100;
+  crea->stats.normalHP = 100;
   crea->stats.speed = 6.0;
   crea->stats.normalSpeed = 6.0;
   crea->stats.attackModifier = 0.2;
@@ -523,7 +524,7 @@ void			BodyFactory::setDraugr()
   crea->spellBook.addSpell(SpellFactory::SIMPLE_ATTACK, crea);
   crea->setCollide(true);
   crea->changePos(std::make_pair(-1, -1));
-  crea->changeSize(std::make_pair(15.0, 15.0));
+  crea->changeSize(std::make_pair(10.0, 10.0));
   crea->changeOrientation(0);
   crea->setMeshId(EntityName::BERSERK);
   crea->setTextureId(TextureName::TEXTURE_NONE);
@@ -545,6 +546,7 @@ void            BodyFactory::setKey()
 
   key = new Item();
   key->setKey(true);
+  key->setName("Key");
   obj = new GameObject(-1, world);
   obj->setBasicParameters("Key", true, false);
   obj->setCollide(false);
@@ -564,7 +566,8 @@ void             BodyFactory::setSpeedPotion()
 
   item = new Item();
   item->setKey(false);
-  item->setId();
+  item->setName("Speed Potion");
+  item->setAsConsummable();
   item->setPrice(10);
   item->modifyStats()->speed = 5;
   obj = new GameObject(-1, world);
@@ -586,7 +589,8 @@ void            BodyFactory::setHealthPotion()
 
   item = new Item();
   item->setKey(false);
-  item->setId();
+  item->setName("Health Potion");
+  item->setAsConsummable();
   item->setPrice(10);
   item->modifyStats()->HP = 100;
   obj = new GameObject(-1, world);
@@ -600,6 +604,30 @@ void            BodyFactory::setHealthPotion()
   obj->addItem(*item);
   bodyTab.push_back(obj);
 }
+
+void            BodyFactory::setPowerPotion()
+{
+  GameObject		*obj;
+  Item              *item;
+
+  item = new Item();
+  item->setKey(false);
+  item->setName("Power Potion");
+  item->setAsConsummable();
+  item->setPrice(10);
+  item->modifyStats()->attackModifier = 1;
+  obj = new GameObject(-1, world);
+  obj->setBasicParameters("Potion", true, false);
+  obj->setCollide(false);
+  obj->changeSize(std::make_pair(PLAYER_SIZE, PLAYER_SIZE));
+  obj->changePos(std::make_pair(-1, -1));
+  obj->changeOrientation(90);
+  obj->setMeshId(EntityName::CHEST);
+  obj->setTextureId(TextureName::TEXTURE_NONE);
+  obj->addItem(*item);
+  bodyTab.push_back(obj);
+}
+
 
 void            BodyFactory::setDoor()
 {

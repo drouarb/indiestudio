@@ -29,6 +29,7 @@ namespace gauntlet
       bool          gatherable;
       bool          openable;
       ItemContainer *items;
+
     public:
       GameObject(int nid, world::World *nworld);
       ~GameObject();
@@ -37,8 +38,7 @@ namespace gauntlet
       void open(ItemContainer *curInventory);
       void setBasicParameters(std::string _name, bool _gatherable, bool _openable);
       void addItem(Item item);
-      void gather(Player *player);
-      void setItems(ItemContainer *itemContainer);
+      bool gather(Player *player);
   };
 };
 

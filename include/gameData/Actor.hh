@@ -23,8 +23,7 @@ namespace gauntlet
   {
   public:
     Stats				stats;
-    SpellContainer			spellBook;
-    int					i;
+    SpellContainer		spellBook;
     int					idAI;
   private:
     bool				ismoving = false;

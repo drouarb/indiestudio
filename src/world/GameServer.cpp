@@ -197,10 +197,10 @@ void                        GameServer::sendDatas(int socketId)
 void                        GameServer::notifyTake()
 {
   std::cout << "notifyTake" << std::endl;
-  PacketHandshake packet(players[PlayerChar::BARBARIAN].isTake,
-			 players[PlayerChar::MAGE].isTake,
-			 players[PlayerChar::VALKYRIE].isTake,
-			 players[PlayerChar::RANGER].isTake,
+  PacketHandshake packet(!players[PlayerChar::BARBARIAN].isTake,
+			 !players[PlayerChar::MAGE].isTake,
+			 !players[PlayerChar::VALKYRIE].isTake,
+			 !players[PlayerChar::RANGER].isTake,
 			 maxPlayers, coPlayers);
   unsigned int i;
 
@@ -225,6 +225,9 @@ void                GameServer::receiveDeco(const network::PacketDisconnect *pac
     {
       if (players[i].socketId == socketId)
 	{
+	  world->deleteId(players[i].idPlayer, true);
+	  players[i].idPlayer = -1;
+	  players[i].name = "";
 	  players[i].socketId = -1;
 	  players[i].isTake = false;
 	}
@@ -248,10 +251,10 @@ void                GameServer::receiveDeco(const network::PacketDisconnect *pac
 void                        GameServer::sendHandShake(int socketFd)
 {
   std::cout << "sendHandShake" << std::endl;
-  PacketHandshake packet(players[PlayerChar::BARBARIAN].isTake,
-			 players[PlayerChar::MAGE].isTake,
-			 players[PlayerChar::VALKYRIE].isTake,
-			 players[PlayerChar::RANGER].isTake, maxPlayers,
+  PacketHandshake packet(!players[PlayerChar::BARBARIAN].isTake,
+			 !players[PlayerChar::MAGE].isTake,
+			 !players[PlayerChar::VALKYRIE].isTake,
+			 !players[PlayerChar::RANGER].isTake, maxPlayers,
 			 coPlayers);
 
   packetFact->send(packet, socketFd);
@@ -421,6 +424,7 @@ void                GameServer::sendDeleteEntity(ABody *body)
   unsigned int i;
 
   i = 0;
+  std::cout << "send deleteEntity id :" << body->getId() << "name: " << body->getName() << std::endl;
   while (i < players.size())
     {
       packetFact->send(packet, players[i].socketId);

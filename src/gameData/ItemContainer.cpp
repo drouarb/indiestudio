@@ -51,7 +51,11 @@ void ItemContainer::useUpgrades(Player *player) {
 
 void        ItemContainer::clone(ItemContainer *itemContainer) {
 
+    if (itemContainer->itemList.size() > 0)
+    {
+    this->itemList = std::list<Item> (itemContainer->itemList.size());
     this->itemList = itemContainer->itemList;
+    }
 }
 
 

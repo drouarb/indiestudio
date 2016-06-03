@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Thu May 12 17:13:51 2016 Alexis Trouve
-// Last update Sun May 29 00:38:47 2016 Alexis Trouve
+// Last update Fri Jun  3 17:58:45 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -29,18 +29,19 @@ GameObject::~GameObject()
   delete(items); //newItemContainer gameObject();
 }
 
-void        GameObject::gather(Player *player)
+bool        GameObject::gather(Player *player)
 {
   if (gatherable)
-  {
-    player->getInventory()->operator+=(this->items);
-    player->getInventory()->useUpgrades(player);
-    world->playSound(SoundName::COINS, false, this->getPos());
-    world->deleteId(this->id, false);
-  }
+    {
+      player->getInventory()->operator+=(this->items);
+      player->getInventory()->useUpgrades(player);
+      world->playSound(SoundName::COINS, false, this->getPos());
+      return (true);
+    }
+  return (false);
 }
 
-void        GameObject::open(ItemContainer *curInventory) //unfinished
+void        GameObject::open(ItemContainer *curInventory)
 {
   if (openable) {
     std::list<Item> *inv = curInventory->getItemList();
@@ -50,8 +51,8 @@ void        GameObject::open(ItemContainer *curInventory) //unfinished
         inv->remove(item);
         world->playSound(SoundName::DOOR_STONE, false, this->getPos());
         this->world->animeEntity(this->id, this->idle, false);
-        world->notifyDeath(this);
         this->collideActive = false;
+        this->world->notifyDeath(this);
         break;
       }
     }
@@ -65,21 +66,12 @@ void        GameObject::setBasicParameters(std::string _name, bool _gatherable, 
   openable = _openable;
 }
 
-void        GameObject::setItems(ItemContainer *itemContainer)
-{
-  ItemContainer itemCont;
-
-  itemCont = *itemContainer;
-  this->items = &itemCont;
-}
-
 ABody		*GameObject::clone(int id) const
 {
   GameObject	*obj;
 
   obj = new GameObject(id, world);
-  obj->setItems(this->items);
-  obj->items = this->items;
+  obj->items->clone(this->items);
   obj->setName(name);
   obj->setCollide(collideActive);
   obj->changePos(coord);
@@ -89,6 +81,7 @@ ABody		*GameObject::clone(int id) const
   obj->model = this->model;
   obj->texture = this->texture;
   obj->openable = this->openable;
+  obj->idle = this->idle;
   return (obj);
 }
 

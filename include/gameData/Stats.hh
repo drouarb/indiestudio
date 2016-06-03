@@ -24,6 +24,7 @@ namespace gauntlet {
         ~Stats();
 
         void operator+=(const Stats stats);
+        void operator=(const Stats stats);
     };
 };
 

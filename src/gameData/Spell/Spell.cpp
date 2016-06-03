@@ -47,6 +47,7 @@ void gauntlet::Spell::ApplyDamage(std::list<gauntlet::ABody*> targets, Actor *ca
             if (actor->stats.HP <= 0)
             {
                 actor->setCollide(false);
+                actor->stats.HP = 0;
                 actor->getWorld()->notifyDeath(actor);
             }
         }
@@ -110,8 +111,10 @@ void gauntlet::Spell::setEffect(EffectName opening, EffectName ending)
     endingEffect = ending;
 }
 
-void gauntlet::Spell::setBasicStats(int id, const std::string &name, double range, double radius, long damage, Area pattern,
-                                    unsigned int effect, unsigned long castTime) {
+void gauntlet::Spell::setBasicStats(int id, const std::string &name, double range,
+				    double radius, long damage, Area pattern,
+				    unsigned int effect, unsigned long castTime)
+{
     this->id = id;
     this->name = name;
     this->range = range;

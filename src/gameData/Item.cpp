@@ -59,6 +59,17 @@ bool    gauntlet::Item::operator==(Item item)
     return this->id == item.id;
 }
 
+void    gauntlet::Item::operator=(Item item)
+{
+    this->consumable = item.consumable;
+    this->key = item.key;
+    this->name = item.name;
+    this->number = item.number;
+    this->price = item.price;
+    this->upgrade = upgrade;
+    this->stats = item.stats;
+}
+
 bool    gauntlet::Item::compare(Item item, Item item2)
 {
     return (true);
@@ -73,8 +84,16 @@ bool    gauntlet::Item::isKey() {
     return key;
 }
 
-void gauntlet::Item::setKey(bool _key) {
+int     gauntlet::Item::getId() {
+    return id;
+}
+
+void    gauntlet::Item::setKey(bool _key) {
     key = _key;
+}
+
+void    gauntlet::Item::setName(std::string _name) {
+    name = _name;
 }
 
 void gauntlet::Item::setId() {
@@ -88,6 +107,8 @@ void gauntlet::Item::setPrice(int _price) {
 void Item::setAsConsummable() {
     consumable = true;
 }
+
+
 
 
 

@@ -11,6 +11,8 @@ namespace gauntlet
   {
     enum AnimationsListJson
     {
+      DOOR_OPEN,
+
       SKELETON_ARCHIER_SHOTING,
       SKELETON_ARCHIER_IDLE,
       SKELETON_ARCHIER_USE_OBJECT,
@@ -190,8 +192,6 @@ namespace gauntlet
       VALKYRIE_ATTACK_1,
       VALKYRIE_ATTACK_2,
       VALKYRIE_ATTACK_3,
-
-      DOOR_OPEN,
 
       BERSEKER_IDLE,
       BERSEKER_WALK,

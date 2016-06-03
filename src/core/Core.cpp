@@ -176,6 +176,7 @@ gauntlet::core::Core::initPacketf()
                     listeners.push_back(new ListenerAnimation(*this));
                     listeners.push_back(new ListenerMap(*this));
                     listeners.push_back(new ListenerHUD(*this));
+                    listeners.push_back(new ListenerDeleteEntity(*this));
                 }
             for (std::list<network::PacketListener *>::iterator it = listeners.begin();
                  it != listeners.end(); ++it)
