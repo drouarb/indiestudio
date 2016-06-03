@@ -2,6 +2,7 @@
 #include <fstream>
 #include <stdexcept>
 #include <unistd.h>
+#include <graph/Animations.hh>
 #include "World.hh"
 #include "IJson.hpp"
 #include "Rand.hh"
@@ -598,7 +599,8 @@ void                World::animeEntity(int id, unsigned int animeId, bool loop)
 //      std::cerr << "id:" << body->getId() << " name:" << body->getName() <<
 //      std::endl;
 //    }
-//  std::cerr << "anime id : " << animeId << ", id:" << id << std::endl;
+  std::cerr << "anime id : " << animeId << ", id:" << id << "; " <<
+	  (static_cast<animations::AnimationsListJson>(animeId)) << std::endl;
   gameServer->animeEntity(id, animeId, loop);
 }
 
