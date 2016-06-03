@@ -51,13 +51,10 @@ void ItemContainer::useUpgrades(Player *player) {
 
 void        ItemContainer::clone(ItemContainer *itemContainer) {
 
-    std::cerr << "this:" << this->itemList.size() << " itemcont:" << itemContainer->itemList.size() << std::endl;
     if (itemContainer->itemList.size() > 0)
     {
     this->itemList = std::list<Item> (itemContainer->itemList.size());
     this->itemList = itemContainer->itemList;
-    std::cerr << "this:" << this->itemList.size() << " itemcont:" << itemContainer->itemList.size() << std::endl;
-    std::cerr << "this:" << this->itemList.front().getName() << this->itemList.front().getId() << " itemcont:" << itemContainer->itemList.front().getName() << itemContainer->itemList.front().getId() << std::endl;
     }
 }
 

@@ -71,9 +71,7 @@ ABody		*GameObject::clone(int id) const
   GameObject	*obj;
 
   obj = new GameObject(id, world);
-  std::cerr << "ids habbeding" << std::endl;
   obj->items->clone(this->items);
-  std::cerr << "ids do lade" << std::endl;
   obj->setName(name);
   obj->setCollide(collideActive);
   obj->changePos(coord);

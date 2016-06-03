@@ -68,7 +68,6 @@ void    gauntlet::Item::operator=(Item item)
     this->price = item.price;
     this->upgrade = upgrade;
     this->stats = item.stats;
-    std::cerr << "hey, my id is:" << this->id << std::endl;
 }
 
 bool    gauntlet::Item::compare(Item item, Item item2)
