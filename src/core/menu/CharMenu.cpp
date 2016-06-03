@@ -7,10 +7,28 @@ gauntlet::core::CharMenu::CharMenu(Core &core, int idStart, Menu *parent) :
         TextBox(core, idStart, parent, "Name")
 {
     charType = world::BARBARIAN;
-    charTypes.push_back("Barbarian");
-    charTypes.push_back("Ranger");
-    charTypes.push_back("Mage");
-    charTypes.push_back("Valkyrie");
+    barbarian = true;
+    valkyrie = true;
+    ranger = true;
+    wizard = true;
+
+    submenus.push_back(new MessageBox(core, idStart + MENU_ID_LAYER, this, ""));
+}
+
+gauntlet::core::CharMenu::~CharMenu()
+{ }
+
+void
+gauntlet::core::CharMenu::draw()
+{
+    if (barbarian)
+       charTypes.push_back("Barbarian");
+    if (ranger)
+        charTypes.push_back("Ranger");
+    if (wizard)
+        charTypes.push_back("Wizard");
+    if (valkyrie)
+        charTypes.push_back("Valkyrie");
 
     buttons.push_back(Control(SELECTMENU, "Class: ", &charTypes, PCENTER,
                               idStart + buttons.size(), core.ogre));
@@ -27,15 +45,6 @@ gauntlet::core::CharMenu::CharMenu(Core &core, int idStart, Menu *parent) :
     funs.insert(std::pair<int, void (CharMenu::*)(struct t_hitItem &)>
                         (buttons[buttons.size() - 1].getId(), &CharMenu::doCancel));
 
-    submenus.push_back(new MessageBox(core, idStart + MENU_ID_LAYER, this, ""));
-}
-
-gauntlet::core::CharMenu::~CharMenu()
-{ }
-
-void
-gauntlet::core::CharMenu::draw()
-{
     drawButtons();
     core.ogre.showCharacterSelectMenu(BERSERKER_MENU_SELECTION);
     if (!core.gameIsRunning())
@@ -47,6 +56,9 @@ gauntlet::core::CharMenu::undraw()
 {
     undrawButtons();
     core.ogre.hideCharacterSelectMenu();
+    buttons.clear();
+    charTypes.clear();
+    funs.clear();
 }
 
 void
@@ -68,7 +80,7 @@ gauntlet::core::CharMenu::doChartype(struct t_hitItem &item)
             charType = world::RANGER;
             core.ogre.showCharacterSelectMenu(RANGER_MENU_SELECTION);
         }
-    else if (item.data == "Mage")
+    else if (item.data == "Wizard")
         {
             charType = world::MAGE;
             core.ogre.showCharacterSelectMenu(MAGUS_MENU_SELECTION);

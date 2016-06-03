@@ -4,31 +4,35 @@
 # include "TextBox.hh"
 # include "PlayerChars.hh"
 
-namespace			gauntlet
+namespace gauntlet
 {
-  namespace			core
-  {
-    class			CharMenu : public TextBox
+    namespace core
     {
-    public:
-      CharMenu(Core &, int idStart, Menu * parent);
-      ~CharMenu();
+        class CharMenu : public TextBox
+        {
+        public:
+            CharMenu(Core &, int idStart, Menu *parent);
+            ~CharMenu();
 
-      void			draw();
-      void			undraw();
+            void draw();
+            void undraw();
 
-    protected:
-      std::map<int, void (CharMenu::*)(struct t_hitItem &)> funs;
-      std::vector<std::string>	charTypes;
-      world::PlayerChar		charType;
+            bool barbarian;
+            bool valkyrie;
+            bool ranger;
+            bool wizard;
 
-      void			doButton(int, struct t_hitItem &);
+        protected:
+            std::map<int, void (CharMenu::*)(struct t_hitItem &)> funs;
+            std::vector<std::string> charTypes;
+            world::PlayerChar charType;
 
-      void			doChartype(struct t_hitItem &);
-      void			doOk(struct t_hitItem &);
-      void			doCancel(struct t_hitItem &);
+            void doButton(int, struct t_hitItem &);
+            void doChartype(struct t_hitItem &);
+            void doOk(struct t_hitItem &);
+            void doCancel(struct t_hitItem &);
+        };
     };
-  };
 };
 
 #endif

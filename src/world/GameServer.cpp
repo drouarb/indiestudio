@@ -197,10 +197,10 @@ void                        GameServer::sendDatas(int socketId)
 void                        GameServer::notifyTake()
 {
   std::cout << "notifyTake" << std::endl;
-  PacketHandshake packet(players[PlayerChar::BARBARIAN].isTake,
-			 players[PlayerChar::MAGE].isTake,
-			 players[PlayerChar::VALKYRIE].isTake,
-			 players[PlayerChar::RANGER].isTake,
+  PacketHandshake packet(!players[PlayerChar::BARBARIAN].isTake,
+			 !players[PlayerChar::MAGE].isTake,
+			 !players[PlayerChar::VALKYRIE].isTake,
+			 !players[PlayerChar::RANGER].isTake,
 			 maxPlayers, coPlayers);
   unsigned int i;
 
@@ -248,10 +248,10 @@ void                GameServer::receiveDeco(const network::PacketDisconnect *pac
 void                        GameServer::sendHandShake(int socketFd)
 {
   std::cout << "sendHandShake" << std::endl;
-  PacketHandshake packet(players[PlayerChar::BARBARIAN].isTake,
-			 players[PlayerChar::MAGE].isTake,
-			 players[PlayerChar::VALKYRIE].isTake,
-			 players[PlayerChar::RANGER].isTake, maxPlayers,
+  PacketHandshake packet(!players[PlayerChar::BARBARIAN].isTake,
+			 !players[PlayerChar::MAGE].isTake,
+			 !players[PlayerChar::VALKYRIE].isTake,
+			 !players[PlayerChar::RANGER].isTake, maxPlayers,
 			 coPlayers);
 
   packetFact->send(packet, socketFd);

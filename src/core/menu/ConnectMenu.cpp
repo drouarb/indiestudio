@@ -1,4 +1,5 @@
 #include <stdexcept>
+#include <core/menu/Lobby.hh>
 #include "ConnectMenu.hh"
 #include "MessageBox.hh"
 #include "Core.hh"
@@ -247,6 +248,7 @@ gauntlet::core::ConnectMenu::handshake()
         {
             static_cast<MessageBox *>(submenus[0])->setMsg("Connection succeeded.");
             submenus[0]->setOpen(true);
+            static_cast<Lobby *>(parent)->setChars(packet);
             justConnected = true;
             setOpen(false);
         }
