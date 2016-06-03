@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 29 20:40:50 2016 Alexis Trouve
-// Last update Wed Jun  1 00:53:54 2016 Esteban Lewis
+// Last update Fri Jun  3 22:46:42 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -29,6 +29,18 @@ Collider::Collider(const std::string& filePath)
 Collider::~Collider()
 {
 
+}
+
+bool	Collider::canMove(const std::pair<double, double>& ori, const std::pair<double, double>& end,
+			  const std::pair<double, double>& size)
+{
+
+  if (physicLayer->checkCoordSizeCanPass(ori, end, size) == false)
+    return (false);
+  if (dynamicLayer->giveBodyInAreaCircle(end.first, end.second, size.first + size.second).size() == 0)
+    return (true);
+  else
+    return (false);
 }
 
 bool	Collider::tryMoveBody(int id, double posx, double posy)

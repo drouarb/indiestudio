@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Mon May  9 14:06:15 2016 Alexis Trouve
-// Last update Tue May 24 19:40:13 2016 Alexis Trouve
+// Last update Fri Jun  3 22:26:49 2016 Alexis Trouve
 //
 
 #ifndef ABODY_HH_
@@ -53,7 +53,7 @@ namespace gauntlet
     ABody(int nid);
     virtual ~ABody();
 
-    virtual bool            recharged();
+    virtual bool			recharged();
     virtual void			changePos(const std::pair<double, double>& ncoord);
     virtual void			changeSize(const std::pair<double, double>& nsize);
     virtual void			changeOrientation(short norient);
