@@ -225,6 +225,9 @@ void                GameServer::receiveDeco(const network::PacketDisconnect *pac
     {
       if (players[i].socketId == socketId)
 	{
+	  world->deleteId(players[i].idPlayer, true);
+	  players[i].idPlayer = -1;
+	  players[i].name = "";
 	  players[i].socketId = -1;
 	  players[i].isTake = false;
 	}
@@ -421,6 +424,7 @@ void                GameServer::sendDeleteEntity(ABody *body)
   unsigned int i;
 
   i = 0;
+  std::cout << "send deleteEntity id :" << body->getId() << "name: " << body->getName() << std::endl;
   while (i < players.size())
     {
       packetFact->send(packet, players[i].socketId);

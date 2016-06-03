@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Mon May  9 14:06:15 2016 Alexis Trouve
-// Last update Thu May 19 16:15:03 2016 Alexis Trouve
+// Last update Fri Jun  3 17:41:49 2016 Alexis Trouve
 //
 
 #ifndef GAMEOBJECT_HH_
@@ -37,7 +37,7 @@ namespace gauntlet
       void open(ItemContainer *curInventory);
       void setBasicParameters(std::string _name, bool _gatherable, bool _openable);
       void addItem(Item item);
-      void gather(Player *player);
+      bool gather(Player *player);
       void setItems(ItemContainer *itemContainer);
   };
 };

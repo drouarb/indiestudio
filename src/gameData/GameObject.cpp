@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Thu May 12 17:13:51 2016 Alexis Trouve
-// Last update Sun May 29 00:38:47 2016 Alexis Trouve
+// Last update Fri Jun  3 17:58:45 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -29,15 +29,16 @@ GameObject::~GameObject()
   delete(items); //newItemContainer gameObject();
 }
 
-void        GameObject::gather(Player *player)
+bool        GameObject::gather(Player *player)
 {
   if (gatherable)
-  {
-    player->getInventory()->operator+=(this->items);
-    player->getInventory()->useUpgrades(player);
-    world->playSound(SoundName::COINS, false, this->getPos());
-    world->deleteId(this->id, false);
-  }
+    {
+      player->getInventory()->operator+=(this->items);
+      player->getInventory()->useUpgrades(player);
+      world->playSound(SoundName::COINS, false, this->getPos());
+      return (true);
+    }
+  return (false);
 }
 
 void        GameObject::open(ItemContainer *curInventory) //unfinished

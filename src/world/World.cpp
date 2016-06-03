@@ -19,6 +19,7 @@ World::World(GameServer *ngameserver)
   sizeX = 0;
   sizeY = 0;
   gameServer = ngameserver;
+  looper = true;
   std::cout << "world created end" << std::endl;
 }
 
@@ -183,7 +184,7 @@ void        World::gameLoop()
 {
   stopwatch.set();
   turn = 0;
-  while (42)
+  while (looper == true)
     {
       if (stopwatch.ellapsedMs() < ROUND_DURATION)
 	usleep(ROUND_DURATION * 1000 - stopwatch.ellapsedMs());
@@ -214,13 +215,37 @@ void    World::checkRespawn()
   while (i < deathPlayers.size())
     {
       deathPlayers[i].coolDownRespawn -= RESPAWN_PRIORITY;
-      if (deathPlayers[i].coolDownRespawn)
+      if (deathPlayers[i].coolDownRespawn <= 0)
 	{
 	  player = deathPlayers[i].player;
 	  player->stats.HP = player->stats.normalHP;
+	  player->changePos(spawnPoint);
+	  gameServer->sendMoveId(deathPlayers[i].player);
+	  collider->setNewBodyNoCheckEntity(player);
+	  deathPlayers.erase(deathPlayers.begin() + i);
+	  break;
 	}
       ++i;
     }
+}
+
+void        World::notifyDeath(ABody *body)
+{
+  std::cout << "world notify Death" << std::endl;
+  unsigned int i;
+  Player *player;
+
+  std::cout << "on notify une mort OMG id : " << body->getId() << std::endl;
+  collider->suprBody(body->getId());
+  i = 0;
+  while (i < AIs.size())
+    {
+      AIs[i]->suprActor(body->getId());
+      ++i;
+    }
+  if ((player = dynamic_cast<Player *>(body)) != NULL)
+    deathPlayers.push_back({DEATH_COOLDOWN_NB_TURN, player});
+  std::cout << "world notify Death end" << std::endl;
 }
 
 void    World::checkWin()
@@ -238,21 +263,20 @@ void    World::checkWin()
       if ((player = dynamic_cast<Player *>(body)) != NULL)
 	{
 	  pass = true;
-	  if (player->getPos().first < endPos.first
-	      || player->getPos().first + player->getSize().first >
-		 endPos.first + endSize.first
-	      || player->getPos().second < endPos.second
-	      || player->getPos().second + player->getSize().second >
-		 endPos.second + endSize.second)
-	    return;
+	  if (player->getPos().first >= endPos.first
+	      && player->getPos().first <= endPos.first + endSize.first
+	      && player->getPos().second >= endPos.second
+	      && player->getPos().second <= endPos.second + endSize.second)
+	    {
+	      std::cout << "win" << std::endl;
+	      gameServer->decoAll("Victory!");
+	      looper = false;
+	    }
 	}
       it++;
     }
   if (pass == false)
     return;
-  std::cout << "win" << std::endl;
-  gameServer->decoAll("Victory!");
-  exit(0);
 }
 
 void    World::applyGatheringAndOpening()
@@ -273,7 +297,7 @@ void    World::applyGatheringAndOpening()
 	  list = collider->giveBodyInAreaCircle(player->getPos().first,
 						player->getPos().second, 0,
 						(player->getSize().first +
-						 player->getSize().second), 0);
+						 player->getSize().second * 2.0), 0);
 	  if (list.size() > 0)
 	    {
 	      it2 = list.begin();
@@ -283,7 +307,8 @@ void    World::applyGatheringAndOpening()
 		  if ((gameobject = dynamic_cast<GameObject *>(body)) != NULL)
 		    {
 		      gameobject->open(&player->inventory);
-		      gameobject->gather(player);
+		      if (gameobject->gather(player) == true)
+			deleteId(gameobject->getId(), true);
 		    }
 		  it2++;
 		}
@@ -324,25 +349,6 @@ int    World::addNewBody(double xpos, double ypos, const std::string &name,
   collider->setNewBodyNoCheckEntity(body);
   std::cout << "world addnewbody end" << std::endl;
   return (body->getId());
-}
-
-void        World::notifyDeath(ABody *body)
-{
-  std::cout << "world notify Death" << std::endl;
-  unsigned int i;
-  Player *player;
-
-  std::cout << "on notify une mort OMG id : " << body->getId() << std::endl;
-  collider->suprBody(body->getId());
-  i = 0;
-  while (i < AIs.size())
-    {
-      AIs[i]->suprActor(body->getId());
-      ++i;
-    }
-  if ((player = dynamic_cast<Player *>(body)) != NULL)
-    deathPlayers.push_back({450, player});
-  std::cout << "world notify Death end" << std::endl;
 }
 
 void        World::deleteId(int id, bool deleted)
@@ -558,6 +564,8 @@ void                World::applyCommand(int id, core::Command command)
   body = getBodyById(id);
   if ((player = dynamic_cast<Player *>(body)) == NULL)
     return;
+  if (player->stats.HP <= 0.0)
+    return ;
   if (command == core::UP)
     {
       if (!player->getMove())
@@ -593,12 +601,6 @@ ABody *World::getBodyById(int id)
 
 void                World::animeEntity(int id, unsigned int animeId, bool loop)
 {
-//  for (auto body : bodys)
-//    {
-//      std::cerr << "id:" << body->getId() << " name:" << body->getName() <<
-//      std::endl;
-//    }
-//  std::cerr << "anime id : " << animeId << ", id:" << id << std::endl;
   gameServer->animeEntity(id, animeId, loop);
 }
 
@@ -615,4 +617,9 @@ std::string        World::getMapNames() const
 std::pair<double, double>    World::getSize() const
 {
   return (std::make_pair(sizeX, sizeY));
+}
+
+void				World::setLooper(bool nloop)
+{
+  looper = nloop;
 }

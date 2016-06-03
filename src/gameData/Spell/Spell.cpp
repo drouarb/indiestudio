@@ -110,8 +110,10 @@ void gauntlet::Spell::setEffect(EffectName opening, EffectName ending)
     endingEffect = ending;
 }
 
-void gauntlet::Spell::setBasicStats(int id, const std::string &name, double range, double radius, long damage, Area pattern,
-                                    unsigned int effect, unsigned long castTime) {
+void gauntlet::Spell::setBasicStats(int id, const std::string &name, double range,
+				    double radius, long damage, Area pattern,
+				    unsigned int effect, unsigned long castTime)
+{
     this->id = id;
     this->name = name;
     this->range = range;

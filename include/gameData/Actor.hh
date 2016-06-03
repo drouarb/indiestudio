@@ -24,7 +24,6 @@ namespace gauntlet
   public:
     Stats				stats;
     SpellContainer			spellBook;
-    int					i;
     int					idAI;
   private:
     bool				ismoving = false;
@@ -40,8 +39,7 @@ namespace gauntlet
     void			setIdAI(int ia);
     int				getIdAI() const;
     void			castSpell(int spellEnum);
-
-      void setStance();
+    void			setStance();
   };
 };
 

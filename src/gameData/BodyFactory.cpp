@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 16:50:32 2016 Alexis Trouve
-// Last update Tue May 31 23:14:16 2016 Esteban Lewis
+// Last update Fri Jun  3 18:32:29 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -70,7 +70,7 @@ void			BodyFactory::setBarbare()
 
   player = new Player(-1, world);
   player->setName("Barbare");
-  player->stats.HP = 200;
+  player->stats.HP = 100;
   player->stats.normalHP = 400;
   player->stats.speed = 11.0;
   player->stats.normalSpeed = 11.0;
@@ -289,15 +289,15 @@ void			BodyFactory::setSkeleton()
 
   crea = new Creature(-1, world);
   crea->setName("Skeleton");
-  crea->stats.HP = 400;
-  crea->stats.normalHP = 400;
+  crea->stats.HP = 100;
+  crea->stats.normalHP = 100;
   crea->stats.speed = 6.0;
   crea->stats.normalSpeed = 6.0;
   crea->stats.attackModifier = 0.6;
   crea->spellBook.addSpell(SpellFactory::SIMPLE_ATTACK, crea);
   crea->setCollide(true);
   crea->changePos(std::make_pair(-1, -1));
-  crea->changeSize(std::make_pair(50.0, 50.0));
+  crea->changeSize(std::make_pair(22.0, 22.0));
   crea->changeOrientation(0);
   crea->soundEffect[ABody::ATTACK] = {
           SoundName::ZOMBIE_1,
@@ -347,8 +347,8 @@ void			BodyFactory::setSkeletonWarlord()
 
   crea = new Creature(-1, world);
   crea->setName("SkeletonWarlord");
-  crea->stats.HP = 400;
-  crea->stats.normalHP = 400;
+  crea->stats.HP = 100;
+  crea->stats.normalHP = 100;
   crea->stats.speed = 6.0;
   crea->stats.normalSpeed = 6.0;
   crea->stats.attackModifier = 0.8;
@@ -458,8 +458,8 @@ void			BodyFactory::setSkeletonWizard()
 
   crea = new Creature(-1, world);
   crea->setName("SkeletonWizard");
-  crea->stats.HP = 400;
-  crea->stats.normalHP = 400;
+  crea->stats.HP = 100;
+  crea->stats.normalHP = 100;
   crea->stats.speed = 6.0;
   crea->stats.normalSpeed = 6.0;
   crea->stats.attackModifier = 0.2;
@@ -523,7 +523,7 @@ void			BodyFactory::setDraugr()
   crea->spellBook.addSpell(SpellFactory::SIMPLE_ATTACK, crea);
   crea->setCollide(true);
   crea->changePos(std::make_pair(-1, -1));
-  crea->changeSize(std::make_pair(15.0, 15.0));
+  crea->changeSize(std::make_pair(10.0, 10.0));
   crea->changeOrientation(0);
   crea->setMeshId(EntityName::BERSERK);
   crea->setTextureId(TextureName::TEXTURE_NONE);
