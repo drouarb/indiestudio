@@ -803,11 +803,10 @@ Ogre::SceneManager *OgreUI::getSceneManager()
 }
 
 
-bool __attribute_deprecated__ OgreUI::addWorldEntity(int entityId,
-						     EntityName meshid, int x,
-						     int y,
-						     short angle,
-						     TextureName texture_id)
+bool OgreUI::addWorldEntity(int entityId, EntityName meshid, int x,
+			    int y,
+			    short angle,
+			    TextureName texture_id)
 {
   std::stringstream ss;
   ss << entityId;
@@ -854,8 +853,17 @@ int OgreUI::triggerEffect(int id, gauntlet::EffectName type,
 
   ss << "effect" << id;
   Effect *&mapped_type = this->effectMap[id];
-  gauntlet::Effect *effect = new gauntlet::Effect(this, type, ss.str(), coord,
-						  this->quality);
+  gauntlet::Effect *effect;
+  try
+    {
+      effect = new gauntlet::Effect(this, type, ss.str(),
+				    coord,
+				    this->quality);
+    } catch (std::runtime_error &e)
+    {
+      std::cerr << "ERROR in OgreUI::triggerEffect: " << __LINE__ << ", " <<
+      e.what();
+    }
   mapped_type = effect;
   return 0;
 }

@@ -15,12 +15,17 @@ gauntlet::Effect::Effect(OgreUI *ogreUI, gauntlet::EffectName type, std::string 
       throw std::logic_error("Unrecognized type");
     }
 //  std::cout << "\t--------------------\tName: " << name << "*this->name" << *this->name << std::endl;
-  this->_particleSystem = ogreUI->getSceneManager()->createParticleSystem(name, *this->name);
+  Ogre::SceneManager *pManager = ogreUI->getSceneManager();
+  if (!pManager)
+    {
+      throw std::runtime_error("Cannot find SceneManager");
+    }
+  this->_particleSystem = pManager->createParticleSystem(name, *this->name);
   if (this->_particleSystem == NULL)
     {
       throw std::runtime_error("Template " + name + " not found");
     }
-  Ogre::SceneNode* particleNode = ogreUI->getSceneManager()->getRootSceneNode()->createChildSceneNode(name + "scene");
+  Ogre::SceneNode* particleNode = pManager->getRootSceneNode()->createChildSceneNode(name + "scene");
   const Ogre::Vector3 &scale = particleNode->getScale() / _EFFECT_DIVIDE_SIZE;
   std::cout << "scale effect: " << scale << ", original:" << particleNode->getScale() << std::endl;
   particleNode->setScale(scale);
