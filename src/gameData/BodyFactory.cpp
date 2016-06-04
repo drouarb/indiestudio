@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 16:50:32 2016 Alexis Trouve
-// Last update Sat Jun  4 17:27:02 2016 Alexis Trouve
+// Last update Sat Jun  4 18:53:58 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -624,7 +624,11 @@ ABody	*BodyFactory::giveBody(const std::string& name)
 	    {
 	      j = actor->getIdAI();
 	      if (j != NOAI)
-		AIs[j]->setNewAI(actor);
+		{
+		  std::cout << "size:" << AIs.size() << std::endl;
+		  std::cout << "j:" << j << std::endl;
+		  AIs[j]->setNewAI(actor);
+		}
 	    }
 	  return (body);
 	}

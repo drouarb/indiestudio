@@ -7,6 +7,7 @@
 #include "IJson.hpp"
 #include "Rand.hh"
 #include "SpawnerAI.hh"
+#include "DistAI.hh"
 
 using namespace gauntlet;
 using namespace world;
@@ -14,6 +15,7 @@ using namespace world;
 World::World(GameServer *ngameserver)
 {
   std::cout << "world created" << std::endl;
+  AIs.push_back(new BasicAI(this));
   AIs.push_back(new BasicAI(this));
   AIs.push_back(new SpawnerAI(this));
   Factory = new BodyFactory(this, AIs);
@@ -56,14 +58,14 @@ void    World::loadGame(std::string const &file)
   try
     {
       JSON::JsonObj & endZone = dynamic_cast<JSON::JsonObj &>(json.GetObj("endZone"));
-      endPos.first = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("posX")).Get());
-      endPos.second = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("posY")).Get());
-      endSize.first = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("sizeX")).Get());
-      endSize.second = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("sizeY")).Get());
+      endPos.first = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("posX")).Get()) * HEIGHT_MAP_SCALE;
+      endPos.second = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("posY")).Get()) * HEIGHT_MAP_SCALE;
+      endSize.first = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("sizeX")).Get()) * HEIGHT_MAP_SCALE;
+      endSize.second = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("sizeY")).Get()) * HEIGHT_MAP_SCALE;
       
       JSON::JsonObj & spawn = dynamic_cast<JSON::JsonObj &>(json.GetObj("spawn"));
-      spawnPoint.first = stod(dynamic_cast<JSON::JsonStr &>(spawn.GetObj("x")).Get());
-      spawnPoint.second = stod(dynamic_cast<JSON::JsonStr &>(spawn.GetObj("y")).Get());
+      spawnPoint.first = stod(dynamic_cast<JSON::JsonStr &>(spawn.GetObj("x")).Get()) * HEIGHT_MAP_SCALE;
+      spawnPoint.second = stod(dynamic_cast<JSON::JsonStr &>(spawn.GetObj("y")).Get()) * HEIGHT_MAP_SCALE;
 
       if (spawnPoint.first < 0 || spawnPoint.first >= sizeX ||
 	  spawnPoint.second < 0 || spawnPoint.second >= sizeY)
@@ -73,8 +75,8 @@ void    World::loadGame(std::string const &file)
       for (unsigned int i = 0; i < arr.Size(); ++i)
 	{
 	  JSON::JsonObj & obj = dynamic_cast<JSON::JsonObj &>(arr[i]);
-	  addNewBody(stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("x")).Get()),
-		     stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("y")).Get()),
+	  addNewBody(stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("x")).Get()) * HEIGHT_MAP_SCALE,
+		     stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("y")).Get()) * HEIGHT_MAP_SCALE,
 		     dynamic_cast<JSON::JsonStr &>(obj.GetObj("name")).Get(),
 		     Math::getAngleFromDegrees
 		     (stoi(dynamic_cast<JSON::JsonStr &>(obj.GetObj("angle")).Get())));
@@ -86,8 +88,8 @@ void    World::loadGame(std::string const &file)
 	  JSON::JsonObj &obj = dynamic_cast<JSON::JsonObj &>(sounds[i]);
 	  putSound(stoi(dynamic_cast<JSON::JsonStr &>(obj.GetObj("id")).Get()),
 		   std::pair<double, double>
-		   (stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("x")).Get()),
-		    stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("y")).Get())));
+		   (stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("x")).Get()) * HEIGHT_MAP_SCALE,
+		    stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("y")).Get()) * HEIGHT_MAP_SCALE));
 	}
       JSON::JsonArr & particles = dynamic_cast<JSON::JsonArr &>
 	(json.GetObj("particles"));
@@ -100,8 +102,8 @@ void    World::loadGame(std::string const &file)
 			    (stoi(dynamic_cast<JSON::JsonStr &>(obj.GetObj(
 				    "angle")).Get())),
 		    std::pair<double, double>
-		    (stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("x")).Get()),
-		     stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("y")).Get())));
+		    (stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("x")).Get()) * HEIGHT_MAP_SCALE,
+		     stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("y")).Get()) * HEIGHT_MAP_SCALE));
 	}
     }
   catch (std::runtime_error &e)

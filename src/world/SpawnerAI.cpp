@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 //
 // Started on  Sun May 22 11:46:42 2016 Alexis Trouve
-// Last update Sat Jun  4 17:36:02 2016 Alexis Trouve
+// Last update Sat Jun  4 18:47:24 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -56,7 +56,12 @@ void            SpawnerAI::launchAI(gauntlet::Actor *actor)
 {
   Spawner	*me;
   std::pair<double, double>	pos;
-
+  std::list<ABody *> bodys;
+  std::list<ABody *>::iterator it1;
+  Player *savedPlayer;
+  Player *tmpPlayer;
+  int idAttack;
+  
   if ((me = dynamic_cast<Spawner*>(actor)) != NULL)
     {
       if (me->getSpawnCoolDown() == 0)
@@ -69,12 +74,6 @@ void            SpawnerAI::launchAI(gauntlet::Actor *actor)
 	me->setSpawnCoolDown(me->getSpawnCoolDown() - 1);
     }
 
-  std::list<ABody *> bodys;
-  std::list<ABody *>::iterator it1;
-  Player *savedPlayer;
-  Player *tmpPlayer;
-  int idAttack;
-  
   bodys = world->getCollider().giveBodyInAreaCircle(actor->getPos().first, actor->getPos().second, 0, CHECK_DIST, 0);
   it1 = bodys.begin();
   savedPlayer = NULL;

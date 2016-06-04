@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Fri Jun  3 21:52:09 2016 Alexis Trouve
-// Last update Sat Jun  4 17:25:23 2016 Alexis Trouve
+// Last update Sat Jun  4 18:00:43 2016 Alexis Trouve
 //
 
 #ifndef CPP_INDIE_SPAWN
@@ -41,6 +41,7 @@ namespace gauntlet
     int				getSpawnCoolDownBase() const;
     void			setSpawnCoolDown(int nbr);
     void			setSpawnCoolDownBase(int nbr);
+    virtual ABody		*clone(int id) const;
   };
 };
 

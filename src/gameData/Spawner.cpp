@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Fri Jun  3 21:56:39 2016 Alexis Trouve
-// Last update Sat Jun  4 17:38:29 2016 Alexis Trouve
+// Last update Sat Jun  4 18:00:59 2016 Alexis Trouve
 //
 
 #include "Spawner.hh"
@@ -91,4 +91,39 @@ void				Spawner::setSpawnCoolDown(int nbr)
 void				Spawner::setSpawnCoolDownBase(int nbr)
 {
   spawnCoolDownBase = nbr;
+}
+
+ABody           *Spawner::clone(int id) const
+{
+  Spawner         *spawn;
+  unsigned int  i;
+
+  spawn = new Spawner(id, world);
+  spawn->setName(name);
+  spawn->stats.HP = stats.HP;
+  spawn->stats.normalHP = stats.normalHP;
+  spawn->stats.speed = stats.speed;
+  spawn->stats.normalSpeed = stats.normalSpeed;
+  spawn->stats.attackModifier = stats.attackModifier;
+  i = 0;
+  while (i < spellBook.spellList.size())
+    {
+      spawn->spellBook.spellList.push_back(spellBook.spellList[i]);
+      ++i;
+    }
+  spawn->setCollide(collideActive);
+  spawn->setTextureId(texture);
+  spawn->setMeshId(model);
+  spawn->setIdle(idle);
+  spawn->setRunning(running);
+  spawn->changePos(coord);
+  spawn->death = this->death;
+  spawn->changeSize(size);
+  spawn->changeOrientation(orientation);
+  spawn->setIdAI(idAI);
+  spawn->setSpawnCoolDown(spawnCoolDown);
+  spawn->setSpawnCoolDownBase(spawnCoolDownBase);
+  spawn->setMinionName(minionName);
+  spawn->setMaxSpawn(maxSpawn);
+  return (spawn);
 }

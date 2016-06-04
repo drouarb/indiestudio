@@ -58,8 +58,8 @@
     },
     {
       name: "death",
-      begin: "528",
-      end: "532"
+      begin: "22",
+      end: "25"
     },
     {
       name: "recover",
