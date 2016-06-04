@@ -51,13 +51,13 @@ Spell		*SpellFactory::giveSpell(SpellEnum type)
 gauntlet::Spell *SpellFactory::getRangerAttack() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Ranger Attack", 500, 100, 50, Area::FLIGHT_PATH, SoundName::BOW, 100);
+  spell->setBasicStats(giveNextId(), "Ranger Attack", 300, 100, 50, Area::FLIGHT_PATH, SoundName::BOW, 100);
   return spell;
 }
 
 gauntlet::Spell *SpellFactory::getRangerExplosiveArrow() {
   Spell *spell = new Spell;
-  spell->setBasicStats(giveNextId(), "Ranger Explosive Arrow", 500, 100, 100, Area::CIRCLE, SoundName::MAGIC_EXPLOSION_1, 300);
+  spell->setBasicStats(giveNextId(), "Ranger Explosive Arrow", 300, 100, 100, Area::CIRCLE, SoundName::MAGIC_EXPLOSION_1, 300);
   spell->setEffect(EffectName::CELLS, EffectName::ATOMIC);
   return spell;
 }
@@ -65,7 +65,7 @@ gauntlet::Spell *SpellFactory::getRangerExplosiveArrow() {
 gauntlet::Spell *SpellFactory::getWizardFireBall() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Wizard Fire Ball", 500, 200, 50, Area::COLUMN, SoundName::MAGIC_EXPLOSION_2, 100);
+  spell->setBasicStats(giveNextId(), "Wizard Fire Ball", 300, 200, 50, Area::COLUMN, SoundName::MAGIC_EXPLOSION_2, 100);
   spell->setEffect(EffectName::ATOMIC, EffectName::EXPLOSION);
   return spell;
 }
@@ -73,7 +73,7 @@ gauntlet::Spell *SpellFactory::getWizardFireBall() {
 gauntlet::Spell *SpellFactory::getWizardFireCone() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Wizard Fire Cone", 0, 100, 150, Area::CIRCLE, SoundName::FIRE_BIG, 200);
+  spell->setBasicStats(giveNextId(), "Wizard supernova", 0, 100, 150, Area::CIRCLE, SoundName::FIRE_BIG, 600);
   spell->setConeAngle(80);
   spell->setEffect(EffectName::GALAXY, EffectName::SUPERNOVA);
   return spell;
@@ -111,7 +111,7 @@ gauntlet::Spell *SpellFactory::getBarbarianTornado() {
 gauntlet::Spell *SpellFactory::iceBall() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Ice Ball", 500, 100, 50, Area::COLUMN, SoundName::MAGIC_EXPLOSION_2, 600);
+  spell->setBasicStats(giveNextId(), "Ice Ball", 300, 100, 50, Area::COLUMN, SoundName::MAGIC_EXPLOSION_2, 600);
   spell->setEffect(EffectName::SNOW, EffectName::BLIND);
   return spell;
 }

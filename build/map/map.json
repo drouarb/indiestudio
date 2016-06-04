@@ -23,13 +23,7 @@
             y : "60"
 	},
 	{
-	    name : "Door",
-	    angle : "0",
-	    x : "81",
-	    y : "61"
-	},
-	{
-	    name : "Key",
+	    name : "SkeletonWizard",
 	    angle : "0",
 	    x : "71",
 	    y : "61"
@@ -39,6 +33,18 @@
 	    angle : "0",
 	    x : "91",
 	    y : "61"
+	},
+	{
+		name : "SkeletonArcher",
+		angle : "0",
+		x : "71",
+		y : "61"
+	},
+	{
+		name : "SpeedPotion",
+		angle : "0",
+		x : "91",
+		y : "61"
 	},
 	{
 	    name: "Skeleton",

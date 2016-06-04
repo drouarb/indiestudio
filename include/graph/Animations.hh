@@ -67,6 +67,8 @@ namespace gauntlet
       std::string readJson(const std::string &filename);
 
       virtual void reset() final;
+
+      std::string animationName;
     };
 
     /*

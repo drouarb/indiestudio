@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 //
 // Started on  Sun May 22 11:46:42 2016 Alexis Trouve
-// Last update Sat Jun  4 19:08:08 2016 Alexis Trouve
+// Last update Sat Jun  4 20:02:29 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -53,6 +53,8 @@ int        SpawnerAI::launchAI(std::pair<double, double> pos)
 void            SpawnerAI::launchAI(gauntlet::Actor *actor)
 {
   Spawner	*me;
+  double	vectX;
+  double	vectY;
   std::pair<double, double>	pos;
   std::list<ABody *> bodys;
   std::list<ABody *>::iterator it1;
@@ -60,19 +62,6 @@ void            SpawnerAI::launchAI(gauntlet::Actor *actor)
   Player *tmpPlayer;
   int idAttack;
   
-  if ((me = dynamic_cast<Spawner*>(actor)) != NULL)
-    {
-      std::cout << "cool" << me->getSpawnCoolDown() << std::endl;
-      if (me->getSpawnCoolDown() == 0)
-	{
-	  pos = me->getPos();
-	  me->spawnAllie(pos);
-	  me->setSpawnCoolDown(me->getSpawnCoolDownBase());
-	}
-      else
-	me->setSpawnCoolDown(me->getSpawnCoolDown() - 1);
-    }
-
   bodys = world->getCollider().giveBodyInAreaCircle(actor->getPos().first, actor->getPos().second, 0, CHECK_DIST, 0);
   it1 = bodys.begin();
   savedPlayer = NULL;
@@ -86,6 +75,20 @@ void            SpawnerAI::launchAI(gauntlet::Actor *actor)
     }
   if (savedPlayer == NULL)
     return;
+  if ((me = dynamic_cast<Spawner*>(actor)) != NULL)
+    {
+      if (me->getSpawnCoolDown() == 0)
+	{
+	  me->setSpawnCoolDown(me->getSpawnCoolDownBase());
+	  vectX = (Math::sin(actor->getOrientation()) * actor->stats.normalSpeed * 15.0);
+	  vectY = (Math::cos(actor->getOrientation()) * actor->stats.normalSpeed * 15.0);
+	  pos = std::make_pair(actor->getPos().first + vectX, actor->getPos().second + vectY);
+	  me->spawnAllie(pos);
+	}
+      else
+	me->setSpawnCoolDown(me->getSpawnCoolDown() - 1);
+    }
+
   actor->changeOrientation(Math::getAngle(atan2(savedPlayer->getPos().second - actor->getPos().second,
 						actor->getPos().first - savedPlayer->getPos().first)));
   idAttack = actor->spellBook.giveSpell(400, 30, true, NOAREA, 50, 10);
