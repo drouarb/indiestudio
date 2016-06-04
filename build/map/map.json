@@ -131,22 +131,10 @@
 	    y : "170"
 	},
 	{
-	    name : "Key",
+	    name : "Door",
 	    angle : "0",
-	    x : "91",
+	    x : "81",
 	    y : "61"
-	},
-	{
-	    name : "SkeletonArcher",
-	    angle : "0",
-	    x : "100",
-	    y : "90"
-	},
-	{
-	    name : "SkeletonArcher",
-	    angle : "0",
-	    x : "100",
-	    y : "90"
 	},
 	{
 		name : "SpeedPotion",
@@ -155,19 +143,25 @@
 		y : "61"
 	},
 	{
-	    name: "Skeleton",
+	    name : "SkeletonArcher",
 	    angle : "0",
-	    x : "61",
-	    y :	"61"
-	}
+	    x : "100",
+	    y : "90"
+	},
+	{
+	    name : "SkeletonArcher",
+	    angle : "0",
+	    x : "100",
+	    y : "90"
+	},
     ],
     sounds:
     [
 	{
-	        id : "2",
-	        x : "-1",
-	        y : "-1"
-	    }
+	    id : "2",
+	    x : "-1",
+	    y : "-1"
+	}
     ],
     particles:
     [ ]

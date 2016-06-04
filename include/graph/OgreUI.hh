@@ -36,6 +36,7 @@
 #include <gameData/EntityName.hh>
 #include <gameData/TextureName.hh>
 #include <gameData/SoundName.hh>
+#include <helpers/Files.hh>
 #include "IUIObserver.hh"
 #include "AnimationsList.hh"
 #include "HeightMap.hh"
@@ -111,7 +112,8 @@ class OgreUI
 
   gauntlet::HeightMap heightmap;
 
-  int quality = 100;
+  int quality = 15;
+  gauntlet::Files file;
 
  public:
   bool init();

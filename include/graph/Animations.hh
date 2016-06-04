@@ -55,6 +55,7 @@ namespace gauntlet
      public:
       JSONAnimation(const std::string &filename,
 		    const std::string &animationName, Ogre::AnimationState *,
+		    gauntlet::Files *files,
 		    bool loop);
 
       ~JSONAnimation();
@@ -284,6 +285,8 @@ namespace gauntlet
 	    {BERSEKER_STRAFE_LEFT,                            {"berseker.json",          "strafe_left"}},
 	    {BERSEKER_DODGE_RIGHT,                            {"berseker.json",          "dodge_right"}},
     };
-    std::ostream &operator<<(std::ostream &stream, animations::AnimationsListJson const &animation);
+
+    std::ostream &operator<<(std::ostream &stream,
+			     animations::AnimationsListJson const &animation);
   }
 }

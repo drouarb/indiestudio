@@ -36,9 +36,6 @@ bool    PhysicCollideLayer::checkCoordSizeCanPass(const std::pair<double, double
                                                   const std::pair<double, double> &wantedPos,
                                                   const std::pair<double, double> &size)
 {
-    /*std::cout << "checkCoordSizeCanPass " << oldPos.first << " " << oldPos.second << " and "
-    << wantedPos.first << " " << wantedPos.second << std::endl;
-*/
     if (oldPos.first == wantedPos.first && oldPos.second == wantedPos.second)
           return (true);
 
@@ -110,7 +107,9 @@ bool    PhysicCollideLayer::checkCoordSizeCanPass(const std::pair<double, double
                     end.first = oldPos.first + size.first / 2;
                 }
         }
-    return (doOnLine(start, end, &PhysicCollideLayer::checkLine));
+
+    bool res = doOnLine(start, end, &PhysicCollideLayer::checkLine);
+    return (res);
 }
 
 bool PhysicCollideLayer::doOnLine(std::pair<double, double> start,
@@ -120,6 +119,7 @@ bool PhysicCollideLayer::doOnLine(std::pair<double, double> start,
 {
     double inc_y;
     double inc_x;
+    int loop = 1;
 
     if (ABS(start.first - end.first) > ABS(start.second - end.second))
         {
@@ -131,20 +131,28 @@ bool PhysicCollideLayer::doOnLine(std::pair<double, double> start,
             inc_y *= HEIGHT_MAP_SCALE;
 
             if (start.first < end.first)
-                while (start.first <= end.first)
+                while (loop != 0)
                     {
                         if (!(this->*func)(start))
                             return (false);
+                        if (start.first == end.first)
+                            loop = 0;
                         start.second += inc_y;
                         start.first += inc_x;
+                        if (start.first > end.first)
+                            start = end;
                     }
             else
-                while (start.first >= end.first)
+                while (loop != 0)
                     {
                         if (!(this->*func)(start))
                             return (false);
+                        if (start.first == end.first)
+                            loop = 0;
                         start.second += inc_y;
                         start.first += inc_x;
+                        if (start.first < end.first)
+                            start = end;
                     }
         }
     else
@@ -157,20 +165,28 @@ bool PhysicCollideLayer::doOnLine(std::pair<double, double> start,
             inc_y *= HEIGHT_MAP_SCALE;
 
             if (start.second < end.second)
-                while (start.second <= end.second)
+                while (loop != 0)
                     {
                         if (!(this->*func)(start))
                             return (false);
+                        if (start.second == end.second)
+                            loop = 0;
                         start.second += inc_y;
                         start.first += inc_x;
+                        if (start.second > end.second)
+                            start = end;
                     }
             else
-                while (start.second >= end.second)
+                while (loop != 0)
                     {
                         if (!(this->*func)(start))
                             return (false);
+                        if (start.second == end.second)
+                            loop = 0;
                         start.second += inc_y;
                         start.first += inc_x;
+                        if (start.second < end.second)
+                            start = end;
                     }
         }
     return (true);

@@ -42,6 +42,8 @@ const std::map<OIS::KeyCode, gauntlet::core::IUIObserver::Key> OgreUI::keymap = 
 	{OIS::KC_Y,         gauntlet::core::IUIObserver::KEY_Y},
 	{OIS::KC_Z,         gauntlet::core::IUIObserver::KEY_Z},
 
+
+
 	{OIS::KC_0,         gauntlet::core::IUIObserver::KEY_0},
 	{OIS::KC_1,         gauntlet::core::IUIObserver::KEY_1},
 	{OIS::KC_2,         gauntlet::core::IUIObserver::KEY_2},

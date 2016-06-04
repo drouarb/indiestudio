@@ -706,7 +706,9 @@ void OgreUI::playAnimation(int entityId,
     {
       a = new animations::JSONAnimation(pair.first,
 					pair.second,
-					pState, loop);
+					pState,
+					&file,
+					loop);
     } catch (std::logic_error &e)
     {
       std::cerr << "=====> Animation not found :" << e.what() << std::endl;

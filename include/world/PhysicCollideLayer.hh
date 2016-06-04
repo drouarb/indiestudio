@@ -13,7 +13,7 @@
 #include <tuple>
 #include "HeightMap.hh"
 
-# define WALL_MIN_HEIGHT 35
+# define WALL_MIN_HEIGHT 40
 # define MOVEMENT_MAX_HEIGHT 10
 # define ABS(x) ((x) < 0 ? -(x) : (x))
 
