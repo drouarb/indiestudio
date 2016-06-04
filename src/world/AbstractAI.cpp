@@ -5,9 +5,10 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 11:46:42 2016 Alexis Trouve
-// Last update Tue May 24 11:18:05 2016 Alexis Trouve
+// Last update Sat Jun  4 18:50:36 2016 Alexis Trouve
 //
 
+#include <iostream>
 #include "AbstractAI.hh"
 #include "World.hh"
 
@@ -16,6 +17,7 @@ using namespace world;
 
 AbstractAI::AbstractAI(World *nworld)
 {
+  std::cout << "AI INSTANCIER" << std::endl;
   world = nworld;
   nameAI = "nothing";
 }
@@ -29,6 +31,8 @@ bool		AbstractAI::setNewAI(gauntlet::Actor *actor)
   unsigned int	i;
 
   i = 0;
+  std::cout << "nameAI : " << nameAI << std::endl;
+  std::cout << "actor " << actor->getId() << " name:" << actor->getName() << std::endl;
   while (i < actors.size())
     {
       if (actors[i]->getId() == actor->getId())

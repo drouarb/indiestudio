@@ -36,6 +36,7 @@
 #include <gameData/EntityName.hh>
 #include <gameData/TextureName.hh>
 #include <gameData/SoundName.hh>
+#include <helpers/Files.hh>
 #include "IUIObserver.hh"
 #include "AnimationsList.hh"
 #include "HeightMap.hh"
@@ -74,13 +75,13 @@ class OgreUI
   static const std::map<gauntlet::SoundName, std::string> soundmap;
   static const std::map<gauntlet::BackgroundName, std::string> backgroundmap;
   static const std::map<gauntlet::CharacterMenuName , std::string> charactermap;
+  static const std::vector<std::string> splash_vec;
 
   Ogre::LightList lightList;
 
   std::map<std::string, Ogre::AnimationState *> animationsArray;
   std::map<std::string, gauntlet::animations::Animation *> animationsMap;
   std::map<int, gauntlet::Effect *> effectMap;
-
   gauntlet::core::IUIObserver *obs;
   OgreOggSound::OgreOggSoundManager *mSoundManager;
 
@@ -111,7 +112,8 @@ class OgreUI
 
   gauntlet::HeightMap heightmap;
 
-  int quality = 100;
+  int quality = 15;
+  gauntlet::Files file;
 
  public:
   bool init();
@@ -310,6 +312,7 @@ class OgreUI
   int getHeightAt(double x, double y);
 
 
+void  splashScreen();
 private:
 
   void applyAnimation(const Ogre::FrameEvent &evt);

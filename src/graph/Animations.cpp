@@ -3,6 +3,7 @@
 //
 
 #include <OGRE/Ogre.h>
+#include <helpers/Files.hh>
 #include "Animations.hh"
 
 using namespace gauntlet;
@@ -38,12 +39,23 @@ bool animations::JSONAnimation::update(double elapsedTime)
 animations::JSONAnimation::JSONAnimation(const std::string &filename,
 					 const std::string &animationName,
 					 Ogre::AnimationState *animationState,
+					 gauntlet::Files *file,
 					 bool loop) : filename(
 	filename), animationState(animationState)
 {
   std::cout << "--------------------------> animationName: " << animationName << std::endl;
   this->jsonObj = new ::JSON::JsonObj();
-  this->jsonObj->ParseFrom(this->readJson(filename));
+try
+    {
+      file->getFile(filename);
+      this->jsonObj->ParseFrom(file->getFile(filename));
+    }
+  catch (...)
+    {
+      const std::string &text = this->readJson(filename);
+      this->jsonObj->ParseFrom(text);
+      file->addFiles(filename, text);
+    }
   this->type = animationSource::JSON;
   this->loop = loop;
   this->animationName = animationName;

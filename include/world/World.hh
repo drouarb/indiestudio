@@ -27,7 +27,7 @@
 #include "Stopwatch.hh"
 
 # define ROUND_DURATION 33
-# define AI_PRIORITY 3
+# define AI_PRIORITY 15
 # define GATHERING_PRIORITY 5
 # define WIN_PRIORITY 30
 # define RESPAWN_PRIORITY 60

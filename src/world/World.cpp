@@ -6,6 +6,8 @@
 #include "World.hh"
 #include "IJson.hpp"
 #include "Rand.hh"
+#include "SpawnerAI.hh"
+#include "DistAI.hh"
 
 using namespace gauntlet;
 using namespace world;
@@ -14,6 +16,8 @@ World::World(GameServer *ngameserver)
 {
   std::cout << "world created" << std::endl;
   AIs.push_back(new BasicAI(this));
+  AIs.push_back(new BasicAI(this));
+  AIs.push_back(new SpawnerAI(this));
   Factory = new BodyFactory(this, AIs);
   collider = NULL;
   Math::init();
@@ -139,6 +143,7 @@ void        World::applyAI()
   std::vector<Player *> players;
   Player *nplay;
 
+  std::cout << "tour : " << turn << "AI apply" << std::endl;
   it1 = bodys.begin();
   while (it1 != bodys.end())
     {

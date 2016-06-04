@@ -67,11 +67,15 @@ void gauntlet::Spell::prepare(Actor *actor)
         openingId = caster->getWorld()->triggerEffect((EffectName) openingEffect, actor->getOrientation(), actor->getPos(), 1000);
     }
     unsigned int sound = caster->soundEffect[ABody::ATTACK].at(rand() % caster->soundEffect[ABody::ATTACK].size());
+    std::cerr << "blya...." << std::endl;
     caster->getWorld()->playSound(sound, false, actor->getPos());
+    std::cerr << "....blyn " << std::endl;
     if (actor->getMove())
         actor->setMove();
     //lancer Animation sur caster
+    std::cerr << "fracking" << std::endl;
     caster->getWorld()->animeEntity(actor->getId(), caster->animations[ABody::ATTACK].at(rand() % caster->animations[ABody::ATTACK].size()), false);
+    std::cerr << "crazy" << std::endl;
     targetedArea = actor->pointInFront(range);
     if (targetedArea.first > caster->getWorld()->getSize().first)
         targetedArea.first = caster->getWorld()->getSize().first - 1;
