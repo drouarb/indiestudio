@@ -33,16 +33,19 @@ bool PhysicCollideLayer::isWall(const std::pair<double, double> &oldPos,
 }
 
 bool    PhysicCollideLayer::checkCoordSizeCanPass(const std::pair<double, double> &oldPos,
-                                                  const std::pair<double, double> &wantedPos_real,
+                                                  const std::pair<double, double> &wantedPos,
                                                   const std::pair<double, double> &size)
 {
-    if (oldPos.first == wantedPos_real.first && oldPos.second == wantedPos_real.second)
-        return (true);
+    std::cout << "checkCoordSizeCanPass " << oldPos.first << " " << oldPos.second << " and "
+    << wantedPos.first << " " << wantedPos.second << std::endl;
+
+    if (oldPos.first == wantedPos.first && oldPos.second == wantedPos.second)
+          return (true);
 
     if (ABS(heightmap.at(oldPos.first, oldPos.second) -
-            heightmap.at(wantedPos_real.first, wantedPos_real.second))
-            / sqrt(pow(oldPos.first - wantedPos_real.first, 2)
-                   + pow(oldPos.second - wantedPos_real.second, 2))
+            heightmap.at(wantedPos.first, wantedPos.second))
+            / sqrt(pow(oldPos.first - wantedPos.first, 2)
+                   + pow(oldPos.second - wantedPos.second, 2))
             > MOVEMENT_MAX_HEIGHT)
         {
             return (false);
@@ -50,8 +53,6 @@ bool    PhysicCollideLayer::checkCoordSizeCanPass(const std::pair<double, double
 
     std::pair<double, double> start;
     std::pair<double, double> end;
-
-    std::pair<double, double> wantedPos = wantedPos_real;
 
     //for size
     double extra_points = sqrt(pow(size.first, 2) + pow(size.second, 2)) / HEIGHT_MAP_SCALE;
