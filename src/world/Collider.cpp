@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 29 20:40:50 2016 Alexis Trouve
-// Last update Wed Jun  1 00:53:54 2016 Esteban Lewis
+// Last update Sat Jun  4 20:06:32 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -29,6 +29,18 @@ Collider::Collider(const std::string& filePath)
 Collider::~Collider()
 {
 
+}
+
+bool	Collider::canMove(const std::pair<double, double>& ori, const std::pair<double, double>& end,
+			  const std::pair<double, double>& size)
+{
+
+  if (physicLayer->checkCoordSizeCanPass(ori, end, size) == false)
+    return (false);
+  if (dynamicLayer->giveBodyInAreaCircle(end.first, end.second, size.first).size() <= 1)
+    return (true);
+  else
+    return (false);
 }
 
 bool	Collider::tryMoveBody(int id, double posx, double posy)
@@ -84,13 +96,10 @@ bool				Collider::applyVectorToId(int id, short orient, double speed)
   double			vectX;
   double			vectY;
 
-  std::cout << "vector id=" << id << " orient=" << orient << std::endl;
   if ((body = dynamicLayer->getBodyId(id)) == NULL)
     return (false);
   vectX = (Math::cos(orient) * speed);
   vectY = (Math::sin(orient) * speed);
-  std::cout << "move x=" << vectX << " y=" << vectY << std::endl;
-  std::cout << "speed=" << speed << std::endl;
   posB = body->getPos();
   tryMoveBody(id, posB.first + vectX, posB.second);
   posB = body->getPos();

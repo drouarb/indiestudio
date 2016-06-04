@@ -75,13 +75,13 @@ class OgreUI
   static const std::map<gauntlet::SoundName, std::string> soundmap;
   static const std::map<gauntlet::BackgroundName, std::string> backgroundmap;
   static const std::map<gauntlet::CharacterMenuName , std::string> charactermap;
+  static const std::vector<std::string> splash_vec;
 
   Ogre::LightList lightList;
 
   std::map<std::string, Ogre::AnimationState *> animationsArray;
   std::map<std::string, gauntlet::animations::Animation *> animationsMap;
   std::map<int, gauntlet::Effect *> effectMap;
-
   gauntlet::core::IUIObserver *obs;
   OgreOggSound::OgreOggSoundManager *mSoundManager;
 
@@ -312,6 +312,7 @@ class OgreUI
   int getHeightAt(double x, double y);
 
 
+void  splashScreen();
 private:
 
   void applyAnimation(const Ogre::FrameEvent &evt);

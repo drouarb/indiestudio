@@ -73,7 +73,7 @@ gauntlet::Spell *SpellFactory::getWizardFireBall() {
 gauntlet::Spell *SpellFactory::getWizardFireCone() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Wizard Fire Cone", 0, 100, 150, Area::CIRCLE, SoundName::FIRE_BIG, 200);
+  spell->setBasicStats(giveNextId(), "Wizard supernova", 0, 100, 150, Area::CIRCLE, SoundName::FIRE_BIG, 600);
   spell->setConeAngle(80);
   spell->setEffect(EffectName::GALAXY, EffectName::SUPERNOVA);
   return spell;

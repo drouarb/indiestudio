@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 15:00:30 2016 Alexis Trouve
-// Last update Fri Jun  3 17:18:07 2016 Alexis Trouve
+// Last update Sat Jun  4 17:22:40 2016 Alexis Trouve
 //
 
 #ifndef BODYFACTORY_HH_
@@ -16,6 +16,7 @@
 #include "Actor.hh"
 #include "Player.hh"
 #include "Creature.hh"
+#include "Spawner.hh"
 #include "GameObject.hh"
 #include "AbstractAI.hh"
 #include "BasicAI.hh"

@@ -209,15 +209,34 @@ bool OgreUI::setup(void)
   return true;
 };
 
+
+static unsigned int i_splash = 0;
+
 bool OgreUI::frameRenderingQueued(const Ogre::FrameEvent &evt)
 {
+  static size_t cinematique = 0;
   if (mWindow->isClosed())
     return false;
-
   if (mShutDown)
     return false;
   mKeyboard->capture();
   mMouse->capture();
+  if (i_splash < splash_vec.size())
+    {
+      if (i_splash == 0)
+      mTrayMgr->hideAll();
+      cinematique++;
+      if (cinematique % 5 == 0)
+	{
+	  mTrayMgr->showBackdrop(splash_vec.at(i_splash));
+	  i_splash++;
+	}
+      if (i_splash >= splash_vec.size())
+	{
+	  mTrayMgr->showBackdrop(backgroundmap.at(BACKGROUND_BASIC));
+	  mTrayMgr->showAll();
+	}
+    }
   mTrayMgr->refreshCursor();
   mTrayMgr->frameRenderingQueued(evt);
   applyAnimation(evt);
@@ -256,6 +275,12 @@ void OgreUI::applyAnimation(const Ogre::FrameEvent &evt)
 bool OgreUI::keyPressed(const OIS::KeyEvent &arg)
 {
   //mCameraMan->injectKeyDown(arg);
+  if (i_splash < splash_vec.size())
+    {
+      mTrayMgr->showBackdrop(backgroundmap.at(BACKGROUND_BASIC));
+      mTrayMgr->showAll();
+      i_splash = splash_vec.size();
+    }
   if (obs != NULL)
     if (keymap.count(arg.key) > 0)
       {
@@ -345,7 +370,6 @@ void OgreUI::removeItem(int id)
 
 void OgreUI::addButton(Position pos, int id, std::string text, int texture_id)
 {
-
   std::stringstream ss;
   ss << id;
   OgreBites::Button *c = mTrayMgr->createButton(posmap.at(pos), ss.str(), text);
@@ -568,8 +592,6 @@ void OgreUI::hideItem(int id)
 
 void OgreUI::createScene(void)
 {
-  mTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT, true);
-  mSceneMgr->setSkyBox(true, "Examples/SceneSkyBox");
   createAmbientLight();
 }
 
@@ -1184,3 +1206,10 @@ int OgreUI::getHeightAt(double x, double y)
     return this->heightmap.at(x, y);
   return (-1);
 }
+
+void OgreUI::splashScreen()
+{
+
+}
+
+

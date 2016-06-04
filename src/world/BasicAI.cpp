@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 //
 // Started on  Sun May 22 11:46:42 2016 Alexis Trouve
-// Last update Mon May 30 22:21:46 2016 Esteban Lewis
+// Last update Sat Jun  4 19:03:15 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -27,27 +27,27 @@ BasicAI::~BasicAI()
 
 int        BasicAI::launchAI(std::pair<double, double> pos)
 {
-    unsigned int i;
-    int nbrPlayed;
+  unsigned int i;
+  int nbrPlayed;
 
-    i = 0;
-    nbrPlayed = 0;
-    while (i < actors.size())
-        {
-            if (actors[i]->stats.HP > 0 &&
-                Math::distBetween(pos, actors[i]->getPos()) < AI_LAUNCH_DIST)
-                {
-                    launchAI(actors[i]);
-                    nbrPlayed += 1;
-                }
-            else
-                {
-                    if (actors[i]->getMove())
-                        actors[i]->setMove();
-                }
-            ++i;
-        }
-    return (nbrPlayed);
+  i = 0;
+  nbrPlayed = 0;
+  while (i < actors.size())
+    {
+      if (actors[i]->stats.HP > 0 &&
+	  Math::distBetween(pos, actors[i]->getPos()) < AI_LAUNCH_DIST)
+	{
+	  launchAI(actors[i]);
+	  nbrPlayed += 1;
+	}
+      else
+	{
+	  if (actors[i]->getMove())
+	    actors[i]->setMove();
+	}
+      ++i;
+    }
+  return (nbrPlayed);
 }
 
 void            BasicAI::launchAI(gauntlet::Actor *actor)

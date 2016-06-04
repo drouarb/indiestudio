@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 16:50:32 2016 Alexis Trouve
-// Last update Fri Jun  3 18:32:29 2016 Alexis Trouve
+// Last update Sat Jun  4 20:07:38 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -227,7 +227,7 @@ void			BodyFactory::setWizard()
   player->setTextureId(TextureName::TEXTURE_NONE);
   player->setIdAI(NOAI);
   bodyTab.push_back(player);
-}*/
+  }*/
 
 void			BodyFactory::setValkyrie()
 {
@@ -279,7 +279,6 @@ void			BodyFactory::setValkyrie()
 
 void			BodyFactory::setSkeleton()
 {
-  unsigned int		i;
   Creature		*crea;
 
   crea = new Creature(-1, world);
@@ -323,27 +322,19 @@ void			BodyFactory::setSkeleton()
   crea->setTextureId(TextureName::TEXTURE_NONE);
   crea->setIdAI(MELEEBASICAI);
   bodyTab.push_back(crea);
-  i = 0;
-  while (i < AIs.size())
-  {
-    if (AIs[i]->getName() == "BasicAI")
-      AIs[i]->setNewAI(crea);
-    ++i;
-  }
 }
 
 void			BodyFactory::setSkeletonWarlord()
 {
-  unsigned int		i;
-  Creature		*crea;
+  Spawner		*crea;
 
-  crea = new Creature(-1, world);
+  crea = new Spawner(-1, world);
   crea->setName("SkeletonWarlord");
-  crea->stats.HP = 100;
-  crea->stats.normalHP = 100;
+  crea->stats.HP = 400;
+  crea->stats.normalHP = 400;
   crea->stats.speed = 6.0;
   crea->stats.normalSpeed = 6.0;
-  crea->stats.attackModifier = 0.8;
+  crea->stats.attackModifier = 1.5;
   crea->spellBook.addSpell(SpellFactory::SIMPLE_ATTACK, crea);
   crea->setCollide(true);
   crea->changePos(std::make_pair(-1, -1));
@@ -378,29 +369,25 @@ void			BodyFactory::setSkeletonWarlord()
   crea->setRunning(animations::AnimationsListJson::SKELETON_WARLORD_RUN);
   crea->setMeshId(EntityName::SKELETON_WARLORD);
   crea->setTextureId(TextureName::TEXTURE_NONE);
-  crea->setIdAI(MELEEBASICAI);
+  crea->setIdAI(SPAWNERAI);
+  crea->setSpawnCoolDown(5);
+  crea->setSpawnCoolDownBase(5);
+  crea->setMinionName("Skeleton");
+  crea->setMaxSpawn(6);
   bodyTab.push_back(crea);
-  i = 0;
-  while (i < AIs.size())
-  {
-    if (AIs[i]->getName() == "BasicAI")
-      AIs[i]->setNewAI(crea);
-    ++i;
-  }
 }
 
 void			BodyFactory::setSkeletonArcher()
 {
-  unsigned int		i;
   Creature		*crea;
 
   crea = new Creature(-1, world);
   crea->setName("SkeletonArcher");
   crea->stats.HP = 100;
-  crea->stats.normalHP = 400;
+  crea->stats.normalHP = 100;
   crea->stats.speed = 6.0;
   crea->stats.normalSpeed = 6.0;
-  crea->stats.attackModifier = 0.3;
+  crea->stats.attackModifier = 0.2;
   crea->spellBook.addSpell(SpellFactory::RANGER_ATTACK, crea);
   crea->setCollide(true);
   crea->changePos(std::make_pair(-1, -1));
@@ -430,18 +417,10 @@ void			BodyFactory::setSkeletonArcher()
   crea->setTextureId(TextureName::TEXTURE_NONE);
   crea->setIdAI(MELEEBASICAI);
   bodyTab.push_back(crea);
-  i = 0;
-  while (i < AIs.size())
-  {
-    if (AIs[i]->getName() == "BasicAI")
-      AIs[i]->setNewAI(crea);
-    ++i;
-  }
 }
 
 void			BodyFactory::setSkeletonWizard()
 {
-  unsigned int		i;
   Creature		*crea;
 
   crea = new Creature(-1, world);
@@ -485,18 +464,10 @@ void			BodyFactory::setSkeletonWizard()
   crea->setTextureId(TextureName::TEXTURE_NONE);
   crea->setIdAI(MELEEBASICAI);
   bodyTab.push_back(crea);
-  i = 0;
-  while (i < AIs.size())
-  {
-    if (AIs[i]->getName() == "BasicAI")
-      AIs[i]->setNewAI(crea);
-    ++i;
-  }
 }
 
 void			BodyFactory::setDraugr()
 {
-  unsigned int		i;
   Creature		*crea;
 
   crea = new Creature(-1, world);
@@ -515,13 +486,6 @@ void			BodyFactory::setDraugr()
   crea->setTextureId(TextureName::TEXTURE_NONE);
   crea->setIdAI(MELEEBASICAI);
   bodyTab.push_back(crea);
-  i = 0;
-  while (i < AIs.size())
-    {
-      if (AIs[i]->getName() == "BasicAI")
-	AIs[i]->setNewAI(crea);
-      ++i;
-    }
 }
 
 void            BodyFactory::setKey()
@@ -660,7 +624,11 @@ ABody	*BodyFactory::giveBody(const std::string& name)
 	    {
 	      j = actor->getIdAI();
 	      if (j != NOAI)
-		AIs[j]->setNewAI(actor);
+		{
+		  std::cout << "size:" << AIs.size() << std::endl;
+		  std::cout << "j:" << j << std::endl;
+		  AIs[j]->setNewAI(actor);
+		}
 	    }
 	  return (body);
 	}

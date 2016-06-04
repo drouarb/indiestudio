@@ -85,6 +85,7 @@ gauntlet::core::PlayerController::doCmd(Command key, bool down)
 
     if (!down)
         {
+            ok = false;
             for (std::map<Command, Command>::iterator it = stopCmds.begin();
                  it != stopCmds.end(); ++it)
                 {
