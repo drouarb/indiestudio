@@ -18,10 +18,15 @@ bool animations::JSONAnimation::update(double elapsedTime)
     {
       if (!loop)
 	{
-	  //TODO test this
-	  if (this->animationState->getAnimationName() != "death")
-	    this->animationState->setTimePosition(static_cast<float>(0));
-	  return false;
+	  if (!(this->animationName == "death" || this->animationName.find("Dying") != std::string::npos))
+	    {
+	      this->animationState->setTimePosition(static_cast<float>(0));
+	      return false;
+	       }
+	  else
+	    {
+	      return true;
+	    }
 	}
       this->currentTimePosition = this->begin;
     }
@@ -41,6 +46,7 @@ animations::JSONAnimation::JSONAnimation(const std::string &filename,
   this->jsonObj->ParseFrom(this->readJson(filename));
   this->type = animationSource::JSON;
   this->loop = loop;
+  this->animationName = animationName;
   findProprerties(animationName);
   this->currentTimePosition = this->begin;
 }
