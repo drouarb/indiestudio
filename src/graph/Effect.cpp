@@ -20,7 +20,14 @@ gauntlet::Effect::Effect(OgreUI *ogreUI, gauntlet::EffectName type, std::string 
     {
       throw std::runtime_error("Cannot find SceneManager");
     }
-  this->_particleSystem = pManager->createParticleSystem(name, *this->name);
+  try
+    {
+      this->_particleSystem = pManager->createParticleSystem(name, *this->name);
+    }
+  catch (std::exception &e)
+    {
+      this->_particleSystem = pManager->getParticleSystem(name);
+    }
   if (this->_particleSystem == NULL)
     {
       throw std::runtime_error("Template " + name + " not found");
