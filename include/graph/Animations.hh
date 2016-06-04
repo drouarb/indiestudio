@@ -284,6 +284,12 @@ namespace gauntlet
 	    {BERSEKER_STRAFE_RIGHT,                           {"berseker.json",          "strafe_right"}},
 	    {BERSEKER_STRAFE_LEFT,                            {"berseker.json",          "strafe_left"}},
 	    {BERSEKER_DODGE_RIGHT,                            {"berseker.json",          "dodge_right"}},
+
+	    {ARCHER_IDLE,                                     {"archer.json",            "Idle"}},
+	    {ARCHER_RUN,                                      {"archer.json",            "Run"}},
+	    {ARCHER_DEATH,                                    {"archer.json",            "Dying"}},
+	    {ARCHER_ATTACK_HIT,                               {"archer.json",            "Combat"}},
+	    {ARCHER_ATTACK_RANGE,                             {"archer.json",            "AttackArrow"}},
     };
 
     std::ostream &operator<<(std::ostream &stream,

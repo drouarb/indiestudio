@@ -132,6 +132,13 @@ void			BodyFactory::setElf()
   player->setTextureId(TextureName::TEXTURE_NONE);
   player->setIdAI(NOAI);
   bodyTab.push_back(player);
+
+//  	  ARCHER_IDLE,
+//	  ARCHER_RUN,
+//	  ARCHER_DEATH,
+//	  ARCHER_ATTACK_HIT,
+//	  ARCHER_ATTACK_RANGE,
+
 }
 
 void			BodyFactory::setWizard()

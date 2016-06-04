@@ -28,7 +28,8 @@ namespace gauntlet
     SKELETON_SORCERER = 16,
     SKELETON_WARLORD = 17,
     MAP_TEST = 18,
-    VALKYRIE = 19
+    VALKYRIE = 19,
+    ARCHER = 20
   };
 };
 #endif //GAUNTLET_ENTITYNAME_HH
