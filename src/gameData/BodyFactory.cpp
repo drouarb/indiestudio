@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 16:50:32 2016 Alexis Trouve
-// Last update Sat Jun  4 18:53:58 2016 Alexis Trouve
+// Last update Sat Jun  4 19:09:38 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -370,8 +370,8 @@ void			BodyFactory::setSkeletonWarlord()
   crea->setMeshId(EntityName::SKELETON_WARLORD);
   crea->setTextureId(TextureName::TEXTURE_NONE);
   crea->setIdAI(SPAWNERAI);
-  crea->setSpawnCoolDown(50);
-  crea->setSpawnCoolDownBase(50);
+  crea->setSpawnCoolDown(1);
+  crea->setSpawnCoolDownBase(1);
   crea->setMinionName("Skeleton");
   crea->setMaxSpawn(8);
   bodyTab.push_back(crea);

@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 //
 // Started on  Sun May 22 11:46:42 2016 Alexis Trouve
-// Last update Sat Jun  4 18:47:24 2016 Alexis Trouve
+// Last update Sat Jun  4 19:08:08 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -30,7 +30,6 @@ int        SpawnerAI::launchAI(std::pair<double, double> pos)
   unsigned int i;
   int nbrPlayed;
 
-  return (0);
  i = 0;
   nbrPlayed = 0;
   while (i < actors.size())
@@ -38,7 +37,6 @@ int        SpawnerAI::launchAI(std::pair<double, double> pos)
       if (actors[i]->stats.HP > 0 &&
 	  Math::distBetween(pos, actors[i]->getPos()) < AI_LAUNCH_DIST)
 	{
-	  std::cout << "ai apply id:" << actors[i]->getId() << " dist" << Math::distBetween(pos, actors[i]->getPos()) << std::endl;
 	  launchAI(actors[i]);
 	  nbrPlayed += 1;
 	}
@@ -64,6 +62,7 @@ void            SpawnerAI::launchAI(gauntlet::Actor *actor)
   
   if ((me = dynamic_cast<Spawner*>(actor)) != NULL)
     {
+      std::cout << "cool" << me->getSpawnCoolDown() << std::endl;
       if (me->getSpawnCoolDown() == 0)
 	{
 	  pos = me->getPos();
@@ -88,8 +87,7 @@ void            SpawnerAI::launchAI(gauntlet::Actor *actor)
   if (savedPlayer == NULL)
     return;
   actor->changeOrientation(Math::getAngle(atan2(savedPlayer->getPos().second - actor->getPos().second,
-						 savedPlayer->getPos().first - actor->getPos().first)));
-  
+						actor->getPos().first - savedPlayer->getPos().first)));
   idAttack = actor->spellBook.giveSpell(400, 30, true, NOAREA, 50, 10);
   
   double dist = world->getCollider().getDist(actor->getPos().first, actor->getPos().second,

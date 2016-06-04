@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 //
 // Started on  Sun May 22 11:46:42 2016 Alexis Trouve
-// Last update Sat Jun  4 14:04:16 2016 Alexis Trouve
+// Last update Sat Jun  4 19:03:15 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -30,15 +30,13 @@ int        BasicAI::launchAI(std::pair<double, double> pos)
   unsigned int i;
   int nbrPlayed;
 
-  return (0);
- i = 0;
+  i = 0;
   nbrPlayed = 0;
   while (i < actors.size())
     {
       if (actors[i]->stats.HP > 0 &&
 	  Math::distBetween(pos, actors[i]->getPos()) < AI_LAUNCH_DIST)
 	{
-	  std::cout << "ai apply id:" << actors[i]->getId() << " dist" << Math::distBetween(pos, actors[i]->getPos()) << std::endl;
 	  launchAI(actors[i]);
 	  nbrPlayed += 1;
 	}
