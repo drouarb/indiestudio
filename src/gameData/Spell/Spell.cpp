@@ -51,13 +51,10 @@ void gauntlet::Spell::ApplyDamage(std::list<gauntlet::ABody*> targets, Actor *ca
                 if ((player = dynamic_cast<Player*>(caster)) != NULL)
                     player->score += 100 * actor->stats.attackModifier;
                 actor->stats.HP = 0;
-                actor->getWorld()->animeEntity(actor->getId(), actor->animations[ABody::DEATH].at(0), false);
-                actor->getWorld()->playSound(actor->soundEffect[ABody::WOUND].at(rand() % caster->soundEffect[ABody::WOUND].size()), false, actor->getPos());
+                actor->desu();
                 actor->getWorld()->notifyDeath(actor);
             }
         }
-        //if (gameObject != NULL)
-        //    faire les dégats
     }
 }
 

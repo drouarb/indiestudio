@@ -71,8 +71,8 @@ void            BasicAI::launchAI(gauntlet::Actor *actor)
         }
     if (savedPlayer == NULL)
         return;
-    actor->changeOrientation(Math::getAngle(-atan2(savedPlayer->getPos().second - actor->getPos().second,
-                                                   savedPlayer->getPos().first - actor->getPos().first)));
+    actor->changeOrientation(Math::getAngle(atan2(savedPlayer->getPos().second - actor->getPos().second,
+                                                  actor->getPos().first - savedPlayer->getPos().first)));
 
     idAttack = actor->spellBook.giveSpell(30, 30, true, NOAREA, 0, 100);
 

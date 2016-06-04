@@ -70,8 +70,8 @@ void		DistAI::launchAI(gauntlet::Actor *actor)
 	      smallestDist = Math::distBetween(tmpPlayer->getPos(), actor->getPos());
 	      savedPlayer = tmpPlayer;
 	    }
-	  ttRad += Math::getAngle(-atan2(tmpPlayer->getPos().first - actor->getPos().first,
-					 tmpPlayer->getPos().second - actor->getPos().second));
+	  ttRad += Math::getAngle(atan2(tmpPlayer->getPos().first - actor->getPos().first,
+					 actor->getPos().second - tmpPlayer->getPos().second));
 	  nbrPlayer++;
 	}
       it1++;
@@ -83,8 +83,8 @@ void		DistAI::launchAI(gauntlet::Actor *actor)
       actor->changeOrientation(Math::getAngle(ttRad / nbrPlayer));
     }
   else
-    actor->changeOrientation(Math::getAngle(-atan2(savedPlayer->getPos().first - actor->getPos().first,
-						  savedPlayer->getPos().second - actor->getPos().second)));
+    actor->changeOrientation(Math::getAngle(atan2(savedPlayer->getPos().first - actor->getPos().first,
+						  actor->getPos().second - savedPlayer->getPos().second)));
   idSpell = actor->spellBook.giveSpell(600.0, DIST_BATTLE, true, NOAREA, 0, 100);
   actor->castSpell(idSpell);
 }

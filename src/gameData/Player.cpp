@@ -70,6 +70,7 @@ ABody			*Player::clone(int id) const
   player->setMeshId(model);
   player->setTextureId(texture);
   player->setIdle(idle);
+  player->death = this->death;
   player->setRunning(running);
   player->changeOrientation(orientation);
   player->setIdAI(idAI);

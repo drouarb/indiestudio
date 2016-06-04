@@ -172,9 +172,7 @@ void                        GameServer::sendDatas(int socketId)
       network::PacketAddEntity packet((*it1)->getEntityId(),
 				      (*it1)->getTextureId(),
 				      (*it1)->getMeshId(),
-				      world->getSize().first - 1 -
 				      static_cast<int>((*it1)->getPos().first),
-				      world->getSize().second - 1 -
 				      static_cast<int>((*it1)->getPos().second),
 				      (*it1)->getOrientation());
       packetFact->send(packet, socketId);
@@ -306,9 +304,7 @@ void                GameServer::sendAddEntity(ABody *body)
   unsigned int i;
   network::PacketAddEntity packet(body->getEntityId(), body->getTextureId(),
 				  body->getMeshId(),
-				  world->getSize().first - 1 -
 				  static_cast<int>(body->getPos().first),
-				  world->getSize().second - 1 -
 				  static_cast<int>(body->getPos().second),
 				  body->getOrientation());
   std::cout << packet.getEntityId() << std::endl;
@@ -325,9 +321,7 @@ void                GameServer::sendAddEntity(ABody *body)
 void                GameServer::sendMoveId(ABody *body)
 {
   network::PacketMoveEntity packet(body->getEntityId(),
-				   world->getSize().first - 1 -
 				   body->getPos().first,
-				   world->getSize().second - 1 -
 				   body->getPos().second,
 				   body->getOrientation());
   unsigned int i;
@@ -366,8 +360,8 @@ void                GameServer::sendEffect(unsigned int effect, int id,
 					   const std::pair<double, double> &pos,
 					   int decayTime)
 {
-  PacketAddParticle packet(effect, id, world->getSize().first - 1 - pos.first,
-			   world->getSize().second - 1 - pos.second, orient,
+  PacketAddParticle packet(effect, id, pos.first,
+			   pos.second, orient,
 			   decayTime);
   unsigned int i;
 
@@ -409,8 +403,8 @@ void                GameServer::sendSound(unsigned int soundId, int id,
 					  bool loop,
 					  const std::pair<double, double> &pos)
 {
-  PacketPlaySound packet(soundId, id, world->getSize().first - 1 - pos.first,
-			 world->getSize().second - 1 - pos.second, loop);
+  PacketPlaySound packet(soundId, id, pos.first,
+			 pos.second, loop);
   unsigned int i;
 
   i = 0;

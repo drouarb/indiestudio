@@ -27,10 +27,8 @@ std::pair<double, double>    PhysicCollideLayer::getSize() const
 bool PhysicCollideLayer::isWall(const std::pair<double, double> &oldPos,
                                 const std::pair<double, double> &wantedPos)
 {
-    return (ABS(heightmap.at(heightmap.getSize().first - 1 - oldPos.first,
-                             heightmap.getSize().second - 1 - oldPos.second) -
-                heightmap.at(heightmap.getSize().first - 1 - wantedPos.first,
-                             heightmap.getSize().second - 1 - wantedPos.second))
+    return (ABS(heightmap.at(oldPos.first, oldPos.second) -
+                heightmap.at(wantedPos.first, wantedPos.second))
             >= WALL_MIN_HEIGHT);
 }
 
@@ -41,11 +39,10 @@ bool    PhysicCollideLayer::checkCoordSizeCanPass(const std::pair<double, double
     if (oldPos.first == wantedPos_real.first && oldPos.second == wantedPos_real.second)
         return (true);
 
-    if (ABS(heightmap.at(heightmap.getSize().first - 1 - oldPos.first,
-                         heightmap.getSize().second - 1 - oldPos.second) -
-            heightmap.at(heightmap.getSize().first - 1 - wantedPos_real.first,
-                         heightmap.getSize().second - 1 - wantedPos_real.second))
-            / sqrt(pow(oldPos.first - wantedPos_real.first, 2) + pow(oldPos.second - wantedPos_real.second, 2))
+    if (ABS(heightmap.at(oldPos.first, oldPos.second) -
+            heightmap.at(wantedPos_real.first, wantedPos_real.second))
+            / sqrt(pow(oldPos.first - wantedPos_real.first, 2)
+                   + pow(oldPos.second - wantedPos_real.second, 2))
             > MOVEMENT_MAX_HEIGHT)
         {
             return (false);
