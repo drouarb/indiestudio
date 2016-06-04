@@ -201,6 +201,18 @@
 		angle : "0",
 		x : "91",
 		y : "61"
+	},
+	{
+		name: "Skeleton",
+		angle : "0",
+		x : "61",
+		y :	"61"
+	},
+	{
+		name: "Skeleton",
+		angle : "0",
+		x : "61",
+		y :	"61"
 	}
     ],
     sounds:
