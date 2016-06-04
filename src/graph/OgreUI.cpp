@@ -685,7 +685,7 @@ void OgreUI::playAnimation(int entityId,
       a = new animations::JSONAnimation(pair.first,
 					pair.second,
 					pState,
-					file,
+					&file,
 					loop);
     } catch (std::logic_error &e)
     {

@@ -6,14 +6,7 @@
 
 const std::string &gauntlet::Files::getFile(const std::string &filename) const
 {
-  try
-    {
-      return this->stringList[filename];
-    }
-  catch (std::exception &e)
-    {
-      return "";
-    }
+  return this->stringList.at(filename);
 }
 
 void gauntlet::Files::addFiles(const std::string &filename,

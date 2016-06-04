@@ -45,11 +45,12 @@ animations::JSONAnimation::JSONAnimation(const std::string &filename,
 {
   std::cout << "--------------------------> animationName: " << animationName << std::endl;
   this->jsonObj = new ::JSON::JsonObj();
-  if (file->getFile(filename) != "")
+try
     {
+      file->getFile(filename);
       this->jsonObj->ParseFrom(file->getFile(filename));
     }
-  else
+  catch (...)
     {
       const std::string &text = this->readJson(filename);
       this->jsonObj->ParseFrom(text);
