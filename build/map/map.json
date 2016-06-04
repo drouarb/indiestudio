@@ -4,22 +4,22 @@
     height_map : "mapHeight/map_of_doom.pgm",
     endZone :
     {
-	posX : "20372"
-	posY : "20000"
-	sizeX : "40"
-	sizeY : "40"
+	posX : "200"
+	posY : "200"
+	sizeX : "4"
+	sizeY : "4"
     },
     spawn :
     {
-	x : "1147",
-	y : "1372"
+	x : "51",
+	y : "61"
     },
     dynamic :
     [
 	{
 	    name : "Skeleton",
-	    x : "1187",
-	    y : "1372",
+	    x : "61",
+	    y : "61",
 	    angle : "0"
 	}
     ],
