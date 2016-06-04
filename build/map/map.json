@@ -4,15 +4,15 @@
     height_map : "mapHeight/map_of_doom.pgm",
     endZone :
     {
-	posX : "40"
-	posY : "40"
-	sizeX : "2"
-	sizeY : "2"
+	posX : "210"
+	posY : "350"
+	sizeX : "25"
+	sizeY : "15"
     },
     spawn :
     {
-	x : "51",
-	y : "61"
+	x : "60",
+	y : "45"
     },
     dynamic :
     [
@@ -23,10 +23,112 @@
             y : "60"
 	},
 	{
+            name : "SkeletonWarlord",
+            angle : "0",
+            x : "300",
+            y : "90"
+	},
+	{
+            name : "SkeletonWarlord",
+            angle : "0",
+            x : "300",
+            y : "90"
+	},
+	{
+            name : "SkeletonWarlord",
+            angle : "0",
+            x : "300",
+            y : "90"
+	},
+	{
+            name : "SkeletonWarlord",
+            angle : "0",
+            x : "300",
+            y : "90"
+	},
+	{
+            name : "SkeletonWarlord",
+            angle : "0",
+            x : "300",
+            y : "90"
+	},
+	{
+            name : "SkeletonWarlord",
+            angle : "0",
+            x : "140",
+            y : "100"
+	},
+	{
+            name : "SkeletonWarlord",
+            angle : "0",
+            x : "140",
+            y : "101"
+	},
+	{
+            name : "SkeletonWarlord",
+            angle : "0",
+            x : "140",
+            y : "161"
+	},
+	{
+            name : "SkeletonWarlord",
+            angle : "0",
+            x : "140",
+            y : "161"
+	},
+	{
+            name : "SkeletonWarlord",
+            angle : "0",
+            x : "150",
+            y : "101"
+	},
+	{
 	    name : "SkeletonWizard",
 	    angle : "0",
-	    x : "71",
-	    y : "61"
+	    x : "140",
+	    y : "170"
+	},
+	{
+            name : "SkeletonWarlord",
+            angle : "0",
+            x : "300",
+            y : "210"
+	},
+	{
+	    name : "SkeletonWizard",
+	    angle : "0",
+	    x : "300",
+	    y : "210"
+	},
+	{
+            name : "SkeletonWarlord",
+            angle : "0",
+            x : "300",
+            y : "210"
+	},
+	{
+	    name : "SkeletonWizard",
+	    angle : "0",
+	    x : "300",
+	    y : "210"
+	},
+	{
+            name : "SkeletonWarlord",
+            angle : "0",
+            x : "300",
+            y : "210"
+	},
+	{
+	    name : "SkeletonWizard",
+	    angle : "0",
+	    x : "300",
+	    y : "210"
+	},
+	{
+	    name : "SkeletonWizard",
+	    angle : "0",
+	    x : "140",
+	    y : "170"
 	},
 	{
 	    name : "Key",
@@ -35,10 +137,16 @@
 	    y : "61"
 	},
 	{
-		name : "SkeletonArcher",
-		angle : "0",
-		x : "71",
-		y : "61"
+	    name : "SkeletonArcher",
+	    angle : "0",
+	    x : "100",
+	    y : "90"
+	},
+	{
+	    name : "SkeletonArcher",
+	    angle : "0",
+	    x : "100",
+	    y : "90"
 	},
 	{
 		name : "SpeedPotion",
