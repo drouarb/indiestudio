@@ -139,6 +139,7 @@ void        World::applyAI()
   std::vector<Player *> players;
   Player *nplay;
 
+  std::cout << "tour : " << turn << "AI apply" << std::endl;
   it1 = bodys.begin();
   while (it1 != bodys.end())
     {

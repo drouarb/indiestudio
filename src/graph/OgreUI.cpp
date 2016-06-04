@@ -687,13 +687,15 @@ void OgreUI::playAnimation(int entityId,
 					pState, loop);
     } catch (std::logic_error &e)
     {
-      std::cerr << "Animation not found :" << e.what() << std::endl;
+      std::cerr << "=====> Animation not found :" << e.what() << std::endl;
       return;
     } catch (std::exception &e)
     {
       std::cerr << e.what() << std::endl;
       return;
     }
+  std::cout << "=======>Application de l'animation: " << a->getName()
+  << " sur l'entité " << pEntity->getName() << std::endl;
   animations::Animation **type = &this->animationsMap[pEntity->getName()];
   if (*type)
     {
@@ -807,62 +809,6 @@ bool __attribute_deprecated__ OgreUI::addWorldEntity(int entityId,
   s->attachObject(e);
   return (true);
 }
-
-bool __attribute_warn_unused_result__ OgreUI::addWorldEntity(int entityId,
-							     const std::string &name,
-							     std::pair<int, int> position,
-							     Ogre::Vector3 orientation,
-							     TextureName textureId)
-{
-  std::stringstream ss;
-  ss << entityId;
-  Ogre::Entity *e;
-  try
-    {
-      e = mSceneMgr->createEntity(ss.str(), name);
-    }
-  catch (Ogre::Exception &e)
-    {
-      return false;
-    }
-  Ogre::SceneNode *s = worldNode->createChildSceneNode(ss.str());
-  s->setPosition(position.first, position.second, 0);
-  s->pitch(
-	  Ogre::Radian(world::Math::toRad(static_cast<short >(orientation.x))));
-  s->yaw(Ogre::Radian(world::Math::toRad(static_cast<short >(orientation.y))));
-  s->roll(Ogre::Radian(world::Math::toRad(static_cast<short >(orientation.z))));
-  s->attachObject(e);
-  return (true);
-}
-
-
-bool __attribute_warn_unused_result__ OgreUI::addWorldEntity(int entityId,
-							     const std::string &name,
-							     std::pair<int, int> position)
-{
-  return this->addWorldEntity(entityId, name, position, Ogre::Vector3(0, 0, 0),
-			      TextureName::TEXTURE_NONE);
-}
-
-bool __attribute_warn_unused_result__ OgreUI::addWorldEntity(int entityId,
-							     const std::string &name,
-							     std::pair<int, int> position,
-							     TextureName textureId)
-{
-  return this->addWorldEntity(entityId, name, position, Ogre::Vector3(0, 0, 0),
-			      textureId);
-}
-
-
-bool __attribute_warn_unused_result__ OgreUI::addWorldEntity(int entityId,
-							     const std::string &name,
-							     std::pair<int, int> position,
-							     Ogre::Vector3 orientation)
-{
-  return this->addWorldEntity(entityId, name, position, orientation,
-			      TextureName::TEXTURE_NONE);
-}
-
 
 void OgreUI::setQuality(int percent)
 {
@@ -1230,20 +1176,9 @@ void OgreUI::calcNewVolume(int id, Ogre::Vector3 player, Ogre::Vector3 obj)
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+int OgreUI::getHeightAt(double x, double y)
+{
+  if (this->heightmap.isLoaded())
+    return this->heightmap.at(x, y);
+  return (-1);
+}

@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Fri Jun  3 21:52:09 2016 Alexis Trouve
-// Last update Fri Jun  3 22:47:15 2016 Alexis Trouve
+// Last update Sat Jun  4 16:31:31 2016 Alexis Trouve
 //
 
 #ifndef CPP_INDIE_SPAWN
@@ -21,14 +21,25 @@ namespace gauntlet
 
   class	Spawner : public Creature
   {
-  private:
-    std::string			name;
+  protected:
+    std::string			minionName;
     int				maxSpawn;
     std::list<Creature*>	myCrea;
+    int				spawnCoolDown;
+    int				spawnCoolDownBase;
   public:
     Spawner(int nid, gauntlet::world::World *newWorld);
     ~Spawner();
-    void		spawnAllie();
+    void			spawnAllie(std::pair<double, double>& pos);
+    int				getNbLinkedCreature() const;
+    int				getMaxSpawn() const;
+    void			setMaxSpawn(int nbr);
+    const std::list<Creature*>&	getCreature() const;
+    const std::string&		getMinionName() const;
+    int				getSpawnCoolDown() const;
+    int				getSpawnCoolDownBase() const;
+    void			setSpawnCoolDown(int nbr);
+    void			setSpawnCoolDownBase(int nbr);
   };
 };
 

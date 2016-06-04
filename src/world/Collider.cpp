@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 29 20:40:50 2016 Alexis Trouve
-// Last update Fri Jun  3 22:46:42 2016 Alexis Trouve
+// Last update Sat Jun  4 14:43:38 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -37,7 +37,7 @@ bool	Collider::canMove(const std::pair<double, double>& ori, const std::pair<dou
 
   if (physicLayer->checkCoordSizeCanPass(ori, end, size) == false)
     return (false);
-  if (dynamicLayer->giveBodyInAreaCircle(end.first, end.second, size.first + size.second).size() == 0)
+  if (dynamicLayer->giveBodyInAreaCircle(end.first, end.second, size.first + size.second).size() <= 1)
     return (true);
   else
     return (false);
