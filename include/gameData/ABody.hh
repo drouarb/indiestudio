@@ -37,6 +37,7 @@ namespace gauntlet
     unsigned long               cooldown;
     animations::AnimationsListJson idle;
     animations::AnimationsListJson running;
+    animations::AnimationsListJson death;
 
   public:
     enum    soundType {
@@ -47,7 +48,7 @@ namespace gauntlet
     };
 
     std::vector<animations::AnimationsListJson>     animations[SIZE];
-    std::vector<SoundName>   soundEffect[SIZE];
+    std::vector<SoundName>                          soundEffect[SIZE];
 
   public:
     ABody(int nid);
@@ -77,8 +78,9 @@ namespace gauntlet
     virtual void            setCooldown(unsigned long _cooldown);
     virtual void            setIdle(animations::AnimationsListJson);
     virtual void            setRunning(animations::AnimationsListJson);
+    virtual void            setDeath(animations::AnimationsListJson);
+    virtual void            desu();
   };
-
 };
 
 #endif

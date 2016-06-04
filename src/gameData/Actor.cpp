@@ -66,6 +66,7 @@ ABody		*Actor::clone(int id) const
   actor->setIdle(idle);
   actor->setRunning(running);
   actor->changePos(coord);
+  actor->death = this->death;
   actor->changeSize(size);
   actor->changeOrientation(orientation);
   actor->setIdAI(idAI);

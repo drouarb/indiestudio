@@ -13,36 +13,37 @@
 
 # include <vector>
 # include <map>
+# include <Stopwatch.hh>
 # include "Conf.hh"
 # include "PlayerChars.hh"
 
-namespace				gauntlet
+namespace gauntlet
 {
-  namespace				core
-  {
-    class				Core;
-
-    class				PlayerController
+    namespace core
     {
-    public:
-      PlayerController(std::string const & name, world::PlayerChar, Core &);
-      ~PlayerController();
+        class Core;
 
-      std::string const &		getName() const;
-      world::PlayerChar			getChar() const;
+        class PlayerController
+        {
+        public:
+            PlayerController(std::string const &name, world::PlayerChar, Core &);
+            ~PlayerController();
 
-      void				doCmd(Command, bool down);
-      void				setAngle(short);
+            std::string const &getName() const;
+            world::PlayerChar getChar() const;
+            void doCmd(Command, bool down);
+            void setAngle(short);
 
-    private:
-      Core &				core;
-      std::vector<Command>		ctrls;
-      std::map<Command, Command>	stopCmds;
-      world::PlayerChar			chartype;
-      short				angle;
-      std::string			name;
+        private:
+            Core &core;
+            std::vector<Command> ctrls;
+            std::map<Command, Command> stopCmds;
+            world::PlayerChar chartype;
+            short angle;
+            std::string name;
+            Stopwatch sw;
+        };
     };
-  };
 };
 
 #endif

@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Fri Jun  3 21:56:39 2016 Alexis Trouve
-// Last update Sat Jun  4 16:33:09 2016 Alexis Trouve
+// Last update Sat Jun  4 17:38:29 2016 Alexis Trouve
 //
 
 #include "Spawner.hh"
@@ -39,7 +39,7 @@ int		Spawner::getNbLinkedCreature()
   return (result);
 }
 
-void		Spawner::spawnAllie(std::pair<double, double> endPos)
+void		Spawner::spawnAllie(std::pair<double, double>& endPos)
 {
   if (getNbLinkedCreature() >= maxSpawn)
     return ;
@@ -66,6 +66,11 @@ const std::list<Creature*>&	Spawner::getCreature() const
 const std::string&		Spawner::getMinionName() const
 {
   return (minionName);
+}
+
+void				Spawner::setMinionName(const std::string& nname)
+{
+  minionName = nname;
 }
 
 int				Spawner::getSpawnCoolDown() const

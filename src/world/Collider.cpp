@@ -96,10 +96,13 @@ bool				Collider::applyVectorToId(int id, short orient, double speed)
   double			vectX;
   double			vectY;
 
+  std::cout << "vector id=" << id << " orient=" << orient << std::endl;
   if ((body = dynamicLayer->getBodyId(id)) == NULL)
     return (false);
-  vectY = (Math::sin(orient) * speed);
   vectX = (Math::cos(orient) * speed);
+  vectY = (Math::sin(orient) * speed);
+  std::cout << "move x=" << vectX << " y=" << vectY << std::endl;
+  std::cout << "speed=" << speed << std::endl;
   posB = body->getPos();
   tryMoveBody(id, posB.first + vectX, posB.second);
   posB = body->getPos();

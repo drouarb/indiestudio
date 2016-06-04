@@ -1,31 +1,31 @@
 //
-// BasicAI.cpp for indie in /home/trouve_b/Desktop/CPP_project/cpp_indie_studio
+// SpawnerAI.cpp for indie in /home/trouve_b/Desktop/CPP_project/cpp_indie_studio
 //
 // Made by Alexis Trouve
 // Login   <trouve_b@epitech.net>
 //
 // Started on  Sun May 22 11:46:42 2016 Alexis Trouve
-// Last update Sat Jun  4 16:38:44 2016 Alexis Trouve
+// Last update Sat Jun  4 17:36:02 2016 Alexis Trouve
 //
 
 #include <iostream>
-#include "BasicAI.hh"
+#include "SpawnerAI.hh"
 #include "World.hh"
 #include "Spell.hh"
 
 using namespace gauntlet;
 using namespace world;
 
-BasicAI::BasicAI(World *nworld) : AbstractAI(nworld)
+SpawnerAI::SpawnerAI(World *nworld) : AbstractAI(nworld)
 {
-    nameAI = "BasicAI";
+    nameAI = "SpawnerAI";
 }
 
-BasicAI::~BasicAI()
+SpawnerAI::~SpawnerAI()
 {
 }
 
-int        BasicAI::launchAI(std::pair<double, double> pos)
+int        SpawnerAI::launchAI(std::pair<double, double> pos)
 {
   unsigned int i;
   int nbrPlayed;
@@ -52,19 +52,21 @@ int        BasicAI::launchAI(std::pair<double, double> pos)
   return (nbrPlayed);
 }
 
-void            BasicAI::launchAI(gauntlet::Actor *actor)
+void            SpawnerAI::launchAI(gauntlet::Actor *actor)
 {
   Spawner	*me;
+  std::pair<double, double>	pos;
 
   if ((me = dynamic_cast<Spawner*>(actor)) != NULL)
     {
       if (me->getSpawnCoolDown() == 0)
 	{
-	  me->spawnAllie(me->getCoord());
+	  pos = me->getPos();
+	  me->spawnAllie(pos);
 	  me->setSpawnCoolDown(me->getSpawnCoolDownBase());
 	}
       else
-	me->setSpawnCoolDown(me->getSpawnCoolDown - 1);
+	me->setSpawnCoolDown(me->getSpawnCoolDown() - 1);
     }
 
   std::list<ABody *> bodys;
@@ -86,7 +88,7 @@ void            BasicAI::launchAI(gauntlet::Actor *actor)
     }
   if (savedPlayer == NULL)
     return;
-  actor->changeOrientation(Math::getAngle(-atan2(savedPlayer->getPos().second - actor->getPos().second,
+  actor->changeOrientation(Math::getAngle(atan2(savedPlayer->getPos().second - actor->getPos().second,
 						 savedPlayer->getPos().first - actor->getPos().first)));
   
   idAttack = actor->spellBook.giveSpell(400, 30, true, NOAREA, 50, 10);

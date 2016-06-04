@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 11:42:26 2016 Alexis Trouve
-// Last update Sat Jun  4 13:56:00 2016 Alexis Trouve
+// Last update Sat Jun  4 17:27:31 2016 Alexis Trouve
 //
 
 #ifndef ABSTRACTAI_HH_
@@ -24,7 +24,8 @@ namespace gauntlet
     {
       NOAI = -1,
 	MELEEBASICAI = 0,
-	DISTBASICAI = 1
+	DISTBASICAI = 1,
+	SPAWNERAI = 2
 	};
 
   namespace world

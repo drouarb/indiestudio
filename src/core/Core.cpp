@@ -250,4 +250,12 @@ gauntlet::core::Core::getLastKey() const
     return (lastKey);
 }
 
+void gauntlet::core::Core::tick()
+{
+    if (menu.getOpen())
+        menu.tick();
+    if (hud.getOpen())
+       hud.tick();
+}
+
 

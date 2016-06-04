@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 16:50:32 2016 Alexis Trouve
-// Last update Fri Jun  3 18:32:29 2016 Alexis Trouve
+// Last update Sat Jun  4 17:27:02 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -104,9 +104,7 @@ void			BodyFactory::setBarbare()
           //animations::AnimationsListJson::BERSEKER_ATTACK_4,
           //animations::AnimationsListJson::BERSEKER_ATTACK_5
   };
-  player->animations[ABody::DEATH] = {
-          animations::AnimationsListJson::BERSEKER_DEATH
-  };
+  player->setDeath(animations::AnimationsListJson::BERSEKER_DEATH);
   player->setIdle(animations::AnimationsListJson::BERSEKER_IDLE);
   player->setRunning(animations::AnimationsListJson::BERSEKER_RUN);
   player->setMeshId(EntityName::BERSERK);
@@ -171,9 +169,7 @@ void			BodyFactory::setWizard()
   player->animations[ABody::ATTACK] = {
           animations::AnimationsListJson::SKELETON_ARCHIER_SHOTING
   };
-  player->animations[ABody::DEATH] = {
-          animations::AnimationsListJson::SKELETON_ARCHIER_DYING_B
-  };
+  player->setDeath(animations::AnimationsListJson::SKELETON_ARCHIER_DYING_B);
   player->setIdle(animations::AnimationsListJson::SKELETON_ARCHIER_IDLE);
   player->setRunning(animations::AnimationsListJson::SKELETON_ARCHIER_RUN);
   player->setMeshId(EntityName::SKELETON_ARCHER);
@@ -231,7 +227,7 @@ void			BodyFactory::setWizard()
   player->setTextureId(TextureName::TEXTURE_NONE);
   player->setIdAI(NOAI);
   bodyTab.push_back(player);
-}*/
+  }*/
 
 void			BodyFactory::setValkyrie()
 {
@@ -272,9 +268,7 @@ void			BodyFactory::setValkyrie()
           //animations::AnimationsListJson::VALKYRIE_ATTACK_4,
           //animations::AnimationsListJson::VALKYRIE_ATTACK_5
   };
-  player->animations[ABody::DEATH] = {
-          animations::AnimationsListJson::VALKYRIE_DEATH
-  };
+  player->setDeath(animations::AnimationsListJson::VALKYRIE_DEATH);
   player->setIdle(animations::AnimationsListJson::VALKYRIE_IDLE);
   player->setRunning(animations::AnimationsListJson::VALKYRIE_RUN);
   player->setMeshId(EntityName::VALKYRIE);
@@ -285,7 +279,6 @@ void			BodyFactory::setValkyrie()
 
 void			BodyFactory::setSkeleton()
 {
-  unsigned int		i;
   Creature		*crea;
 
   crea = new Creature(-1, world);
@@ -322,37 +315,26 @@ void			BodyFactory::setSkeleton()
 //          animations::AnimationsListJson::SKELETON_FOOTMAN_HIT_FROM_BACK,
 //          animations::AnimationsListJson::SKELETON_FOOTMAN_HIT_FROM_FRONT
   };
-  crea->animations[ABody::DEATH] = {
-          animations::AnimationsListJson::SKELETON_FOOTMAN_DYING_A,
-          animations::AnimationsListJson::SKELETON_FOOTMAN_DYING_B
-  };
+  crea->setDeath(animations::AnimationsListJson::SKELETON_FOOTMAN_DYING_A);
   crea->setIdle(animations::AnimationsListJson::SKELETON_FOOTMAN_IDLE);
   crea->setRunning(animations::AnimationsListJson::SKELETON_FOOTMAN_RUN);
   crea->setMeshId(EntityName::SKELETON_FOOTMAN);
   crea->setTextureId(TextureName::TEXTURE_NONE);
   crea->setIdAI(MELEEBASICAI);
   bodyTab.push_back(crea);
-  i = 0;
-  while (i < AIs.size())
-  {
-    if (AIs[i]->getName() == "BasicAI")
-      AIs[i]->setNewAI(crea);
-    ++i;
-  }
 }
 
 void			BodyFactory::setSkeletonWarlord()
 {
-  unsigned int		i;
-  Creature		*crea;
+  Spawner		*crea;
 
-  crea = new Creature(-1, world);
+  crea = new Spawner(-1, world);
   crea->setName("SkeletonWarlord");
-  crea->stats.HP = 100;
-  crea->stats.normalHP = 100;
+  crea->stats.HP = 400;
+  crea->stats.normalHP = 400;
   crea->stats.speed = 6.0;
   crea->stats.normalSpeed = 6.0;
-  crea->stats.attackModifier = 0.8;
+  crea->stats.attackModifier = 1.5;
   crea->spellBook.addSpell(SpellFactory::SIMPLE_ATTACK, crea);
   crea->setCollide(true);
   crea->changePos(std::make_pair(-1, -1));
@@ -382,36 +364,30 @@ void			BodyFactory::setSkeletonWarlord()
 //          animations::AnimationsListJson::SKELETON_WARLORD_HIT_FROM_BACK,
 //          animations::AnimationsListJson::SKELETON_WARLORD_HIT_FROM_FRONT
   };
-  crea->animations[ABody::DEATH] = {
-          animations::AnimationsListJson::SKELETON_WARLORD_DYING_A,
-  };
+  crea->setDeath(animations::AnimationsListJson::SKELETON_WARLORD_DYING_A);
   crea->setIdle(animations::AnimationsListJson::SKELETON_WARLORD_IDLE);
   crea->setRunning(animations::AnimationsListJson::SKELETON_WARLORD_RUN);
   crea->setMeshId(EntityName::SKELETON_WARLORD);
   crea->setTextureId(TextureName::TEXTURE_NONE);
-  crea->setIdAI(MELEEBASICAI);
+  crea->setIdAI(SPAWNERAI);
+  crea->setSpawnCoolDown(50);
+  crea->setSpawnCoolDownBase(50);
+  crea->setMinionName("Skeleton");
+  crea->setMaxSpawn(8);
   bodyTab.push_back(crea);
-  i = 0;
-  while (i < AIs.size())
-  {
-    if (AIs[i]->getName() == "BasicAI")
-      AIs[i]->setNewAI(crea);
-    ++i;
-  }
 }
 
 void			BodyFactory::setSkeletonArcher()
 {
-  unsigned int		i;
   Creature		*crea;
 
   crea = new Creature(-1, world);
   crea->setName("SkeletonArcher");
-  crea->stats.HP = 400;
-  crea->stats.normalHP = 400;
+  crea->stats.HP = 100;
+  crea->stats.normalHP = 100;
   crea->stats.speed = 6.0;
   crea->stats.normalSpeed = 6.0;
-  crea->stats.attackModifier = 0.3;
+  crea->stats.attackModifier = 0.2;
   crea->spellBook.addSpell(SpellFactory::RANGER_ATTACK, crea);
   crea->setCollide(true);
   crea->changePos(std::make_pair(-1, -1));
@@ -434,27 +410,17 @@ void			BodyFactory::setSkeletonArcher()
   crea->animations[ABody::ATTACK] = {
           animations::AnimationsListJson::SKELETON_ARCHIER_SHOTING
   };
-  crea->animations[ABody::DEATH] = {
-          animations::AnimationsListJson::SKELETON_ARCHIER_DYING_B
-  };
+  crea->setDeath(animations::AnimationsListJson::SKELETON_ARCHIER_DYING_B);
   crea->setIdle(animations::AnimationsListJson::SKELETON_ARCHIER_IDLE);
   crea->setRunning(animations::AnimationsListJson::SKELETON_ARCHIER_RUN);
   crea->setMeshId(EntityName::SKELETON_ARCHER);
   crea->setTextureId(TextureName::TEXTURE_NONE);
   crea->setIdAI(MELEEBASICAI);
   bodyTab.push_back(crea);
-  i = 0;
-  while (i < AIs.size())
-  {
-    if (AIs[i]->getName() == "BasicAI")
-      AIs[i]->setNewAI(crea);
-    ++i;
-  }
 }
 
 void			BodyFactory::setSkeletonWizard()
 {
-  unsigned int		i;
   Creature		*crea;
 
   crea = new Creature(-1, world);
@@ -491,27 +457,17 @@ void			BodyFactory::setSkeletonWizard()
           animations::AnimationsListJson::SKELETON_SORCERER_SPELL_CAST_A,
           animations::AnimationsListJson::SKELETON_SORCERER_STAFF_EARTHQUAKE_SPELL
   };
-  crea->animations[ABody::DEATH] = {
-          animations::AnimationsListJson::SKELETON_SORCERER_DYING_A
-  };
+  crea->setDeath(animations::AnimationsListJson::SKELETON_SORCERER_DYING_A);
   crea->setIdle(animations::AnimationsListJson::SKELETON_SORCERER_IDLE);
   crea->setRunning(animations::AnimationsListJson::SKELETON_SORCERER_RUN);
   crea->setMeshId(EntityName::SKELETON_SORCERER);
   crea->setTextureId(TextureName::TEXTURE_NONE);
   crea->setIdAI(MELEEBASICAI);
   bodyTab.push_back(crea);
-  i = 0;
-  while (i < AIs.size())
-  {
-    if (AIs[i]->getName() == "BasicAI")
-      AIs[i]->setNewAI(crea);
-    ++i;
-  }
 }
 
 void			BodyFactory::setDraugr()
 {
-  unsigned int		i;
   Creature		*crea;
 
   crea = new Creature(-1, world);
@@ -530,13 +486,6 @@ void			BodyFactory::setDraugr()
   crea->setTextureId(TextureName::TEXTURE_NONE);
   crea->setIdAI(MELEEBASICAI);
   bodyTab.push_back(crea);
-  i = 0;
-  while (i < AIs.size())
-    {
-      if (AIs[i]->getName() == "BasicAI")
-	AIs[i]->setNewAI(crea);
-      ++i;
-    }
 }
 
 void            BodyFactory::setKey()

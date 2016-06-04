@@ -254,16 +254,16 @@ double		EntityCollideLayer::getDist(double refx, double refy,
   if (target.getSize().first == 0 || target.getSize().second == 0)
     return (dist);
 
-  short angle = Math::getAngle(-atan2((target.getPos().second - refy),
-				       (target.getPos().first - refx)) + M_PI);
+  short angle = Math::getAngle(atan2((target.getPos().second - refy),
+				       (refx - target.getPos().first)) + M_PI);
   short a1 =
-    Math::getAngle(atan2(target.getSize().second / 2, target.getSize().first / 2));
+    Math::getAngle(-atan2(target.getSize().second / 2, -target.getSize().first / 2));
   short a2 = 
-    Math::getAngle(atan2(target.getSize().second / 2, -target.getSize().first / 2));
+    Math::getAngle(-atan2(target.getSize().second / 2, target.getSize().first / 2));
   short a3 = 
-    Math::getAngle(atan2(-target.getSize().second / 2, -target.getSize().first / 2));
+    Math::getAngle(-atan2(-target.getSize().second / 2, target.getSize().first / 2));
   short a4 = 
-    Math::getAngle(atan2(-target.getSize().second / 2, target.getSize().first / 2));
+    Math::getAngle(-atan2(-target.getSize().second / 2, -target.getSize().first / 2));
 
   double proportion;
   if (Math::isBetween(angle, a2, a1) || Math::isBetween(angle, a4, a3))
@@ -286,8 +286,8 @@ double		EntityCollideLayer::getDist(double refx, double refy,
 int		EntityCollideLayer::getAngle(double refx, double refy,
 					     int refa, const ABody & target)
 {
-  return (Math::getAngle(-atan2((target.getPos().second - refy),
-				(target.getPos().first - refx))) - refa);
+  return (Math::getAngle(atan2((target.getPos().second - refy),
+				(refx - target.getPos().first))) - refa);
 }
 
 bool				EntityCollideLayer::bodyLineIntersection(double refX,
