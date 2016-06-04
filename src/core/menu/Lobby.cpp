@@ -154,10 +154,10 @@ gauntlet::core::Lobby::doPlay(struct t_hitItem &item)
 void
 gauntlet::core::Lobby::receivedStartgame()
 {
-    network::Packet const * packet =
+    network::Packet const *packet =
             (static_cast<WaitPacket *>(submenus[3])->getReceived());
 
-    network::PacketStartGame const * startgame =
+    network::PacketStartGame const *startgame =
             dynamic_cast<network::PacketStartGame const *>(packet);
     if (startgame != NULL)
         {
@@ -169,7 +169,7 @@ gauntlet::core::Lobby::receivedStartgame()
         }
     else
         {
-            network::PacketHandshake const * handshake =
+            network::PacketHandshake const *handshake =
                     dynamic_cast<network::PacketHandshake const *>(packet);
             if (handshake != NULL)
                 {
@@ -192,7 +192,7 @@ gauntlet::core::Lobby::doCancel(struct t_hitItem &item)
     setOpen(false);
 }
 
-void gauntlet::core::Lobby::setChars(network::PacketHandshake const * handshake)
+void gauntlet::core::Lobby::setChars(network::PacketHandshake const *handshake)
 {
     static_cast<CharMenu *>(submenus[1])->barbarian = handshake->getWarrior();
     static_cast<CharMenu *>(submenus[1])->wizard = handshake->getWizard();

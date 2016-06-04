@@ -11,7 +11,7 @@
 #include "CoreUIObserver.hh"
 #include "Core.hh"
 
-gauntlet::core::CoreUIObserver::CoreUIObserver(Core & core) : core(core)
+gauntlet::core::CoreUIObserver::CoreUIObserver(Core &core) : core(core)
 { }
 
 gauntlet::core::CoreUIObserver::~CoreUIObserver()
@@ -20,27 +20,28 @@ gauntlet::core::CoreUIObserver::~CoreUIObserver()
 void
 gauntlet::core::CoreUIObserver::keyDown(Key key)
 {
-  core.keyDown(key);
+    core.keyDown(key);
 }
 
 void
 gauntlet::core::CoreUIObserver::keyUp(Key key)
 {
-  core.keyUp(key);
+    core.keyUp(key);
 }
 
 void
 gauntlet::core::CoreUIObserver::mouseMove(int x, int y)
 {
-  core.mouseMove(x, y);
+    core.mouseMove(x, y);
 }
 
-void gauntlet::core::CoreUIObserver::itemClick(int buttonId, struct t_hitItem & item)
+void gauntlet::core::CoreUIObserver::itemClick(int buttonId, struct t_hitItem &item)
 {
-  core.buttonClick(buttonId, item);
+    core.buttonClick(buttonId, item);
 }
 
 void gauntlet::core::CoreUIObserver::frameStarted()
 {
-  core.actionlists.doActions();
+    core.actionlists.doActions();
+    core.tick();
 }

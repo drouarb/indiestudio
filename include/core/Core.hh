@@ -42,31 +42,20 @@ namespace gauntlet
             ~Core();
 
             void keyUp(IUIObserver::Key);
-
             void keyDown(IUIObserver::Key);
-
             void buttonClick(int buttonId, struct t_hitItem &item);
-
             void mouseMove(int x, int y);
+            void tick();
 
             void play();
-
             void stop();
-
             void exit();
-
             void createServer();
-
             void initPacketf();
-
             void disconnect(std::string const &msg);
-
             void destroyPacketf(bool external);
-
             void load(std::string const &file);
-
             bool gameIsRunning();
-
             IUIObserver::Key getLastKey() const;
 
             OgreUI ogre;

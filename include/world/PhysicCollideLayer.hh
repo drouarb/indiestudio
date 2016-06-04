@@ -13,7 +13,8 @@
 #include <tuple>
 #include "HeightMap.hh"
 
-# define WALL_MIN_HEIGHT 40
+# define WALL_MIN_HEIGHT 35
+# define MOVEMENT_MAX_HEIGHT 10
 # define ABS(x) ((x) < 0 ? -(x) : (x))
 
 namespace gauntlet
@@ -42,6 +43,7 @@ namespace gauntlet
             ~PhysicCollideLayer();
 
             std::pair<double, double> getSize() const;
+
             bool isWall(const std::pair<double, double> &oldPos,
                         const std::pair<double, double> &wantedPos);
             bool checkCoordSizeCanPass(const std::pair<double, double> &oldPos,
