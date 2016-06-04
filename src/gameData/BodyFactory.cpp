@@ -138,7 +138,6 @@ void			BodyFactory::setElf()
 //	  ARCHER_DEATH,
 //	  ARCHER_ATTACK_HIT,
 //	  ARCHER_ATTACK_RANGE,
-
 }
 
 void			BodyFactory::setWizard()
