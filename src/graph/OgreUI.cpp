@@ -1005,26 +1005,32 @@ void OgreUI::play3dSound(int id, SoundName name, int x, int y, bool loop)
     {
       z = this->heightmap.at(x, y);
     }
-  if (name != SOUND_NONE)
-    if ((sound = mSoundManager->createSound(ss.str() + "_sound",
-					    soundmap.at(name))))
-      {
-	sound->loop(loop);
-	sound->setVolume(0);
-	std::cerr << id << std::endl;
-	Ogre::SceneNode *node = planNode->createChildSceneNode(
-		ss.str() + "_sound");
-	node->setPosition(x, z, y);
-	if (rootNode != NULL)
+  try
+    {
+      if (name != SOUND_NONE)
+	if ((sound = mSoundManager->createSound(ss.str() + "_sound",
+						soundmap.at(name))))
 	  {
-	    calcNewVolume(id, rootNode->getPosition(), node->getPosition());
+	    sound->loop(loop);
+	    sound->setVolume(0);
+	    std::cerr << id << std::endl;
+	    Ogre::SceneNode *node = planNode->createChildSceneNode(
+		    ss.str() + "_sound");
+	    node->setPosition(x, z, y);
+	    if (rootNode != NULL)
+	      {
+		calcNewVolume(id, rootNode->getPosition(), node->getPosition());
+	      }
+	    else
+	      {
+		sound->setVolume(1);
+		sound->play();
+	      }
 	  }
-	else
-	  {
-	    sound->setVolume(1);
-	    sound->play();
-	  }
-      }
+    } catch (std::exception &exception)
+    {
+      std::cerr << "Unexpected exception: " << exception.what() << std::endl;
+    }
 }
 
 bool OgreUI::loadMap(const std::string &map)
