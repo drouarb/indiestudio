@@ -59,7 +59,7 @@
     {
       name: "death",
       begin: "528",
-      end: "528"
+      end: "532"
     },
     {
       name: "recover",

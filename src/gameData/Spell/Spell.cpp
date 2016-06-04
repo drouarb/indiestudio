@@ -55,8 +55,6 @@ void gauntlet::Spell::ApplyDamage(std::list<gauntlet::ABody*> targets, Actor *ca
                 actor->getWorld()->notifyDeath(actor);
             }
         }
-        //if (gameObject != NULL)
-        //    faire les dégats
     }
 }
 
