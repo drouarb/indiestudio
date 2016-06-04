@@ -23,6 +23,18 @@
 	    y : "61"
 	},
 	{
+	    name : "SkeletonWizard",
+	    angle : "0",
+	    x : "71",
+	    y : "61"
+	},
+	{
+		name : "SkeletonArcher",
+		angle : "0",
+		x : "71",
+		y : "61"
+	},
+	{
 		name : "SpeedPotion",
 		angle : "0",
 		x : "91",
