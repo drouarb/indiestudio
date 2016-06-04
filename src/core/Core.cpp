@@ -116,7 +116,6 @@ gauntlet::core::Core::stop()
             hud.setOpen(false);
         }
     playing = false;
-    ogre.showBackground();
 }
 
 void
