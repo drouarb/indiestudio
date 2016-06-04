@@ -687,13 +687,15 @@ void OgreUI::playAnimation(int entityId,
 					pState, loop);
     } catch (std::logic_error &e)
     {
-      std::cerr << "Animation not found :" << e.what() << std::endl;
+      std::cerr << "=====> Animation not found :" << e.what() << std::endl;
       return;
     } catch (std::exception &e)
     {
       std::cerr << e.what() << std::endl;
       return;
     }
+  std::cout << "=======>Application de l'animation: " << a->getName()
+  << " sur l'entité " << pEntity->getName() << std::endl;
   animations::Animation **type = &this->animationsMap[pEntity->getName()];
   if (*type)
     {
