@@ -25,13 +25,14 @@ gauntlet::Effect::Effect(OgreUI *ogreUI, gauntlet::EffectName type, std::string 
   std::cout << "scale effect: " << scale << ", original:" << particleNode->getScale() << std::endl;
   particleNode->setScale(scale);
   particleNode->setPosition((Ogre::Vector3(static_cast<float>(coord.first), ogreUI->getHeightAt(coord.first, coord.second), static_cast<float >(coord.second))));
-  for (size_t i = 0; _particleSystem->getEmitter(i) != NULL; ++i)
+  for (size_t i = 0; i < _particleSystem->getNumEmitters(); ++i)
     {
       Ogre::ParticleEmitter *pEmitter = _particleSystem->getEmitter(i);
       pEmitter->setDuration(pEmitter->getDuration() / _EFFECT_DIVIDE_SIZE);
     }
-  this->_particleSystem->setParticleQuota(static_cast<float>((100.0 / this->_particleSystem->getParticleQuota())) *
-						  static_cast<float>(percent));
+  float quota = static_cast<float>(this->_particleSystem->getParticleQuota()) *
+		static_cast<float>(percent);
+  this->_particleSystem->setParticleQuota(quota / 100.0);
   particleNode->attachObject(this->_particleSystem);
 }
 
