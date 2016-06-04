@@ -222,6 +222,7 @@ void                GameServer::receiveDeco(
   std::cout << "receiveDeco" << std::endl;
   int socketId;
   unsigned int i;
+  dataSendMutex.lock();
 
   socketId = packet->getSocketId();
   i = 0;
@@ -229,11 +230,11 @@ void                GameServer::receiveDeco(
     {
       if (players[i].socketId == socketId)
 	{
-	  world->deleteId(players[i].idPlayer, true);
-	  players[i].idPlayer = -1;
-	  players[i].name = "";
 	  players[i].socketId = -1;
+	  world->deleteId(players[i].idPlayer, true);
+	  players[i].name = "";
 	  players[i].isTake = false;
+	  players[i].idPlayer = -1;
 	}
       ++i;
     }
@@ -249,6 +250,7 @@ void                GameServer::receiveDeco(
       packetFact->stop();
       delete packetFact;
     }
+  dataSendMutex.unlock();
   std::cout << "receiveDecoEnd" << std::endl;
 }
 
@@ -312,7 +314,8 @@ void                GameServer::sendAddEntity(ABody *body)
   i = 0;
   while (i < players.size())
     {
-      packetFact->send(packet, players[i].socketId);
+      if (players[i].socketId != -1)
+	packetFact->send(packet, players[i].socketId);
       ++i;
     }
   std::cout << "sendAddEntityEnd" << std::endl;
@@ -329,7 +332,8 @@ void                GameServer::sendMoveId(ABody *body)
   i = 0;
   while (i < players.size())
     {
-      packetFact->send(packet, players[i].socketId);
+      if (players[i].socketId != -1)
+	packetFact->send(packet, players[i].socketId);
       ++i;
     }
 }
@@ -344,14 +348,17 @@ void                GameServer::controlInput(
   i = 0;
   while (i < players.size())
     {
-      if (packet->getSocketId() == players[i].socketId)
+      if (players[i].socketId != -1)
+	if (packet->getSocketId() == players[i].socketId)
 	break;
       ++i;
     }
-  body = world->getBodyById(players[i].idPlayer);
+  if ((body = world->getBodyById(players[i].idPlayer)) == NULL)
+    return ;
   body->changeOrientation(packet->getAngle());
-  world->applyCommand(players[i].idPlayer,
-		      static_cast<core::Command>(packet->getCmd()));
+  if (players[i].socketId != -1)
+    world->applyCommand(players[i].idPlayer,
+			static_cast<core::Command>(packet->getCmd()));
   dataSendMutex.unlock();
 }
 
@@ -368,7 +375,8 @@ void                GameServer::sendEffect(unsigned int effect, int id,
   i = 0;
   while (i < players.size())
     {
-      packetFact->send(packet, players[i].socketId);
+      if (players[i].socketId != -1)
+	packetFact->send(packet, players[i].socketId);
       ++i;
     }
 }
@@ -381,7 +389,8 @@ void                GameServer::sendStopEffect(int id)
   i = 0;
   while (i < players.size())
     {
-      packetFact->send(packet, players[i].socketId);
+      if (players[i].socketId != -1)
+	packetFact->send(packet, players[i].socketId);
       ++i;
     }
 }
@@ -394,7 +403,8 @@ void                GameServer::sendStopSound(int id)
   i = 0;
   while (i < players.size())
     {
-      packetFact->send(packet, players[i].socketId);
+      if (players[i].socketId != -1)
+	packetFact->send(packet, players[i].socketId);
       ++i;
     }
 }
@@ -410,7 +420,8 @@ void                GameServer::sendSound(unsigned int soundId, int id,
   i = 0;
   while (i < players.size())
     {
-      packetFact->send(packet, players[i].socketId);
+      if (players[i].socketId != -1)
+	packetFact->send(packet, players[i].socketId);
       ++i;
     }
 }
@@ -424,7 +435,8 @@ void                GameServer::animeEntity(int id, unsigned int idAnime,
   i = 0;
   while (i < players.size())
     {
-      packetFact->send(packet, players[i].socketId);
+      if (players[i].socketId != -1)
+	packetFact->send(packet, players[i].socketId);
       ++i;
     }
 }
@@ -444,9 +456,13 @@ void                GameServer::sendDeleteEntity(ABody *body)
   body->getName() << std::endl;
   while (i < players.size())
     {
-      packetFact->send(packet, players[i].socketId);
+      std::cout << "ça marche pas1:" << players[i].socketId << std::endl;
+      if (players[i].socketId != -1)
+	packetFact->send(packet, players[i].socketId);
+      std::cout << "ça marche pas2" << std::endl;
       ++i;
     }
+  std::cout << "send end" << std::endl;
 }
 
 const std::vector<playerServerData> &GameServer::getPlayers() const
@@ -465,7 +481,8 @@ void                                GameServer::sendHUD(int playerId,
     {
       if (players[i].idPlayer == playerId)
 	{
-	  packetFact->send(packet);
+	  if (players[i].socketId != -1)
+	    packetFact->send(packet);
 	  break;
 	}
       ++i;

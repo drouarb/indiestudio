@@ -143,7 +143,6 @@ void        World::applyAI()
   std::vector<Player *> players;
   Player *nplay;
 
-  std::cout << "tour : " << turn << "AI apply" << std::endl;
   it1 = bodys.begin();
   while (it1 != bodys.end())
     {
@@ -193,7 +192,7 @@ void        World::gameLoop()
   while (looper == true)
     {
       if (stopwatch.ellapsedMs() < ROUND_DURATION)
-	usleep(ROUND_DURATION * 1000 - stopwatch.ellapsedMs());
+	usleep(ROUND_DURATION * 1000 - stopwatch.ellapsedMs() * 1000.0);
       stopwatch.set();
       if (turn % AI_PRIORITY == 0)
 	applyAI();
