@@ -868,39 +868,6 @@ int OgreUI::triggerEffect(int id, gauntlet::EffectName type,
   return 0;
 }
 
-int OgreUI::triggerEffect(int id, gauntlet::EffectName type,
-			  std::pair<double, double> coord,
-			  std::tuple<double, double, double> orientation)
-{
-  std::stringstream ss;
-
-  ss << "effect" << id;
-  Effect *&mapped_type = this->effectMap[id];
-  gauntlet::Effect *effect = new gauntlet::Effect(this, type, ss.str(), coord,
-						  this->quality);
-  mapped_type = effect;
-  effect->getParticleSystem()->getEmitter(0)->setDirection(
-	  Ogre::Vector3(std::get<0>(orientation), std::get<1>(orientation),
-			std::get<2>(orientation)));
-  return 0;
-}
-
-int OgreUI::triggerEffect(int id, gauntlet::EffectName type,
-			  std::pair<double, double> coord,
-			  double yRotation)
-{
-  std::stringstream ss;
-
-  ss << "effect" << id;
-  Effect *&mapped_type = this->effectMap[id];
-  gauntlet::Effect *effect = new gauntlet::Effect(this, type, ss.str(), coord,
-						  this->quality);
-  mapped_type = effect;
-  effect->getParticleSystem()->getEmitter(0)->setDirection(
-	  Ogre::Vector3(0, yRotation, 0));
-  return 0;
-}
-
 void OgreUI::removeEntity(int id)
 {
   std::stringstream ss;
