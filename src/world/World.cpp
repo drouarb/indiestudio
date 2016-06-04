@@ -602,6 +602,7 @@ ABody *World::getBodyById(int id)
 
 void                World::animeEntity(int id, unsigned int animeId, bool loop)
 {
+    std::cerr << "id:" << id << " anime:" << animeId << std::endl;
   gameServer->animeEntity(id, animeId, loop);
 }
 

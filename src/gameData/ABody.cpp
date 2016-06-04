@@ -147,6 +147,20 @@ void ABody::setIdle(animations::AnimationsListJson _idle) {
   this->idle = _idle;
 }
 
+void ABody::setDeath(animations::AnimationsListJson _death) {
+  this->death = _death;
+}
+
+void ABody::desu()
+{
+  std::cerr << "deathhhh " << this->death << std::endl;
+  getWorld()->animeEntity(this->id, this->death, false);
+}
+
+
+
+
+
 
 
 

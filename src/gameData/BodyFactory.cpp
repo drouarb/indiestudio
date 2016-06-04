@@ -104,9 +104,7 @@ void			BodyFactory::setBarbare()
           //animations::AnimationsListJson::BERSEKER_ATTACK_4,
           //animations::AnimationsListJson::BERSEKER_ATTACK_5
   };
-  player->animations[ABody::DEATH] = {
-          animations::AnimationsListJson::BERSEKER_DEATH
-  };
+  player->setDeath(animations::AnimationsListJson::BERSEKER_DEATH);
   player->setIdle(animations::AnimationsListJson::BERSEKER_IDLE);
   player->setRunning(animations::AnimationsListJson::BERSEKER_RUN);
   player->setMeshId(EntityName::BERSERK);
@@ -171,9 +169,7 @@ void			BodyFactory::setWizard()
   player->animations[ABody::ATTACK] = {
           animations::AnimationsListJson::SKELETON_ARCHIER_SHOTING
   };
-  player->animations[ABody::DEATH] = {
-          animations::AnimationsListJson::SKELETON_ARCHIER_DYING_B
-  };
+  player->setDeath(animations::AnimationsListJson::SKELETON_ARCHIER_DYING_B);
   player->setIdle(animations::AnimationsListJson::SKELETON_ARCHIER_IDLE);
   player->setRunning(animations::AnimationsListJson::SKELETON_ARCHIER_RUN);
   player->setMeshId(EntityName::SKELETON_ARCHER);
@@ -272,9 +268,7 @@ void			BodyFactory::setValkyrie()
           //animations::AnimationsListJson::VALKYRIE_ATTACK_4,
           //animations::AnimationsListJson::VALKYRIE_ATTACK_5
   };
-  player->animations[ABody::DEATH] = {
-          animations::AnimationsListJson::VALKYRIE_DEATH
-  };
+  player->setDeath(animations::AnimationsListJson::VALKYRIE_DEATH);
   player->setIdle(animations::AnimationsListJson::VALKYRIE_IDLE);
   player->setRunning(animations::AnimationsListJson::VALKYRIE_RUN);
   player->setMeshId(EntityName::VALKYRIE);
@@ -322,10 +316,7 @@ void			BodyFactory::setSkeleton()
 //          animations::AnimationsListJson::SKELETON_FOOTMAN_HIT_FROM_BACK,
 //          animations::AnimationsListJson::SKELETON_FOOTMAN_HIT_FROM_FRONT
   };
-  crea->animations[ABody::DEATH] = {
-          animations::AnimationsListJson::SKELETON_FOOTMAN_DYING_A,
-          animations::AnimationsListJson::SKELETON_FOOTMAN_DYING_B
-  };
+  crea->setDeath(animations::AnimationsListJson::SKELETON_FOOTMAN_DYING_A);
   crea->setIdle(animations::AnimationsListJson::SKELETON_FOOTMAN_IDLE);
   crea->setRunning(animations::AnimationsListJson::SKELETON_FOOTMAN_RUN);
   crea->setMeshId(EntityName::SKELETON_FOOTMAN);
@@ -382,9 +373,7 @@ void			BodyFactory::setSkeletonWarlord()
 //          animations::AnimationsListJson::SKELETON_WARLORD_HIT_FROM_BACK,
 //          animations::AnimationsListJson::SKELETON_WARLORD_HIT_FROM_FRONT
   };
-  crea->animations[ABody::DEATH] = {
-          animations::AnimationsListJson::SKELETON_WARLORD_DYING_A,
-  };
+  crea->setDeath(animations::AnimationsListJson::SKELETON_WARLORD_DYING_A);
   crea->setIdle(animations::AnimationsListJson::SKELETON_WARLORD_IDLE);
   crea->setRunning(animations::AnimationsListJson::SKELETON_WARLORD_RUN);
   crea->setMeshId(EntityName::SKELETON_WARLORD);
@@ -434,9 +423,7 @@ void			BodyFactory::setSkeletonArcher()
   crea->animations[ABody::ATTACK] = {
           animations::AnimationsListJson::SKELETON_ARCHIER_SHOTING
   };
-  crea->animations[ABody::DEATH] = {
-          animations::AnimationsListJson::SKELETON_ARCHIER_DYING_B
-  };
+  crea->setDeath(animations::AnimationsListJson::SKELETON_ARCHIER_DYING_B);
   crea->setIdle(animations::AnimationsListJson::SKELETON_ARCHIER_IDLE);
   crea->setRunning(animations::AnimationsListJson::SKELETON_ARCHIER_RUN);
   crea->setMeshId(EntityName::SKELETON_ARCHER);
@@ -491,9 +478,7 @@ void			BodyFactory::setSkeletonWizard()
           animations::AnimationsListJson::SKELETON_SORCERER_SPELL_CAST_A,
           animations::AnimationsListJson::SKELETON_SORCERER_STAFF_EARTHQUAKE_SPELL
   };
-  crea->animations[ABody::DEATH] = {
-          animations::AnimationsListJson::SKELETON_SORCERER_DYING_A
-  };
+  crea->setDeath(animations::AnimationsListJson::SKELETON_SORCERER_DYING_A);
   crea->setIdle(animations::AnimationsListJson::SKELETON_SORCERER_IDLE);
   crea->setRunning(animations::AnimationsListJson::SKELETON_SORCERER_RUN);
   crea->setMeshId(EntityName::SKELETON_SORCERER);
