@@ -43,7 +43,6 @@ const std::map<OIS::KeyCode, gauntlet::core::IUIObserver::Key> OgreUI::keymap = 
 	{OIS::KC_Z,         gauntlet::core::IUIObserver::KEY_Z},
 
 
-
 	{OIS::KC_0,         gauntlet::core::IUIObserver::KEY_0},
 	{OIS::KC_1,         gauntlet::core::IUIObserver::KEY_1},
 	{OIS::KC_2,         gauntlet::core::IUIObserver::KEY_2},
@@ -112,7 +111,10 @@ const std::map<gauntlet::EntityName, std::string> OgreUI::meshmap = {
 	{gauntlet::EntityName::SKELETON_ARCHER,   "skeleton_archer.mesh"},
 	{gauntlet::EntityName::SKELETON_FOOTMAN,  "skeleton_footman.mesh"},
 	{gauntlet::EntityName::SKELETON_SORCERER, "skeleton_sorcerer.mesh"},
-	{gauntlet::EntityName::SKELETON_WARLORD,  "skeleton_warlord.mesh"}
+	{gauntlet::EntityName::SKELETON_WARLORD,  "skeleton_warlord.mesh"},
+	{gauntlet::EntityName::ARCHER,            "archer.mesh"}
+
+
 };
 
 const std::map<gauntlet::TextureName, std::string> OgreUI::texturemap = {

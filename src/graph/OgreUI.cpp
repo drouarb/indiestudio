@@ -224,7 +224,7 @@ bool OgreUI::frameRenderingQueued(const Ogre::FrameEvent &evt)
   if (i_splash < splash_vec.size())
     {
       if (i_splash == 0)
-      mTrayMgr->hideAll();
+	mTrayMgr->hideAll();
       cinematique++;
       if (cinematique % 5 == 0)
 	{
@@ -791,7 +791,10 @@ void OgreUI::stopSound(int id)
 {
   std::stringstream ss;
   ss << id;
-  mSoundManager->getSound(ss.str() + "_sound")->stop();
+  OgreOggSound::OgreOggISound *pSound = mSoundManager->getSound(
+	  ss.str() + "_sound");
+  if (pSound)
+    pSound->stop();
 }
 
 Ogre::SceneManager *OgreUI::getSceneManager()
