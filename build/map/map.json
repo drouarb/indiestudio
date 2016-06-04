@@ -4,10 +4,10 @@
     height_map : "mapHeight/map_of_doom.pgm",
     endZone :
     {
-	posX : "200"
-	posY : "200"
-	sizeX : "4"
-	sizeY : "4"
+	posX : "40"
+	posY : "40"
+	sizeX : "2"
+	sizeY : "2"
     },
     spawn :
     {
@@ -17,10 +17,22 @@
     dynamic :
     [
 	{
-	    name : "Skeleton",
-	    x : "61",
-	    y : "61",
-	    angle : "0"
+	    name : "Door",
+	    angle : "0",
+	    x : "81",
+	    y : "61"
+	},
+	{
+		name : "SpeedPotion",
+		angle : "0",
+		x : "91",
+		y : "61"
+	},
+	{
+		name: "Skeleton",
+		angle : "0",
+		x : "61",
+		y :	"61"
 	}
     ],
     sounds:

@@ -50,7 +50,7 @@ gauntlet::HeightMap::at(double x, double y)
 
     int hm_x = (int) floor(x / HEIGHT_MAP_SCALE);
     int hm_y = (int) floor(y / HEIGHT_MAP_SCALE);
-    std::cout << "x=" << hm_x << " y=" << hm_y << std::endl;
+    //std::cout << "x=" << hm_x << " y=" << hm_y << std::endl;
     return (map[hm_x * height + hm_y]);
 }
 

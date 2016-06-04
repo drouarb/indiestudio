@@ -71,8 +71,8 @@ void			BodyFactory::setBarbare()
 
   player = new Player(-1, world);
   player->setName("Barbare");
-  player->stats.HP = 100;
-  player->stats.normalHP = 400;
+  player->stats.HP = 200;
+  player->stats.normalHP = 200;
   player->stats.speed = 11.0;
   player->stats.normalSpeed = 11.0;
   player->stats.attackModifier = 1.0;
@@ -119,8 +119,8 @@ void			BodyFactory::setElf()
 
   player = new Player(-1, world);
   player->setName("Elf");
-  player->stats.HP = 3000;
-  player->stats.normalHP = 3000;
+  player->stats.HP = 150;
+  player->stats.normalHP = 150;
   player->stats.speed = 14.0;
   player->stats.normalSpeed = 14.0;
   player->stats.attackModifier = 1.0;
@@ -140,8 +140,8 @@ void			BodyFactory::setWizard()
 
   player = new Player(-1, world);
   player->setName("Mage");
-  player->stats.HP = 1000;
-  player->stats.normalHP = 1000;
+  player->stats.HP = 80;
+  player->stats.normalHP = 80;
   player->stats.speed = 12.0;
   player->stats.normalSpeed = 12.0;
   player->stats.attackModifier = 1.2;
@@ -235,8 +235,8 @@ void			BodyFactory::setValkyrie()
 
   player = new Player(-1, world);
   player->setName("Valkyrie");
-  player->stats.HP = 5000;
-  player->stats.normalHP = 5000;
+  player->stats.HP = 250;
+  player->stats.normalHP = 250;
   player->stats.speed = 9.0;
   player->stats.normalSpeed = 9.0;
   player->stats.attackModifier = 1.0;
@@ -396,7 +396,7 @@ void			BodyFactory::setSkeletonArcher()
 
   crea = new Creature(-1, world);
   crea->setName("SkeletonArcher");
-  crea->stats.HP = 400;
+  crea->stats.HP = 100;
   crea->stats.normalHP = 400;
   crea->stats.speed = 6.0;
   crea->stats.normalSpeed = 6.0;
@@ -554,7 +554,7 @@ void             BodyFactory::setSpeedPotion()
   item->setName("Speed Potion");
   item->setAsConsummable();
   item->setPrice(10);
-  item->modifyStats()->speed = 5;
+  item->modifyStats()->speed = 10;
   obj = new GameObject(-1, world);
   obj->setBasicParameters("SpeedPotion", true, false);
   obj->setCollide(false);
@@ -574,7 +574,7 @@ void            BodyFactory::setHealthPotion()
 
   item = new Item();
   item->setKey(false);
-  item->setName("Health Potion");
+  item->setName("HealthPotion");
   item->setAsConsummable();
   item->setPrice(10);
   item->modifyStats()->HP = 100;
@@ -597,7 +597,7 @@ void            BodyFactory::setPowerPotion()
 
   item = new Item();
   item->setKey(false);
-  item->setName("Power Potion");
+  item->setName("PowerPotion");
   item->setAsConsummable();
   item->setPrice(10);
   item->modifyStats()->attackModifier = 1;

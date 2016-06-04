@@ -36,9 +36,9 @@ bool    PhysicCollideLayer::checkCoordSizeCanPass(const std::pair<double, double
                                                   const std::pair<double, double> &wantedPos,
                                                   const std::pair<double, double> &size)
 {
-    std::cout << "checkCoordSizeCanPass " << oldPos.first << " " << oldPos.second << " and "
+    /*std::cout << "checkCoordSizeCanPass " << oldPos.first << " " << oldPos.second << " and "
     << wantedPos.first << " " << wantedPos.second << std::endl;
-
+*/
     if (oldPos.first == wantedPos.first && oldPos.second == wantedPos.second)
           return (true);
 

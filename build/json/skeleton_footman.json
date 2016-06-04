@@ -139,7 +139,7 @@ end: "58.0744860696",
 {
 name: "Skeleton_Dying_A",
 begin: "58.1760148914",
-end: "60.3758060304",
+end: "59.5",
 },
 {
 name: "Skeleton_Dying_B",
@@ -149,7 +149,7 @@ end: "61.8310524762",
 {
 name: "Skeleton_1H_combat_mode",
 begin: "61.9325812980",
-end: "63.6247283280",
+end: "63.0",
 },
 {
 name: "Skeleton_1H_dodge_backwards",
