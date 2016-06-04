@@ -5,11 +5,14 @@
 #include <iostream>
 #include <helpers/StackTrace.h>
 #include "Core.hh"
-#include "PhysicCollideLayer.hh"
+#include "GameServer.hh"
 
-int main()
+int main(int ac, char **av)
 {
   StackTrace::init();
-  gauntlet::core::Core();
+  if (ac == 1)
+    gauntlet::core::Core();
+  else if (ac == 3)
+    gauntlet::world::GameServer(av[1], atoi(av[2]));
   return (0);
 }

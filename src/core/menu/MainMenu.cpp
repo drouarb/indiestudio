@@ -1,25 +1,15 @@
-//
-// MainMenu.cpp for indie in /home/lewis_e/rendu/cpp/cpp_indie_studio
-// 
-// Made by Esteban Lewis
-// Login   <lewis_e@epitech.net>
-// 
-// Started on  Mon May  9 14:09:17 2016 Esteban Lewis
-// Last update Thu May 26 14:44:34 2016 Esteban Lewis
-//
-
 #include <iostream>
 #include "MainMenu.hh"
 #include "Lobby.hh"
 #include "ConfMenu.hh"
 #include "MessageBox.hh"
 #include "Core.hh"
-#include "SaveloadMenu.hh"
+#include "SaveMenu.hh"
 
 gauntlet::core::MainMenu::MainMenu(Core &core, int idStart, Menu *parent) :
         Menu(core, idStart, parent)
 {
-    submenus.push_back(new SaveloadMenu(core, idStart + MENU_ID_LAYER, this));
+    submenus.push_back(new SaveMenu(core, idStart + MENU_ID_LAYER, this));
     submenus.push_back(new ConfMenu(core, idStart + MENU_ID_LAYER, this));
     submenus.push_back(new Lobby(core, idStart + MENU_ID_LAYER, this));
     submenus.push_back(new MessageBox(core, idStart + MENU_ID_LAYER, this, ""));
@@ -45,7 +35,7 @@ gauntlet::core::MainMenu::draw()
     funs.insert(std::pair<int, void (MainMenu::*)()>
                         (buttons[buttons.size() - 1].getId(), &MainMenu::doPlay));
 
-    buttons.push_back(Control(BUTTON, "Load map", NULL, PCENTER, idStart + buttons.size(), core.ogre));
+    buttons.push_back(Control(BUTTON, "Save game", NULL, PCENTER, idStart + buttons.size(), core.ogre));
     funs.insert(std::pair<int, void (MainMenu::*)()>
                         (buttons[buttons.size() - 1].getId(), &MainMenu::doSaveload));
 
@@ -119,7 +109,14 @@ gauntlet::core::MainMenu::doPlay()
 void
 gauntlet::core::MainMenu::doSaveload()
 {
-    submenus[MENU_SL]->setOpen(true);
+    if (core.cpid <= 0)
+        {
+            message("No local server.");
+        }
+    else
+        {
+            submenus[MENU_SL]->setOpen(true);
+        }
 }
 
 void

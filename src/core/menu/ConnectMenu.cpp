@@ -5,7 +5,7 @@
 #include "Core.hh"
 #include "IpMenu.hh"
 #include "PacketFactory.hh"
-#include "SaveloadMenu.hh"
+#include "LoadMenu.hh"
 #include "PacketConnect.hh"
 #include "PacketDisconnect.hh"
 #include "PacketHandshake.hh"
@@ -42,7 +42,7 @@ gauntlet::core::ConnectMenu::ConnectMenu(Core &core, int idStart, Menu *parent) 
 
     submenus.push_back(new MessageBox(core, idStart + MENU_ID_LAYER, this, ""));
     submenus.push_back(new IpMenu(core, idStart + MENU_ID_LAYER, this));
-    submenus.push_back(new SaveloadMenu(core, idStart + MENU_ID_LAYER, this));
+    submenus.push_back(new LoadMenu(core, idStart + MENU_ID_LAYER, this));
     submenus.push_back(new WaitPacket(core, idStart + MENU_ID_LAYER, this));
 }
 
@@ -128,6 +128,9 @@ gauntlet::core::ConnectMenu::doLocal(struct t_hitItem &item)
 
             local = true;
             ip = "127.0.0.1";
+
+            portstr = text;
+            submenus[2]->setOpen(true);
         }
 }
 
@@ -182,18 +185,9 @@ gauntlet::core::ConnectMenu::doConnect(struct t_hitItem &item)
     core.serverAddr = std::pair<std::string, int>(ip, port);
     if (local)
         {
-            if (core.map == "")
-                {
-                    portstr = text;
-                    submenus[2]->setOpen(true);
-                    return;
-                }
-            else
-                {
-                    if (core.packetf)
-                        core.disconnect("");
-                    core.createServer();
-                }
+            if (core.packetf)
+                 core.disconnect("");
+            core.createServer();
         }
 
     try

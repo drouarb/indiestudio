@@ -9,7 +9,7 @@
 #include "GameServer.hh"
 #include "PlayerController.hh"
 #include "CoreUIObserver.hh"
-#include "SaveloadMenu.hh"
+#include "LoadMenu.hh"
 
 gauntlet::core::Core::Core() : actionlists(*this), hud(*this, 0, NULL),
                                observer(new CoreUIObserver(*this)),
