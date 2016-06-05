@@ -5,7 +5,7 @@
     endZone :
     {
 	posX : "210"
-	posY : "350"
+	posY : "340"
 	sizeX : "25"
 	sizeY : "15"
     },
@@ -81,13 +81,13 @@
             angle : "0",
             x : "150",
             y : "101"
-	    },
+	},
 	{
-	        name : "SkeletonWizard",
-	        angle : "0",
-	        x : "140",
-	        y : "170"
-	    },
+	    name : "SkeletonWizard",
+	    angle : "0",
+	    x : "140",
+	    y : "170"
+	},
 	{
             name : "SkeletonWarlord",
             angle : "0",
