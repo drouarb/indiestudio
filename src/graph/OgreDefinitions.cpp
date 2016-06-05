@@ -131,6 +131,50 @@ const std::map<gauntlet::CharacterMenuName, std::string> OgreUI::charactermap = 
 	{gauntlet::CharacterMenuName::VALKYRIE_MENU_SELECTION,  "Character/Valkyrie_menu_selection"}
 };
 
+const std::vector<std::string>OgreUI::credit_vec = {
+	{"Credit/010.jpg"},
+	{"Credit/020.jpg"},
+	{"Credit/030.jpg"},
+	{"Credit/040.jpg"},
+	{"Credit/050.jpg"},
+	{"Credit/060.jpg"},
+	{"Credit/070.jpg"},
+	{"Credit/080.jpg"},
+	{"Credit/090.jpg"},
+	{"Credit/100.jpg"},
+	{"Credit/101.jpg"},
+	{"Credit/110.jpg"},
+	{"Credit/120.jpg"},
+	{"Credit/130.jpg"},
+	{"Credit/140.jpg"},
+	{"Credit/150.jpg"},
+	{"Credit/151.jpg"},
+	{"Credit/160.jpg"},
+	{"Credit/170.jpg"},
+	{"Credit/180.jpg"},
+	{"Credit/190.jpg"},
+	{"Credit/200.jpg"},
+	{"Credit/210.jpg"},
+	{"Credit/220.jpg"},
+	{"Credit/230.jpg"},
+	{"Credit/240.jpg"},
+	{"Credit/241.jpg"},
+	{"Credit/250.jpg"},
+	{"Credit/260.jpg"},
+	{"Credit/270.jpg"},
+	{"Credit/280.jpg"},
+	{"Credit/290.jpg"},
+	{"Credit/291.jpg"},
+	{"Credit/300.jpg"},
+	{"Credit/310.jpg"},
+	{"Credit/320.jpg"},
+	{"Credit/330.jpg"},
+	{"Credit/331.jpg"},
+	{"Credit/340.jpg"},
+	{"Credit/350.jpg"},
+	{"Credit/360.jpg"}
+};
+
 const std::vector<std::string>OgreUI::splash_vec = {
 	{"Screen/0328.jpg"},
 	{"Screen/0330.jpg"},
@@ -520,6 +564,7 @@ const std::map<gauntlet::SoundName, std::string>OgreUI::soundmap = {
 	{gauntlet::SoundName::ARIBETH_BATTLE, 			"60 - Battle Aribeth.ogg"},
 	{gauntlet::SoundName::LIZARDFOLK_SANCTUARY, 	"62 - Lizardfolk Sanctuary.ogg"},
 	{gauntlet::SoundName::SOURCE_STONE, 			"63 - Source Stone Battle.ogg"},
+	{gauntlet::SoundName::CREDIT_SOUND, 			"end_credit.ogg"},
 	{gauntlet::SoundName::TRACKING_KOBOLD, 			"65 - Tracking the Kobold Raiders.ogg"},
 	{gauntlet::SoundName::QUEEN_SHATTERED, 			"69 - Queen of the Shattered Mirror.ogg"},
 	{gauntlet::SoundName::BOSS_BATTLE,				"boss_battle.ogg"}

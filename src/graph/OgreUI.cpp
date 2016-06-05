@@ -426,6 +426,7 @@ bool OgreUI::playSound(int id, gauntlet::SoundName name, bool loop)
   std::stringstream ss;
   ss << id;
 
+  std::cerr << "sound " <<  id << std::endl;
   if (name == SOUND_NONE)
     {
       return (true);
@@ -612,6 +613,7 @@ void OgreUI::hideItem(int id)
 void OgreUI::createScene(void)
 {
   createAmbientLight();
+  showBackground(credit_vec.at(2));
 }
 
 void OgreUI::createAmbientLight()
@@ -736,9 +738,7 @@ void OgreUI::playAnimation(int entityId,
     {
       std::cerr << e.what() << std::endl;
       return;
-    }
-  std::cout << "=======>Application de l'animation: " << a->getName()
-  << " sur l'entité " << pEntity->getName() << std::endl;
+
   animations::Animation **type = &this->animationsMap[pEntity->getName()];
   if (*type)
     {
@@ -1231,5 +1231,12 @@ void OgreUI::splashScreen()
 {
 
 }
+
+void OgreUI::showBackground(const std::string &name)
+{
+  mTrayMgr->showBackdrop(name);
+}
+
+
 
 
