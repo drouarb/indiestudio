@@ -11,12 +11,13 @@
 #define pipe(x) _pipe(x, 1024, O_BINARY);
 #define MSG_DONTWAIT 0
 #define in_port_t unsigned short
-#define socklen_t unsigned int
+#define socklen_t int
 #else
 #include <arpa/inet.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <unistd.h>
+#define SOCKET int
 #endif
 
 #include <cstdlib>
@@ -65,7 +66,7 @@ namespace gauntlet {
             int pipe[2];
             SocketType type;
             struct sockaddr_in sock;
-            int sockfd;
+			SOCKET sockfd;
             std::vector<s_client> clients;
             std::mutex lock;
             ISocketDisconnectionListener *disconnectionListener;
