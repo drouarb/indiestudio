@@ -7,9 +7,12 @@ option(OGRE_PROGRESS "Show ogre download progress" OFF)
 option(Boost_USE_STATIC_LIBS "Boost static" ON)
 
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMake)
-set(CMAKE_CXX_FLAGS "-std=c++11")
 
-set(CMAKE_EXE_LINKER_FLAGS "-rdynamic")
+if (NOT WIN32)
+  set(CMAKE_CXX_FLAGS "-W -std=c++11 -Wunused-result -g -Wall -Wextra -Wno-unused-parameter")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-ignored-qualifiers -Wno-unused-variable")
+  set(CMAKE_EXE_LINKER_FLAGS "-rdynamic")
+endif()
 
 set(OGRE_REPOSITORY "http://minewolf.tf/ogre")
 set(OGRE_FILE "${CMAKE_BINARY_DIR}/ogre.tar.xz")

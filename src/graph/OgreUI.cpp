@@ -750,6 +750,7 @@ void OgreUI::playAnimation(int entityId,
         }
 }
 
+
 const std::string &OgreUI::getAnimationName(int animationId,
 					    const Ogre::Entity *pEntity) const
 {
@@ -824,9 +825,9 @@ Ogre::SceneManager *OgreUI::getSceneManager()
 
 
 bool OgreUI::addWorldEntity(int entityId, EntityName meshid, int x,
-			    int y,
-			    short angle,
-			    TextureName texture_id)
+						     int y,
+						     short angle,
+						     TextureName texture_id)
 {
   std::stringstream ss;
   ss << entityId;
@@ -1238,7 +1239,3 @@ void OgreUI::showBackground(const std::string &name)
 {
   mTrayMgr->showBackdrop(name);
 }
-
-
-
-

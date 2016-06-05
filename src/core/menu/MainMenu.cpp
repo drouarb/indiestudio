@@ -1,4 +1,5 @@
 #include <iostream>
+#include "Credits.hh"
 #include "MainMenu.hh"
 #include "Lobby.hh"
 #include "ConfMenu.hh"
@@ -13,6 +14,7 @@ gauntlet::core::MainMenu::MainMenu(Core &core, int idStart, Menu *parent) :
     submenus.push_back(new ConfMenu(core, idStart + MENU_ID_LAYER, this));
     submenus.push_back(new Lobby(core, idStart + MENU_ID_LAYER, this));
     submenus.push_back(new MessageBox(core, idStart + MENU_ID_LAYER, this, ""));
+    submenus.push_back(new Credits(core, idStart + MENU_ID_LAYER, this));
 }
 
 gauntlet::core::MainMenu::~MainMenu()
@@ -42,6 +44,10 @@ gauntlet::core::MainMenu::draw()
     buttons.push_back(Control(BUTTON, "Settings", NULL, PCENTER, idStart + buttons.size(), core.ogre));
     funs.insert(std::pair<int, void (MainMenu::*)()>
                         (buttons[buttons.size() - 1].getId(), &MainMenu::doSettings));
+
+    buttons.push_back(Control(BUTTON, "Credits", NULL, PCENTER, idStart + buttons.size(), core.ogre));
+    funs.insert(std::pair<int, void (MainMenu::*)()>
+                        (buttons[buttons.size() - 1].getId(), &MainMenu::doCredits));
 
     buttons.push_back(Control(BUTTON, "Exit", NULL, PCENTER, idStart + buttons.size(), core.ogre));
     funs.insert(std::pair<int, void (MainMenu::*)()>
@@ -136,4 +142,9 @@ gauntlet::core::MainMenu::doExit()
 {
     setOpen(false);
     core.exit();
+}
+
+void gauntlet::core::MainMenu::doCredits()
+{
+    submenus[4]->setOpen(true);
 }
