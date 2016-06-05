@@ -26,7 +26,7 @@ namespace gauntlet {
             void send(const Packet &packet);
             void send(const Packet &packet, int fd);
             void recv();
-            void stop();
+            void stop(bool wait = true);
 
             void registerListener(PacketListener *listener);
             void unregisterListener(PacketListener *listener);
