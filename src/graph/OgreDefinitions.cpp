@@ -156,7 +156,6 @@ const std::vector<std::string>OgreUI::credit_vec = {
 	{"Credit/190.jpg"},
 	{"Credit/200.jpg"},
 	{"Credit/210.jpg"},
-	{"Credit/220.jpg"},
 	{"Credit/230.jpg"},
 	{"Credit/240.jpg"},
 	{"Credit/241.jpg"},
