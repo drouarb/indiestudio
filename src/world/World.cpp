@@ -693,7 +693,7 @@ std::vector<soundGlobal *>    World::getSoundByCopy() const
   return (soundTab);
 }
 
-void                World::applyCommand(int id, core::Command command)
+void                World::applyCommand(short angle, int id, core::Command command)
 {
   Player *player;
   ABody *body;
@@ -703,6 +703,7 @@ void                World::applyCommand(int id, core::Command command)
     return;
   if (player->stats.HP <= 0.0)
     return;
+  body->changeOrientation(angle);
   if (command == core::UP)
     {
       if (!player->getMove())
@@ -715,7 +716,7 @@ void                World::applyCommand(int id, core::Command command)
     }
   else if (command >= core::ATTACK1 && command <= core::ATTACK4)
     {
-      applyCommand(id, core::UP_STOP);
+      applyCommand(angle, id, core::UP_STOP);
       player->castSpell(command - core::ATTACK1);
     }
 }

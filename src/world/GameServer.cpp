@@ -220,7 +220,9 @@ void                        GameServer::notifyTake()
 
 void			GameServer::receiveSaveGame(const network::PacketMap *packet)
 {
+  std::cout << "reicv save game" << std::endl;
   world->saveGame(packet->getFilename());
+  std::cout << "reicv save game end" << std::endl;
 }
 
 void                GameServer::receiveDeco(
@@ -362,9 +364,8 @@ void                GameServer::controlInput(
     }
   if ((body = world->getBodyById(players[i].idPlayer)) == NULL)
     return ;
-  body->changeOrientation(packet->getAngle());
   if (players[i].socketId != -1)
-    world->applyCommand(players[i].idPlayer,
+    world->applyCommand(packet->getAngle(), players[i].idPlayer,
 			static_cast<core::Command>(packet->getCmd()));
   dataSendMutex.unlock();
 }
@@ -459,14 +460,10 @@ void                GameServer::sendDeleteEntity(ABody *body)
   unsigned int i;
 
   i = 0;
-  std::cout << "send deleteEntity id :" << body->getId() << "name: " <<
-  body->getName() << std::endl;
   while (i < players.size())
     {
-      std::cout << "ça marche pas1:" << players[i].socketId << std::endl;
       if (players[i].socketId != -1)
 	packetFact->send(packet, players[i].socketId);
-      std::cout << "ça marche pas2" << std::endl;
       ++i;
     }
   std::cout << "send end" << std::endl;

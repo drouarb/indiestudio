@@ -29,11 +29,11 @@
 #include "MusicHandler.hh"
 
 # define ROUND_DURATION 33
-# define AI_PRIORITY 15
-# define GATHERING_PRIORITY 5
-# define WIN_PRIORITY 30
-# define RESPAWN_PRIORITY 60
-# define AUTOSHIFT_PRIORITY 3
+# define AI_PRIORITY 16
+# define GATHERING_PRIORITY 17
+# define WIN_PRIORITY 29
+# define RESPAWN_PRIORITY 64
+# define AUTOSHIFT_PRIORITY 11
 # define HUD_PRIORITY 15
 # define DEATH_COOLDOWN_NB_TURN 455
 
@@ -43,7 +43,7 @@ namespace			gauntlet
   {
     struct			soundGlobal
     {
-      int			    Id;
+      int		    Id;
       std::pair<double, double>	pos;
       unsigned int		soundId;
       bool			    loop;
@@ -119,7 +119,7 @@ namespace			gauntlet
       void			putSound(unsigned int soundId, const std::pair<double, double>& pos);
       int			playSound(unsigned int soundId, bool loop, const std::pair<double, double>& pos);
       void			stopSound(int idToStop);
-      void			applyCommand(int id, core::Command command);
+      void			applyCommand(short angle, int id, core::Command command);
       ABody			*getBodyById(int id);
       void			animeEntity(int id, unsigned int animeId, bool loop);
       unsigned long		getTurn() const;
