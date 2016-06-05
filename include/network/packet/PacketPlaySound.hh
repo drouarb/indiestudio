@@ -11,14 +11,14 @@ namespace gauntlet {
     namespace network {
         class PacketPlaySound: public Packet {
 
-            struct s_packetPlaySoundData {
+            PACK(struct s_packetPlaySoundData {
                 unsigned char packetId;
                 unsigned int soundId;
                 unsigned int refId;
                 double x;
                 double y;
                 unsigned char loop;
-            }__attribute__((packed));
+            });
 
         public:
             PacketPlaySound(s_socketData data);

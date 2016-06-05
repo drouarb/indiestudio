@@ -284,6 +284,7 @@ namespace gauntlet
 	    {BERSEKER_STRAFE_RIGHT,                           {"berseker.json",          "strafe_right"}},
 	    {BERSEKER_STRAFE_LEFT,                            {"berseker.json",          "strafe_left"}},
 	    {BERSEKER_DODGE_RIGHT,                            {"berseker.json",          "dodge_right"}},
+	    {BERSEKER_TORNADO,                                {"berseker.json",          "tornado"}},
 
 	    {ARCHER_IDLE,                                     {"archer.json",            "Idle"}},
 	    {ARCHER_RUN,                                      {"archer.json",            "Run"}},

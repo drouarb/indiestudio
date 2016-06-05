@@ -1,11 +1,11 @@
 //
 // core.hh for indie in /home/lewis_e/rendu/cpp/cpp_indie_studio
-// 
+//
 // Made by Esteban Lewis
 // Login   <lewis_e@epitech.net>
-// 
+//
 // Started on  Mon May  9 10:59:47 2016 Esteban Lewis
-// Last update Mon May 30 10:49:25 2016 Esteban Lewis
+// Last update Sun Jun  5 17:27:19 2016 Benjamin DROUARD
 //
 
 #ifndef  CORE_HH_
@@ -13,13 +13,17 @@
 
 # include <mutex>
 # include <thread>
-# include <unistd.h>
 # include "IUIObserver.hh"
 # include "Conf.hh"
 # include "graph/OgreUI.hh"
 # include "ActionLists.hh"
 # include "MainMenu.hh"
 # include "Hud.hh"
+
+#ifndef _WIN32
+# include <unistd.h>
+# define pid_t int
+#endif
 
 namespace gauntlet
 {

@@ -12,7 +12,7 @@ namespace gauntlet {
     namespace network {
         class PacketAddParticle : public Packet {
 
-            struct s_packetAddParticle {
+            PACK(struct s_packetAddParticle {
                 unsigned char packetId;
                 unsigned int particleId;
                 unsigned int refId;
@@ -20,7 +20,7 @@ namespace gauntlet {
                 double y;
                 short angle;
                 int decayTime;
-            }__attribute__((packed));
+            });
 
         public:
             PacketAddParticle(s_socketData data);

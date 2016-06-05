@@ -1,8 +1,12 @@
 #include <iostream>
 #include <fstream>
 #include <stdexcept>
-#include <unistd.h>
 #include <graph/Animations.hh>
+#ifdef _WIN32
+#include <Windows.h>
+#else
+#include <unistd.h>
+#endif
 #include "World.hh"
 #include "IJson.hpp"
 #include "Rand.hh"
@@ -59,14 +63,14 @@ void    World::loadGame(std::string const &file)
   try
     {
       JSON::JsonObj &endZone = dynamic_cast<JSON::JsonObj &>(json.GetObj("endZone"));
-      endPos.first = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("posY")).Get()) * HEIGHT_MAP_SCALE;
-      endPos.second = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("posX")).Get()) * HEIGHT_MAP_SCALE;
-      endSize.first = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("sizeY")).Get()) * HEIGHT_MAP_SCALE;
-      endSize.second = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("sizeX")).Get()) * HEIGHT_MAP_SCALE;
+      endPos.first = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("posX")).Get()) * HEIGHT_MAP_SCALE;
+      endPos.second = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("posY")).Get()) * HEIGHT_MAP_SCALE;
+      endSize.first = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("sizeX")).Get()) * HEIGHT_MAP_SCALE;
+      endSize.second = stod(dynamic_cast<JSON::JsonStr &>(endZone.GetObj("sizeY")).Get()) * HEIGHT_MAP_SCALE;
 
       JSON::JsonObj &spawn = dynamic_cast<JSON::JsonObj &>(json.GetObj("spawn"));
-      spawnPoint.first = stod(dynamic_cast<JSON::JsonStr &>(spawn.GetObj("y")).Get()) * HEIGHT_MAP_SCALE;
-      spawnPoint.second = stod(dynamic_cast<JSON::JsonStr &>(spawn.GetObj("x")).Get()) * HEIGHT_MAP_SCALE;
+      spawnPoint.first = stod(dynamic_cast<JSON::JsonStr &>(spawn.GetObj("x")).Get()) * HEIGHT_MAP_SCALE;
+      spawnPoint.second = stod(dynamic_cast<JSON::JsonStr &>(spawn.GetObj("y")).Get()) * HEIGHT_MAP_SCALE;
 
       if (spawnPoint.first < 0 || spawnPoint.first >= sizeX ||
 	  spawnPoint.second < 0 || spawnPoint.second >= sizeY)
@@ -76,8 +80,8 @@ void    World::loadGame(std::string const &file)
       for (unsigned int i = 0; i < arr.Size(); ++i)
 	{
 	  JSON::JsonObj &obj = dynamic_cast<JSON::JsonObj &>(arr[i]);
-	  addNewBody(stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("y")).Get()) * HEIGHT_MAP_SCALE,
-		     stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("x")).Get()) * HEIGHT_MAP_SCALE,
+	  addNewBody(stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("x")).Get()) * HEIGHT_MAP_SCALE,
+		     stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("y")).Get()) * HEIGHT_MAP_SCALE,
 		     dynamic_cast<JSON::JsonStr &>(obj.GetObj("name")).Get(),
 		     Math::getAngleFromDegrees
 		     (stoi(dynamic_cast<JSON::JsonStr &>(obj.GetObj("angle")).Get())));
@@ -89,8 +93,8 @@ void    World::loadGame(std::string const &file)
 	  JSON::JsonObj &obj = dynamic_cast<JSON::JsonObj &>(sounds[i]);
 	  putSound(stoi(dynamic_cast<JSON::JsonStr &>(obj.GetObj("id")).Get()),
 		   std::pair<double, double>
-		   (stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("y")).Get()) * HEIGHT_MAP_SCALE,
-		    stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("x")).Get()) * HEIGHT_MAP_SCALE));
+		   (stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("x")).Get()) * HEIGHT_MAP_SCALE,
+		    stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("y")).Get()) * HEIGHT_MAP_SCALE));
 	}
       JSON::JsonArr &particles = dynamic_cast<JSON::JsonArr &>
 	(json.GetObj("particles"));
@@ -103,8 +107,8 @@ void    World::loadGame(std::string const &file)
 		    (stoi(dynamic_cast<JSON::JsonStr &>(obj.GetObj(
 								   "angle")).Get())),
 		    std::pair<double, double>
-		    (stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("y")).Get()) * HEIGHT_MAP_SCALE,
-		     stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("x")).Get()) * HEIGHT_MAP_SCALE));
+		    (stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("x")).Get()) * HEIGHT_MAP_SCALE,
+		     stod(dynamic_cast<JSON::JsonStr &>(obj.GetObj("y")).Get()) * HEIGHT_MAP_SCALE));
 	}
     }
   catch (std::runtime_error &e)
@@ -155,15 +159,15 @@ bool    World::saveGame(std::string const &file)
   root.AddObj("height_map", JSON::JsonStr(this->mapHeightName));
 
   JSON::JsonObj endZone;
-  endZone.AddObj("posX", doubleToJsonStr(endPos.first));
-  endZone.AddObj("posY", doubleToJsonStr(endPos.second));
-  endZone.AddObj("sizeX", doubleToJsonStr(endSize.first));
-  endZone.AddObj("sizeY", doubleToJsonStr(endSize.second));
+  endZone.AddObj("posX", doubleToJsonStr(endPos.first / HEIGHT_MAP_SCALE));
+  endZone.AddObj("posY", doubleToJsonStr(endPos.second / HEIGHT_MAP_SCALE));
+  endZone.AddObj("sizeX", doubleToJsonStr(endSize.first / HEIGHT_MAP_SCALE));
+  endZone.AddObj("sizeY", doubleToJsonStr(endSize.second / HEIGHT_MAP_SCALE));
   root.AddObj("endZone", endZone);
 
   JSON::JsonObj spawn;
-  spawn.AddObj("x", doubleToJsonStr(spawnPoint.first));
-  spawn.AddObj("y", doubleToJsonStr(spawnPoint.second));
+  spawn.AddObj("x", doubleToJsonStr(spawnPoint.first / HEIGHT_MAP_SCALE));
+  spawn.AddObj("y", doubleToJsonStr(spawnPoint.second / HEIGHT_MAP_SCALE));
   root.AddObj("spawn", spawn);
 
   JSON::JsonArr dynamic;
@@ -174,8 +178,8 @@ bool    World::saveGame(std::string const &file)
 	  JSON::JsonObj obj;
 	  obj.AddObj("name", JSON::JsonStr((*it)->getName()));
 	  obj.AddObj("angle", angleToJsonStr((*it)->getOrientation()));
-	  obj.AddObj("x", doubleToJsonStr((*it)->getPos().first));
-	  obj.AddObj("y", doubleToJsonStr((*it)->getPos().second));
+	  obj.AddObj("x", doubleToJsonStr((*it)->getPos().first / HEIGHT_MAP_SCALE));
+	  obj.AddObj("y", doubleToJsonStr((*it)->getPos().second / HEIGHT_MAP_SCALE));
 	  dynamic.AddObj(obj);
 	}
     }
@@ -188,8 +192,8 @@ bool    World::saveGame(std::string const &file)
 	{
 	  JSON::JsonObj obj;
 	  obj.AddObj("id", intToJsonStr((*it)->soundId));
-	  obj.AddObj("x", doubleToJsonStr((*it)->pos.first));
-	  obj.AddObj("y", doubleToJsonStr((*it)->pos.second));
+	  obj.AddObj("x", doubleToJsonStr((*it)->pos.first / HEIGHT_MAP_SCALE));
+	  obj.AddObj("y", doubleToJsonStr((*it)->pos.second / HEIGHT_MAP_SCALE));
 	  sounds.AddObj(obj);
 	}
     }
@@ -202,8 +206,8 @@ bool    World::saveGame(std::string const &file)
 	{
 	  JSON::JsonObj obj;
 	  obj.AddObj("id", intToJsonStr((*it)->effectId));
-	  obj.AddObj("x", doubleToJsonStr((*it)->pos.first));
-	  obj.AddObj("y", doubleToJsonStr((*it)->pos.second));
+	  obj.AddObj("x", doubleToJsonStr((*it)->pos.first / HEIGHT_MAP_SCALE));
+	  obj.AddObj("y", doubleToJsonStr((*it)->pos.second / HEIGHT_MAP_SCALE));
 	  particles.AddObj(obj);
 	}
     }
@@ -291,7 +295,11 @@ void        World::gameLoop()
   while (looper == true)
     {
       if (stopwatch.ellapsedMs() < ROUND_DURATION)
-	usleep(ROUND_DURATION * 1000 - stopwatch.ellapsedMs() * 1000.0);
+#ifdef _WIN32
+	Sleep(ROUND_DURATION - stopwatch.ellapsedMs());
+#else
+	usleep(ROUND_DURATION * 1000 - stopwatch.ellapsedMs() * 1000);
+#endif
       stopwatch.set();
       if (turn % AI_PRIORITY == 0)
 	applyAI();
@@ -756,5 +764,3 @@ void                World::setLooper(bool nloop)
 MusicHandler *World::getMusicHandler() {
   return &musicHandler;
 }
-
-

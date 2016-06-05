@@ -12,10 +12,10 @@ namespace gauntlet {
     namespace network {
         class PacketDeleteParticle: public Packet {
 
-            struct s_packetDeleteParticle {
+            PACK(struct s_packetDeleteParticle {
                 unsigned char packetId;
                 unsigned int particleId;
-            }__attribute__((packed));
+            });
 
         public:
             PacketDeleteParticle(s_socketData data);

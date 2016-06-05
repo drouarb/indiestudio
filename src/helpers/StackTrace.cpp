@@ -4,8 +4,12 @@
 
 #include <stdio.h>
 #include <signal.h>
+#ifdef _WIN32
+struct sigcontext {};
+#else
 #include <execinfo.h>
 #include <execinfo.h>
+#endif
 #include <cstddef>
 #include <cstdio>
 #include <csignal>
@@ -17,16 +21,18 @@
 
 void StackTrace::displayStackTrace()
 {
-  void *array[128];
+#ifndef _WIN32
+	void *array[128];
   int size;
 
   size = backtrace(array, 128);
   backtrace_symbols_fd(array, size, 2);
+#endif
 }
 
 void bt_sighandler(int sig, struct sigcontext ctx)
 {
-
+#ifndef _WIN32
   void *trace[16];
   char **messages = (char **) NULL;
   int i, trace_size = 0;
@@ -68,10 +74,12 @@ void bt_sighandler(int sig, struct sigcontext ctx)
       ::system(syscom);
     }
   ::exit(0);
+#endif
 }
 
 void StackTrace::init()
 {
+#ifndef _WIN32
 //  signal(SIGSEGV, &handler);
 //  signal(SIGABRT, &handler);
 
@@ -84,10 +92,12 @@ void StackTrace::init()
   sigaction(SIGSEGV, &sa, NULL);
 //  sigaction(SIGUSR1, &sa, NULL);
   sigaction(SIGABRT, &sa, NULL);
+#endif
 }
 
 void StackTrace::handler(int signal)
 {
+#ifndef _WIN32
   static int i = 0;
 
   if (i)
@@ -97,6 +107,7 @@ void StackTrace::handler(int signal)
   std::cerr << "STACKTRACE" << std::endl;
   displayStackTrace();
   std::cerr << "END STACKTRACE" << std::endl;
+#endif
 }
 
 

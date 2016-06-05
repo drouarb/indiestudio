@@ -12,12 +12,12 @@ namespace gauntlet {
     namespace network {
         class PacketSelectPlayer : public Packet {
 
-            struct s_packetSelectPlayerData {
+            PACK(struct s_packetSelectPlayerData {
                 unsigned char packetId;
                 unsigned char selectedCharacters;
                 unsigned int namelen;
                 char namestart;
-            } __attribute__((packed));
+            });
 
         public:
             PacketSelectPlayer(const s_socketData &data);

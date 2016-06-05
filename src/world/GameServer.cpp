@@ -51,7 +51,7 @@ GameServer::GameServer(const std::string &filePath, in_port_t port)
       packetFact->registerListener(listeners[i]);
       ++i;
     }
-  listenThread = new std::thread(&PacketFactory::recv, std::ref(*packetFact));
+  listenThread = new std::thread(std::bind(&PacketFactory::recv, std::ref(*packetFact)));
   world->gameLoop();
   std::cout << "GameServer build end" << std::endl;
 }

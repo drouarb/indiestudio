@@ -22,14 +22,14 @@
 #include "network/PacketFactory.hh"
 #include "network/PacketFactorySocketDisconnectionListener.hh"
 
-gauntlet::network::PacketFactory::PacketFactory(in_port_t port) :
+gauntlet::network::PacketFactory::PacketFactory(unsigned short port) :
         connected(true),
         socket(new Socket(port)) {
     disconnectionListener = new PacketFactorySocketDisconnectionListener(this);
     socket->setDisconnectionListener(disconnectionListener);
 }
 
-gauntlet::network::PacketFactory::PacketFactory(const std::string &address, in_port_t port) :
+gauntlet::network::PacketFactory::PacketFactory(const std::string &address, unsigned short port) :
         connected(true),
         socket(new Socket(address, port)) {
     disconnectionListener = new PacketFactorySocketDisconnectionListener(this);
@@ -146,6 +146,10 @@ const std::map<gauntlet::network::PacketId, gauntlet::network::PacketFactory::cr
         {ANIMATION,       &PacketFactory::createPacket<PacketAnimation>},
         {HUD,             &PacketFactory::createPacket<PacketHUD>}
 };
+
+bool gauntlet::network::PacketFactory::isConnected() const {
+    return connected;
+}
 
 
 

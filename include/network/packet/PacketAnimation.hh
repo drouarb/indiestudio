@@ -12,12 +12,12 @@ namespace gauntlet {
     namespace network {
         class PacketAnimation: public Packet {
 
-            struct s_packetAnimationData {
+            PACK(struct s_packetAnimationData {
                 unsigned char packetId;
                 unsigned int entityId;
                 unsigned int animationId;
                 unsigned char loop;
-            }__attribute__((packed));
+            });
 
         public:
             PacketAnimation(s_socketData data);

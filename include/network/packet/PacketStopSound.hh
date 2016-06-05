@@ -12,10 +12,10 @@ namespace gauntlet {
     namespace network {
         class PacketStopSound: public Packet {
 
-            struct s_packetStopSound {
+            PACK(struct s_packetStopSound {
                 unsigned char packetId;
                 unsigned int soundId;
-            }__attribute__((packed));
+            });
 
         public:
             PacketStopSound(s_socketData data);

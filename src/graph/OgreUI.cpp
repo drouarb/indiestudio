@@ -4,6 +4,10 @@
 #include "Math.hh"
 #include "Animations.hh"
 
+#ifdef _WIN32
+#include <atlstr.h>
+#endif
+
 using namespace gauntlet;
 using namespace core;
 
@@ -147,14 +151,21 @@ void OgreUI::setupResources(void)
     {
       secName = seci.peekNextKey();
       Ogre::ConfigFile::SettingsMultiMap *settings = seci.getNext();
-      Ogre::ConfigFile::SettingsMultiMap::iterator i;
-      for (i = settings->begin(); i != settings->end(); ++i)
+      if (secName.size() > 0)
 	{
-	  typeName = i->first;
-	  archName = i->second;
-	  Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
-		  archName, typeName, secName);
+	  std::cout << "Sec " << secName << std::endl;
+	  std::cout << settings->size() << std::endl;
+	  for (Ogre::ConfigFile::SettingsMultiMap::iterator i = settings->begin();
+	       i != settings->end(); i++)
+	    {
+	      typeName = i->first;
+	      archName = i->second;
+	      Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
+		      archName, typeName, secName);
+	    }
 	}
+      else
+	std::cout << "NOP" << std::endl;
     }
 }
 
@@ -183,7 +194,7 @@ void OgreUI::go()
 
 bool OgreUI::setup(void)
 {
-  mRoot = new Ogre::Root(mPluginsCfg);
+  mRoot = new Ogre::Root("plugins_d.cfg");
 #ifdef OGRE_STATIC
   mRoot->installPlugin(new Ogre::GLPlugin());
   mRoot->installPlugin(new Ogre::ParticleFXPlugin());
@@ -226,11 +237,8 @@ bool OgreUI::frameRenderingQueued(const Ogre::FrameEvent &evt)
       if (i_splash == 0)
 	mTrayMgr->hideAll();
       cinematique++;
-      if (cinematique % 5 == 0)
-	{
 	  mTrayMgr->showBackdrop(splash_vec.at(i_splash));
 	  i_splash++;
-	}
       if (i_splash >= splash_vec.size())
 	{
 	  mTrayMgr->showBackdrop(backgroundmap.at(BACKGROUND_BASIC));
@@ -389,8 +397,18 @@ bool OgreUI::loadSound(int id, SoundName name)
 
   if (name != SOUND_NONE)
     {
+#ifdef _WIN32
+      WIN32_FIND_DATA FindFileData;
+
+      HANDLE handle = FindFirstFile(CA2T(soundmap.at(name).c_str()), &FindFileData);
+      int found = handle != INVALID_HANDLE_VALUE;
+      if (found)
+      {
+	      FindClose(handle);
+#else
       if (access(("../media/sounds/" + soundmap.at(name)).c_str(), F_OK) == 0)
 	{
+#endif
 	  mSoundManager->createSound(ss.str() + "_sound", soundmap.at(name),
 				     true, false,
 				     false);
@@ -407,6 +425,7 @@ bool OgreUI::playSound(int id, gauntlet::SoundName name, bool loop)
   std::stringstream ss;
   ss << id;
 
+  std::cerr << "sound " << id << std::endl;
   if (name == SOUND_NONE)
     {
       return (true);
@@ -593,6 +612,7 @@ void OgreUI::hideItem(int id)
 void OgreUI::createScene(void)
 {
   createAmbientLight();
+  showBackground(credit_vec.at(2));
 }
 
 void OgreUI::createAmbientLight()
@@ -697,6 +717,7 @@ void OgreUI::playAnimation(int entityId,
 	      getAnimationName(0, pEntity));
     } catch (std::exception &e)
     {
+      std::cerr << "ANIMATION ERROR:  " << e.what() << std::endl;
       return;
     }
   pState->setLoop(loop);
@@ -718,8 +739,6 @@ void OgreUI::playAnimation(int entityId,
       std::cerr << e.what() << std::endl;
       return;
     }
-  std::cout << "=======>Application de l'animation: " << a->getName()
-  << " sur l'entité " << pEntity->getName() << std::endl;
   animations::Animation **type = &this->animationsMap[pEntity->getName()];
   if (*type)
     {
@@ -784,7 +803,7 @@ void OgreUI::hideBackground()
 void OgreUI::initSound()
 {
   this->mSoundManager = OgreOggSound::OgreOggSoundManager::getSingletonPtr();
-  mSoundManager->init("Gauntlet");
+  mSoundManager->init();
 }
 
 void OgreUI::stopSound(int id)
@@ -801,7 +820,6 @@ Ogre::SceneManager *OgreUI::getSceneManager()
 {
   return this->mSceneMgr;
 }
-
 
 bool OgreUI::addWorldEntity(int entityId, EntityName meshid, int x,
 			    int y,
@@ -865,7 +883,8 @@ int OgreUI::triggerEffect(int id, gauntlet::EffectName type,
       e.what();
     } catch (std::exception &e)
     {
-      std::cerr << "UNEXCEPTED ERROR in OgreUI::triggerEffect: " << __LINE__ << ", " <<
+      std::cerr << "UNEXCEPTED ERROR in OgreUI::triggerEffect: " << __LINE__ <<
+      ", " <<
       e.what();
     }
   mapped_type = effect;
@@ -876,9 +895,11 @@ void OgreUI::removeEntity(int id)
 {
   std::stringstream ss;
   ss << id;
-
-  mSceneMgr->destroyEntity(ss.str());
-  mSceneMgr->destroySceneNode(ss.str());
+  if (mSceneMgr->hasEntity(ss.str()))
+    {
+      mSceneMgr->destroyEntity(ss.str());
+      mSceneMgr->destroySceneNode(ss.str());
+    }
 }
 
 void OgreUI::stopEffect(int id)
@@ -968,7 +989,20 @@ void OgreUI::resetMap()
 {
   if (planNode)
     {
+      mSceneMgr->destroyAllEntities();
+      worldNode->removeAndDestroyAllChildren();
       planNode->removeAndDestroyAllChildren();
+      mSceneMgr->destroySceneNode(worldNode);
+      mSceneMgr->destroySceneNode(planNode);
+      rootNode = NULL;
+      worldNode = mSceneMgr->getRootSceneNode()->createChildSceneNode("World");
+      planNode = mSceneMgr->getRootSceneNode()->createChildSceneNode("Plan");
+      for (auto animation : this->animationsMap)
+	{
+	  delete animation.second;
+	}
+      this->animationsMap.clear();
+      mSoundManager->destroyAllSounds();
     }
 }
 
@@ -1011,25 +1045,27 @@ void OgreUI::play3dSound(int id, SoundName name, int x, int y, bool loop)
   try
     {
       if (name != SOUND_NONE)
-	if ((sound = mSoundManager->createSound(ss.str() + "_sound",
-						soundmap.at(name))))
-	  {
-	    sound->loop(loop);
-	    sound->setVolume(0);
-	    std::cerr << id << std::endl;
-	    Ogre::SceneNode *node = planNode->createChildSceneNode(
-		    ss.str() + "_sound");
-	    node->setPosition(x, z, y);
-	    if (rootNode != NULL)
-	      {
-		calcNewVolume(id, rootNode->getPosition(), node->getPosition());
-	      }
-	    else
-	      {
-		sound->setVolume(1);
-		sound->play();
-	      }
-	  }
+	if (!mSoundManager->hasSound(ss.str()))
+	  if ((sound = mSoundManager->createSound(ss.str() + "_sound",
+						  soundmap.at(name))))
+	    {
+	      sound->loop(loop);
+	      sound->setVolume(0);
+	      std::cerr << id << std::endl;
+	      Ogre::SceneNode *node = planNode->createChildSceneNode(
+		      ss.str() + "_sound");
+	      node->setPosition(x, z, y);
+	      if (rootNode != NULL)
+		{
+		  calcNewVolume(id, rootNode->getPosition(),
+				node->getPosition());
+		}
+	      else
+		{
+		  sound->setVolume(1);
+		  sound->play();
+		}
+	    }
     } catch (std::exception &exception)
     {
       std::cerr << "Unexpected exception: " << exception.what() << std::endl;
@@ -1199,4 +1235,7 @@ void OgreUI::splashScreen()
 
 }
 
-
+void OgreUI::showBackground(const std::string &name)
+{
+  mTrayMgr->showBackdrop(name);
+}

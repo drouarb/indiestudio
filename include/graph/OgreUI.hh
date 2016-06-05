@@ -21,6 +21,7 @@
 #include <OgreSceneManager.h>
 #include <OgreRenderWindow.h>
 #include <OgreConfigFile.h>
+#include <OgreOggSound.h>
 
 #include <OIS/OISEvents.h>
 #include <OIS/OISInputManager.h>
@@ -66,6 +67,8 @@ class OgreUI
 	  public OIS::MouseListener,
 	  OgreBites::SdkTrayListener
 {
+ public:
+  static const std::vector<std::string> credit_vec;
  private:
   static const std::map<OIS::KeyCode, gauntlet::core::IUIObserver::Key> keymap;
   static const std::map<OIS::MouseButtonID, gauntlet::core::IUIObserver::Key> mousemap;
@@ -304,8 +307,9 @@ class OgreUI
 
   int getHeightAt(double x, double y);
 
+  void showBackground(const std::string & name);
 
-void  splashScreen();
+  void  splashScreen();
 private:
 
   void applyAnimation(const Ogre::FrameEvent &evt);

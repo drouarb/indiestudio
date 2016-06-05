@@ -11,10 +11,10 @@ namespace gauntlet {
     namespace network {
         class PacketConnect : public Packet {
 
-            struct s_packetConnectData {
+            PACK(struct s_packetConnectData {
                 unsigned char packetId;
                 unsigned int protocolVersion;
-            } __attribute__((packed));
+            });
 
         public:
             PacketConnect();

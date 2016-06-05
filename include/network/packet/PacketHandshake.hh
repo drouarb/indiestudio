@@ -11,12 +11,12 @@ namespace gauntlet {
     namespace network {
         class PacketHandshake : public Packet {
 
-            struct s_packetHandshakeData {
+            PACK(struct s_packetHandshakeData {
                 unsigned char packetId;
                 unsigned char maxPlayers;
                 unsigned char connectedPlayers;
                 unsigned char avaibleCharacters;
-            } __attribute__((packed));
+            });
 
         public:
             PacketHandshake(const s_socketData &data);
