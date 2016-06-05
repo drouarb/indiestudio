@@ -7,6 +7,15 @@
 gauntlet::core::LoadMenu::LoadMenu(Core &core, int idStart, Menu *parent) :
         Menu(core, idStart, parent)
 {
+    submenus.push_back(new MessageBox(core, idStart + MENU_ID_LAYER, this, ""));
+}
+
+gauntlet::core::LoadMenu::~LoadMenu()
+{ }
+
+void
+gauntlet::core::LoadMenu::draw()
+{
     buttons.push_back(Control(BUTTON, "\t\tReturn\t\t", NULL, PCENTER, idStart, core.ogre));
     buttons.push_back(Control(LABEL, " Maps ", NULL, PCENTER, idStart + 1, core.ogre));
 
@@ -21,15 +30,6 @@ gauntlet::core::LoadMenu::LoadMenu(Core &core, int idStart, Menu *parent) :
     buttons.push_back(Control(BUTTON, "Load", NULL, PCENTER, idStart + buttons.size(),
                               core.ogre));
 
-    submenus.push_back(new MessageBox(core, idStart + MENU_ID_LAYER, this, ""));
-}
-
-gauntlet::core::LoadMenu::~LoadMenu()
-{ }
-
-void
-gauntlet::core::LoadMenu::draw()
-{
     drawButtons();
 }
 
@@ -37,6 +37,10 @@ void
 gauntlet::core::LoadMenu::undraw()
 {
     undrawButtons();
+
+    buttons.clear();
+    funs.clear();
+    saves.clear();
 }
 
 void

@@ -622,7 +622,7 @@ void            BodyFactory::setEpicDoor()
   obj = new GameObject(-1, world);
   obj->setBasicParameters("EpicDoor", false, true);
   obj->setCollide(true);
-  obj->changeSize(std::make_pair(10.0, 10.0));
+  obj->changeSize(std::make_pair(20.0, 20.0));
   obj->changePos(std::make_pair(-1, -1));
   obj->changeOrientation(90);
   obj->setIdle(animations::AnimationsListJson::DOOR_OPEN);

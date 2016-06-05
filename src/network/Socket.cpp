@@ -138,7 +138,7 @@ s_socketData gauntlet::network::Socket::recv(int fd) {
     static std::vector<unsigned char> buffer(BUFFER_SIZE, 0);
     data.data = new std::vector<unsigned char>();
 
-    while ((readSize = ::recv(fd, &buffer.front(), BUFFER_SIZE, MSG_DONTWAIT)) > 0) {
+    while ((readSize = ::recv(fd, &buffer.front(), BUFFER_SIZE, MSG_DONTWAIT)) > 0) { //TODO: segfault here
         data.data->insert(data.data->end(), buffer.begin(), buffer.begin() + readSize);
     }
     if (!readSize)
