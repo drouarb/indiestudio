@@ -25,6 +25,7 @@ const std::map<SpellFactory::SpellEnum, SpellFactory::getSpell> gauntlet::SpellF
 {
   {SpellFactory::VALKYRIA_ATTACK, &gauntlet::SpellFactory::getValkyriaAttack},
   {SpellFactory::VALKYRIA_DASH, &gauntlet::SpellFactory::getValkyriaDash},
+  {SpellFactory::VALKYRIA_HEAL, &gauntlet::SpellFactory::getValkyriaHeal},
   {SpellFactory::BARBARIAN_ATTACK, &gauntlet::SpellFactory::getBarbarianAttack},
   {SpellFactory::BARBARIAN_TORNADO, &gauntlet::SpellFactory::getBarbarianTornado},
   {SpellFactory::WIZARD_FIREBALL, &gauntlet::SpellFactory::getWizardFireBall},
@@ -83,6 +84,14 @@ gauntlet::Spell *SpellFactory::getValkyriaAttack() {
   Spell *spell = new Spell;
 
   spell->setBasicStats(giveNextId(), "Valkyria Primary Attack", 0, 80, 40, Area::CIRCLE, SoundName::SWORD_HIT, 100);
+  return spell;
+}
+
+gauntlet::Spell *SpellFactory::getValkyriaHeal() {
+  Spell *spell = new Spell;
+
+  spell->setBasicStats(giveNextId(), "Valkyria Heal", 0, 100, -100, Area::CIRCLE, SoundName::MAGIC_HEAL, 200);
+  spell->setEffect(EffectName::FAIRY, EffectName::SNOW);
   return spell;
 }
 

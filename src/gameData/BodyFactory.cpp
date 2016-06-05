@@ -248,6 +248,7 @@ void			BodyFactory::setValkyrie()
   player->stats.attackModifier = 1.0;
   player->spellBook.addSpell(SpellFactory::VALKYRIA_ATTACK, player);
   player->spellBook.addSpell(SpellFactory::VALKYRIA_DASH, player);
+  player->spellBook.addSpell(SpellFactory::VALKYRIA_HEAL, player);
   player->setCollide(true);
   player->changePos(std::make_pair(-1, -1));
   player->changeSize(std::make_pair(25.0, 25.0));
