@@ -30,7 +30,8 @@ namespace gauntlet
     MAP_TEST = 18,
     VALKYRIE = 19,
     ARCHER = 20,
-    WIZARD = 21
+    WIZARD = 21,
+    JEANMARIE = 22
   };
 };
 #endif //GAUNTLET_ENTITYNAME_HH
