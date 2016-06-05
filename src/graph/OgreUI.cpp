@@ -863,6 +863,10 @@ int OgreUI::triggerEffect(int id, gauntlet::EffectName type,
     {
       std::cerr << "ERROR in OgreUI::triggerEffect: " << __LINE__ << ", " <<
       e.what();
+    } catch (std::exception &e)
+    {
+      std::cerr << "UNEXCEPTED ERROR in OgreUI::triggerEffect: " << __LINE__ << ", " <<
+      e.what();
     }
   mapped_type = effect;
   return 0;
