@@ -19,6 +19,7 @@ struct sigcontext {};
 #include <sstream>
 #include "StackTrace.h"
 
+
 void StackTrace::displayStackTrace()
 {
 #ifndef _WIN32
@@ -57,9 +58,8 @@ void bt_sighandler(int sig, struct sigcontext ctx)
       while (messages[i][p] != '(' && messages[i][p] != ' '
 	     && messages[i][p] != 0)
 	++p;
-
       char syscom[256];
-      sprintf(syscom, "addr2line %p -e %.*s", trace[i], static_cast<int>(p), messages[i]);
+      snprintf(syscom, 256, "addr2line %p -e %.*s", trace[i], static_cast<int>(p), messages[i]);
       ::system(syscom);
     }
   ::exit(0);
