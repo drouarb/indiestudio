@@ -143,6 +143,11 @@
 	    end: "59.1707041520",
 	},
 	{
+	    name: "Skeleton_Dying_A",
+	    begin: "57.8414083790",
+	    end: "59.1707041520",
+	},
+	{
 	    name: "Skeleton_1H_combat_mode",
 	    begin: "59.2729576730",
 	    end: "60.9430985160",
