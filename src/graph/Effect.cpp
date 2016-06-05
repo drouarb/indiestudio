@@ -36,7 +36,15 @@ gauntlet::Effect::Effect(OgreUI *ogreUI, gauntlet::EffectName type, std::string 
   const Ogre::Vector3 &scale = particleNode->getScale() / _EFFECT_DIVIDE_SIZE;
   std::cout << "scale effect: " << scale << ", original:" << particleNode->getScale() << std::endl;
   particleNode->setScale(scale);
-  particleNode->setPosition((Ogre::Vector3(static_cast<float>(coord.first), ogreUI->getHeightAt(coord.first, coord.second), static_cast<float >(coord.second))));
+  if (type == EffectName::SNOW)
+    {
+      particleNode->setPosition((Ogre::Vector3(static_cast<float>(coord.first), ogreUI->getHeightAt(coord.first, coord.second) + 200, static_cast<float >(coord.second))));
+    }
+  else
+    {
+      particleNode->setPosition((Ogre::Vector3(static_cast<float>(coord.first), ogreUI->getHeightAt(coord.first, coord.second), static_cast<float >(coord.second))));
+    }
+
   for (size_t i = 0; i < _particleSystem->getNumEmitters(); ++i)
     {
       Ogre::ParticleEmitter *pEmitter = _particleSystem->getEmitter(i);
@@ -47,10 +55,7 @@ gauntlet::Effect::Effect(OgreUI *ogreUI, gauntlet::EffectName type, std::string 
   this->_particleSystem->setParticleQuota(quota / 100.0);
   particleNode->attachObject(this->_particleSystem);
 
-  if (type == EffectName::BLIND)
-    {
-      particleNode->setScale(particleNode->getScale() / 1000);
-    }
+
 }
 
 Ogre::ParticleSystem *gauntlet::Effect::getParticleSystem() const
@@ -75,4 +80,3 @@ std::ostream &::gauntlet::operator<<(std::ostream &ostream, const gauntlet::Effe
   ostream << "Particle System based on " << spell.getName() << " template";
   return ostream;
 }
-

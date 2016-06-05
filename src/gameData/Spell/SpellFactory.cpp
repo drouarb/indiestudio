@@ -121,7 +121,7 @@ gauntlet::Spell *SpellFactory::iceBall() {
   Spell *spell = new Spell;
 
   spell->setBasicStats(giveNextId(), "Ice Ball", 300, 100, 50, Area::COLUMN, SoundName::MAGIC_EXPLOSION_2, 600);
-  spell->setEffect(EffectName::SNOW, EffectName::BLIND);
+  spell->setEffect(EffectName::BLIND, EffectName::SNOW);
   return spell;
 }
 
