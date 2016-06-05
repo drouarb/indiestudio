@@ -31,6 +31,7 @@
 
 #include <SdkTrays.h>
 #include <SdkCameraMan.h>
+#include <tuple>
 #include <core/Position.hh>
 #include <mutex>
 #include <graph/Effect.hh>
@@ -38,6 +39,7 @@
 #include <gameData/TextureName.hh>
 #include <gameData/SoundName.hh>
 #include <helpers/Files.hh>
+#include <stack>
 #include "IUIObserver.hh"
 #include "AnimationsList.hh"
 #include "HeightMap.hh"
@@ -85,6 +87,7 @@ class OgreUI
   std::map<std::string, Ogre::AnimationState *> animationsArray;
   std::map<std::string, gauntlet::animations::Animation *> animationsMap;
   std::map<int, gauntlet::Effect *> effectMap;
+  std::stack<Ogre::ParticleSystem *> toDelete;
   gauntlet::core::IUIObserver *obs;
   OgreOggSound::OgreOggSoundManager *mSoundManager;
 

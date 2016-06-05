@@ -1,0 +1,30 @@
+{
+  name: "wizard",
+  animation: [
+    {
+      name: "Idle",
+      begin: "0",
+      end: "1",
+    },
+    {
+      name: "AttackSpell",
+      begin: "80.25",
+      end: "82.57"
+    },
+    {
+      name: "Run",
+      begin: "35.5",
+      end: "36.24",
+    },
+    {
+      name: "Dying",
+      begin: "61.5236",
+      end: "63.7445",
+    },
+    {
+      name: "Combat",
+      begin: "77.7332",
+      end: "80.21",
+    }
+  ]
+}

@@ -2,6 +2,7 @@
 #include <iostream>
 #ifdef _WIN32
 #include <Windows.h>
+#include <Shlwapi.h>
 #else
 #include <sys/wait.h>
 #endif
@@ -137,7 +138,26 @@ void
 gauntlet::core::Core::createServer()
 {
     killServer();
+#ifdef _WIN32
+	TCHAR buffer[MAX_PATH] = { 0 };
+	DWORD bufSize = sizeof(buffer) / sizeof(*buffer);
+	GetModuleFileName(NULL, buffer, bufSize);
+	char cmdArgs[] = "map/map.json 38424";
+
+	std::cout << "===================================================" << std::endl;
+	std::cout << buffer << std::endl;
+	std::cout << "===================================================" << std::endl;
+
+	if (!CreateProcess(buffer, NULL, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi))
+	{
+		std::cout << "FAIIIIIIIIL -(---------------------------------------" << std::endl;
+		cpid = -1;
+	}
+	else
+		cpid = 1;
+#else
     cpid = fork();
+#endif
     if (cpid == -1)
         return;
     if (cpid == 0)
@@ -160,8 +180,8 @@ gauntlet::core::Core::killServer()
 
     if (cpid > 0)
         {
-            kill(cpid, SIGTERM);
-            waitpid(cpid, &status, 0);
+            //kill(cpid, SIGTERM);
+            //waitpid(cpid, &status, 0);
             cpid = -1;
         }
 }

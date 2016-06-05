@@ -248,6 +248,11 @@ bool OgreUI::frameRenderingQueued(const Ogre::FrameEvent &evt)
   mTrayMgr->refreshCursor();
   mTrayMgr->frameRenderingQueued(evt);
   applyAnimation(evt);
+  while (this->toDelete.size())
+    {
+      this->toDelete.top()->setEmitting(false);
+      this->toDelete.pop();
+    }
   mSoundManager->update(evt.timeSinceLastFrame);
   if (!mTrayMgr->isDialogVisible())
     {
@@ -598,6 +603,14 @@ void OgreUI::addLabel(gauntlet::core::Position pos, int id, std::string text,
 {
   std::stringstream ss;
   ss << id;
+
+    int i = 0;
+    while (i < text.length())
+        {
+            if (text[i] < 32 || text[i] >= 127)
+                return ;
+            i++;
+        }
   mTrayMgr->createLabel(posmap.at(pos), ss.str(), text, text.size() * 11 + 20);
 }
 
@@ -840,9 +853,8 @@ bool OgreUI::addWorldEntity(int entityId, EntityName meshid, int x,
   try
     {
       e = mSceneMgr->createEntity(ss.str(), meshmap.at(meshid).c_str());
-    } catch (Ogre::Exception &e)
+    } catch (...)
     {
-      std::cerr << e.what() << std::endl;
       return false;
     }
   if (texture_id != TextureName::TEXTURE_NONE)
@@ -883,11 +895,15 @@ int OgreUI::triggerEffect(int id, gauntlet::EffectName type,
     {
       std::cerr << "ERROR in OgreUI::triggerEffect: " << __LINE__ << ", " <<
       e.what();
+      mapped_type = NULL;
+      return -1;
     } catch (std::exception &e)
     {
       std::cerr << "UNEXCEPTED ERROR in OgreUI::triggerEffect: " << __LINE__ <<
       ", " <<
       e.what();
+      mapped_type = NULL;
+      return -1;
     }
   mapped_type = effect;
   return 0;
@@ -917,7 +933,9 @@ void OgreUI::stopEffect(int id)
       else
 	return;
       if (pSystem)
-	pSystem->setEmitting(false);
+	{
+	  this->toDelete.push(pSystem);
+	}
     }
   catch (...)
     {

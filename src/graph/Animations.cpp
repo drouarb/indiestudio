@@ -19,11 +19,18 @@ bool animations::JSONAnimation::update(double elapsedTime)
     {
       if (!loop)
 	{
-	  if (!(this->animationName == "death" || this->animationName.find("Dying") != std::string::npos || this->animationName.find("DYING") != std::string::npos ))
+	  if (animationName == "tornado")
+	    {
+	      this->animationState->setTimePosition(static_cast<float>(0));
+	      return true;
+	    }
+	  if (!(this->animationName == "death" ||
+		this->animationName.find("Dying") != std::string::npos ||
+		this->animationName.find("DYING") != std::string::npos))
 	    {
 	      this->animationState->setTimePosition(static_cast<float>(0));
 	      return false;
-	       }
+	    }
 	  else
 	    {
 	      return true;
@@ -43,9 +50,10 @@ animations::JSONAnimation::JSONAnimation(const std::string &filename,
 					 bool loop) : filename(
 	filename), animationState(animationState)
 {
-  std::cout << "--------------------------> animationName: " << animationName << std::endl;
+  std::cout << "--------------------------> animationName: " << animationName <<
+  std::endl;
   this->jsonObj = new ::JSON::JsonObj();
-try
+  try
     {
       file->getFile(filename);
       this->jsonObj->ParseFrom(file->getFile(filename));
@@ -147,7 +155,8 @@ std::ostream &animations::operator<<(std::ostream &stream,
   try
     {
       std::pair<std::string, std::string> pair = jsonMap.at(animation);
-      stream << "file: " << pair.first << ", name: " << pair.second << std::endl;
+      stream << "file: " << pair.first << ", name: " << pair.second <<
+      std::endl;
     } catch (std::exception &e)
     {
       stream << "id: " << static_cast<int>(animation) << e.what() << std::endl;

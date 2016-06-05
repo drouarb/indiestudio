@@ -20,9 +20,10 @@
 # include "MainMenu.hh"
 # include "Hud.hh"
 
-#ifndef _WIN32
-# include <unistd.h>
+#ifdef _WIN32
 # define pid_t int
+#else
+# include <unistd.h>
 #endif
 
 namespace gauntlet
@@ -82,6 +83,11 @@ namespace gauntlet
             bool playing;
             std::mutex disconnectMutex;
             network::PacketFactory *stoppingPacketf;
+
+#ifdef _WIN32
+			STARTUPINFO si;
+			PROCESS_INFORMATION pi;
+#endif
 
             void killServer();
         };
