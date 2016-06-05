@@ -41,6 +41,7 @@ namespace gauntlet {
     int                         endingId;
     unsigned int                soundEffect;
     unsigned long               castTime;
+    animations::AnimationsListJson specialAnimation;
 
   public:
     void                        cast(Actor *caster);
@@ -60,6 +61,8 @@ namespace gauntlet {
                        unsigned int effect, unsigned long castTime);
 
       void prepare(Actor *actor);
+
+      void setSpecialAnimation(animations::AnimationsListJson _animation);
   };
 };
 
