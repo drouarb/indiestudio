@@ -49,7 +49,10 @@ void        GameObject::open(ItemContainer *curInventory)
       if (item.isKey())
       {
         inv->remove(item);
-        world->playSound(SoundName::DOOR_STONE, false, this->getPos());
+        if (this->getName() == "EpicDoor")
+          world->getMusicHandler()->startEpicEnding();
+        else
+          world->playSound(SoundName::DOOR_STONE, false, this->getPos());
         this->world->animeEntity(this->id, this->idle, false);
         this->collideActive = false;
         this->world->notifyDeath(this);

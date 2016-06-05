@@ -21,6 +21,18 @@
 	    y : "61"
 	},
 	{
+		name : "EpicDoor",
+		angle : "0",
+		x : "81",
+		y : "61"
+	},
+	{
+		name : "Key",
+		angle : "0",
+		x : "71",
+		y : "61"
+	},
+	{
 	    name : "SkeletonArcher",
 	    angle : "0",
 	    x : "90",
