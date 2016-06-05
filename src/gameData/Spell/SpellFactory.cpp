@@ -90,7 +90,7 @@ gauntlet::Spell *SpellFactory::getValkyriaAttack() {
 gauntlet::Spell *SpellFactory::getValkyriaHeal() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Valkyria Heal", 0, 100, -100, Area::CIRCLE, SoundName::MAGIC_HEAL, 200);
+  spell->setBasicStats(giveNextId(), "Valkyria Heal", 0, 100, -100, Area::SELF_CIRCLE, SoundName::MAGIC_HEAL, 200);
   spell->setEffect(EffectName::FAIRY, EffectName::SNOW);
   return spell;
 }

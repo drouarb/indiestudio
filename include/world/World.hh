@@ -43,10 +43,10 @@ namespace			gauntlet
   {
     struct			soundGlobal
     {
-      int			Id;
+      int			    Id;
       std::pair<double, double>	pos;
       unsigned int		soundId;
-      bool			loop;
+      bool			    loop;
     };
 
     struct			effectGlobal

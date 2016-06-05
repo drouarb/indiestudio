@@ -186,12 +186,13 @@ void			BodyFactory::setWizard()
           SoundName::SOUND_NONE
   };
   player->animations[ABody::ATTACK] = {
-          animations::AnimationsListJson::SKELETON_ARCHIER_SHOTING
+          animations::AnimationsListJson::WIZARD_ATTACK_RANGE,
+          animations::AnimationsListJson::WIZARD_ATTACK_HIT
   };
-  player->setDeath(animations::AnimationsListJson::SKELETON_ARCHIER_DYING_B);
-  player->setIdle(animations::AnimationsListJson::SKELETON_ARCHIER_IDLE);
-  player->setRunning(animations::AnimationsListJson::SKELETON_ARCHIER_RUN);
-  player->setMeshId(EntityName::SKELETON_ARCHER);
+  player->setDeath(animations::AnimationsListJson::WIZARD_DEATH);
+  player->setIdle(animations::AnimationsListJson::WIZARD_IDLE);
+  player->setRunning(animations::AnimationsListJson::WIZARD_RUN);
+  player->setMeshId(EntityName::WIZARD);
   player->setTextureId(TextureName::TEXTURE_NONE);
   player->setIdAI(NOAI);
   bodyTab.push_back(player);
@@ -604,6 +605,22 @@ void            BodyFactory::setDoor()
 
   obj = new GameObject(-1, world);
   obj->setBasicParameters("Door", false, true);
+  obj->setCollide(true);
+  obj->changeSize(std::make_pair(10.0, 10.0));
+  obj->changePos(std::make_pair(-1, -1));
+  obj->changeOrientation(90);
+  obj->setIdle(animations::AnimationsListJson::DOOR_OPEN);
+  obj->setMeshId(EntityName::DOOR);
+  obj->setTextureId(TextureName::TEXTURE_NONE);
+  bodyTab.push_back(obj);
+}
+
+void            BodyFactory::setEpicDoor()
+{
+  GameObject        *obj;
+
+  obj = new GameObject(-1, world);
+  obj->setBasicParameters("EpicDoor", false, true);
   obj->setCollide(true);
   obj->changeSize(std::make_pair(10.0, 10.0));
   obj->changePos(std::make_pair(-1, -1));

@@ -18,6 +18,7 @@ namespace	gauntlet
       WALL,
       COLUMN,
       FLIGHT_PATH,
+      SELF_CIRCLE,
       CIRCLE,
       CONE,
       TRIANGLE,

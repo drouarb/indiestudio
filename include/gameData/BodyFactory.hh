@@ -66,6 +66,8 @@ namespace gauntlet
       void setSpeedPotion();
 
       void setPowerPotion();
+
+      void setEpicDoor();
   };
 };
 
