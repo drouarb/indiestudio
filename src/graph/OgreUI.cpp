@@ -248,6 +248,11 @@ bool OgreUI::frameRenderingQueued(const Ogre::FrameEvent &evt)
   mTrayMgr->refreshCursor();
   mTrayMgr->frameRenderingQueued(evt);
   applyAnimation(evt);
+  while (this->toDelete.size())
+    {
+      this->toDelete.top()->setEmitting(false);
+      this->toDelete.pop();
+    }
   mSoundManager->update(evt.timeSinceLastFrame);
   if (!mTrayMgr->isDialogVisible())
     {
@@ -840,7 +845,7 @@ bool OgreUI::addWorldEntity(int entityId, EntityName meshid, int x,
   try
     {
       e = mSceneMgr->createEntity(ss.str(), meshmap.at(meshid).c_str());
-    } catch (Ogre::Exception &e)
+    } catch (std::exception &e)
     {
       std::cerr << e.what() << std::endl;
       return false;
@@ -919,7 +924,9 @@ void OgreUI::stopEffect(int id)
       else
 	return;
       if (pSystem)
-	pSystem->setEmitting(false);
+	{
+	  this->toDelete.push(pSystem);
+	}
     }
   catch (...)
     {
