@@ -4,7 +4,7 @@
 #include "PacketFactory.hh"
 
 gauntlet::core::SaveMenu::SaveMenu(Core &core, int idStart, Menu *parent) :
-        TextBox(core, idStart, parent, "save_1.json")
+        TextBox(core, idStart, parent, "File name")
 {
     buttons.push_back(Control(BUTTON, "Save", NULL, PCENTER,
                               idStart + buttons.size(), core.ogre));
@@ -47,7 +47,9 @@ gauntlet::core::SaveMenu::doSave(struct t_hitItem &item)
     if (text.length() >= std::string(SAVE_DIR).length()
             && text.substr(0, std::string(SAVE_DIR).length()) == SAVE_DIR)
         text = text.substr(std::string(SAVE_DIR).length());
-    
+    if (!(text.length() > 5 && text.substr(text.length() - 5, 5) == ".json"))
+        text += ".json";
+
     if (text == "")
         {
             static_cast<MessageBox *>(submenus[0])->setMsg("Please enter the path to save the map to.");
