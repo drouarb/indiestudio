@@ -9,6 +9,12 @@
 #include <vector>
 #include "network/Socket.hh"
 
+#ifdef _WIN32
+#define PACK( __Declaration__ ) __pragma( pack(push, 1) ) __Declaration__ __pragma( pack(pop) )
+#else
+#define PACK( __Declaration__ ) __Declaration__ __attribute__((__packed__))
+#endif
+
 #define PROTOCOL_VERSION    1
 
 typedef std::vector<unsigned char> t_rawdata;

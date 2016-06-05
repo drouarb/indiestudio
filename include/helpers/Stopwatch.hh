@@ -11,7 +11,11 @@
 #ifndef  STOPWATCH_HPP_
 # define STOPWATCH_HPP_
 
+#ifdef _WIN32
+#include <Windows.h>
+#else
 # include <sys/time.h>
+#endif
 # include <time.h>
 
 namespace			gauntlet
@@ -26,8 +30,12 @@ namespace			gauntlet
     long			ellapsedMs();
     
   private:
-    struct timeval		startTime;
-  };
+#ifdef _WIN32
+	  unsigned long         tick;
+#else
+	  struct timeval		startTime;
+#endif
+   };
 };
 
 #endif

@@ -1,8 +1,12 @@
 #include <iostream>
 #include <fstream>
 #include <stdexcept>
-#include <unistd.h>
 #include <graph/Animations.hh>
+#ifdef _WIN32
+#include <Windows.h>
+#else
+#include <unistd.h>
+#endif
 #include "World.hh"
 #include "IJson.hpp"
 #include "Rand.hh"
@@ -291,7 +295,11 @@ void        World::gameLoop()
   while (looper == true)
     {
       if (stopwatch.ellapsedMs() < ROUND_DURATION)
-	usleep(ROUND_DURATION * 1000 - stopwatch.ellapsedMs() * 1000.0);
+#ifdef _WIN32
+	Sleep(ROUND_DURATION - stopwatch.ellapsedMs());
+#else
+	usleep(ROUND_DURATION * 1000 - stopwatch.ellapsedMs() * 1000);
+#endif
       stopwatch.set();
       if (turn % AI_PRIORITY == 0)
 	applyAI();
@@ -755,5 +763,3 @@ void                World::setLooper(bool nloop)
 MusicHandler *World::getMusicHandler() {
   return &musicHandler;
 }
-
-

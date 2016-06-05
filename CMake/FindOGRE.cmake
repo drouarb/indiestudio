@@ -87,6 +87,7 @@ if (WIN32)
 elseif (UNIX)
   set(OGRE_PREFIX_GUESSES
     ${OGRE_PREFIX_GUESSES}
+	${CMAKE_BINARY_DIR}
     /opt/ogre
     /opt/OGRE
     /usr/lib${LIB_SUFFIX}/ogre
@@ -308,7 +309,7 @@ endif()
       endif()
       
       set(OGRE_BOOST_COMPONENTS thread date_time)
-      find_package(Boost COMPONENTS ${OGRE_BOOST_COMPONENTS} QUIET)
+      find_package(Boost QUIET COMPONENTS ${OGRE_BOOST_COMPONENTS})
       if(Boost_FOUND AND Boost_VERSION GREATER 104900)
         if(Boost_VERSION GREATER 105300)
             set(OGRE_BOOST_COMPONENTS thread date_time system atomic chrono)
@@ -317,7 +318,7 @@ endif()
         endif()
       endif()
 
-      find_package(Boost COMPONENTS ${OGRE_BOOST_COMPONENTS} QUIET)
+      find_package(Boost QUIET COMPONENTS ${OGRE_BOOST_COMPONENTS})
       if (NOT Boost_THREAD_FOUND)
         set(OGRE_DEPS_FOUND FALSE)
       else ()

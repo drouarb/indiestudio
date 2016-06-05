@@ -12,35 +12,32 @@
     x: "45",
     y: "60"
   },
-    dynamic :
-    [
-	{
-	    name : "SpeedPotion",
-	    angle : "0",
-	    x : "91",
-	    y : "61"
-	},
-	{
-	    name : "SkeletonArcher",
-	    angle : "0",
-	    x : "90",
-	    y : "100"
-	},
-	{
-	    name : "SkeletonArcher",
-	    angle : "0",
-	    x : "80",
-	    y : "100"
-	}
-    ],
-    sounds:
-    [
-	{
-	        id : "2",
-	        x : "-1",
-	        y : "-1"
-	    }
-    ],
-    particles:
-    [ ]
+  dynamic: [
+    {
+      name: "SpeedPotion",
+      angle: "0",
+      x: "91",
+      y: "61"
+    },
+    {
+      name: "SkeletonArcher",
+      angle: "0",
+      x: "90",
+      y: "100"
+    },
+    {
+      name: "SkeletonArcher",
+      angle: "0",
+      x: "80",
+      y: "100"
+    }
+  ],
+  sounds: [
+    {
+      id: "2",
+      x: "-1",
+      y: "-1"
+    }
+  ],
+  particles: []
 }

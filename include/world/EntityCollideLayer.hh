@@ -11,9 +11,10 @@
 #ifndef ENTITYCOLLIDELAYER_HH_
 # define ENTITYCOLLIDELAYER_HH_
 
+#define _USE_MATH_DEFINES
+#include <math.h>
 #include <list>
 #include <vector>
-#include <math.h>
 #include <mutex>
 #include "PhysicCollideLayer.hh"
 #include "ABody.hh"

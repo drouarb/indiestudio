@@ -3,6 +3,9 @@
 #include "graph/OgreUI.hh"
 #include "Math.hh"
 #include "Animations.hh"
+#ifdef _WIN32
+#include <atlstr.h>
+#endif
 
 using namespace gauntlet;
 using namespace core;
@@ -143,19 +146,25 @@ void OgreUI::setupResources(void)
 
   Ogre::ConfigFile::SectionIterator seci = cf.getSectionIterator();
   Ogre::String secName, typeName, archName;
-  while (seci.hasMoreElements())
-    {
-      secName = seci.peekNextKey();
-      Ogre::ConfigFile::SettingsMultiMap *settings = seci.getNext();
-      Ogre::ConfigFile::SettingsMultiMap::iterator i;
-      for (i = settings->begin(); i != settings->end(); ++i)
-	{
-	  typeName = i->first;
-	  archName = i->second;
-	  Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
-		  archName, typeName, secName);
-	}
-    }
+	  while (seci.hasMoreElements())
+	  {
+		  secName = seci.peekNextKey();
+		  Ogre::ConfigFile::SettingsMultiMap *settings = seci.getNext();
+		  if (secName.size() > 0)
+		  {
+			  std::cout << "Sec " << secName << std::endl;
+			  std::cout << settings->size() << std::endl;
+			  for (Ogre::ConfigFile::SettingsMultiMap::iterator i = settings->begin(); i != settings->end(); i++)
+			  {
+				  typeName = i->first;
+				  archName = i->second;
+				  Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
+					  archName, typeName, secName);
+			  }
+		  }
+		  else
+			  std::cout << "NOP" << std::endl;
+	  }
 }
 
 void OgreUI::createResourceListener(void)
@@ -183,7 +192,7 @@ void OgreUI::go()
 
 bool OgreUI::setup(void)
 {
-  mRoot = new Ogre::Root(mPluginsCfg);
+  mRoot = new Ogre::Root("plugins_d.cfg");
 #ifdef OGRE_STATIC
   mRoot->installPlugin(new Ogre::GLPlugin());
   mRoot->installPlugin(new Ogre::ParticleFXPlugin());
@@ -389,8 +398,18 @@ bool OgreUI::loadSound(int id, SoundName name)
 
   if (name != SOUND_NONE)
     {
-      if (access(("../media/sounds/" + soundmap.at(name)).c_str(), F_OK) == 0)
-	{
+#ifdef _WIN32
+		WIN32_FIND_DATA FindFileData;
+
+		HANDLE handle = FindFirstFile(CA2T(soundmap.at(name).c_str()), &FindFileData);
+		int found = handle != INVALID_HANDLE_VALUE;
+		if (found)
+		{
+			FindClose(handle);
+#else
+		if (access(("../media/sounds/" + soundmap.at(name)).c_str(), F_OK) == 0)
+		{
+#endif
 	  mSoundManager->createSound(ss.str() + "_sound", soundmap.at(name),
 				     true, false,
 				     false);
@@ -784,7 +803,7 @@ void OgreUI::hideBackground()
 void OgreUI::initSound()
 {
   this->mSoundManager = OgreOggSound::OgreOggSoundManager::getSingletonPtr();
-  mSoundManager->init("Gauntlet");
+  mSoundManager->init();
 }
 
 void OgreUI::stopSound(int id)
@@ -803,10 +822,18 @@ Ogre::SceneManager *OgreUI::getSceneManager()
 }
 
 
+<<<<<<< 2ffc940c314da21cd9c277ab4628d68c201ff7b4
 bool OgreUI::addWorldEntity(int entityId, EntityName meshid, int x,
 			    int y,
 			    short angle,
 			    TextureName texture_id)
+=======
+bool OgreUI::addWorldEntity(int entityId,
+						     EntityName meshid, int x,
+						     int y,
+						     short angle,
+						     TextureName texture_id)
+>>>>>>> Windows compat
 {
   std::stringstream ss;
   ss << entityId;

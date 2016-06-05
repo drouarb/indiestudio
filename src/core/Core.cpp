@@ -1,6 +1,10 @@
 #include <math.h>
 #include <iostream>
+#ifdef _WIN32
+#include <Windows.h>
+#else
 #include <sys/wait.h>
+#endif
 #include "Core.hh"
 #include "Math.hh"
 #include "ListenerHandshake.hh"
@@ -28,7 +32,7 @@ gauntlet::core::Core::Core() : actionlists(*this), hud(*this, 0, NULL),
     ogre.setIObserver(observer);
     if (!ogre.init())
         return;
-    ogre.playSound(0, (MENU_SOUND), false);
+    ogre.playSound(0, (MENU_SOUND), true);
     menu.setOpen(true);
 
     ogre.go();
@@ -84,7 +88,7 @@ gauntlet::core::Core::buttonClick(int buttonId, struct t_hitItem &item)
 void
 gauntlet::core::Core::mouseMove(int x, int y)
 {
-    if (pc)
+    if (pc && menu.getOpen() == false)
         {
             x -= ogre.getSizeWindow().first / 2;
             y -= ogre.getSizeWindow().second / 2;
@@ -109,11 +113,13 @@ gauntlet::core::Core::play()
 void
 gauntlet::core::Core::stop()
 {
-    if (menu.getOpen() == false)
+    if (playing)
         {
-            ogre.playSound(0, (MENU_SOUND), false);
-            menu.setOpen(true);
-            hud.setOpen(false);
+            ogre.playSound(0, (MENU_SOUND), true);
+            if (menu.getOpen() == false)
+                menu.setOpen(true);
+            if (hud.getOpen() == true)
+                hud.setOpen(false);
         }
     playing = false;
 }
@@ -134,13 +140,17 @@ gauntlet::core::Core::createServer()
     cpid = fork();
     if (cpid == -1)
         return;
-    if (cpid == 0)
-        {
-            world::GameServer(map, serverAddr.second);
-            _exit(0);
-        }
-    else
+	if (cpid == 0)
+	{
+		world::GameServer(map, serverAddr.second);
+		_exit(0);
+	}
+	else
+#ifdef _WIN32
+		Sleep(4000);
+#else
         usleep(4000000); //TODO: server ready msg?
+#endif
 }
 
 void
@@ -182,7 +192,7 @@ gauntlet::core::Core::initPacketf()
                 {
                     packetf->registerListener(*it);
                 }
-            listenThread = new std::thread(&network::PacketFactory::recv, std::ref(*packetf));
+            listenThread = new std::thread(std::bind(&network::PacketFactory::recv, std::ref(*packetf)));
         }
 }
 
@@ -207,9 +217,9 @@ gauntlet::core::Core::disconnect(std::string const &msg)
     std::cout << "# disconnect f" << std::endl;
     bool sendMsg = !menu.getOpen() && gameIsRunning();
     std::cout << "# disconnect g" << std::endl;
-    stop();
-    std::cout << "# disconnect h" << std::endl;
     ogre.resetMap();
+    std::cout << "# disconnect h" << std::endl;
+    stop();
     std::cout << "# disconnect i" << std::endl;
     if (sendMsg)
         {

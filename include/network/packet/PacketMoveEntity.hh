@@ -11,13 +11,13 @@ namespace gauntlet {
     namespace network {
         class PacketMoveEntity: public Packet {
 
-            struct s_packetMoveEntityData {
+            PACK(struct s_packetMoveEntityData {
                 unsigned char packetId;
                 unsigned int entityId;
                 double x;
                 double y;
                 short angle;
-            }__attribute__((packed));
+            });
 
         public:
             PacketMoveEntity(s_socketData data);

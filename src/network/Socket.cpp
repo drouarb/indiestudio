@@ -3,13 +3,11 @@
 //
 
 #include <stdexcept>
-#include <arpa/inet.h>
-#include <unistd.h>
 #include <string.h>
 #include <fcntl.h>
 #include "network/Socket.hh"
 
-gauntlet::network::Socket::Socket(in_port_t port) {
+gauntlet::network::Socket::Socket(unsigned short port) {
     ::pipe(pipe);
     if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) == -1)
         throw std::runtime_error("Can't open socket");
@@ -20,13 +18,19 @@ gauntlet::network::Socket::Socket(in_port_t port) {
         throw std::runtime_error("Can't bind port");
     if (listen(sockfd, 0) == -1)
         throw std::runtime_error("Listen error");
+
+#ifdef _WIN32
+	unsigned long mode = 0;
+	ioctlsocket(sockfd, FIONBIO, &mode);
+#else
     int flags = fcntl(sockfd, F_GETFL, 0);
     fcntl(sockfd, F_SETFL, flags | O_NONBLOCK);
+#endif
     type = SERVER;
     disconnectionListener = NULL;
 }
 
-gauntlet::network::Socket::Socket(const std::string &address, in_port_t port) {
+gauntlet::network::Socket::Socket(const std::string &address, unsigned short port) {
     ::pipe(pipe);
     if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) == -1)
         throw std::runtime_error("Can't open socket");
@@ -50,10 +54,10 @@ void gauntlet::network::Socket::send(std::vector<unsigned char> *data) {
     lock.lock();
     if (type == SERVER) {
       for (s_client cli : clients) {
-            ::send(cli.sockfd, &data->front(), data->size(), 0);
+            ::send(cli.sockfd, (char *)&data->front(), data->size(), 0);
         }
     } else {
-        ::send(sockfd, &data->front(), data->size(), 0);
+        ::send(sockfd, (char *)&data->front(), data->size(), 0);
     }
     lock.unlock();
 }
@@ -63,11 +67,11 @@ void gauntlet::network::Socket::send(std::vector<unsigned char> *data, int fd) {
     if (type == SERVER) {
         for (s_client client : clients) {
             if (client.sockfd == fd)
-                ::send(client.sockfd, &data->front(), data->size(), 0);
+                ::send(client.sockfd, (char *)&data->front(), data->size(), 0);
         }
     } else {
         if (fd == sockfd)
-            ::send(sockfd, &data->front(), data->size(), 0);
+            ::send(sockfd, (char *)&data->front(), data->size(), 0);
     }
     lock.unlock();
 }
@@ -76,11 +80,12 @@ s_socketData gauntlet::network::Socket::recv() {
     fd_set set;
     s_client cli;
     s_socketData buff;
+	unsigned long mode = 0;
 
     if (type == SERVER) {
         cli.len = sizeof(cli.sock);
         while (1) {
-            bzero(&set, sizeof(fd_set));
+			memset(&set, 0, sizeof(fd_set));
             FD_ZERO(&set);
 
             FD_SET(pipe[0], &set);
@@ -102,6 +107,9 @@ s_socketData gauntlet::network::Socket::recv() {
                     }
                     if (i == sockfd) {
                         while ((cli.sockfd = accept(sockfd, (struct sockaddr *) &cli.sock, &cli.len)) != -1) {
+#ifdef _WIN32
+							ioctlsocket(cli.sockfd, FIONBIO, &mode);
+#endif
                             clients.push_back(cli);
                         }
                     } else {
@@ -133,12 +141,12 @@ s_socketData gauntlet::network::Socket::recv() {
 }
 
 s_socketData gauntlet::network::Socket::recv(int fd) {
-    ssize_t readSize;
+    int readSize;
     s_socketData data;
     static std::vector<unsigned char> buffer(BUFFER_SIZE, 0);
     data.data = new std::vector<unsigned char>();
 
-    while ((readSize = ::recv(fd, &buffer.front(), BUFFER_SIZE, MSG_DONTWAIT)) > 0) { //TODO: segfault here
+    while ((readSize = ::recv(fd, (char *)&buffer.front(), BUFFER_SIZE, MSG_DONTWAIT)) > 0) {
         data.data->insert(data.data->end(), buffer.begin(), buffer.begin() + readSize);
     }
     if (!readSize)

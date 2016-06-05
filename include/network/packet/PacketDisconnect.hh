@@ -12,11 +12,11 @@ namespace gauntlet {
     namespace network {
         class PacketDisconnect: public Packet {
 
-            struct s_packetDisconnectData {
-                unsigned char packetId;
-                unsigned int stringsize;
-                char stringstart;
-            } __attribute__((packed));
+			PACK(struct s_packetDisconnectData {
+				unsigned char packetId;
+				unsigned int stringsize;
+				char stringstart;
+			});
 
         public:
             PacketDisconnect(const std::string &message, int fd = -1);
