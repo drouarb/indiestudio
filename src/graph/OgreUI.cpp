@@ -917,7 +917,7 @@ void OgreUI::stopEffect(int id)
       if (pSystem)
 	pSystem->setEmitting(false);
     }
-  catch (std::exception &e)
+  catch (...)
     {
       return;
     }
