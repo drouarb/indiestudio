@@ -29,7 +29,8 @@ const std::map<gauntlet::Area , gauntlet::Spell::patternFun> gauntlet::Spell::pa
         {CIRCLE, &world::Collider::giveBodyInAreaCircle},
         {CONE, &world::Collider::giveBodyInAreaCone},
         {COLUMN, &world::Collider::giveBodyInAreaCone},
-        {FLIGHT_PATH, &world::Collider::giveBodyInAreaflightPath}
+        {FLIGHT_PATH, &world::Collider::giveBodyInAreaflightPath},
+        {SELF_CIRCLE, &world::Collider::giveBodyInAreaCircleWithCaster}
 };
 
 void gauntlet::Spell::ApplyDamage(std::list<gauntlet::ABody*> targets, Actor *caster)
