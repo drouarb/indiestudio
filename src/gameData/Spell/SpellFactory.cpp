@@ -114,6 +114,7 @@ gauntlet::Spell *SpellFactory::getBarbarianTornado() {
   Spell *spell = new Spell;
 
   spell->setBasicStats(giveNextId(), "Barbarian Tornado", 0, 100, 80, Area::CIRCLE, SoundName::MAGIC_BATTLECRY, 300);
+  spell->setSpecialAnimation(animations::AnimationsListJson::BERSEKER_TORNADO);
   return spell;
 }
 

@@ -19,6 +19,7 @@ gauntlet::Spell::Spell() {
     openingEffect = -1;
     endingEffect = -1;
     effectOrientation = 0;
+    specialAnimation = animations::AnimationsListJson::DOOR_OPEN;
 }
 
 gauntlet::Spell::~Spell() {
@@ -75,7 +76,10 @@ void gauntlet::Spell::prepare(Actor *actor)
         actor->setMove();
     //lancer Animation sur caster
     std::cerr << "fracking" << std::endl;
-    caster->getWorld()->animeEntity(actor->getId(), caster->animations[ABody::ATTACK].at(rand() % caster->animations[ABody::ATTACK].size()), false);
+    if (specialAnimation == animations::AnimationsListJson::DOOR_OPEN)
+        caster->getWorld()->animeEntity(actor->getId(), caster->animations[ABody::ATTACK].at(rand() % caster->animations[ABody::ATTACK].size()), false);
+    else
+        caster->getWorld()->animeEntity(actor->getId(), specialAnimation, false);
     std::cerr << "crazy" << std::endl;
     targetedArea = actor->pointInFront(range);
     if (targetedArea.first > caster->getWorld()->getSize().first)
@@ -170,4 +174,8 @@ const std::string&	gauntlet::Spell::getName() const
   return (name);
 }
 
+void            gauntlet::Spell::setSpecialAnimation(animations::AnimationsListJson _animation)
+{
+    specialAnimation = _animation;
+}
 
