@@ -3,9 +3,9 @@
   asset_map: "../media/models/map_of_doom.mesh",
   height_map: "mapHeight/map_of_doom.pgm",
   endZone: {
-    posX: "210"
-    posY: "350"
-    sizeX: "25"
+    posX: "210",
+    posY: "350",
+    sizeX: "25",
     sizeY: "15"
   },
   spawn: {
