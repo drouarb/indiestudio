@@ -1,13 +1,3 @@
-//
-// Json.cpp for plazza in /home/lewis_e/rendu/cpp/cpp_plazza
-// 
-// Made by Esteban Lewis
-// Login   <lewis_e@epitech.net>
-// 
-// Started on  Mon Apr 18 16:59:52 2016 Esteban Lewis
-// Last update Sun May 22 15:55:45 2016 Esteban Lewis
-//
-
 #include "JsonArr.hpp"
 #include "JsonObj.hpp"
 #include "JsonStr.hpp"
@@ -15,124 +5,124 @@
 JSON::JsonArr::JsonArr()
 { }
 
-JSON::JsonArr::JsonArr(JsonArr const & other)
+JSON::JsonArr::JsonArr(JsonArr const &other)
 {
-  for (std::list<IJson *>::const_iterator it = other.objs.begin();
-       it != other.objs.end(); ++it)
-    {
-      objs.push_front((*it)->Clone());
-    }
+    for (std::list<IJson *>::const_iterator it = other.objs.begin();
+         it != other.objs.end(); ++it)
+        {
+            objs.push_front((*it)->Clone());
+        }
 }
 
 JSON::IJson &
 JSON::JsonArr::operator[](int index)
 {
-  std::list<IJson*>::iterator it = objs.begin();
-  for (int i = 0; i < index; i++)
-    ++it;
-  return (**it);
+    std::list<IJson *>::iterator it = objs.begin();
+    for (int i = 0; i < index; i++)
+        ++it;
+    return (**it);
 }
 
 JSON::JsonArr::~JsonArr()
 {
-  for (std::list<IJson *>::iterator it = objs.begin();
-       it != objs.end(); ++it)
-    {
-      delete (*it);
-    }
+    for (std::list<IJson *>::iterator it = objs.begin();
+         it != objs.end(); ++it)
+        {
+            delete (*it);
+        }
 }
 
 void
-JSON::JsonArr::AddObj(IJson const & val)
+JSON::JsonArr::AddObj(IJson const &val)
 {
-  objs.push_front(val.Clone());
+    objs.push_front(val.Clone());
 }
 
 std::list<JSON::IJson *> const &
 JSON::JsonArr::GetList() const
 {
-  return (objs);
+    return (objs);
 }
 
 std::list<JSON::IJson *> &
 JSON::JsonArr::GetList()
 {
-  return (objs);
+    return (objs);
 }
 
 size_t
 JSON::JsonArr::Size() const
 {
-  return (objs.size());
+    return (objs.size());
 }
 
 std::string const &
 JSON::JsonArr::Serialize()
 {
-  return (Serialize(0));
+    return (Serialize(0));
 }
 
 std::string const &
 JSON::JsonArr::Serialize(int level)
 {
-  serialized = chars('\t', level) + "[\n";
-  for (std::list<IJson *>::iterator it = objs.begin();
-       it != objs.end(); ++it)
-    {
-      if (it != objs.begin())
-	serialized += ",\n";
-      serialized += (*it)->Serialize(level + 1);
-    }
-  serialized += "\n" + chars('\t', level) + "]";
-  return (serialized);
+    serialized = chars('\t', level) + "[\n";
+    for (std::list<IJson *>::iterator it = objs.begin();
+         it != objs.end(); ++it)
+        {
+            if (it != objs.begin())
+                serialized += ",\n";
+            serialized += (*it)->Serialize(level + 1);
+        }
+    serialized += "\n" + chars('\t', level) + "]";
+    return (serialized);
 }
 
 int
-JSON::JsonArr::ParseFrom(std::string const & text)
+JSON::JsonArr::ParseFrom(std::string const &text)
 {
-  int len;
-  int idx;
+    int len;
+    int idx;
 
-  serialized = text;
+    serialized = text;
 
-  len = text.length();
-  idx = txtAdv(text, "\n \t[", 0, len);
-  while (idx < len && text[idx] != ']')
-    {
-      idx = txtAdv(text, ",\n \t", idx, len);
-      if (idx < len && text[idx] == '{')
-	AddObj(JsonObj());
-      else if (idx < len && text[idx] == '[')
-	AddObj(JsonArr());
-      else
-	AddObj(JsonStr());
-      idx += objs.front()->ParseFrom(text.substr(idx, len - idx));
-      idx = txtAdv(text, ",\n \t", idx, len);
-    }
-  idx = txtAdv(text, ",\n \t]", idx, len);
+    len = text.length();
+    idx = txtAdv(text, "\n \t[", 0, len);
+    while (idx < len && text[idx] != ']')
+        {
+            idx = txtAdv(text, ",\n \t", idx, len);
+            if (idx < len && text[idx] == '{')
+                AddObj(JsonObj());
+            else if (idx < len && text[idx] == '[')
+                AddObj(JsonArr());
+            else
+                AddObj(JsonStr());
+            idx += objs.front()->ParseFrom(text.substr(idx, len - idx));
+            idx = txtAdv(text, ",\n \t", idx, len);
+        }
+    idx = txtAdv(text, ",\n \t]", idx, len);
 
-  return (idx);
+    return (idx);
 }
 
 void
 JSON::JsonArr::Clear()
 {
-  for (std::list<IJson *>::iterator it = objs.begin();
-       it != objs.end(); ++it)
-    {
-      delete (*it);
-    }
-  objs.clear();
+    for (std::list<IJson *>::iterator it = objs.begin();
+         it != objs.end(); ++it)
+        {
+            delete (*it);
+        }
+    objs.clear();
 }
 
 bool
 JSON::JsonArr::Newline() const
 {
-  return (true);
+    return (true);
 }
 
 JSON::IJson *
 JSON::JsonArr::Clone() const
 {
-  return (new JsonArr(*this));
+    return (new JsonArr(*this));
 }
