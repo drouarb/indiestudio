@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 14:41:17 2016 Alexis Trouve
-// Last update Fri Jun  3 22:13:16 2016 Alexis Trouve
+// Last update Sun Jun  5 10:42:49 2016 Alexis Trouve
 //
 
 #ifndef COLLIDER_HH_
@@ -47,6 +47,8 @@ namespace gauntlet
 
       std::list<ABody *> giveBodyInAreaCircle(double posx, double posy, short unused,
 					      double radius, short unused2);
+      std::list<ABody *> giveBodyInAreaCircleWithCaster(double posx, double posy, short unused,
+							double radius, short unused2);
       std::list<ABody*>	giveBodyInAreaCone(double posx, double posy, short ref_angle,
 					   double size, short cone_angle);
         std::list<ABody *> giveBodyInAreaflightPath(double posx, double posy, short ref_angle,

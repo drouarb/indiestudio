@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 29 20:40:50 2016 Alexis Trouve
-// Last update Sat Jun  4 20:06:32 2016 Alexis Trouve
+// Last update Sun Jun  5 10:44:08 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -143,6 +143,14 @@ std::list<gauntlet::ABody*>	Collider::giveBodyInAreaCircle(double posx, double p
   (void)unused;
   (void)unused2;
   return (suprCoordInList(posx, posy, dynamicLayer->giveBodyInAreaCircle(posx, posy, radius)));
+}
+
+std::list<gauntlet::ABody*>	Collider::giveBodyInAreaCircleWithCaster(double posx, double posy, short unused,
+									 double radius, short unused2)
+{
+  (void)unused;
+  (void)unused2;
+  return (dynamicLayer->giveBodyInAreaCircle(posx, posy, radius));
 }
 
 std::list<gauntlet::ABody*>	Collider::giveBodyInAreaCone(double posx, double posy, short ref_angle, double size, short cone_angle)
