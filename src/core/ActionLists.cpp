@@ -45,14 +45,12 @@ gauntlet::core::ActionLists::doActions()
 		            if ((*it)->getMessage() != "" && (*it)->getMessage() != "Connection lost")
                         {
                             done = true;
-                            std::cout << "# disconnect " << (*it)->getMessage() << std::endl;
                             core.disconnect((*it)->getMessage());
                             break ;
                         }
                 }
             if (!done)
                 {
-                    std::cout << "# disconnect " << packetsDisconnect.front()->getMessage() << std::endl;
                     core.disconnect(packetsDisconnect.front()->getMessage());
                 }
         }

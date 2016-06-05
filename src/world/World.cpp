@@ -442,9 +442,10 @@ void    World::applyGatheringAndOpening()
 		  body = (*it2);
 		  if ((gameobject = dynamic_cast<GameObject *>(body)) != NULL)
 		    {
-		      gameobject->open(&player->inventory);
-		      if (gameobject->gather(player) == true)
-			deleteId(gameobject->getId(), true);
+                if (gameobject->open(&player->inventory))
+                  deleteId(gameobject->getId(), true);
+		      if (gameobject->gather(player))
+                  deleteId(gameobject->getId(), true);
 		    }
 		  it2++;
 		}

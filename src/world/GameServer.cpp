@@ -146,6 +146,7 @@ void                GameServer::selectPlayerAnswer(
       dataSendThread = new std::thread(
 	      std::bind(&GameServer::sendDatas, std::ref(*this),
 			packet->getSocketId()));
+      coPlayers++;
     }
   else
     sendHandShake(packet->getSocketId());
@@ -233,7 +234,6 @@ void                GameServer::receiveDeco(
   int socketId;
   unsigned int i;
   dataSendMutex.lock();
-
   socketId = packet->getSocketId();
   i = 0;
   while (i < players.size())
@@ -245,6 +245,7 @@ void                GameServer::receiveDeco(
 	  players[i].name = "";
 	  players[i].isTake = false;
 	  players[i].idPlayer = -1;
+	    coPlayers--;
 	}
       ++i;
     }
@@ -252,7 +253,9 @@ void                GameServer::receiveDeco(
   while (i < connectTmp.size())
     {
       if (connectTmp[i] == socketId)
-	connectTmp.erase(connectTmp.begin() + i);
+	{
+	  connectTmp.erase(connectTmp.begin() + i);
+	}
       ++i;
     }
   if (getNbrPlayer() == 0)

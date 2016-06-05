@@ -47,8 +47,10 @@ namespace gauntlet
             void doSaveload();
             void doSettings();
             void doContinue();
-            void doCredits();
             void doExit();
+        public:
+            void doCredits();
+
         };
     };
 };
