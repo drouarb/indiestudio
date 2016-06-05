@@ -973,9 +973,7 @@ void OgreUI::moveEntity(int id, int x, int y, short degres)
     }
   if (mSceneMgr->getEntity(s->getName())->getMesh()->getName() == meshmap.at(VALKYRIE))
     {
-      s->roll(Ogre::Radian(world::Math::toRad(degres + 157)) -
-	      s->getOrientation().getRoll());
-      std::cerr << s->getOrientation().getRoll() << std::endl;
+
     }
   else
     s->yaw(Ogre::Radian(world::Math::toRad(degres)) -
@@ -1178,7 +1176,7 @@ void OgreUI::scaleEntity(Ogre::SceneNode *s, gauntlet::EntityName id)
       case EntityName::VALKYRIE:
 	{
 	  s->scale(0.5, 0.5, 0.5);
-	  s->pitch(Ogre::Radian(1.57));
+	  s->pitch(Ogre::Degree(-90));
 	}
       break;
       default:
