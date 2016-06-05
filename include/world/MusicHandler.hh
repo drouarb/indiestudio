@@ -57,6 +57,10 @@ namespace gauntlet {
         void    startRandomTrack();
         void    setWorld(world::World *world);
         bool    isUsed();
+
+        void startEpicEnding();
+
+        void startOutro();
     };
 };
 

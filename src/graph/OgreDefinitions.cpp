@@ -521,5 +521,6 @@ const std::map<gauntlet::SoundName, std::string>OgreUI::soundmap = {
 	{gauntlet::SoundName::LIZARDFOLK_SANCTUARY, 	"62 - Lizardfolk Sanctuary.ogg"},
 	{gauntlet::SoundName::SOURCE_STONE, 			"63 - Source Stone Battle.ogg"},
 	{gauntlet::SoundName::TRACKING_KOBOLD, 			"65 - Tracking the Kobold Raiders.ogg"},
-	{gauntlet::SoundName::QUEEN_SHATTERED, 			"69 - Queen of the Shattered Mirror.ogg"}
+	{gauntlet::SoundName::QUEEN_SHATTERED, 			"69 - Queen of the Shattered Mirror.ogg"},
+	{gauntlet::SoundName::BOSS_BATTLE,				"boss_battle.ogg"}
 };
