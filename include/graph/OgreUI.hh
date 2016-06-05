@@ -31,6 +31,7 @@
 
 #include <SdkTrays.h>
 #include <SdkCameraMan.h>
+#include <tuple>
 #include <core/Position.hh>
 #include <mutex>
 #include <graph/Effect.hh>

@@ -603,6 +603,7 @@ void OgreUI::addLabel(gauntlet::core::Position pos, int id, std::string text,
 {
   std::stringstream ss;
   ss << id;
+
   mTrayMgr->createLabel(posmap.at(pos), ss.str(), text, text.size() * 11 + 20);
 }
 
@@ -845,9 +846,8 @@ bool OgreUI::addWorldEntity(int entityId, EntityName meshid, int x,
   try
     {
       e = mSceneMgr->createEntity(ss.str(), meshmap.at(meshid).c_str());
-    } catch (std::exception &e)
+    } catch (...)
     {
-      std::cerr << e.what() << std::endl;
       return false;
     }
   if (texture_id != TextureName::TEXTURE_NONE)
