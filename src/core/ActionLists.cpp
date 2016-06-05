@@ -3,7 +3,9 @@
 #include "Math.hh"
 
 gauntlet::core::ActionLists::ActionLists(Core &core) : core(core), pendingTracker(false)
-{ }
+{
+    mapId = -1;
+}
 
 gauntlet::core::ActionLists::~ActionLists()
 {
@@ -70,8 +72,9 @@ gauntlet::core::ActionLists::doActions()
                         {
                             std::cerr << (*it)->getFilename() << std::endl;
                             core.ogre.loadMap((*it)->getFilename().substr(index + 1));
-                            core.ogre.addMapEntity(-1, (*it)->getFilename().substr(0, index),
+                            core.ogre.addMapEntity(mapId, (*it)->getFilename().substr(0, index),
                                                    0, 0, 0, TEXTURE_NONE);
+                            mapId--;
                         }
                 }
 

@@ -953,7 +953,6 @@ bool OgreUI::addMapEntity(int entityId, gauntlet::EntityName meshid, int x,
     }
   catch (Ogre::Exception &e)
     {
-      std::cerr << e.what() << std::endl;
       return false;
     }
   if (texture_id != TextureName::TEXTURE_NONE)
