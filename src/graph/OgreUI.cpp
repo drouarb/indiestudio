@@ -912,7 +912,8 @@ void OgreUI::stopEffect(int id)
       Effect *type = this->effectMap[id];
       if (type)
 	pSystem = type->getParticleSystem();
-    } catch (std::exception &e)
+    }
+  catch (std::exception &e)
     {
       return;
     }
