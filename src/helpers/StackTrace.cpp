@@ -41,7 +41,6 @@ void bt_sighandler(int sig, struct sigcontext ctx)
 
   if (j)
     std::exit(-1);
-
   if (sig == SIGSEGV)
     std::cerr << "Got signal " << sig << ", faulty address is , " << ctx.cr2 <<
     std::endl;
@@ -49,28 +48,18 @@ void bt_sighandler(int sig, struct sigcontext ctx)
     std::cerr << "Got signal " << sig << std::endl;
 
   trace_size = backtrace(trace, 16);
-  /* overwrite sigaction with caller's address */
-//  trace[1] = (void *)ctx.eip;
   messages = backtrace_symbols(trace, trace_size);
-  /* skip first stack frame (points here) */
   std::cerr << "[bt] Execution path:" << std::endl;
   for (i = 1; i < trace_size; ++i)
     {
       std::cerr << "[bt] #" << i << ", " << messages[i] << "\t\t -" << std::endl;
-
-      /* find first occurence of '(' or ' ' in message[i] and assume
-       * everything before that is the file name. (Don't go beyond 0 though
-       * (string terminator)*/
       size_t p = 0;
       while (messages[i][p] != '(' && messages[i][p] != ' '
 	     && messages[i][p] != 0)
 	++p;
 
       char syscom[256];
-//      std::stringstream ss;
-//      ss << "addr2line " << (void *)p << " -e " << trace[i];
-      sprintf(syscom, "addr2line %p -e %.*s", trace[i], p, messages[i]);
-      //last parameter is the file name of the symbol
+      sprintf(syscom, "addr2line %p -e %.*s", trace[i], static_cast<int>(p), messages[i]);
       ::system(syscom);
     }
   ::exit(0);
