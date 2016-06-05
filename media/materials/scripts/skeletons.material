@@ -287,7 +287,7 @@ material "Skeleton_Sorcerer_robe"
 		}
 	}
 }
-material "Warlord_warlord_sword"
+material "Skeleton_Warlord_warlord_sword"
 {
 	technique
 	{
@@ -310,7 +310,7 @@ material "Warlord_warlord_sword"
 		}
 	}
 }
-material "Warlord_skeleton_body"
+material "Skeleton_Warlord_skeleton_body"
 {
 	technique
 	{
@@ -333,7 +333,7 @@ material "Warlord_skeleton_body"
 		}
 	}
 }
-material "Warlord_hair"
+material "Skeleton_Warlord_hair"
 {
 	technique
 	{
@@ -356,7 +356,7 @@ material "Warlord_hair"
 		}
 	}
 }
-material "Warlord_Warlord_armor"
+material "Skeleton_Warlord_Warlord_armor"
 {
 	technique
 	{
