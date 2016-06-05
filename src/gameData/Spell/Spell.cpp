@@ -46,7 +46,6 @@ void gauntlet::Spell::ApplyDamage(std::list<gauntlet::ABody*> targets, Actor *ca
         if (actor != NULL)
         {
             actor->stats.HP -= damage * caster->stats.attackModifier;
-            std::cerr << caster->getName() << caster->getId() << " just hit " << actor->getName() << caster->getId() << " inflicting " << damage * caster->stats.attackModifier << " damage leaving him with " << actor->stats.HP << " on " << actor->stats.normalHP << std::endl;
             if (actor->stats.HP <= 0)
             {
                 actor->setCollide(false);
@@ -62,25 +61,17 @@ void gauntlet::Spell::ApplyDamage(std::list<gauntlet::ABody*> targets, Actor *ca
 
 void gauntlet::Spell::prepare(Actor *actor)
 {
-    std::cout << actor->getName() << actor->getId() << " is attacking from " << actor->getPos().first << ";" << actor->getPos().second  <<  std::endl;
     if (openingEffect > -1)
-    {
-        std::cerr << "damn, this guy a sorcerer, there is some sparkle that should be visible" << std::endl;
         openingId = caster->getWorld()->triggerEffect((EffectName) openingEffect, actor->getOrientation(), actor->getPos(), 1000);
-    }
     unsigned int sound = caster->soundEffect[ABody::ATTACK].at(rand() % caster->soundEffect[ABody::ATTACK].size());
-    std::cerr << "blya...." << std::endl;
     caster->getWorld()->playSound(sound, false, actor->getPos());
-    std::cerr << "....blyn " << std::endl;
     if (actor->getMove())
         actor->setMove();
     //lancer Animation sur caster
-    std::cerr << "fracking" << std::endl;
     if (specialAnimation == animations::AnimationsListJson::DOOR_OPEN)
         caster->getWorld()->animeEntity(actor->getId(), caster->animations[ABody::ATTACK].at(rand() % caster->animations[ABody::ATTACK].size()), false);
     else
         caster->getWorld()->animeEntity(actor->getId(), specialAnimation, false);
-    std::cerr << "crazy" << std::endl;
     targetedArea = actor->pointInFront(range);
     if (targetedArea.first > caster->getWorld()->getSize().first)
         targetedArea.first = caster->getWorld()->getSize().first - 1;
@@ -97,17 +88,11 @@ void gauntlet::Spell::cast(Actor *actor)
     std::list<gauntlet::ABody*> targets;
 
     if (endingEffect > -1)
-    {
-        std::cerr << " and some more beautiful explosions in " << actor->pointInFront(range).first << ";" << actor->pointInFront(range).second << std::endl;
         endingId = actor->getWorld()->triggerEffect((EffectName) endingEffect, actor->getOrientation(), actor->pointInFront(range), 1000);
-    }
-    std::cerr << "targeted area is:" << targetedArea.first << ";" << targetedArea.second << std::endl;
     targets = (actor->getWorld()->getCollider().*patternTypes.at(pattern))(targetedArea.first, targetedArea.second, actor->getOrientation(), radius, angle); //remplacer les 0 par des variables setées à 0 dans le constructy kthxbye
     if (targets.size() > 0) {
         actor->getWorld()->playSound(soundEffect, false, targetedArea);
-        std::cerr << "jessaye" << std::endl;
         actor->getWorld()->getMusicHandler()->startRandomTrack();
-        std::cerr << "jereussi" << std::endl;
     }
     if ((rand() % 100) < (100 * actor->stats.attackModifier))
         ApplyDamage(targets, actor);

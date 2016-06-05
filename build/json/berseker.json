@@ -89,8 +89,8 @@
     {
       name: "tornado",
       begin: "0",
-      end: "842",
-      speed: "15"
+      end: "30",
+      speed: "10"
     }
   ]
 }
