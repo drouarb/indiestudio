@@ -821,19 +821,10 @@ Ogre::SceneManager *OgreUI::getSceneManager()
   return this->mSceneMgr;
 }
 
-
-<<<<<<< 2ffc940c314da21cd9c277ab4628d68c201ff7b4
 bool OgreUI::addWorldEntity(int entityId, EntityName meshid, int x,
-			    int y,
-			    short angle,
-			    TextureName texture_id)
-=======
-bool OgreUI::addWorldEntity(int entityId,
-						     EntityName meshid, int x,
 						     int y,
 						     short angle,
 						     TextureName texture_id)
->>>>>>> Windows compat
 {
   std::stringstream ss;
   ss << entityId;
