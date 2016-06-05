@@ -67,6 +67,8 @@ class OgreUI
 	  public OIS::MouseListener,
 	  OgreBites::SdkTrayListener
 {
+ public:
+  static const std::vector<std::string> credit_vec;
  private:
   static const std::map<OIS::KeyCode, gauntlet::core::IUIObserver::Key> keymap;
   static const std::map<OIS::MouseButtonID, gauntlet::core::IUIObserver::Key> mousemap;
@@ -77,7 +79,6 @@ class OgreUI
   static const std::map<gauntlet::BackgroundName, std::string> backgroundmap;
   static const std::map<gauntlet::CharacterMenuName , std::string> charactermap;
   static const std::vector<std::string> splash_vec;
-  static const std::vector<std::string> credit_vec;
 
   Ogre::LightList lightList;
 
