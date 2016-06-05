@@ -692,61 +692,62 @@ void OgreUI::playAnimation(int entityId,
 			   gauntlet::animations::AnimationsListJson animation,
 			   bool loop)
 {
-  std::pair<std::string, std::string> pair;
-  try
-    {
-      pair = animations::jsonMap.at(
-	      animation);
-    } catch (...)
-    {
-      std::cerr << "Not found : " << animation << std::endl;
-    }
-  Ogre::Entity *pEntity;
-  Ogre::AnimationState *pState;
-  std::stringstream ss;
+    std::pair<std::string, std::string> pair;
+    try
+        {
+            pair = animations::jsonMap.at(
+                    animation);
+        } catch (...)
+        {
+            std::cerr << "Not found : " << animation << std::endl;
+        }
+    Ogre::Entity *pEntity;
+    Ogre::AnimationState *pState;
+    std::stringstream ss;
 
-  try
-    {
-      ss << entityId;
-      pEntity = this->mSceneMgr->getEntity(ss.str());
-      if (pEntity == NULL)
-	{
-	  std::cerr << "Entité pas trouvée : " << ss.str() << std::endl;
-	  return;
-	}
-      pState = pEntity->getAnimationState(
-	      getAnimationName(0, pEntity));
-    } catch (std::exception &e)
-    {
-      return;
-    }
-  pState->setLoop(loop);
-  pState->setEnabled(true);
-  animations::Animation *a = NULL;
-  try
-    {
-      a = new animations::JSONAnimation(pair.first,
-					pair.second,
-					pState,
-					&file,
-					loop);
-    } catch (std::logic_error &e)
-    {
-      std::cerr << "=====> Animation not found :" << e.what() << std::endl;
-      return;
-    } catch (std::exception &e)
-    {
-      std::cerr << e.what() << std::endl;
-      return;
+    try
+        {
+            ss << entityId;
+            pEntity = this->mSceneMgr->getEntity(ss.str());
+            if (pEntity == NULL)
+                {
+                    std::cerr << "Entité pas trouvée : " << ss.str() << std::endl;
+                    return;
+                }
+            pState = pEntity->getAnimationState(
+                    getAnimationName(0, pEntity));
+        } catch (std::exception &e)
+        {
+            return;
+        }
+    pState->setLoop(loop);
+    pState->setEnabled(true);
+    animations::Animation *a = NULL;
+    try
+        {
+            a = new animations::JSONAnimation(pair.first,
+                                              pair.second,
+                                              pState,
+                                              &file,
+                                              loop);
+        } catch (std::logic_error &e)
+        {
+            std::cerr << "=====> Animation not found :" << e.what() << std::endl;
+            return;
+        } catch (std::exception &e)
+        {
+            std::cerr << e.what() << std::endl;
+            return;
 
-  animations::Animation **type = &this->animationsMap[pEntity->getName()];
-  if (*type)
-    {
-      (*type)->reset();
-      delete (*type);
-    }
-  (*type) = a;
-  a->update(0);
+            animations::Animation **type = &this->animationsMap[pEntity->getName()];
+            if (*type)
+                {
+                    (*type)->reset();
+                    delete (*type);
+                }
+            (*type) = a;
+            a->update(0);
+        }
 }
 
 const std::string &OgreUI::getAnimationName(int animationId,
@@ -822,18 +823,10 @@ Ogre::SceneManager *OgreUI::getSceneManager()
 }
 
 
-<<<<<<< 2ffc940c314da21cd9c277ab4628d68c201ff7b4
 bool OgreUI::addWorldEntity(int entityId, EntityName meshid, int x,
 			    int y,
 			    short angle,
 			    TextureName texture_id)
-=======
-bool OgreUI::addWorldEntity(int entityId,
-						     EntityName meshid, int x,
-						     int y,
-						     short angle,
-						     TextureName texture_id)
->>>>>>> Windows compat
 {
   std::stringstream ss;
   ss << entityId;
