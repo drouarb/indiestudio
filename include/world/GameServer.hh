@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 20:56:05 2016 Alexis Trouve
-// Last update Tue May 31 22:15:14 2016 Alexis Trouve
+// Last update Sun Jun  5 12:16:38 2016 Alexis Trouve
 //
 
 #ifndef GAMESERVER_HH_
@@ -69,6 +69,7 @@ namespace gauntlet
       void		selectPlayerAnswer(const network::PacketSelectPlayer *packet);
       void		receiveDeco(const network::PacketDisconnect *packet);
       void		controlInput(const network::PacketControl *packet);
+      void		receiveSaveGame(const network::PacketMap *packet);
       void		sendHandShake(int fd);
       void		sendDatas(int socketId);
       void		notifyTake();

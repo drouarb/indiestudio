@@ -237,8 +237,11 @@ void    World::checkRespawn()
 void        World::notifyDeath(ABody *body)
 {
   std::cout << "world notify Death" << std::endl;
-  unsigned int i;
-  Player *player;
+  unsigned int			i;
+  Player			*player;
+  Spawner			*spawner;
+  std::list<ABody*>::iterator	it;
+  ABody				*sbody;
 
   std::cout << "on notify une mort OMG id : " << body->getId() << std::endl;
   collider->suprBody(body->getId());
@@ -250,6 +253,27 @@ void        World::notifyDeath(ABody *body)
     }
   if ((player = dynamic_cast<Player *>(body)) != NULL)
     deathPlayers.push_back({DEATH_COOLDOWN_NB_TURN, player});
+  else
+    {
+      it = bodys.begin();
+      while (it != bodys.end())
+	{
+	  sbody = (*it);
+	  if ((spawner = dynamic_cast<Spawner*>(body)) != NULL)
+	    spawner->deleteId(body->getId());
+	  ++it;
+	}
+      it = bodys.begin();
+      while (it != bodys.end())
+	{
+	  if (sbody->getId() == body->getId())
+	    {
+	      bodys.erase(it);
+	      break;
+	    }
+	  ++it;
+	}
+    }
   std::cout << "world notify Death end" << std::endl;
 }
 

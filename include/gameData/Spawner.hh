@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Fri Jun  3 21:52:09 2016 Alexis Trouve
-// Last update Sat Jun  4 18:00:43 2016 Alexis Trouve
+// Last update Sun Jun  5 11:06:58 2016 Alexis Trouve
 //
 
 #ifndef CPP_INDIE_SPAWN
@@ -31,6 +31,7 @@ namespace gauntlet
     Spawner(int nid, gauntlet::world::World *newWorld);
     ~Spawner();
     void			spawnAllie(std::pair<double, double>& pos);
+    void			deleteId(int id);
     int				getNbLinkedCreature();
     int				getMaxSpawn() const;
     void			setMaxSpawn(int nbr);

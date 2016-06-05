@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Fri Jun  3 21:56:39 2016 Alexis Trouve
-// Last update Sat Jun  4 18:00:59 2016 Alexis Trouve
+// Last update Sun Jun  5 11:06:45 2016 Alexis Trouve
 //
 
 #include "Spawner.hh"
@@ -126,4 +126,17 @@ ABody           *Spawner::clone(int id) const
   spawn->setMinionName(minionName);
   spawn->setMaxSpawn(maxSpawn);
   return (spawn);
+}
+
+void				Spawner::deleteId(int id)
+{
+  std::list<Creature*>::iterator	it;
+
+  it = myCrea.begin();
+  while (it != myCrea.end())
+    {
+      if ((*it)->getId() == id)
+	myCrea.erase(it);
+      ++it;
+    }
 }

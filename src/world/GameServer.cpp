@@ -4,6 +4,7 @@
 #include "ServConnectListener.hh"
 #include "ServDisconnectListener.hh"
 #include "ServControlListener.hh"
+#include "ServMapListener.hh"
 #include "GameServer.hh"
 
 using namespace gauntlet;
@@ -41,6 +42,7 @@ GameServer::GameServer(const std::string &filePath, in_port_t port)
   listeners.push_back(new ServSelectPlayerListener(this));
   listeners.push_back(new ServDisconnectListener(this));
   listeners.push_back(new ServControlListener(this));
+  listeners.push_back(new ServMapListener(this));
   maxPlayers = 4;
   coPlayers = 0;
   i = 0;
@@ -214,6 +216,11 @@ void                        GameServer::notifyTake()
       ++i;
     }
   std::cout << "notifyTakeEnd" << std::endl;
+}
+
+void			GameServer::receiveSaveGame(const network::PacketMap *packet)
+{
+  
 }
 
 void                GameServer::receiveDeco(
