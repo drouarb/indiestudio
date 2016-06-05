@@ -220,7 +220,7 @@ void                        GameServer::notifyTake()
 
 void			GameServer::receiveSaveGame(const network::PacketMap *packet)
 {
-  
+  world->saveGame(packet->getFilename());
 }
 
 void                GameServer::receiveDeco(

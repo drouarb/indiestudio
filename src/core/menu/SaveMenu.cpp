@@ -44,6 +44,10 @@ void
 gauntlet::core::SaveMenu::doSave(struct t_hitItem &item)
 {
     (void) item;
+    if (text.length() >= std::string(SAVE_DIR).length()
+            && text.substr(0, std::string(SAVE_DIR).length()) == SAVE_DIR)
+        text = text.substr(std::string(SAVE_DIR).length());
+    
     if (text == "")
         {
             static_cast<MessageBox *>(submenus[0])->setMsg("Please enter the path to save the map to.");
@@ -60,7 +64,8 @@ gauntlet::core::SaveMenu::doSave(struct t_hitItem &item)
                 }
             else
                 {
-                    network::PacketMap pm(0, text);
+                    network::PacketMap pm(0, SAVE_DIR + text);
+
                     core.packetf->send(pm);
                     core.networkmutex.unlock();
                     setOpen(false);

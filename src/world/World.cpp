@@ -334,7 +334,6 @@ void    World::checkRespawn()
 
 void        World::notifyDeath(ABody *body)
 {
-<<<<<<< HEAD
   std::cout << "world notify Death" << std::endl;
   unsigned int			i;
   Player			*player;
@@ -374,23 +373,6 @@ void        World::notifyDeath(ABody *body)
 	}
     }
   std::cout << "world notify Death end" << std::endl;
-=======
-    std::cout << "world notify Death" << std::endl;
-    unsigned int i;
-    Player *player;
-
-    std::cout << "on notify une mort OMG id : " << body->getId() << std::endl;
-    collider->suprBody(body->getId());
-    i = 0;
-    while (i < AIs.size())
-        {
-            AIs[i]->suprActor(body->getId());
-            ++i;
-        }
-    if ((player = dynamic_cast<Player *>(body)) != NULL)
-        deathPlayers.push_back({DEATH_COOLDOWN_NB_TURN, player});
-    std::cout << "world notify Death end" << std::endl;
->>>>>>> cf8f5c0d2b9fdbcb0e27ddbed8f5ad729efe4792
 }
 
 void    World::checkWin()
@@ -661,7 +643,8 @@ int                World::playSound(unsigned int soundId, bool loop,
 
     id = getUniqueEffectId();
     gameServer->sendSound(soundId, id, loop, pos);
-    sound = new soundGlobal;
+    if ((sound = new soundGlobal) == NULL)
+      exit(0);
     sound->Id = id;
     sound->pos = pos;
     sound->soundId = soundId;

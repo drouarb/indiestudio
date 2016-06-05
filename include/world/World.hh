@@ -95,7 +95,7 @@ namespace			gauntlet
       ~World();
 
       void			loadGame(std::string const & file);
-      bool          saveGame(const std::string &);
+      bool			saveGame(const std::string &file);
       void			gameLoop();
       void			tester();
       void			applyMoveActor();
