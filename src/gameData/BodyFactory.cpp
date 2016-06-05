@@ -53,6 +53,7 @@ void			BodyFactory::fillCreatureTab()
   setSkeletonArcher();
   setSkeletonWarlord();
   setSkeletonWizard();
+  setJeanMarieLePen();
 }
 
 void			BodyFactory::fillGameObjectTab()
@@ -357,6 +358,59 @@ void			BodyFactory::setSkeletonWarlord()
   crea->stats.speed = 6.0;
   crea->stats.normalSpeed = 6.0;
   crea->stats.attackModifier = 1.5;
+  crea->spellBook.addSpell(SpellFactory::SIMPLE_ATTACK, crea);
+  crea->setCollide(true);
+  crea->changePos(std::make_pair(-1, -1));
+  crea->changeSize(std::make_pair(50.0, 50.0));
+  crea->changeOrientation(0);
+  crea->soundEffect[ABody::ATTACK] = {
+          SoundName::ZOMBIE_1,
+          SoundName::ZOMBIE_2,
+          SoundName::ZOMBIE_3,
+          SoundName::SOUND_NONE
+  };
+  crea->soundEffect[ABody::WOUND] = {
+          SoundName::GHOST_1,
+          SoundName::SOUND_NONE
+  };
+  crea->soundEffect[ABody::DEATH] = {
+          SoundName::GHOST_6,
+          SoundName::SOUND_NONE
+  };
+  crea->animations[ABody::ATTACK] = {
+          animations::AnimationsListJson::SKELETON_WARLORD_SPECAL_ATTACK_A,
+          animations::AnimationsListJson::SKELETON_WARLORD_SPECAL_ATTACK_B,
+          animations::AnimationsListJson::SKELETON_WARLORD_SWING_MID_LEFT,
+          animations::AnimationsListJson::SKELETON_WARLORD_SWING_MID_RIGHT,
+          animations::AnimationsListJson::SKELETON_WARLORD_SWORD_SWING_HIGH_STRAIGHT_DOWN,
+          animations::AnimationsListJson::SKELETON_WARLORD_SWORD_THRUST_MID,
+//          animations::AnimationsListJson::SKELETON_WARLORD_HIT_FROM_BACK,
+//          animations::AnimationsListJson::SKELETON_WARLORD_HIT_FROM_FRONT
+  };
+  crea->setDeath(animations::AnimationsListJson::SKELETON_WARLORD_DYING_A);
+  crea->setIdle(animations::AnimationsListJson::SKELETON_WARLORD_IDLE);
+  crea->setRunning(animations::AnimationsListJson::SKELETON_WARLORD_RUN);
+  crea->setMeshId(EntityName::SKELETON_WARLORD);
+  crea->setTextureId(TextureName::TEXTURE_NONE);
+  crea->setIdAI(SPAWNERAI);
+  crea->setSpawnCoolDown(5);
+  crea->setSpawnCoolDownBase(5);
+  crea->setMinionName("Skeleton");
+  crea->setMaxSpawn(6);
+  bodyTab.push_back(crea);
+}
+
+void			BodyFactory::setJeanMarieLePen()
+{
+  Spawner		*crea;
+
+  crea = new Spawner(-1, world);
+  crea->setName("JeanMarieLePen");
+  crea->stats.HP = 1200;
+  crea->stats.normalHP = 400;
+  crea->stats.speed = 6.0;
+  crea->stats.normalSpeed = 6.0;
+  crea->stats.attackModifier = 3;
   crea->spellBook.addSpell(SpellFactory::SIMPLE_ATTACK, crea);
   crea->setCollide(true);
   crea->changePos(std::make_pair(-1, -1));
