@@ -167,8 +167,9 @@ void                        GameServer::sendDatas(int socketId)
   soundTab = world->getSoundByCopy();
   effectTab = world->getEffectByCopy();
   it1 = bodys.begin();
-  std::cout << packetMap.getFilename() << std::endl;
+  std::cout << "packetMap try send" << std::endl;
   packetFact->send(packetMap, socketId);
+  std::cout << "packetMap send filename : " << packetMap.getFilename() << std::endl;
   while (it1 != bodys.end())
     {
       network::PacketAddEntity packet((*it1)->getEntityId(),
@@ -347,8 +348,7 @@ void                GameServer::sendMoveId(ABody *body)
     }
 }
 
-void                GameServer::controlInput(
-	const network::PacketControl *packet)
+void                GameServer::controlInput(const network::PacketControl *packet)
 {
   unsigned int i;
   ABody *body;
