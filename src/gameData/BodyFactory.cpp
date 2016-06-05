@@ -443,7 +443,7 @@ void			BodyFactory::setJeanMarieLePen()
   crea->setDeath(animations::AnimationsListJson::SKELETON_WARLORD_DYING_A);
   crea->setIdle(animations::AnimationsListJson::SKELETON_WARLORD_IDLE);
   crea->setRunning(animations::AnimationsListJson::SKELETON_WARLORD_RUN);
-  crea->setMeshId(EntityName::SKELETON_WARLORD);
+  crea->setMeshId(EntityName::JEANMARIE);
   crea->setTextureId(TextureName::TEXTURE_NONE);
   crea->setIdAI(SPAWNERAI);
   crea->setSpawnCoolDown(5);
