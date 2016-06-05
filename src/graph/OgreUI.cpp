@@ -876,9 +876,10 @@ void OgreUI::removeEntity(int id)
 {
   std::stringstream ss;
   ss << id;
-
-  mSceneMgr->destroyEntity(ss.str());
-  mSceneMgr->destroySceneNode(ss.str());
+  if (mSceneMgr->hasEntity(ss.str())){
+      mSceneMgr->destroyEntity(ss.str());
+      mSceneMgr->destroySceneNode(ss.str());
+    }
 }
 
 void OgreUI::stopEffect(int id)
@@ -968,7 +969,20 @@ void OgreUI::resetMap()
 {
   if (planNode)
     {
+      mSceneMgr->destroyAllEntities();
+      worldNode->removeAndDestroyAllChildren();
       planNode->removeAndDestroyAllChildren();
+      mSceneMgr->destroySceneNode(worldNode);
+      mSceneMgr->destroySceneNode(planNode);
+      rootNode = NULL;
+      worldNode = mSceneMgr->getRootSceneNode()->createChildSceneNode("World");
+      planNode = mSceneMgr->getRootSceneNode()->createChildSceneNode("Plan");
+      for (auto animation : this->animationsMap)
+	{
+	  delete animation.second;
+	}
+      this->animationsMap.clear();
+      mSoundManager->destroyAllSounds();
     }
 }
 
@@ -1011,6 +1025,7 @@ void OgreUI::play3dSound(int id, SoundName name, int x, int y, bool loop)
   try
     {
       if (name != SOUND_NONE)
+	if (!mSoundManager->hasSound(ss.str()))
 	if ((sound = mSoundManager->createSound(ss.str() + "_sound",
 						soundmap.at(name))))
 	  {

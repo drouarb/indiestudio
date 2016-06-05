@@ -74,7 +74,7 @@ gauntlet::core::ActionLists::doActions()
                             core.ogre.loadMap((*it)->getFilename().substr(index + 1));
                             core.ogre.addMapEntity(mapId, (*it)->getFilename().substr(0, index),
                                                    0, 0, 0, TEXTURE_NONE);
-                            mapId--;
+//                            mapId--;
                         }
                 }
 
