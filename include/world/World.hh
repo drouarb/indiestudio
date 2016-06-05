@@ -25,6 +25,7 @@
 #include "GameServer.hh"
 #include "Conf.hh"
 #include "Stopwatch.hh"
+#include "IJson.hpp"
 
 # define ROUND_DURATION 33
 # define AI_PRIORITY 15
@@ -92,6 +93,7 @@ namespace			gauntlet
       ~World();
 
       void			loadGame(std::string const & file);
+      bool          saveGame(const std::string &);
       void			gameLoop();
       void			tester();
       void			applyMoveActor();
@@ -126,6 +128,12 @@ namespace			gauntlet
       std::string		getMapNames() const;
       std::pair<double, double>	getSize() const;
       void			setLooper(bool nloop);
+
+        JSON::JsonStr doubleToJsonStr(double d);
+
+        JSON::JsonStr angleToJsonStr(int a);
+
+        JSON::JsonStr intToJsonStr(int d);
     };
   };
 };
