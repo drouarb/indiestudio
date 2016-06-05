@@ -542,7 +542,7 @@ const std::map<gauntlet::SoundName, std::string>OgreUI::soundmap = {
 	{gauntlet::SoundName::MAGIC_CLASH,              "mag_perk_shieldcharge_impact_01.ogg"},
 	{gauntlet::SoundName::MAGIC_BATTLECRY,          "mag_powerracial_battlecry_fire_2d.ogg"},
 	{gauntlet::SoundName::MAGIC_BERSERKER,          "mag_powerracial_berserker_fire_2d.ogg"},
-	{gauntlet::SoundName::MAGIC_HEAL,               "mag_restoration_ff_fire_01.ogg"},
+	{gauntlet::SoundName::MAGIC_HEAL,               "mag_restoration_ff_fire.ogg"},
 	{gauntlet::SoundName::MAGIC_SHOCK,              "mag_shout_ff_fire_01.ogg"},
 	{gauntlet::SoundName::MAGIC_SPRINT,             "mag_shout_sprint_fire.ogg"},
 	{gauntlet::SoundName::MAGIC_ABSORB,             "mag_wardtest_absorb.ogg"},

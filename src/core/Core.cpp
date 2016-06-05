@@ -248,7 +248,7 @@ gauntlet::core::Core::destroyPacketf(bool external)
         {
             std::cout << "# destroyPacketf d" << std::endl;
             if (packetf->isConnected())
-                packetf->stop();
+                packetf->stop(false);
             std::cout << "# destroyPacketf g" << std::endl;
             stoppingPacketf = packetf;
             packetf = NULL;

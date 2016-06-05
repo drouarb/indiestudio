@@ -104,11 +104,14 @@ void gauntlet::network::PacketFactory::recv() {
     runlock.unlock();
 }
 
-void gauntlet::network::PacketFactory::stop() {
+void gauntlet::network::PacketFactory::stop(bool wait) {
     run = false;
     socket->unlock();
-    runlock.lock();
-    runlock.unlock();
+    if (wait)
+    {
+        runlock.lock();
+        runlock.unlock();
+    }
 }
 
 void gauntlet::network::PacketFactory::notifyPacket(gauntlet::network::Packet *packet) {

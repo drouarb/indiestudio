@@ -41,10 +41,12 @@ int		Spawner::getNbLinkedCreature()
 
 void		Spawner::spawnAllie(std::pair<double, double>& endPos)
 {
+  world->triggerEffect(EffectName::SPIRAL, this->getPos(), 4);
   if (getNbLinkedCreature() >= maxSpawn)
     return ;
   if (world->getCollider().canMove(coord, endPos, size) == false)
     return ;
+  world->triggerEffect(EffectName::SPIRAL, endPos, 4);
   world->addNewBody(endPos.first, endPos.second, minionName, orientation);
 }
 
