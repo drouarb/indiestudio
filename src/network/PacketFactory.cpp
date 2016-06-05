@@ -89,7 +89,7 @@ void gauntlet::network::PacketFactory::recv() {
             } catch (std::exception) {
                 std::cerr << "PacketFactory::Invalid packet " << (int)id << "Received" << std::endl;
                 packet = NULL;
-                data.data->resize(0);
+                //data.data->resize(0);
             }
             if (packet) {
                 this->notifyPacket(packet);
@@ -153,6 +153,3 @@ const std::map<gauntlet::network::PacketId, gauntlet::network::PacketFactory::cr
 bool gauntlet::network::PacketFactory::isConnected() const {
     return connected;
 }
-
-
-
