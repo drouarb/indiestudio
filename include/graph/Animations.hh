@@ -290,6 +290,14 @@ namespace gauntlet
 	    {ARCHER_DEATH,                                    {"archer.json",            "Dying"}},
 	    {ARCHER_ATTACK_HIT,                               {"archer.json",            "Combat"}},
 	    {ARCHER_ATTACK_RANGE,                             {"archer.json",            "AttackArrow"}},
+
+	    {WIZARD_IDLE,                                     {"wizard.json",            "Idle"}},
+	    {WIZARD_RUN,                                      {"wizard.json",            "Run"}},
+	    {WIZARD_DEATH,                                    {"wizard.json",            "Dying"}},
+	    {WIZARD_ATTACK_HIT,                               {"wizard.json",            "Combat"}},
+	    {WIZARD_ATTACK_RANGE,                             {"wizard.json",            "AttackSpell"}},
+
+
     };
 
     std::ostream &operator<<(std::ostream &stream,

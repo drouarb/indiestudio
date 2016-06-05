@@ -112,7 +112,8 @@ const std::map<gauntlet::EntityName, std::string> OgreUI::meshmap = {
 	{gauntlet::EntityName::SKELETON_FOOTMAN,  "skeleton_footman.mesh"},
 	{gauntlet::EntityName::SKELETON_SORCERER, "skeleton_sorcerer.mesh"},
 	{gauntlet::EntityName::SKELETON_WARLORD,  "skeleton_warlord.mesh"},
-	{gauntlet::EntityName::ARCHER,            "archer.mesh"}
+	{gauntlet::EntityName::ARCHER,            "archer.mesh"},
+	{gauntlet::EntityName::WIZARD,            "warlock.mesh"}
 
 
 };

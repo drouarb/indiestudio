@@ -216,6 +216,12 @@ namespace gauntlet
       ARCHER_DEATH,
       ARCHER_ATTACK_HIT,
       ARCHER_ATTACK_RANGE,
+
+      WIZARD_IDLE,
+      WIZARD_RUN,
+      WIZARD_DEATH,
+      WIZARD_ATTACK_HIT,
+      WIZARD_ATTACK_RANGE,
     };
   }
 }
