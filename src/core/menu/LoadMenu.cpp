@@ -1,4 +1,9 @@
+#ifdef _WIN32
+#include <Windows.h>
+#include <atlstr.h>
+#else
 #include <dirent.h>
+#endif
 #include <sys/types.h>
 #include <iostream>
 #include "LoadMenu.hh"
@@ -49,6 +54,37 @@ gauntlet::core::LoadMenu::doButton(int btnId, struct t_hitItem &item)
     (this->*(funs[btnId]))(item);
 }
 
+#ifdef _WIN32
+void
+gauntlet::core::LoadMenu::getSaves()
+{
+		WIN32_FIND_DATA ffd;
+        HANDLE hFind = INVALID_HANDLE_VALUE;
+        std::string path(SAVE_DIR);
+        path.append("/*");
+
+		funs.insert(std::pair<int, void (LoadMenu::*)(struct t_hitItem &)>
+			(idStart + buttons.size(), &LoadMenu::doSelect));
+
+        hFind = FindFirstFile(CA2T(path.c_str()), &ffd);
+        if (INVALID_HANDLE_VALUE != hFind)
+        {
+                do
+                {
+					if (ffd.cFileName[0] != '.')
+                        saves.push_back(ffd.cFileName);
+                } while (FindNextFile(hFind, &ffd) != 0);
+                FindClose(hFind);
+        }
+        if (saves.size() > 0)
+                selected = saves[0];
+        else
+                selected = NEW_SAVE;
+
+        buttons.push_back(Control(SELECTMENU, "", &saves, PCENTER,
+                idStart + buttons.size(), core.ogre));
+}
+#else
 void
 gauntlet::core::LoadMenu::getSaves()
 {
@@ -73,6 +109,7 @@ gauntlet::core::LoadMenu::getSaves()
     buttons.push_back(Control(SELECTMENU, "", &saves, PCENTER,
                               idStart + buttons.size(), core.ogre));
 }
+#endif
 
 void
 gauntlet::core::LoadMenu::message(std::string const &msg)

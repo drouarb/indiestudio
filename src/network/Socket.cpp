@@ -8,19 +8,24 @@
 #include "network/Socket.hh"
 
 gauntlet::network::Socket::Socket(unsigned short port) {
+#ifdef _WIN32
+	WSADATA wsaData = { 0 };
+	WSAStartup(MAKEWORD(2, 2), &wsaData);
+#endif
+
     ::pipe(pipe);
     if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) == -1)
         throw std::runtime_error("Can't open socket");
-    sock.sin_family = AF_INET;
+	sock.sin_family = AF_INET;
     sock.sin_addr.s_addr = INADDR_ANY;
     sock.sin_port = htons(port);
-    if (bind(sockfd, (struct sockaddr *) &sock, sizeof(sock)) == -1)
+	if (bind(sockfd, (struct sockaddr *) &sock, sizeof(sock)) == -1)
         throw std::runtime_error("Can't bind port");
-    if (listen(sockfd, 0) == -1)
+	if (listen(sockfd, 0) == -1)
         throw std::runtime_error("Listen error");
 
 #ifdef _WIN32
-	unsigned long mode = 0;
+	unsigned long mode = 1;
 	ioctlsocket(sockfd, FIONBIO, &mode);
 #else
     int flags = fcntl(sockfd, F_GETFL, 0);
@@ -31,7 +36,12 @@ gauntlet::network::Socket::Socket(unsigned short port) {
 }
 
 gauntlet::network::Socket::Socket(const std::string &address, unsigned short port) {
-    ::pipe(pipe);
+#ifdef _WIN32
+	WSADATA wsaData = { 0 };
+	WSAStartup(MAKEWORD(2, 2), &wsaData);
+#endif
+	
+	::pipe(pipe);
     if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) == -1)
         throw std::runtime_error("Can't open socket");
     sock.sin_family = AF_INET;
@@ -39,8 +49,12 @@ gauntlet::network::Socket::Socket(const std::string &address, unsigned short por
     sock.sin_addr.s_addr = inet_addr(address.c_str());
     if (connect(sockfd, (struct sockaddr *) &sock, sizeof(sock)) == -1)
         throw std::runtime_error("Connection error");
-    type = CLIENT;
-    disconnectionListener = NULL;
+#ifdef _WIN32
+	unsigned long mode = 1;
+	ioctlsocket(sockfd, FIONBIO, &mode);
+#endif
+	type = CLIENT;
+	disconnectionListener = NULL;
 }
 
 gauntlet::network::Socket::~Socket() {
@@ -77,10 +91,11 @@ void gauntlet::network::Socket::send(std::vector<unsigned char> *data, int fd) {
 }
 
 s_socketData gauntlet::network::Socket::recv() {
+	SOCKET max;
     fd_set set;
     s_client cli;
     s_socketData buff;
-	unsigned long mode = 0;
+	unsigned long mode = 1;
 
     if (type == SERVER) {
         cli.len = sizeof(cli.sock);
@@ -88,18 +103,23 @@ s_socketData gauntlet::network::Socket::recv() {
 			memset(&set, 0, sizeof(fd_set));
             FD_ZERO(&set);
 
-            FD_SET(pipe[0], &set);
             FD_SET(sockfd, &set);
-            for (s_client client : clients) {
+			max = sockfd;
+#ifndef _WIN32
+			FD_SET(pipe[0], &set);
+			max = (pipe[0] > max ? pipe[0] : max);
+#endif
+			for (s_client client : clients) {
                 FD_SET(client.sockfd, &set);
-            }
+				max = (client.sockfd > max ? client.sockfd : max);
+			}
 
-            select(FD_SETSIZE, &set, NULL, NULL, NULL);
+			select(max + 1, &set, NULL, NULL, NULL);
 
             lock.lock();
-            for (int i = 0; i < FD_SETSIZE; i++) {
+            for (int i = 0; i < max + 1; i++) {
                 if (FD_ISSET(i, &set)) {
-                    if (i == pipe[0]) {
+					if (i == pipe[0]) {
                         buff = this->recv(pipe[0]);
                         buff.data->resize(0);
                         buff.fd = -1;
@@ -127,10 +147,14 @@ s_socketData gauntlet::network::Socket::recv() {
         }
     }
     FD_ZERO(&set);
-    FD_SET(pipe[0], &set);
-    FD_SET(sockfd, &set);
-    select((pipe[0] > sockfd ? pipe[0] : sockfd) + 1, &set, NULL, NULL, NULL);
-    lock.lock();
+	FD_SET(sockfd, &set);
+#ifdef _WIN32
+	select(sockfd + 1, &set, NULL, NULL, NULL);
+#else
+	FD_SET(pipe[0], &set);
+	select((pipe[0] > sockfd ? pipe[0] : sockfd) + 1, &set, NULL, NULL, NULL);
+#endif
+	lock.lock();
     if (FD_ISSET(pipe[0], &set)) {
         buff = this->recv(pipe[0]);
         buff.data->resize(0);
@@ -149,8 +173,14 @@ s_socketData gauntlet::network::Socket::recv(int fd) {
     while ((readSize = ::recv(fd, (char *)&buffer.front(), BUFFER_SIZE, MSG_DONTWAIT)) > 0) {
         data.data->insert(data.data->end(), buffer.begin(), buffer.begin() + readSize);
     }
+#ifdef _WIN32
+	int nError = WSAGetLastError();
+	if (nError != WSAEWOULDBLOCK && nError != 0)
+		this->notifyDisconnection(fd);
+#else
     if (!readSize)
         this->notifyDisconnection(fd);
+#endif
     data.fd = fd;
     lock.unlock();
     return data;
