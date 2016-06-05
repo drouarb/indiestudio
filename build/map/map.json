@@ -3,17 +3,16 @@
   asset_map: "../media/models/map_of_doom.mesh",
   height_map: "mapHeight/map_of_doom.pgm",
   endZone: {
-    posX: "210"
-    posY: "340"
-    sizeX: "25"
-    sizeY: "15"
+    posX: "340"
+    posY: "210"
+    sizeX: "15"
+    sizeY: "25"
   },
   spawn: {
     x: "45",
     y: "60"
   },
-  dynamic:
-  [
+  dynamic: [
     {
       name: "Skeleton",
       angle: "0",
@@ -27,12 +26,6 @@
       y: "90"
     },
     {
-      name: "Skeleton",
-      angle: "0",
-      x: "300",
-      y: "90"
-    },
-    {
       name: "SkeletonWarlord",
       angle: "0",
       x: "300",
@@ -49,6 +42,12 @@
       angle: "0",
       x: "300",
       y: "90"
+    },
+    {
+      name: "SkeletonWizard",
+      angle: "0",
+      x: "60",
+      y: "40"
     },
     {
       name: "SkeletonWarlord",

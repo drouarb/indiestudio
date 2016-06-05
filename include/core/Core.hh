@@ -57,7 +57,7 @@ namespace gauntlet
             void createServer();
             void initPacketf();
             void disconnect(std::string const &msg);
-            void destroyPacketf(bool external);
+            void destroyPacketf();
             void load(std::string const &file);
             bool gameIsRunning();
             IUIObserver::Key getLastKey() const;
