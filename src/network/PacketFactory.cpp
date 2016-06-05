@@ -73,34 +73,51 @@ void gauntlet::network::PacketFactory::send(const Packet &packet, int fd) {
 }
 
 void gauntlet::network::PacketFactory::recv() {
+  t_rawdata *buff;
     s_socketData data;
     PacketId id;
     Packet *packet;
 
+    buff = NULL;
     runlock.lock();
     run = true;
     while (run && connected) {
         data = socket->recv();
+	if (buff)
+	  {
+	    buff->insert(buff->end(), data.data->begin(), data.data->end());
+	    delete (data.data);
+	    data.data = buff;
+	    buff = NULL;
+	  }
         while (data.data->size() > 0) {
             id = static_cast<PacketId>(data.data->at(0));
             packet = NULL;
             try {
                 packet = (this->*createMap.at(id))(data);
-            } catch (std::exception *e) {
+            } catch (std::logic_error e) {
                 std::cerr << "PacketFactory::Invalid packet " << (int)id << "Received" << std::endl;
-		std::cerr << e->what() << std::endl;
+		std::cerr << e.what() << std::endl;
+		std::cerr << data.data->size() << std::endl;
                 packet = NULL;
                 //data.data->resize(0);
-            }
+            } catch (std::exception e) {
+		std::cout << "map error" << std::endl;
+		packet = NULL;
+	     }
             if (packet) {
                 this->notifyPacket(packet);
                 for (size_t i = 0; i < packet->getPacketSize() && data.data->size() > 0; i++) {
                     data.data->erase(data.data->begin());
                 }
                 delete (packet);
-            }
+            } else {
+                buff = data.data;
+		break;
+	    }
         }
-        delete (data.data);
+	if (data.data->size() == 0)
+	  delete(data.data);
     }
     runlock.unlock();
 }
