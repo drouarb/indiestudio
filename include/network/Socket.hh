@@ -11,10 +11,12 @@
 #define pipe(x) _pipe(x, 1024, O_BINARY);
 #define MSG_DONTWAIT 0
 #define in_port_t unsigned short
+#define socklen_t unsigned int
 #else
 #include <arpa/inet.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <unistd.h>
 #endif
 
 #include <cstdlib>
@@ -40,7 +42,7 @@ namespace gauntlet {
         struct s_client {
             int         sockfd;
             sockaddr_in sock;
-            int len;
+            socklen_t   len;
         };
 
         class Socket {

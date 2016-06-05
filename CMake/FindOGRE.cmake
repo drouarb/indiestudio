@@ -346,7 +346,7 @@ endif()
 if (OGRE_STATIC)
   if (NOT OGRE_DEPS_FOUND)
     pkg_message(OGRE "Could not find all required dependencies for the Ogre package.")
-    set(OGRE_FOUND FALSE)
+    #set(OGRE_FOUND FALSE)
   endif ()
 endif ()
 

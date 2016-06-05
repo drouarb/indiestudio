@@ -137,7 +137,7 @@ void
 gauntlet::core::Core::createServer()
 {
     killServer();
-    //cpid = fork();
+    cpid = fork();
     if (cpid == -1)
         return;
 	if (cpid == 0)
@@ -160,8 +160,8 @@ gauntlet::core::Core::killServer()
 
     if (cpid > 0)
         {
-            //kill(cpid, SIGTERM);
-            //waitpid(cpid, &status, 0);
+            kill(cpid, SIGTERM);
+            waitpid(cpid, &status, 0);
             cpid = -1;
         }
 }

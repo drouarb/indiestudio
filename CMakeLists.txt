@@ -87,7 +87,7 @@ if (${OGRE_STATIC})
     target_link_libraries(gauntlet ${OGRE_Plugin_OctreeZone_LIBRARIES})
     target_link_libraries(gauntlet ${OgreOggSound_LIBRARIES})
 
-    target_link_libraries(gauntlet Xrandr Xrender Xt X11 Xext Xaw openal vorbisfile vorbis vorbisenc ogg)
+    target_link_libraries(gauntlet Xrandr Xrender Xt X11 Xext Xaw)
 
     include_directories(${OGRE_RenderSystem_GL_INCLUDE_DIRS})
     include_directories(${OGRE_Plugin_ParticleFX_INCLUDE_DIRS})
@@ -95,7 +95,6 @@ if (${OGRE_STATIC})
     include_directories(${OGRE_Plugin_PCZSceneManager_INCLUDE_DIRS})
     include_directories(${OGRE_Plugin_OctreeZone_INCLUDE_DIRS})
     include_directories(${OGRE_Plugin_OctreeSceneManager_INCLUDE_DIRS})
-    include_directories(${OgreOggSound_INCLUDE_DIR})
 
     include_directories(${OIS_INCLUDE_DIRS})
     include_directories(${CMAKE_BINARY_DIR}/include/)
@@ -108,23 +107,25 @@ else ()
     find_package(OGRE REQUIRED)
 endif ()
 
-if (WIN32)
-	target_link_libraries(gauntlet wsock32 ws2_32)
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /EHsc") 
-endif()
-
 find_package(OIS REQUIRED)
 find_package(OgreOggSound REQUIRED)
 
 include_directories(${OIS_INCLUDE_DIRS})
 include_directories(${OGRE_Overlay_INCLUDE_DIRS})
 include_directories(${OGRE_INCLUDE_DIRS})
+include_directories(${OgreOggSound_INCLUDE_DIR})
 
 target_link_libraries(gauntlet ${OGRE_Overlay_LIBRARIES})
 target_link_libraries(gauntlet ${OgreOggSound_LIBRARIES})
 target_link_libraries(gauntlet ${OGRE_LIBRARIES})
 target_link_libraries(gauntlet ${OIS_LIBRARIES})
-target_link_libraries(gauntlet)
+
+if (WIN32)
+    target_link_libraries(gauntlet wsock32 ws2_32)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /EHsc")
+else()
+    target_link_libraries(gauntlet zzip freeimage boost_system boost_thread dl openal vorbisfile vorbis vorbisenc ogg)
+endif()
 
 target_link_libraries(gauntlet ${CMAKE_THREAD_LIBS_INIT})
 target_link_libraries(gauntlet ${PTHREAD_LIBRARY})
