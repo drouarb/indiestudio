@@ -18,7 +18,6 @@ using namespace world;
 
 World::World(GameServer *ngameserver)
 {
-  std::cout << "world created" << std::endl;
   AIs.push_back(new BasicAI(this));
   AIs.push_back(new BasicAI(this));
   AIs.push_back(new SpawnerAI(this));
@@ -30,7 +29,6 @@ World::World(GameServer *ngameserver)
   sizeY = 0;
   gameServer = ngameserver;
   looper = true;
-  std::cout << "world created end" << std::endl;
 }
 
 World::~World()
@@ -343,14 +341,12 @@ void    World::checkRespawn()
 
 void        World::notifyDeath(ABody *body)
 {
-  std::cout << "world notify Death" << std::endl;
   unsigned int			i;
   Player			*player;
   Spawner			*spawner;
   std::list<ABody*>::iterator	it;
   ABody				*sbody;
 
-  std::cout << "on notify une mort OMG id : " << body->getId() << std::endl;
   collider->suprBody(body->getId());
   i = 0;
   while (i < AIs.size())
@@ -381,7 +377,6 @@ void        World::notifyDeath(ABody *body)
 	  ++it;
 	}
     }
-  std::cout << "world notify Death end" << std::endl;
 }
 
 void    World::checkWin()
@@ -404,7 +399,6 @@ void    World::checkWin()
 	      && player->getPos().second >= endPos.second
 	      && player->getPos().second <= endPos.second + endSize.second)
 	    {
-	      std::cout << "win" << std::endl;
 	      gameServer->decoAll("Victory!");
 	      looper = false;
 	    }
@@ -458,8 +452,6 @@ void    World::applyGatheringAndOpening()
 int    World::addNewBody(double xpos, double ypos, const std::string &name,
                          short orientation)
 {
-  std::cout << "world addnewbody pos:" << xpos << ":" << ypos << " name:" << name << std::endl;
-
   ABody *body;
   std::pair<unsigned int, unsigned int> sizeMap;
 
@@ -484,13 +476,11 @@ int    World::addNewBody(double xpos, double ypos, const std::string &name,
   gameServer->sendAddEntity(body);
   bodys.push_back(body);
   collider->setNewBodyNoCheckEntity(body);
-  std::cout << "world addnewbody end" << std::endl;
   return (body->getId());
 }
 
 void        World::deleteId(int id, bool deleted)
 {
-  std::cout << "world deleteId" << std::endl;
   unsigned int i;
   std::list<ABody *>::iterator it1;
   ABody *body;
@@ -516,7 +506,6 @@ void        World::deleteId(int id, bool deleted)
   gameServer->sendDeleteEntity(body);
   if (deleted == true)
     delete (body);
-  std::cout << "world deleteId end" << std::endl;
 }
 
 Collider &World::getCollider()

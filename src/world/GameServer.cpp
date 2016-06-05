@@ -14,7 +14,6 @@ using namespace network;
 GameServer::GameServer(const std::string &filePath, in_port_t port)
 {
   dataSendThread = NULL;
-  std::cout << "GameServer build" << std::endl;
   unsigned int i;
 
   world = new World(this);
@@ -53,30 +52,25 @@ GameServer::GameServer(const std::string &filePath, in_port_t port)
     }
   listenThread = new std::thread(std::bind(&PacketFactory::recv, std::ref(*packetFact)));
   world->gameLoop();
-  std::cout << "GameServer build end" << std::endl;
+  packetFact->stop(true);
 }
 
 GameServer::~GameServer()
 {
-  std::cout << "destro gameserver" << std::endl;
   if (dataSendThread)
     dataSendThread->join();
-  std::cout << "destro gameserver end" << std::endl;
 }
 
 void                GameServer::connectAnswer(
 	const network::PacketConnect *packet)
 {
-  std::cout << "connectAnswer" << std::endl;
   connectTmp.push_back(packet->getSocketId());
   sendHandShake(packet->getSocketId());
-  std::cout << "connectAnswerEnd" << std::endl;
 }
 
 void                GameServer::selectPlayerAnswer(
 	const network::PacketSelectPlayer *packet)
 {
-  std::cout << "selectplayer" << std::endl;
   bool check;
   int nbrChoose;
   int iTaken;
@@ -136,7 +130,6 @@ void                GameServer::selectPlayerAnswer(
 				 players[iTaken].name, 0);
 	} catch (std::exception &e)
 	{
-	  std::cout << "new Player : " << e.what() << std::endl;
 	  exit(0);
 	}
       players[iTaken].idPlayer = id;
@@ -150,12 +143,10 @@ void                GameServer::selectPlayerAnswer(
   else
     sendHandShake(packet->getSocketId());
   dataSendMutex.unlock();
-  std::cout << "selectplayerend" << std::endl;
 }
 
 void                        GameServer::sendDatas(int socketId)
 {
-  std::cout << "sendData socket:" << socketId << std::endl;
   std::list<ABody *> bodys;
   std::vector<effectGlobal *> effectTab;
   std::vector<soundGlobal *> soundTab;
@@ -169,9 +160,7 @@ void                        GameServer::sendDatas(int socketId)
   soundTab = world->getSoundByCopy();
   effectTab = world->getEffectByCopy();
   it1 = bodys.begin();
-  std::cout << "packetMap try send" << std::endl;
   packetFact->send(packetMap, socketId);
-  std::cout << "packetMap send filename : " << packetMap.getFilename() << std::endl;
   i = 0;
   while (i < players.size())
     {
@@ -209,12 +198,10 @@ void                        GameServer::sendDatas(int socketId)
 		 effectTab[i]->pos, effectTab[i]->decayTime);
       ++i;
     }
-  std::cout << "sendData end" << std::endl;
 }
 
 void                        GameServer::notifyTake()
 {
-  std::cout << "notifyTake" << std::endl;
   PacketHandshake packet(!players[PlayerChar::BARBARIAN].isTake,
 			 !players[PlayerChar::MAGE].isTake,
 			 !players[PlayerChar::VALKYRIE].isTake,
@@ -228,22 +215,19 @@ void                        GameServer::notifyTake()
       packetFact->send(packet, connectTmp[i]);
       ++i;
     }
-  std::cout << "notifyTakeEnd" << std::endl;
 }
 
 void			GameServer::receiveSaveGame(const network::PacketMap *packet)
 {
-  std::cout << "reicv save game" << std::endl;
   world->saveGame(packet->getFilename());
-  std::cout << "reicv save game end" << std::endl;
 }
 
 void                GameServer::receiveDeco(
 	const network::PacketDisconnect *packet)
 {
-  std::cout << "receiveDeco" << std::endl;
   int socketId;
   unsigned int i;
+
   dataSendMutex.lock();
   socketId = packet->getSocketId();
   i = 0;
@@ -275,12 +259,10 @@ void                GameServer::receiveDeco(
       delete packetFact;
     }
   dataSendMutex.unlock();
-  std::cout << "receiveDecoEnd" << std::endl;
 }
 
 void                        GameServer::sendHandShake(int socketFd)
 {
-  std::cout << "sendHandShake" << std::endl;
   PacketHandshake packet(!players[PlayerChar::BARBARIAN].isTake,
 			 !players[PlayerChar::MAGE].isTake,
 			 !players[PlayerChar::VALKYRIE].isTake,
@@ -288,21 +270,17 @@ void                        GameServer::sendHandShake(int socketFd)
 			 coPlayers);
 
   packetFact->send(packet, socketFd);
-  std::cout << "sendHandShakeEnd" << std::endl;
 }
 
 void                GameServer::sendDeco(int socketId, const std::string &msg)
 {
-  std::cout << "sendDeco" << std::endl;
   PacketDisconnect packet(msg, socketId);
 
   packetFact->send(packet, socketId);
-  std::cout << "sendDecoEnd" << std::endl;
 }
 
 void                GameServer::decoAll(const std::string &msg)
 {
-  std::cout << "DecoAll" << std::endl;
   unsigned int i;
 
   i = 0;
@@ -319,21 +297,16 @@ void                GameServer::decoAll(const std::string &msg)
 	       "You have been disconnected by the server before your total login");
       ++i;
     }
-  std::cout << "DecoAllEnd" << std::endl;
 }
 
 void                GameServer::sendAddEntity(ABody *body)
 {
-  std::cout << "sendAddEntity" << body->getEntityId() << " " <<
-  body->getPos().first << ":" << body->getPos().second << ":" <<
-  body->getOrientation() << std::endl;
   unsigned int i;
   network::PacketAddEntity packet(body->getEntityId(), body->getTextureId(),
 				  body->getMeshId(),
 				  static_cast<int>(body->getPos().first),
 				  static_cast<int>(body->getPos().second),
 				  body->getOrientation());
-  std::cout << packet.getEntityId() << std::endl;
 
   i = 0;
   while (i < players.size())
@@ -342,7 +315,6 @@ void                GameServer::sendAddEntity(ABody *body)
 	packetFact->send(packet, players[i].socketId);
       ++i;
     }
-  std::cout << "sendAddEntityEnd" << std::endl;
 }
 
 void                GameServer::sendMoveId(ABody *body)
@@ -470,24 +442,18 @@ unsigned char        GameServer::getNbrPlayer() const
 
 void                GameServer::sendDeleteEntity(ABody *body)
 {
-  std::cout << "senddeleteEntity" << std::endl;
   PacketDeleteEntity packet(body->getId());
   unsigned int i;
 
   i = 0;
   while (i < players.size())
     {
-      std::cout << "passage" << std::endl;
       if (players[i].socketId != -1)
 	{
-	  std::cout << "koal" << std::endl;
 	  packetFact->send(packet, players[i].socketId);
-	  std::cout << "koal2" << std::endl;
 	}
-      std::cout << "passage2" << std::endl;
       ++i;
     }
-  std::cout << "send end" << std::endl;
 }
 
 const std::vector<playerServerData> &GameServer::getPlayers() const
