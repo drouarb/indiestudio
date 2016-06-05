@@ -41,7 +41,7 @@ bool        GameObject::gather(Player *player)
   return (false);
 }
 
-void        GameObject::open(ItemContainer *curInventory)
+bool        GameObject::open(ItemContainer *curInventory)
 {
   if (openable) {
     std::list<Item> *inv = curInventory->getItemList();
@@ -56,10 +56,11 @@ void        GameObject::open(ItemContainer *curInventory)
         this->world->animeEntity(this->id, this->idle, false);
         this->collideActive = false;
         this->world->notifyDeath(this);
-        break;
+        return true;
       }
     }
   }
+  return false;
 }
 
 void        GameObject::setBasicParameters(std::string _name, bool _gatherable, bool _openable)
