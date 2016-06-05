@@ -237,8 +237,8 @@ bool OgreUI::frameRenderingQueued(const Ogre::FrameEvent &evt)
       if (i_splash == 0)
 	mTrayMgr->hideAll();
       cinematique++;
-	  mTrayMgr->showBackdrop(splash_vec.at(i_splash));
-	  i_splash++;
+      mTrayMgr->showBackdrop(splash_vec.at(i_splash));
+      i_splash++;
       if (i_splash >= splash_vec.size())
 	{
 	  mTrayMgr->showBackdrop(backgroundmap.at(BACKGROUND_BASIC));
@@ -906,9 +906,19 @@ void OgreUI::removeEntity(int id)
 
 void OgreUI::stopEffect(int id)
 {
-  Ogre::ParticleSystem *pSystem = this->effectMap[id]->getParticleSystem();
+  Ogre::ParticleSystem *pSystem = NULL;
+  try
+    {
+      Effect *type = this->effectMap[id];
+      if (type)
+	pSystem = type->getParticleSystem();
+    } catch (std::exception &e)
+    {
+      return;
+    }
 
-  pSystem->setEmitting(false);
+  if (pSystem)
+    pSystem->setEmitting(false);
 }
 
 void OgreUI::moveEntity(int id, int x, int y, short degres)
