@@ -1,11 +1,11 @@
 //
 // core.hh for indie in /home/lewis_e/rendu/cpp/cpp_indie_studio
-// 
+//
 // Made by Esteban Lewis
 // Login   <lewis_e@epitech.net>
-// 
+//
 // Started on  Mon May  9 10:59:47 2016 Esteban Lewis
-// Last update Mon May 30 10:49:25 2016 Esteban Lewis
+// Last update Sun Jun  5 17:10:47 2016 Benjamin DROUARD
 //
 
 #ifndef  CORE_HH_
@@ -68,7 +68,7 @@ namespace gauntlet
             network::PacketFactory *packetf;
             std::string map;
             ActionLists actionlists;
-            unsigned int cpid;
+            pid_t cpid;
             std::mutex networkmutex;
             Hud hud;
 

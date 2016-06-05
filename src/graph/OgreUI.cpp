@@ -739,14 +739,15 @@ void OgreUI::playAnimation(int entityId,
       std::cerr << e.what() << std::endl;
       return;
 
-  animations::Animation **type = &this->animationsMap[pEntity->getName()];
-  if (*type)
-    {
-      (*type)->reset();
-      delete (*type);
+      animations::Animation **type = &this->animationsMap[pEntity->getName()];
+      if (*type)
+	{
+	  (*type)->reset();
+	  delete (*type);
+	}
+      (*type) = a;
+      a->update(0);
     }
-  (*type) = a;
-  a->update(0);
 }
 
 const std::string &OgreUI::getAnimationName(int animationId,
@@ -1236,7 +1237,3 @@ void OgreUI::showBackground(const std::string &name)
 {
   mTrayMgr->showBackdrop(name);
 }
-
-
-
-
