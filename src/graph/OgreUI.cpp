@@ -912,14 +912,18 @@ void OgreUI::stopEffect(int id)
       Effect *type = this->effectMap[id];
       if (type)
 	pSystem = type->getParticleSystem();
-    } catch (std::exception &e)
+      else
+	return;
+      if (pSystem)
+	pSystem->setEmitting(false);
+    }
+  catch (std::exception &e)
     {
       return;
     }
-
-  if (pSystem)
-    pSystem->setEmitting(false);
 }
+
+
 
 void OgreUI::moveEntity(int id, int x, int y, short degres)
 {
