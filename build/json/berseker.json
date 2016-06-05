@@ -85,6 +85,14 @@
       name: "dodge_right",
       begin: "840",
       end: "842"
+    },
+    {
+      name: "tornado",
+      begin: "0",
+      end: "842",
+      speed: "20"
     }
+
+
   ]
 }
