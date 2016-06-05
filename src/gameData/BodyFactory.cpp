@@ -128,16 +128,29 @@ void			BodyFactory::setElf()
   player->changePos(std::make_pair(-1, -1));
   player->changeSize(std::make_pair(PLAYER_SIZE, PLAYER_SIZE));
   player->changeOrientation(0);
-  player->setMeshId(EntityName::BERSERK);
+  player->soundEffect[ABody::ATTACK] = {
+          SoundName::FIRE_SMALL,
+          SoundName::FIRE_BIG,
+          SoundName::SOUND_NONE
+  };
+  player->soundEffect[ABody::WOUND] = {
+          SoundName::MALE_2_WOUNDED,
+          SoundName::SOUND_NONE
+  };
+  player->soundEffect[ABody::DEATH] = {
+          SoundName::MALE_2_DEATH,
+          SoundName::SOUND_NONE
+  };
+  player->animations[ABody::ATTACK] = {
+          animations::AnimationsListJson::ARCHER_ATTACK_RANGE
+  };
+  player->setDeath(animations::AnimationsListJson::ARCHER_DEATH);
+  player->setIdle(animations::AnimationsListJson::ARCHER_IDLE);
+  player->setRunning(animations::AnimationsListJson::ARCHER_RUN);
+  player->setMeshId(EntityName::ARCHER);
   player->setTextureId(TextureName::TEXTURE_NONE);
   player->setIdAI(NOAI);
   bodyTab.push_back(player);
-
-//  	  ARCHER_IDLE,
-//	  ARCHER_RUN,
-//	  ARCHER_DEATH,
-//	  ARCHER_ATTACK_HIT,
-//	  ARCHER_ATTACK_RANGE,
 }
 
 void			BodyFactory::setWizard()
@@ -248,6 +261,7 @@ void			BodyFactory::setValkyrie()
   player->stats.attackModifier = 1.0;
   player->spellBook.addSpell(SpellFactory::VALKYRIA_ATTACK, player);
   player->spellBook.addSpell(SpellFactory::VALKYRIA_DASH, player);
+  player->spellBook.addSpell(SpellFactory::VALKYRIA_HEAL, player);
   player->setCollide(true);
   player->changePos(std::make_pair(-1, -1));
   player->changeSize(std::make_pair(25.0, 25.0));

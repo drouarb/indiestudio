@@ -26,6 +26,7 @@
 #include "Conf.hh"
 #include "Stopwatch.hh"
 #include "IJson.hpp"
+#include "MusicHandler.hh"
 
 # define ROUND_DURATION 33
 # define AI_PRIORITY 15
@@ -85,6 +86,7 @@ namespace			gauntlet
       std::vector<playerDeath>	deathPlayers;
       std::string		mapAssetName;
       std::string		mapHeightName;
+      MusicHandler      musicHandler;
       bool			looper;
     private:
       int			getUniqueEffectId();
@@ -134,6 +136,8 @@ namespace			gauntlet
         JSON::JsonStr angleToJsonStr(int a);
 
         JSON::JsonStr intToJsonStr(int d);
+
+      MusicHandler  *getMusicHandler();
     };
   };
 };

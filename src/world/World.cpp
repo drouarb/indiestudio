@@ -725,3 +725,9 @@ void                World::setLooper(bool nloop)
 {
     looper = nloop;
 }
+
+MusicHandler *World::getMusicHandler() {
+    return &musicHandler;
+}
+
+
