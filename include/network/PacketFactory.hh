@@ -33,6 +33,8 @@ namespace gauntlet {
 
             void disconnectionHandler(int fd);
 
+            bool isConnected() const;
+
         private:
             template<typename T>  Packet *createPacket(s_socketData data) {
                 return new T(data);

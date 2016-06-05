@@ -147,5 +147,9 @@ const std::map<gauntlet::network::PacketId, gauntlet::network::PacketFactory::cr
         {HUD,             &PacketFactory::createPacket<PacketHUD>}
 };
 
+bool gauntlet::network::PacketFactory::isConnected() const {
+    return connected;
+}
+
 
 
