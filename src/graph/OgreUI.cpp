@@ -153,7 +153,6 @@ void OgreUI::setupResources(void)
       Ogre::ConfigFile::SettingsMultiMap *settings = seci.getNext();
       if (secName.size() > 0)
 	{
-	  std::cout << "Sec " << secName << std::endl;
 	  std::cout << settings->size() << std::endl;
 	  for (Ogre::ConfigFile::SettingsMultiMap::iterator i = settings->begin();
 	       i != settings->end(); i++)
@@ -430,7 +429,6 @@ bool OgreUI::playSound(int id, gauntlet::SoundName name, bool loop)
   std::stringstream ss;
   ss << id;
 
-  std::cerr << "sound " << id << std::endl;
   if (name == SOUND_NONE)
     {
       return (true);
@@ -453,8 +451,7 @@ bool OgreUI::playSound(int id, gauntlet::SoundName name, bool loop)
     }
   catch (std::exception &e)
     {
-      std::cerr << " ca a pété sur " << soundmap.at(name) << std::endl;
-//      std::cerr << e.what() << std::endl;
+      std::cerr << " Error on " << soundmap.at(name) << std::endl;
     }
   return (false);
 }
@@ -1092,7 +1089,6 @@ void OgreUI::play3dSound(int id, SoundName name, int x, int y, bool loop)
 	    {
 	      sound->loop(loop);
 	      sound->setVolume(0);
-	      std::cerr << id << std::endl;
 	      Ogre::SceneNode *node = planNode->createChildSceneNode(
 		      ss.str() + "_sound");
 	      node->setPosition(x, z, y);

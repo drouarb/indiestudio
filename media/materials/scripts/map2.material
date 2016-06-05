@@ -1,3 +1,14 @@
+material Default-Material
+{
+    technique
+    {
+        pass
+        {
+            diffuse 1.000000 1.000000 1.000000
+        }
+    }
+}
+
 material Ground2
 {
     technique
@@ -5,7 +16,7 @@ material Ground2
         pass
         {
             diffuse 1.000000 1.000000 1.000000
-	    texture_unit
+            texture_unit
             {
                 texture Ground2.png
             }
@@ -23,36 +34,6 @@ material Ground2_alpha
             texture_unit
             {
                 texture Ground2.png
-            }
-        }
-    }
-}
-
-material Wall2
-{
-    technique
-    {
-        pass
-        {
-            diffuse 1.000000 1.000000 1.000000
-            texture_unit
-            {
-                texture Wall2.png
-            }
-        }
-    }
-}
-
-material Bricks1
-{
-    technique
-    {
-        pass
-        {
-            diffuse 1.000000 1.000000 1.000000
-            texture_unit
-            {
-                texture Bricks1.png
             }
         }
     }
@@ -88,6 +69,36 @@ material Pavement
     }
 }
 
+material Bricks1
+{
+    technique
+    {
+        pass
+        {
+            diffuse 1.000000 1.000000 1.000000
+            texture_unit
+            {
+                texture Bricks1.png
+            }
+        }
+    }
+}
+
+material Wall2
+{
+    technique
+    {
+        pass
+        {
+            diffuse 1.000000 1.000000 1.000000
+            texture_unit
+            {
+                texture Wall2.png
+            }
+        }
+    }
+}
+
 material Rocks
 {
     technique
@@ -118,21 +129,6 @@ material Ground1
     }
 }
 
-material Wall1
-{
-    technique
-    {
-        pass
-        {
-            diffuse 1.000000 1.000000 1.000000
-            texture_unit
-            {
-                texture Wall1.png
-            }
-        }
-    }
-}
-
 material Up
 {
     technique
@@ -143,6 +139,21 @@ material Up
             texture_unit
             {
                 texture Up_elements1.png
+            }
+        }
+    }
+}
+
+material Wall1
+{
+    technique
+    {
+        pass
+        {
+            diffuse 1.000000 1.000000 1.000000
+            texture_unit
+            {
+                texture Wall1.png
             }
         }
     }
@@ -215,9 +226,9 @@ material Nature
         pass
         {
             diffuse 1.000000 1.000000 1.000000
-	    scene_blend alpha_blend
+            scene_blend alpha_blend
             depth_write off
-            texture_unit
+	    texture_unit
             {
                 texture nature.png
             }
@@ -232,7 +243,7 @@ material Spiderweb
         pass
         {
             diffuse 0.611940 0.611940 0.611940
-	    scene_blend alpha_blend
+            scene_blend alpha_blend
             depth_write off
             texture_unit
             {
@@ -249,8 +260,6 @@ material Roots
         pass
         {
             diffuse 0.776119 0.776119 0.776119
-	    scene_blend alpha_blend
-            depth_write off
             texture_unit
             {
                 texture Roots1.png
