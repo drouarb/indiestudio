@@ -68,6 +68,9 @@ material "Archer_sword"
 			specular 0 0 0 0
 			emissive 0 0 0
 
+		    	scene_blend alpha_blend
+ 			depth_write off
+
 			texture_unit
 			{
 				texture "Archer_sword_color.tif"

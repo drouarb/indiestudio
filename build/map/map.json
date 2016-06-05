@@ -1,16 +1,34 @@
 {
-    name : "Default map",
-    asset_map : "../media/models/map_of_doom.mesh",
-    height_map : "mapHeight/map_of_doom.pgm",
-    endZone :
+  name: "Default map",
+  asset_map: "../media/models/map_of_doom.mesh",
+  height_map: "mapHeight/map_of_doom.pgm",
+  endZone: {
+    posX: "210",
+    posY: "350",
+    sizeX: "25",
+    sizeY: "15"
+  },
+  spawn: {
+    x: "60",
+    y: "45"
+  },
+  dynamic:
+  [
     {
+<<<<<<< HEAD
 	posX : "350"
 	posY : "210"
 	sizeX : "15"
 	sizeY : "25"
+=======
+      name: "Door",
+      x: "200",
+      y: "100",
+      angle: "0"
+>>>>>>> 87f47b59218169e8cf06d464fdd05a3eeab226b8
     },
-    spawn :
     {
+<<<<<<< HEAD
 	x : "45",
 	y : "60"
     },
@@ -45,4 +63,32 @@
     ],
     particles:
     [ ]
+=======
+      name: "SkeletonWarlord",
+      angle: "0",
+      x: "68",
+      y: "60"
+    },
+    {
+      name: "Skeleton",
+      x: "300",
+      y: "100",
+      angle: "0"
+    },
+    {
+      name: "Key",
+      x: "200",
+      y: "101",
+      angle: "0"
+    }
+  ],
+  sounds: [
+    {
+      id: "2",
+      x: "-1",
+      y: "-1"
+    }
+  ],
+  particles: []
+>>>>>>> 87f47b59218169e8cf06d464fdd05a3eeab226b8
 }
