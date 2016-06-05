@@ -173,6 +173,7 @@ s_socketData gauntlet::network::Socket::recv(int fd) {
     while ((readSize = ::recv(fd, (char *)&buffer.front(), BUFFER_SIZE, MSG_DONTWAIT)) > 0) {
         data.data->insert(data.data->end(), buffer.begin(), buffer.begin() + readSize);
     }
+    lock.unlock();
 #ifdef _WIN32
 	int nError = WSAGetLastError();
 	if (nError != WSAEWOULDBLOCK && nError != 0)
@@ -182,7 +183,6 @@ s_socketData gauntlet::network::Socket::recv(int fd) {
         this->notifyDisconnection(fd);
 #endif
     data.fd = fd;
-    lock.unlock();
     return data;
 }
 
