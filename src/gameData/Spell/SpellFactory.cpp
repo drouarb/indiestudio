@@ -128,7 +128,7 @@ gauntlet::Spell *SpellFactory::iceBall() {
 gauntlet::Spell *SpellFactory::simpleAttack() {
   Spell *spell = new Spell;
 
-  spell->setBasicStats(giveNextId(), "Simple Attack", 0, 60, 10, Area::CONE, SoundName::AXE_HIT_SOFT, 500);
+  spell->setBasicStats(giveNextId(), "Simple Attack", 0, 60, 10, Area::CONE, SoundName::AXE_HIT_SOFT, 200);
   spell->setConeAngle(60);
   return spell;
 }

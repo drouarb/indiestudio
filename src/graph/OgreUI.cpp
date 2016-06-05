@@ -235,11 +235,8 @@ bool OgreUI::frameRenderingQueued(const Ogre::FrameEvent &evt)
       if (i_splash == 0)
 	mTrayMgr->hideAll();
       cinematique++;
-      if (cinematique % 5 == 0)
-	{
 	  mTrayMgr->showBackdrop(splash_vec.at(i_splash));
 	  i_splash++;
-	}
       if (i_splash >= splash_vec.size())
 	{
 	  mTrayMgr->showBackdrop(backgroundmap.at(BACKGROUND_BASIC));
