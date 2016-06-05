@@ -44,8 +44,8 @@ namespace gauntlet
     Effect();
     Effect(Effect const &);
 
-    std::string const *name;
-    Ogre::ParticleSystem *_particleSystem;
+    std::string const *name = NULL;
+    Ogre::ParticleSystem *_particleSystem = NULL;
 
    public:
     Effect(OgreUI *ogreUI, EffectName type, const std::string &name, std::pair<double, double> coord,int percent);
