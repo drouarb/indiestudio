@@ -5,10 +5,20 @@
 #ifndef CPP_INDIE_STUDIO_SOCKET_HH
 #define CPP_INDIE_STUDIO_SOCKET_HH
 
-#include <cstdlib>
-#include <string>
+#ifdef _WIN32
+#include <io.h>
+#include <winsock.h>
+#define pipe(x) _pipe(x, 1024, O_BINARY);
+#define MSG_DONTWAIT 0
+#define in_port_t unsigned short
+#else
+#include <arpa/inet.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#endif
+
+#include <cstdlib>
+#include <string>
 #include <vector>
 #include <mutex>
 #include "ISocketDisconnectionListener.hh"
@@ -30,13 +40,13 @@ namespace gauntlet {
         struct s_client {
             int         sockfd;
             sockaddr_in sock;
-            socklen_t   len;
+            int len;
         };
 
         class Socket {
         public:
-            Socket(in_port_t port);
-            Socket(const std::string &address, in_port_t port);
+            Socket(unsigned short port);
+            Socket(const std::string &address, unsigned short port);
             ~Socket();
             void unlock();
             void send(std::vector<unsigned char>* data);

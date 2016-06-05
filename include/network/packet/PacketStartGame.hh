@@ -12,10 +12,10 @@ namespace gauntlet {
     namespace network {
         class PacketStartGame: public Packet {
 
-            struct s_packetStartGameData {
+            PACK(struct s_packetStartGameData {
                 unsigned char packetId;
                 unsigned int entityId;
-            }__attribute__((packed));
+            });
 
         public:
             PacketStartGame(unsigned int entityId);

@@ -21,6 +21,7 @@
 #include <OgreSceneManager.h>
 #include <OgreRenderWindow.h>
 #include <OgreConfigFile.h>
+#include <OgreOggSound.h>
 
 #include <OIS/OISEvents.h>
 #include <OIS/OISInputManager.h>

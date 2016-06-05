@@ -12,13 +12,13 @@ namespace gauntlet {
     namespace network {
         class PacketMap: public Packet {
 
-            struct s_packetMapData {
+            PACK(struct s_packetMapData {
                 unsigned char packetId;
                 unsigned int mapId;
                 unsigned int stringsize;
                 char stringstart;
 
-            } __attribute__((packed));
+            });
 
         public:
             PacketMap(const s_socketData &data);

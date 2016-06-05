@@ -13,13 +13,16 @@
 
 # include <mutex>
 # include <thread>
-# include <unistd.h>
 # include "IUIObserver.hh"
 # include "Conf.hh"
 # include "graph/OgreUI.hh"
 # include "ActionLists.hh"
 # include "MainMenu.hh"
 # include "Hud.hh"
+
+#ifndef _WIN32
+# include <unistd.h>
+#endif
 
 namespace gauntlet
 {
@@ -65,7 +68,7 @@ namespace gauntlet
             network::PacketFactory *packetf;
             std::string map;
             ActionLists actionlists;
-            pid_t cpid;
+            unsigned int cpid;
             std::mutex networkmutex;
             Hud hud;
 

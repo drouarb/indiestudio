@@ -19,8 +19,8 @@ namespace gauntlet {
             typedef Packet* (PacketFactory::* createPacketFunc)(s_socketData data);
             typedef void (PacketListener::* notifyPacketFunc)(const Packet *packet);
         public:
-            PacketFactory(in_port_t port);
-            PacketFactory(const std::string& address, in_port_t port);
+            PacketFactory(unsigned short port);
+            PacketFactory(const std::string& address, unsigned short port);
             ~PacketFactory();
 
             void send(const Packet &packet);

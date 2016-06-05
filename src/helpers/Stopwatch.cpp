@@ -19,15 +19,23 @@ gauntlet::Stopwatch::~Stopwatch()
 void
 gauntlet::Stopwatch::set()
 {
-  gettimeofday(&startTime, NULL);
+#ifdef _WIN32
+	tick = static_cast<unsigned long>(GetTickCount());
+#else
+	gettimeofday(&startTime, NULL);
+#endif
 }
 
 long
 gauntlet::Stopwatch::ellapsedMs()
 {
-  struct timeval checkTime;
+#ifdef _WIN32
+	return (static_cast<unsigned long>(GetTickCount()) - tick);
+#else
+	struct timeval checkTime;
 
   gettimeofday(&checkTime, NULL);
   return ((checkTime.tv_sec - startTime.tv_sec) * 1000 +
 	  (checkTime.tv_usec - startTime.tv_usec) / 1000);
+#endif
 }

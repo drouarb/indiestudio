@@ -1,6 +1,10 @@
 #include <math.h>
 #include <iostream>
+#ifdef _WIN32
+#include <Windows.h>
+#else
 #include <sys/wait.h>
+#endif
 #include "Core.hh"
 #include "Math.hh"
 #include "ListenerHandshake.hh"
@@ -133,16 +137,20 @@ void
 gauntlet::core::Core::createServer()
 {
     killServer();
-    cpid = fork();
+    //cpid = fork();
     if (cpid == -1)
         return;
-    if (cpid == 0)
-        {
-            world::GameServer(map, serverAddr.second);
-            _exit(0);
-        }
-    else
+	if (cpid == 0)
+	{
+		world::GameServer(map, serverAddr.second);
+		_exit(0);
+	}
+	else
+#ifdef _WIN32
+		Sleep(4000);
+#else
         usleep(4000000); //TODO: server ready msg?
+#endif
 }
 
 void
@@ -152,8 +160,8 @@ gauntlet::core::Core::killServer()
 
     if (cpid > 0)
         {
-            kill(cpid, SIGTERM);
-            waitpid(cpid, &status, 0);
+            //kill(cpid, SIGTERM);
+            //waitpid(cpid, &status, 0);
             cpid = -1;
         }
 }
@@ -184,7 +192,7 @@ gauntlet::core::Core::initPacketf()
                 {
                     packetf->registerListener(*it);
                 }
-            listenThread = new std::thread(&network::PacketFactory::recv, std::ref(*packetf));
+            listenThread = new std::thread(std::bind(&network::PacketFactory::recv, std::ref(*packetf)));
         }
 }
 

@@ -13,7 +13,7 @@ namespace gauntlet {
     namespace network {
         class PacketAddEntity : public Packet {
 
-            struct s_PacketAddEntity {
+           PACK(struct s_PacketAddEntity {
                 unsigned char packetId;
                 unsigned int entityId;
                 unsigned int textureId;
@@ -21,7 +21,7 @@ namespace gauntlet {
                 double x;
                 double y;
                 short angle;
-            }__attribute__((packed));
+            });
 
         public:
             PacketAddEntity(const s_socketData &data);

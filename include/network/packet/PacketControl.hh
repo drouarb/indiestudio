@@ -12,11 +12,11 @@ namespace gauntlet {
     namespace network {
         class PacketControl: public Packet {
 
-            struct s_packetControlData {
+            PACK(struct s_packetControlData {
                 unsigned char packetId;
                 unsigned char cmd;
                 short angle;
-            }__attribute__((packed));
+            });
 
         public:
             PacketControl(s_socketData data);

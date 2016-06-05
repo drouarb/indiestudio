@@ -4,10 +4,10 @@ project(gauntlet)
 option(INDIE_TESTS "Enable test compilation" OFF)
 option(OGRE_STATIC "Use statically compiled OGRE (HUGE Binary!!)" OFF)
 option(OGRE_PROGRESS "Show ogre download progress" OFF)
+option(Boost_USE_STATIC_LIBS "Boost static" ON)
 
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMake)
-set(CMAKE_CXX_FLAGS "-W -std=c++11 -Wunused-result -g -Wall -Wextra -Wno-unused-parameter")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-ignored-qualifiers -Wno-unused-variable")
+set(CMAKE_CXX_FLAGS "-std=c++11")
 
 set(CMAKE_EXE_LINKER_FLAGS "-rdynamic")
 
@@ -78,7 +78,6 @@ if (${OGRE_STATIC})
     set(OGRE_PREFIX_GUESSES ${CMAKE_BINARY_DIR})
 
     find_package(OGRE REQUIRED)
-    find_package(OgreOggSound REQUIRED)
 
     target_link_libraries(gauntlet ${OGRE_RenderSystem_GL_LIBRARIES})
     target_link_libraries(gauntlet ${OGRE_Plugin_ParticleFX_LIBRARIES})
@@ -109,16 +108,23 @@ else ()
     find_package(OGRE REQUIRED)
 endif ()
 
+if (WIN32)
+	target_link_libraries(gauntlet wsock32 ws2_32)
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /EHsc") 
+endif()
+
 find_package(OIS REQUIRED)
+find_package(OgreOggSound REQUIRED)
 
 include_directories(${OIS_INCLUDE_DIRS})
 include_directories(${OGRE_Overlay_INCLUDE_DIRS})
 include_directories(${OGRE_INCLUDE_DIRS})
 
 target_link_libraries(gauntlet ${OGRE_Overlay_LIBRARIES})
+target_link_libraries(gauntlet ${OgreOggSound_LIBRARIES})
 target_link_libraries(gauntlet ${OGRE_LIBRARIES})
 target_link_libraries(gauntlet ${OIS_LIBRARIES})
-target_link_libraries(gauntlet zzip freeimage boost_system boost_thread dl)
+target_link_libraries(gauntlet)
 
 target_link_libraries(gauntlet ${CMAKE_THREAD_LIBS_INIT})
 target_link_libraries(gauntlet ${PTHREAD_LIBRARY})
