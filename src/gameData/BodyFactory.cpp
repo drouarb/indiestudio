@@ -59,6 +59,7 @@ void			BodyFactory::fillGameObjectTab()
 {
   setPorteLight();
   setDoor();
+  setEpicDoor();
   setKey();
   setHealthPotion();
   setSpeedPotion();
