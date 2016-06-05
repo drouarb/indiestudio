@@ -272,13 +272,13 @@
       x: "170"
     },
     {
-      name: "JeanMarieLePen",
+      name: "Door",
       angle: "0",
       y: "220",
       x: "210"
     },
     {
-      name: "SpeedPotion",
+      name: "Key",
       angle: "0",
       y: "61",
       x: "91"
