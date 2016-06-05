@@ -5,7 +5,7 @@
 // Login   <lewis_e@epitech.net>
 //
 // Started on  Mon May  9 10:59:47 2016 Esteban Lewis
-// Last update Sun Jun  5 17:10:47 2016 Benjamin DROUARD
+// Last update Sun Jun  5 17:27:19 2016 Benjamin DROUARD
 //
 
 #ifndef  CORE_HH_
@@ -22,6 +22,7 @@
 
 #ifndef _WIN32
 # include <unistd.h>
+# define pid_t int
 #endif
 
 namespace gauntlet
