@@ -28,7 +28,7 @@ gauntlet::core::Core::Core() : actionlists(*this), hud(*this, 0, NULL),
     ogre.setIObserver(observer);
     if (!ogre.init())
         return;
-    ogre.playSound(0, (MENU_SOUND), false);
+    ogre.playSound(0, (MENU_SOUND), true);
     menu.setOpen(true);
 
     ogre.go();
@@ -84,7 +84,7 @@ gauntlet::core::Core::buttonClick(int buttonId, struct t_hitItem &item)
 void
 gauntlet::core::Core::mouseMove(int x, int y)
 {
-    if (pc)
+    if (pc && menu.getOpen() == false)
         {
             x -= ogre.getSizeWindow().first / 2;
             y -= ogre.getSizeWindow().second / 2;
@@ -109,11 +109,13 @@ gauntlet::core::Core::play()
 void
 gauntlet::core::Core::stop()
 {
-    if (menu.getOpen() == false)
+    if (playing)
         {
-            ogre.playSound(0, (MENU_SOUND), false);
-            menu.setOpen(true);
-            hud.setOpen(false);
+            ogre.playSound(0, (MENU_SOUND), true);
+            if (menu.getOpen() == false)
+                menu.setOpen(true);
+            if (hud.getOpen() == true)
+                hud.setOpen(false);
         }
     playing = false;
 }
@@ -207,9 +209,9 @@ gauntlet::core::Core::disconnect(std::string const &msg)
     std::cout << "# disconnect f" << std::endl;
     bool sendMsg = !menu.getOpen() && gameIsRunning();
     std::cout << "# disconnect g" << std::endl;
-    stop();
-    std::cout << "# disconnect h" << std::endl;
     ogre.resetMap();
+    std::cout << "# disconnect h" << std::endl;
+    stop();
     std::cout << "# disconnect i" << std::endl;
     if (sendMsg)
         {

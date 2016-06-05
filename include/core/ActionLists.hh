@@ -59,7 +59,6 @@ namespace gauntlet
 
             bool pendingTracker;
             unsigned int entityIdTracker;
-            int mapId;
             std::mutex mutex;
 
             std::list<particle *> particles;
