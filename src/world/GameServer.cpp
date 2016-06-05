@@ -124,7 +124,7 @@ void                GameServer::selectPlayerAnswer(
 	    nbrChoose++;
 	    iTaken = PlayerChar::RANGER;
 	  }
-  if (nbrChoose == 1)
+  if (nbrChoose == 1 && players[iTaken].isTake == false)
     {
       players[iTaken].isTake = true;
       players[iTaken].socketId = packet->getSocketId();
@@ -256,7 +256,7 @@ void                GameServer::receiveDeco(
     }
   if (getNbrPlayer() == 0)
     {
-      packetFact->stop();
+      packetFact->stop(false);
       delete packetFact;
     }
   dataSendMutex.unlock();
@@ -456,14 +456,21 @@ unsigned char        GameServer::getNbrPlayer() const
 
 void                GameServer::sendDeleteEntity(ABody *body)
 {
+  std::cout << "senddeleteEntity" << std::endl;
   PacketDeleteEntity packet(body->getId());
   unsigned int i;
 
   i = 0;
   while (i < players.size())
     {
+      std::cout << "passage" << std::endl;
       if (players[i].socketId != -1)
-	packetFact->send(packet, players[i].socketId);
+	{
+	  std::cout << "koal" << std::endl;
+	  packetFact->send(packet, players[i].socketId);
+	  std::cout << "koal2" << std::endl;
+	}
+      std::cout << "passage2" << std::endl;
       ++i;
     }
   std::cout << "send end" << std::endl;

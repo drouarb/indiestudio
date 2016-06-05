@@ -294,6 +294,7 @@ void        World::gameLoop()
   turn = 0;
   while (looper == true)
     {
+      std::cout << "test:" << turn << std::endl;
       if (stopwatch.ellapsedMs() < ROUND_DURATION)
 #ifdef _WIN32
 	Sleep(ROUND_DURATION - stopwatch.ellapsedMs());
@@ -496,8 +497,10 @@ void        World::deleteId(int id, bool deleted)
 
   collider->suprBody(id);
   it1 = bodys.begin();
+  std::cout << "test784" << std::endl;
   while (it1 != bodys.end())
     {
+      std::cout << "test1" << std::endl;
       if (id == (*it1)->getId())
 	{
 	  body = (*it1);
@@ -509,10 +512,13 @@ void        World::deleteId(int id, bool deleted)
   i = 0;
   while (i < AIs.size())
     {
+      std::cout << "test2" << std::endl;
       AIs[i]->suprActor(id);
       ++i;
     }
+      std::cout << "test3" << std::endl;
   gameServer->sendDeleteEntity(body);
+      std::cout << "test4" << std::endl;
   if (deleted == true)
     delete (body);
   std::cout << "world deleteId end" << std::endl;
