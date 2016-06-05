@@ -43,7 +43,7 @@ std::list<ABody*>	EntityCollideLayer::getCollideBody()
   while (it1 != Entity.end())
     {
       resCircle = giveBodyInAreaCircle((*it1)->getPos().first, (*it1)->getPos().second,
-				       (*it1)->getSize().first - ((*it1)->getSize().first / 5));
+				       (*it1)->getSize().first - ((*it1)->getSize().first / 4));
       it2 = resCircle.begin();
       while (it2 != resCircle.end())
 	{
