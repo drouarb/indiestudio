@@ -106,6 +106,7 @@ void gauntlet::Item::setPrice(int _price) {
 
 void Item::setAsConsummable() {
     consumable = true;
+    upgrade = true;
 }
 
 
