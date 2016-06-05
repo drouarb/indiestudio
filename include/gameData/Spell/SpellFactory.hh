@@ -34,6 +34,7 @@ namespace gauntlet
       {
           VALKYRIA_ATTACK,
           VALKYRIA_DASH,
+          VALKYRIA_HEAL,
           BARBARIAN_ATTACK,
           BARBARIAN_TORNADO,
           WIZARD_FIREBALL,
@@ -62,6 +63,8 @@ namespace gauntlet
 
       static Spell*              simpleAttack();
       static Spell*              iceBall();
+
+      static Spell*              getValkyriaHeal();
   };
 };
 
