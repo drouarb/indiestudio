@@ -604,7 +604,7 @@ void OgreUI::addLabel(gauntlet::core::Position pos, int id, std::string text,
   std::stringstream ss;
   ss << id;
 
-    int i = 0;
+    unsigned int i = 0;
     while (i < text.length())
         {
             if (text[i] < 32 || text[i] >= 127)
