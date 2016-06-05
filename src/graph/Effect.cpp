@@ -46,6 +46,11 @@ gauntlet::Effect::Effect(OgreUI *ogreUI, gauntlet::EffectName type, std::string 
 		static_cast<float>(percent);
   this->_particleSystem->setParticleQuota(quota / 100.0);
   particleNode->attachObject(this->_particleSystem);
+
+  if (type == EffectName::BLIND)
+    {
+      particleNode->setScale(particleNode->getScale() / 1000);
+    }
 }
 
 Ogre::ParticleSystem *gauntlet::Effect::getParticleSystem() const

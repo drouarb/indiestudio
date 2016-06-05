@@ -14,44 +14,43 @@
 # include <map>
 # include "Menu.hh"
 
-namespace			gauntlet
+namespace gauntlet
 {
-  namespace			core
-  {
-    class			Core;
-
-    class			MainMenu : public Menu
+    namespace core
     {
-    private:
-      enum			Submenus
-	{
-	  MENU_SL = 0,
-	  MENU_CONFIG = 1,
-	  MENU_LOBBY = 2
-	};
+        class Core;
 
-    public:
-      MainMenu(Core &, int idStart, Menu * parent);
-      ~MainMenu();
+        class MainMenu : public Menu
+        {
+        private:
+            enum Submenus
+            {
+                MENU_SL = 0,
+                MENU_CONFIG = 1,
+                MENU_LOBBY = 2
+            };
 
-      void			draw();
-      void			undraw();
-      bool			keyDown(Command);
-      void			message(std::string const &);
+        public:
+            MainMenu(Core &, int idStart, Menu *parent);
+            ~MainMenu();
 
-    protected:
-      std::map<int, void (MainMenu::*)()> funs;
+            void draw();
+            void undraw();
+            bool keyDown(Command);
+            void message(std::string const &);
 
-      void			doButton(int, struct t_hitItem &);
+        protected:
+            std::map<int, void (MainMenu::*)()> funs;
 
-      void			doPlay();
-      void			doSaveload();
-      void			doSettings();
-      void			doContinue();
-      void			doExit();
-
+            void doButton(int, struct t_hitItem &);
+            void doPlay();
+            void doSaveload();
+            void doSettings();
+            void doContinue();
+            void doCredits();
+            void doExit();
+        };
     };
-  };
 };
 
 #endif
