@@ -68,6 +68,8 @@ namespace gauntlet
       void setPowerPotion();
 
       void setEpicDoor();
+
+      void setJeanMarieLePen();
   };
 };
 
