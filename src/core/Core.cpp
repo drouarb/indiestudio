@@ -234,10 +234,17 @@ gauntlet::core::Core::disconnect(std::string const &msg)
     stop();
     if (sendMsg)
         {
-            if (msg.length() > 0)
-                menu.message(msg);
-            else
+
+            if (msg.length() == 0)
                 menu.message("Disconnected from server.");
+            else if (msg == "Victory!")
+                {
+                    if (menu.getOpen() == false)
+                        menu.setOpen(true);
+                    menu.doCredits();
+                }
+            else
+                menu.message(msg);
         }
     killServer();
 }

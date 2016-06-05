@@ -146,5 +146,7 @@ gauntlet::core::MainMenu::doExit()
 
 void gauntlet::core::MainMenu::doCredits()
 {
+    if (submenus[3]->getOpen())
+        submenus[3]->setOpen(false);
     submenus[4]->setOpen(true);
 }
