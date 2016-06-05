@@ -194,7 +194,7 @@ void OgreUI::go()
 
 bool OgreUI::setup(void)
 {
-  mRoot = new Ogre::Root("plugins_d.cfg");
+  mRoot = new Ogre::Root(mPluginsCfg);
 #ifdef OGRE_STATIC
   mRoot->installPlugin(new Ogre::GLPlugin());
   mRoot->installPlugin(new Ogre::ParticleFXPlugin());
