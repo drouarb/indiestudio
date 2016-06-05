@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8)
 project(gauntlet)
 
 option(INDIE_TESTS "Enable test compilation" OFF)
-option(OGRE_STATIC "Use statically compiled OGRE (HUGE Binary!!)" OFF)
+option(OGRE_STATIC "Use statically compiled OGRE (HUGE Binary!!)" ON)
 option(OGRE_PROGRESS "Show ogre download progress" OFF)
 option(Boost_USE_STATIC_LIBS "Boost static" ON)
 
