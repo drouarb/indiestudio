@@ -73,7 +73,7 @@ void gauntlet::network::PacketFactory::send(const Packet &packet, int fd) {
 }
 
 void gauntlet::network::PacketFactory::recv() {
-  t_rawdata *buff;
+    t_rawdata *buff;
     s_socketData data;
     PacketId id;
     Packet *packet;
@@ -83,10 +83,10 @@ void gauntlet::network::PacketFactory::recv() {
     run = true;
     while (run && connected) {
         data = socket->recv();
-	if (buff)
+	if (buff != NULL)
 	  {
 	    buff->insert(buff->end(), data.data->begin(), data.data->end());
-	    delete (data.data);
+	    //delete (data.data);
 	    data.data = buff;
 	    buff = NULL;
 	  }
@@ -116,8 +116,8 @@ void gauntlet::network::PacketFactory::recv() {
 		break;
 	    }
         }
-	if (data.data->size() == 0)
-	  delete(data.data);
+	//if (data.data->size() == 0)
+	  //delete(data.data);
     }
     runlock.unlock();
 }
