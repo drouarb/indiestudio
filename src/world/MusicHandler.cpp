@@ -3,9 +3,11 @@
 //
 
 #include <gameData/SoundName.hh>
+#include <iostream>
 #include "MusicHandler.hh"
+#include "World.hh"
 
-std::map<gauntlet::MusicHandler::MusicEnum, gauntlet::MusicHandler::track> trackList {
+std::map<gauntlet::MusicHandler::MusicEnum, gauntlet::MusicHandler::track> gauntlet::MusicHandler::trackList {
         {gauntlet::MusicHandler::PRISON_FIGHT, gauntlet::MusicHandler::track{gauntlet::SoundName::PRISON_FIGHT, 90}},
         {gauntlet::MusicHandler::SNAKE_CULT, gauntlet::MusicHandler::track{gauntlet::SoundName::SNAKE_CULT, 115}},
         {gauntlet::MusicHandler::WARRENS_OF_THE_DAMNED, gauntlet::MusicHandler::track{gauntlet::SoundName::WARRENS_OF_THE_DAMNED, 96}},
@@ -42,17 +44,30 @@ void gauntlet::MusicHandler::stopCurrentTrack() {
 }
 
 bool gauntlet::MusicHandler::isUsed() {
+    std::cerr << "isused" << std::endl;
     return (cooldown < world->getTurn());
 }
 
 void gauntlet::MusicHandler::startRandomTrack() {
     if (isUsed())
     {
-        track currentTrack = trackList.at((const MusicEnum &) (rand() % trackList.size()));
+        std::cerr << "notused" << std::endl;
+        MusicEnum music = (MusicEnum) (rand() % trackList.size());
+        std::cerr << "music:"<<music << std::endl;
+        track currentTrack = trackList.at(music);
+        std::cerr << "track:"<< currentTrack.first << " " << currentTrack.second << std::endl;
         cooldown = world->getTurn() + ((currentTrack.second + 5) * ROUND_DURATION);
+        std::cerr << "cooldown:" << cooldown << std::endl;
         idUsed = world->playSound(currentTrack.first, false, std::pair<double, double>(1,1));
+        std::cerr << "id:" << idUsed << std::endl;
     }
 }
+
+void gauntlet::MusicHandler::setWorld(world::World *_world) {
+    world = _world;
+}
+
+
 
 
 

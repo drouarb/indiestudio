@@ -100,6 +100,9 @@ void gauntlet::Spell::cast(Actor *actor)
     targets = (actor->getWorld()->getCollider().*patternTypes.at(pattern))(targetedArea.first, targetedArea.second, actor->getOrientation(), radius, angle); //remplacer les 0 par des variables setées à 0 dans le constructy kthxbye
     if (targets.size() > 0) {
         actor->getWorld()->playSound(soundEffect, false, targetedArea);
+        std::cerr << "jessaye" << std::endl;
+        actor->getWorld()->getMusicHandler()->startRandomTrack();
+        std::cerr << "jereussi" << std::endl;
     }
     if ((rand() % 100) < (100 * actor->stats.attackModifier))
         ApplyDamage(targets, actor);

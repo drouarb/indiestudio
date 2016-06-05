@@ -7,9 +7,11 @@
 
 #include <string>
 #include <map>
-#include "World.hh"
 
 namespace gauntlet {
+    namespace world {
+    class World;
+    }
     class MusicHandler {
 
     public:
@@ -40,7 +42,7 @@ namespace gauntlet {
 
     private:
 
-        std::map<gauntlet::MusicHandler::MusicEnum, track> trackList;
+        static std::map<gauntlet::MusicHandler::MusicEnum, track> trackList;
         unsigned long cooldown;
         int idUsed;
         int timestamp;
@@ -53,6 +55,7 @@ namespace gauntlet {
 
         void    stopCurrentTrack();
         void    startRandomTrack();
+        void    setWorld(world::World *world);
         bool    isUsed();
     };
 };

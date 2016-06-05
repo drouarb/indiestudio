@@ -150,7 +150,7 @@ void			BodyFactory::setElf()
   player->setMeshId(EntityName::ARCHER);
   player->setTextureId(TextureName::TEXTURE_NONE);
   player->setIdAI(NOAI);
-  bodyTab.push_back(player)
+  bodyTab.push_back(player);
 }
 
 void			BodyFactory::setWizard()

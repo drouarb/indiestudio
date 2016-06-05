@@ -28,7 +28,7 @@ find_package(Threads)
 
 link_directories(${CMAKE_BINARY_DIR}/lib)
 
-add_executable(gauntlet ${INDIE} src/world/MusicHandler.cpp include/world/MusicHandler.hh)
+add_executable(gauntlet ${INDIE})
 
 include_directories(include)
 include_directories(include/core)

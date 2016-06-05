@@ -19,6 +19,7 @@ World::World(GameServer *ngameserver)
   AIs.push_back(new BasicAI(this));
   AIs.push_back(new SpawnerAI(this));
   Factory = new BodyFactory(this, AIs);
+  musicHandler.setWorld(this);
   collider = NULL;
   Math::init();
   sizeX = 0;
@@ -629,3 +630,9 @@ void				World::setLooper(bool nloop)
 {
   looper = nloop;
 }
+
+MusicHandler *World::getMusicHandler() {
+    return &musicHandler;
+}
+
+
