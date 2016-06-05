@@ -142,7 +142,6 @@ void                GameServer::selectPlayerAnswer(
       players[iTaken].idPlayer = id;
       PacketStartGame myPacket(id);
       packetFact->send(myPacket, packet->getSocketId());
-      //sendDatas(packet->getSocketId());
       dataSendThread = new std::thread(
 	      std::bind(&GameServer::sendDatas, std::ref(*this),
 			packet->getSocketId()));
@@ -163,6 +162,8 @@ void                        GameServer::sendDatas(int socketId)
   std::list<ABody *>::iterator it1;
   unsigned int i;
   PacketMap packetMap(0, world->getMapNames());
+  ABody		*body;
+
 
   bodys = world->getBodysByCopy();
   soundTab = world->getSoundByCopy();
@@ -171,6 +172,16 @@ void                        GameServer::sendDatas(int socketId)
   std::cout << "packetMap try send" << std::endl;
   packetFact->send(packetMap, socketId);
   std::cout << "packetMap send filename : " << packetMap.getFilename() << std::endl;
+  i = 0;
+  while (i < players.size())
+    {
+      if (players[i].idPlayer != -1)
+	{
+	  body = world->getBodyById(players[i].idPlayer);
+	  sendAddEntity(body);
+	}
+      ++i;
+    }
   while (it1 != bodys.end())
     {
       network::PacketAddEntity packet((*it1)->getEntityId(),
