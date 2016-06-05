@@ -42,7 +42,7 @@ gauntlet::core::ActionLists::doActions()
             for (std::list<network::PacketDisconnect *>::iterator it = packetsDisconnect.begin();
                     it != packetsDisconnect.end(); ++it)
                 {
-                    if ((*it)->getMessage() != "")
+		            if ((*it)->getMessage() != "" && (*it)->getMessage() != "Connection lost")
                         {
                             done = true;
                             core.disconnect((*it)->getMessage());

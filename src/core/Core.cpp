@@ -189,46 +189,68 @@ gauntlet::core::Core::initPacketf()
 void
 gauntlet::core::Core::disconnect(std::string const &msg)
 {
+    std::cout << "# disconnect a" << std::endl;
     destroyPacketf(false);
+    std::cout << "# disconnect b" << std::endl;
     if (stoppingPacketf)
         {
+            std::cout << "# disconnect c" << std::endl;
             listenThread->join();
+            std::cout << "# disconnect d" << std::endl;
             delete listenThread;
             listenThread = NULL;
             delete stoppingPacketf;
             stoppingPacketf = NULL;
+            std::cout << "# disconnect e" << std::endl;
         }
 
+    std::cout << "# disconnect f" << std::endl;
     bool sendMsg = !menu.getOpen() && gameIsRunning();
+    std::cout << "# disconnect g" << std::endl;
     stop();
+    std::cout << "# disconnect h" << std::endl;
     ogre.resetMap();
+    std::cout << "# disconnect i" << std::endl;
     if (sendMsg)
         {
+            std::cout << "# disconnect j" << std::endl;
             if (msg.length() > 0)
                 menu.message(msg);
             else
                 menu.message("Disconnected from server.");
+            std::cout << "# disconnect k" << std::endl;
         }
+    std::cout << "# disconnect l" << std::endl;
     killServer();
+    std::cout << "# disconnect m" << std::endl;
 }
 
 void
 gauntlet::core::Core::destroyPacketf(bool external)
 {
+    std::cout << "# destroyPacketf a" << std::endl;
     if (disconnectMutex.try_lock() == false)
         return;
+    std::cout << "# destroyPacketf b" << std::endl;
     networkmutex.lock();
+    std::cout << "# destroyPacketf c" << std::endl;
     if (packetf)
         {
+            std::cout << "# destroyPacketf d" << std::endl;
             if (!external)
                 {
+                    std::cout << "# destroyPacketf e" << std::endl;
                     packetf->stop();
+                    std::cout << "# destroyPacketf f" << std::endl;
                 }
+            std::cout << "# destroyPacketf g" << std::endl;
             stoppingPacketf = packetf;
             packetf = NULL;
+            std::cout << "# destroyPacketf h" << std::endl;
         }
     disconnectMutex.unlock();
     networkmutex.unlock();
+    std::cout << "# destroyPacketf i" << std::endl;
 }
 
 void
