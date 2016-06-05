@@ -90,7 +90,7 @@
       name: "tornado",
       begin: "0",
       end: "842",
-      speed: "20"
+      speed: "15"
     }
   ]
 }

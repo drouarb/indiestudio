@@ -5,6 +5,9 @@
 #ifndef GAUNTLET_STACKTRACE_H
 #define GAUNTLET_STACKTRACE_H
 
+/**
+ * This class only works on GNU/Linux cause of POSIX calls
+ */
 
 class StackTrace
 {

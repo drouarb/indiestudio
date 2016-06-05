@@ -45,12 +45,14 @@ gauntlet::core::ActionLists::doActions()
 		            if ((*it)->getMessage() != "" && (*it)->getMessage() != "Connection lost")
                         {
                             done = true;
+                            std::cout << "# disconnect " << (*it)->getMessage() << std::endl;
                             core.disconnect((*it)->getMessage());
                             break ;
                         }
                 }
             if (!done)
                 {
+                    std::cout << "# disconnect " << packetsDisconnect.front()->getMessage() << std::endl;
                     core.disconnect(packetsDisconnect.front()->getMessage());
                 }
         }
@@ -135,7 +137,6 @@ gauntlet::core::ActionLists::doActions()
                     else
                         core.ogre.play3dSound((*it)->getRefId() + 1, (SoundName) (*it)->getSoundId(), (*it)->getX(),
                                               (*it)->getY(), false);
-                    //TODO else: localized sound
                 }
 
             for (std::list<network::PacketStopSound *>::iterator

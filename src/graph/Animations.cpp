@@ -19,7 +19,7 @@ bool animations::JSONAnimation::update(double elapsedTime)
     {
       if (!loop)
 	{
-	  if (!(this->animationName == "death" || this->animationName.find("Dying") != std::string::npos))
+	  if (!(this->animationName == "death" || this->animationName.find("Dying") != std::string::npos || this->animationName.find("DYING") != std::string::npos ))
 	    {
 	      this->animationState->setTimePosition(static_cast<float>(0));
 	      return false;

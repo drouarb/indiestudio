@@ -907,20 +907,25 @@ void OgreUI::removeEntity(int id)
 void OgreUI::stopEffect(int id)
 {
   Ogre::ParticleSystem *pSystem = NULL;
+  
   try
     {
       Effect *type = this->effectMap[id];
+      
       if (type)
 	pSystem = type->getParticleSystem();
+      else
+	return;
+      if (pSystem)
+	pSystem->setEmitting(false);
     }
-  catch (std::exception &e)
+  catch (...)
     {
       return;
     }
-
-  if (pSystem)
-    pSystem->setEmitting(false);
 }
+
+
 
 void OgreUI::moveEntity(int id, int x, int y, short degres)
 {
