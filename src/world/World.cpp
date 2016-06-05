@@ -21,6 +21,7 @@ World::World(GameServer *ngameserver)
     Factory = new BodyFactory(this, AIs);
     collider = NULL;
     Math::init();
+    musicHandler.setWorld(this);
     sizeX = 0;
     sizeY = 0;
     gameServer = ngameserver;
