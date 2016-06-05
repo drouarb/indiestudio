@@ -1,0 +1,698 @@
+ 
+material Credit/010.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 010.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/020.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 020.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/030.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 030.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/040.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 040.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/050.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 050.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/060.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 060.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/070.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 070.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/080.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 080.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/090.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 090.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/100.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 100.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/101.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 101.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/110.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 110.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/120.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 120.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/130.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 130.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/140.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 140.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/150.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 150.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/151.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 151.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/160.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 160.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/170.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 170.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/180.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 180.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/190.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 190.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/200.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 200.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/210.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 210.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/220.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 220.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/230.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 230.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/240.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 240.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/241.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 241.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/250.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 250.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/260.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 260.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/270.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 270.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/280.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 280.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/290.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 290.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/291.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 291.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/300.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 300.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/310.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 310.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/320.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 320.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/330.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 330.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/331.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 331.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/340.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 340.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/350.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 350.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+
+material Credit/360.jpg
+	{
+        technique
+        {
+            pass
+            {
+                ambient 0.3 0.8 0.3
+		
+		texture_unit
+                {
+                    texture 360.jpg
+                    tex_address_mode mirror
+                }
+            }
+        }
+	}
+

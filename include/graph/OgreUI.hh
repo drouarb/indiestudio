@@ -76,6 +76,7 @@ class OgreUI
   static const std::map<gauntlet::BackgroundName, std::string> backgroundmap;
   static const std::map<gauntlet::CharacterMenuName , std::string> charactermap;
   static const std::vector<std::string> splash_vec;
+  static const std::vector<std::string> credit_vec;
 
   Ogre::LightList lightList;
 
@@ -304,8 +305,9 @@ class OgreUI
 
   int getHeightAt(double x, double y);
 
+  void showBackground(const std::string & name);
 
-void  splashScreen();
+  void  splashScreen();
 private:
 
   void applyAnimation(const Ogre::FrameEvent &evt);
