@@ -128,6 +128,8 @@ void			BodyFactory::setElf()
   player->changePos(std::make_pair(-1, -1));
   player->changeSize(std::make_pair(PLAYER_SIZE, PLAYER_SIZE));
   player->changeOrientation(0);
+  player->spellBook.addSpell(SpellFactory::RANGER_ATTACK, player);
+  player->spellBook.addSpell(SpellFactory::RANGER_EXPLOSIVE_ARROW, player);
   player->soundEffect[ABody::ATTACK] = {
           SoundName::FIRE_SMALL,
           SoundName::FIRE_BIG,
