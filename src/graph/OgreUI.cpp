@@ -971,7 +971,14 @@ void OgreUI::moveEntity(int id, int x, int y, short degres)
 			       s->getPosition().z - 500);
 	}
     }
-  s->yaw(Ogre::Radian(world::Math::toRad(degres)) -
+  if (mSceneMgr->getEntity(s->getName())->getMesh()->getName() == meshmap.at(VALKYRIE))
+    {
+      s->roll(Ogre::Radian(world::Math::toRad(degres + 157)) -
+	      s->getOrientation().getRoll());
+      std::cerr << s->getOrientation().getRoll() << std::endl;
+    }
+  else
+    s->yaw(Ogre::Radian(world::Math::toRad(degres)) -
 	 s->getOrientation().getYaw());
 }
 
@@ -1159,8 +1166,20 @@ void OgreUI::scaleEntity(Ogre::SceneNode *s, gauntlet::EntityName id)
       case EntityName::SKELETON_SORCERER:
 	s->scale(0.4, 0.4, 0.4);
       break;
+      case EntityName::WIZARD:
+	s->scale(0.5, 0.5, 0.5);
+      break;
+      case EntityName::ARCHER:
+	s->scale(0.5, 0.5, 0.5);
+      break;
       case EntityName::CHEST:
 	s->scale(100, 100, 100);
+      break;
+      case EntityName::VALKYRIE:
+	{
+	  s->scale(0.5, 0.5, 0.5);
+	  s->pitch(Ogre::Radian(1.57));
+	}
       break;
       default:
 	break;
