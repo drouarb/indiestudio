@@ -1,0 +1,109 @@
+{
+  name: "Default map",
+  asset_map: "../media/models/map2.mesh",
+  height_map: "mapHeight/map3.pgm",
+  endZone: {
+    posX: "340"
+    posY: "210"
+    sizeX: "15"
+    sizeY: "25"
+  },
+  spawn: {
+    x: "1",
+    y: "1"
+  },
+  dynamic: [
+    {
+      name: "SkeletonWarlord",
+      angle: "0",
+      y: "220",
+      x: "280"
+    },
+    {
+      name: "SkeletonWizard",
+      angle: "0"
+      y: "300",
+      x: "210"
+    },
+    {
+      name: "SkeletonWizard",
+      angle: "0",
+      y: "140",
+      x: "170"
+    },
+    {
+      name: "Door",
+      angle: "0",
+      y: "220",
+      x: "210"
+    },
+    {
+      name: "Key",
+      angle: "0",
+      y: "61",
+      x: "91"
+    },
+    {
+      name: "Key",
+      angle: "0",
+      y: "61",
+      x: "91"
+    },
+    {
+      name: "SkeletonArcher",
+      angle: "0",
+      y: "100",
+      x: "90"
+    },
+    {
+      name: "SkeletonArcher",
+      angle: "0",
+      y: "100",
+      x: "90"
+    },
+    {
+      name: "SkeletonArcher",
+      angle: "0",
+      y: "100",
+      x: "90"
+    },
+    {
+      name: "SkeletonArcher",
+      angle: "0",
+      y: "100",
+      x: "90"
+    },
+    {
+      name: "SkeletonArcher",
+      angle: "0",
+      y: "100",
+      x: "90"
+    },
+    {
+      name: "SkeletonArcher",
+      angle: "0",
+      y: "100",
+      x: "90"
+    },
+    {
+      name: "SkeletonArcher",
+      angle: "0",
+      y: "100",
+      x: "90"
+    },
+    {
+      name: "SkeletonArcher",
+      angle: "0",
+      y: "100",
+      x: "90"
+    },
+  ],
+  sounds: [
+    {
+      id: "2",
+      y: "-1",
+      x: "-1"
+    }
+  ],
+  particles: []
+}
