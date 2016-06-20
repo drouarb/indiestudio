@@ -1,7 +1,7 @@
 {
   name: "Default map",
   asset_map: "../media/models/map2.mesh",
-  height_map: "mapHeight/map3.pgm",
+  height_map: "mapHeight/map2.pgm",
   endZone: {
     posX: "340"
     posY: "210"
@@ -9,8 +9,8 @@
     sizeY: "25"
   },
   spawn: {
-    x: "1",
-    y: "1"
+    x: "680",
+    y: "248"
   },
   dynamic: [
     {
