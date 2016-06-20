@@ -180,8 +180,8 @@ gauntlet::core::Core::killServer()
 
     if (cpid > 0)
         {
-            //kill(cpid, SIGTERM);
-            //waitpid(cpid, &status, 0);
+            kill(cpid, SIGTERM);
+            waitpid(cpid, &status, 0);
             cpid = -1;
         }
 }
