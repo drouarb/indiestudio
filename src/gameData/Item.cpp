@@ -66,7 +66,7 @@ void    gauntlet::Item::operator=(Item item)
     this->name = item.name;
     this->number = item.number;
     this->price = item.price;
-    this->upgrade = upgrade;
+    this->upgrade = item.upgrade;
     this->stats = item.stats;
 }
 

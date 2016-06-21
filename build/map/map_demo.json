@@ -3,9 +3,9 @@
   asset_map: "../media/models/map2.mesh",
   height_map: "mapHeight/map2.pgm",
   endZone: {
-    posX: "340"
-    posY: "210"
-    sizeX: "15"
+    posX: "150",
+    posY: "200",
+    sizeX: "15",
     sizeY: "25"
   },
   spawn: {
@@ -14,88 +14,178 @@
   },
   dynamic: [
     {
+      name: "Skeleton",
+      angle: "0",
+      x: "575",
+      y: "224"
+    },
+    {
+      name: "SkeletonWizard",
+      angle: "0",
+      x: "575",
+      y: "260"
+    },
+    {
+      name: "SkeletonArcher",
+      angle: "0",
+      x: "607",
+      y: "224"
+    },
+    {
+      name: "SkeletonArcher",
+      angle: "0",
+      x: "380",
+      y: "110"
+    },
+    {
+      name: "SkeletonWizard",
+      angle: "0",
+      x: "380",
+      y: "110"
+    },
+    {
+      name: "SkeletonArcher",
+      angle: "0",
+      x: "380",
+      y: "110"
+    },
+    {
+      name: "SkeletonArcher",
+      angle: "0",
+      x: "380",
+      y: "144"
+    },
+    {
+      name: "SkeletonWizard",
+      angle: "0",
+      x: "380",
+      y: "144"
+    },
+    {
+      name: "SkeletonArcher",
+      angle: "0",
+      x: "380",
+      y: "144"
+    },
+    {
+      name: "Skeleton",
+      angle: "0",
+      x: "400",
+      y: "140"
+    },
+    {
+      name: "Skeleton",
+      angle: "0",
+      x: "400",
+      y: "140"
+    },
+    {
+      name: "Skeleton",
+      angle: "0",
+      x: "400",
+      y: "140"
+    },
+    {
+      name: "Skeleton",
+      angle: "0",
+      x: "400",
+      y: "140"
+    },
+    {
+      name: "Skeleton",
+      angle: "0",
+      x: "400",
+      y: "140"
+    },
+    {
+      name: "Skeleton",
+      angle: "0",
+      x: "400",
+      y: "140"
+    },
+    {
       name: "SkeletonWarlord",
       angle: "0",
-      y: "220",
-      x: "280"
+      x: "607",
+      y: "260"
     },
     {
-      name: "SkeletonWizard",
-      angle: "0"
-      y: "300",
-      x: "210"
-    },
-    {
-      name: "SkeletonWizard",
+      name: "SkeletonWarlord",
       angle: "0",
-      y: "140",
-      x: "170"
+      x: "450",
+      y: "365"
     },
     {
-      name: "Door",
+      name: "SkeletonWarlord",
       angle: "0",
-      y: "220",
-      x: "210"
+      x: "368",
+      y: "372"
+    },
+    {
+      name: "EpicDoor",
+      angle: "90",
+      x: "200",
+      y: "248"
     },
     {
       name: "Key",
       angle: "0",
-      y: "61",
-      x: "91"
+      x: "384",
+      y: "248"
     },
     {
-      name: "Key",
+      name: "SpeedPotion",
       angle: "0",
-      y: "61",
-      x: "91"
+      x: "431",
+      y: "406"
     },
     {
-      name: "SkeletonArcher",
+      name: "HealthPotion",
       angle: "0",
-      y: "100",
-      x: "90"
+      x: "468",
+      y: "405"
     },
     {
-      name: "SkeletonArcher",
+      name: "HealthPotion",
       angle: "0",
-      y: "100",
-      x: "90"
+      x: "388",
+      y: "328"
     },
     {
-      name: "SkeletonArcher",
+      name: "SkeletonWarlord",
       angle: "0",
-      y: "100",
-      x: "90"
+      x: "256",
+      y: "240"
     },
     {
-      name: "SkeletonArcher",
+      name: "SkeletonWarlord",
       angle: "0",
-      y: "100",
-      x: "90"
+      x: "256",
+      y: "254"
     },
     {
-      name: "SkeletonArcher",
+      name: "SkeletonWarlord",
       angle: "0",
-      y: "100",
-      x: "90"
+      x: "286",
+      y: "259"
     },
     {
-      name: "SkeletonArcher",
+      name: "SkeletonWarlord",
       angle: "0",
-      y: "100",
-      x: "90"
+      x: "420",
+      y: "250"
     },
     {
-      name: "SkeletonArcher",
+      name: "HealthPotion",
       angle: "0",
-      y: "100",
-      x: "90"
+      x: "350",
+      y: "327"
     },
     {
-      name: "SkeletonArcher",
+      name: "JeanMarieLePen",
       angle: "0",
-      y: "100",
-      x: "90"
+      x: "131",
+      y: "250"
     },
   ],
   sounds: [

@@ -27,7 +27,7 @@ void    Player::use(Item item) {
     if (item.isConsumable())
     {
         this->stats += item.getStats();
-        this->inventory.remove(item);
+        //this->inventory.remove(item);
     }
 }
 

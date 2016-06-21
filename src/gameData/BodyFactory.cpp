@@ -408,8 +408,8 @@ void			BodyFactory::setJeanMarieLePen()
   crea->setName("JeanMarieLePen");
   crea->stats.HP = 1200;
   crea->stats.normalHP = 400;
-  crea->stats.speed = 6.0;
-  crea->stats.normalSpeed = 6.0;
+  crea->stats.speed = 4.0;
+  crea->stats.normalSpeed = 2.0;
   crea->stats.attackModifier = 3;
   crea->spellBook.addSpell(SpellFactory::SIMPLE_ATTACK, crea);
   crea->setCollide(true);
@@ -591,7 +591,7 @@ void             BodyFactory::setSpeedPotion()
 
   item = new Item();
   item->setKey(false);
-  item->setName("Speed Potion");
+  item->setName("SpeedPotion");
   item->setAsConsummable();
   item->setPrice(10);
   item->modifyStats()->speed = 10;
@@ -619,7 +619,7 @@ void            BodyFactory::setHealthPotion()
   item->setPrice(10);
   item->modifyStats()->HP = 100;
   obj = new GameObject(-1, world);
-  obj->setBasicParameters("Potion", true, false);
+  obj->setBasicParameters("HealthPotion", true, false);
   obj->setCollide(false);
   obj->changeSize(std::make_pair(PLAYER_SIZE, PLAYER_SIZE));
   obj->changePos(std::make_pair(-1, -1));
@@ -642,7 +642,7 @@ void            BodyFactory::setPowerPotion()
   item->setPrice(10);
   item->modifyStats()->attackModifier = 1;
   obj = new GameObject(-1, world);
-  obj->setBasicParameters("Potion", true, false);
+  obj->setBasicParameters("PowerPotion", true, false);
   obj->setCollide(false);
   obj->changeSize(std::make_pair(PLAYER_SIZE, PLAYER_SIZE));
   obj->changePos(std::make_pair(-1, -1));
