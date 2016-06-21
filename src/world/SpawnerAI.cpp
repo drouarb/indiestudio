@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 //
 // Started on  Sun May 22 11:46:42 2016 Alexis Trouve
-// Last update Sat Jun  4 20:02:29 2016 Alexis Trouve
+// Last update Tue Jun 21 14:39:12 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -80,8 +80,8 @@ void            SpawnerAI::launchAI(gauntlet::Actor *actor)
       if (me->getSpawnCoolDown() == 0)
 	{
 	  me->setSpawnCoolDown(me->getSpawnCoolDownBase());
-	  vectX = (Math::sin(actor->getOrientation()) * actor->stats.normalSpeed * 15.0);
-	  vectY = (Math::cos(actor->getOrientation()) * actor->stats.normalSpeed * 15.0);
+	  vectX = (Math::sin(actor->getOrientation()) * actor->stats.normalSpeed * 25.0);
+	  vectY = (Math::cos(actor->getOrientation()) * actor->stats.normalSpeed * 25.0);
 	  pos = std::make_pair(actor->getPos().first + vectX, actor->getPos().second + vectY);
 	  me->spawnAllie(pos);
 	}

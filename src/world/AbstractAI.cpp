@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Sun May 22 11:46:42 2016 Alexis Trouve
-// Last update Sat Jun  4 18:50:36 2016 Alexis Trouve
+// Last update Sun Jun  5 23:46:56 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -17,7 +17,6 @@ using namespace world;
 
 AbstractAI::AbstractAI(World *nworld)
 {
-  std::cout << "AI INSTANCIER" << std::endl;
   world = nworld;
   nameAI = "nothing";
 }

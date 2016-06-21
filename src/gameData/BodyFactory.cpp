@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 16:50:32 2016 Alexis Trouve
-// Last update Sat Jun  4 20:07:38 2016 Alexis Trouve
+// Last update Tue Jun 21 14:59:21 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -361,7 +361,7 @@ void			BodyFactory::setSkeletonWarlord()
   crea->spellBook.addSpell(SpellFactory::SIMPLE_ATTACK, crea);
   crea->setCollide(true);
   crea->changePos(std::make_pair(-1, -1));
-  crea->changeSize(std::make_pair(50.0, 50.0));
+  crea->changeSize(std::make_pair(22.0, 22.0));
   crea->changeOrientation(0);
   crea->soundEffect[ABody::ATTACK] = {
           SoundName::ZOMBIE_1,
@@ -393,10 +393,10 @@ void			BodyFactory::setSkeletonWarlord()
   crea->setMeshId(EntityName::SKELETON_WARLORD);
   crea->setTextureId(TextureName::TEXTURE_NONE);
   crea->setIdAI(SPAWNERAI);
-  crea->setSpawnCoolDown(5);
-  crea->setSpawnCoolDownBase(5);
+  crea->setSpawnCoolDown(8);
+  crea->setSpawnCoolDownBase(8);
   crea->setMinionName("Skeleton");
-  crea->setMaxSpawn(6);
+  crea->setMaxSpawn(2);
   bodyTab.push_back(crea);
 }
 
@@ -414,7 +414,7 @@ void			BodyFactory::setJeanMarieLePen()
   crea->spellBook.addSpell(SpellFactory::SIMPLE_ATTACK, crea);
   crea->setCollide(true);
   crea->changePos(std::make_pair(-1, -1));
-  crea->changeSize(std::make_pair(50.0, 50.0));
+  crea->changeSize(std::make_pair(22.0, 22.0));
   crea->changeOrientation(0);
   crea->soundEffect[ABody::ATTACK] = {
           SoundName::ZOMBIE_1,
@@ -446,10 +446,10 @@ void			BodyFactory::setJeanMarieLePen()
   crea->setMeshId(EntityName::JEANMARIE);
   crea->setTextureId(TextureName::TEXTURE_NONE);
   crea->setIdAI(SPAWNERAI);
-  crea->setSpawnCoolDown(5);
-  crea->setSpawnCoolDownBase(5);
+  crea->setSpawnCoolDown(7);
+  crea->setSpawnCoolDownBase(7);
   crea->setMinionName("Skeleton");
-  crea->setMaxSpawn(6);
+  crea->setMaxSpawn(3);
   bodyTab.push_back(crea);
 }
 
