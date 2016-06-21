@@ -406,7 +406,7 @@ void			BodyFactory::setJeanMarieLePen()
 
   crea = new Spawner(-1, world);
   crea->setName("JeanMarieLePen");
-  crea->stats.HP = 1200;
+  crea->stats.HP = 50000;
   crea->stats.normalHP = 400;
   crea->stats.speed = 4.0;
   crea->stats.normalSpeed = 2.0;
