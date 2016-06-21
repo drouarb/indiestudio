@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 16:50:32 2016 Alexis Trouve
-// Last update Tue Jun 21 14:59:21 2016 Alexis Trouve
+// Last update Tue Jun 21 15:08:02 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -393,8 +393,8 @@ void			BodyFactory::setSkeletonWarlord()
   crea->setMeshId(EntityName::SKELETON_WARLORD);
   crea->setTextureId(TextureName::TEXTURE_NONE);
   crea->setIdAI(SPAWNERAI);
-  crea->setSpawnCoolDown(8);
-  crea->setSpawnCoolDownBase(8);
+  crea->setSpawnCoolDown(10);
+  crea->setSpawnCoolDownBase(10);
   crea->setMinionName("Skeleton");
   crea->setMaxSpawn(2);
   bodyTab.push_back(crea);
@@ -446,8 +446,8 @@ void			BodyFactory::setJeanMarieLePen()
   crea->setMeshId(EntityName::JEANMARIE);
   crea->setTextureId(TextureName::TEXTURE_NONE);
   crea->setIdAI(SPAWNERAI);
-  crea->setSpawnCoolDown(7);
-  crea->setSpawnCoolDownBase(7);
+  crea->setSpawnCoolDown(9);
+  crea->setSpawnCoolDownBase(9);
   crea->setMinionName("Skeleton");
   crea->setMaxSpawn(3);
   bodyTab.push_back(crea);
