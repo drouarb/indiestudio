@@ -5,7 +5,7 @@
 // Login   <trouve_b@epitech.net>
 // 
 // Started on  Wed May 11 16:50:32 2016 Alexis Trouve
-// Last update Tue Jun 21 15:08:02 2016 Alexis Trouve
+// Last update Tue Jun 21 15:12:59 2016 Alexis Trouve
 //
 
 #include <iostream>
@@ -406,8 +406,8 @@ void			BodyFactory::setJeanMarieLePen()
 
   crea = new Spawner(-1, world);
   crea->setName("JeanMarieLePen");
-  crea->stats.HP = 50000;
-  crea->stats.normalHP = 400;
+  crea->stats.HP = 5000;
+  crea->stats.normalHP = 5000;
   crea->stats.speed = 4.0;
   crea->stats.normalSpeed = 2.0;
   crea->stats.attackModifier = 3;
