@@ -49,7 +49,7 @@ bool gauntlet::MusicHandler::isUsed() {
 
 void gauntlet::MusicHandler::startEpicEnding() {
     stopCurrentTrack();
-    idUsed = world->playSound(SoundName::BOSS_BATTLE, false, std::pair<double, double>(1,1));
+    idUsed = world->playSound(SoundName::BOSS_BATTLE, false, std::pair<double, double>(-1,-1));
     cooldown = world->getTurn() + 100000;
 }
 
@@ -63,7 +63,7 @@ void gauntlet::MusicHandler::startRandomTrack() {
         MusicEnum music = (MusicEnum) (rand() % trackList.size());
         track currentTrack = trackList.at(music);
         cooldown = world->getTurn() + ((currentTrack.second + 5) * ROUND_DURATION);
-        idUsed = world->playSound(currentTrack.first, false, std::pair<double, double>(1,1));
+        idUsed = world->playSound(currentTrack.first, false, std::pair<double, double>(-1,-1));
     }
 }
 
