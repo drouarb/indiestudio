@@ -9,7 +9,6 @@
 
 int main(int ac, char **av)
 {
-  StackTrace::init();
   if (ac == 1)
     gauntlet::core::Core();
   else if (ac == 3)
