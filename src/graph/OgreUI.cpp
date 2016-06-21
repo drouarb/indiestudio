@@ -1169,6 +1169,10 @@ void OgreUI::scaleEntity(Ogre::SceneNode *s, gauntlet::EntityName id)
       case EntityName::CHEST:
 	s->scale(100, 100, 100);
       break;
+      case EntityName::DOOR:
+	  s->scale(2, 2, 2);
+	  s->yaw(Ogre::Radian(1.57));
+      break;
       case EntityName::VALKYRIE:
 	{
 	  s->scale(0.5, 0.5, 0.5);
